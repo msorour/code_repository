@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/two_link_arm_joint_controller.dir/src/two_link_arm_joint_controller.cpp.o"
-  "/home/work/coding/ros_packages/devel/lib/ros_gazebo_plugin_comm/two_link_arm_joint_controller.pdb"
-  "/home/work/coding/ros_packages/devel/lib/ros_gazebo_plugin_comm/two_link_arm_joint_controller"
+  "/home/work/code_repository/ros_packages/devel/lib/ros_gazebo_plugin_comm/two_link_arm_joint_controller.pdb"
+  "/home/work/code_repository/ros_packages/devel/lib/ros_gazebo_plugin_comm/two_link_arm_joint_controller"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/work/coding/ros_packages/devel/include/ros_gazebo_plugin_comm/Vector7d.h
+/home/work/code_repository/ros_packages/devel/include/ros_gazebo_plugin_comm/Vector7d.h
 string
 -
 vector
@@ -22,19 +22,19 @@ ros/builtin_message_traits.h
 ros/message_operations.h
 -
 
-/home/work/coding/ros_packages/src/ros_gazebo_plugin_comm/src/two_link_arm_joint_controller.cpp
+/home/work/code_repository/ros_packages/src/ros_gazebo_plugin_comm/src/two_link_arm_joint_controller.cpp
 ros/ros.h
-/home/work/coding/ros_packages/src/ros_gazebo_plugin_comm/src/ros/ros.h
+/home/work/code_repository/ros_packages/src/ros_gazebo_plugin_comm/src/ros/ros.h
 std_msgs/Float32.h
-/home/work/coding/ros_packages/src/ros_gazebo_plugin_comm/src/std_msgs/Float32.h
+/home/work/code_repository/ros_packages/src/ros_gazebo_plugin_comm/src/std_msgs/Float32.h
 ros_gazebo_plugin_comm/Vector7d.h
-/home/work/coding/ros_packages/src/ros_gazebo_plugin_comm/src/ros_gazebo_plugin_comm/Vector7d.h
+/home/work/code_repository/ros_packages/src/ros_gazebo_plugin_comm/src/ros_gazebo_plugin_comm/Vector7d.h
 std_msgs/MultiArrayLayout.h
-/home/work/coding/ros_packages/src/ros_gazebo_plugin_comm/src/std_msgs/MultiArrayLayout.h
+/home/work/code_repository/ros_packages/src/ros_gazebo_plugin_comm/src/std_msgs/MultiArrayLayout.h
 std_msgs/MultiArrayDimension.h
-/home/work/coding/ros_packages/src/ros_gazebo_plugin_comm/src/std_msgs/MultiArrayDimension.h
+/home/work/code_repository/ros_packages/src/ros_gazebo_plugin_comm/src/std_msgs/MultiArrayDimension.h
 std_msgs/Float32MultiArray.h
-/home/work/coding/ros_packages/src/ros_gazebo_plugin_comm/src/std_msgs/Float32MultiArray.h
+/home/work/code_repository/ros_packages/src/ros_gazebo_plugin_comm/src/std_msgs/Float32MultiArray.h
 
 /opt/ros/kinetic/include/ros/advertise_options.h
 ros/forwards.h

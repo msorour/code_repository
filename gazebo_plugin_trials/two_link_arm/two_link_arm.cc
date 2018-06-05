@@ -1,6 +1,5 @@
 #include "two_link_arm.hh"
 
-
 using namespace gazebo;
 
 // Register this plugin with the simulator
@@ -41,16 +40,6 @@ void TwoLinkArm::Load(physics::ModelPtr _model, sdf::ElementPtr /*_sdf*/){
 	// Create our ROS node. This acts in a similar manner to the Gazebo node
 	this->rosNode.reset(new ros::NodeHandle("gazebo_client"));
 	
-	/*
-	// Create a named topic, and subscribe to it.
-	ros::SubscribeOptions so = ros::SubscribeOptions::create<std_msgs::Float32>(
-		"/force_cmd/th1",
-	  1,
-	  boost::bind(&TwoLinkArm::OnRosMsg, this, _1),
-	  ros::VoidPtr(), 
-	  &this->rosQueue );
-	*/
-	
 	// Create a named topic, and subscribe to it.
 	ros::SubscribeOptions so = ros::SubscribeOptions::create<std_msgs::Float32MultiArray>(
 		"/force_cmd_vector",
@@ -59,6 +48,16 @@ void TwoLinkArm::Load(physics::ModelPtr _model, sdf::ElementPtr /*_sdf*/){
 	  ros::VoidPtr(), 
 	  &this->rosQueue );
 	this->rosSub = this->rosNode->subscribe(so);
+	
+	/*
+	// Create a topic for publishing joint state.
+	ros::SubscribeOptions pub_joint_state = ros::SubscribeOptions::create<std_msgs::Float32MultiArray>(
+		"/joint_state/position",
+	  1,
+	  boost::bind(&TwoLinkArm::OnRosMsg, this, _1),
+	  ros::VoidPtr(), 
+	  &this->rosQueue );
+	*/
 	
 	// Spin up the queue helper thread.
 	this->rosQueueThread = std::thread(std::bind(&TwoLinkArm::QueueThread, this));
@@ -72,8 +71,6 @@ void TwoLinkArm::OnUpdate(){
   
   double th1 = this->joint[1]->GetAngle(1).Radian();
   double th2 = this->joint[2]->GetAngle(1).Radian();
-  
-  //std::cerr << "Joints=" << joint_count << ", th1=" << th1 << ", th2=" << th2 << "\n";
 }
 
 // TODO : ROS action server should have the initial joint configuration

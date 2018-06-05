@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/work/coding/ros_packages/src/ros_gazebo_plugin_comm/src/two_link_arm_joint_controller.cpp" "/home/work/coding/ros_packages/build/ros_gazebo_plugin_comm/CMakeFiles/two_link_arm_joint_controller.dir/src/two_link_arm_joint_controller.cpp.o"
+  "/home/work/code_repository/ros_packages/src/ros_gazebo_plugin_comm/src/two_link_arm_joint_controller.cpp" "/home/work/code_repository/ros_packages/build/ros_gazebo_plugin_comm/CMakeFiles/two_link_arm_joint_controller.dir/src/two_link_arm_joint_controller.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -17,7 +17,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/home/work/coding/ros_packages/devel/include"
+  "/home/work/code_repository/ros_packages/devel/include"
   "/home/work/catkin_ws/devel/include"
   "/home/work/catkin_ws/src/gazebo_ros_pkgs/gazebo_plugins/include"
   "/opt/ros/kinetic/include"

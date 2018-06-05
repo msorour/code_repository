@@ -7,4 +7,4 @@
 # new environment variables
 
 # modified environment variables
-export PWD="/home/work/coding/ros_packages/build"
+export PWD="/home/work/code_repository/ros_packages/build"

@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/ros_gazebo_plugin_comm_generate_messages_cpp"
-  "/home/work/coding/ros_packages/devel/include/ros_gazebo_plugin_comm/Vector7d.h"
+  "/home/work/code_repository/ros_packages/devel/include/ros_gazebo_plugin_comm/Vector7d.h"
 )
 
 # Per-language clean rules from dependency scanning.
