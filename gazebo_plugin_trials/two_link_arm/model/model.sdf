@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+
+<sdf version="1.6">
+<model name="two_link_arm">
+  <static>false</static>
+  <!-- link0 -->
+  <link name="link0">
+    <pose>0 0 0.35 0 0 0</pose>
+    
+    <inertial>
+      <mass>13.55</mass>
+      <inertia>
+        <ixx>0.294</ixx>
+        <iyy>0.294</iyy>
+        <izz>0.023</izz>
+        <ixy>0</ixy>
+        <ixz>0</ixz>
+        <iyz>0</iyz>
+      </inertia>
+    </inertial>
+    
+    <collision name="collision">
+      <geometry>
+      <box>
+      <size>0.1 0.1 0.7</size>
+      </box>
+      </geometry>
+    </collision>
+
+    <visual name="visual">
+      <geometry>
+      <box>
+      <size>0.1 0.1 0.7</size>
+      </box>
+      </geometry>
+    </visual>
+  </link>
+  
+  <!-- link1 -->
+  <link name="link1">
+    <pose>0.102 0 0.5 0 0 0</pose>
+    
+    <inertial>
+      <mass>10.84</mass>
+      <inertia>
+        <ixx>0.154</ixx>
+        <iyy>0.154</iyy>
+        <izz>0.018</izz>
+        <ixy>0</ixy>
+        <ixz>0</ixz>
+        <iyz>0</iyz>
+      </inertia>
+    </inertial>
+    
+    <collision name="collision">
+      <geometry>
+      <box>
+      <size>0.1 0.1 0.4</size>
+      </box>
+      </geometry>
+    </collision>
+
+    <visual name="visual">
+      <geometry>
+      <box>
+      <size>0.1 0.1 0.4</size>
+      </box>
+      </geometry>
+    </visual>
+  </link>
+  
+  
+  <!-- link2 -->
+  <link name="link2">
+    <pose>0.204 0 0.2 0 0 0</pose>
+    
+    <inertial>
+      <mass>10.84</mass>
+      <inertia>
+        <ixx>0.154</ixx>
+        <iyy>0.154</iyy>
+        <izz>0.018</izz>
+        <ixy>0</ixy>
+        <ixz>0</ixz>
+        <iyz>0</iyz>
+      </inertia>
+    </inertial>
+    
+    <collision name="collision">
+      <geometry>
+      <box>
+      <size>0.1 0.1 0.2</size>
+      </box>
+      </geometry>
+    </collision>
+
+    <visual name="visual">
+      <geometry>
+      <box>
+      <size>0.1 0.1 0.2</size>
+      </box>
+      </geometry>
+    </visual>
+  </link>
+  
+  
+  <!-- fix to ground -->
+  <joint name="fix-to-ground" type="fixed">
+    <pose>0 0 -0.25 0 0 0</pose>
+    <parent>world</parent>
+    <child>link0</child>
+  </joint>
+  
+  <!-- joint1 -->
+  <joint type="revolute" name="joint1"> 
+    <parent>link0</parent>
+    <child>link1</child>
+    <gearbox_ratio>1000</gearbox_ratio>
+    
+    <!-- Pose is defined with respect to child -->
+    <pose>0.0 0 0.2 0 1.57 0</pose>
+    
+    <!-- The axis defines the joint's degree of freedom -->
+    <axis>
+      <!-- Revolve around the z-axis -->
+      <initial_position>1.5</initial_position>
+      <xyz>0 0 1</xyz>
+      <dynamics>
+        <damping>0.2</damping>
+        <friction>0.2</friction>
+      </dynamics>
+      <!-- Limit refers to the range of motion of the joint -->
+      <limit>
+        <lower>-10002.5</lower>
+        <upper>10002.5</upper>
+      </limit>
+    </axis>
+  </joint>
+  
+  <!-- joint2 -->
+  <joint type="revolute" name="joint2"> 
+    <parent>link1</parent>
+    <child>link2</child>
+    <gearbox_ratio>1000</gearbox_ratio>
+    
+    <!-- Pose is defined with respect to child -->
+    <pose>0.0 0 0.1 0 1.57 0</pose>
+    
+    <!-- The axis defines the joint's degree of freedom -->
+    <axis>
+      <!-- Revolve around the z-axis -->
+      <initial_position>1.5</initial_position>
+      <xyz>0 0 1</xyz>
+      <dynamics>
+        <damping>0.2</damping>
+        <friction>0.2</friction>
+      </dynamics>
+      <!-- Limit refers to the range of motion of the joint -->
+      <limit>
+        <lower>-10002.5</lower>
+        <upper>10002.5</upper>
+      </limit>
+    </axis>
+  </joint>
+  
+</model>
+</sdf>

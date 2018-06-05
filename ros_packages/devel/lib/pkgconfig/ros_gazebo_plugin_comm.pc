@@ -1,0 +1,8 @@
+prefix=/home/work/coding/ros_packages/devel
+
+Name: ros_gazebo_plugin_comm
+Description: Description of ros_gazebo_plugin_comm
+Version: 1.0.0
+Cflags: -I/home/work/coding/ros_packages/devel/include
+Libs: -L/home/work/coding/ros_packages/devel/lib 
+Requires: gazebo_plugins gazebo_ros roscpp rospy sensor_msgs std_msgs xacro message_runtime

@@ -1,0 +1,18 @@
+
+1. model.sdf and model.config should be placed in a folder having the name of the robot which in turn should be placed in ~/.gazebo/models folder
+
+2. in model.config the entry "<sdf >model.sdf</sdf>" should contain the correct name of the .sdf file
+
+3. run the simulator using (-u will launch in pause mode): 
+  >> gzserver -u two_link_arm_world.world --verbose
+
+4. run the gazebo gui using:
+  >> gzclient
+
+5. if you make changes, compile first by going to build/ folder:
+  >> cmake ../ && make
+
+6. in .sdf model format, the joint pose is specified with respect to the child origin frame by default.
+
+7. we can make a plugin for each of : 1. set initial joint configuration, 2. set joint torque vector, 3. get joint state vector
+

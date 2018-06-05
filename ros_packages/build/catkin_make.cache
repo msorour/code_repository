@@ -1,0 +1,2 @@
+ros_gazebo_plugin_comm
+-DCATKIN_DEVEL_PREFIX=/home/work/coding/ros_packages/devel -DCMAKE_INSTALL_PREFIX=/home/work/coding/ros_packages/install -G Unix Makefiles

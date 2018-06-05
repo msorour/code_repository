@@ -1,0 +1,27 @@
+<?xml version="1.0"?> 
+<sdf version="1.6">
+  <world name="two_link_arm_world">
+
+    <!-- Ground Plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    
+    <!-- the model -->
+    <model name="two_link_arm">
+      <pose>0 0 0 0 0 0</pose>
+      <include>
+        <uri>model://two_link_arm</uri>        <!-- gazebo model located in ~/.gazebo/models/ folder -->
+        <!-- <uri>model://file://model://two_link_arm</uri> -->   <!-- gazebo model located in arbitrary file (not working yet!) -->
+      </include>
+      <!-- Attach the plugin to this model -->
+      <plugin name="two_link_arm" filename="libtwo_link_arm.so"/>
+    </model>
+            
+  </world>
+</sdf>
