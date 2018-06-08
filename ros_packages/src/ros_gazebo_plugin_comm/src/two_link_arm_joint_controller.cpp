@@ -23,7 +23,7 @@ int main(int argc, char **argv){
   	
   	//ros_gazebo_plugin_comm::Vector7d force_vector;
   	force_vector.data.push_back(40.1);
-  	force_vector.data.push_back(7.1);
+  	force_vector.data.push_back(10.1);
   	force_cmd_vector.publish(force_vector);
   	
     std_msgs::Float32 force;

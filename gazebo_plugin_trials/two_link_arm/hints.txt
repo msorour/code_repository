@@ -14,5 +14,6 @@
 
 6. in .sdf model format, the joint pose is specified with respect to the child origin frame by default.
 
-7. we can make a plugin for each of : 1. set initial joint configuration, 2. set joint torque vector, 3. get joint state vector
+7. setting joint initial configuration:
+		to do this we use the API function "SetJointPositions()" which takes a map "EX: std::map<std::string, double> init_joint_config_map;" filled as follows: "EX: init_joint_config_map["panda_arm::panda_arm_joint1"] = 1.57;" where the first element is a string containing the scoped name of the joint (which we can get using the API function "GetScopedName()") and the second element is the joint initial position.
 
