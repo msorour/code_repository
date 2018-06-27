@@ -118,7 +118,9 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/work/code_repository/ros_packages/build/gtest/cmake_install.cmake")
   include("/home/work/code_repository/ros_packages/build/franka_panda_arm_description/cmake_install.cmake")
+  include("/home/work/code_repository/ros_packages/build/franka_panda_arm_plus_own_gripper_control_gazebo/cmake_install.cmake")
   include("/home/work/code_repository/ros_packages/build/franka_panda_control_gazebo/cmake_install.cmake")
+  include("/home/work/code_repository/ros_packages/build/franka_panda_gripper_description/cmake_install.cmake")
   include("/home/work/code_repository/ros_packages/build/ros_gazebo_plugin_comm/cmake_install.cmake")
 
 endif()

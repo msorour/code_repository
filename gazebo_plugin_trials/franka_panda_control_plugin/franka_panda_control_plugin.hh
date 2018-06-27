@@ -40,6 +40,8 @@ namespace gazebo{
 
 		// ROS helper function that processes messages
 		private: void QueueThread();
+		
+		private: void PandaArmGravityCompensation(float q[7]);
 
 		
     // Pointer to the model.
@@ -51,6 +53,7 @@ namespace gazebo{
     
     
     private: float joint_force_cmd[7];
+    private: float joint_gravity_torque[7];
 
     // A PID controller for the joint.
     private: common::PID pid;

@@ -20,7 +20,7 @@
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(find franka_panda_arm_description)/model/panda_arm_gazebo.urdf.xacro" />
   
   <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
-  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model panda -param robot_description"/>
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model panda_arm -param robot_description"/>
 	
   <!-- How to use example: -->
   <!-- >>roslaunch panda_arm_description panda_arm_gazebo.launch /-->

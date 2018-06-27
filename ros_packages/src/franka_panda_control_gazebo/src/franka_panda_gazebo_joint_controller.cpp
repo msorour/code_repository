@@ -16,9 +16,9 @@ int main(int argc, char **argv){
   	force_cmd_vector.data.clear();
   	
   	force_cmd_vector.data.push_back(0.0);
+  	force_cmd_vector.data.push_back(0.0);//-30
   	force_cmd_vector.data.push_back(0.0);
-  	force_cmd_vector.data.push_back(0.0);
-  	force_cmd_vector.data.push_back(0.0);
+  	force_cmd_vector.data.push_back(0.0);//10
   	force_cmd_vector.data.push_back(0.0);
   	force_cmd_vector.data.push_back(0.0);
   	force_cmd_vector.data.push_back(0.0);

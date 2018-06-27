@@ -295,10 +295,22 @@ franka_panda_arm_description_BINARY_DIR:STATIC=/home/work/code_repository/ros_pa
 franka_panda_arm_description_SOURCE_DIR:STATIC=/home/work/code_repository/ros_packages/src/franka_panda_arm_description
 
 //Value Computed by CMake
+franka_panda_arm_plus_own_gripper_control_gazebo_BINARY_DIR:STATIC=/home/work/code_repository/ros_packages/build/franka_panda_arm_plus_own_gripper_control_gazebo
+
+//Value Computed by CMake
+franka_panda_arm_plus_own_gripper_control_gazebo_SOURCE_DIR:STATIC=/home/work/code_repository/ros_packages/src/franka_panda_arm_plus_own_gripper_control_gazebo
+
+//Value Computed by CMake
 franka_panda_control_gazebo_BINARY_DIR:STATIC=/home/work/code_repository/ros_packages/build/franka_panda_control_gazebo
 
 //Value Computed by CMake
 franka_panda_control_gazebo_SOURCE_DIR:STATIC=/home/work/code_repository/ros_packages/src/franka_panda_control_gazebo
+
+//Value Computed by CMake
+franka_panda_gripper_description_BINARY_DIR:STATIC=/home/work/code_repository/ros_packages/build/franka_panda_gripper_description
+
+//Value Computed by CMake
+franka_panda_gripper_description_SOURCE_DIR:STATIC=/home/work/code_repository/ros_packages/src/franka_panda_gripper_description
 
 //The directory containing a CMake configuration file for gazebo_msgs.
 gazebo_msgs_DIR:PATH=/home/work/catkin_ws/devel/share/gazebo_msgs/cmake
@@ -574,7 +586,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=8
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

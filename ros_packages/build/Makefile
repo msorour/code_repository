@@ -1189,7 +1189,7 @@ bond_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 bond_generate_messages_lisp/fast:
-	$(MAKE) -f franka_panda_control_gazebo/CMakeFiles/bond_generate_messages_lisp.dir/build.make franka_panda_control_gazebo/CMakeFiles/bond_generate_messages_lisp.dir/build
+	$(MAKE) -f franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/bond_generate_messages_lisp.dir/build.make franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/bond_generate_messages_lisp.dir/build
 .PHONY : bond_generate_messages_lisp/fast
 
 #=============================================================================
@@ -1202,7 +1202,7 @@ bond_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 bond_generate_messages_eus/fast:
-	$(MAKE) -f franka_panda_control_gazebo/CMakeFiles/bond_generate_messages_eus.dir/build.make franka_panda_control_gazebo/CMakeFiles/bond_generate_messages_eus.dir/build
+	$(MAKE) -f franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/bond_generate_messages_eus.dir/build.make franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/bond_generate_messages_eus.dir/build
 .PHONY : bond_generate_messages_eus/fast
 
 #=============================================================================
@@ -1215,7 +1215,7 @@ bond_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 bond_generate_messages_nodejs/fast:
-	$(MAKE) -f franka_panda_control_gazebo/CMakeFiles/bond_generate_messages_nodejs.dir/build.make franka_panda_control_gazebo/CMakeFiles/bond_generate_messages_nodejs.dir/build
+	$(MAKE) -f franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/bond_generate_messages_nodejs.dir/build.make franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/bond_generate_messages_nodejs.dir/build
 .PHONY : bond_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -1228,7 +1228,7 @@ nodelet_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 nodelet_generate_messages_lisp/fast:
-	$(MAKE) -f franka_panda_control_gazebo/CMakeFiles/nodelet_generate_messages_lisp.dir/build.make franka_panda_control_gazebo/CMakeFiles/nodelet_generate_messages_lisp.dir/build
+	$(MAKE) -f franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/nodelet_generate_messages_lisp.dir/build.make franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/nodelet_generate_messages_lisp.dir/build
 .PHONY : nodelet_generate_messages_lisp/fast
 
 #=============================================================================
@@ -1241,7 +1241,7 @@ bond_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 bond_generate_messages_cpp/fast:
-	$(MAKE) -f franka_panda_control_gazebo/CMakeFiles/bond_generate_messages_cpp.dir/build.make franka_panda_control_gazebo/CMakeFiles/bond_generate_messages_cpp.dir/build
+	$(MAKE) -f franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/bond_generate_messages_cpp.dir/build.make franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/bond_generate_messages_cpp.dir/build
 .PHONY : bond_generate_messages_cpp/fast
 
 #=============================================================================
@@ -1254,7 +1254,7 @@ nav_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 nav_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f franka_panda_control_gazebo/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build.make franka_panda_control_gazebo/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build.make franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build
 .PHONY : nav_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -1267,7 +1267,7 @@ nodelet_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 nodelet_generate_messages_py/fast:
-	$(MAKE) -f franka_panda_control_gazebo/CMakeFiles/nodelet_generate_messages_py.dir/build.make franka_panda_control_gazebo/CMakeFiles/nodelet_generate_messages_py.dir/build
+	$(MAKE) -f franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/nodelet_generate_messages_py.dir/build.make franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/nodelet_generate_messages_py.dir/build
 .PHONY : nodelet_generate_messages_py/fast
 
 #=============================================================================
@@ -1280,7 +1280,7 @@ nav_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 nav_msgs_generate_messages_eus/fast:
-	$(MAKE) -f franka_panda_control_gazebo/CMakeFiles/nav_msgs_generate_messages_eus.dir/build.make franka_panda_control_gazebo/CMakeFiles/nav_msgs_generate_messages_eus.dir/build
+	$(MAKE) -f franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/nav_msgs_generate_messages_eus.dir/build.make franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/nav_msgs_generate_messages_eus.dir/build
 .PHONY : nav_msgs_generate_messages_eus/fast
 
 #=============================================================================
@@ -1293,7 +1293,7 @@ nav_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 nav_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f franka_panda_control_gazebo/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build.make franka_panda_control_gazebo/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build.make franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build
 .PHONY : nav_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -1306,8 +1306,125 @@ nodelet_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 nodelet_generate_messages_nodejs/fast:
-	$(MAKE) -f franka_panda_control_gazebo/CMakeFiles/nodelet_generate_messages_nodejs.dir/build.make franka_panda_control_gazebo/CMakeFiles/nodelet_generate_messages_nodejs.dir/build
+	$(MAKE) -f franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/nodelet_generate_messages_nodejs.dir/build.make franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/nodelet_generate_messages_nodejs.dir/build
 .PHONY : nodelet_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named gazebo_plugins_gencfg
+
+# Build rule for target.
+gazebo_plugins_gencfg: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gazebo_plugins_gencfg
+.PHONY : gazebo_plugins_gencfg
+
+# fast build rule for target.
+gazebo_plugins_gencfg/fast:
+	$(MAKE) -f franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/gazebo_plugins_gencfg.dir/build.make franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/gazebo_plugins_gencfg.dir/build
+.PHONY : gazebo_plugins_gencfg/fast
+
+#=============================================================================
+# Target rules for targets named nodelet_generate_messages_cpp
+
+# Build rule for target.
+nodelet_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 nodelet_generate_messages_cpp
+.PHONY : nodelet_generate_messages_cpp
+
+# fast build rule for target.
+nodelet_generate_messages_cpp/fast:
+	$(MAKE) -f franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/nodelet_generate_messages_cpp.dir/build.make franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/nodelet_generate_messages_cpp.dir/build
+.PHONY : nodelet_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named nodelet_generate_messages_eus
+
+# Build rule for target.
+nodelet_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 nodelet_generate_messages_eus
+.PHONY : nodelet_generate_messages_eus
+
+# fast build rule for target.
+nodelet_generate_messages_eus/fast:
+	$(MAKE) -f franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/nodelet_generate_messages_eus.dir/build.make franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/nodelet_generate_messages_eus.dir/build
+.PHONY : nodelet_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named bond_generate_messages_py
+
+# Build rule for target.
+bond_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 bond_generate_messages_py
+.PHONY : bond_generate_messages_py
+
+# fast build rule for target.
+bond_generate_messages_py/fast:
+	$(MAKE) -f franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/bond_generate_messages_py.dir/build.make franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/bond_generate_messages_py.dir/build
+.PHONY : bond_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named nav_msgs_generate_messages_nodejs
+
+# Build rule for target.
+nav_msgs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 nav_msgs_generate_messages_nodejs
+.PHONY : nav_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+nav_msgs_generate_messages_nodejs/fast:
+	$(MAKE) -f franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build.make franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build
+.PHONY : nav_msgs_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named nav_msgs_generate_messages_py
+
+# Build rule for target.
+nav_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 nav_msgs_generate_messages_py
+.PHONY : nav_msgs_generate_messages_py
+
+# fast build rule for target.
+nav_msgs_generate_messages_py/fast:
+	$(MAKE) -f franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/nav_msgs_generate_messages_py.dir/build.make franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/nav_msgs_generate_messages_py.dir/build
+.PHONY : nav_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named franka_panda_plus_own_gripper_gazebo_joint_controller
+
+# Build rule for target.
+franka_panda_plus_own_gripper_gazebo_joint_controller: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 franka_panda_plus_own_gripper_gazebo_joint_controller
+.PHONY : franka_panda_plus_own_gripper_gazebo_joint_controller
+
+# fast build rule for target.
+franka_panda_plus_own_gripper_gazebo_joint_controller/fast:
+	$(MAKE) -f franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/franka_panda_plus_own_gripper_gazebo_joint_controller.dir/build.make franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/franka_panda_plus_own_gripper_gazebo_joint_controller.dir/build
+.PHONY : franka_panda_plus_own_gripper_gazebo_joint_controller/fast
+
+#=============================================================================
+# Target rules for targets named franka_panda_arm_plus_own_gripper_control_gazebo_xacro_generated_to_devel_space_
+
+# Build rule for target.
+franka_panda_arm_plus_own_gripper_control_gazebo_xacro_generated_to_devel_space_: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 franka_panda_arm_plus_own_gripper_control_gazebo_xacro_generated_to_devel_space_
+.PHONY : franka_panda_arm_plus_own_gripper_control_gazebo_xacro_generated_to_devel_space_
+
+# fast build rule for target.
+franka_panda_arm_plus_own_gripper_control_gazebo_xacro_generated_to_devel_space_/fast:
+	$(MAKE) -f franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/franka_panda_arm_plus_own_gripper_control_gazebo_xacro_generated_to_devel_space_.dir/build.make franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/franka_panda_arm_plus_own_gripper_control_gazebo_xacro_generated_to_devel_space_.dir/build
+.PHONY : franka_panda_arm_plus_own_gripper_control_gazebo_xacro_generated_to_devel_space_/fast
+
+#=============================================================================
+# Target rules for targets named franka_panda_control_gazebo_xacro_generated_to_devel_space_
+
+# Build rule for target.
+franka_panda_control_gazebo_xacro_generated_to_devel_space_: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 franka_panda_control_gazebo_xacro_generated_to_devel_space_
+.PHONY : franka_panda_control_gazebo_xacro_generated_to_devel_space_
+
+# fast build rule for target.
+franka_panda_control_gazebo_xacro_generated_to_devel_space_/fast:
+	$(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_control_gazebo_xacro_generated_to_devel_space_.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_control_gazebo_xacro_generated_to_devel_space_.dir/build
+.PHONY : franka_panda_control_gazebo_xacro_generated_to_devel_space_/fast
 
 #=============================================================================
 # Target rules for targets named franka_panda_gazebo_joint_controller
@@ -1323,95 +1440,17 @@ franka_panda_gazebo_joint_controller/fast:
 .PHONY : franka_panda_gazebo_joint_controller/fast
 
 #=============================================================================
-# Target rules for targets named gazebo_plugins_gencfg
+# Target rules for targets named franka_panda_gripper_description_xacro_generated_to_devel_space_
 
 # Build rule for target.
-gazebo_plugins_gencfg: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gazebo_plugins_gencfg
-.PHONY : gazebo_plugins_gencfg
+franka_panda_gripper_description_xacro_generated_to_devel_space_: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 franka_panda_gripper_description_xacro_generated_to_devel_space_
+.PHONY : franka_panda_gripper_description_xacro_generated_to_devel_space_
 
 # fast build rule for target.
-gazebo_plugins_gencfg/fast:
-	$(MAKE) -f franka_panda_control_gazebo/CMakeFiles/gazebo_plugins_gencfg.dir/build.make franka_panda_control_gazebo/CMakeFiles/gazebo_plugins_gencfg.dir/build
-.PHONY : gazebo_plugins_gencfg/fast
-
-#=============================================================================
-# Target rules for targets named nodelet_generate_messages_cpp
-
-# Build rule for target.
-nodelet_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 nodelet_generate_messages_cpp
-.PHONY : nodelet_generate_messages_cpp
-
-# fast build rule for target.
-nodelet_generate_messages_cpp/fast:
-	$(MAKE) -f franka_panda_control_gazebo/CMakeFiles/nodelet_generate_messages_cpp.dir/build.make franka_panda_control_gazebo/CMakeFiles/nodelet_generate_messages_cpp.dir/build
-.PHONY : nodelet_generate_messages_cpp/fast
-
-#=============================================================================
-# Target rules for targets named nodelet_generate_messages_eus
-
-# Build rule for target.
-nodelet_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 nodelet_generate_messages_eus
-.PHONY : nodelet_generate_messages_eus
-
-# fast build rule for target.
-nodelet_generate_messages_eus/fast:
-	$(MAKE) -f franka_panda_control_gazebo/CMakeFiles/nodelet_generate_messages_eus.dir/build.make franka_panda_control_gazebo/CMakeFiles/nodelet_generate_messages_eus.dir/build
-.PHONY : nodelet_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named bond_generate_messages_py
-
-# Build rule for target.
-bond_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 bond_generate_messages_py
-.PHONY : bond_generate_messages_py
-
-# fast build rule for target.
-bond_generate_messages_py/fast:
-	$(MAKE) -f franka_panda_control_gazebo/CMakeFiles/bond_generate_messages_py.dir/build.make franka_panda_control_gazebo/CMakeFiles/bond_generate_messages_py.dir/build
-.PHONY : bond_generate_messages_py/fast
-
-#=============================================================================
-# Target rules for targets named nav_msgs_generate_messages_nodejs
-
-# Build rule for target.
-nav_msgs_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 nav_msgs_generate_messages_nodejs
-.PHONY : nav_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-nav_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f franka_panda_control_gazebo/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build.make franka_panda_control_gazebo/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build
-.PHONY : nav_msgs_generate_messages_nodejs/fast
-
-#=============================================================================
-# Target rules for targets named nav_msgs_generate_messages_py
-
-# Build rule for target.
-nav_msgs_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 nav_msgs_generate_messages_py
-.PHONY : nav_msgs_generate_messages_py
-
-# fast build rule for target.
-nav_msgs_generate_messages_py/fast:
-	$(MAKE) -f franka_panda_control_gazebo/CMakeFiles/nav_msgs_generate_messages_py.dir/build.make franka_panda_control_gazebo/CMakeFiles/nav_msgs_generate_messages_py.dir/build
-.PHONY : nav_msgs_generate_messages_py/fast
-
-#=============================================================================
-# Target rules for targets named franka_panda_control_gazebo_xacro_generated_to_devel_space_
-
-# Build rule for target.
-franka_panda_control_gazebo_xacro_generated_to_devel_space_: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 franka_panda_control_gazebo_xacro_generated_to_devel_space_
-.PHONY : franka_panda_control_gazebo_xacro_generated_to_devel_space_
-
-# fast build rule for target.
-franka_panda_control_gazebo_xacro_generated_to_devel_space_/fast:
-	$(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_control_gazebo_xacro_generated_to_devel_space_.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_control_gazebo_xacro_generated_to_devel_space_.dir/build
-.PHONY : franka_panda_control_gazebo_xacro_generated_to_devel_space_/fast
+franka_panda_gripper_description_xacro_generated_to_devel_space_/fast:
+	$(MAKE) -f franka_panda_gripper_description/CMakeFiles/franka_panda_gripper_description_xacro_generated_to_devel_space_.dir/build.make franka_panda_gripper_description/CMakeFiles/franka_panda_gripper_description_xacro_generated_to_devel_space_.dir/build
+.PHONY : franka_panda_gripper_description_xacro_generated_to_devel_space_/fast
 
 #=============================================================================
 # Target rules for targets named ros_gazebo_plugin_comm_genpy
@@ -1696,14 +1735,17 @@ help:
 	@echo "... nav_msgs_generate_messages_eus"
 	@echo "... nav_msgs_generate_messages_lisp"
 	@echo "... nodelet_generate_messages_nodejs"
-	@echo "... franka_panda_gazebo_joint_controller"
 	@echo "... gazebo_plugins_gencfg"
 	@echo "... nodelet_generate_messages_cpp"
 	@echo "... nodelet_generate_messages_eus"
 	@echo "... bond_generate_messages_py"
 	@echo "... nav_msgs_generate_messages_nodejs"
 	@echo "... nav_msgs_generate_messages_py"
+	@echo "... franka_panda_plus_own_gripper_gazebo_joint_controller"
+	@echo "... franka_panda_arm_plus_own_gripper_control_gazebo_xacro_generated_to_devel_space_"
 	@echo "... franka_panda_control_gazebo_xacro_generated_to_devel_space_"
+	@echo "... franka_panda_gazebo_joint_controller"
+	@echo "... franka_panda_gripper_description_xacro_generated_to_devel_space_"
 	@echo "... ros_gazebo_plugin_comm_genpy"
 	@echo "... ros_gazebo_plugin_comm_generate_messages_py"
 	@echo "... ros_gazebo_plugin_comm_gennodejs"

@@ -8,7 +8,13 @@
   <!-- attach the custom make gazebo plugin "franka_panda_control_plugin" -->
   <gazebo>
     <plugin name="franka_panda_control_plugin" filename="libfranka_panda_control_plugin.so">
-    	<joint1_init>2.57</joint1_init>
+    	<joint1_init>0.00</joint1_init>
+    	<joint2_init>0.70</joint2_init>
+    	<joint3_init>0.00</joint3_init>
+    	<joint4_init>0.00</joint4_init>
+    	<joint5_init>0.00</joint5_init>
+    	<joint6_init>0.00</joint6_init>
+    	<joint7_init>0.00</joint7_init>
     </plugin>
   </gazebo>
 
