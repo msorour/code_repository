@@ -6,11 +6,12 @@
     </include>
     <include>
       <uri>model://sun</uri>
+      <pose>0 0 0 0 0 0</pose>
     </include>
     <include>
     	<uri>model://workcell-assembly-v2</uri>
       <name>workcell-assembly-v2</name>
-      <pose>-0 0 0 0 0 0</pose>
+      <pose>0 0 0 0 0 0</pose>
     </include>
   </world>
 </sdf>

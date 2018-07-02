@@ -3,7 +3,7 @@
   
   <xacro:include filename="$(find franka_panda_arm_description)/model/panda_arm_gazebo.xacro" />
   <xacro:include filename="$(find franka_panda_gripper_description)/model/panda_gripper_gazebo.xacro"/>
-  <xacro:panda_arm arm_id="panda_arm" xyz="0.62 0.138 0.916" rpy="0 0 ${pi/2}" />
+  <xacro:panda_arm arm_id="panda_arm" xyz="0.62 0.138 0.986" rpy="0 0 ${pi/2}" />
   <!-- <xacro:panda_arm xyz="0 0 0" rpy="0 0 ${-pi/2}" /> -->
   <!-- <xacro:panda_gripper ns="panda_arm_gripper" rpy="0 0 ${-pi/4}" connected_to="panda_arm_link8"/> -->
   <xacro:panda_gripper ns="gripper" rpy="0 0 ${-pi/4}" connected_to="panda_arm_link8"/>
@@ -18,7 +18,7 @@
     	<arm_joint4_init>0.00</arm_joint4_init>
     	<arm_joint5_init>0.00</arm_joint5_init>
     	<arm_joint6_init>0.00</arm_joint6_init>
-    	<arm_joint7_init>0.00</arm_joint7_init>
+    	<arm_joint7_init>0.70</arm_joint7_init>
     	<gripper_joint1_init>0.00</gripper_joint1_init>
     	<gripper_joint2_init>0.00</gripper_joint2_init>
     </plugin>

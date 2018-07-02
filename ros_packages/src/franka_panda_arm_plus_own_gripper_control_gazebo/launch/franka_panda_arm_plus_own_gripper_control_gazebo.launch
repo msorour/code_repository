@@ -7,8 +7,8 @@
   <arg name="gui" 					default="true"/>
   <arg name="headless" 			default="false"/>
   <arg name="debug" 				default="false"/>
-  <!-- <arg name="world_name" 		default="$(find franka_panda_arm_plus_own_gripper_control_gazebo)/worlds/sim_scenario#1.world"/> -->
-	<arg name="world_name" 		default="$(find franka_panda_arm_plus_own_gripper_control_gazebo)/worlds/sim_scenario_workcells_v1_v2_comparison.world"/>
+  <arg name="world_name" 		default="$(find franka_panda_arm_plus_own_gripper_control_gazebo)/worlds/sim_scenario#1.world"/>
+	<!-- <arg name="world_name" 		default="$(find franka_panda_arm_plus_own_gripper_control_gazebo)/worlds/sim_scenario_workcells_v1_v2_comparison.world"/> -->
 	
 	<!-- Load the URDF into the ROS Parameter Server -->
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(find franka_panda_arm_plus_own_gripper_control_gazebo)/model/panda_arm_plus_own_gripper_control_gazebo_plugin.urdf.xacro" />
