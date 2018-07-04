@@ -1,0 +1,8 @@
+prefix=/home/work/code_repository/ros_packages/devel
+
+Name: allegro_right_hand_description
+Description: Description of allegro_right_hand_description
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/work/code_repository/ros_packages/devel/lib 
+Requires: 

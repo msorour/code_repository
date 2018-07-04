@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"ros_gazebo_plugin_comm\"
 
-CXX_INCLUDES = -I/home/work/code_repository/ros_packages/devel/include -I/home/work/catkin_ws/devel/include -I/home/work/catkin_ws/src/gazebo_ros_pkgs/gazebo_plugins/include -I/opt/ros/kinetic/include -I/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp 
+CXX_INCLUDES = -I/home/work/code_repository/ros_packages/devel/include -I/opt/ros/kinetic/include -I/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp 
 

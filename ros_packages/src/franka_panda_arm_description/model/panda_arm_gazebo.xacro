@@ -31,13 +31,11 @@
 		<mesh filename="package://${description_pkg}/model/meshes/visual/link0.dae"/>
 		</geometry>
 	</visual>
-	
 	<collision>
 		<geometry>
 		<mesh filename="package://${description_pkg}/model/meshes/collision/link0.stl"/>
 		</geometry>
 	</collision>
-	
 	<inertial>
 		<origin xyz="0 0 ${1/2}" rpy="0 0 0"/>
 		<mass value="2.0"/>
@@ -52,13 +50,11 @@
 		<mesh filename="package://${description_pkg}/model/meshes/visual/link1.dae"/>
 		</geometry>
 	</visual>
-	
 	<collision>
 		<geometry>
 		<mesh filename="package://${description_pkg}/model/meshes/collision/link1.stl"/>
 		</geometry>
 	</collision>
-	
 	<inertial>
 		<origin xyz="0 0 -0.015" rpy="0 0 0"/>
 		<mass value="2.7"/>
