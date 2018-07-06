@@ -7,7 +7,9 @@ from sklearn.preprocessing import StandardScaler
 from keras.models import Sequential
 from keras.layers import Dense
 from sklearn.metrics import confusion_matrix, precision_score, recall_score, f1_score, cohen_kappa_score
-
+from sklearn.model_selection import StratifiedKFold
+from sklearn.metrics import r2_score
+from keras.optimizers import RMSprop, SGD
 
 # Read in white wine data 
 white = pd.read_csv("winequality-white.csv", sep=';')
@@ -25,94 +27,63 @@ wines = red.append(white, ignore_index=True)
 
 ####################
 # Isolate target labels
-y = wines.quality
+Y = wines.quality
 
 # Isolate data
 X = wines.drop('quality', axis=1)
 
 #############################
-# Split the data up in train and test sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
-
-
-## Sample scaling
-# Define the scaler 
-#scaler = StandardScaler().fit(X_train)
-
-# Scale the train set
-#X_train = scaler.transform(X_train)
-
-# Scale the test set
-#X_test = scaler.transform(X_test)
-
 # Scale the data with `StandardScaler`
 X = StandardScaler().fit_transform(X)
-
 #####################
 # Initialize the constructor
 model = Sequential()
 
-# Add an input layer 
-#model.add(Dense(12, activation='relu', input_shape=(11,)))
-
-# Add one hidden layer 
-#model.add(Dense(5, activation='relu'))
-
-# Add an output layer 
-#model.add(Dense(1, activation='sigmoid'))
-
-
 # Add input layer 
-model.add(Dense(64, input_dim=12, activation='relu'))
+model.add(Dense(128, input_dim=12, activation='relu'))
+#model.add(Dense(64, activation='relu'))
     
 # Add output layer 
 model.add(Dense(1))
 
-####################
-# Model output shape
-model.output_shape
-
-# Model summary
-model.summary()
-
-# Model config
-model.get_config()
-
-# List all weight tensors 
-model.get_weights()
-
-
 ######################
-model.compile(loss='binary_crossentropy',
-              optimizer='adam',
-              metrics=['accuracy'])
-                   
-model.fit(X_train, y_train,epochs=20, batch_size=1, verbose=1)
-
-
-#########################
-score = model.evaluate(X_test, y_test,verbose=1)
-
-print(score)
-
+seed = 7
+np.random.seed(seed)
+kfold = StratifiedKFold(n_splits=5, shuffle=True, random_state=seed)
+rmsprop = RMSprop(lr=0.002)
+sgd=SGD(lr=0.1)
+for train, test in kfold.split(X, Y):
+    model = Sequential()
+    model.add(Dense(64, input_dim=12, activation='relu'))
+    model.add(Dense(1))
+    #model.compile(optimizer='rmsprop', loss='mse', metrics=['mae'])
+    #model.compile(optimizer=rmsprop, loss='mse', metrics=['mae'])
+    model.compile(optimizer=sgd, loss='mse', metrics=['mae'])
+    model.fit(X[train], Y[train], epochs=10, verbose=1)
 ###########################
-y_pred = model.predict(X_test)
+y_pred = model.predict(X[test])
 print y_pred.round()[:5]
-print y_test[:5]
+print Y[test][:5]
+
+####################
+mse_value, mae_value = model.evaluate(X[test], Y[test], verbose=0)
+print(mse_value)
+print(mae_value)
+print r2_score(Y[test], y_pred)
 
 ##########################
 # Confusion matrix
-print confusion_matrix(y_test, y_pred.round())
+#print confusion_matrix(y_test, y_pred.round())
 
 # Precision 
-print precision_score(y_test, y_pred.round())
+#print precision_score(y_test, y_pred.round())
 
 # Recall
-print recall_score(y_test, y_pred.round())
+#print recall_score(y_test, y_pred.round())
 
 # F1 score
-print f1_score(y_test,y_pred.round())
+#print f1_score(y_test,y_pred.round())
 
 # Cohen's kappa
-print cohen_kappa_score(y_test, y_pred.round())
+#print cohen_kappa_score(y_test, y_pred.round())
 

@@ -1,0 +1,12 @@
+
+pandas
+tensorflow
+keras
+scipy
+matplotlib
+seaborn
+numpy
+
+hints: tensorflow requires certain versions of numpy, you can install older version of tensor flow if you get errors with numpy version.
+
+sudo pip install tensorflow==1.3
