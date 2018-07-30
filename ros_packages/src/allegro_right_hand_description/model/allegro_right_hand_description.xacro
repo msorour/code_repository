@@ -77,7 +77,8 @@
     <inertial>
       <origin xyz="0 0 ${palm_link_z/2}" rpy="0 0 0"/>
       <mass value="0.4154"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <!-- <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/> -->
+      <inertia ixx="0.001" ixy="0.001" ixz="0.001" iyy="0.001" iyz="0.001" izz="0.001"/>
     </inertial>
   </link>
 	
@@ -91,10 +92,10 @@
   <!-- ============================================================================= -->
 
   <!-- THUMB MACRO -->
-  <xacro:macro name="thumb_right" params="finger_num offset_origin_x offset_origin_y offset_origin_z finger_angle_r finger_angle_p finger_angle_y">
+  <xacro:macro name="thumb_right" params="finger_name offset_origin_x offset_origin_y offset_origin_z finger_angle_r finger_angle_p finger_angle_y">
 
     <!-- [LINK 12] -->
-    <link name="link_${finger_num*4+0}">
+    <link name="${finger_name}_link0">
       <visual>
         <geometry>
           <mesh filename="package://allegro_right_hand_description/model/meshes/link_12.0_right.STL"/>
@@ -103,20 +104,22 @@
       </visual>
       <collision>
         <geometry>
-          <!-- <box size="${link0_t_x} ${link0_t_y} ${link0_t_z}"/> -->
-          <mesh filename="package://allegro_right_hand_description/model/meshes/link_12.0_right.STL"/>
+          <box size="${link0_t_x} ${link0_t_y} ${link0_t_z}"/>
+          <!-- <mesh filename="package://allegro_right_hand_description/model/meshes/link_12.0_right.STL"/> -->
         </geometry>
         <origin rpy="0 0 0" xyz="${-0.0358/2+0.0} ${.018/2} ${.029/2}"/>
       </collision>
       <inertial>
-        <mass value="0.0176" />
+        <!-- <mass value="0.0176" /> -->
+        <mass value="0.176" />
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <inertia ixx="1.89273333333e-5" ixy="7.16716e-06" ixz="5.35568e-06" iyy="1.43008213333e-05" iyz="6.8068e-06" izz="1.89273333333e-05" />
+        <!-- <inertia ixx="1.89273333333e-5" ixy="7.16716e-06" ixz="5.35568e-06" iyy="1.43008213333e-05" iyz="6.8068e-06" izz="1.89273333333e-05" /> -->
+        <inertia ixx="0.001" ixy="0.001" ixz="0.001" iyy="0.001" iyz="0.001" izz="0.001"/>
       </inertial>
     </link>
-    <gazebo reference="link_${finger_num*4+0}"><material>Gazebo/Blue</material></gazebo>
+    <gazebo reference="${finger_name}_link0"><material>Gazebo/Blue</material></gazebo>
 
-    <joint name="joint_${finger_num*4+0}" type="revolute">
+    <joint name="${finger_name}_joint1" type="revolute">
     	<origin rpy="${finger_angle_r} ${finger_angle_p} ${finger_angle_y}"
               xyz="${offset_origin_x} ${offset_origin_y} ${offset_origin_z}"/>
       <axis xyz="-1 0 0"/>
@@ -124,12 +127,12 @@
              lower="${limit_0_t_low-joint_safety_margin}"
              upper="${limit_0_t_up-joint_safety_margin}"/>
       <parent link="palm_link"/>
-      <child link="link_${finger_num*4+0}"/>s
+      <child link="${finger_name}_link0"/>s
       <dynamics damping="3" friction="10"/>
     </joint>
 
     <!-- [LINK 13] -->
-    <link name="link_${finger_num*4+1}">
+    <link name="${finger_name}_link1">
       <visual>
         <geometry>
           <mesh filename="package://allegro_right_hand_description/model/meshes/link_13.0.STL"/>
@@ -137,32 +140,34 @@
       </visual>
       <collision>
         <geometry>
-          <!-- <box size="${links_x} ${links_y} ${link1_t_z}"/> -->
-          <mesh filename="package://allegro_right_hand_description/model/meshes/link_13.0.STL"/>
+          <box size="${links_x} ${links_y} ${link1_t_z}"/>
+          <!-- <mesh filename="package://allegro_right_hand_description/model/meshes/link_13.0.STL"/> -->
         </geometry>
         <origin rpy="0 0 0" xyz="0 0 ${link1_t_z/2}"/>
       </collision>
       <inertial>
-        <mass value="0.0119" />
+        <!-- <mass value="0.0119" /> -->
+        <mass value="0.119" />
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <inertia ixx="4.24250866667e-06" ixy="1.032087e-06" ixz="1.603525e-06" iyy="4.52362633333e-06" iyz="1.44808125e-06" izz="4.24250866667e-06" />
+        <!-- <inertia ixx="4.24250866667e-06" ixy="1.032087e-06" ixz="1.603525e-06" iyy="4.52362633333e-06" iyz="1.44808125e-06" izz="4.24250866667e-06" /> -->
+        <inertia ixx="0.001" ixy="0.001" ixz="0.001" iyy="0.001" iyz="0.001" izz="0.001"/>
       </inertial>
     </link>
-    <gazebo reference="link_${finger_num*4+1}"><material>Gazebo/Black</material></gazebo>
+    <gazebo reference="${finger_name}_link1"><material>Gazebo/Orange</material></gazebo>
 
-    <joint name="joint_${finger_num*4+1}" type="revolute">
+    <joint name="${finger_name}_joint2" type="revolute">
       <axis xyz="0 0 1"/>
       <limit effort="15" velocity="7"
              lower="${limit_1_t_low+joint_safety_margin}"
              upper="${limit_1_t_up-joint_safety_margin}"/>
-      <parent link="link_${finger_num*4+0}"/>
-      <child link="link_${finger_num*4+1}"/>
+      <parent link="${finger_name}_link0"/>
+      <child link="${finger_name}_link1"/>
       <origin xyz="-0.027 0.005 0.0399"/>
       <dynamics damping="3" friction="5"/>
     </joint>
 
     <!-- [LINK 14] -->
-    <link name="link_${finger_num*4+2}">
+    <link name="${finger_name}_link2">
       <visual>
         <geometry>
           <mesh filename="package://allegro_right_hand_description/model/meshes/link_14.0.STL"/>
@@ -170,32 +175,34 @@
       </visual>
       <collision>
         <geometry>
-          <!-- <box size="${links_x} ${links_y} ${link2_t_z}"/> -->
-          <mesh filename="package://allegro_right_hand_description/model/meshes/link_14.0.STL"/>
+          <box size="${links_x} ${links_y} ${link2_t_z}"/>
+          <!-- <mesh filename="package://allegro_right_hand_description/model/meshes/link_14.0.STL"/> -->
         </geometry>
         <origin rpy="0 0 0" xyz="0 0 ${link2_t_z/2}"/>
       </collision>
       <inertial>
-        <mass value="0.038" />
+        <!-- <mass value="0.038" /> -->
+        <mass value="0.1" />
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <inertia ixx="4.30439933333e-05" ixy="9.57068e-06" ixz="5.1205e-06" iyy="1.44451933333e-05" iyz="1.342825e-05" izz="4.30439933333e-05" />
+        <!-- <inertia ixx="4.30439933333e-05" ixy="9.57068e-06" ixz="5.1205e-06" iyy="1.44451933333e-05" iyz="1.342825e-05" izz="4.30439933333e-05" /> -->
+        <inertia ixx="0.001" ixy="0.001" ixz="0.001" iyy="0.001" iyz="0.001" izz="0.001"/>
       </inertial>
     </link>
-    <gazebo reference="link_${finger_num*4+2}"><material>Gazebo/Red</material></gazebo>
+    <gazebo reference="${finger_name}_link2"><material>Gazebo/Red</material></gazebo>
 
-    <joint name="joint_${finger_num*4+2}" type="revolute">
+    <joint name="${finger_name}_joint3" type="revolute">
       <axis xyz="0 1 0"/>
       <limit effort="15" velocity="7"
              lower="${limit_2_t_low+joint_safety_margin}"
              upper="${limit_2_t_up-joint_safety_margin}"/>
-      <parent link="link_${finger_num*4+1}"/>
-      <child link="link_${finger_num*4+2}"/>
+      <parent link="${finger_name}_link1"/>
+      <child link="${finger_name}_link2"/>
       <origin xyz="0 0 ${link1_t_z}"/>
       <dynamics damping="3" friction="10"/>
     </joint>
 
     <!-- [LINK 15] -->
-    <link name="link_${finger_num*4+3}">
+    <link name="${finger_name}_link3">
       <visual>
         <geometry>
           <mesh filename="package://allegro_right_hand_description/model/meshes/link_15.0.STL"/>
@@ -203,26 +210,28 @@
       </visual>
       <collision>
         <geometry>
-          <!-- <box size="${links_x} ${links_y} ${link3_t_z-fingerTip_r}"/> -->
-          <mesh filename="package://allegro_right_hand_description/model/meshes/link_15.0.STL"/>
+          <box size="${links_x} ${links_y} ${link3_t_z-fingerTip_r}"/>
+          <!-- <mesh filename="package://allegro_right_hand_description/model/meshes/link_15.0.STL"/> -->
         </geometry>
         <origin rpy="0 0 0" xyz="0 0 ${(link3_t_z-fingerTip_r)/2}"/>
       </collision>
       <inertial>
-        <mass value="0.0388" />
+        <!-- <mass value="0.0388" /> -->
+        <mass value="0.1" />
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <inertia ixx="3.29223173333e-05" ixy="8.042076e-06" ixz="5.2283e-06" iyy="1.47493026667e-5" iyz="1.1283525e-5" izz="3.29223173333e-05" />
+        <!-- <inertia ixx="3.29223173333e-05" ixy="8.042076e-06" ixz="5.2283e-06" iyy="1.47493026667e-5" iyz="1.1283525e-5" izz="3.29223173333e-05" /> -->
+        <inertia ixx="0.001" ixy="0.001" ixz="0.001" iyy="0.001" iyz="0.001" izz="0.001"/>
       </inertial>
     </link>
-    <gazebo reference="link_${finger_num*4+3}"><material>Gazebo/Orange</material></gazebo>
+    <gazebo reference="${finger_name}_link3"><material>Gazebo/White</material></gazebo>
 
-    <joint name="joint_${finger_num*4+3}" type="revolute">
+    <joint name="${finger_name}_joint4" type="revolute">
       <axis xyz="0 1 0"/>
       <limit effort="15" velocity="7"
              lower="${limit_3_t_low+joint_safety_margin}"
              upper="${limit_3_t_up-joint_safety_margin}"/>
-      <parent link="link_${finger_num*4+2}"/>
-      <child link="link_${finger_num*4+3}"/>
+      <parent link="${finger_name}_link2"/>
+      <child link="${finger_name}_link3"/>
       <origin xyz="0 0 ${link2_t_z}"/>
       <dynamics damping="3" friction="12"/>
     </joint>
@@ -231,7 +240,7 @@
 
     <!-- [FINGER TIP] -->
     <!-- this link is fixed to the previos link and have the same color, thay are basically the same link -->
-    <link name="link_${finger_num*4+3}_tip">
+    <link name="${finger_name}_link_tip">
       <visual>
         <geometry>
           <mesh filename="package://allegro_right_hand_description/model/meshes/link_15.0_tip.STL"/>
@@ -239,22 +248,24 @@
       </visual>
       <collision>
         <geometry>
-          <!-- <sphere radius="${fingerTip_r}"/> -->
-          <mesh filename="package://allegro_right_hand_description/model/meshes/link_15.0_tip.STL"/>
+          <sphere radius="${fingerTip_r}"/>
+          <!-- <mesh filename="package://allegro_right_hand_description/model/meshes/link_15.0_tip.STL"/> -->
         </geometry>
         <origin rpy="0 0 0" xyz="0 0 0"/>
       </collision>
       <inertial>
-        <mass value="0.0168" />
+        <!-- <mass value="0.0168" /> -->
+        <mass value="0.1" />
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <inertia ixx="9.68e-07" ixy="0" ixz="0" iyy="9.68e-07" iyz="0" izz="9.68e-07" />
+        <!-- <inertia ixx="9.68e-07" ixy="0" ixz="0" iyy="9.68e-07" iyz="0" izz="9.68e-07" /> -->
+        <inertia ixx="0.001" ixy="0.001" ixz="0.001" iyy="0.001" iyz="0.001" izz="0.001"/>
       </inertial>
     </link>
-    <gazebo reference="link_${finger_num*4+3}_tip"><material>Gazebo/White</material></gazebo>
+    <gazebo reference="${finger_name}_link_tip"><material>Gazebo/White</material></gazebo>
 
-    <joint name="joint_${finger_num*4+3}_tip" type="fixed">
-      <parent link="link_${finger_num*4+3}"/>
-      <child link="link_${finger_num*4+3}_tip"/>
+    <joint name="${finger_name}_joint_tip" type="fixed">
+      <parent link="${finger_name}_link3"/>
+      <child link="${finger_name}_link_tip"/>
       <origin rpy="0 0 0" xyz="0 0 ${link3_t_z-fingerTip_r}"/>
     </joint>
   </xacro:macro>
@@ -262,10 +273,10 @@
 	
 	
   <!-- THREE FINGER MACRO -->
-  <xacro:macro name="finger" params="finger_num offset_origin_x offset_origin_y offset_origin_z finger_angle_r">
+  <xacro:macro name="finger" params="finger_name offset_origin_x offset_origin_y offset_origin_z finger_angle_r">
 
     <!-- [LINK 0, 4, 8] -->
-    <link name="link_${finger_num*4+0}">
+    <link name="${finger_name}_link0">
       <visual>
         <geometry>
           <mesh filename="package://allegro_right_hand_description/model/meshes/link_0.0.STL"/>
@@ -274,31 +285,35 @@
       <collision>
         <geometry>
           <box size="${links_x} ${links_y} ${link0_z}"/>
+          <!-- <mesh filename="package://allegro_right_hand_description/model/meshes/link_0.0.STL"/> -->
         </geometry>
         <origin rpy="0 0 0" xyz="0 0 ${link0_z/2}"/>
       </collision>
       <inertial>
-        <mass value="0.0119" />
+        <!-- <mass value="0.0119" /> -->
+        <mass value="0.119" />
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <inertia ixx="1.01666658333e-06" ixy="0.0" ixz="0.0" iyy="6.47677333333e-07" iyz="0.0" izz="1.01666658333e-06" />
+        <!-- <inertia ixx="1.01666658333e-06" ixy="0.0" ixz="0.0" iyy="6.47677333333e-07" iyz="0.0" izz="1.01666658333e-06" /> -->
+        <inertia ixx="0.001" ixy="0.001" ixz="0.001" iyy="0.001" iyz="0.001" izz="0.001"/>
       </inertial>
     </link>
-    <gazebo reference="link_${finger_num*4+0}"><material>Gazebo/Blue</material></gazebo>
+    <gazebo reference="${finger_name}_link0"><material>Gazebo/Blue</material></gazebo>
 
-    <joint name="joint_${finger_num*4+0}" type="revolute">
+    <joint name="${finger_name}_joint1" type="revolute">
       <axis xyz="0 0 1"/>
       <limit effort="15" velocity="7"
              lower="${limit_0_low+joint_safety_margin}"
              upper="${limit_0_up-joint_safety_margin}"/>
       <parent link="palm_link"/>
-      <child link="link_${finger_num*4+0}"/>
+      <child link="${finger_name}_link0"/>
       <origin rpy="${finger_angle_r} 0 0"
               xyz="${offset_origin_x} ${offset_origin_y} ${offset_origin_z}"/>
-      <dynamics damping="3" friction="10"/>
+      <!-- <dynamics damping="3" friction="10"/> -->
+      <dynamics damping="1" friction="1"/>
     </joint>
 
     <!-- [LINK 1, 5, 9] -->
-    <link name="link_${finger_num*4+1}">
+    <link name="${finger_name}_link1">
       <visual>
         <geometry>
           <mesh filename="package://allegro_right_hand_description/model/meshes/link_1.0.STL"/>
@@ -307,30 +322,34 @@
       <collision>
         <geometry>
           <box size="${links_x} ${links_y} ${link1_z}"/>
+          <!-- <mesh filename="package://allegro_right_hand_description/model/meshes/link_1.0.STL"/> -->
         </geometry>
         <origin rpy="0 0 0" xyz="0 0 ${link1_z/2}"/>
       </collision>
       <inertial>
-        <mass value="0.065" />
+        <!-- <mass value="0.065" /> -->
+        <mass value="0.2" />
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <inertia ixx="7.95654166667e-05" ixy="1.7199e-05" ixz="8.75875e-06" iyy="2.47088833333e-05" iyz="2.413125e-05" izz="7.95654166667e-05" />
+        <!-- <inertia ixx="7.95654166667e-05" ixy="1.7199e-05" ixz="8.75875e-06" iyy="2.47088833333e-05" iyz="2.413125e-05" izz="7.95654166667e-05" /> -->
+        <inertia ixx="0.001" ixy="0.001" ixz="0.001" iyy="0.001" iyz="0.001" izz="0.001"/>
       </inertial>
     </link>
-    <gazebo reference="link_${finger_num*4+1}"><material>Gazebo/Black</material></gazebo>
+    <gazebo reference="${finger_name}_link1"><material>Gazebo/Orange</material></gazebo>
 
-    <joint name="joint_${finger_num*4+1}" type="revolute">
+    <joint name="${finger_name}_joint2" type="revolute">
       <limit effort="15" velocity="7"
              lower="${limit_1_low+joint_safety_margin}"
              upper="${limit_1_up-joint_safety_margin}"/>
       <axis xyz="0 1 0"/>
-      <parent link="link_${finger_num*4+0}"/>
-      <child link="link_${finger_num*4+1}"/>
+      <parent link="${finger_name}_link0"/>
+      <child link="${finger_name}_link1"/>
       <origin xyz="0 0 ${link0_z}"/>
-      <dynamics damping="3" friction="5"/>
+      <!-- <dynamics damping="3" friction="5"/> -->
+      <dynamics damping="1" friction="1"/>
     </joint>
 
     <!-- [LINK 2, 6, 10]-->
-    <link name="link_${finger_num*4+2}">
+    <link name="${finger_name}_link2">
       <visual>
         <geometry>
           <mesh filename="package://allegro_right_hand_description/model/meshes/link_2.0.STL"/>
@@ -339,30 +358,34 @@
       <collision>
         <geometry>
           <box size="${links_x} ${links_y} ${link2_z}"/>
+          <!-- <mesh filename="package://allegro_right_hand_description/model/meshes/link_2.0.STL"/> -->
         </geometry>
         <origin rpy="0 0 0" xyz="0 0 ${link2_z/2}"/>
       </collision>
       <inertial>
-        <mass value="0.0355" />
+        <!-- <mass value="0.0355" /> -->
+        <mass value="0.15" />
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <inertia ixx="2.63979183333e-05" ixy="6.67968e-06" ixz="4.783625e-06" iyy="1.34948516667e-05" iyz="9.372e-06" izz="2.63979183333e-05" />
+        <!-- <inertia ixx="2.63979183333e-05" ixy="6.67968e-06" ixz="4.783625e-06" iyy="1.34948516667e-05" iyz="9.372e-06" izz="2.63979183333e-05" /> -->
+        <inertia ixx="0.001" ixy="0.001" ixz="0.001" iyy="0.001" iyz="0.001" izz="0.001"/>
       </inertial>
     </link>
-    <gazebo reference="link_${finger_num*4+2}"><material>Gazebo/Red</material></gazebo>
+    <gazebo reference="${finger_name}_link2"><material>Gazebo/Red</material></gazebo>
 
-    <joint name="joint_${finger_num*4+2}" type="revolute">
+    <joint name="${finger_name}_joint3" type="revolute">
       <axis xyz="0 1 0"/>
       <limit effort="15" velocity="7"
              lower="${limit_2_low+joint_safety_margin}"
              upper="${limit_2_up-joint_safety_margin}"/>
-      <parent link="link_${finger_num*4+1}"/>
-      <child link="link_${finger_num*4+2}"/>
+      <parent link="${finger_name}_link1"/>
+      <child link="${finger_name}_link2"/>
       <origin xyz="0 0 ${link1_z}"/>
-      <dynamics damping="8" friction="10"/>
+      <!-- <dynamics damping="8" friction="10"/> -->
+      <dynamics damping="1" friction="1"/>
     </joint>
 
     <!-- [LINK 3, 7, 11] -->
-    <link name="link_${finger_num*4+3}">
+    <link name="${finger_name}_link3">
       <visual>
         <geometry>
           <mesh filename="package://allegro_right_hand_description/model/meshes/link_3.0.STL"/>
@@ -371,30 +394,34 @@
       <collision>
         <geometry>
           <box size="${links_x} ${links_y} ${link3_z-fingerTip_r}"/>
+          <!-- <mesh filename="package://allegro_right_hand_description/model/meshes/link_3.0.STL"/> -->
         </geometry>
         <origin rpy="0 0 0" xyz="0 0 ${(link3_z-fingerTip_r)/2}"/>
       </collision>
       <inertial>
-        <mass value="0.0096" />
+        <!-- <mass value="0.0096" /> -->
+        <mass value="0.1" />
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <inertia ixx="4.701248e-06" ixy="1.255968e-06" ixz="1.2936e-06" iyy="3.649312e-06" iyz="1.7622e-06" izz="4.701248e-06" />
+        <!-- <inertia ixx="4.701248e-06" ixy="1.255968e-06" ixz="1.2936e-06" iyy="3.649312e-06" iyz="1.7622e-06" izz="4.701248e-06" /> -->
+        <inertia ixx="0.001" ixy="0.001" ixz="0.001" iyy="0.001" iyz="0.001" izz="0.001"/>
       </inertial>
     </link>
-    <gazebo reference="link_${finger_num*4+3}"><material>Gazebo/Orange</material></gazebo>
+    <gazebo reference="${finger_name}_link3"><material>Gazebo/White</material></gazebo>
 
-    <joint name="joint_${finger_num*4+3}" type="revolute">
+    <joint name="${finger_name}_joint4" type="revolute">
       <axis xyz="0 1 0"/>
       <limit effort="15" velocity="7"
              lower="${limit_3_low+joint_safety_margin}"
              upper="${limit_3_up-joint_safety_margin}"/>
-      <parent link="link_${finger_num*4+2}"/>
-      <child link="link_${finger_num*4+3}"/>
+      <parent link="${finger_name}_link2"/>
+      <child link="${finger_name}_link3"/>
       <origin xyz="0 0 ${link2_z}"/>
-      <dynamics damping="10" friction="12"/>
+      <!-- <dynamics damping="10" friction="12"/> -->
+      <dynamics damping="1" friction="1"/>
     </joint>
 
     <!-- [FINGER TIP] -->
-    <link name="link_${finger_num*4+3}_tip">
+    <link name="${finger_name}_link_tip">
       <visual>
         <geometry>
           <mesh filename="package://allegro_right_hand_description/model/meshes/link_3.0_tip.STL"/>
@@ -403,19 +430,22 @@
       <collision>
         <geometry>
           <sphere radius="${fingerTip_r}"/>
+          <!-- <mesh filename="package://allegro_right_hand_description/model/meshes/link_3.0_tip.STL"/> -->
         </geometry>
       </collision>
       <inertial>
-        <mass value="0.0168" />
+        <!-- <mass value="0.0168" /> -->
+        <mass value="0.1" />
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <inertia ixx="9.68e-07" ixy="0" ixz="0" iyy="9.68e-07" iyz="0" izz="9.68e-07" />
+        <!-- <inertia ixx="9.68e-07" ixy="0" ixz="0" iyy="9.68e-07" iyz="0" izz="9.68e-07" /> -->
+        <inertia ixx="0.001" ixy="0.001" ixz="0.001" iyy="0.001" iyz="0.001" izz="0.001"/>
       </inertial>
     </link>
-    <gazebo reference="link_${finger_num*4+3}_tip"><material>Gazebo/White</material></gazebo>
+    <gazebo reference="${finger_name}_link_tip"><material>Gazebo/White</material></gazebo>
 
-    <joint name="joint_${finger_num*4+3}_tip" type="fixed">
-      <parent link="link_${finger_num*4+3}"/>
-      <child link="link_${finger_num*4+3}_tip"/>
+    <joint name="${finger_name}_joint_tip" type="fixed">
+      <parent link="${finger_name}_link3"/>
+      <child link="${finger_name}_link_tip"/>
       <origin rpy="0 0 0" xyz="0 0 ${link3_z-fingerTip_r}"/>
     </joint>
   </xacro:macro>
@@ -435,21 +465,21 @@
   <!-- RIGHT HAND due to which finger is number 0 -->
   <!-- for LEFT HAND switch the sign of the **offset_origin_y** and **finger_angle_r** parameters-->
   <xacro:finger
-          finger_num="0"
+          finger_name="index"
           offset_origin_x="${offset_origin_x_const}"
           offset_origin_y="${offset_origin_y_const}"
           offset_origin_z="${offset_origin_z_const}"
           finger_angle_r="-${5.0*DEG2RAD}"
           />
   <xacro:finger
-          finger_num="1"
+          finger_name="middle"
           offset_origin_x="${offset_origin_x_const}"
           offset_origin_y="0"
           offset_origin_z="${offset_origin_z_mid_const}"
           finger_angle_r="0.0"
           />
   <xacro:finger
-          finger_num="2"
+          finger_name="pinky"
           offset_origin_x="${offset_origin_x_const}"
           offset_origin_y="-${offset_origin_y_const}"
           offset_origin_z="${offset_origin_z_const}"
@@ -457,7 +487,7 @@
           />
   <!-- THUMB -->
   <xacro:thumb_right
-          finger_num="3"
+          finger_name="thumb"
           offset_origin_x="-0.0182"
           offset_origin_y="0.019333"
           offset_origin_z="-0.045987"

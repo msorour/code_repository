@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="allegro_hand_description_right">
+  
+  <xacro:include filename="$(find allegro_right_hand_description)/model/allegro_hand_description_right_old.xacro" />
+  
+  <!-- attach the custom make gazebo plugin "allegro_right_hand_control_plugin" -->
+  <gazebo>
+    <plugin name="allegro_right_hand_control_plugin" filename="liballegro_right_hand_control_plugin.so">
+    	<arm_joint1_init>0.00</arm_joint1_init>
+    	<arm_joint2_init>0.00</arm_joint2_init>
+    	<arm_joint3_init>0.00</arm_joint3_init>
+    	<arm_joint4_init>0.00</arm_joint4_init>
+    	<arm_joint5_init>0.00</arm_joint5_init>
+    	<arm_joint6_init>0.00</arm_joint6_init>
+    	<arm_joint7_init>0.70</arm_joint7_init>
+    	<gripper_joint1_init>0.00</gripper_joint1_init>
+    	<gripper_joint2_init>0.00</gripper_joint2_init>
+    </plugin>
+  </gazebo>
+
+</robot>
