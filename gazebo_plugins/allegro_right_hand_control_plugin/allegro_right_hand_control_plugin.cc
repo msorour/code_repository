@@ -40,7 +40,9 @@ void AllegroRightHandControlPlugin::Load(physics::ModelPtr _model, sdf::ElementP
   
   // Get the joints
   this->joint  = _model->GetJoints();
-  //std::cerr << "Joint1 Scoped Name: " << this->joint[0]->GetScopedName() << "\n";
+  for(int k=0; k<17; k++){
+  	std::cerr << "Joint"<<k<< "Scoped Name: " << this->joint[k]->GetScopedName() << "\n";
+  }
   
   // Set initial joint configuration : TODO: proper loading from parameter server or something!
   std::map<std::string, double> init_joint_config_map;
@@ -75,7 +77,7 @@ void AllegroRightHandControlPlugin::Load(physics::ModelPtr _model, sdf::ElementP
 	
 	// Create a topic to receive on which the jointspace force command vector, and subscribe to it.
 	ros::SubscribeOptions so = ros::SubscribeOptions::create<std_msgs::Float32MultiArray>(
-		"/force_cmd_vector",
+		"/allegro_right_hand/joint_command/torque",
 	  1,
 	  boost::bind(&AllegroRightHandControlPlugin::GetJointForceCommand, this, _1),
 	  ros::VoidPtr(), 
@@ -83,8 +85,8 @@ void AllegroRightHandControlPlugin::Load(physics::ModelPtr _model, sdf::ElementP
 	this->JointTorqueCommandSub = this->rosNode->subscribe(so);
 	
 	// Create topics to publish joint state.
-	JointPositionPub = this->rosNode->advertise<std_msgs::Float32MultiArray>("/joint_state/position", 10);
-	JointVelocityPub = this->rosNode->advertise<std_msgs::Float32MultiArray>("/joint_state/velocity", 10);
+	JointPositionPub = this->rosNode->advertise<std_msgs::Float32MultiArray>("/allegro_right_hand/joint_state/position", 10);
+	JointVelocityPub = this->rosNode->advertise<std_msgs::Float32MultiArray>("/allegro_right_hand/joint_state/velocity", 10);
 	
 	
 	// Spin up the queue helper thread.

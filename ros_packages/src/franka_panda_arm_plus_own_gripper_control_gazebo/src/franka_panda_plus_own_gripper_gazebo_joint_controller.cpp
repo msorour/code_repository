@@ -7,7 +7,7 @@ int main(int argc, char **argv){
   ros::init(argc, argv, "franka_panda_plus_own_gripper_gazebo_joint_controller");
 	ros::NodeHandle n;
 	ros::Publisher ForceCmdVectorPub = n.advertise<std_msgs::Float32MultiArray>("/force_cmd_vector", 10);
-  ros::Rate loop_rate(100);
+	ros::Rate loop_rate(100);
 
   while (ros::ok()){
   	

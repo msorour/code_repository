@@ -128,7 +128,8 @@
              upper="${limit_0_t_up-joint_safety_margin}"/>
       <parent link="palm_link"/>
       <child link="${finger_name}_link0"/>s
-      <dynamics damping="3" friction="10"/>
+      <!-- <dynamics damping="3" friction="10"/> -->
+      <dynamics damping="1" friction="1"/>
     </joint>
 
     <!-- [LINK 13] -->
@@ -163,7 +164,8 @@
       <parent link="${finger_name}_link0"/>
       <child link="${finger_name}_link1"/>
       <origin xyz="-0.027 0.005 0.0399"/>
-      <dynamics damping="3" friction="5"/>
+      <!-- <dynamics damping="3" friction="5"/> -->
+      <dynamics damping="1" friction="1"/>
     </joint>
 
     <!-- [LINK 14] -->
@@ -198,7 +200,8 @@
       <parent link="${finger_name}_link1"/>
       <child link="${finger_name}_link2"/>
       <origin xyz="0 0 ${link1_t_z}"/>
-      <dynamics damping="3" friction="10"/>
+      <!-- <dynamics damping="3" friction="10"/> -->
+      <dynamics damping="1" friction="1"/>
     </joint>
 
     <!-- [LINK 15] -->
@@ -233,7 +236,8 @@
       <parent link="${finger_name}_link2"/>
       <child link="${finger_name}_link3"/>
       <origin xyz="0 0 ${link2_t_z}"/>
-      <dynamics damping="3" friction="12"/>
+      <!-- <dynamics damping="3" friction="12"/> -->
+      <dynamics damping="1" friction="1"/>
     </joint>
 
 	

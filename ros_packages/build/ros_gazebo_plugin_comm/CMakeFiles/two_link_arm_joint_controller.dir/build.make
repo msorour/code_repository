@@ -94,7 +94,9 @@ two_link_arm_joint_controller_EXTERNAL_OBJECTS =
 /home/work/code_repository/ros_packages/devel/lib/ros_gazebo_plugin_comm/two_link_arm_joint_controller: /opt/ros/kinetic/lib/libgazebo_ros_utils.so
 /home/work/code_repository/ros_packages/devel/lib/ros_gazebo_plugin_comm/two_link_arm_joint_controller: /opt/ros/kinetic/lib/libgazebo_ros_camera_utils.so
 /home/work/code_repository/ros_packages/devel/lib/ros_gazebo_plugin_comm/two_link_arm_joint_controller: /opt/ros/kinetic/lib/libgazebo_ros_camera.so
+/home/work/code_repository/ros_packages/devel/lib/ros_gazebo_plugin_comm/two_link_arm_joint_controller: /opt/ros/kinetic/lib/libgazebo_ros_triggered_camera.so
 /home/work/code_repository/ros_packages/devel/lib/ros_gazebo_plugin_comm/two_link_arm_joint_controller: /opt/ros/kinetic/lib/libgazebo_ros_multicamera.so
+/home/work/code_repository/ros_packages/devel/lib/ros_gazebo_plugin_comm/two_link_arm_joint_controller: /opt/ros/kinetic/lib/libgazebo_ros_triggered_multicamera.so
 /home/work/code_repository/ros_packages/devel/lib/ros_gazebo_plugin_comm/two_link_arm_joint_controller: /opt/ros/kinetic/lib/libgazebo_ros_depth_camera.so
 /home/work/code_repository/ros_packages/devel/lib/ros_gazebo_plugin_comm/two_link_arm_joint_controller: /opt/ros/kinetic/lib/libgazebo_ros_openni_kinect.so
 /home/work/code_repository/ros_packages/devel/lib/ros_gazebo_plugin_comm/two_link_arm_joint_controller: /opt/ros/kinetic/lib/libgazebo_ros_gpu_laser.so

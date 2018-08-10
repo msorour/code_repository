@@ -5,6 +5,7 @@
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
 subdirs(gtest)
+subdirs(allegro_right_hand_control_gazebo)
 subdirs(allegro_right_hand_description)
 subdirs(franka_panda_arm_description)
 subdirs(franka_panda_arm_plus_own_gripper_control_gazebo)
