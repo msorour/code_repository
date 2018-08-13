@@ -200,6 +200,6 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-add_executable(franka_panda_gazebo_joint_controller src/franka_panda_gazebo_joint_controller.cpp)
-target_link_libraries(franka_panda_gazebo_joint_controller ${catkin_LIBRARIES})
+add_executable(franka_panda_gazebo_controller src/franka_panda_gazebo_controller.cpp)
+target_link_libraries(franka_panda_gazebo_controller ${catkin_LIBRARIES})
 

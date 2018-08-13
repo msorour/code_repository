@@ -13,6 +13,9 @@
 	<!-- Load the URDF into the ROS Parameter Server -->
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(find franka_panda_arm_plus_own_gripper_control_gazebo)/model/panda_arm_plus_own_gripper_control_gazebo_plugin.urdf.xacro" />
 	
+	<!-- Set up env variable so plugin are found -->
+  <env name="GAZEBO_PLUGIN_PATH" value="/home/work/code_repository/gazebo_plugins/franka_panda_arm_plus_own_gripper_control_plugin/build"/>
+  
 	<node name="franka_panda_plus_own_gripper_gazebo_joint_controller" type="franka_panda_plus_own_gripper_gazebo_joint_controller" pkg="franka_panda_arm_plus_own_gripper_control_gazebo" output="screen" args=""/>
 	
 	<!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->

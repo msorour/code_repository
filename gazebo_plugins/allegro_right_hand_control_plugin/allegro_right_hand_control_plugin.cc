@@ -20,7 +20,7 @@ void AllegroRightHandControlPlugin::Load(physics::ModelPtr _model, sdf::ElementP
   
   double index_joint_init[4], middle_joint_init[4], pinky_joint_init[4], thumb_joint_init[4];
   
-  // Check that the joint1_init element exists, then read the value
+  // Check that the index_joint1_init elements exist, then read the values
   char index_str[30], middle_str[30], pinky_str[30], thumb_str[30];
 	for(int k=0; k<4; k++){
 		snprintf(index_str, sizeof index_str, "%s%d%s", "index_joint", k+1, "_init");

@@ -56,6 +56,28 @@ CMAKE_BINARY_DIR = /home/work/code_repository/ros_packages/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -89,27 +111,16 @@ test/fast: test
 
 .PHONY : test/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
 
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
+# Special rule for the target install/strip
+install/strip/fast: install/strip
 
-.PHONY : list_install_components/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
+.PHONY : install/strip/fast
 
 # Special rule for the target install/local
 install/local: preinstall
@@ -121,17 +132,6 @@ install/local: preinstall
 install/local/fast: install/local
 
 .PHONY : install/local/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: install/strip
-
-.PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -181,46 +181,46 @@ franka_panda_control_gazebo_xacro_generated_to_devel_space_/fast:
 .PHONY : franka_panda_control_gazebo_xacro_generated_to_devel_space_/fast
 
 # Convenience name for target.
-franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_controller.dir/rule:
-	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_controller.dir/rule
-.PHONY : franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_controller.dir/rule
+franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/rule:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/rule
+.PHONY : franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/rule
 
 # Convenience name for target.
-franka_panda_gazebo_joint_controller: franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_controller.dir/rule
+franka_panda_gazebo_controller: franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/rule
 
-.PHONY : franka_panda_gazebo_joint_controller
+.PHONY : franka_panda_gazebo_controller
 
 # fast build rule for target.
-franka_panda_gazebo_joint_controller/fast:
-	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_controller.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_controller.dir/build
-.PHONY : franka_panda_gazebo_joint_controller/fast
+franka_panda_gazebo_controller/fast:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/build
+.PHONY : franka_panda_gazebo_controller/fast
 
-src/franka_panda_gazebo_joint_controller.o: src/franka_panda_gazebo_joint_controller.cpp.o
+src/franka_panda_gazebo_controller.o: src/franka_panda_gazebo_controller.cpp.o
 
-.PHONY : src/franka_panda_gazebo_joint_controller.o
+.PHONY : src/franka_panda_gazebo_controller.o
 
 # target to build an object file
-src/franka_panda_gazebo_joint_controller.cpp.o:
-	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_controller.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_controller.dir/src/franka_panda_gazebo_joint_controller.cpp.o
-.PHONY : src/franka_panda_gazebo_joint_controller.cpp.o
+src/franka_panda_gazebo_controller.cpp.o:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/src/franka_panda_gazebo_controller.cpp.o
+.PHONY : src/franka_panda_gazebo_controller.cpp.o
 
-src/franka_panda_gazebo_joint_controller.i: src/franka_panda_gazebo_joint_controller.cpp.i
+src/franka_panda_gazebo_controller.i: src/franka_panda_gazebo_controller.cpp.i
 
-.PHONY : src/franka_panda_gazebo_joint_controller.i
+.PHONY : src/franka_panda_gazebo_controller.i
 
 # target to preprocess a source file
-src/franka_panda_gazebo_joint_controller.cpp.i:
-	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_controller.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_controller.dir/src/franka_panda_gazebo_joint_controller.cpp.i
-.PHONY : src/franka_panda_gazebo_joint_controller.cpp.i
+src/franka_panda_gazebo_controller.cpp.i:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/src/franka_panda_gazebo_controller.cpp.i
+.PHONY : src/franka_panda_gazebo_controller.cpp.i
 
-src/franka_panda_gazebo_joint_controller.s: src/franka_panda_gazebo_joint_controller.cpp.s
+src/franka_panda_gazebo_controller.s: src/franka_panda_gazebo_controller.cpp.s
 
-.PHONY : src/franka_panda_gazebo_joint_controller.s
+.PHONY : src/franka_panda_gazebo_controller.s
 
 # target to generate assembly for a file
-src/franka_panda_gazebo_joint_controller.cpp.s:
-	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_controller.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_controller.dir/src/franka_panda_gazebo_joint_controller.cpp.s
-.PHONY : src/franka_panda_gazebo_joint_controller.cpp.s
+src/franka_panda_gazebo_controller.cpp.s:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/src/franka_panda_gazebo_controller.cpp.s
+.PHONY : src/franka_panda_gazebo_controller.cpp.s
 
 # Help Target
 help:
@@ -228,18 +228,18 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... list_install_components"
+	@echo "... install"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
 	@echo "... franka_panda_control_gazebo_xacro_generated_to_devel_space_"
-	@echo "... list_install_components"
-	@echo "... install"
-	@echo "... franka_panda_gazebo_joint_controller"
-	@echo "... install/local"
+	@echo "... franka_panda_gazebo_controller"
 	@echo "... install/strip"
-	@echo "... src/franka_panda_gazebo_joint_controller.o"
-	@echo "... src/franka_panda_gazebo_joint_controller.i"
-	@echo "... src/franka_panda_gazebo_joint_controller.s"
+	@echo "... install/local"
+	@echo "... src/franka_panda_gazebo_controller.o"
+	@echo "... src/franka_panda_gazebo_controller.i"
+	@echo "... src/franka_panda_gazebo_controller.s"
 .PHONY : help
 
 

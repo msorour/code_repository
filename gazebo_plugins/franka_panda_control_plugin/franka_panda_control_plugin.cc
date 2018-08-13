@@ -18,38 +18,29 @@ void FrankaPandaControlPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _s
   // Store the pointer to the model
   this->model = _model;
   
-  double joint1_init=0, joint2_init=0, joint3_init=0, joint4_init=0, joint5_init=0, joint6_init=0, joint7_init=0;
-  // Check that the joint1_init element exists, then read the value
-	if (_sdf->HasElement("joint1_init"))
-		joint1_init = _sdf->Get<double>("joint1_init");
-  if (_sdf->HasElement("joint2_init"))
-		joint2_init = _sdf->Get<double>("joint2_init");
-	if (_sdf->HasElement("joint3_init"))
-		joint3_init = _sdf->Get<double>("joint3_init");
-	if (_sdf->HasElement("joint4_init"))
-		joint4_init = _sdf->Get<double>("joint4_init");
-	if (_sdf->HasElement("joint5_init"))
-		joint5_init = _sdf->Get<double>("joint5_init");
-	if (_sdf->HasElement("joint6_init"))
-		joint6_init = _sdf->Get<double>("joint6_init");
-	if (_sdf->HasElement("joint7_init"))
-		joint7_init = _sdf->Get<double>("joint7_init");
+  // Check that the joint1_init elements exist, then read the values
+  double joint_init[7];
+  char joint_init_str[30];
+	for(int k=0; k<7; k++){
+		snprintf(joint_init_str, sizeof joint_init_str, "%s%d%s", "joint", k+1, "_init");
+		if (_sdf->HasElement(joint_init_str))
+			joint_init[k] = _sdf->Get<double>(joint_init_str);
+  }
   
   // Get the joints
   this->joint  = _model->GetJoints();
-  std::cerr << "Initial joint configuration: " << this->joint[1]->GetAngle(2).Radian() << ", " << this->joint[2]->GetAngle(2).Radian() << ", " << this->joint[3]->GetAngle(2).Radian() << ", " << this->joint[4]->GetAngle(2).Radian() << ", " << this->joint[5]->GetAngle(2).Radian() << ", " << this->joint[6]->GetAngle(2).Radian() << ", " << this->joint[7]->GetAngle(2).Radian() << "\n";
- 	
+  for(int k=0; k<8; k++){
+  	std::cerr << "Joint"<<k<< "Scoped Name: " << this->joint[k]->GetScopedName() << "\n";
+  }
+  
   // Set initial joint configuration : TODO: proper loading from parameter server or something!
   std::map<std::string, double> init_joint_config_map;
-  init_joint_config_map["panda_arm::panda_arm_joint1"] = joint1_init;
-  init_joint_config_map["panda_arm::panda_arm_joint2"] = joint2_init;
-  init_joint_config_map["panda_arm::panda_arm_joint3"] = joint3_init;
-  init_joint_config_map["panda_arm::panda_arm_joint4"] = joint4_init;
-  init_joint_config_map["panda_arm::panda_arm_joint5"] = joint5_init;
-  init_joint_config_map["panda_arm::panda_arm_joint6"] = joint6_init;
-  init_joint_config_map["panda_arm::panda_arm_joint7"] = joint7_init;
+  char str[50];
+	for(int k=0; k<7; k++){
+		snprintf(str, sizeof str, "%s%d", "panda_arm::panda_arm_joint", k+1);
+		init_joint_config_map[str] = joint_init[k];
+  }
   this->model->SetJointPositions(init_joint_config_map);
-  this->model->Update();
   std::cerr << "Initial joint configuration is set." << "\n";
   
   // Listen to the update event. This event is broadcast every simulation iteration.
@@ -69,7 +60,7 @@ void FrankaPandaControlPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _s
 	
 	// Create a topic to receive on which the jointspace force command vector, and subscribe to it.
 	ros::SubscribeOptions so = ros::SubscribeOptions::create<std_msgs::Float32MultiArray>(
-		"/force_cmd_vector",
+		"/franka_panda_arm/joint_command/torque",
 	  1,
 	  boost::bind(&FrankaPandaControlPlugin::GetJointForceCommand, this, _1),
 	  ros::VoidPtr(), 
@@ -77,8 +68,8 @@ void FrankaPandaControlPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _s
 	this->JointTorqueCommandSub = this->rosNode->subscribe(so);
 	
 	// Create topics to publish joint state.
-	JointPositionPub = this->rosNode->advertise<std_msgs::Float32MultiArray>("/joint_state/position", 10);
-	JointVelocityPub = this->rosNode->advertise<std_msgs::Float32MultiArray>("/joint_state/velocity", 10);
+	JointPositionPub = this->rosNode->advertise<std_msgs::Float32MultiArray>("/franka_panda_arm/joint_state/position", 10);
+	JointVelocityPub = this->rosNode->advertise<std_msgs::Float32MultiArray>("/franka_panda_arm/joint_state/velocity", 10);
 	
 	
 	// Spin up the queue helper thread.
@@ -88,67 +79,29 @@ void FrankaPandaControlPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _s
 
 // OnUpdate
 void FrankaPandaControlPlugin::OnUpdate(){
-	// Apply joint torque command received
 	// In Gazebo joint torque is named "force". 
 	// We start with index "1" since joint[0] is a fixed joint, not part of the arm DOFs.
-  /*
-  this->joint[1]->SetForce(0, joint_force_cmd[0]);
-  this->joint[2]->SetForce(0, joint_force_cmd[1]);
-  this->joint[3]->SetForce(0, joint_force_cmd[2]);
-  this->joint[4]->SetForce(0, joint_force_cmd[3]);
-  this->joint[5]->SetForce(0, joint_force_cmd[4]);
-  this->joint[6]->SetForce(0, joint_force_cmd[5]);
-  this->joint[7]->SetForce(0, joint_force_cmd[6]);
-  */
+  
   float q[7];
-  q[0] = this->joint[1]->GetAngle(2).Radian();
-  q[1] = this->joint[2]->GetAngle(2).Radian();
-  q[2] = this->joint[3]->GetAngle(2).Radian();
-  q[3] = this->joint[4]->GetAngle(2).Radian();
-  q[4] = this->joint[5]->GetAngle(2).Radian();
-  q[5] = this->joint[6]->GetAngle(2).Radian();
-  q[6] = this->joint[7]->GetAngle(2).Radian();
+  for(int k=0; k<7; k++){
+  	q[k] = this->joint[k+1] ->GetAngle(2).Radian();
+  }
   PandaArmGravityCompensation(q);
   
-  std::cout << "Gravity Compensation Torque = " << joint_gravity_torque[0] << ", " << joint_gravity_torque[1] << ", " << joint_gravity_torque[2] << ", " << joint_gravity_torque[3]<< ", " << joint_gravity_torque[4]<< ", " << joint_gravity_torque[5]<< ", " << joint_gravity_torque[6] << std::endl;
-  this->joint[1]->SetForce(0, joint_force_cmd[0]+joint_gravity_torque[0]);
-  this->joint[2]->SetForce(0, joint_force_cmd[1]+joint_gravity_torque[1]);
-  this->joint[3]->SetForce(0, joint_force_cmd[2]+joint_gravity_torque[2]);
-  this->joint[4]->SetForce(0, joint_force_cmd[3]+joint_gravity_torque[3]);
-  this->joint[5]->SetForce(0, joint_force_cmd[4]+joint_gravity_torque[4]);
-  this->joint[6]->SetForce(0, joint_force_cmd[5]+joint_gravity_torque[5]);
-  this->joint[7]->SetForce(0, joint_force_cmd[6]+joint_gravity_torque[6]);
-  /*
-  this->joint[1]->SetForce(0, joint_force_cmd[0]);
-  this->joint[2]->SetForce(0, joint_force_cmd[1]);
-  this->joint[3]->SetForce(0, joint_force_cmd[2]);
-  this->joint[4]->SetForce(0, joint_force_cmd[3]);
-  this->joint[5]->SetForce(0, joint_force_cmd[4]);
-  this->joint[6]->SetForce(0, joint_force_cmd[5]);
-  this->joint[7]->SetForce(0, joint_force_cmd[6]);
-  */
-  // Publish joint position vector
   std_msgs::Float32MultiArray joint_position_vector;
-  joint_position_vector.data.clear();
-	joint_position_vector.data.push_back(this->joint[1]->GetAngle(2).Radian());
-	joint_position_vector.data.push_back(this->joint[2]->GetAngle(2).Radian());
-  joint_position_vector.data.push_back(this->joint[3]->GetAngle(2).Radian());
-  joint_position_vector.data.push_back(this->joint[4]->GetAngle(2).Radian());
-  joint_position_vector.data.push_back(this->joint[5]->GetAngle(2).Radian());
-  joint_position_vector.data.push_back(this->joint[6]->GetAngle(2).Radian());
-  joint_position_vector.data.push_back(this->joint[7]->GetAngle(2).Radian());
-  JointPositionPub.publish(joint_position_vector);
-  
-  // Publish joint velocity vector
   std_msgs::Float32MultiArray joint_velocity_vector;
+  joint_position_vector.data.clear();
   joint_velocity_vector.data.clear();
-	joint_velocity_vector.data.push_back(this->joint[1]->GetVelocity(2));
-	joint_velocity_vector.data.push_back(this->joint[2]->GetVelocity(2));
-  joint_velocity_vector.data.push_back(this->joint[3]->GetVelocity(2));
-  joint_velocity_vector.data.push_back(this->joint[4]->GetVelocity(2));
-  joint_velocity_vector.data.push_back(this->joint[5]->GetVelocity(2));
-  joint_velocity_vector.data.push_back(this->joint[6]->GetVelocity(2));
-  joint_velocity_vector.data.push_back(this->joint[7]->GetVelocity(2));
+  
+  for(int k=0; k<7; k++){
+  	// Apply joint torque command received + computed gravity compensation torque
+  	this->joint[k+1] ->SetForce(0, joint_force_cmd[k]+joint_gravity_torque[k]);
+  	// Publish joint position vector
+  	joint_position_vector.data.push_back(this->joint[k+1] ->GetAngle(2).Radian());
+  	// Publish joint velocity vector
+  	joint_velocity_vector.data.push_back(this->joint[k+1] ->GetVelocity(2));
+  }
+  JointPositionPub.publish(joint_position_vector);
   JointVelocityPub.publish(joint_velocity_vector);
 }
 
@@ -162,13 +115,9 @@ void FrankaPandaControlPlugin::SetInitialJointConfig( std::map<std::string, doub
 // Handle an incoming message from ROS
 // param[in] _msg A float value that is used to set the joint force.
 void FrankaPandaControlPlugin::GetJointForceCommand(const std_msgs::Float32MultiArray::ConstPtr& _msg){
-  joint_force_cmd[0] = _msg->data[0];
-  joint_force_cmd[1] = _msg->data[1];
-  joint_force_cmd[2] = _msg->data[2];
-  joint_force_cmd[3] = _msg->data[3];
-  joint_force_cmd[4] = _msg->data[4];
-  joint_force_cmd[5] = _msg->data[5];
-  joint_force_cmd[6] = _msg->data[6];
+	for(int k=0; k<7; k++){
+		joint_force_cmd[k] = _msg->data[k];
+	}
 }
 
 

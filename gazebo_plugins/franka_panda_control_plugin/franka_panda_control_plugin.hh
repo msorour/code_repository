@@ -52,7 +52,7 @@ namespace gazebo{
     private: physics::Joint_V joint;
     
     
-    private: float joint_force_cmd[7];
+    private: float joint_force_cmd[7]={0,0,0,0,0,0,0};
     private: float joint_gravity_torque[7];
 
     // A PID controller for the joint.
@@ -61,14 +61,7 @@ namespace gazebo{
     // Pointer to the update event connection
     private: event::ConnectionPtr updateConnection;
     
-    // A node used for transport
-    private: transport::NodePtr node;
-
-    // A subscriber to a named topic.
-    private: transport::SubscriberPtr sub;
-		
-		
-		// A node use for ROS transport
+    // A node use for ROS transport
 		private: std::unique_ptr<ros::NodeHandle> rosNode;
 
 		// A ROS subscriber

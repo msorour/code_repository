@@ -7,12 +7,14 @@
   <arg name="gui" 					default="true"/>
   <arg name="headless" 			default="false"/>
   <arg name="debug" 				default="false"/>
-  <arg name="world_name" 		default="$(find franka_panda_control_gazebo)/worlds/sim_scenario#1.world"/>
-	
+  
 	<!-- Load the URDF into the ROS Parameter Server -->
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(find franka_panda_control_gazebo)/model/franka_panda_control_gazebo_plugin.urdf.xacro" />
-	
-	<node name="franka_panda_gazebo_joint_controller" type="franka_panda_gazebo_joint_controller" pkg="franka_panda_control_gazebo" output="screen" args=""/>
+  
+  <!-- Set up env variable so plugin are found -->
+  <env name="GAZEBO_PLUGIN_PATH" value="/home/work/code_repository/gazebo_plugins/franka_panda_control_plugin/build"/>
+  
+	<node name="franka_panda_gazebo_controller" type="franka_panda_gazebo_controller" pkg="franka_panda_control_gazebo" output="screen" args=""/>
 	
 	<!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model panda_arm -param robot_description"/>
@@ -25,7 +27,6 @@
     <arg name="paused" 				value="$(arg paused)"/>
     <arg name="use_sim_time" 	value="$(arg use_sim_time)"/>
     <arg name="headless" 			value="$(arg headless)"/>
-    <arg name="world_name" 		value="$(arg world_name)"/>
   </include>
   
   <!-- Load joint controller configurations from YAML file to parameter server -->

@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/work/code_repository/gazebo_plugin_trials/franka_panda_control_plugin/franka_panda_control_plugin.cc" "/home/work/code_repository/gazebo_plugin_trials/franka_panda_control_plugin/build/CMakeFiles/franka_panda_control_plugin.dir/franka_panda_control_plugin.cc.o"
+  "/home/work/code_repository/gazebo_plugins/franka_panda_control_plugin/franka_panda_control_plugin.cc" "/home/work/code_repository/gazebo_plugins/franka_panda_control_plugin/build/CMakeFiles/franka_panda_control_plugin.dir/franka_panda_control_plugin.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

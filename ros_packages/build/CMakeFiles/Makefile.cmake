@@ -403,7 +403,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/franka_panda_arm_plus_own_gripper_control_gazebo_xacro_generated_to_devel_space_.dir/DependInfo.cmake"
   "franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/franka_panda_plus_own_gripper_gazebo_joint_controller.dir/DependInfo.cmake"
   "franka_panda_control_gazebo/CMakeFiles/franka_panda_control_gazebo_xacro_generated_to_devel_space_.dir/DependInfo.cmake"
-  "franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_controller.dir/DependInfo.cmake"
+  "franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/DependInfo.cmake"
   "franka_panda_gripper_description/CMakeFiles/franka_panda_gripper_description_xacro_generated_to_devel_space_.dir/DependInfo.cmake"
   "ros_gazebo_plugin_comm/CMakeFiles/ros_gazebo_plugin_comm_genpy.dir/DependInfo.cmake"
   "ros_gazebo_plugin_comm/CMakeFiles/ros_gazebo_plugin_comm_generate_messages_py.dir/DependInfo.cmake"

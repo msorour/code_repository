@@ -1466,17 +1466,17 @@ franka_panda_control_gazebo_xacro_generated_to_devel_space_/fast:
 .PHONY : franka_panda_control_gazebo_xacro_generated_to_devel_space_/fast
 
 #=============================================================================
-# Target rules for targets named franka_panda_gazebo_joint_controller
+# Target rules for targets named franka_panda_gazebo_controller
 
 # Build rule for target.
-franka_panda_gazebo_joint_controller: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 franka_panda_gazebo_joint_controller
-.PHONY : franka_panda_gazebo_joint_controller
+franka_panda_gazebo_controller: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 franka_panda_gazebo_controller
+.PHONY : franka_panda_gazebo_controller
 
 # fast build rule for target.
-franka_panda_gazebo_joint_controller/fast:
-	$(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_controller.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_controller.dir/build
-.PHONY : franka_panda_gazebo_joint_controller/fast
+franka_panda_gazebo_controller/fast:
+	$(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/build
+.PHONY : franka_panda_gazebo_controller/fast
 
 #=============================================================================
 # Target rules for targets named franka_panda_gripper_description_xacro_generated_to_devel_space_
@@ -1786,7 +1786,7 @@ help:
 	@echo "... franka_panda_arm_plus_own_gripper_control_gazebo_xacro_generated_to_devel_space_"
 	@echo "... franka_panda_plus_own_gripper_gazebo_joint_controller"
 	@echo "... franka_panda_control_gazebo_xacro_generated_to_devel_space_"
-	@echo "... franka_panda_gazebo_joint_controller"
+	@echo "... franka_panda_gazebo_controller"
 	@echo "... franka_panda_gripper_description_xacro_generated_to_devel_space_"
 	@echo "... ros_gazebo_plugin_comm_genpy"
 	@echo "... ros_gazebo_plugin_comm_generate_messages_py"

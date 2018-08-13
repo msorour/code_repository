@@ -9,17 +9,17 @@
 using namespace std;
 using namespace Eigen;
 
-Eigen::Vector4d thumb_joint_position, index_joint_position, middle_joint_position, pinky_joint_position;
+Vector4d thumb_joint_position, index_joint_position, middle_joint_position, pinky_joint_position;
 
 void GetJointPositionState(const std_msgs::Float32MultiArray::ConstPtr& _msg){
 	for(int k=0; k<4; k++)
-		index_joint_position(k,0)  = _msg->data[k];
+		index_joint_position(k)  = _msg->data[k];
 	for(int k=0; k<4; k++)
-		middle_joint_position(k,0) = _msg->data[k+4];
+		middle_joint_position(k) = _msg->data[k+4];
 	for(int k=0; k<4; k++)
-		pinky_joint_position(k,0)  = _msg->data[k+8];
+		pinky_joint_position(k)  = _msg->data[k+8];
 	for(int k=0; k<4; k++)
-		thumb_joint_position(k,0)  = _msg->data[k+12];
+		thumb_joint_position(k)  = _msg->data[k+12];
 	
 	//ROS_INFO("ThumbJointPosition: [%f, %f, %f, %f]", thumb_joint_position(0,0), thumb_joint_position(1,0), thumb_joint_position(2,0), thumb_joint_position(3,0));
 }
@@ -65,16 +65,16 @@ int main(int argc, char **argv){
   	joint_torque_command.data.clear();
   	//index
   	for(int k=0; k<4; k++)
-  		joint_torque_command.data.push_back(index_joint_torque_command(k,0));
+  		joint_torque_command.data.push_back(index_joint_torque_command(k));
   	//middle
   	for(int k=0; k<4; k++)
-  		joint_torque_command.data.push_back(middle_joint_torque_command(k,0));
+  		joint_torque_command.data.push_back(middle_joint_torque_command(k));
   	//pinky
   	for(int k=0; k<4; k++)
-  		joint_torque_command.data.push_back(pinky_joint_torque_command(k,0));
+  		joint_torque_command.data.push_back(pinky_joint_torque_command(k));
   	//thumb
   	for(int k=0; k<4; k++)
-  		joint_torque_command.data.push_back(thumb_joint_torque_command(k,0));
+  		joint_torque_command.data.push_back(thumb_joint_torque_command(k));
   	
   	JointTorqueCommandPub.publish(joint_torque_command);
   	

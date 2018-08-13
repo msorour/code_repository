@@ -11,6 +11,9 @@
   <!-- Load the URDF into the ROS Parameter Server -->
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(find allegro_right_hand_description)/model/allegro_right_hand_description.urdf.xacro" />
   
+  <!-- Set up env variable so plugin are found -->
+  <env name="GAZEBO_PLUGIN_PATH" value="/home/work/code_repository/gazebo_plugins/allegro_right_hand_control_plugin/build"/>
+  
   <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model allegro_right_hand -param robot_description"/>
 	

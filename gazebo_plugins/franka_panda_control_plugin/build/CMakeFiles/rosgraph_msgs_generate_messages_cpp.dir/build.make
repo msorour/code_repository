@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/work/code_repository/gazebo_plugin_trials/franka_panda_control_plugin
+CMAKE_SOURCE_DIR = /home/work/code_repository/gazebo_plugins/franka_panda_control_plugin
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/work/code_repository/gazebo_plugin_trials/franka_panda_control_plugin/build
+CMAKE_BINARY_DIR = /home/work/code_repository/gazebo_plugins/franka_panda_control_plugin/build
 
 # Utility rule file for rosgraph_msgs_generate_messages_cpp.
 
@@ -67,6 +67,6 @@ CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean:
 .PHONY : CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
 
 CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/depend:
-	cd /home/work/code_repository/gazebo_plugin_trials/franka_panda_control_plugin/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/work/code_repository/gazebo_plugin_trials/franka_panda_control_plugin /home/work/code_repository/gazebo_plugin_trials/franka_panda_control_plugin /home/work/code_repository/gazebo_plugin_trials/franka_panda_control_plugin/build /home/work/code_repository/gazebo_plugin_trials/franka_panda_control_plugin/build /home/work/code_repository/gazebo_plugin_trials/franka_panda_control_plugin/build/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/work/code_repository/gazebo_plugins/franka_panda_control_plugin/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/work/code_repository/gazebo_plugins/franka_panda_control_plugin /home/work/code_repository/gazebo_plugins/franka_panda_control_plugin /home/work/code_repository/gazebo_plugins/franka_panda_control_plugin/build /home/work/code_repository/gazebo_plugins/franka_panda_control_plugin/build /home/work/code_repository/gazebo_plugins/franka_panda_control_plugin/build/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/depend
 

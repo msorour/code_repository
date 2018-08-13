@@ -1,4 +1,4 @@
-# Install script for directory: /home/work/code_repository/gazebo_plugin_trials/franka_panda_arm_plus_own_gripper_control_plugin
+# Install script for directory: /home/work/code_repository/gazebo_plugins/franka_panda_arm_plus_own_gripper_control_plugin
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/work/code_repository/gazebo_plugin_trials/franka_panda_arm_plus_own_gripper_control_plugin/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/work/code_repository/gazebo_plugins/franka_panda_arm_plus_own_gripper_control_plugin/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
