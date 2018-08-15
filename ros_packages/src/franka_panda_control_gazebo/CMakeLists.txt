@@ -202,4 +202,6 @@ include_directories(
 
 add_executable(franka_panda_gazebo_controller src/franka_panda_gazebo_controller.cpp)
 target_link_libraries(franka_panda_gazebo_controller ${catkin_LIBRARIES})
+add_executable(franka_panda_gazebo_task_space_controller_rpy src/franka_panda_gazebo_task_space_controller_rpy.cpp)
+target_link_libraries(franka_panda_gazebo_task_space_controller_rpy ${catkin_LIBRARIES})
 

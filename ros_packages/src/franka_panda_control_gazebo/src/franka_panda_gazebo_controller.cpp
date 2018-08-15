@@ -13,6 +13,9 @@ using namespace std;
 using namespace Eigen;
 using namespace franka_panda_gazebo_controller;
 
+void log_data(void);
+void open_logs(void);
+void close_logs(void);
 
 void GetJointPositionState(const std_msgs::Float32MultiArray::ConstPtr& _msg){
 	for(int k=0; k<7; k++)
@@ -56,6 +59,7 @@ int main(int argc, char **argv){
   	
   	arm_DGM  = arm_direct_geometric_model(joint_position);
   	cout << "Franka Panda DGM = "  << endl << arm_DGM  << endl;
+  	arm_geometric_jacobian_matrix(joint_position);
   	
   	for(int k=0; k<7; k++){
   		trajectory = OnlineMP_L5B(start_time, end_time, time_now, joint_position_init(k), joint_position_desired(k));
@@ -87,4 +91,24 @@ int main(int argc, char **argv){
   close_logs();
 	
   return 0;
+}
+
+
+
+
+void log_data(void){
+	joint_position_command_log << time_now << " " << joint_position_traj.transpose() <<  endl;
+	joint_position_response_log << time_now << " " << joint_position.transpose() <<  endl;
+	joint_position_error_log << time_now << " " << joint_position_error.transpose() <<  endl;
+}
+
+void open_logs(void){
+	joint_position_command_log.open("/home/work/code_repository/ros_packages/src/franka_panda_control_gazebo/logs/joint_position_command_log.txt");
+	joint_position_response_log.open("/home/work/code_repository/ros_packages/src/franka_panda_control_gazebo/logs/joint_position_response_log.txt");
+	joint_position_error_log.open("/home/work/code_repository/ros_packages/src/franka_panda_control_gazebo/logs/joint_position_error_log.txt");
+}
+void close_logs(void){
+	joint_position_command_log.close();
+	joint_position_response_log.close();
+	joint_position_error_log.close();
 }
