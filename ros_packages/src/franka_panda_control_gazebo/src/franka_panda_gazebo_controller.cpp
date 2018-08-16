@@ -59,7 +59,6 @@ int main(int argc, char **argv){
   	
   	arm_DGM  = arm_direct_geometric_model(joint_position);
   	cout << "Franka Panda DGM = "  << endl << arm_DGM  << endl;
-  	arm_geometric_jacobian_matrix(joint_position);
   	
   	for(int k=0; k<7; k++){
   		trajectory = OnlineMP_L5B(start_time, end_time, time_now, joint_position_init(k), joint_position_desired(k));

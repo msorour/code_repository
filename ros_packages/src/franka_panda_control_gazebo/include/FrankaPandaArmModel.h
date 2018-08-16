@@ -183,8 +183,9 @@ Matrix4d arm_direct_geometric_model(VectorXd joint_state){
 
 
 
-
-MatrixXd arm_geometric_jacobian_matrix(VectorXd joint_state){
+// this function computes the geometric jacobian relating the velocity of the end effector frame to the base frame.
+// the second argument specifies if you want the effector velocity projected in its own frame "effector" or in the base frame "base"
+MatrixXd arm_geometric_jacobian_matrix(VectorXd joint_state, string reference_frame="base"){
 	double t1, t2, t3, t4, t5, t6, t7;
 	t1 = joint_state(0);
 	t2 = joint_state(1);
@@ -259,72 +260,6 @@ MatrixXd arm_geometric_jacobian_matrix(VectorXd joint_state){
 	J67 = 1;
 	
 	
-	
-	/*
-	// Jacobian matrix for frame 7, Projection frame 0, intermediate frame 0
-	// Column#1
-	J11 = 0;
-	J21 = 0;
-	J31 = 0;
-	J41 = 0;
-	J51 = 0;
-	J61 = 1;
-	
-	// Column#2
-	J12 = 0;
-	J22 = 0;
-	J32 = 0;
-	J42 = sin(t1);
-	J52 = -cos(t1);
-	J62 = 0;
-	
-	// Column#3
-	J13 = 0;
-	J23 = 0;
-	J33 = 0;
-	J43 = -sin(t2)*cos(t1);
-	J53 = -sin(t1)*sin(t2);
-	J63 = cos(t2);
-	
-	// Column#4
-	J14 = D*sin(t2)*cos(t1) + RL3*sin(t1)*sin(t3) - RL3*cos(t1)*cos(t2)*cos(t3);
-	J24 = D*sin(t1)*sin(t2) - RL3*sin(t1)*cos(t2)*cos(t3) - RL3*sin(t3)*cos(t1);
-	J34 = -D*cos(t2) - RL3*sin(t2)*cos(t3);
-	J44 = -sin(t1)*cos(t3) - sin(t3)*cos(t1)*cos(t2);
-	J54 = -sin(t1)*sin(t3)*cos(t2) + cos(t1)*cos(t3);
-	J64 = -sin(t2)*sin(t3);
-	
-	// Column#5
-	J15 = (-sin(t1)*cos(t3) - sin(t3)*cos(t1)*cos(t2))*(D*cos(t4) - D + RL3*sin(t4));
-	J25 = (-sin(t1)*sin(t3)*cos(t2) + cos(t1)*cos(t3))*(D*cos(t4) - D + RL3*sin(t4));
-	J35 = (-D*cos(t4) + D - RL3*sin(t4))*sin(t2)*sin(t3);
-	J45 = -sin(t1)*sin(t3)*sin(t4) - sin(t2)*cos(t1)*cos(t4) + sin(t4)*cos(t1)*cos(t2)*cos(t3);
-	J55 = -sin(t1)*sin(t2)*cos(t4) + sin(t1)*sin(t4)*cos(t2)*cos(t3) + sin(t3)*sin(t4)*cos(t1);
-	J65 = sin(t2)*sin(t4)*cos(t3) + cos(t2)*cos(t4);
-	
-	// Column#6
-	J16 = -D*sin(t1)*sin(t4)*sin(t3 + t5) - D*sin(t2)*cos(t1)*cos(t4)*cos(t5) + D*sin(t2)*cos(t1)*cos(t5) - D*sin(t3)*sin(t4)*sin(t5)*cos(t1)*cos(t2) + D*sin(t4)*cos(t1)*cos(t2)*cos(t3)*cos(t5) - RL3*sin(t1)*sin(t3)*cos(t4)*cos(t5) + RL3*sin(t1)*sin(t3)*cos(t5) + RL3*sin(t1)*sin(t3 + t5)*cos(t4) + RL3*sin(t3)*sin(t5)*cos(t1)*cos(t2)*cos(t4) - RL3*cos(t1)*cos(t2)*cos(t3)*cos(t5) + RL5*sin(t1)*sin(t3)*cos(t4)*cos(t5) + RL5*sin(t1)*sin(t5)*cos(t3) - RL5*sin(t2)*sin(t4)*cos(t1)*cos(t5) + RL5*sin(t3)*sin(t5)*cos(t1)*cos(t2) - RL5*cos(t1)*cos(t2)*cos(t3)*cos(t4)*cos(t5);
-	J26 = -D*sin(t1)*sin(t2)*cos(t4)*cos(t5) + D*sin(t1)*sin(t2)*cos(t5) + D*sin(t1)*sin(t4)*cos(t2)*cos(t3 + t5) + D*sin(t4)*sin(t3 + t5)*cos(t1) + RL3*sin(t1)*sin(t3)*sin(t5)*cos(t2)*cos(t4) - RL3*sin(t1)*sin(t3)*sin(t5)*cos(t2) - RL3*sin(t1)*cos(t2)*cos(t3 + t5) + RL3*sin(t3)*cos(t1)*cos(t4)*cos(t5) - RL3*sin(t3)*cos(t1)*cos(t5) - RL3*sin(t3 + t5)*cos(t1)*cos(t4) - RL5*sin(t1)*sin(t2)*sin(t4)*cos(t5) + RL5*sin(t1)*sin(t3)*sin(t5)*cos(t2) - RL5*sin(t1)*cos(t2)*cos(t3)*cos(t4)*cos(t5) - RL5*sin(t3)*cos(t1)*cos(t4)*cos(t5) - RL5*sin(t5)*cos(t1)*cos(t3);
-	J36 = -D*sin(t2)*sin(t3)*sin(t4)*sin(t5) + D*sin(t2)*sin(t4)*cos(t3)*cos(t5) + D*cos(t2)*cos(t4)*cos(t5) - D*cos(t2)*cos(t5) + RL3*sin(t2)*sin(t3)*sin(t5)*cos(t4) - RL3*sin(t2)*cos(t3)*cos(t5) + RL5*sin(t2)*sin(t3)*sin(t5) - RL5*sin(t2)*cos(t3)*cos(t4)*cos(t5) + RL5*sin(t4)*cos(t2)*cos(t5);
-	J46 = sin(t1)*sin(t3)*sin(t5)*cos(t4) - sin(t1)*cos(t3)*cos(t5) - sin(t2)*sin(t4)*sin(t5)*cos(t1) - sin(t3)*cos(t1)*cos(t2)*cos(t5) - sin(t5)*cos(t1)*cos(t2)*cos(t3)*cos(t4);
-	J56 = -sin(t1)*sin(t2)*sin(t4)*sin(t5) - sin(t1)*sin(t3)*cos(t2)*cos(t5) - sin(t1)*sin(t5)*cos(t2)*cos(t3)*cos(t4) - sin(t3)*sin(t5)*cos(t1)*cos(t4) + cos(t1)*cos(t3)*cos(t5);
-	J66 = -sin(t2)*sin(t3)*cos(t5) - sin(t2)*sin(t5)*cos(t3)*cos(t4) + sin(t4)*sin(t5)*cos(t2);
-	
-	// Column#7
-	J17 = -D*sin(t1)*sin(t3)*sin(t5)*cos(t4) - D*sin(t1)*sin(t4)*sin(t6)*cos(t3 + t5) + D*sin(t1)*cos(t3)*cos(t4)*cos(t6) + D*sin(t1)*cos(t3)*cos(t5) - D*sin(t1)*cos(t3)*cos(t6) + D*sin(t2)*sin(t4)*sin(t5)*cos(t1) + D*sin(t2)*sin(t5)*sin(t6)*cos(t1)*cos(t4) - D*sin(t2)*sin(t5)*sin(t6)*cos(t1) + D*sin(t3)*cos(t1)*cos(t2)*cos(t4)*cos(t6) + D*sin(t3)*cos(t1)*cos(t2)*cos(t5) - D*sin(t3)*cos(t1)*cos(t2)*cos(t6) - D*sin(t4)*sin(t6)*sin(t3 + t5)*cos(t1)*cos(t2) + D*sin(t5)*cos(t1)*cos(t2)*cos(t3)*cos(t4) - RL3*sin(t1)*sin(t3)*sin(t5)*sin(t6) + RL3*sin(t1)*sin(t4)*cos(t3)*cos(t6) + RL3*sin(t1)*sin(t6)*cos(t3)*cos(t4)*cos(t5) + RL3*sin(t3)*sin(t4)*cos(t1)*cos(t2)*cos(t6) + RL3*sin(t3)*sin(t6)*cos(t1)*cos(t2)*cos(t4)*cos(t5) + RL3*sin(t5)*sin(t6)*cos(t1)*cos(t2)*cos(t3) - RL5*sin(t1)*sin(t3)*sin(t5)*sin(t6)*cos(t4) + RL5*sin(t1)*sin(t6)*cos(t3)*cos(t5) + RL5*sin(t2)*sin(t4)*sin(t5)*sin(t6)*cos(t1) + RL5*sin(t3)*sin(t6)*cos(t1)*cos(t2)*cos(t5) + RL5*sin(t5)*sin(t6)*cos(t1)*cos(t2)*cos(t3)*cos(t4);
-	J27 = D*sin(t1)*sin(t2)*sin(t4)*sin(t5) + D*sin(t1)*sin(t2)*sin(t5)*sin(t6)*cos(t4) - D*sin(t1)*sin(t2)*sin(t5)*sin(t6) + D*sin(t1)*sin(t3)*cos(t2)*cos(t4)*cos(t6) + D*sin(t1)*sin(t3)*cos(t2)*cos(t5) - D*sin(t1)*sin(t3)*cos(t2)*cos(t6) - D*sin(t1)*sin(t4)*sin(t6)*sin(t3 + t5)*cos(t2) + D*sin(t1)*sin(t5)*cos(t2)*cos(t3)*cos(t4) + D*sin(t3)*sin(t5)*cos(t1)*cos(t4) + D*sin(t4)*sin(t6)*cos(t1)*cos(t3 + t5) - D*cos(t1)*cos(t3)*cos(t4)*cos(t6) - D*cos(t1)*cos(t3)*cos(t5) + D*cos(t1)*cos(t3)*cos(t6) + RL3*sin(t1)*sin(t3)*sin(t4)*cos(t2)*cos(t6) + RL3*sin(t1)*sin(t3)*sin(t6)*cos(t2)*cos(t4)*cos(t5) + RL3*sin(t1)*sin(t5)*sin(t6)*cos(t2)*cos(t3) + RL3*sin(t3)*sin(t5)*sin(t6)*cos(t1) - RL3*sin(t4)*cos(t1)*cos(t3)*cos(t6) - RL3*sin(t6)*cos(t1)*cos(t3)*cos(t4)*cos(t5) + RL5*sin(t1)*sin(t2)*sin(t4)*sin(t5)*sin(t6) + RL5*sin(t1)*sin(t3)*sin(t6)*cos(t2)*cos(t5) + RL5*sin(t1)*sin(t5)*sin(t6)*cos(t2)*cos(t3)*cos(t4) + RL5*sin(t3)*sin(t5)*sin(t6)*cos(t1)*cos(t4) - RL5*sin(t6)*cos(t1)*cos(t3)*cos(t5);
-	J37 = -D*sin(t2)*sin(t3)*sin(t4)*sin(t6)*cos(t5) + D*sin(t2)*sin(t3)*cos(t4)*cos(t6) + D*sin(t2)*sin(t3)*cos(t5) - D*sin(t2)*sin(t3)*cos(t6) - D*sin(t2)*sin(t4)*sin(t5)*sin(t6)*cos(t3) + D*sin(t2)*sin(t5)*cos(t3)*cos(t4) - D*sin(t4)*sin(t5)*cos(t2) - D*sin(t5)*sin(t6)*cos(t2)*cos(t4) + D*sin(t5)*sin(t6)*cos(t2) + RL3*sin(t2)*sin(t3)*sin(t4)*cos(t6) + RL3*sin(t2)*sin(t3)*sin(t6)*cos(t4)*cos(t5) + RL3*sin(t2)*sin(t5)*sin(t6)*cos(t3) + RL5*sin(t2)*sin(t3)*sin(t6)*cos(t5) + RL5*sin(t2)*sin(t5)*sin(t6)*cos(t3)*cos(t4) - RL5*sin(t4)*sin(t5)*sin(t6)*cos(t2);
-	J47 = sin(t1)*sin(t3)*sin(t4)*cos(t6) + sin(t1)*sin(t3)*sin(t6)*cos(t4)*cos(t5) + sin(t1)*sin(t5)*sin(t6)*cos(t3) - sin(t2)*sin(t4)*sin(t6)*cos(t1)*cos(t5) + sin(t2)*cos(t1)*cos(t4)*cos(t6) + sin(t3)*sin(t5)*sin(t6)*cos(t1)*cos(t2) - sin(t4)*cos(t1)*cos(t2)*cos(t3)*cos(t6) - sin(t6)*cos(t1)*cos(t2)*cos(t3)*cos(t4)*cos(t5);
-	J57 = -sin(t1)*sin(t2)*sin(t4)*sin(t6)*cos(t5) + sin(t1)*sin(t2)*cos(t4)*cos(t6) + sin(t1)*sin(t3)*sin(t5)*sin(t6)*cos(t2) - sin(t1)*sin(t4)*cos(t2)*cos(t3)*cos(t6) - sin(t1)*sin(t6)*cos(t2)*cos(t3)*cos(t4)*cos(t5) - sin(t3)*sin(t4)*cos(t1)*cos(t6) - sin(t3)*sin(t6)*cos(t1)*cos(t4)*cos(t5) - sin(t5)*sin(t6)*cos(t1)*cos(t3);
-	J67 = sin(t2)*sin(t3)*sin(t5)*sin(t6) - sin(t2)*sin(t4)*cos(t3)*cos(t6) - sin(t2)*sin(t6)*cos(t3)*cos(t4)*cos(t5) + sin(t4)*sin(t6)*cos(t2)*cos(t5) - cos(t2)*cos(t4)*cos(t6);
-	
-	
-	*/
-	
-	
-	
-	
-	
 	MatrixXd geometric_jacobian(6,7);
 	
 	// this gives the jacobian matrix of the arm frame7 w.r.t arm frame0 
@@ -361,8 +296,13 @@ MatrixXd arm_geometric_jacobian_matrix(VectorXd joint_state){
 	screw_TM_bE << R_bE , zero3,
 								 zero3,  R_bE;
 	
-	return screw_TM_bE*screw_TM_E7*geometric_jacobian;
+	if(reference_frame=="base")
+		return screw_TM_bE*screw_TM_E7*geometric_jacobian;
+	else if(reference_frame=="effector")
+		return screw_TM_E7*geometric_jacobian;
 }
+
+
 
 
 
