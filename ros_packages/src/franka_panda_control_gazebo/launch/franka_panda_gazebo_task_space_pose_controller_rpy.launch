@@ -14,7 +14,7 @@
   <!-- Set up env variable so plugin are found -->
   <env name="GAZEBO_PLUGIN_PATH" value="/home/work/code_repository/gazebo_plugins/franka_panda_control_plugin/build"/>
   
-	<node name="franka_panda_gazebo_task_space_velocity_controller_rpy" type="franka_panda_gazebo_task_space_velocity_controller_rpy" pkg="franka_panda_control_gazebo" output="screen" args=""/>
+	<node name="franka_panda_gazebo_task_space_pose_controller_rpy" type="franka_panda_gazebo_task_space_pose_controller_rpy" pkg="franka_panda_control_gazebo" output="screen" args=""/>
 	
 	<!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model panda_arm -param robot_description"/>

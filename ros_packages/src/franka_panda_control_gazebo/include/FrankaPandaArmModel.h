@@ -309,6 +309,42 @@ MatrixXd arm_geometric_jacobian_matrix(VectorXd joint_state, string reference_fr
 
 
 
+MatrixXd geometric_to_analytic_jacobian_rpy(VectorXd pose)
+{ 
+  MatrixXd J(6,6);
+  double alpha,beta,gamma;
+  // alpha -> yaw : about z
+  // beta  -> pitch : about y
+  // gamma -> roll : about x
+  
+  gamma = pose(3);
+  beta  = pose(4);
+  alpha = pose(5);
+  
+  Matrix3d I3 = Matrix3d::Identity();
+  Matrix3d zero3 = Matrix3d::Zero();
+  Matrix3d Omega;
+  /*
+  Omega << cos(alpha)*cos(beta), -sin(alpha), 0,
+					 sin(alpha)*cos(beta),  cos(alpha),	0,
+					 					 -sin(beta), 					 0, 1;
+	*/
+	Omega << cos(gamma)*tan(beta), sin(gamma)*tan(beta), 1,
+					 					-sin(gamma), cos(gamma)					 , 0,
+					 cos(gamma)/cos(beta), sin(gamma)/cos(beta), 0;
+	
+	J << I3, 		zero3,
+			 zero3, Omega;
+
+  return J;
+}
+
+
+
+
+
+
+
 /*
 
 MatrixXd geometric_jacobian_derivative(MatrixXd jacobian_past(6,7), double time_now, double time_past){

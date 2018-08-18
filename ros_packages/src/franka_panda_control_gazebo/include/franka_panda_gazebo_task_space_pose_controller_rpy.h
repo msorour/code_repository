@@ -42,5 +42,6 @@ namespace franka_panda_gazebo_controller
 	VectorXd pose_rpy_bE(6), pose_rpy_bE_desired(6), pose_rpy_bE_traj(6), pose_error(6);
 	VectorXd velocity_bE(6), velocity_bE_desired(6), velocity_bE_traj(6), velocity_error(6);
 	MatrixXd geometric_jacobian(6,7), geometric_jacobian_past(6,7), geometric_jacobian_derivative(6,7);
+	MatrixXd analytic_jacobian(6,7);
 	
 }
