@@ -65,7 +65,6 @@ CMakeFiles/franka_panda_control_plugin.dir/franka_panda_control_plugin.cc.o
  /opt/ros/kinetic/include/ros/wall_timer.h
  /opt/ros/kinetic/include/ros/wall_timer_options.h
  /opt/ros/kinetic/include/rosconsole/macros_generated.h
- /opt/ros/kinetic/include/std_msgs/Float32.h
  /opt/ros/kinetic/include/std_msgs/Float32MultiArray.h
  /opt/ros/kinetic/include/std_msgs/MultiArrayDimension.h
  /opt/ros/kinetic/include/std_msgs/MultiArrayLayout.h

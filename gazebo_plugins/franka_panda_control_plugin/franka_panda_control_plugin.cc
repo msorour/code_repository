@@ -37,8 +37,8 @@ void FrankaPandaControlPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _s
   std::map<std::string, double> init_joint_config_map;
   char str[50];
 	for(int k=0; k<7; k++){
-		snprintf(str, sizeof str, "%s%d", "panda_arm::panda_arm_joint", k+1);
-		init_joint_config_map[str] = joint_init[k];
+		//snprintf(str, sizeof str, "%s%d", "panda_arm::panda_arm_joint", k+1);
+		init_joint_config_map[this->joint[k+1]->GetScopedName()] = joint_init[k];
   }
   this->model->SetJointPositions(init_joint_config_map);
   std::cerr << "Initial joint configuration is set." << "\n";
@@ -70,6 +70,7 @@ void FrankaPandaControlPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _s
 	// Create topics to publish joint state.
 	JointPositionPub = this->rosNode->advertise<std_msgs::Float32MultiArray>("/franka_panda_arm/joint_state/position", 10);
 	JointVelocityPub = this->rosNode->advertise<std_msgs::Float32MultiArray>("/franka_panda_arm/joint_state/velocity", 10);
+	JointTorquePub   = this->rosNode->advertise<std_msgs::Float32MultiArray>("/franka_panda_arm/joint_state/torque"  , 10);
 	
 	
 	// Spin up the queue helper thread.
@@ -90,19 +91,26 @@ void FrankaPandaControlPlugin::OnUpdate(){
   
   std_msgs::Float32MultiArray joint_position_vector;
   std_msgs::Float32MultiArray joint_velocity_vector;
+  std_msgs::Float32MultiArray joint_torque_vector;
   joint_position_vector.data.clear();
   joint_velocity_vector.data.clear();
+  joint_torque_vector.data.clear();
   
   for(int k=0; k<7; k++){
   	// Apply joint torque command received + computed gravity compensation torque
   	this->joint[k+1] ->SetForce(0, joint_force_cmd[k]+joint_gravity_torque[k]);
   	// Publish joint position vector
-  	joint_position_vector.data.push_back(this->joint[k+1] ->GetAngle(2).Radian());
+  	joint_position_vector.data.push_back(this->joint[k+1]->GetAngle(2).Radian());
   	// Publish joint velocity vector
-  	joint_velocity_vector.data.push_back(this->joint[k+1] ->GetVelocity(2));
+  	joint_velocity_vector.data.push_back(this->joint[k+1]->GetVelocity(2));
+  	// Publish joint torque vector
+  	wrench = this->joint[k+1]->GetForceTorque(5);
+  	std::cerr << "wrench = " << wrench.body2Torque[0] <<", "<<wrench.body2Torque[1]<<", "<<wrench.body2Torque[2] << "\n";
+  	//joint_torque_vector.data.push_back(this->joint[k+1]->GetForceTorque(2));
   }
   JointPositionPub.publish(joint_position_vector);
   JointVelocityPub.publish(joint_velocity_vector);
+  JointTorquePub.publish(joint_torque_vector);
 }
 
 
@@ -260,6 +268,9 @@ void FrankaPandaControlPlugin::PandaArmGravityCompensation(float q[7]){
 	joint_gravity_torque[4] = N35;
 	joint_gravity_torque[5] = N36;
 	joint_gravity_torque[6] = N37;
+	
+	//for(int k=0;k<7;k++)
+	//	joint_gravity_torque[k] = 0;
 }
 
 

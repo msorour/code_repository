@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<launch>
+	<!-- these are the arguments you can pass this launch file, for example paused:=true -->
+	<arg name="verbose" 			default="true" />
+  <arg name="paused" 				default="true"/>
+  <arg name="use_sim_time" 	default="true"/>
+  <arg name="gui" 					default="true"/>
+  <arg name="headless" 			default="false"/>
+  <arg name="debug" 				default="false"/>
+  <arg name="world_name" 		default="$(find franka_panda_arm_plus_own_gripper_control_gazebo)/worlds/sim_scenario#1.world"/>
+  
+	<!-- Load the URDF into the ROS Parameter Server -->
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find franka_panda_arm_plus_own_gripper_control_gazebo)/model/panda_arm_plus_own_gripper_control_gazebo_plugin.urdf.xacro" />
+  
+  <!-- Set up env variable so plugin are found -->
+  <env name="GAZEBO_PLUGIN_PATH" value="/home/work/code_repository/gazebo_plugins/franka_panda_arm_plus_own_gripper_control_plugin/build"/>
+  
+	<node name="franka_panda_arm_plus_own_gripper_gazebo_task_space_pose_controller_rpy" type="franka_panda_arm_plus_own_gripper_gazebo_task_space_pose_controller_rpy" pkg="franka_panda_arm_plus_own_gripper_control_gazebo" output="screen" args=""/>
+	
+	<!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model panda_arm_plus_own_gripper -param robot_description"/>
+  
+  <!-- Launch empty_world.launch -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+  	<arg name="verbose" 			value="$(arg verbose)" />
+    <arg name="debug" 				value="$(arg debug)" />
+    <arg name="gui" 					value="$(arg gui)" />
+    <arg name="paused" 				value="$(arg paused)"/>
+    <arg name="use_sim_time" 	value="$(arg use_sim_time)"/>
+    <arg name="headless" 			value="$(arg headless)"/>
+    <arg name="world_name" 		value="$(arg world_name)"/>
+  </include>
+  
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <!-- <rosparam file="$(find panda_arm_control)/config/panda_arm_control_old.yaml" command="load"/> -->
+	
+  <!-- How to use example: -->
+  <!-- >>roslaunch franka_panda_control_gazebo franka_panda_control_gazebo.launch /-->
+
+</launch>

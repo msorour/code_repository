@@ -33,10 +33,6 @@ ros/subscribe_options.h
 /home/work/code_repository/gazebo_plugins/franka_panda_arm_plus_own_gripper_control_plugin/ros/subscribe_options.h
 std_msgs/Float32.h
 /home/work/code_repository/gazebo_plugins/franka_panda_arm_plus_own_gripper_control_plugin/std_msgs/Float32.h
-std_msgs/MultiArrayLayout.h
-/home/work/code_repository/gazebo_plugins/franka_panda_arm_plus_own_gripper_control_plugin/std_msgs/MultiArrayLayout.h
-std_msgs/MultiArrayDimension.h
-/home/work/code_repository/gazebo_plugins/franka_panda_arm_plus_own_gripper_control_plugin/std_msgs/MultiArrayDimension.h
 std_msgs/Float32MultiArray.h
 /home/work/code_repository/gazebo_plugins/franka_panda_arm_plus_own_gripper_control_plugin/std_msgs/Float32MultiArray.h
 

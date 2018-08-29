@@ -8,17 +8,12 @@
 #include <ignition/math/Vector3.hh>
 
 #include <map>
-
 #include <thread>
+#include "std_msgs/Float32MultiArray.h"
+
 #include "ros/ros.h"
 #include "ros/callback_queue.h"
 #include "ros/subscribe_options.h"
-#include "std_msgs/Float32.h"
-
-//#include "ros_gazebo_plugin_comm/Vector7d.h"
-#include "std_msgs/MultiArrayLayout.h"
-#include "std_msgs/MultiArrayDimension.h"
-#include "std_msgs/Float32MultiArray.h"
 
 namespace gazebo{
   class FrankaPandaControlPlugin : public ModelPlugin{
@@ -51,6 +46,9 @@ namespace gazebo{
     //private: physics::JointPtr joint1;
     private: physics::Joint_V joint;
     
+    private: physics::JointWrench wrench;
+    private: ignition::math::Vector3d torque;
+    
     
     private: float joint_force_cmd[7]={0,0,0,0,0,0,0};
     private: float joint_gravity_torque[7];
@@ -70,6 +68,7 @@ namespace gazebo{
 		// ROS publishers
 		private: ros::Publisher JointPositionPub;
 		private: ros::Publisher JointVelocityPub;
+		private: ros::Publisher JointTorquePub;
 
 		// A ROS callbackqueue that helps process messages
 		private: ros::CallbackQueue rosQueue;

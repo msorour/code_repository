@@ -25,20 +25,14 @@ map
 -
 thread
 -
+std_msgs/Float32MultiArray.h
+/home/work/code_repository/gazebo_plugins/franka_panda_control_plugin/std_msgs/Float32MultiArray.h
 ros/ros.h
 /home/work/code_repository/gazebo_plugins/franka_panda_control_plugin/ros/ros.h
 ros/callback_queue.h
 /home/work/code_repository/gazebo_plugins/franka_panda_control_plugin/ros/callback_queue.h
 ros/subscribe_options.h
 /home/work/code_repository/gazebo_plugins/franka_panda_control_plugin/ros/subscribe_options.h
-std_msgs/Float32.h
-/home/work/code_repository/gazebo_plugins/franka_panda_control_plugin/std_msgs/Float32.h
-std_msgs/MultiArrayLayout.h
-/home/work/code_repository/gazebo_plugins/franka_panda_control_plugin/std_msgs/MultiArrayLayout.h
-std_msgs/MultiArrayDimension.h
-/home/work/code_repository/gazebo_plugins/franka_panda_control_plugin/std_msgs/MultiArrayDimension.h
-std_msgs/Float32MultiArray.h
-/home/work/code_repository/gazebo_plugins/franka_panda_control_plugin/std_msgs/Float32MultiArray.h
 
 /opt/ros/kinetic/include/boost_161_condition_variable.h
 boost/thread/detail/platform.hpp
@@ -781,22 +775,6 @@ ros/forwards.h
 /opt/ros/kinetic/include/ros/ros/forwards.h
 
 /opt/ros/kinetic/include/rosconsole/macros_generated.h
-
-/opt/ros/kinetic/include/std_msgs/Float32.h
-string
--
-vector
--
-map
--
-ros/types.h
--
-ros/serialization.h
--
-ros/builtin_message_traits.h
--
-ros/message_operations.h
--
 
 /opt/ros/kinetic/include/std_msgs/Float32MultiArray.h
 string

@@ -16,8 +16,8 @@
 #include "std_msgs/Float32.h"
 
 //#include "ros_gazebo_plugin_comm/Vector7d.h"
-#include "std_msgs/MultiArrayLayout.h"
-#include "std_msgs/MultiArrayDimension.h"
+//#include "std_msgs/MultiArrayLayout.h"
+//#include "std_msgs/MultiArrayDimension.h"
 #include "std_msgs/Float32MultiArray.h"
 
 namespace gazebo{

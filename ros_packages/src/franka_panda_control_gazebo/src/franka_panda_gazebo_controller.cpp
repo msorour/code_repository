@@ -2,9 +2,10 @@
 #include "std_msgs/MultiArrayLayout.h"
 #include "std_msgs/MultiArrayDimension.h"
 #include "std_msgs/Float32MultiArray.h"
-#include "../include/Eigen/Dense"
+#include "../../../include/Eigen/Dense"
+#include "../../../include/useful_implementations.h"
+#include "../../../include/FrankaPandaArmModel.h"
 #include "../include/franka_panda_gazebo_controller.h"
-#include "../include/FrankaPandaArmModel.h"
 #include <iostream>
 #include <fstream>
 #include <time.h>

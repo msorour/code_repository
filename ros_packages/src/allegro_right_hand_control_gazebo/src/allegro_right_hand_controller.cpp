@@ -36,8 +36,8 @@ int main(int argc, char **argv){
 	Vector4d middle_joint_position_desired, middle_joint_torque_command;
 	Vector4d pinky_joint_position_desired,  pinky_joint_torque_command;
 	
-	thumb_joint_position_desired  << pi/2, 0.0, 0.0, 0.0;
-	index_joint_position_desired  << 0.0, 0.0, 0.0, 0.0;
+	thumb_joint_position_desired  << pi, pi/2, pi/2, pi/2;
+	index_joint_position_desired  << pi/3, pi/3, 0.0, 0.0;
 	middle_joint_position_desired << 0.0, 0.0, 0.0, 0.0;
 	pinky_joint_position_desired  << 0.0, 0.0, 0.0, 0.0;
 	

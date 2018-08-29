@@ -1,0 +1,15 @@
+
+1. there is the ROS CODE: 
+		located in "~/code_repository/ros_packages/src/franka_panda_control_gazebo" in which there is a launch file that runs the gazebo simulator in "pause" and "verbose" modes as well as loading the FRANKA_PANDA_ARM xacro model.
+		TODO : THERE IS ANOTHER PART OF ROS CODE, the node that sends the force commands.
+
+2. there is the GAZEBO PLUGIN CODE:
+		located in "~/code_repository/gazebo_plugin_trials/franka_panda_control_plugin" that implements the gazebo plugin for receiving the joint space force commands. The plugin is attached to the xacro urdf FRANKA PANDA ARM model located in "~/code_repository/ros_packages/src/franka_panda_control_gazebo/model" and is found automatically thanks by adding the plugin build folder "~/code_repository/gazebo_plugin_trials/franka_panda_control_plugin/build" to the "$GAZEBO_PLUGIN_PATH" by adding this line "export GAZEBO_PLUGIN_PATH=${GAZEBO_PLUGIN_PATH}:/home/work/code_repository/gazebo_plugin_trials/franka_panda_control_plugin/build" to the end of the ~/.bashrc file.
+
+3. run the simulator using (-u will launch in pause mode): 
+  >> gzserver -u two_link_arm_world.world --verbose
+
+5. if you make changes, compile first by going to build/ folder:
+  >> cmake ../ && make
+
+

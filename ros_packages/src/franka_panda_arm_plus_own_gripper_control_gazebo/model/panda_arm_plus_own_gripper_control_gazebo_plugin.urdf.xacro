@@ -13,9 +13,9 @@
   <gazebo>
     <plugin name="franka_panda_arm_plus_own_gripper_control_plugin" filename="libfranka_panda_arm_plus_own_gripper_control_plugin.so">
     	<arm_joint1_init>0.00</arm_joint1_init>
-    	<arm_joint2_init>0.70</arm_joint2_init>
+    	<arm_joint2_init>-1.57</arm_joint2_init>
     	<arm_joint3_init>0.00</arm_joint3_init>
-    	<arm_joint4_init>0.00</arm_joint4_init>
+    	<arm_joint4_init>-1.57</arm_joint4_init>
     	<arm_joint5_init>0.00</arm_joint5_init>
     	<arm_joint6_init>0.00</arm_joint6_init>
     	<arm_joint7_init>0.70</arm_joint7_init>
