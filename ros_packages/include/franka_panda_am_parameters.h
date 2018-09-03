@@ -62,7 +62,7 @@
 #define Ia5 0.0
 #define Ia6 0.0
 #define Ia7 0.0
-/*
+
 #define X1 0.0
 #define X2 0.0
 #define X3 0.0
@@ -76,24 +76,16 @@
 #define Y3 0.0
 #define Y4 0.0
 #define Y5 0.0
-#define Y6 0.0
+#define Y6 -0.008
 #define Y7 0.0
 
-#define Z1 0.0
-#define Z2 0.0
-#define Z3 0.0
-#define Z4 0.0
-#define Z5 0.0
-#define Z6 0.0
-#define Z7 0.0
-
-#define M1 0.0
-#define M2 0.0
-#define M3 0.0
-#define M4 0.0
-#define M5 0.0
-#define M6 0.0
-#define M7 0.0
+#define Z1 -0.015
+#define Z2 0.015
+#define Z3 -0.015
+#define Z4 0.015
+#define Z5 -0.035
+#define Z6 0.001
+#define Z7 0.1
 
 #define FX7 0.0
 #define FY7 0.0
@@ -101,7 +93,15 @@
 #define CX7 0.0
 #define CY7 0.0
 #define CZ7 0.0
-*/
+
+
+#define M1 2.7
+#define M2 2.7
+#define M3 2.7
+#define M4 2.7
+#define M5 1.7
+#define M6 1.6
+#define M7 1.0
 
 #define Fv1 5.0
 #define Fv2 10.0

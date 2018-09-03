@@ -10,7 +10,7 @@
   
   
   <!-- attach the custom make gazebo plugin "franka_panda_control_plugin" -->
-  <gazebo>
+  <!-- <gazebo>
     <plugin name="franka_panda_arm_plus_own_gripper_control_plugin" filename="libfranka_panda_arm_plus_own_gripper_control_plugin.so">
     	<arm_joint1_init>0.00</arm_joint1_init>
     	<arm_joint2_init>-1.57</arm_joint2_init>
@@ -21,6 +21,21 @@
     	<arm_joint7_init>0.70</arm_joint7_init>
     	<gripper_joint1_init>0.00</gripper_joint1_init>
     	<gripper_joint2_init>0.00</gripper_joint2_init>
+    </plugin>
+  </gazebo> -->
+  
+  
+  <gazebo>
+    <plugin name="generic_interface_plugin" filename="libgeneric_interface_plugin.so">
+    	<joint1_init>0.00</joint1_init>
+    	<joint2_init>-1.57</joint2_init>
+    	<joint3_init>0.00</joint3_init>
+    	<joint4_init>-1.57</joint4_init>
+    	<joint5_init>0.00</joint5_init>
+    	<joint6_init>0.00</joint6_init>
+    	<joint7_init>0.70</joint7_init>
+    	<joint8_init>0.00</joint8_init>
+    	<joint9_init>0.00</joint9_init>
     </plugin>
   </gazebo>
 

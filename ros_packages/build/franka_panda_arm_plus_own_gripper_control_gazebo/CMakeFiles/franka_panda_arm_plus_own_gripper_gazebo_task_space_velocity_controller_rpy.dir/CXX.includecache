@@ -1084,11 +1084,7 @@ franka_panda_am_parameters.h
 Eigen/Dense
 /home/work/code_repository/ros_packages/include/Eigen/Dense
 
-/home/work/code_repository/ros_packages/src/franka_panda_arm_plus_own_gripper_control_gazebo/include/franka_panda_gazebo_task_space_velocity_controller_rpy.h
-fstream
--
-iostream
--
+/home/work/code_repository/ros_packages/src/franka_panda_arm_plus_own_gripper_control_gazebo/include/franka_panda_arm_plus_own_gripper.h
 
 /home/work/code_repository/ros_packages/src/franka_panda_arm_plus_own_gripper_control_gazebo/src/franka_panda_arm_plus_own_gripper_gazebo_task_space_velocity_controller_rpy.cpp
 ros/ros.h
@@ -1101,8 +1097,8 @@ std_msgs/Float32MultiArray.h
 /home/work/code_repository/ros_packages/include/useful_implementations.h
 ../../../include/FrankaPandaArmModel.h
 /home/work/code_repository/ros_packages/include/FrankaPandaArmModel.h
-../include/franka_panda_gazebo_task_space_velocity_controller_rpy.h
-/home/work/code_repository/ros_packages/src/franka_panda_arm_plus_own_gripper_control_gazebo/include/franka_panda_gazebo_task_space_velocity_controller_rpy.h
+../include/franka_panda_arm_plus_own_gripper.h
+/home/work/code_repository/ros_packages/src/franka_panda_arm_plus_own_gripper_control_gazebo/include/franka_panda_arm_plus_own_gripper.h
 iostream
 -
 fstream

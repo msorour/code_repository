@@ -3,7 +3,7 @@
 #include "../../../include/Eigen/Dense"
 #include "../../../include/useful_implementations.h"
 #include "../../../include/FrankaPandaArmModel.h"
-#include "../include/franka_panda_gazebo_task_space_pose_controller_rpy.h"
+#include "../include/franka_panda_arm_plus_own_gripper.h"
 #include <iostream>
 #include <fstream>
 #include <time.h>
@@ -17,21 +17,29 @@ void open_logs(void);
 void close_logs(void);
 
 void GetJointPositionState(const std_msgs::Float32MultiArray::ConstPtr& _msg){
+  joint_position_sim_time = _msg->data[0];
 	for(int k=0; k<7; k++)
-		joint_position(k)  = _msg->data[k];	
+		joint_position(k)  = _msg->data[k+1];
+	for(int k=0; k<2; k++)
+		gripper_joint_position(k) = _msg->data[k+7+1];
 }
 void GetJointVelocityState(const std_msgs::Float32MultiArray::ConstPtr& _msg){
+	joint_velocity_sim_time = _msg->data[0];
 	for(int k=0; k<7; k++)
-		joint_velocity(k)  = _msg->data[k];	
+		joint_velocity(k)  = _msg->data[k+1];
+	for(int k=0; k<2; k++)
+		gripper_joint_velocity(k) = _msg->data[k+7+1];
 }
 
 int main(int argc, char **argv){
-	
-  ros::init(argc, argv, "franka_panda_gazebo_controller");
+  string arm_name;
+  arm_name = argv[2];
+  
+  ros::init(argc, argv, "franka_panda_arm_plus_own_gripper_gazebo_task_space_pose_controller_rpy");
 	ros::NodeHandle n;
-	ros::Publisher  JointTorqueCommandPub = n.advertise<std_msgs::Float32MultiArray>("/franka_panda_arm/joint_command/torque", 10);
-  ros::Subscriber JointPositionStateSub = n.subscribe("/franka_panda_arm/joint_state/position", 10, GetJointPositionState);
-  ros::Subscriber JointVelocityStateSub = n.subscribe("/franka_panda_arm/joint_state/velocity", 10, GetJointVelocityState);
+	ros::Publisher  JointTorqueCommandPub = n.advertise<std_msgs::Float32MultiArray>("/"+arm_name+"/joint_command/torque", 10);
+  ros::Subscriber JointPositionStateSub = n.subscribe("/"+arm_name+"/joint_state/position", 10, GetJointPositionState);
+  ros::Subscriber JointVelocityStateSub = n.subscribe("/"+arm_name+"/joint_state/velocity", 10, GetJointVelocityState);
   ros::Rate loop_rate(500);
 	
 	// Wait for a few moments till correct joint values are loaded
@@ -108,15 +116,17 @@ int main(int argc, char **argv){
   	coriolis_centrifugal_torque = arm_coriolis_centrifugal_torque(joint_position, joint_velocity);
   	joint_torque_command  = inertia_matrix*joint_acceleration_desired + viscous_friction_torque + static_friction_torque + coriolis_centrifugal_torque;
   	
-  	
-  	
-  	
+  	// torque override for testing
+  	joint_torque_command  = arm_gravity_compensation_torque(joint_position);
+  	gripper_joint_torque_command << 0,0;
   	
   	// Sending Joint Torque Command
   	std_msgs::Float32MultiArray torque_command;
   	torque_command.data.clear();
   	for(int k=0; k<7; k++)
   		torque_command.data.push_back(joint_torque_command(k));
+  	for(int k=0; k<2; k++)
+  		torque_command.data.push_back(gripper_joint_torque_command(k));
   	JointTorqueCommandPub.publish(torque_command);
   	
   	// Data logging

@@ -21,24 +21,20 @@ namespace gazebo{
 
     // Called by the world update start event
     public: void OnUpdate();
-    
-    // Set initial configuration
-    public: void SetInitialJointConfig( std::map<std::string, double> init_joint_config_map );
-
 
 		// ROS RELATED FUNCTIONS:    
 		// Handle an incoming message from ROS
-		public: void GetJointForceCommand(const std_msgs::Float32MultiArray::ConstPtr& _msg);
+		public: void GetJointTorqueCommand(const std_msgs::Float32MultiArray::ConstPtr& _msg);
+		public: void GetJointPositionCommand(const std_msgs::Float32MultiArray::ConstPtr& _msg);
+		public: void GetJointVelocityCommand(const std_msgs::Float32MultiArray::ConstPtr& _msg);
 		
-		// Handle an incoming message from ROS
-		public: void SendJointPositionState(const std_msgs::Float32MultiArray::ConstPtr& _msg);
-
 		// ROS helper function that processes messages
 		private: void QueueThread();
 		
-		private: void PandaArmGravityCompensation(float q[7]);
-
-		
+		// simulation time.
+    private: double sim_time;
+    private: physics::WorldPtr world;
+    
     // Pointer to the model.
     private: physics::ModelPtr model;
 
@@ -49,10 +45,10 @@ namespace gazebo{
     private: physics::JointWrench wrench;
     private: ignition::math::Vector3d torque;
     
-    private: int joint_count;
-    private: float joint_force_cmd[7]={0,0,0,0,0,0,0};
-    private: float joint_gravity_torque[7];
-
+    private: int joint_count, active_joint_count=0, j=0;
+    private: std_msgs::Float32MultiArray joint_torque_cmd, joint_position_cmd, joint_velocity_cmd;
+    private: bool torque_cmd_flag=false, position_cmd_flag=false, velocity_cmd_flag=false;
+    
     // A PID controller for the joint.
     private: common::PID pid;
 
@@ -63,7 +59,7 @@ namespace gazebo{
 		private: std::unique_ptr<ros::NodeHandle> rosNode;
 
 		// A ROS subscriber
-		private: ros::Subscriber JointTorqueCommandSub;
+		private: ros::Subscriber JointTorqueCommandSub, JointPositionCommandSub, JointVelocityCommandSub;
 		
 		// ROS publishers
 		private: ros::Publisher JointPositionPub;

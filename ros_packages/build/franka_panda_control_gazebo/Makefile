@@ -56,28 +56,16 @@ CMAKE_BINARY_DIR = /home/work/code_repository/ros_packages/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
 
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
+.PHONY : edit_cache/fast
 
 # Special rule for the target list_install_components
 list_install_components:
@@ -122,16 +110,28 @@ test/fast: test
 
 .PHONY : test/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
 
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
 
-.PHONY : edit_cache/fast
+.PHONY : rebuild_cache/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -166,34 +166,34 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy.dir/rule:
-	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy.dir/rule
-.PHONY : franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy.dir/rule
+franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy_node.dir/rule:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy_node.dir/rule
+.PHONY : franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy_node.dir/rule
 
 # Convenience name for target.
-franka_panda_gazebo_task_space_pose_controller_rpy: franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy.dir/rule
+franka_panda_gazebo_task_space_velocity_controller_rpy_node: franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy_node.dir/rule
 
-.PHONY : franka_panda_gazebo_task_space_pose_controller_rpy
+.PHONY : franka_panda_gazebo_task_space_velocity_controller_rpy_node
 
 # fast build rule for target.
-franka_panda_gazebo_task_space_pose_controller_rpy/fast:
-	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy.dir/build
-.PHONY : franka_panda_gazebo_task_space_pose_controller_rpy/fast
+franka_panda_gazebo_task_space_velocity_controller_rpy_node/fast:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy_node.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy_node.dir/build
+.PHONY : franka_panda_gazebo_task_space_velocity_controller_rpy_node/fast
 
 # Convenience name for target.
-franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy.dir/rule:
-	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy.dir/rule
-.PHONY : franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy.dir/rule
+franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy_node.dir/rule:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy_node.dir/rule
+.PHONY : franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy_node.dir/rule
 
 # Convenience name for target.
-franka_panda_gazebo_task_space_velocity_controller_rpy: franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy.dir/rule
+franka_panda_gazebo_task_space_pose_controller_rpy_node: franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy_node.dir/rule
 
-.PHONY : franka_panda_gazebo_task_space_velocity_controller_rpy
+.PHONY : franka_panda_gazebo_task_space_pose_controller_rpy_node
 
 # fast build rule for target.
-franka_panda_gazebo_task_space_velocity_controller_rpy/fast:
-	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy.dir/build
-.PHONY : franka_panda_gazebo_task_space_velocity_controller_rpy/fast
+franka_panda_gazebo_task_space_pose_controller_rpy_node/fast:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy_node.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy_node.dir/build
+.PHONY : franka_panda_gazebo_task_space_pose_controller_rpy_node/fast
 
 # Convenience name for target.
 franka_panda_control_gazebo/CMakeFiles/franka_panda_control_gazebo_xacro_generated_to_devel_space_.dir/rule:
@@ -211,46 +211,46 @@ franka_panda_control_gazebo_xacro_generated_to_devel_space_/fast:
 .PHONY : franka_panda_control_gazebo_xacro_generated_to_devel_space_/fast
 
 # Convenience name for target.
-franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/rule:
-	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/rule
-.PHONY : franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/rule
+franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_space_position_controller_node.dir/rule:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_space_position_controller_node.dir/rule
+.PHONY : franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_space_position_controller_node.dir/rule
 
 # Convenience name for target.
-franka_panda_gazebo_controller: franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/rule
+franka_panda_gazebo_joint_space_position_controller_node: franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_space_position_controller_node.dir/rule
 
-.PHONY : franka_panda_gazebo_controller
+.PHONY : franka_panda_gazebo_joint_space_position_controller_node
 
 # fast build rule for target.
-franka_panda_gazebo_controller/fast:
-	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/build
-.PHONY : franka_panda_gazebo_controller/fast
+franka_panda_gazebo_joint_space_position_controller_node/fast:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_space_position_controller_node.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_space_position_controller_node.dir/build
+.PHONY : franka_panda_gazebo_joint_space_position_controller_node/fast
 
-src/franka_panda_gazebo_controller.o: src/franka_panda_gazebo_controller.cpp.o
+src/franka_panda_gazebo_joint_space_position_controller.o: src/franka_panda_gazebo_joint_space_position_controller.cpp.o
 
-.PHONY : src/franka_panda_gazebo_controller.o
+.PHONY : src/franka_panda_gazebo_joint_space_position_controller.o
 
 # target to build an object file
-src/franka_panda_gazebo_controller.cpp.o:
-	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/src/franka_panda_gazebo_controller.cpp.o
-.PHONY : src/franka_panda_gazebo_controller.cpp.o
+src/franka_panda_gazebo_joint_space_position_controller.cpp.o:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_space_position_controller_node.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_space_position_controller_node.dir/src/franka_panda_gazebo_joint_space_position_controller.cpp.o
+.PHONY : src/franka_panda_gazebo_joint_space_position_controller.cpp.o
 
-src/franka_panda_gazebo_controller.i: src/franka_panda_gazebo_controller.cpp.i
+src/franka_panda_gazebo_joint_space_position_controller.i: src/franka_panda_gazebo_joint_space_position_controller.cpp.i
 
-.PHONY : src/franka_panda_gazebo_controller.i
+.PHONY : src/franka_panda_gazebo_joint_space_position_controller.i
 
 # target to preprocess a source file
-src/franka_panda_gazebo_controller.cpp.i:
-	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/src/franka_panda_gazebo_controller.cpp.i
-.PHONY : src/franka_panda_gazebo_controller.cpp.i
+src/franka_panda_gazebo_joint_space_position_controller.cpp.i:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_space_position_controller_node.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_space_position_controller_node.dir/src/franka_panda_gazebo_joint_space_position_controller.cpp.i
+.PHONY : src/franka_panda_gazebo_joint_space_position_controller.cpp.i
 
-src/franka_panda_gazebo_controller.s: src/franka_panda_gazebo_controller.cpp.s
+src/franka_panda_gazebo_joint_space_position_controller.s: src/franka_panda_gazebo_joint_space_position_controller.cpp.s
 
-.PHONY : src/franka_panda_gazebo_controller.s
+.PHONY : src/franka_panda_gazebo_joint_space_position_controller.s
 
 # target to generate assembly for a file
-src/franka_panda_gazebo_controller.cpp.s:
-	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_controller.dir/src/franka_panda_gazebo_controller.cpp.s
-.PHONY : src/franka_panda_gazebo_controller.cpp.s
+src/franka_panda_gazebo_joint_space_position_controller.cpp.s:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_space_position_controller_node.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_space_position_controller_node.dir/src/franka_panda_gazebo_joint_space_position_controller.cpp.s
+.PHONY : src/franka_panda_gazebo_joint_space_position_controller.cpp.s
 
 src/franka_panda_gazebo_task_space_pose_controller_rpy.o: src/franka_panda_gazebo_task_space_pose_controller_rpy.cpp.o
 
@@ -258,7 +258,7 @@ src/franka_panda_gazebo_task_space_pose_controller_rpy.o: src/franka_panda_gazeb
 
 # target to build an object file
 src/franka_panda_gazebo_task_space_pose_controller_rpy.cpp.o:
-	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy.dir/src/franka_panda_gazebo_task_space_pose_controller_rpy.cpp.o
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy_node.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy_node.dir/src/franka_panda_gazebo_task_space_pose_controller_rpy.cpp.o
 .PHONY : src/franka_panda_gazebo_task_space_pose_controller_rpy.cpp.o
 
 src/franka_panda_gazebo_task_space_pose_controller_rpy.i: src/franka_panda_gazebo_task_space_pose_controller_rpy.cpp.i
@@ -267,7 +267,7 @@ src/franka_panda_gazebo_task_space_pose_controller_rpy.i: src/franka_panda_gazeb
 
 # target to preprocess a source file
 src/franka_panda_gazebo_task_space_pose_controller_rpy.cpp.i:
-	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy.dir/src/franka_panda_gazebo_task_space_pose_controller_rpy.cpp.i
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy_node.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy_node.dir/src/franka_panda_gazebo_task_space_pose_controller_rpy.cpp.i
 .PHONY : src/franka_panda_gazebo_task_space_pose_controller_rpy.cpp.i
 
 src/franka_panda_gazebo_task_space_pose_controller_rpy.s: src/franka_panda_gazebo_task_space_pose_controller_rpy.cpp.s
@@ -276,7 +276,7 @@ src/franka_panda_gazebo_task_space_pose_controller_rpy.s: src/franka_panda_gazeb
 
 # target to generate assembly for a file
 src/franka_panda_gazebo_task_space_pose_controller_rpy.cpp.s:
-	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy.dir/src/franka_panda_gazebo_task_space_pose_controller_rpy.cpp.s
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy_node.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_pose_controller_rpy_node.dir/src/franka_panda_gazebo_task_space_pose_controller_rpy.cpp.s
 .PHONY : src/franka_panda_gazebo_task_space_pose_controller_rpy.cpp.s
 
 src/franka_panda_gazebo_task_space_velocity_controller_rpy.o: src/franka_panda_gazebo_task_space_velocity_controller_rpy.cpp.o
@@ -285,7 +285,7 @@ src/franka_panda_gazebo_task_space_velocity_controller_rpy.o: src/franka_panda_g
 
 # target to build an object file
 src/franka_panda_gazebo_task_space_velocity_controller_rpy.cpp.o:
-	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy.dir/src/franka_panda_gazebo_task_space_velocity_controller_rpy.cpp.o
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy_node.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy_node.dir/src/franka_panda_gazebo_task_space_velocity_controller_rpy.cpp.o
 .PHONY : src/franka_panda_gazebo_task_space_velocity_controller_rpy.cpp.o
 
 src/franka_panda_gazebo_task_space_velocity_controller_rpy.i: src/franka_panda_gazebo_task_space_velocity_controller_rpy.cpp.i
@@ -294,7 +294,7 @@ src/franka_panda_gazebo_task_space_velocity_controller_rpy.i: src/franka_panda_g
 
 # target to preprocess a source file
 src/franka_panda_gazebo_task_space_velocity_controller_rpy.cpp.i:
-	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy.dir/src/franka_panda_gazebo_task_space_velocity_controller_rpy.cpp.i
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy_node.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy_node.dir/src/franka_panda_gazebo_task_space_velocity_controller_rpy.cpp.i
 .PHONY : src/franka_panda_gazebo_task_space_velocity_controller_rpy.cpp.i
 
 src/franka_panda_gazebo_task_space_velocity_controller_rpy.s: src/franka_panda_gazebo_task_space_velocity_controller_rpy.cpp.s
@@ -303,7 +303,7 @@ src/franka_panda_gazebo_task_space_velocity_controller_rpy.s: src/franka_panda_g
 
 # target to generate assembly for a file
 src/franka_panda_gazebo_task_space_velocity_controller_rpy.cpp.s:
-	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy.dir/src/franka_panda_gazebo_task_space_velocity_controller_rpy.cpp.s
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy_node.dir/build.make franka_panda_control_gazebo/CMakeFiles/franka_panda_gazebo_task_space_velocity_controller_rpy_node.dir/src/franka_panda_gazebo_task_space_velocity_controller_rpy.cpp.s
 .PHONY : src/franka_panda_gazebo_task_space_velocity_controller_rpy.cpp.s
 
 # Help Target
@@ -312,20 +312,20 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... franka_panda_gazebo_task_space_pose_controller_rpy"
-	@echo "... install"
-	@echo "... franka_panda_gazebo_task_space_velocity_controller_rpy"
-	@echo "... rebuild_cache"
+	@echo "... franka_panda_gazebo_task_space_velocity_controller_rpy_node"
+	@echo "... franka_panda_gazebo_task_space_pose_controller_rpy_node"
+	@echo "... edit_cache"
 	@echo "... franka_panda_control_gazebo_xacro_generated_to_devel_space_"
 	@echo "... list_install_components"
+	@echo "... franka_panda_gazebo_joint_space_position_controller_node"
 	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... test"
-	@echo "... franka_panda_gazebo_controller"
-	@echo "... edit_cache"
-	@echo "... src/franka_panda_gazebo_controller.o"
-	@echo "... src/franka_panda_gazebo_controller.i"
-	@echo "... src/franka_panda_gazebo_controller.s"
+	@echo "... rebuild_cache"
+	@echo "... install"
+	@echo "... src/franka_panda_gazebo_joint_space_position_controller.o"
+	@echo "... src/franka_panda_gazebo_joint_space_position_controller.i"
+	@echo "... src/franka_panda_gazebo_joint_space_position_controller.s"
 	@echo "... src/franka_panda_gazebo_task_space_pose_controller_rpy.o"
 	@echo "... src/franka_panda_gazebo_task_space_pose_controller_rpy.i"
 	@echo "... src/franka_panda_gazebo_task_space_pose_controller_rpy.s"

@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda_arm">
+
+  <xacro:arg name="arm_id" default="panda_arm_1"/>
+  
+  <xacro:include filename="$(find franka_panda_arm_description)/model/panda_arm_gazebo.xacro" />
+  <xacro:panda_arm arm_id="$(arg arm_id)" xyz="0 0 0" rpy="0 0 0" />
+  <!-- <xacro:panda_arm xyz="0 0 0.1" rpy="0 0 ${-pi/2}" /> -->
+  
+  <!-- attach the custom make gazebo plugin "franka_panda_control_plugin" -->
+  <gazebo>
+    <!-- <plugin name="franka_panda_control_plugin" filename="libfranka_panda_control_plugin.so"> -->
+    <plugin name="generic_interface_plugin" filename="libgeneric_interface_plugin.so">
+    	<joint1_init>0.00</joint1_init>
+    	<joint2_init>-1.57</joint2_init>
+    	<joint3_init>0.00</joint3_init>
+    	<joint4_init>-1.57</joint4_init>
+    	<joint5_init>0.00</joint5_init>
+    	<joint6_init>0.00</joint6_init>
+    	<joint7_init>0.00</joint7_init>
+    </plugin>  
+  </gazebo>
+  
+  <gazebo reference="franka_panda_arm::panda_arm_1_joint1">
+    <physics>
+      <ode>
+       <provide_feedback>true</provide_feedback>
+      </ode>
+    </physics>
+  </gazebo>
+
+</robot>
