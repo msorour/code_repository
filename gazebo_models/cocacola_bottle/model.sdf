@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+
+<model name="cocacola_bottle">
+  <static>false</static>
+  
+  <!-- cocacola_bottle -->
+  <link name="cocacola_bottle2">
+    <pose>0 0 0 0 0 0</pose>
+    <inertial>
+      <mass>0.3</mass>
+      <inertia><ixx>0.001</ixx><iyy>0.001</iyy><izz>0.001</izz><ixy>0</ixy><ixz>0</ixz><iyz>0</iyz></inertia>
+    </inertial>
+    <collision name="collision">
+      <geometry>
+          <mesh>
+            <uri>model://cocacola_bottle/meshes/cocacola_bottle.stl</uri>
+          </mesh>
+      </geometry>
+    </collision>
+    <visual name="visual">
+      <geometry>
+          <mesh>
+            <uri>model://cocacola_bottle/meshes/cocacola_bottle.stl</uri>
+          </mesh>
+      </geometry>
+    </visual>
+  </link>
+  
+  
+  <!-- fix the bottle -->
+  <joint name="fix-camera-movable-fixation2" type="fixed">
+    <pose>0 0 0 0 0 0</pose>
+    <parent>ground</parent>
+    <child>cocacola_bottle</child>
+  </joint>
+  
+  
+  
+</model>
+</sdf>

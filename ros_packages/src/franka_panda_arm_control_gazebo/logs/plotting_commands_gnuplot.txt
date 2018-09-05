@@ -22,7 +22,16 @@ plot "joint_torque_command_log.txt" using 1:2 title 'T1-command' w l lw 2, "join
 
 
 
+plot "task_space_pose_response_log.txt" using 1:2 title 'x-response' w l lw 2, "task_space_pose_response_log.txt" using 1:3 title 'y-response' w l lw 2, "task_space_pose_response_log.txt" using 1:4 title 'z-response' w l lw 2, "task_space_pose_response_log.txt" using 1:5 title 'gamma-response' w l lw 2, "task_space_pose_response_log.txt" using 1:6 title 'beta-response' w l lw 2, "task_space_pose_response_log.txt" using 1:7 title 'alpha-response' w l lw 2
+
+
+
+
 plot "task_space_velocity_command_log.txt" using 1:2 title 'xd-command' w l lw 2, "task_space_velocity_command_log.txt" using 1:3 title 'yd-command' w l lw 2, "task_space_velocity_command_log.txt" using 1:4 title 'zd-command' w l lw 2, "task_space_velocity_command_log.txt" using 1:5 title 'Wx-command' w l lw 2, "task_space_velocity_command_log.txt" using 1:6 title 'Wy-command' w l lw 2, "task_space_velocity_command_log.txt" using 1:7 title 'Wz-command' w l lw 2
+
+plot "task_space_velocity_desired_log.txt" using 1:2 title 'xd-command' w l lw 2, "task_space_velocity_desired_log.txt" using 1:3 title 'yd-command' w l lw 2, "task_space_velocity_desired_log.txt" using 1:4 title 'zd-command' w l lw 2, "task_space_velocity_desired_log.txt" using 1:5 title 'Wx-command' w l lw 2, "task_space_velocity_desired_log.txt" using 1:6 title 'Wy-command' w l lw 2, "task_space_velocity_desired_log.txt" using 1:7 title 'Wz-command' w l lw 2
+
+plot "task_space_velocity_traj_log.txt" using 1:2 title 'xd-command' w l lw 2, "task_space_velocity_traj_log.txt" using 1:3 title 'yd-command' w l lw 2, "task_space_velocity_traj_log.txt" using 1:4 title 'zd-command' w l lw 2, "task_space_velocity_traj_log.txt" using 1:5 title 'Wx-command' w l lw 2, "task_space_velocity_traj_log.txt" using 1:6 title 'Wy-command' w l lw 2, "task_space_velocity_traj_log.txt" using 1:7 title 'Wz-command' w l lw 2
 
 plot "task_space_velocity_response_log.txt" using 1:2 title 'xd-response' w l lw 2, "task_space_velocity_response_log.txt" using 1:3 title 'yd-response' w l lw 2, "task_space_velocity_response_log.txt" using 1:4 title 'zd-response' w l lw 2, "task_space_velocity_response_log.txt" using 1:5 title 'Wx-response' w l lw 2, "task_space_velocity_response_log.txt" using 1:6 title 'Wy-response' w l lw 2, "task_space_velocity_response_log.txt" using 1:7 title 'Wz-response' w l lw 2
 

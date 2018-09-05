@@ -5,7 +5,8 @@
   
   <!-- attach the custom make gazebo plugin "allegro_right_hand_control_plugin" -->
   <gazebo>
-    <plugin name="allegro_right_hand_control_plugin" filename="liballegro_right_hand_control_plugin.so">
+    <!-- <plugin name="allegro_right_hand_control_plugin" filename="liballegro_right_hand_control_plugin.so"> -->
+    <plugin name="generic_interface_plugin" filename="libgeneric_interface_plugin.so">
     	<index_joint1_init>0.00</index_joint1_init>
     	<index_joint2_init>0.00</index_joint2_init>
     	<index_joint3_init>0.00</index_joint3_init>

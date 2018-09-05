@@ -8,16 +8,20 @@
   <arg name="headless" 			default="false"/>
   <arg name="debug" 				default="false"/>
   
+  <arg name="hand_name" 			value="allegro_right_hand" />
+  
   <!-- Load the URDF into the ROS Parameter Server -->
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(find allegro_right_hand_description)/model/allegro_right_hand_description.urdf.xacro" />
   
   <!-- Set up env variable so plugin are found -->
-  <env name="GAZEBO_PLUGIN_PATH" value="/home/work/code_repository/gazebo_plugins/allegro_right_hand_control_plugin/build"/>
+  <!-- <env name="GAZEBO_PLUGIN_PATH" value="/home/work/code_repository/gazebo_plugins/allegro_right_hand_control_plugin/build"/> -->
+  <env name="GAZEBO_PLUGIN_PATH" value="/home/work/code_repository/gazebo_plugins/generic_interface_plugin/build"/>
+  <env name="GAZEBO_MODEL_PATH" value="/home/work/code_repository/gazebo_models"/>
   
   <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
-  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model allegro_right_hand -param robot_description"/>
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model $(arg hand_name) -param robot_description"/>
 	
-	<node name="allegro_right_hand_controller" type="allegro_right_hand_controller" pkg="allegro_right_hand_control_gazebo" output="screen" args=""/>
+	<node name="allegro_right_hand_controller" type="allegro_right_hand_controller" pkg="allegro_right_hand_control_gazebo" output="screen" args="1 $(arg hand_name)"/>
 	
 	<!-- Launch empty_world.launch -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">

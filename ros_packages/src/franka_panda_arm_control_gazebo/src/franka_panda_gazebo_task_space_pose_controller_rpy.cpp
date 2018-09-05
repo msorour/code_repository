@@ -58,7 +58,7 @@ int main(int argc, char **argv){
 	Kv = 100;
 	
 	arm_DGM  = arm_direct_geometric_model(joint_position);
-	pose_rpy_bE = transfer_matrix_to_rose_rpy(arm_DGM);
+	pose_rpy_bE = transformation_matrix_to_pose_rpy(arm_DGM);
  	cout << "initial pose_rpy_bE = " << pose_rpy_bE.transpose()  << endl;
  	
  	time_now = ros::Time::now().toSec();
@@ -73,7 +73,7 @@ int main(int argc, char **argv){
   	cout << "time_now = " << time_now  << endl;
   	
   	arm_DGM  = arm_direct_geometric_model(joint_position);
-  	pose_rpy_bE = transfer_matrix_to_rose_rpy(arm_DGM);
+  	pose_rpy_bE = transformation_matrix_to_pose_rpy(arm_DGM);
   	pose_error = pose_rpy_bE_desired-pose_rpy_bE;
   	geometric_jacobian = arm_geometric_jacobian_matrix(joint_position,"base");
   	analytic_jacobian = geometric_to_analytic_jacobian_rpy(pose_rpy_bE)*geometric_jacobian;
@@ -159,7 +159,8 @@ void log_data(void){
 	task_space_pose_response_log << joint_position_sim_time << " " << pose_rpy_bE.transpose() <<  endl;
 	task_space_pose_error_log << joint_position_sim_time << " " << pose_error.transpose() <<  endl;
 	
-	task_space_velocity_command_log << time_now << " " << velocity_bE_traj.transpose() <<  endl;
+	task_space_velocity_desired_log << time_now << " " << velocity_bE_desired.transpose() <<  endl;
+	task_space_velocity_traj_log << time_now << " " << velocity_bE_traj.transpose() <<  endl;
 	task_space_velocity_response_log << joint_velocity_sim_time << " " << velocity_bE.transpose() <<  endl;
 	task_space_velocity_error_log << joint_velocity_sim_time << " " << velocity_error.transpose() <<  endl;
 }
@@ -179,7 +180,8 @@ void open_logs(void){
 	task_space_pose_response_log.open("/home/work/code_repository/ros_packages/src/franka_panda_arm_control_gazebo/logs/task_space_pose_response_log.txt");
 	task_space_pose_error_log.open("/home/work/code_repository/ros_packages/src/franka_panda_arm_control_gazebo/logs/task_space_pose_error_log.txt");
 	
-	task_space_velocity_command_log.open("/home/work/code_repository/ros_packages/src/franka_panda_arm_control_gazebo/logs/task_space_velocity_command_log.txt");
+	task_space_velocity_desired_log.open("/home/work/code_repository/ros_packages/src/franka_panda_arm_control_gazebo/logs/task_space_velocity_desired_log.txt");
+	task_space_velocity_traj_log.open("/home/work/code_repository/ros_packages/src/franka_panda_arm_control_gazebo/logs/task_space_velocity_traj_log.txt");
 	task_space_velocity_response_log.open("/home/work/code_repository/ros_packages/src/franka_panda_arm_control_gazebo/logs/task_space_velocity_response_log.txt");
 	task_space_velocity_error_log.open("/home/work/code_repository/ros_packages/src/franka_panda_arm_control_gazebo/logs/task_space_velocity_error_log.txt");
 }
@@ -198,7 +200,8 @@ void close_logs(void){
 	task_space_pose_response_log.close();
 	task_space_pose_error_log.close();
 	
-	task_space_velocity_command_log.close();
+	task_space_velocity_desired_log.close();
+	task_space_velocity_traj_log.close();
 	task_space_velocity_response_log.close();
 	task_space_velocity_error_log.close();
 }

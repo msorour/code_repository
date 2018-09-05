@@ -32,14 +32,16 @@ void GetJointVelocityState(const std_msgs::Float32MultiArray::ConstPtr& _msg){
 }
 
 int main(int argc, char **argv){
-  string arm_name;
-  arm_name = argv[2];
+  string model_name;
+  model_name = argv[2];
   
   ros::init(argc, argv, "franka_panda_arm_plus_own_gripper_gazebo_task_space_pose_controller_rpy");
 	ros::NodeHandle n;
-	ros::Publisher  JointTorqueCommandPub = n.advertise<std_msgs::Float32MultiArray>("/"+arm_name+"/joint_command/torque", 10);
-  ros::Subscriber JointPositionStateSub = n.subscribe("/"+arm_name+"/joint_state/position", 10, GetJointPositionState);
-  ros::Subscriber JointVelocityStateSub = n.subscribe("/"+arm_name+"/joint_state/velocity", 10, GetJointVelocityState);
+	ros::Publisher  JointTorqueCommandPub   = n.advertise<std_msgs::Float32MultiArray>("/"+model_name+"/joint_command/torque", 10);
+	ros::Publisher  JointVelocityCommandPub = n.advertise<std_msgs::Float32MultiArray>("/"+model_name+"/joint_command/velocity", 10);
+	ros::Publisher  JointPositionCommandPub = n.advertise<std_msgs::Float32MultiArray>("/"+model_name+"/joint_command/position", 10);
+  ros::Subscriber JointPositionStateSub = n.subscribe("/"+model_name+"/joint_state/position", 10, GetJointPositionState);
+  ros::Subscriber JointVelocityStateSub = n.subscribe("/"+model_name+"/joint_state/velocity", 10, GetJointVelocityState);
   ros::Rate loop_rate(500);
 	
 	// Wait for a few moments till correct joint values are loaded
@@ -49,16 +51,20 @@ int main(int argc, char **argv){
   }
   
 	
-	pose_rpy_bE_desired << 0.3, 0.0, 0.5, 0, 0, 0;
+	pose_rpy_bE_desired << 0.47, 0.06, 0.3, -pi/2, -pi/2, 0;
+	gripper_full_open_position << 0.035, 0.035;
+	gripper_closed_position << 0.01, 0.01;
+	gripper_joint_position_desired = gripper_full_open_position;
 	
 	start_time = ros::Time::now().toSec();
 	trajectory_duration = 5.0;
 	end_time = start_time + trajectory_duration;
-	Kp = 0.7;
+	Kp = 1.7;
 	Kv = 200;
+	Kp_gripper = 3.7;
 	
-	arm_DGM  = arm_direct_geometric_model(joint_position);
-	pose_rpy_bE = transfer_matrix_to_rose_rpy(arm_DGM);
+	arm_DGM  = arm_direct_geometric_model(joint_position, "panda_gripper");
+	pose_rpy_bE = transformation_matrix_to_pose_rpy(arm_DGM);
  	cout << "initial pose_rpy_bE = " << pose_rpy_bE.transpose()  << endl;
  	pose_rpy_bE_init = pose_rpy_bE;
  	
@@ -68,18 +74,28 @@ int main(int argc, char **argv){
 	geometric_jacobian = arm_geometric_jacobian_matrix(joint_position,"base");
 	geometric_jacobian_past = geometric_jacobian;
 	open_logs();
-  while (ros::ok() and ros::Time::now().toSec()<20 ){
-  //while (ros::ok()){
+  //while (ros::ok() and ros::Time::now().toSec()<20 ){
+  while (ros::ok()){
   	time_now = ros::Time::now().toSec();
-  	cout << "time_now = " << time_now  << endl;
+  	//cout << "time_now = " << time_now  << endl;
   	
+  	
+  	if(time_now>11.0)
+  	  pose_rpy_bE_desired << 0.47, 0.063, 0.11, -pi/2, -pi/2, 0;
+  	if(time_now>14.0)
+  	  gripper_joint_position_desired = gripper_closed_position;
+  	if(time_now>17.0)
+  	  pose_rpy_bE_desired << 0.47, 0.063, 0.23, -pi/2, -pi/2, 0;
+  	
+  	
+  	/*
   	////// computing current pose
   	//VectorXd dummy_joint(7);
   	//dummy_joint << 0, 0, 0, 0, 0, 0, 0;
-  	//arm_DGM  = arm_direct_geometric_model(dummy_joint);
-  	arm_DGM  = arm_direct_geometric_model(joint_position);
+  	//arm_DGM  = arm_direct_geometric_model(dummy_joint, "panda_gripper");
+  	arm_DGM  = arm_direct_geometric_model(joint_position, "panda_gripper");
   	//cout << "Franka Panda DGM = "  << endl << arm_DGM  << endl;
-  	pose_rpy_bE = transfer_matrix_to_rose_rpy(arm_DGM);
+  	pose_rpy_bE = transformation_matrix_to_pose_rpy(arm_DGM);
   	//pose_error = pose_rpy_bE_desired-pose_rpy_bE;
   	cout << "joint_position = " << joint_position.transpose()  << endl;
   	cout << "pose_rpy_bE = " << pose_rpy_bE.transpose()  << endl;
@@ -98,8 +114,9 @@ int main(int argc, char **argv){
   	}
   	
   	////// error in pose, velocity tracking
-  	pose_error = pose_rpy_bE_traj-pose_rpy_bE;
-  	velocity_error = velocity_bE_traj-velocity_bE;
+  	//pose_error = pose_rpy_bE_traj-pose_rpy_bE;
+  	//velocity_error = velocity_bE_traj-velocity_bE;
+  	pose_error = pose_rpy_bE_desired-pose_rpy_bE;
   	
   	////// Computing Joint Torque Command
   	//velocity_bE_desired = Kp*pose_error;
@@ -107,7 +124,8 @@ int main(int argc, char **argv){
   	//joint_velocity_desired = Pinv_damped(geometric_jacobian, 0.001)*velocity_bE_desired;
   	//joint_acceleration_desired = Kv*(joint_velocity_desired-joint_velocity);
   	geometric_jacobian_derivative = (geometric_jacobian-geometric_jacobian_past)/(time_now-time_past);
-  	acceleration_bE_desired = Kp*pose_error + Kv*velocity_error;
+  	Kp = 10;
+  	acceleration_bE_desired = Kp*pose_error;
   	joint_acceleration_desired = Pinv_damped(analytic_jacobian, 0.001)*(acceleration_bE_desired-geometric_jacobian_derivative*joint_velocity);
   	
   	inertia_matrix = arm_inertia_matrix(joint_position);
@@ -115,10 +133,29 @@ int main(int argc, char **argv){
   	static_friction_torque = arm_static_friction_torque(joint_velocity);
   	coriolis_centrifugal_torque = arm_coriolis_centrifugal_torque(joint_position, joint_velocity);
   	joint_torque_command  = inertia_matrix*joint_acceleration_desired + viscous_friction_torque + static_friction_torque + coriolis_centrifugal_torque;
+  	*/
+  	
+  	
+  	
+  	arm_DGM  = arm_direct_geometric_model(joint_position, "panda_gripper");
+  	pose_rpy_bE = transformation_matrix_to_pose_rpy(arm_DGM);
+  	pose_error = pose_rpy_bE_desired-pose_rpy_bE;
+  	geometric_jacobian = arm_geometric_jacobian_matrix(joint_position,"base");
+  	analytic_jacobian = geometric_to_analytic_jacobian_rpy(pose_rpy_bE)*geometric_jacobian;
+  	
+  	velocity_bE_desired = Kp*pose_error;
+  	arm_joint_velocity_desired = Pinv_damped(analytic_jacobian, 0.001)*velocity_bE_desired;
+  	
+  	gripper_joint_position_error = gripper_joint_position_desired - gripper_joint_position;
+  	gripper_joint_velocity_desired = Kp_gripper*gripper_joint_position_error;
+  	
+  	
+  	
+  	
   	
   	// torque override for testing
-  	joint_torque_command  = arm_gravity_compensation_torque(joint_position);
-  	gripper_joint_torque_command << 0,0;
+  	//joint_torque_command  = arm_gravity_compensation_torque(joint_position);
+  	//gripper_joint_torque_command << 0,0;
   	
   	// Sending Joint Torque Command
   	std_msgs::Float32MultiArray torque_command;
@@ -127,7 +164,16 @@ int main(int argc, char **argv){
   		torque_command.data.push_back(joint_torque_command(k));
   	for(int k=0; k<2; k++)
   		torque_command.data.push_back(gripper_joint_torque_command(k));
-  	JointTorqueCommandPub.publish(torque_command);
+  	//JointTorqueCommandPub.publish(torque_command);
+  	
+  	// Sending Joint VElocity Command
+  	std_msgs::Float32MultiArray velocity_command;
+  	velocity_command.data.clear();
+  	for(int k=0; k<7; k++)
+  		velocity_command.data.push_back(arm_joint_velocity_desired(k));
+  	for(int k=0; k<2; k++)
+  		velocity_command.data.push_back(gripper_joint_velocity_desired(k));
+  	JointVelocityCommandPub.publish(velocity_command);
   	
   	// Data logging
   	log_data();

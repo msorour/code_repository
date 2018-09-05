@@ -4,7 +4,8 @@ Eigen::Matrix3d Rotx(double t);
 Eigen::Matrix3d Roty(double t);
 Eigen::Matrix3d Rotz(double t);
 Eigen::Matrix3d skew_symm_matrix(Eigen::Vector3d vec);
-Eigen::VectorXd transfer_matrix_to_rose_rpy(Eigen::Matrix4d TM);
+Eigen::VectorXd transformation_matrix_to_pose_rpy(Eigen::Matrix4d TM);
+Eigen::Matrix3d rpy_to_direction_cosines(Eigen::Vector3d rpy);
 Eigen::MatrixXd geometric_to_analytic_jacobian_rpy(Eigen::VectorXd pose);
 Eigen::MatrixXd Pinv_damped(Eigen::MatrixXd J, double damping);
 Eigen::Vector3d OnlineMP_L5B(double ti, double tf, double tn, double Pi, double Pf);
@@ -40,7 +41,7 @@ Eigen::Matrix3d skew_symm_matrix(Eigen::Vector3d vec){
 	return hat;
 }
 
-Eigen::VectorXd transfer_matrix_to_rose_rpy(Eigen::Matrix4d TM){
+Eigen::VectorXd transformation_matrix_to_pose_rpy(Eigen::Matrix4d TM){
 	Eigen::VectorXd POSE(6);
   
   double sx,sy,sz,nx,ny,nz,ax,ay,az,Px,Py,Pz;
@@ -60,6 +61,13 @@ Eigen::VectorXd transfer_matrix_to_rose_rpy(Eigen::Matrix4d TM){
   
   POSE << Px, Py, Pz, gamma, beta, alpha;
   return POSE;
+}
+
+Eigen::Matrix3d rpy_to_direction_cosines(Eigen::Vector3d rpy){
+  Eigen::Matrix3d direction_cosines;
+  double alpha=rpy(2),beta=rpy(1),gamma=rpy(0);
+  direction_cosines = Rotz(alpha)*Roty(beta)*Rotx(gamma);
+  return direction_cosines;
 }
 
 Eigen::MatrixXd geometric_to_analytic_jacobian_rpy(Eigen::VectorXd pose){ 

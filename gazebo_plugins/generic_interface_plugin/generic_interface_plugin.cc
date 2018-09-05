@@ -37,7 +37,7 @@ void GenericInterfacePlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf
 		  snprintf(joint_init_str, sizeof joint_init_str, "%s%d%s", "joint", j+1, "_init");
 		  if (_sdf->HasElement(joint_init_str))
 			  joint_init[j] = _sdf->Get<double>(joint_init_str);
-			  j++;
+			j++;
     }
   }
   
@@ -56,6 +56,23 @@ void GenericInterfacePlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf
 	}
   this->model->SetJointPositions(init_joint_config_map);
   std::cerr << "Initial joint configuration is set." << "\n";
+  
+  // Check that the joint1_velocity_limit elements exist, then read the values
+  double joint_velocity_limit[joint_count];
+  double max_allowed_force=1;
+  char joint_velocity_limit_str[30];
+  j=0;
+	for(int k=0; k<joint_count; k++){
+	  if(this->joint[k]->HasType(physics::Base::HINGE_JOINT) or this->joint[k]->HasType(physics::Base::SLIDER_JOINT)){
+		  snprintf(joint_velocity_limit_str, sizeof joint_init_str, "%s%d%s", "joint", j+1, "_velocity_limit");
+		  if (_sdf->HasElement(joint_init_str))
+			  joint_velocity_limit[j] = _sdf->Get<double>(joint_velocity_limit_str);
+			this->joint[k]->SetParam("velmax", 2, 0.1);
+			this->joint[k]->SetParam("fmax", 2, 1.0);
+			std::cerr << "VelocityLimit = "<< this->joint[k]->GetVelocityLimit(0) << "\n";
+			j++;
+    }
+  }
   
   // Listen to the update event. This event is broadcast every simulation iteration.
   this->updateConnection = event::Events::ConnectWorldUpdateBegin( std::bind(&GenericInterfacePlugin::OnUpdate, this) );

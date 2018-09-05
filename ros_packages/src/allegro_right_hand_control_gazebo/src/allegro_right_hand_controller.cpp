@@ -1,35 +1,56 @@
+#include <iostream>
+#include <fstream>
+#include <time.h>
 #include "ros/ros.h"
 #include "std_msgs/MultiArrayLayout.h"
 #include "std_msgs/MultiArrayDimension.h"
 #include "std_msgs/Float32MultiArray.h"
-#include "../include/Eigen/Dense"
-#include "../include/AllegroRightHandModel.h"
-#include <iostream>
+#include "../../../include/Eigen/Dense"
+#include "../../../include/AllegroRightHandModel.h"
+#include "../include/allegro_right_hand.h"
 
 using namespace std;
 using namespace Eigen;
-
-Vector4d thumb_joint_position, index_joint_position, middle_joint_position, pinky_joint_position;
+using namespace allegro_right_hand;
 
 void GetJointPositionState(const std_msgs::Float32MultiArray::ConstPtr& _msg){
+  joint_position_sim_time = _msg->data[0];
 	for(int k=0; k<4; k++)
-		index_joint_position(k)  = _msg->data[k];
+		index_joint_position(k)  = _msg->data[k+1];
 	for(int k=0; k<4; k++)
-		middle_joint_position(k) = _msg->data[k+4];
+		middle_joint_position(k) = _msg->data[k+4+1];
 	for(int k=0; k<4; k++)
-		pinky_joint_position(k)  = _msg->data[k+8];
+		pinky_joint_position(k)  = _msg->data[k+8+1];
 	for(int k=0; k<4; k++)
-		thumb_joint_position(k)  = _msg->data[k+12];
+		thumb_joint_position(k)  = _msg->data[k+12+1];
 	
 	//ROS_INFO("ThumbJointPosition: [%f, %f, %f, %f]", thumb_joint_position(0,0), thumb_joint_position(1,0), thumb_joint_position(2,0), thumb_joint_position(3,0));
 }
 
+void GetJointVelocityState(const std_msgs::Float32MultiArray::ConstPtr& _msg){
+	joint_velocity_sim_time = _msg->data[0];
+	for(int k=0; k<4; k++)
+		index_joint_velocity(k)  = _msg->data[k+1];
+	for(int k=0; k<4; k++)
+		middle_joint_velocity(k) = _msg->data[k+4+1];
+	for(int k=0; k<4; k++)
+		pinky_joint_velocity(k)  = _msg->data[k+8+1];
+	for(int k=0; k<4; k++)
+		thumb_joint_velocity(k)  = _msg->data[k+12+1];
+}
+
 int main(int argc, char **argv){
+  string model_name;
+  model_name = argv[2];
+  
   ros::init(argc, argv, "allegro_right_hand_controller");
 	ros::NodeHandle n;
-	ros::Publisher  JointTorqueCommandPub = n.advertise<std_msgs::Float32MultiArray>("/allegro_right_hand/joint_command/torque", 10);
-  ros::Subscriber JointPositionStateSub = n.subscribe("/allegro_right_hand/joint_state/position", 10, GetJointPositionState);
-  ros::Rate loop_rate(100);
+	ros::Publisher  JointTorqueCommandPub   = n.advertise<std_msgs::Float32MultiArray>("/"+model_name+"/joint_command/torque", 10);
+	ros::Publisher  JointVelocityCommandPub = n.advertise<std_msgs::Float32MultiArray>("/"+model_name+"/joint_command/velocity", 10);
+	ros::Publisher  JointPositionCommandPub = n.advertise<std_msgs::Float32MultiArray>("/"+model_name+"/joint_command/position", 10);
+  ros::Subscriber JointPositionStateSub = n.subscribe("/"+model_name+"/joint_state/position", 10, GetJointPositionState);
+  ros::Subscriber JointVelocityStateSub = n.subscribe("/"+model_name+"/joint_state/velocity", 10, GetJointVelocityState);
+  ros::Rate loop_rate(500);
 	
 	Vector4d thumb_joint_position_desired,  thumb_joint_torque_command;
 	Vector4d index_joint_position_desired,  index_joint_torque_command;

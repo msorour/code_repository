@@ -1,9 +1,12 @@
 namespace franka_panda_gazebo_controller
 {
 	Eigen::VectorXd joint_position(7), joint_velocity(7);
-	Eigen::VectorXd gripper_joint_position(2), gripper_joint_velocity(2);
 	Eigen::VectorXd joint_velocity_desired(7), joint_acceleration_desired(7), joint_torque_command(7);
-	Eigen::VectorXd gripper_joint_velocity_desired(2), gripper_joint_acceleration_desired(2), gripper_joint_torque_command(2);
+	
+	Eigen::VectorXd gripper_joint_position(2), gripper_joint_velocity(2);
+	Eigen::VectorXd gripper_full_open_position(2), gripper_closed_position(2);
+	Eigen::VectorXd gripper_joint_position_desired(2), gripper_joint_velocity_desired(2), gripper_joint_acceleration_desired(2), gripper_joint_torque_command(2);
+	Eigen::VectorXd gripper_joint_position_error(2);
 	
 	Eigen::VectorXd joint_velocity_error(7);
 	Eigen::Vector3d trajectory;
@@ -30,7 +33,7 @@ namespace franka_panda_gazebo_controller
 	double joint_position_sim_time, joint_velocity_sim_time;
 	double time_now, start_time, trajectory_duration, end_time;
 	double time_past;
-	double Kp, Kv;
+	double Kp, Kv, Kp_gripper;
 	
 	double start_program_delay=0.02;
 	

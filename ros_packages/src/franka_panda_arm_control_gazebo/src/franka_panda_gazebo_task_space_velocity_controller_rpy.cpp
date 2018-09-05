@@ -48,44 +48,78 @@ int main(int argc, char **argv){
     loop_rate.sleep();
   }
   
-	
-	velocity_bE_desired << 0.05, 0, 0, 0, 0, 0;
+  velocity_bE_desired << 0.05, 0, 0, 0, 0, 0;
 	Kv = 0.7;
 	
 	open_logs();
+	/*
+	geometric_jacobian = arm_geometric_jacobian_matrix(joint_position,"base");
+	arm_DGM  = arm_direct_geometric_model(joint_position);
+	pose_rpy_bE = transfer_matrix_to_rose_rpy(arm_DGM);
+	analytic_jacobian = geometric_to_analytic_jacobian_rpy(pose_rpy_bE)*geometric_jacobian;
+	//velocity_bE_init = analytic_jacobian*joint_velocity;
+	velocity_bE_init = geometric_jacobian*joint_velocity;
+	
+	trajectory_duration = 5.0;
+	start_time = ros::Time::now().toSec();
+	end_time = start_time + trajectory_duration;
+	*/
+	
   while (ros::ok() and ros::Time::now().toSec()<10.0){
   //while (ros::ok()){
   	time_now = ros::Time::now().toSec();
   	cout << "time_now = " << time_now  << endl;
   	
+  	/*
+  	for(int k=0; k<6; k++){
+  		trajectory = OnlineMP_L5B(start_time, end_time, time_now, velocity_bE_init(k), velocity_bE_desired(k));
+  		velocity_bE_traj(k) = trajectory(0);
+  	}
+  	//joint_velocity_desired = Pinv_damped(analytic_jacobian, 0.001)*velocity_bE_traj;;
+  	joint_velocity_desired = Pinv_damped(geometric_jacobian, 0.001)*velocity_bE_traj;;
+  	*/
+  	
+  	/*
   	geometric_jacobian = arm_geometric_jacobian_matrix(joint_position,"base");
+  	//geometric_jacobian = arm_geometric_jacobian_matrix(joint_position,"effector");
   	arm_DGM  = arm_direct_geometric_model(joint_position);
   	pose_rpy_bE = transfer_matrix_to_rose_rpy(arm_DGM);
   	analytic_jacobian = geometric_to_analytic_jacobian_rpy(pose_rpy_bE)*geometric_jacobian;
-  	//geometric_jacobian = arm_geometric_jacobian_matrix(joint_position,"effector");
+  	*/
   	
   	///
   	// Computing Joint Torque Command
   	// 1. control in joint space
   	//joint_velocity_desired  = Pinv_damped(geometric_jacobian, 0.001)*velocity_bE_desired;
+  	//joint_velocity_desired  = Pinv_damped(analytic_jacobian, 0.001)*velocity_bE_desired;
   	//joint_velocity_error = joint_velocity_desired-joint_velocity;
   	
   	// 2. control in task space (better response)
-  	velocity_bE = geometric_jacobian*joint_velocity;
-  	velocity_error = velocity_bE_desired-velocity_bE;
-  	joint_velocity_error = Pinv_damped(geometric_jacobian, 0.001)*velocity_error;
+  	//velocity_bE = geometric_jacobian*joint_velocity;
+  	//velocity_bE = analytic_jacobian*joint_velocity;
+  	//velocity_error = velocity_bE_desired-velocity_bE;
+  	//joint_velocity_error = Pinv_damped(geometric_jacobian, 0.001)*velocity_error;
   	//joint_velocity_error = Pinv_damped(geometric_jacobian, 0.001)*velocity_bE_desired;
-  	joint_velocity_desired  = Pinv_damped(geometric_jacobian, 0.001)*Kv*velocity_error;
+  	//joint_velocity_desired  = Pinv_damped(geometric_jacobian, 0.001)*Kv*velocity_error;
   	//joint_velocity_desired  = Pinv_damped(analytic_jacobian, 0.001)*Kv*velocity_error;
   	//joint_velocity_desired  = Pinv_damped(analytic_jacobian, 0.001)*velocity_bE_desired;
   	
-  	
+  	/*
   	inertia_matrix = arm_inertia_matrix(joint_position);
   	viscous_friction_torque = arm_viscous_friction_torque(joint_velocity);
   	static_friction_torque = arm_static_friction_torque(joint_velocity);
   	coriolis_centrifugal_torque = arm_coriolis_centrifugal_torque(joint_position, joint_velocity);
   	gravity_compensation_torque = arm_gravity_compensation_torque(joint_position);
   	joint_torque_command  = inertia_matrix*joint_velocity_desired + viscous_friction_torque + static_friction_torque + coriolis_centrifugal_torque + gravity_compensation_torque;
+  	*/
+  	
+  	
+  	// Keep it stupid simple !
+  	velocity_bE_desired << 0.05, 0.0, 0.0, 0.0, 0.0, 0.0;
+  	geometric_jacobian = arm_geometric_jacobian_matrix(joint_position,"effector");
+  	velocity_bE = geometric_jacobian*joint_velocity;
+  	joint_velocity_desired  = Pinv_damped(geometric_jacobian, 0.001)*velocity_bE_desired;
+  	
   	
   	//joint_torque_command << 0,0,0,0,0,0,0;
   	///
@@ -97,7 +131,7 @@ int main(int argc, char **argv){
   	//JointTorqueCommandPub.publish(torque_command);
   	
   	//joint_velocity_desired  << 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07;
-  	// Sending Joint VElocity Command
+  	// Sending Joint Velocity Command
   	std_msgs::Float32MultiArray velocity_command;
   	velocity_command.data.clear();
   	for(int k=0; k<7; k++)
@@ -130,7 +164,8 @@ void log_data(void){
 	
 	joint_torque_command_log << time_now << " " << joint_torque_command.transpose() <<  endl;
 	
-	task_space_velocity_command_log << time_now << " " << velocity_bE_desired.transpose() <<  endl;
+	task_space_velocity_desired_log << time_now << " " << velocity_bE_desired.transpose() <<  endl;
+	task_space_velocity_traj_log << time_now << " " << velocity_bE_traj.transpose() <<  endl;
 	task_space_velocity_response_log << joint_velocity_sim_time << " " << velocity_bE.transpose() <<  endl;
 	task_space_velocity_error_log << joint_velocity_sim_time << " " << velocity_error.transpose() <<  endl;
 }
@@ -142,7 +177,8 @@ void open_logs(void){
 	
 	joint_torque_command_log.open("/home/work/code_repository/ros_packages/src/franka_panda_arm_control_gazebo/logs/joint_torque_command_log.txt");
 	
-	task_space_velocity_command_log.open("/home/work/code_repository/ros_packages/src/franka_panda_arm_control_gazebo/logs/task_space_velocity_command_log.txt");
+	task_space_velocity_desired_log.open("/home/work/code_repository/ros_packages/src/franka_panda_arm_control_gazebo/logs/task_space_velocity_desired_log.txt");
+	task_space_velocity_traj_log.open("/home/work/code_repository/ros_packages/src/franka_panda_arm_control_gazebo/logs/task_space_velocity_traj_log.txt");
 	task_space_velocity_response_log.open("/home/work/code_repository/ros_packages/src/franka_panda_arm_control_gazebo/logs/task_space_velocity_response_log.txt");
 	task_space_velocity_error_log.open("/home/work/code_repository/ros_packages/src/franka_panda_arm_control_gazebo/logs/task_space_velocity_error_log.txt");
 }
@@ -153,7 +189,8 @@ void close_logs(void){
 	
 	joint_torque_command_log.close();
 	
-	task_space_velocity_command_log.close();
+	task_space_velocity_desired_log.close();
+	task_space_velocity_traj_log.close();
 	task_space_velocity_response_log.close();
 	task_space_velocity_error_log.close();
 }

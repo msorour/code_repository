@@ -36,6 +36,16 @@
     	<joint7_init>0.70</joint7_init>
     	<joint8_init>0.00</joint8_init>
     	<joint9_init>0.00</joint9_init>
+    	
+    	<joint1_velocity_limit>3.00</joint1_velocity_limit>
+    	<joint2_velocity_limit>3.00</joint2_velocity_limit>
+    	<joint3_velocity_limit>3.00</joint3_velocity_limit>
+    	<joint4_velocity_limit>3.00</joint4_velocity_limit>
+    	<joint5_velocity_limit>3.00</joint5_velocity_limit>
+    	<joint6_velocity_limit>3.00</joint6_velocity_limit>
+    	<joint7_velocity_limit>3.00</joint7_velocity_limit>
+    	<joint8_velocity_limit>3.00</joint8_velocity_limit>
+    	<joint9_velocity_limit>3.00</joint9_velocity_limit>
     </plugin>
   </gazebo>
 

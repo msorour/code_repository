@@ -18,6 +18,7 @@
 	<!-- Set up env variable so plugin are found -->
   <!-- <env name="GAZEBO_PLUGIN_PATH" value="/home/work/code_repository/gazebo_plugins/franka_panda_arm_plus_own_gripper_control_plugin/build"/> -->
   <env name="GAZEBO_PLUGIN_PATH" value="/home/work/code_repository/gazebo_plugins/generic_interface_plugin/build"/>
+  <env name="GAZEBO_MODEL_PATH" value="/home/work/code_repository/gazebo_models"/>
   
 	<!-- <node name="franka_panda_plus_own_gripper_gazebo_joint_controller" type="franka_panda_plus_own_gripper_gazebo_joint_controller" pkg="franka_panda_arm_plus_own_gripper_control_gazebo" output="screen" args=""/> -->
 	<node name="franka_panda_plus_own_gripper_gazebo_joint_controller" type="franka_panda_plus_own_gripper_gazebo_joint_controller" pkg="franka_panda_arm_plus_own_gripper_control_gazebo" output="screen" args="1 $(arg arm_name)"/>
