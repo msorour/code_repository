@@ -52,6 +52,24 @@
   <xacro:property name="limit_2_t_low" 				value="-0.289"/>
   <xacro:property name="limit_3_t_up"  				value="1.819"/>
   <xacro:property name="limit_3_t_low" 				value="-0.262"/>
+  
+  <!-- <xacro:property name="joint_safety_margin" 	value="0.0"/>
+  <xacro:property name="limit_0_up" 					value="0.0"/>
+  <xacro:property name="limit_0_low" 					value="-0.0"/>
+  <xacro:property name="limit_1_up" 					value="0.0"/>
+  <xacro:property name="limit_1_low" 					value="-0.0"/>
+  <xacro:property name="limit_2_up" 					value="0.0"/>
+  <xacro:property name="limit_2_low" 					value="-0.0"/>
+  <xacro:property name="limit_3_up" 					value="0.0"/>
+  <xacro:property name="limit_3_low" 					value="-0.0"/>
+  <xacro:property name="limit_0_t_up"  				value="0.0"/>
+  <xacro:property name="limit_0_t_low" 				value="0.0"/>
+  <xacro:property name="limit_1_t_up"  				value="0.0"/>
+  <xacro:property name="limit_1_t_low" 				value="-0.0"/>
+  <xacro:property name="limit_2_t_up"  				value="0.0"/>
+  <xacro:property name="limit_2_t_low" 				value="-0.0"/>
+  <xacro:property name="limit_3_t_up"  				value="0.0"/>
+  <xacro:property name="limit_3_t_low" 				value="-0.0"/> -->
 
   <!-- ============================================================================= -->
 

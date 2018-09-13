@@ -68,7 +68,7 @@ int main(int argc, char **argv){
   	cout << "time_now = " << time_now  << endl;
   	
   	arm_DGM  = arm_direct_geometric_model(joint_position);
-  	cout << "Franka Panda DGM = "  << endl << arm_DGM  << endl;
+  	//cout << "Franka Panda DGM = "  << endl << arm_DGM  << endl;
   	
   	for(int k=0; k<7; k++){
   		trajectory = OnlineMP_L5B(start_time, end_time, time_now, joint_position_init(k), joint_position_desired(k));
@@ -78,11 +78,12 @@ int main(int argc, char **argv){
   	
   	// Computing Joint Torque Command
   	//joint_position_error = joint_position_traj-joint_position;
-  	//joint_velocity_error = joint_velocity_traj-joint_velocity;
+  	joint_velocity_error = joint_velocity_traj-joint_velocity;
+  	joint_velocity_desired=joint_velocity_traj;
   	//joint_torque_command  = joint_acceleration_traj + Kp*joint_position_error + Kv*joint_velocity_error;
   	//joint_torque_command  = joint_acceleration_traj + Kp*joint_position_error;
   	
-  	joint_velocity_error = joint_velocity_desired-joint_velocity;
+  	//joint_velocity_error = joint_velocity_desired-joint_velocity;
   	//joint_torque_command  = Kp*joint_velocity_error;
   	
   	inertia_matrix = arm_inertia_matrix(joint_position);
@@ -93,21 +94,21 @@ int main(int argc, char **argv){
   	joint_torque_command  = inertia_matrix*Kp*joint_velocity_error + viscous_friction_torque + static_friction_torque + coriolis_centrifugal_torque + gravity_compensation_torque;
   	
   	cout << "JointPosition      = " << joint_position.transpose()  << endl;
-  	cout << "JointTorqueCommand = " << joint_torque_command.transpose()  << endl;
+  	//cout << "JointTorqueCommand = " << joint_torque_command.transpose()  << endl;
   	
   	// Sending Joint Torque Command
   	std_msgs::Float32MultiArray torque_command;
   	torque_command.data.clear();
   	for(int k=0; k<7; k++)
   		torque_command.data.push_back(joint_torque_command(k));
-  	JointTorqueCommandPub.publish(torque_command);
+  	//JointTorqueCommandPub.publish(torque_command);
   	
   	// Sending Joint VElocity Command
   	std_msgs::Float32MultiArray velocity_command;
   	velocity_command.data.clear();
   	for(int k=0; k<7; k++)
   		velocity_command.data.push_back(joint_velocity_desired(k)); // equivalent to 
-  	//JointVelocityCommandPub.publish(velocity_command);
+  	JointVelocityCommandPub.publish(velocity_command);
   	
   	// Data logging
   	log_data();

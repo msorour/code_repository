@@ -10,6 +10,10 @@ Eigen::MatrixXd geometric_to_analytic_jacobian_rpy(Eigen::VectorXd pose);
 Eigen::MatrixXd Pinv_damped(Eigen::MatrixXd J, double damping);
 Eigen::Vector3d OnlineMP_L5B(double ti, double tf, double tn, double Pi, double Pf);
 
+Eigen::Matrix4d homogeneous_transformation(double r, double d, double alpha, double theta);
+Eigen::Matrix4d general_transformation_matrix(int target_frame, int reference_frame, Eigen::VectorXd r, Eigen::VectorXd d, Eigen::VectorXd alpha, Eigen::VectorXd theta);
+Eigen::MatrixXd general_geometric_jacobian(int target_frame, int reference_frame, Eigen::VectorXd r, Eigen::VectorXd d, Eigen::VectorXd alpha, Eigen::VectorXd theta);
+
 // Useful Implementations
 Eigen::Matrix3d Rotx(double t){
 	Eigen::Matrix3d R;
@@ -125,10 +129,44 @@ Eigen::MatrixXd Pinv_damped( Eigen::MatrixXd J , double damping )    // Moore-Pe
 
 
 
+Eigen::Matrix4d homogeneous_transformation(double r, double d, double alpha, double theta){
+	Eigen::Matrix4d TM;
+  TM <<            cos(theta),           -sin(theta),           0,             d,
+        cos(alpha)*sin(theta), cos(alpha)*cos(theta), -sin(alpha), -r*sin(alpha),
+        sin(alpha)*sin(theta), sin(alpha)*cos(theta),  cos(alpha),  r*cos(alpha),
+                            0,                     0,           0,             1;
+  return TM;
+}
+
+
+
+
+Eigen::Matrix4d general_transformation_matrix(int target_frame, int reference_frame, Eigen::VectorXd r, Eigen::VectorXd d, Eigen::VectorXd alpha, Eigen::VectorXd theta){
+	Eigen::Matrix4d general_TM = Eigen::Matrix4d::Identity();
+	Eigen::Matrix4d tmp;
+  
+  for(int i=reference_frame; i<target_frame; i++){
+    tmp = general_TM;
+    general_TM = tmp*homogeneous_transformation(r(i), d(i), alpha(i), theta(i));
+  }
+  return general_TM;
+}
+
+
+
+
+/// TODO!
+Eigen::MatrixXd general_geometric_jacobian(int target_frame, int reference_frame, Eigen::VectorXd r, Eigen::VectorXd d, Eigen::VectorXd alpha, Eigen::VectorXd theta){
+	Eigen::MatrixXd Jacobian(6,r.size());
+  return Jacobian;
+}
+
+
+
 
 
 // This function calculates the Motion Profile online. It takes the initial and final conditions together with the current time instant (tn) and returns a 3D vector of Position, Velocity and Acceleration commands.
-Eigen::Vector3d OnlineMP_L5B( double ti, double tf, double tn, double Pi, double Pf ){
+Eigen::Vector3d OnlineMP_L5B(double ti, double tf, double tn, double Pi, double Pf){
   Eigen::Vector3d MPM;
   
   double t1, t2, P1, P2, V1, V2, A1, A2;

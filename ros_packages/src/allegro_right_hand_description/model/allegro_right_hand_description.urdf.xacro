@@ -7,22 +7,39 @@
   <gazebo>
     <!-- <plugin name="allegro_right_hand_control_plugin" filename="liballegro_right_hand_control_plugin.so"> -->
     <plugin name="generic_interface_plugin" filename="libgeneric_interface_plugin.so">
-    	<index_joint1_init>0.00</index_joint1_init>
-    	<index_joint2_init>0.00</index_joint2_init>
-    	<index_joint3_init>0.00</index_joint3_init>
-    	<index_joint4_init>0.00</index_joint4_init>
+    	<!-- <index_joint1_init>0.00</index_joint1_init>
+    	<index_joint2_init>0.10</index_joint2_init>
+    	<index_joint3_init>0.10</index_joint3_init>
+    	<index_joint4_init>0.10</index_joint4_init>
     	<middle_joint1_init>0.00</middle_joint1_init>
-    	<middle_joint2_init>0.00</middle_joint2_init>
-    	<middle_joint3_init>0.00</middle_joint3_init>
-    	<middle_joint4_init>0.00</middle_joint4_init>
+    	<middle_joint2_init>0.10</middle_joint2_init>
+    	<middle_joint3_init>0.10</middle_joint3_init>
+    	<middle_joint4_init>0.10</middle_joint4_init>
     	<pinky_joint1_init>0.00</pinky_joint1_init>
-    	<pinky_joint2_init>0.00</pinky_joint2_init>
-    	<pinky_joint3_init>0.00</pinky_joint3_init>
-    	<pinky_joint4_init>0.00</pinky_joint4_init>
-    	<thumb_joint1_init>-0.027</thumb_joint1_init>
-    	<thumb_joint2_init>0.00</thumb_joint2_init>
-    	<thumb_joint3_init>0.77</thumb_joint3_init>
-    	<thumb_joint4_init>0.77</thumb_joint4_init>
+    	<pinky_joint2_init>0.10</pinky_joint2_init>
+    	<pinky_joint3_init>0.10</pinky_joint3_init>
+    	<pinky_joint4_init>0.10</pinky_joint4_init>
+    	<thumb_joint1_init>0.5</thumb_joint1_init>
+    	<thumb_joint2_init>0.10</thumb_joint2_init>
+    	<thumb_joint3_init>0.10</thumb_joint3_init>
+    	<thumb_joint4_init>0.10</thumb_joint4_init> -->
+    	
+    	<joint1_init>0.000</joint1_init>
+    	<joint2_init>0.500</joint2_init>
+    	<joint3_init>0.500</joint3_init>
+    	<joint4_init>0.500</joint4_init>
+    	<joint5_init>0.000</joint5_init>
+    	<joint6_init>0.100</joint6_init>
+    	<joint7_init>0.100</joint7_init>
+    	<joint8_init>0.100</joint8_init>
+    	<joint9_init>0.000</joint9_init>
+    	<joint10_init>0.10</joint10_init>
+    	<joint11_init>0.10</joint11_init>
+    	<joint12_init>0.10</joint12_init>
+    	<joint13_init>0.50</joint13_init>
+    	<joint14_init>0.30</joint14_init>
+    	<joint15_init>0.30</joint15_init>
+    	<joint16_init>0.30</joint16_init>
     </plugin>
   </gazebo>
 

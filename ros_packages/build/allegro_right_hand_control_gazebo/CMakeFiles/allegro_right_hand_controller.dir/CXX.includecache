@@ -7,6 +7,8 @@
 #IncludeRegexTransform: 
 
 /home/work/code_repository/ros_packages/include/AllegroRightHandModel.h
+allegro_hand_parameters.h
+/home/work/code_repository/ros_packages/include/allegro_hand_parameters.h
 
 /home/work/code_repository/ros_packages/include/Eigen/Cholesky
 Core
@@ -1068,6 +1070,12 @@ lapacke_mangling.h
 
 /home/work/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseUnaryOps.h
 
+/home/work/code_repository/ros_packages/include/allegro_hand_parameters.h
+
+/home/work/code_repository/ros_packages/include/useful_implementations.h
+Eigen/Dense
+/home/work/code_repository/ros_packages/include/Eigen/Dense
+
 /home/work/code_repository/ros_packages/src/allegro_right_hand_control_gazebo/include/allegro_right_hand.h
 
 /home/work/code_repository/ros_packages/src/allegro_right_hand_control_gazebo/src/allegro_right_hand_controller.cpp
@@ -1087,6 +1095,8 @@ std_msgs/Float32MultiArray.h
 /home/work/code_repository/ros_packages/src/allegro_right_hand_control_gazebo/src/std_msgs/Float32MultiArray.h
 ../../../include/Eigen/Dense
 /home/work/code_repository/ros_packages/include/Eigen/Dense
+../../../include/useful_implementations.h
+/home/work/code_repository/ros_packages/include/useful_implementations.h
 ../../../include/AllegroRightHandModel.h
 /home/work/code_repository/ros_packages/include/AllegroRightHandModel.h
 ../include/allegro_right_hand.h

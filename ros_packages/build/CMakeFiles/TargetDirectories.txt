@@ -29,6 +29,8 @@
 /home/work/code_repository/ros_packages/build/gtest/gtest/CMakeFiles/install/strip.dir
 /home/work/code_repository/ros_packages/build/gtest/gtest/CMakeFiles/install/local.dir
 /home/work/code_repository/ros_packages/build/allegro_right_hand_control_gazebo/CMakeFiles/edit_cache.dir
+/home/work/code_repository/ros_packages/build/allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_finger_workspace.dir
+/home/work/code_repository/ros_packages/build/allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_joint_controller.dir
 /home/work/code_repository/ros_packages/build/allegro_right_hand_control_gazebo/CMakeFiles/dynamic_reconfigure_gencfg.dir
 /home/work/code_repository/ros_packages/build/allegro_right_hand_control_gazebo/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir
 /home/work/code_repository/ros_packages/build/allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_controller.dir

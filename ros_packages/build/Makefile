@@ -283,6 +283,32 @@ gtest_main/fast:
 .PHONY : gtest_main/fast
 
 #=============================================================================
+# Target rules for targets named allegro_right_hand_finger_workspace
+
+# Build rule for target.
+allegro_right_hand_finger_workspace: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_finger_workspace
+.PHONY : allegro_right_hand_finger_workspace
+
+# fast build rule for target.
+allegro_right_hand_finger_workspace/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_finger_workspace.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_finger_workspace.dir/build
+.PHONY : allegro_right_hand_finger_workspace/fast
+
+#=============================================================================
+# Target rules for targets named allegro_right_hand_joint_controller
+
+# Build rule for target.
+allegro_right_hand_joint_controller: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_joint_controller
+.PHONY : allegro_right_hand_joint_controller
+
+# fast build rule for target.
+allegro_right_hand_joint_controller/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_joint_controller.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_joint_controller.dir/build
+.PHONY : allegro_right_hand_joint_controller/fast
+
+#=============================================================================
 # Target rules for targets named dynamic_reconfigure_gencfg
 
 # Build rule for target.
@@ -1747,6 +1773,8 @@ help:
 	@echo "... gmock_main"
 	@echo "... gtest"
 	@echo "... gtest_main"
+	@echo "... allegro_right_hand_finger_workspace"
+	@echo "... allegro_right_hand_joint_controller"
 	@echo "... dynamic_reconfigure_gencfg"
 	@echo "... dynamic_reconfigure_generate_messages_py"
 	@echo "... allegro_right_hand_controller"

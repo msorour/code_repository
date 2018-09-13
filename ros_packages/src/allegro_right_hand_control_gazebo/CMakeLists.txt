@@ -202,3 +202,9 @@ include_directories(
 
 add_executable(allegro_right_hand_controller src/allegro_right_hand_controller.cpp)
 target_link_libraries(allegro_right_hand_controller ${catkin_LIBRARIES})
+
+add_executable(allegro_right_hand_joint_controller src/allegro_right_hand_joint_controller.cpp)
+target_link_libraries(allegro_right_hand_joint_controller ${catkin_LIBRARIES})
+
+add_executable(allegro_right_hand_finger_workspace src/allegro_right_hand_finger_workspace.cpp)
+target_link_libraries(allegro_right_hand_finger_workspace ${catkin_LIBRARIES})

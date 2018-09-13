@@ -215,7 +215,7 @@ franka_panda_arm_control_gazebo/CMakeFiles/franka_panda_gazebo_joint_space_posit
  /home/work/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseBinaryOps.h
  /home/work/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseUnaryOps.h
  /home/work/code_repository/ros_packages/include/FrankaPandaArmModel.h
- /home/work/code_repository/ros_packages/include/franka_panda_am_parameters.h
+ /home/work/code_repository/ros_packages/include/franka_panda_arm_parameters.h
  /home/work/code_repository/ros_packages/include/useful_implementations.h
  /home/work/code_repository/ros_packages/src/franka_panda_arm_control_gazebo/include/franka_panda_arm_gazebo_control.h
  /home/work/code_repository/ros_packages/src/franka_panda_arm_control_gazebo/src/franka_panda_gazebo_joint_space_position_controller.cpp

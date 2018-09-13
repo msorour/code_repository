@@ -3,7 +3,7 @@
 #include <string>
 #include <fstream>
 //#include "useful_implementations.h"
-#include "franka_panda_am_parameters.h"
+#include "franka_panda_arm_parameters.h"
 
 
 Eigen::Matrix4d arm_direct_geometric_model(Eigen::VectorXd joint_state, std::string effector_frame);
@@ -167,53 +167,53 @@ Eigen::MatrixXd arm_geometric_jacobian_matrix(Eigen::VectorXd joint_state, std::
   */
   
   J11 = -D*sin(t2)*sin(t3)*sin(t4)*cos(t5)*cos(t6)*cos(t7) + D*sin(t2)*sin(t3)*sin(t5)*sin(t6)*sin(t7) - D*sin(t2)*sin(t3)*sin(t6)*cos(t4)*cos(t7) + D*sin(t2)*sin(t3)*sin(t6)*cos(t7) - D*sin(t2)*sin(t4)*sin(t5)*cos(t3)*cos(t6)*cos(t7) - D*sin(t2)*sin(t4)*sin(t7)*cos(t3)*cos(t6) + D*sin(t2)*sin(t4)*sin(t7)*cos(t3 + t5) - D*sin(t2)*sin(t6)*sin(t7)*cos(t3)*cos(t4)*cos(t5) + D*sin(t4)*sin(t6)*sin(t7)*cos(t2)*cos(t5) - D*sin(t5)*cos(t2)*cos(t4)*cos(t6)*cos(t7) + D*sin(t5)*cos(t2)*cos(t6)*cos(t7) + D*sin(t7)*cos(t2)*cos(t4)*cos(t5) - D*sin(t7)*cos(t2)*cos(t4)*cos(t6) - D*sin(t7)*cos(t2)*cos(t5) - RL3*sin(t2)*sin(t3)*sin(t4)*sin(t6)*cos(t7) + RL3*sin(t2)*sin(t3)*sin(t5)*sin(t7)*cos(t4) + RL3*sin(t2)*sin(t3)*cos(t4)*cos(t5)*cos(t6)*cos(t7) + RL3*sin(t2)*sin(t5)*cos(t3)*cos(t6)*cos(t7) - RL3*sin(t2)*sin(t7)*cos(t3)*cos(t5) + RL5*sin(t2)*sin(t3)*sin(t5)*sin(t7) + RL5*sin(t2)*sin(t3)*cos(t5)*cos(t6)*cos(t7) + RL5*sin(t2)*sin(t5)*cos(t3)*cos(t4)*cos(t6)*cos(t7) - RL5*sin(t2)*sin(t7)*cos(t3)*cos(t4)*cos(t5) - RL5*sin(t4)*sin(t5)*cos(t2)*cos(t6)*cos(t7) + RL5*sin(t4)*sin(t7)*cos(t2)*cos(t5);
-J21 = D*sin(t2)*sin(t3)*sin(t5)*sin(t6)*cos(t7) + D*sin(t2)*sin(t3)*sin(t6)*sin(t7)*cos(t4) - D*sin(t2)*sin(t3)*sin(t6)*sin(t7) + D*sin(t2)*sin(t4)*sin(t7)*sin(t3 + t5)*cos(t6) - D*sin(t2)*sin(t4)*cos(t3)*cos(t6)*cos(t7) + D*sin(t2)*sin(t4)*cos(t7)*cos(t3 + t5) - D*sin(t2)*sin(t6)*cos(t3)*cos(t4)*cos(t5)*cos(t7) + D*sin(t4)*sin(t6)*cos(t2)*cos(t5)*cos(t7) + D*sin(t5)*sin(t7)*cos(t2)*cos(t4)*cos(t6) - D*sin(t5)*sin(t7)*cos(t2)*cos(t6) + D*cos(t2)*cos(t4)*cos(t5)*cos(t7) - D*cos(t2)*cos(t4)*cos(t6)*cos(t7) - D*cos(t2)*cos(t5)*cos(t7) + RL3*sin(t2)*sin(t3)*sin(t4)*sin(t6)*sin(t7) + RL3*sin(t2)*sin(t3)*sin(t5)*cos(t4)*cos(t7) - RL3*sin(t2)*sin(t3)*sin(t5)*cos(t7) - RL3*sin(t2)*sin(t3)*sin(t7)*cos(t4)*cos(t5)*cos(t6) - RL3*sin(t2)*sin(t5)*sin(t7)*cos(t3)*cos(t6) - RL3*sin(t2)*cos(t7)*cos(t3 + t5) + RL5*sin(t2)*sin(t3)*sin(t5)*cos(t7) - RL5*sin(t2)*sin(t3)*sin(t7)*cos(t5)*cos(t6) - RL5*sin(t2)*sin(t5)*sin(t7)*cos(t3)*cos(t4)*cos(t6) - RL5*sin(t2)*cos(t3)*cos(t4)*cos(t5)*cos(t7) + RL5*sin(t4)*sin(t5)*sin(t7)*cos(t2)*cos(t6) + RL5*sin(t4)*cos(t2)*cos(t5)*cos(t7);
-J31 = -D*sin(t2)*sin(t3)*sin(t4)*sin(t6)*cos(t5) + D*sin(t2)*sin(t3)*cos(t4)*cos(t6) + D*sin(t2)*sin(t3)*cos(t5) - D*sin(t2)*sin(t3)*cos(t6) - D*sin(t2)*sin(t4)*sin(t5)*sin(t6)*cos(t3) + D*sin(t2)*sin(t5)*cos(t3)*cos(t4) - D*sin(t4)*sin(t5)*cos(t2) - D*sin(t5)*sin(t6)*cos(t2)*cos(t4) + D*sin(t5)*sin(t6)*cos(t2) + RL3*sin(t2)*sin(t3)*sin(t4)*cos(t6) + RL3*sin(t2)*sin(t3)*sin(t6)*cos(t4)*cos(t5) + RL3*sin(t2)*sin(t5)*sin(t6)*cos(t3) + RL5*sin(t2)*sin(t3)*sin(t6)*cos(t5) + RL5*sin(t2)*sin(t5)*sin(t6)*cos(t3)*cos(t4) - RL5*sin(t4)*sin(t5)*sin(t6)*cos(t2);
-J41 = sin(t2)*sin(t3)*sin(t5)*cos(t6)*cos(t7) - sin(t2)*sin(t3)*sin(t7)*cos(t5) + sin(t2)*sin(t4)*sin(t6)*cos(t3)*cos(t7) - sin(t2)*sin(t5)*sin(t7)*cos(t3)*cos(t4) - sin(t2)*cos(t3)*cos(t4)*cos(t5)*cos(t6)*cos(t7) + sin(t4)*sin(t5)*sin(t7)*cos(t2) + sin(t4)*cos(t2)*cos(t5)*cos(t6)*cos(t7) + sin(t6)*cos(t2)*cos(t4)*cos(t7);
-J51 = -sin(t2)*sin(t3)*sin(t5)*sin(t7)*cos(t6) - sin(t2)*sin(t3)*cos(t5)*cos(t7) - sin(t2)*sin(t4)*sin(t6)*sin(t7)*cos(t3) - sin(t2)*sin(t5)*cos(t3)*cos(t4)*cos(t7) + sin(t2)*sin(t7)*cos(t3)*cos(t4)*cos(t5)*cos(t6) + sin(t4)*sin(t5)*cos(t2)*cos(t7) - sin(t4)*sin(t7)*cos(t2)*cos(t5)*cos(t6) - sin(t6)*sin(t7)*cos(t2)*cos(t4);
-J61 = sin(t2)*sin(t3)*sin(t5)*sin(t6) - sin(t2)*sin(t4)*cos(t3)*cos(t6) - sin(t2)*sin(t6)*cos(t3)*cos(t4)*cos(t5) + sin(t4)*sin(t6)*cos(t2)*cos(t5) - cos(t2)*cos(t4)*cos(t6);
+  J21 = D*sin(t2)*sin(t3)*sin(t5)*sin(t6)*cos(t7) + D*sin(t2)*sin(t3)*sin(t6)*sin(t7)*cos(t4) - D*sin(t2)*sin(t3)*sin(t6)*sin(t7) + D*sin(t2)*sin(t4)*sin(t7)*sin(t3 + t5)*cos(t6) - D*sin(t2)*sin(t4)*cos(t3)*cos(t6)*cos(t7) + D*sin(t2)*sin(t4)*cos(t7)*cos(t3 + t5) - D*sin(t2)*sin(t6)*cos(t3)*cos(t4)*cos(t5)*cos(t7) + D*sin(t4)*sin(t6)*cos(t2)*cos(t5)*cos(t7) + D*sin(t5)*sin(t7)*cos(t2)*cos(t4)*cos(t6) - D*sin(t5)*sin(t7)*cos(t2)*cos(t6) + D*cos(t2)*cos(t4)*cos(t5)*cos(t7) - D*cos(t2)*cos(t4)*cos(t6)*cos(t7) - D*cos(t2)*cos(t5)*cos(t7) + RL3*sin(t2)*sin(t3)*sin(t4)*sin(t6)*sin(t7) + RL3*sin(t2)*sin(t3)*sin(t5)*cos(t4)*cos(t7) - RL3*sin(t2)*sin(t3)*sin(t5)*cos(t7) - RL3*sin(t2)*sin(t3)*sin(t7)*cos(t4)*cos(t5)*cos(t6) - RL3*sin(t2)*sin(t5)*sin(t7)*cos(t3)*cos(t6) - RL3*sin(t2)*cos(t7)*cos(t3 + t5) + RL5*sin(t2)*sin(t3)*sin(t5)*cos(t7) - RL5*sin(t2)*sin(t3)*sin(t7)*cos(t5)*cos(t6) - RL5*sin(t2)*sin(t5)*sin(t7)*cos(t3)*cos(t4)*cos(t6) - RL5*sin(t2)*cos(t3)*cos(t4)*cos(t5)*cos(t7) + RL5*sin(t4)*sin(t5)*sin(t7)*cos(t2)*cos(t6) + RL5*sin(t4)*cos(t2)*cos(t5)*cos(t7);
+  J31 = -D*sin(t2)*sin(t3)*sin(t4)*sin(t6)*cos(t5) + D*sin(t2)*sin(t3)*cos(t4)*cos(t6) + D*sin(t2)*sin(t3)*cos(t5) - D*sin(t2)*sin(t3)*cos(t6) - D*sin(t2)*sin(t4)*sin(t5)*sin(t6)*cos(t3) + D*sin(t2)*sin(t5)*cos(t3)*cos(t4) - D*sin(t4)*sin(t5)*cos(t2) - D*sin(t5)*sin(t6)*cos(t2)*cos(t4) + D*sin(t5)*sin(t6)*cos(t2) + RL3*sin(t2)*sin(t3)*sin(t4)*cos(t6) + RL3*sin(t2)*sin(t3)*sin(t6)*cos(t4)*cos(t5) + RL3*sin(t2)*sin(t5)*sin(t6)*cos(t3) + RL5*sin(t2)*sin(t3)*sin(t6)*cos(t5) + RL5*sin(t2)*sin(t5)*sin(t6)*cos(t3)*cos(t4) - RL5*sin(t4)*sin(t5)*sin(t6)*cos(t2);
+  J41 = sin(t2)*sin(t3)*sin(t5)*cos(t6)*cos(t7) - sin(t2)*sin(t3)*sin(t7)*cos(t5) + sin(t2)*sin(t4)*sin(t6)*cos(t3)*cos(t7) - sin(t2)*sin(t5)*sin(t7)*cos(t3)*cos(t4) - sin(t2)*cos(t3)*cos(t4)*cos(t5)*cos(t6)*cos(t7) + sin(t4)*sin(t5)*sin(t7)*cos(t2) + sin(t4)*cos(t2)*cos(t5)*cos(t6)*cos(t7) + sin(t6)*cos(t2)*cos(t4)*cos(t7);
+  J51 = -sin(t2)*sin(t3)*sin(t5)*sin(t7)*cos(t6) - sin(t2)*sin(t3)*cos(t5)*cos(t7) - sin(t2)*sin(t4)*sin(t6)*sin(t7)*cos(t3) - sin(t2)*sin(t5)*cos(t3)*cos(t4)*cos(t7) + sin(t2)*sin(t7)*cos(t3)*cos(t4)*cos(t5)*cos(t6) + sin(t4)*sin(t5)*cos(t2)*cos(t7) - sin(t4)*sin(t7)*cos(t2)*cos(t5)*cos(t6) - sin(t6)*sin(t7)*cos(t2)*cos(t4);
+  J61 = sin(t2)*sin(t3)*sin(t5)*sin(t6) - sin(t2)*sin(t4)*cos(t3)*cos(t6) - sin(t2)*sin(t6)*cos(t3)*cos(t4)*cos(t5) + sin(t4)*sin(t6)*cos(t2)*cos(t5) - cos(t2)*cos(t4)*cos(t6);
 
-J12 = -D*sin(t3)*sin(t4)*sin(t7)*cos(t5) + D*sin(t3)*sin(t4)*sin(t7)*cos(t6) + D*sin(t3)*sin(t6)*sin(t7)*cos(t4)*cos(t5) - D*sin(t4)*sin(t5)*sin(t7)*cos(t3) - D*sin(t4)*cos(t6)*cos(t7)*cos(t3 + t5) + D*sin(t5)*sin(t6)*sin(t7)*cos(t3) - D*sin(t6)*cos(t3)*cos(t4)*cos(t7) + D*sin(t6)*cos(t3)*cos(t7) - RL3*sin(t3)*sin(t5)*cos(t6)*cos(t7) + RL3*sin(t3)*sin(t7)*cos(t5) - RL3*sin(t4)*sin(t6)*cos(t3)*cos(t7) + RL3*sin(t5)*sin(t7)*cos(t3)*cos(t4) + RL3*cos(t3)*cos(t4)*cos(t5)*cos(t6)*cos(t7) - RL5*sin(t3)*sin(t5)*cos(t4)*cos(t6)*cos(t7) + RL5*sin(t3)*sin(t7)*cos(t4)*cos(t5) + RL5*sin(t5)*sin(t7)*cos(t3) + RL5*cos(t3)*cos(t5)*cos(t6)*cos(t7);
-J22 = -D*sin(t3)*sin(t4)*cos(t5)*cos(t7) + D*sin(t3)*sin(t4)*cos(t6)*cos(t7) + D*sin(t3)*sin(t6)*cos(t4)*cos(t5)*cos(t7) - D*sin(t4)*sin(t5)*cos(t3)*cos(t7) + D*sin(t4)*sin(t7)*cos(t6)*cos(t3 + t5) + D*sin(t5)*sin(t6)*cos(t3)*cos(t7) + D*sin(t6)*sin(t7)*cos(t3)*cos(t4) - D*sin(t6)*sin(t7)*cos(t3) + RL3*sin(t3)*sin(t5)*sin(t7)*cos(t6) + RL3*sin(t3)*cos(t5)*cos(t7) + RL3*sin(t4)*sin(t6)*sin(t7)*cos(t3) + RL3*sin(t5)*cos(t3)*cos(t4)*cos(t7) - RL3*sin(t7)*cos(t3)*cos(t4)*cos(t5)*cos(t6) + RL5*sin(t3)*sin(t5)*sin(t7)*cos(t4)*cos(t6) + RL5*sin(t3)*cos(t4)*cos(t5)*cos(t7) + RL5*sin(t5)*cos(t3)*cos(t7) - RL5*sin(t7)*cos(t3)*cos(t5)*cos(t6);
-J32 = D*sin(t3)*sin(t4)*sin(t5)*sin(t6) - D*sin(t3)*sin(t5)*cos(t4) - D*sin(t4)*sin(t6)*cos(t3)*cos(t5) + D*cos(t3)*cos(t4)*cos(t6) + D*cos(t3)*cos(t5) - D*cos(t3)*cos(t6) - RL3*sin(t3)*sin(t5)*sin(t6) + RL3*sin(t4)*cos(t3)*cos(t6) + RL3*sin(t6)*cos(t3)*cos(t4)*cos(t5) - RL5*sin(t3)*sin(t5)*sin(t6)*cos(t4) + RL5*sin(t6)*cos(t3)*cos(t5);
-J42 = -sin(t3)*sin(t4)*sin(t6)*cos(t7) + sin(t3)*sin(t5)*sin(t7)*cos(t4) + sin(t3)*cos(t4)*cos(t5)*cos(t6)*cos(t7) + sin(t5)*cos(t3)*cos(t6)*cos(t7) - sin(t7)*cos(t3)*cos(t5);
-J52 = sin(t3)*sin(t4)*sin(t6)*sin(t7) + sin(t3)*sin(t5)*cos(t4)*cos(t7) - sin(t3)*sin(t7)*cos(t4)*cos(t5)*cos(t6) - sin(t5)*sin(t7)*cos(t3)*cos(t6) - cos(t3)*cos(t5)*cos(t7);
-J62 = sin(t3)*sin(t4)*cos(t6) + sin(t3)*sin(t6)*cos(t4)*cos(t5) + sin(t5)*sin(t6)*cos(t3);
+  J12 = -D*sin(t3)*sin(t4)*sin(t7)*cos(t5) + D*sin(t3)*sin(t4)*sin(t7)*cos(t6) + D*sin(t3)*sin(t6)*sin(t7)*cos(t4)*cos(t5) - D*sin(t4)*sin(t5)*sin(t7)*cos(t3) - D*sin(t4)*cos(t6)*cos(t7)*cos(t3 + t5) + D*sin(t5)*sin(t6)*sin(t7)*cos(t3) - D*sin(t6)*cos(t3)*cos(t4)*cos(t7) + D*sin(t6)*cos(t3)*cos(t7) - RL3*sin(t3)*sin(t5)*cos(t6)*cos(t7) + RL3*sin(t3)*sin(t7)*cos(t5) - RL3*sin(t4)*sin(t6)*cos(t3)*cos(t7) + RL3*sin(t5)*sin(t7)*cos(t3)*cos(t4) + RL3*cos(t3)*cos(t4)*cos(t5)*cos(t6)*cos(t7) - RL5*sin(t3)*sin(t5)*cos(t4)*cos(t6)*cos(t7) + RL5*sin(t3)*sin(t7)*cos(t4)*cos(t5) + RL5*sin(t5)*sin(t7)*cos(t3) + RL5*cos(t3)*cos(t5)*cos(t6)*cos(t7);
+  J22 = -D*sin(t3)*sin(t4)*cos(t5)*cos(t7) + D*sin(t3)*sin(t4)*cos(t6)*cos(t7) + D*sin(t3)*sin(t6)*cos(t4)*cos(t5)*cos(t7) - D*sin(t4)*sin(t5)*cos(t3)*cos(t7) + D*sin(t4)*sin(t7)*cos(t6)*cos(t3 + t5) + D*sin(t5)*sin(t6)*cos(t3)*cos(t7) + D*sin(t6)*sin(t7)*cos(t3)*cos(t4) - D*sin(t6)*sin(t7)*cos(t3) + RL3*sin(t3)*sin(t5)*sin(t7)*cos(t6) + RL3*sin(t3)*cos(t5)*cos(t7) + RL3*sin(t4)*sin(t6)*sin(t7)*cos(t3) + RL3*sin(t5)*cos(t3)*cos(t4)*cos(t7) - RL3*sin(t7)*cos(t3)*cos(t4)*cos(t5)*cos(t6) + RL5*sin(t3)*sin(t5)*sin(t7)*cos(t4)*cos(t6) + RL5*sin(t3)*cos(t4)*cos(t5)*cos(t7) + RL5*sin(t5)*cos(t3)*cos(t7) - RL5*sin(t7)*cos(t3)*cos(t5)*cos(t6);
+  J32 = D*sin(t3)*sin(t4)*sin(t5)*sin(t6) - D*sin(t3)*sin(t5)*cos(t4) - D*sin(t4)*sin(t6)*cos(t3)*cos(t5) + D*cos(t3)*cos(t4)*cos(t6) + D*cos(t3)*cos(t5) - D*cos(t3)*cos(t6) - RL3*sin(t3)*sin(t5)*sin(t6) + RL3*sin(t4)*cos(t3)*cos(t6) + RL3*sin(t6)*cos(t3)*cos(t4)*cos(t5) - RL5*sin(t3)*sin(t5)*sin(t6)*cos(t4) + RL5*sin(t6)*cos(t3)*cos(t5);
+  J42 = -sin(t3)*sin(t4)*sin(t6)*cos(t7) + sin(t3)*sin(t5)*sin(t7)*cos(t4) + sin(t3)*cos(t4)*cos(t5)*cos(t6)*cos(t7) + sin(t5)*cos(t3)*cos(t6)*cos(t7) - sin(t7)*cos(t3)*cos(t5);
+  J52 = sin(t3)*sin(t4)*sin(t6)*sin(t7) + sin(t3)*sin(t5)*cos(t4)*cos(t7) - sin(t3)*sin(t7)*cos(t4)*cos(t5)*cos(t6) - sin(t5)*sin(t7)*cos(t3)*cos(t6) - cos(t3)*cos(t5)*cos(t7);
+  J62 = sin(t3)*sin(t4)*cos(t6) + sin(t3)*sin(t6)*cos(t4)*cos(t5) + sin(t5)*sin(t6)*cos(t3);
 
-J13 = D*sin(t4)*sin(t6)*sin(t7)*cos(t5) - D*sin(t5)*cos(t4)*cos(t6)*cos(t7) + D*sin(t5)*cos(t6)*cos(t7) + D*sin(t7)*cos(t4)*cos(t5) - D*sin(t7)*cos(t4)*cos(t6) - D*sin(t7)*cos(t5) - RL5*sin(t4)*sin(t5)*cos(t6)*cos(t7) + RL5*sin(t4)*sin(t7)*cos(t5);
-J23 = D*sin(t4)*sin(t6)*cos(t5)*cos(t7) + D*sin(t5)*sin(t7)*cos(t4)*cos(t6) - D*sin(t5)*sin(t7)*cos(t6) + D*cos(t4)*cos(t5)*cos(t7) - D*cos(t4)*cos(t6)*cos(t7) - D*cos(t5)*cos(t7) + RL5*sin(t4)*sin(t5)*sin(t7)*cos(t6) + RL5*sin(t4)*cos(t5)*cos(t7);
-J33 = (-D*sin(t4) - D*sin(t6)*cos(t4) + D*sin(t6) - RL5*sin(t4)*sin(t6))*sin(t5);
-J43 = sin(t4)*sin(t5)*sin(t7) + sin(t4)*cos(t5)*cos(t6)*cos(t7) + sin(t6)*cos(t4)*cos(t7);
-J53 = sin(t4)*sin(t5)*cos(t7) - sin(t4)*sin(t7)*cos(t5)*cos(t6) - sin(t6)*sin(t7)*cos(t4);
-J63 = sin(t4)*sin(t6)*cos(t5) - cos(t4)*cos(t6);
+  J13 = D*sin(t4)*sin(t6)*sin(t7)*cos(t5) - D*sin(t5)*cos(t4)*cos(t6)*cos(t7) + D*sin(t5)*cos(t6)*cos(t7) + D*sin(t7)*cos(t4)*cos(t5) - D*sin(t7)*cos(t4)*cos(t6) - D*sin(t7)*cos(t5) - RL5*sin(t4)*sin(t5)*cos(t6)*cos(t7) + RL5*sin(t4)*sin(t7)*cos(t5);
+  J23 = D*sin(t4)*sin(t6)*cos(t5)*cos(t7) + D*sin(t5)*sin(t7)*cos(t4)*cos(t6) - D*sin(t5)*sin(t7)*cos(t6) + D*cos(t4)*cos(t5)*cos(t7) - D*cos(t4)*cos(t6)*cos(t7) - D*cos(t5)*cos(t7) + RL5*sin(t4)*sin(t5)*sin(t7)*cos(t6) + RL5*sin(t4)*cos(t5)*cos(t7);
+  J33 = (-D*sin(t4) - D*sin(t6)*cos(t4) + D*sin(t6) - RL5*sin(t4)*sin(t6))*sin(t5);
+  J43 = sin(t4)*sin(t5)*sin(t7) + sin(t4)*cos(t5)*cos(t6)*cos(t7) + sin(t6)*cos(t4)*cos(t7);
+  J53 = sin(t4)*sin(t5)*cos(t7) - sin(t4)*sin(t7)*cos(t5)*cos(t6) - sin(t6)*sin(t7)*cos(t4);
+  J63 = sin(t4)*sin(t6)*cos(t5) - cos(t4)*cos(t6);
 
-J14 = -D*sin(t5)*sin(t6)*sin(t7) - D*sin(t6)*cos(t7) - RL5*sin(t5)*sin(t7) - RL5*cos(t5)*cos(t6)*cos(t7);
-J24 = -D*sin(t5)*sin(t6)*cos(t7) + D*sin(t6)*sin(t7) - RL5*sin(t5)*cos(t7) + RL5*sin(t7)*cos(t5)*cos(t6);
-J34 = -D*cos(t5) + D*cos(t6) - RL5*sin(t6)*cos(t5);
-J44 = -sin(t5)*cos(t6)*cos(t7) + sin(t7)*cos(t5);
-J54 = sin(t5)*sin(t7)*cos(t6) + cos(t5)*cos(t7);
-J64 = -sin(t5)*sin(t6);
+  J14 = -D*sin(t5)*sin(t6)*sin(t7) - D*sin(t6)*cos(t7) - RL5*sin(t5)*sin(t7) - RL5*cos(t5)*cos(t6)*cos(t7);
+  J24 = -D*sin(t5)*sin(t6)*cos(t7) + D*sin(t6)*sin(t7) - RL5*sin(t5)*cos(t7) + RL5*sin(t7)*cos(t5)*cos(t6);
+  J34 = -D*cos(t5) + D*cos(t6) - RL5*sin(t6)*cos(t5);
+  J44 = -sin(t5)*cos(t6)*cos(t7) + sin(t7)*cos(t5);
+  J54 = sin(t5)*sin(t7)*cos(t6) + cos(t5)*cos(t7);
+  J64 = -sin(t5)*sin(t6);
 
-J15 = -D*sin(t7)*cos(t6);
-J25 = -D*cos(t6)*cos(t7);
-J35 = 0;
-J45 = sin(t6)*cos(t7);
-J55 = -sin(t6)*sin(t7);
-J65 = -cos(t6);
+  J15 = -D*sin(t7)*cos(t6);
+  J25 = -D*cos(t6)*cos(t7);
+  J35 = 0;
+  J45 = sin(t6)*cos(t7);
+  J55 = -sin(t6)*sin(t7);
+  J65 = -cos(t6);
 
-J16 = 0;
-J26 = 0;
-J36 = -D;
-J46 = sin(t7);
-J56 = cos(t7);
-J66 = 0;
+  J16 = 0;
+  J26 = 0;
+  J36 = -D;
+  J46 = sin(t7);
+  J56 = cos(t7);
+  J66 = 0;
 
-J17 = 0;
-J27 = 0;
-J37 = 0;
-J47 = 0;
-J57 = 0;
-J67 = 1;
+  J17 = 0;
+  J27 = 0;
+  J37 = 0;
+  J47 = 0;
+  J57 = 0;
+  J67 = 1;
   
  
 	Eigen::MatrixXd geometric_jacobian(6,7);

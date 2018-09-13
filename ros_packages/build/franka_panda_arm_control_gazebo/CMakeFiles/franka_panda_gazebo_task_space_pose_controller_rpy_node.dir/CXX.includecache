@@ -1075,10 +1075,10 @@ string
 -
 fstream
 -
-franka_panda_am_parameters.h
-/home/work/code_repository/ros_packages/include/franka_panda_am_parameters.h
+franka_panda_arm_parameters.h
+/home/work/code_repository/ros_packages/include/franka_panda_arm_parameters.h
 
-/home/work/code_repository/ros_packages/include/franka_panda_am_parameters.h
+/home/work/code_repository/ros_packages/include/franka_panda_arm_parameters.h
 
 /home/work/code_repository/ros_packages/include/useful_implementations.h
 Eigen/Dense

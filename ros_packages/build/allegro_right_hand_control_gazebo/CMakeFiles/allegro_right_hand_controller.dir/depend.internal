@@ -215,6 +215,8 @@ allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_controller.dir/s
  /home/work/code_repository/ros_packages/include/Eigen/src/plugins/CommonCwiseUnaryOps.h
  /home/work/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseBinaryOps.h
  /home/work/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseUnaryOps.h
+ /home/work/code_repository/ros_packages/include/allegro_hand_parameters.h
+ /home/work/code_repository/ros_packages/include/useful_implementations.h
  /home/work/code_repository/ros_packages/src/allegro_right_hand_control_gazebo/include/allegro_right_hand.h
  /home/work/code_repository/ros_packages/src/allegro_right_hand_control_gazebo/src/allegro_right_hand_controller.cpp
  /opt/ros/kinetic/include/ros/advertise_options.h

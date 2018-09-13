@@ -166,6 +166,36 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_finger_workspace.dir/rule:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_finger_workspace.dir/rule
+.PHONY : allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_finger_workspace.dir/rule
+
+# Convenience name for target.
+allegro_right_hand_finger_workspace: allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_finger_workspace.dir/rule
+
+.PHONY : allegro_right_hand_finger_workspace
+
+# fast build rule for target.
+allegro_right_hand_finger_workspace/fast:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_finger_workspace.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_finger_workspace.dir/build
+.PHONY : allegro_right_hand_finger_workspace/fast
+
+# Convenience name for target.
+allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_joint_controller.dir/rule:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_joint_controller.dir/rule
+.PHONY : allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_joint_controller.dir/rule
+
+# Convenience name for target.
+allegro_right_hand_joint_controller: allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_joint_controller.dir/rule
+
+.PHONY : allegro_right_hand_joint_controller
+
+# fast build rule for target.
+allegro_right_hand_joint_controller/fast:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_joint_controller.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_joint_controller.dir/build
+.PHONY : allegro_right_hand_joint_controller/fast
+
+# Convenience name for target.
 allegro_right_hand_control_gazebo/CMakeFiles/dynamic_reconfigure_gencfg.dir/rule:
 	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_control_gazebo/CMakeFiles/dynamic_reconfigure_gencfg.dir/rule
 .PHONY : allegro_right_hand_control_gazebo/CMakeFiles/dynamic_reconfigure_gencfg.dir/rule
@@ -1482,6 +1512,60 @@ src/allegro_right_hand_controller.cpp.s:
 	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_controller.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_controller.dir/src/allegro_right_hand_controller.cpp.s
 .PHONY : src/allegro_right_hand_controller.cpp.s
 
+src/allegro_right_hand_finger_workspace.o: src/allegro_right_hand_finger_workspace.cpp.o
+
+.PHONY : src/allegro_right_hand_finger_workspace.o
+
+# target to build an object file
+src/allegro_right_hand_finger_workspace.cpp.o:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_finger_workspace.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_finger_workspace.dir/src/allegro_right_hand_finger_workspace.cpp.o
+.PHONY : src/allegro_right_hand_finger_workspace.cpp.o
+
+src/allegro_right_hand_finger_workspace.i: src/allegro_right_hand_finger_workspace.cpp.i
+
+.PHONY : src/allegro_right_hand_finger_workspace.i
+
+# target to preprocess a source file
+src/allegro_right_hand_finger_workspace.cpp.i:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_finger_workspace.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_finger_workspace.dir/src/allegro_right_hand_finger_workspace.cpp.i
+.PHONY : src/allegro_right_hand_finger_workspace.cpp.i
+
+src/allegro_right_hand_finger_workspace.s: src/allegro_right_hand_finger_workspace.cpp.s
+
+.PHONY : src/allegro_right_hand_finger_workspace.s
+
+# target to generate assembly for a file
+src/allegro_right_hand_finger_workspace.cpp.s:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_finger_workspace.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_finger_workspace.dir/src/allegro_right_hand_finger_workspace.cpp.s
+.PHONY : src/allegro_right_hand_finger_workspace.cpp.s
+
+src/allegro_right_hand_joint_controller.o: src/allegro_right_hand_joint_controller.cpp.o
+
+.PHONY : src/allegro_right_hand_joint_controller.o
+
+# target to build an object file
+src/allegro_right_hand_joint_controller.cpp.o:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_joint_controller.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_joint_controller.dir/src/allegro_right_hand_joint_controller.cpp.o
+.PHONY : src/allegro_right_hand_joint_controller.cpp.o
+
+src/allegro_right_hand_joint_controller.i: src/allegro_right_hand_joint_controller.cpp.i
+
+.PHONY : src/allegro_right_hand_joint_controller.i
+
+# target to preprocess a source file
+src/allegro_right_hand_joint_controller.cpp.i:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_joint_controller.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_joint_controller.dir/src/allegro_right_hand_joint_controller.cpp.i
+.PHONY : src/allegro_right_hand_joint_controller.cpp.i
+
+src/allegro_right_hand_joint_controller.s: src/allegro_right_hand_joint_controller.cpp.s
+
+.PHONY : src/allegro_right_hand_joint_controller.s
+
+# target to generate assembly for a file
+src/allegro_right_hand_joint_controller.cpp.s:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_joint_controller.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_joint_controller.dir/src/allegro_right_hand_joint_controller.cpp.s
+.PHONY : src/allegro_right_hand_joint_controller.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1489,6 +1573,8 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... allegro_right_hand_finger_workspace"
+	@echo "... allegro_right_hand_joint_controller"
 	@echo "... dynamic_reconfigure_gencfg"
 	@echo "... dynamic_reconfigure_generate_messages_py"
 	@echo "... allegro_right_hand_controller"
@@ -1584,6 +1670,12 @@ help:
 	@echo "... src/allegro_right_hand_controller.o"
 	@echo "... src/allegro_right_hand_controller.i"
 	@echo "... src/allegro_right_hand_controller.s"
+	@echo "... src/allegro_right_hand_finger_workspace.o"
+	@echo "... src/allegro_right_hand_finger_workspace.i"
+	@echo "... src/allegro_right_hand_finger_workspace.s"
+	@echo "... src/allegro_right_hand_joint_controller.o"
+	@echo "... src/allegro_right_hand_joint_controller.i"
+	@echo "... src/allegro_right_hand_joint_controller.s"
 .PHONY : help
 
 
