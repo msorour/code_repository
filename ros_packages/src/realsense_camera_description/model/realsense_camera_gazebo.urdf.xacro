@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="realsense_camera">
+  <xacro:include filename="$(find realsense_camera_description)/model/realsense_camera_gazebo.xacro"/>
+  <!-- <xacro:realsense_camera ns="realsense" xyz="0 0 0.1" /> -->
+  <xacro:realsense_camera cam_connected_to="" cam_ns="real_sense" />
+</robot>

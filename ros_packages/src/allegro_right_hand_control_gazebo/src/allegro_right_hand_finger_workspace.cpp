@@ -65,15 +65,15 @@ int main(int argc, char **argv){
   	  for(int loop2=0;loop2<=number_of_sample_points;loop2++){
   	    for(int loop3=0;loop3<=number_of_sample_points;loop3++){
   	      for(int loop4=0;loop4<=number_of_sample_points;loop4++){
-        	  index_joint_position_desired << (index_joint_0_safe_min+index_joint_0_safe_range*loop1/number_of_sample_points),
-        	                                  (index_joint_1_safe_min+index_joint_1_safe_range*loop2/number_of_sample_points),
-        	                                  (index_joint_2_safe_min+index_joint_2_safe_range*loop3/number_of_sample_points),
-        	                                  (index_joint_3_safe_min+index_joint_3_safe_range*loop4/number_of_sample_points);
+        	  index_joint_position_desired << (index_joint_safe_min(0)+index_joint_safe_range(0)*loop1/number_of_sample_points),
+        	                                  (index_joint_safe_min(1)+index_joint_safe_range(1)*loop2/number_of_sample_points),
+        	                                  (index_joint_safe_min(2)+index_joint_safe_range(2)*loop3/number_of_sample_points),
+        	                                  (index_joint_safe_min(3)+index_joint_safe_range(3)*loop4/number_of_sample_points);
         	  
-        	  thumb_joint_position_desired << (thumb_joint_0_safe_min+thumb_joint_0_safe_range*loop1/number_of_sample_points),
-        	                                  (thumb_joint_1_safe_min+thumb_joint_1_safe_range*loop2/number_of_sample_points),
-        	                                  (thumb_joint_2_safe_min+thumb_joint_2_safe_range*loop3/number_of_sample_points),
-        	                                  (thumb_joint_3_safe_min+thumb_joint_3_safe_range*loop4/number_of_sample_points);
+        	  thumb_joint_position_desired << (thumb_joint_safe_min(0)+thumb_joint_safe_range(0)*loop1/number_of_sample_points),
+        	                                  (thumb_joint_safe_min(1)+thumb_joint_safe_range(1)*loop2/number_of_sample_points),
+        	                                  (thumb_joint_safe_min(2)+thumb_joint_safe_range(2)*loop3/number_of_sample_points),
+        	                                  (thumb_joint_safe_min(3)+thumb_joint_safe_range(3)*loop4/number_of_sample_points);
         	  
         	  //cout << "index_joint_position_desired = " << index_joint_position_desired.transpose() << endl;
         	

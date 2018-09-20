@@ -46,14 +46,6 @@
 
 //
 #define joint_safety_margin 0.1
-#define index_joint_0_max 	0.57
-#define index_joint_0_min	  -0.57
-#define index_joint_1_max   1.71
-#define index_joint_1_min	  -0.296
-#define index_joint_2_max   1.809
-#define index_joint_2_min	  -0.274
-#define index_joint_3_max   1.718
-#define index_joint_3_min	  -0.327
 
 #define thumb_joint_0_max   1.496
 #define thumb_joint_0_min   0.363
@@ -63,5 +55,34 @@
 #define thumb_joint_2_min   -0.289
 #define thumb_joint_3_max   1.819
 #define thumb_joint_3_min   -0.262
+
+#define index_joint_0_max 	0.57
+#define index_joint_0_min	  -0.57
+#define index_joint_1_max   1.71
+#define index_joint_1_min	  -0.296
+#define index_joint_2_max   1.809
+#define index_joint_2_min	  -0.274
+#define index_joint_3_max   1.718
+#define index_joint_3_min	  -0.327
+
+#define middle_joint_0_max 	0.57
+#define middle_joint_0_min	-0.57
+#define middle_joint_1_max  1.71
+#define middle_joint_1_min	-0.296
+#define middle_joint_2_max  1.809
+#define middle_joint_2_min	-0.274
+#define middle_joint_3_max  1.718
+#define middle_joint_3_min	-0.327
+
+#define pinky_joint_0_max 	0.57
+#define pinky_joint_0_min	  -0.57
+#define pinky_joint_1_max   1.71
+#define pinky_joint_1_min	  -0.296
+#define pinky_joint_2_max   1.809
+#define pinky_joint_2_min	  -0.274
+#define pinky_joint_3_max   1.718
+#define pinky_joint_3_min	  -0.327
+
+
 
 

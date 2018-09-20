@@ -36,9 +36,9 @@
     	<joint10_init>0.10</joint10_init>
     	<joint11_init>0.10</joint11_init>
     	<joint12_init>0.10</joint12_init>
-    	<joint13_init>0.50</joint13_init>
-    	<joint14_init>0.30</joint14_init>
-    	<joint15_init>0.30</joint15_init>
+    	<joint13_init>0.30</joint13_init>
+    	<joint14_init>0.70</joint14_init>
+    	<joint15_init>0.70</joint15_init>
     	<joint16_init>0.30</joint16_init>
     </plugin>
   </gazebo>

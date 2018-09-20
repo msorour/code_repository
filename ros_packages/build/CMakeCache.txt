@@ -432,6 +432,12 @@ nodelet_DIR:PATH=/opt/ros/kinetic/share/nodelet/cmake
 pluginlib_DIR:PATH=/opt/ros/kinetic/share/pluginlib/cmake
 
 //Value Computed by CMake
+realsense_camera_description_BINARY_DIR:STATIC=/home/work/code_repository/ros_packages/build/realsense_camera_description
+
+//Value Computed by CMake
+realsense_camera_description_SOURCE_DIR:STATIC=/home/work/code_repository/ros_packages/src/realsense_camera_description
+
+//Value Computed by CMake
 ros_gazebo_plugin_comm_BINARY_DIR:STATIC=/home/work/code_repository/ros_packages/build/ros_gazebo_plugin_comm
 
 //Value Computed by CMake
@@ -613,7 +619,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=10
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=11
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

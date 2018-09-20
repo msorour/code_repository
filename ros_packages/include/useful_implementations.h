@@ -8,6 +8,7 @@ Eigen::VectorXd transformation_matrix_to_pose_rpy(Eigen::Matrix4d TM);
 Eigen::Matrix3d rpy_to_direction_cosines(Eigen::Vector3d rpy);
 Eigen::MatrixXd geometric_to_analytic_jacobian_rpy(Eigen::VectorXd pose);
 Eigen::MatrixXd Pinv_damped(Eigen::MatrixXd J, double damping);
+Eigen::MatrixXd Pinv(Eigen::MatrixXd J);
 Eigen::Vector3d OnlineMP_L5B(double ti, double tf, double tn, double Pi, double Pf);
 
 Eigen::Matrix4d homogeneous_transformation(double r, double d, double alpha, double theta);
@@ -107,8 +108,7 @@ Eigen::MatrixXd geometric_to_analytic_jacobian_rpy(Eigen::VectorXd pose){
   return JInv;
 }
 
-Eigen::MatrixXd Pinv_damped( Eigen::MatrixXd J , double damping )    // Moore-Penrose Pseudo-inverse computing function
-{
+Eigen::MatrixXd Pinv_damped( Eigen::MatrixXd J , double damping ){    // Moore-Penrose Pseudo-inverse computing function
   int r = J.rows();
   int c = J.cols();
   Eigen::MatrixXd Jpinv( c , r );
@@ -126,6 +126,18 @@ Eigen::MatrixXd Pinv_damped( Eigen::MatrixXd J , double damping )    // Moore-Pe
   return Jpinv;
 }
 
+
+Eigen::MatrixXd Pinv(Eigen::MatrixXd J){    // Moore-Penrose Pseudo-inverse computing function
+  int r = J.rows();
+  int c = J.cols();
+  Eigen::MatrixXd Jpinv( c , r );
+  
+  if( r >= c )   // tall matrix
+    Jpinv = ( J.transpose()*J ).inverse() * J.transpose();
+  else           // fat matrix
+    Jpinv = J.transpose() * ( J*J.transpose() ).inverse();
+  return Jpinv;
+}
 
 
 

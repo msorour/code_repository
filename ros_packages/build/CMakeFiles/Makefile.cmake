@@ -25,6 +25,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "franka_panda_arm_plus_own_gripper_control_gazebo/catkin_generated/package.cmake"
   "franka_panda_gripper_description/catkin_generated/ordered_paths.cmake"
   "franka_panda_gripper_description/catkin_generated/package.cmake"
+  "realsense_camera_description/catkin_generated/ordered_paths.cmake"
+  "realsense_camera_description/catkin_generated/package.cmake"
   "ros_gazebo_plugin_comm/catkin_generated/ordered_paths.cmake"
   "ros_gazebo_plugin_comm/catkin_generated/package.cmake"
   "ros_gazebo_plugin_comm/catkin_generated/ros_gazebo_plugin_comm-msg-extras.cmake.develspace.in"
@@ -44,6 +46,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/work/code_repository/ros_packages/src/franka_panda_arm_plus_own_gripper_control_gazebo/package.xml"
   "/home/work/code_repository/ros_packages/src/franka_panda_gripper_description/CMakeLists.txt"
   "/home/work/code_repository/ros_packages/src/franka_panda_gripper_description/package.xml"
+  "/home/work/code_repository/ros_packages/src/realsense_camera_description/CMakeLists.txt"
+  "/home/work/code_repository/ros_packages/src/realsense_camera_description/package.xml"
   "/home/work/code_repository/ros_packages/src/ros_gazebo_plugin_comm/CMakeLists.txt"
   "/home/work/code_repository/ros_packages/src/ros_gazebo_plugin_comm/package.xml"
   "/opt/ros/kinetic/share/actionlib/cmake/actionlib-msg-extras.cmake"
@@ -300,6 +304,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "franka_panda_arm_description/CMakeFiles/CMakeDirectoryInformation.cmake"
   "franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/CMakeDirectoryInformation.cmake"
   "franka_panda_gripper_description/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "realsense_camera_description/CMakeFiles/CMakeDirectoryInformation.cmake"
   "ros_gazebo_plugin_comm/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
@@ -413,6 +418,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/franka_panda_arm_plus_own_gripper_gazebo_task_space_pose_controller_rpy.dir/DependInfo.cmake"
   "franka_panda_arm_plus_own_gripper_control_gazebo/CMakeFiles/franka_panda_arm_plus_own_gripper_control_gazebo_xacro_generated_to_devel_space_.dir/DependInfo.cmake"
   "franka_panda_gripper_description/CMakeFiles/franka_panda_gripper_description_xacro_generated_to_devel_space_.dir/DependInfo.cmake"
+  "realsense_camera_description/CMakeFiles/realsense_camera_description_xacro_generated_to_devel_space_.dir/DependInfo.cmake"
   "ros_gazebo_plugin_comm/CMakeFiles/ros_gazebo_plugin_comm_genpy.dir/DependInfo.cmake"
   "ros_gazebo_plugin_comm/CMakeFiles/ros_gazebo_plugin_comm_generate_messages_py.dir/DependInfo.cmake"
   "ros_gazebo_plugin_comm/CMakeFiles/ros_gazebo_plugin_comm_gennodejs.dir/DependInfo.cmake"

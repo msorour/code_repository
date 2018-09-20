@@ -1570,6 +1570,19 @@ franka_panda_gripper_description_xacro_generated_to_devel_space_/fast:
 .PHONY : franka_panda_gripper_description_xacro_generated_to_devel_space_/fast
 
 #=============================================================================
+# Target rules for targets named realsense_camera_description_xacro_generated_to_devel_space_
+
+# Build rule for target.
+realsense_camera_description_xacro_generated_to_devel_space_: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 realsense_camera_description_xacro_generated_to_devel_space_
+.PHONY : realsense_camera_description_xacro_generated_to_devel_space_
+
+# fast build rule for target.
+realsense_camera_description_xacro_generated_to_devel_space_/fast:
+	$(MAKE) -f realsense_camera_description/CMakeFiles/realsense_camera_description_xacro_generated_to_devel_space_.dir/build.make realsense_camera_description/CMakeFiles/realsense_camera_description_xacro_generated_to_devel_space_.dir/build
+.PHONY : realsense_camera_description_xacro_generated_to_devel_space_/fast
+
+#=============================================================================
 # Target rules for targets named ros_gazebo_plugin_comm_genpy
 
 # Build rule for target.
@@ -1872,6 +1885,7 @@ help:
 	@echo "... franka_panda_arm_plus_own_gripper_gazebo_task_space_pose_controller_rpy"
 	@echo "... franka_panda_arm_plus_own_gripper_control_gazebo_xacro_generated_to_devel_space_"
 	@echo "... franka_panda_gripper_description_xacro_generated_to_devel_space_"
+	@echo "... realsense_camera_description_xacro_generated_to_devel_space_"
 	@echo "... ros_gazebo_plugin_comm_genpy"
 	@echo "... ros_gazebo_plugin_comm_generate_messages_py"
 	@echo "... ros_gazebo_plugin_comm_gennodejs"
