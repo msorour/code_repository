@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda_arm_plus_allegro_right_hand">
+  
+  <xacro:include filename="$(find franka_panda_arm_description)/model/panda_arm_gazebo.xacro" />
+  <xacro:include filename="$(find allegro_right_hand_description)/model/allegro_right_hand.xacro"/>
+  <xacro:panda_arm arm_id="panda_arm" xyz="0.62 0.138 0.986" rpy="0 0 ${pi/2}" />
+  
+  <link name="franka_panda_arm_allegro_hand_connection">
+    <visual>
+      <geometry>
+        <mesh filename="package://franka_panda_arm_plus_allegro_right_hand_control_gazebo/model/meshes/panda-allegro-connection.stl"/>
+      </geometry>
+      <origin rpy="0 0 ${pi/2}" xyz="0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://franka_panda_arm_plus_allegro_right_hand_control_gazebo/model/meshes/panda-allegro-connection.stl"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia ixx="0.001" ixy="0.001" ixz="0.001" iyy="0.001" iyz="0.001" izz="0.001"/>
+    </inertial>
+  </link>
+  <gazebo reference="franka_panda_arm_allegro_hand_connection"><material>Gazebo/BlueGlow</material></gazebo>
+	
+	<joint name="franka_panda_arm_allegro_hand_connection_joint" type="fixed">
+    <parent link="panda_arm_link8"/>
+    <child link="franka_panda_arm_allegro_hand_connection"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+  
+  <!-- 0.0091=(-0.0113+0.0204) : -0.0113 to put the allegro hand Palm frame at zero position then add 0.0.0204(40.8mm/2) to put the same frame at center of panda-allegro-connection  -->
+  <xacro:allegro_right_hand ns="panda_arm" x="-0.0091" y="0" z="0.02" roll="0" pitch="0" yaw="${pi}" connected_to="franka_panda_arm_allegro_hand_connection" />
+  
+  <gazebo>
+    <plugin name="generic_interface_plugin" filename="libgeneric_interface_plugin.so">
+    	<joint1_init> 0.00 </joint1_init>
+    	<joint2_init> -1.57</joint2_init>
+    	<joint3_init> 0.00 </joint3_init>
+    	<joint4_init> -1.57</joint4_init>
+    	<joint5_init> 0.00 </joint5_init>
+    	<joint6_init> 1.57</joint6_init>
+    	<joint7_init> 0.70 </joint7_init>
+    	<joint8_init> 0.000</joint8_init>
+    	<joint9_init> 0.500</joint9_init>
+    	<joint10_init>0.500</joint10_init>
+    	<joint11_init>0.500</joint11_init>
+    	<joint12_init>0.000</joint12_init>
+    	<joint13_init>0.100</joint13_init>
+    	<joint14_init>0.100</joint14_init>
+    	<joint15_init>0.100</joint15_init>
+    	<joint16_init>0.000</joint16_init>
+    	<joint17_init>0.10 </joint17_init>
+    	<joint18_init>0.10 </joint18_init>
+    	<joint19_init>0.10 </joint19_init>
+    	<joint20_init>0.30 </joint20_init>
+    	<joint21_init>0.70 </joint21_init>
+    	<joint22_init>0.70 </joint22_init>
+    	<joint23_init>0.30 </joint23_init>
+    </plugin>
+  </gazebo>
+
+</robot>

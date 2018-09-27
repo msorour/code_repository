@@ -68,9 +68,9 @@ int main(int argc, char **argv){
 	while (ros::ok()){
   	
   	position_Ptt_desired << 0.04, 0.0, 0.07;
-  	position_Pit_desired << 0.07, 0.05, 0.10;
+  	position_Pit_desired << 0.07, 0.0, 0.10;
   	position_Pmt_desired << 0.07, 0.0, 0.10;
-  	position_Ppt_desired << 0.07, -0.05, 0.10;
+  	position_Ppt_desired << 0.07, -0.0, 0.10;
   	
   	thumb_DGM  = finger_direct_geometric_model("thumb",thumb_joint_position);
   	index_DGM  = finger_direct_geometric_model("index",index_joint_position);

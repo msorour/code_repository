@@ -11,10 +11,9 @@
   <arg name="hand_name" 			value="allegro_right_hand" />
   
   <!-- Load the URDF into the ROS Parameter Server -->
-  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find allegro_right_hand_description)/model/allegro_right_hand_description.urdf.xacro" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find allegro_right_hand_description)/model/allegro_right_hand.urdf.xacro" />
   
   <!-- Set up env variable so plugin are found -->
-  <!-- <env name="GAZEBO_PLUGIN_PATH" value="/home/work/code_repository/gazebo_plugins/allegro_right_hand_control_plugin/build"/> -->
   <env name="GAZEBO_PLUGIN_PATH" value="/home/work/code_repository/gazebo_plugins/generic_interface_plugin/build"/>
   <env name="GAZEBO_MODEL_PATH" value="/home/work/code_repository/gazebo_models"/>
   

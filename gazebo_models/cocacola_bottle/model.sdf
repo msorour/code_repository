@@ -27,15 +27,5 @@
     </visual>
   </link>
   
-  
-  <!-- fix the bottle -->
-  <joint name="fix-camera-movable-fixation2" type="fixed">
-    <pose>0 0 0 0 0 0</pose>
-    <parent>ground</parent>
-    <child>cocacola_bottle</child>
-  </joint>
-  
-  
-  
 </model>
 </sdf>
