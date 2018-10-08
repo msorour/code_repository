@@ -1,0 +1,8 @@
+prefix=/home/work/code_repository/ros_packages/devel
+
+Name: kinect2_bridge
+Description: Description of kinect2_bridge
+Version: 0.0.1
+Cflags: -I/home/work/code_repository/ros_packages/src/iai_kinect2/kinect2_bridge/include
+Libs: -L/home/work/code_repository/ros_packages/devel/lib 
+Requires: kinect2_registration

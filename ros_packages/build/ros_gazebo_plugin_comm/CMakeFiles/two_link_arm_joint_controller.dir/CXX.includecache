@@ -6,22 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/work/code_repository/ros_packages/devel/include/ros_gazebo_plugin_comm/Vector7d.h
-string
--
-vector
--
-map
--
-ros/types.h
--
-ros/serialization.h
--
-ros/builtin_message_traits.h
--
-ros/message_operations.h
--
-
 /home/work/code_repository/ros_packages/src/ros_gazebo_plugin_comm/src/two_link_arm_joint_controller.cpp
 ros/ros.h
 /home/work/code_repository/ros_packages/src/ros_gazebo_plugin_comm/src/ros/ros.h

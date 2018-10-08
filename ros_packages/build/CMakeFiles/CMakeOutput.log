@@ -580,3 +580,129 @@ Linking C executable cmTC_5ac2b
 make[1]: Leaving directory '/home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp'
 
 
+Performing C SOURCE FILE Test OpenMP_FLAG_DETECTED succeeded with the following output:
+Change Dir: /home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_d118e/fast"
+/usr/bin/make -f CMakeFiles/cmTC_d118e.dir/build.make CMakeFiles/cmTC_d118e.dir/build
+make[1]: Entering directory '/home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_d118e.dir/src.c.o
+/usr/bin/cc    -DOpenMP_FLAG_DETECTED -fopenmp   -o CMakeFiles/cmTC_d118e.dir/src.c.o   -c /home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_d118e
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d118e.dir/link.txt --verbose=1
+/usr/bin/cc   -DOpenMP_FLAG_DETECTED -fopenmp    CMakeFiles/cmTC_d118e.dir/src.c.o  -o cmTC_d118e -rdynamic 
+make[1]: Leaving directory '/home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+#include <omp.h>
+int main() {
+#ifdef _OPENMP
+  return 0;
+#else
+  breaks_on_purpose
+#endif
+}
+
+Performing C++ SOURCE FILE Test OpenMP_FLAG_DETECTED succeeded with the following output:
+Change Dir: /home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_d8860/fast"
+/usr/bin/make -f CMakeFiles/cmTC_d8860.dir/build.make CMakeFiles/cmTC_d8860.dir/build
+make[1]: Entering directory '/home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_d8860.dir/src.cxx.o
+/usr/bin/c++     -std=c++11 -DOpenMP_FLAG_DETECTED -fopenmp   -o CMakeFiles/cmTC_d8860.dir/src.cxx.o -c /home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_d8860
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d8860.dir/link.txt --verbose=1
+/usr/bin/c++    -std=c++11 -DOpenMP_FLAG_DETECTED -fopenmp    CMakeFiles/cmTC_d8860.dir/src.cxx.o  -o cmTC_d8860 -rdynamic 
+make[1]: Leaving directory '/home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+#include <omp.h>
+int main() {
+#ifdef _OPENMP
+  return 0;
+#else
+  breaks_on_purpose
+#endif
+}
+
+Performing C++ SOURCE FILE Test COMPILER_SUPPORTS_CXX11 succeeded with the following output:
+Change Dir: /home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_c8e23/fast"
+/usr/bin/make -f CMakeFiles/cmTC_c8e23.dir/build.make CMakeFiles/cmTC_c8e23.dir/build
+make[1]: Entering directory '/home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_c8e23.dir/src.cxx.o
+/usr/bin/c++     -DBT_USE_DOUBLE_PRECISION -Wall -Wuninitialized -Winit-self -Wunused-function -Wunused-label -Wunused-variable -Wunused-but-set-variable -Wunused-but-set-parameter -Warray-bounds -Wtype-limits -Wreturn-type -Wsequence-point -Wparentheses -Wmissing-braces -Wchar-subscripts -Wswitch -Wwrite-strings -Wenum-compare -Wempty-body -DCOMPILER_SUPPORTS_CXX11   -std=c++11 -o CMakeFiles/cmTC_c8e23.dir/src.cxx.o -c /home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_c8e23
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c8e23.dir/link.txt --verbose=1
+/usr/bin/c++    -DBT_USE_DOUBLE_PRECISION -Wall -Wuninitialized -Winit-self -Wunused-function -Wunused-label -Wunused-variable -Wunused-but-set-variable -Wunused-but-set-parameter -Warray-bounds -Wtype-limits -Wreturn-type -Wsequence-point -Wparentheses -Wmissing-braces -Wchar-subscripts -Wswitch -Wwrite-strings -Wenum-compare -Wempty-body -DCOMPILER_SUPPORTS_CXX11    CMakeFiles/cmTC_c8e23.dir/src.cxx.o  -o cmTC_c8e23 -rdynamic 
+make[1]: Leaving directory '/home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp'
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORTS_CXX0X succeeded with the following output:
+Change Dir: /home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_9f703/fast"
+/usr/bin/make -f CMakeFiles/cmTC_9f703.dir/build.make CMakeFiles/cmTC_9f703.dir/build
+make[1]: Entering directory '/home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_9f703.dir/src.cxx.o
+/usr/bin/c++     -DBT_USE_DOUBLE_PRECISION -Wall -Wuninitialized -Winit-self -Wunused-function -Wunused-label -Wunused-variable -Wunused-but-set-variable -Wunused-but-set-parameter -Warray-bounds -Wtype-limits -Wreturn-type -Wsequence-point -Wparentheses -Wmissing-braces -Wchar-subscripts -Wswitch -Wwrite-strings -Wenum-compare -Wempty-body -DCOMPILER_SUPPORTS_CXX0X   -std=c++0x -o CMakeFiles/cmTC_9f703.dir/src.cxx.o -c /home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_9f703
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9f703.dir/link.txt --verbose=1
+/usr/bin/c++    -DBT_USE_DOUBLE_PRECISION -Wall -Wuninitialized -Winit-self -Wunused-function -Wunused-label -Wunused-variable -Wunused-but-set-variable -Wunused-but-set-parameter -Warray-bounds -Wtype-limits -Wreturn-type -Wsequence-point -Wparentheses -Wmissing-braces -Wchar-subscripts -Wswitch -Wwrite-strings -Wenum-compare -Wempty-body -DCOMPILER_SUPPORTS_CXX0X    CMakeFiles/cmTC_9f703.dir/src.cxx.o  -o cmTC_9f703 -rdynamic 
+make[1]: Leaving directory '/home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp'
+
+Source file was:
+int main() { return 0; }
+Determining if the CL_VERSION_2_0 exist passed with the following output:
+Change Dir: /home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_79ba2/fast"
+/usr/bin/make -f CMakeFiles/cmTC_79ba2.dir/build.make CMakeFiles/cmTC_79ba2.dir/build
+make[1]: Entering directory '/home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_79ba2.dir/CheckSymbolExists.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_79ba2.dir/CheckSymbolExists.c.o   -c /home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_79ba2
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_79ba2.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_79ba2.dir/CheckSymbolExists.c.o  -o cmTC_79ba2 -rdynamic 
+make[1]: Leaving directory '/home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp'
+
+File /home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include </usr/include/CL/cl.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef CL_VERSION_2_0
+  return ((int*)(&CL_VERSION_2_0))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Performing C SOURCE FILE Test OpenCL_C_WORKS succeeded with the following output:
+Change Dir: /home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_b7aa8/fast"
+/usr/bin/make -f CMakeFiles/cmTC_b7aa8.dir/build.make CMakeFiles/cmTC_b7aa8.dir/build
+make[1]: Entering directory '/home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_b7aa8.dir/src.c.o
+/usr/bin/cc   -I/include/internal  -DOpenCL_C_WORKS   -o CMakeFiles/cmTC_b7aa8.dir/src.c.o   -c /home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_b7aa8
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b7aa8.dir/link.txt --verbose=1
+/usr/bin/cc   -DOpenCL_C_WORKS    CMakeFiles/cmTC_b7aa8.dir/src.c.o  -o cmTC_b7aa8 -rdynamic /usr/lib/x86_64-linux-gnu/libOpenCL.so 
+make[1]: Leaving directory '/home/work/code_repository/ros_packages/build/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+#include <CL/cl.h>
+int main() {
+  clGetPlatformIDs(0, 0, 0);
+  return 0;
+}
