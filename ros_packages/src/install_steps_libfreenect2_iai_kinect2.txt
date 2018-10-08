@@ -1,0 +1,26 @@
+install libfreenect2:
+sudo apt-get install build-essential cmake pkg-config
+sudo apt-get install libusb-1.0-0-dev
+sudo apt-get install libturbojpeg libjpeg-turbo8-dev
+sudo apt-get install libglfw3-dev
+sudo apt-get install beignet-dev
+sudo apt-get install libva-dev libjpeg-dev
+sudo apt-get install libopenni2-dev
+
+git clone https://github.com/OpenKinect/libfreenect2
+cd libfreenect2
+mkdir build && cd build
+cmake .. -DENABLE_CXX11=ON -DCMAKE_INSTALL_PREFIX=$HOME/freenect2
+make
+make install
+
+cd ..
+sudo cp platform/linux/udev/90-kinect2.rules /etc/udev/rules.d/
+
+cd ~/(ROS_DIRECTORY/src)
+git clone git clone https://github.com/code-iai/iai_kinect2.git
+cd iai_kinect2
+rosdep install -r --from-paths .
+cd ../..
+catkin_make
+
