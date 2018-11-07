@@ -3,6 +3,7 @@
 #include "../../../include/Eigen/Dense"
 #include "../../../include/useful_implementations.h"
 #include "../../../include/FrankaPandaArmModel.h"
+#include "../../../include/AllegroRightHandModel.h"
 #include "../include/franka_panda_arm_plus_allegro_right_hand.h"
 #include <iostream>
 #include <fstream>
@@ -15,16 +16,28 @@ using namespace franka_panda_gazebo_controller;
 void GetJointPositionState(const std_msgs::Float32MultiArray::ConstPtr& _msg){
   joint_position_sim_time = _msg->data[0];
 	for(int k=0; k<7; k++)
-		arm_joint_position(k)  = _msg->data[k+1];
-	for(int k=0; k<2; k++)
-		gripper_joint_position(k)  = _msg->data[k+7+1];	
+		arm_joint_position(k)    = _msg->data[k+1];
+	for(int k=0; k<4; k++)
+		index_joint_position(k)  = _msg->data[k+7+1];
+	for(int k=0; k<4; k++)
+		middle_joint_position(k) = _msg->data[k+7+4+1];
+	for(int k=0; k<4; k++)
+		pinky_joint_position(k)  = _msg->data[k+7+8+1];
+	for(int k=0; k<4; k++)
+		thumb_joint_position(k)  = _msg->data[k+7+12+1];
 }
 void GetJointVelocityState(const std_msgs::Float32MultiArray::ConstPtr& _msg){
-  joint_velocity_sim_time = _msg->data[0];
+	joint_velocity_sim_time = _msg->data[0];
 	for(int k=0; k<7; k++)
-		arm_joint_velocity(k)  = _msg->data[k+1];
-	for(int k=0; k<2; k++)
-		gripper_joint_velocity(k)  = _msg->data[k+7+1];
+		arm_joint_velocity(k)    = _msg->data[k+1];
+	for(int k=0; k<4; k++)
+		index_joint_velocity(k)  = _msg->data[k+7+1];
+	for(int k=0; k<4; k++)
+		middle_joint_velocity(k) = _msg->data[k+7+4+1];
+	for(int k=0; k<4; k++)
+		pinky_joint_velocity(k)  = _msg->data[k+7+8+1];
+	for(int k=0; k<4; k++)
+		thumb_joint_velocity(k)  = _msg->data[k+7+12+1];
 }
 
 int main(int argc, char **argv){

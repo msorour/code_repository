@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/home/work/code_repository/ros_packages/include/AllegroRightHandModel.h
+allegro_hand_parameters.h
+/home/work/code_repository/ros_packages/include/allegro_hand_parameters.h
+
 /home/work/code_repository/ros_packages/include/Eigen/Cholesky
 Core
 /home/work/code_repository/ros_packages/include/Eigen/Core
@@ -1078,6 +1082,8 @@ fstream
 franka_panda_arm_parameters.h
 /home/work/code_repository/ros_packages/include/franka_panda_arm_parameters.h
 
+/home/work/code_repository/ros_packages/include/allegro_hand_parameters.h
+
 /home/work/code_repository/ros_packages/include/franka_panda_arm_parameters.h
 
 /home/work/code_repository/ros_packages/include/useful_implementations.h
@@ -1095,6 +1101,8 @@ std_msgs/Float32MultiArray.h
 /home/work/code_repository/ros_packages/include/Eigen/Dense
 ../../../include/useful_implementations.h
 /home/work/code_repository/ros_packages/include/useful_implementations.h
+../../../include/AllegroRightHandModel.h
+/home/work/code_repository/ros_packages/include/AllegroRightHandModel.h
 ../../../include/FrankaPandaArmModel.h
 /home/work/code_repository/ros_packages/include/FrankaPandaArmModel.h
 ../include/franka_panda_arm_plus_allegro_right_hand.h

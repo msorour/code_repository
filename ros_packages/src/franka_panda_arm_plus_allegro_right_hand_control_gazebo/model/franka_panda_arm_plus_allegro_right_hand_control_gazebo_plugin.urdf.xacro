@@ -4,6 +4,7 @@
   <xacro:include filename="$(find franka_panda_arm_description)/model/panda_arm_gazebo.xacro" />
   <xacro:include filename="$(find allegro_right_hand_description)/model/allegro_right_hand.xacro"/>
   <xacro:panda_arm arm_id="panda_arm" xyz="0.62 0.138 0.986" rpy="0 0 ${pi/2}" />
+  <transparent opaque="RGB_ZERO"> <color>1 1 1 1</color> </transparent> <transparency><float>1</float></transparency>
   
   <link name="franka_panda_arm_allegro_hand_connection">
     <visual>
@@ -60,7 +61,35 @@
     	<joint21_init>0.70 </joint21_init>
     	<joint22_init>0.70 </joint22_init>
     	<joint23_init>0.30 </joint23_init>
+    	
+    	<joint1_velocity_limit>1.0 </joint1_velocity_limit>
+    	<joint2_velocity_limit>1.0 </joint2_velocity_limit>
+    	<joint3_velocity_limit>1.0 </joint3_velocity_limit>
+    	<joint4_velocity_limit>1.0 </joint4_velocity_limit>
+    	<joint5_velocity_limit>1.0 </joint5_velocity_limit>
+    	<joint6_velocity_limit>1.0 </joint6_velocity_limit>
+    	<joint7_velocity_limit>1.0 </joint7_velocity_limit>
+    	<joint8_velocity_limit>1.0 </joint8_velocity_limit>
+    	<joint9_velocity_limit>1.0 </joint9_velocity_limit>
+    	<joint10_velocity_limit>1.0 </joint10_velocity_limit>
+    	<joint11_velocity_limit>1.0 </joint11_velocity_limit>
+    	<joint12_velocity_limit>1.0 </joint12_velocity_limit>
+    	<joint13_velocity_limit>1.0 </joint13_velocity_limit>
+    	<joint14_velocity_limit>1.0 </joint14_velocity_limit>
+    	<joint15_velocity_limit>1.0 </joint15_velocity_limit>
+    	<joint16_velocity_limit>1.0 </joint16_velocity_limit>
+    	<joint17_velocity_limit>1.0 </joint17_velocity_limit>
+    	<joint18_velocity_limit>1.0 </joint18_velocity_limit>
+    	<joint19_velocity_limit>1.0 </joint19_velocity_limit>
+    	<joint20_velocity_limit>1.0 </joint20_velocity_limit>
+    	<joint21_velocity_limit>1.0 </joint21_velocity_limit>
+    	<joint22_velocity_limit>1.0 </joint22_velocity_limit>
+    	<joint23_velocity_limit>1.0 </joint23_velocity_limit>
     </plugin>
   </gazebo>
+  
+  <!-- Kinect v2 -->
+ <xacro:include filename="$(find kinect2_description)/urdf/kinect2/kinect2.xacro"/>
+ <kinect2_sensor parent="panda_arm_link8" prefix="" name="panda_arm_link8/kinect2" cam_px="0.0" cam_py="0" cam_pz="-0.20" cam_or="0" cam_op="0.52" cam_oy="0"/>
 
 </robot>

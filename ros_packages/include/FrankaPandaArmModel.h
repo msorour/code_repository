@@ -15,6 +15,7 @@ Eigen::VectorXd arm_coriolis_centrifugal_torque(Eigen::VectorXd joint_state, Eig
 Eigen::Matrix4d base_to_arm_frame0(void);
 Eigen::Matrix4d arm_frame7_to_tip(void);
 Eigen::Matrix4d arm_tip_to_panda_gripper(void);
+Eigen::Matrix4d arm_tip_to_allegro_right_hand_grasp_frame(void);
 
 
 
@@ -29,36 +30,6 @@ Eigen::Matrix4d arm_direct_geometric_model(Eigen::VectorXd joint_state, std::str
 	t7 = joint_state(6);
 	double T0T711,T0T721,T0T731, T0T712,T0T722,T0T732, T0T713,T0T723,T0T733, T0T714,T0T724,T0T734;
 	double sx, sy, sz, nx, ny, nz, ax, ay, az, Px, Py, Pz;
-	/*
-	// Column#1
-	T0T711 = ((-((-sin(t1)*sin(t3) + cos(t1)*cos(t2)*cos(t3))*cos(t4) + sin(t2)*sin(t4)*cos(t1))*cos(t5) - (-sin(t1)*cos(t3) - sin(t3)*cos(t1)*cos(t2))*sin(t5))*cos(t6) + ((-sin(t1)*sin(t3) + cos(t1)*cos(t2)*cos(t3))*sin(t4) - sin(t2)*cos(t1)*cos(t4))*sin(t6))*cos(t7) + (-((-sin(t1)*sin(t3) + cos(t1)*cos(t2)*cos(t3))*cos(t4) + sin(t2)*sin(t4)*cos(t1))*sin(t5) + (-sin(t1)*cos(t3) - sin(t3)*cos(t1)*cos(t2))*cos(t5))*sin(t7);
-	T0T721 = ((-((sin(t1)*cos(t2)*cos(t3) + sin(t3)*cos(t1))*cos(t4) + sin(t1)*sin(t2)*sin(t4))*cos(t5) - (-sin(t1)*sin(t3)*cos(t2) + cos(t1)*cos(t3))*sin(t5))*cos(t6) + ((sin(t1)*cos(t2)*cos(t3) + sin(t3)*cos(t1))*sin(t4) - sin(t1)*sin(t2)*cos(t4))*sin(t6))*cos(t7) + (-((sin(t1)*cos(t2)*cos(t3) + sin(t3)*cos(t1))*cos(t4) + sin(t1)*sin(t2)*sin(t4))*sin(t5) + (-sin(t1)*sin(t3)*cos(t2) + cos(t1)*cos(t3))*cos(t5))*sin(t7);
-	T0T731 = ((-(sin(t2)*cos(t3)*cos(t4) - sin(t4)*cos(t2))*cos(t5) + sin(t2)*sin(t3)*sin(t5))*cos(t6) + (sin(t2)*sin(t4)*cos(t3) + cos(t2)*cos(t4))*sin(t6))*cos(t7) + (-(sin(t2)*cos(t3)*cos(t4) - sin(t4)*cos(t2))*sin(t5) - sin(t2)*sin(t3)*cos(t5))*sin(t7);
-	
-	// Column#2
-	T0T712 = -((-((-sin(t1)*sin(t3) + cos(t1)*cos(t2)*cos(t3))*cos(t4) + sin(t2)*sin(t4)*cos(t1))*cos(t5) - (-sin(t1)*cos(t3) - sin(t3)*cos(t1)*cos(t2))*sin(t5))*cos(t6) + ((-sin(t1)*sin(t3) + cos(t1)*cos(t2)*cos(t3))*sin(t4) - sin(t2)*cos(t1)*cos(t4))*sin(t6))*sin(t7) + (-((-sin(t1)*sin(t3) + cos(t1)*cos(t2)*cos(t3))*cos(t4) + sin(t2)*sin(t4)*cos(t1))*sin(t5) + (-sin(t1)*cos(t3) - sin(t3)*cos(t1)*cos(t2))*cos(t5))*cos(t7);
-	T0T722 = -((-((sin(t1)*cos(t2)*cos(t3) + sin(t3)*cos(t1))*cos(t4) + sin(t1)*sin(t2)*sin(t4))*cos(t5) - (-sin(t1)*sin(t3)*cos(t2) + cos(t1)*cos(t3))*sin(t5))*cos(t6) + ((sin(t1)*cos(t2)*cos(t3) + sin(t3)*cos(t1))*sin(t4) - sin(t1)*sin(t2)*cos(t4))*sin(t6))*sin(t7) + (-((sin(t1)*cos(t2)*cos(t3) + sin(t3)*cos(t1))*cos(t4) + sin(t1)*sin(t2)*sin(t4))*sin(t5) + (-sin(t1)*sin(t3)*cos(t2) + cos(t1)*cos(t3))*cos(t5))*cos(t7);
-	T0T732 = -((-(sin(t2)*cos(t3)*cos(t4) - sin(t4)*cos(t2))*cos(t5) + sin(t2)*sin(t3)*sin(t5))*cos(t6) + (sin(t2)*sin(t4)*cos(t3) + cos(t2)*cos(t4))*sin(t6))*sin(t7) + (-(sin(t2)*cos(t3)*cos(t4) - sin(t4)*cos(t2))*sin(t5) - sin(t2)*sin(t3)*cos(t5))*cos(t7);
-	
-	// Column#3
-	T0T713 = (-((-sin(t1)*sin(t3) + cos(t1)*cos(t2)*cos(t3))*cos(t4) + sin(t2)*sin(t4)*cos(t1))*cos(t5) - (-sin(t1)*cos(t3) - sin(t3)*cos(t1)*cos(t2))*sin(t5))*sin(t6) - ((-sin(t1)*sin(t3) + cos(t1)*cos(t2)*cos(t3))*sin(t4) - sin(t2)*cos(t1)*cos(t4))*cos(t6);
-	T0T723 = (-((sin(t1)*cos(t2)*cos(t3) + sin(t3)*cos(t1))*cos(t4) + sin(t1)*sin(t2)*sin(t4))*cos(t5) - (-sin(t1)*sin(t3)*cos(t2) + cos(t1)*cos(t3))*sin(t5))*sin(t6) - ((sin(t1)*cos(t2)*cos(t3) + sin(t3)*cos(t1))*sin(t4) - sin(t1)*sin(t2)*cos(t4))*cos(t6);
-	T0T733 = (-(sin(t2)*cos(t3)*cos(t4) - sin(t4)*cos(t2))*cos(t5) + sin(t2)*sin(t3)*sin(t5))*sin(t6) - (sin(t2)*sin(t4)*cos(t3) + cos(t2)*cos(t4))*cos(t6);
-	
-	// Column#4
-	T0T714 = D*((-((-sin(t1)*sin(t3) + cos(t1)*cos(t2)*cos(t3))*cos(t4) + sin(t2)*sin(t4)*cos(t1))*cos(t5) - (-sin(t1)*cos(t3) - sin(t3)*cos(t1)*cos(t2))*sin(t5))*cos(t6) + ((-sin(t1)*sin(t3) + cos(t1)*cos(t2)*cos(t3))*sin(t4) - sin(t2)*cos(t1)*cos(t4))*sin(t6)) + D*((-sin(t1)*sin(t3) + cos(t1)*cos(t2)*cos(t3))*cos(t4) + sin(t2)*sin(t4)*cos(t1)) - D*(-sin(t1)*sin(t3) + cos(t1)*cos(t2)*cos(t3)) - RL3*sin(t2)*cos(t1) + RL5*((-sin(t1)*sin(t3) + cos(t1)*cos(t2)*cos(t3))*sin(t4) - sin(t2)*cos(t1)*cos(t4));
-	T0T724 = D*((-((sin(t1)*cos(t2)*cos(t3) + sin(t3)*cos(t1))*cos(t4) + sin(t1)*sin(t2)*sin(t4))*cos(t5) - (-sin(t1)*sin(t3)*cos(t2) + cos(t1)*cos(t3))*sin(t5))*cos(t6) + ((sin(t1)*cos(t2)*cos(t3) + sin(t3)*cos(t1))*sin(t4) - sin(t1)*sin(t2)*cos(t4))*sin(t6)) + D*((sin(t1)*cos(t2)*cos(t3) + sin(t3)*cos(t1))*cos(t4) + sin(t1)*sin(t2)*sin(t4)) - D*(sin(t1)*cos(t2)*cos(t3) + sin(t3)*cos(t1)) - RL3*sin(t1)*sin(t2) + RL5*((sin(t1)*cos(t2)*cos(t3) + sin(t3)*cos(t1))*sin(t4) - sin(t1)*sin(t2)*cos(t4));
-	T0T734 = D*((-(sin(t2)*cos(t3)*cos(t4) - sin(t4)*cos(t2))*cos(t5) + sin(t2)*sin(t3)*sin(t5))*cos(t6) + (sin(t2)*sin(t4)*cos(t3) + cos(t2)*cos(t4))*sin(t6)) + D*(sin(t2)*cos(t3)*cos(t4) - sin(t4)*cos(t2)) - D*sin(t2)*cos(t3) + RL3*cos(t2) + RL5*(sin(t2)*sin(t4)*cos(t3) + cos(t2)*cos(t4));
-	
-	
-	Eigen::Matrix4d DGM;
-	DGM << T0T711, T0T712, T0T713, T0T714,
-				 T0T721, T0T722, T0T723, T0T724,
-				 T0T731, T0T732, T0T733, T0T734,
-				 			0, 			0, 			0, 		  1;
-	
-	*/
-	
 	
 	sx = ((-((-sin(t1)*sin(t3) + cos(t1)*cos(t2)*cos(t3))*cos(t4) + sin(t2)*sin(t4)*cos(t1))*cos(t5) + (sin(t1)*cos(t3) + sin(t3)*cos(t1)*cos(t2))*sin(t5))*cos(t6) + ((-sin(t1)*sin(t3) + cos(t1)*cos(t2)*cos(t3))*sin(t4) - sin(t2)*cos(t1)*cos(t4))*sin(t6))*cos(t7) + (-((-sin(t1)*sin(t3) + cos(t1)*cos(t2)*cos(t3))*cos(t4) + sin(t2)*sin(t4)*cos(t1))*sin(t5) - (sin(t1)*cos(t3) + sin(t3)*cos(t1)*cos(t2))*cos(t5))*sin(t7);
   sy = ((-((sin(t1)*cos(t2)*cos(t3) + sin(t3)*cos(t1))*cos(t4) + sin(t1)*sin(t2)*sin(t4))*cos(t5) - (-sin(t1)*sin(t3)*cos(t2) + cos(t1)*cos(t3))*sin(t5))*cos(t6) + ((sin(t1)*cos(t2)*cos(t3) + sin(t3)*cos(t1))*sin(t4) - sin(t1)*sin(t2)*cos(t4))*sin(t6))*cos(t7) + (-((sin(t1)*cos(t2)*cos(t3) + sin(t3)*cos(t1))*cos(t4) + sin(t1)*sin(t2)*sin(t4))*sin(t5) + (-sin(t1)*sin(t3)*cos(t2) + cos(t1)*cos(t3))*cos(t5))*sin(t7);
@@ -82,7 +53,7 @@ Eigen::Matrix4d arm_direct_geometric_model(Eigen::VectorXd joint_state, std::str
 	if(effector_frame=="panda_gripper")
 	  overall_DGM = base_to_arm_frame0()*DGM*arm_frame7_to_tip()*arm_tip_to_panda_gripper();
 	else if(effector_frame=="allegro_hand")
-	  overall_DGM = base_to_arm_frame0()*DGM*arm_frame7_to_tip();
+	  overall_DGM = base_to_arm_frame0()*DGM*arm_frame7_to_tip()*arm_tip_to_allegro_right_hand_grasp_frame();
 	else if(effector_frame=="end_tip")
 	  overall_DGM = base_to_arm_frame0()*DGM*arm_frame7_to_tip();
 	return overall_DGM;
@@ -1308,6 +1279,18 @@ Eigen::Matrix4d arm_tip_to_panda_gripper(void){
 	R = rpy_to_direction_cosines(rpy);
 	Eigen::Vector3d P;
 	P	 << 0.0, 0.0, 0.05;
+	TM << R,		 P,
+				0,0,0, 1;
+	return TM;
+}
+Eigen::Matrix4d arm_tip_to_allegro_right_hand_grasp_frame(void){
+	Eigen::Matrix4d TM;
+	Eigen::Matrix3d R;
+	Eigen::Vector3d rpy;
+	rpy << 0,0,0;
+	R = rpy_to_direction_cosines(rpy);
+	Eigen::Vector3d P;
+	P	 << -0.05, 0.0, 0.1;
 	TM << R,		 P,
 				0,0,0, 1;
 	return TM;

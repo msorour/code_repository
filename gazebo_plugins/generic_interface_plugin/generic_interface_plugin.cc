@@ -117,7 +117,8 @@ void GenericInterfacePlugin::OnUpdate(){
   
   // Get simulation time and send it along
   world = this->model->GetWorld();
-  sim_time = this->world->GetSimTime().Double();
+  //sim_time = this->world->GetSimTime().Double();  //Gazebo 7
+  sim_time = this->world->SimTime().Double();    //Gazebo 8
   
   std_msgs::Float32MultiArray joint_position_vector;
   std_msgs::Float32MultiArray joint_velocity_vector;
@@ -140,7 +141,8 @@ void GenericInterfacePlugin::OnUpdate(){
     	  this->joint[k]->SetVelocity(0, joint_velocity_cmd.data[j]);
     	
     	// Publish joint position vector
-    	joint_position_vector.data.push_back(this->joint[k]->GetAngle(2).Radian());
+    	//joint_position_vector.data.push_back(this->joint[k]->GetAngle(2).Radian());   //Gazebo 7
+    	joint_position_vector.data.push_back(this->joint[k]->Position(0));   //Gazebo 8
     	// Publish joint velocity vector
     	joint_velocity_vector.data.push_back(this->joint[k]->GetVelocity(0));
     	// Publish joint torque vector

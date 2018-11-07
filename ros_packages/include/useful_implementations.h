@@ -14,6 +14,8 @@ Eigen::Vector3d OnlineMP_L5B(double ti, double tf, double tn, double Pi, double 
 Eigen::Matrix4d homogeneous_transformation(double r, double d, double alpha, double theta);
 Eigen::Matrix4d general_transformation_matrix(int target_frame, int reference_frame, Eigen::VectorXd r, Eigen::VectorXd d, Eigen::VectorXd alpha, Eigen::VectorXd theta);
 Eigen::MatrixXd general_geometric_jacobian(int target_frame, int reference_frame, Eigen::VectorXd r, Eigen::VectorXd d, Eigen::VectorXd alpha, Eigen::VectorXd theta);
+Eigen::VectorXd avoid_joint_limit_task_gradient(Eigen::VectorXd joint_state, Eigen::VectorXd joint_mean, Eigen::VectorXd joint_range);
+Eigen::VectorXd linear_thresholding(Eigen::VectorXd vector, double threshold);
 
 // Useful Implementations
 Eigen::Matrix3d Rotx(double t){
@@ -299,3 +301,25 @@ Eigen::Vector3d OnlineMP_L5B(double ti, double tf, double tn, double Pi, double 
   return MPM;
 
 }
+
+
+Eigen::VectorXd avoid_joint_limit_task_gradient(Eigen::VectorXd joint_state, Eigen::VectorXd joint_mean, Eigen::VectorXd joint_range){
+  Eigen::VectorXd joint_limit_task_gradient(joint_state.size());
+  for(int k=0;k<joint_state.size();k++){
+    joint_limit_task_gradient(k) = 2*(joint_state(k)-joint_mean(k))/(joint_range(k)*joint_range(k));
+  }
+	return joint_limit_task_gradient;
+}
+
+Eigen::VectorXd linear_thresholding(Eigen::VectorXd vector, double threshold){
+  int size = vector.size();
+  double max_value=0.0;
+  Eigen::VectorXd thresholded_vector(size);
+  
+  Eigen::VectorXd::Index max_value_index;
+  max_value = vector.maxCoeff(&max_value_index);
+  
+  thresholded_vector = vector*threshold/max_value;
+  return thresholded_vector;
+}
+

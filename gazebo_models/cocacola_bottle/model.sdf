@@ -8,6 +8,7 @@
   <link name="cocacola_bottle2">
     <pose>0 0 0 0 0 0</pose>
     <inertial>
+      <pose>0 0 0.07 0 0 0</pose>
       <mass>0.3</mass>
       <inertia><ixx>0.001</ixx><iyy>0.001</iyy><izz>0.001</izz><ixy>0</ixy><ixz>0</ixz><iyz>0</iyz></inertia>
     </inertial>
@@ -17,6 +18,16 @@
             <uri>model://cocacola_bottle/meshes/cocacola_bottle.stl</uri>
           </mesh>
       </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.2</mu>
+            <mu2>0.2</mu2>
+            <slip1>0.0</slip1>
+            <slip2>0.0</slip2>
+          </ode>
+        </friction>
+      </surface>
     </collision>
     <visual name="visual">
       <geometry>

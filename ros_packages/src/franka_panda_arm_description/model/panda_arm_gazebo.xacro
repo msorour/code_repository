@@ -33,7 +33,7 @@
 	</visual>
 	<collision>
 		<geometry>
-		<mesh filename="package://${description_pkg}/model/meshes/collision/link0.stl"/>
+		<mesh filename="package://${description_pkg}/model/meshes/visual/link0.dae"/>
 		</geometry>
 	</collision>
 	<inertial>

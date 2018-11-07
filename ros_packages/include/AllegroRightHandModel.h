@@ -10,7 +10,6 @@ Eigen::Matrix4d palm_to_pinky_frame0(void);
 Eigen::Matrix4d pinky_frame4_to_tip(void);
 Eigen::Matrix4d finger_direct_geometric_model(std::string finger_name, Eigen::Vector4d joint_state);
 Eigen::MatrixXd finger_position_jacobian(std::string finger_name, Eigen::Vector4d joint_state);
-Eigen::VectorXd avoid_joint_limit_task_gradient(Eigen::VectorXd joint_state, Eigen::VectorXd joint_mean, Eigen::VectorXd joint_range);
 
 Eigen::Matrix4d finger_direct_geometric_model(std::string finger_name, Eigen::Vector4d joint_state){
 	double T0T411,T0T421,T0T431, T0T412,T0T422,T0T432, T0T413,T0T423,T0T433, T0T414,T0T424,T0T434;
@@ -77,16 +76,6 @@ Eigen::Matrix4d finger_direct_geometric_model(std::string finger_name, Eigen::Ve
 		return palm_to_pinky_frame0()*DGM*pinky_frame4_to_tip();
 
   return DGM;
-}
-
-
-
-Eigen::VectorXd avoid_joint_limit_task_gradient(Eigen::VectorXd joint_state, Eigen::VectorXd joint_mean, Eigen::VectorXd joint_range){
-  Eigen::VectorXd joint_limit_task_gradient(joint_state.size());
-  for(int k=0;k<joint_state.size();k++){
-    joint_limit_task_gradient(k) = 2*(joint_state(k)-joint_mean(k))/(joint_range(k)*joint_range(k));
-  }
-	return joint_limit_task_gradient;
 }
 
 

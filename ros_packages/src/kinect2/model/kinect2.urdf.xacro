@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="kinect2_sensor"> 
+  <!-- <xacro:include filename="$(find kinect2_description)/model/kinect2.xacro" />
+  <xacro:kinect2_sensor ns="kinect" connected_to="" origin_xyz="0 0 0.5" origin_rpy="0 0 0" /> -->
+  
+  <!-- Kinect v2 -->
+ <xacro:include filename="$(find kinect2_description)/urdf/kinect2/kinect2.xacro"/>
+ <kinect2_sensor parent="base_sensors" prefix="" name="kinect2" cam_px="0.0" cam_py="0" cam_pz="-0.20" cam_or="0" cam_op="0.52" cam_oy="0"/>
+</robot>

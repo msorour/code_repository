@@ -1,0 +1,8 @@
+prefix=/home/work/code_repository/ros_packages/install
+
+Name: kinect2
+Description: Description of kinect2
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/work/code_repository/ros_packages/install/lib 
+Requires: 

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="realsense_d435">
+
+<xacro:macro name="realsense_d435" params=" description_pkg:='realsense_d435_description' connected_to:='' ns:='' origin_rpy:='0 0 0' origin_xyz:='0 0 0' ">
+	
+	<xacro:unless value="${connected_to == ''}">
+	  <joint name="${ns}_joint_${connected_to}" type="fixed">
+		  <parent link="${connected_to}"/>
+		  <child link="${ns}_link"/>
+		  <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+	  </joint>
+  </xacro:unless>
+
+  <!-- Used for fixing robot to Gazebo ground in case the robot is not connected to any other component -->
+  <xacro:if value="${connected_to == ''}">
+	  <link name="world"/>
+	  <joint name="fix_to_world" type="fixed">
+		  <parent link="world"/>
+		  <child link="${ns}_link"/>
+		  <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+	  </joint>
+  </xacro:if>
+  
+  <!-- camera main link -->
+  <link name="${ns}_link">
+	  <pose frame="">0 0 0 0 0 0</pose>	
+    <inertial>
+      <mass value="0.0615752"/>
+      <inertia ixx="9.108e-05" ixy="0" ixz="0" iyy="2.51e-06" iyz="0" izz="8.931e-05"/>
+    </inertial>
+    
+    <self_collide>0</self_collide>
+    <enable_wind>0</enable_wind>
+    <kinematic>0</kinematic>
+    <gravity>1</gravity>
+    
+    <visual name="visual">
+      <geometry>
+        <mesh filename="package://${description_pkg}/model/meshes/d435.stl"/>
+      </geometry>
+    </visual>
+    
+    <collision name='collision'>
+      <laser_retro>0</laser_retro>
+      <max_contacts>10</max_contacts>
+      <geometry>
+        <mesh filename="package://${description_pkg}/model/meshes/d435.stl"/>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1</mu>
+            <mu2>1</mu2>
+            <fdir1>0 0 0</fdir1>
+            <slip1>0</slip1>
+            <slip2>0</slip2>
+          </ode>
+          <torsional>
+            <coefficient>1</coefficient>
+            <patch_radius>0</patch_radius>
+            <surface_radius>0</surface_radius>
+            <use_patch_radius>1</use_patch_radius>
+            <ode>
+              <slip>0</slip>
+            </ode>
+          </torsional>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e+06</threshold>
+        </bounce>
+        <contact>
+          <collide_without_contact>0</collide_without_contact>
+          <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+          <collide_bitmask>1</collide_bitmask>
+          <ode>
+            <soft_cfm>0</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>1e+13</kp>
+            <kd>1</kd>
+            <max_vel>0.01</max_vel>
+            <min_depth>0</min_depth>
+          </ode>
+          <bullet>
+            <split_impulse>1</split_impulse>
+            <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+            <soft_cfm>0</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>1e+13</kp>
+            <kd>1</kd>
+          </bullet>
+        </contact>
+      </surface>
+    </collision>
+  </link>
+    
+    
+  <!-- Virtual links representing the cameras positons and orientations-->
+  <link name="color" />
+  <link name="depth" />
+  <link name="stereo_right_imager" />
+  <link name="stereo_left_imager" />
+
+  <!-- Joints positioning the virtual links with respect to the camera main link-->
+  <joint name="color_joint" type="fixed">
+    <parent link="${ns}_link" />
+    <child link="color" />
+    <origin xyz="0 -0.0115 0" rpy="0 0 0"/>
+    <!-- The default position is change since in Rviz the cloud depth axis is Z not X-->
+    <!-- <origin xyz="0 -0.046 0.004" rpy="${pi/2} ${pi} ${pi/2}"/> -->
+  </joint>
+
+  <joint name="stereo_right_imager_joint" type="fixed">
+    <parent link="${ns}_link" />
+    <child link="stereo_right_imager" />
+    <origin xyz="0 -0.0325 0" rpy="0 0 0"/>
+  </joint>
+
+  <joint name="stereo_left_imager_joint" type="fixed">
+    <parent link="${ns}_link" />
+    <child link="stereo_left_imager" />
+    <origin xyz="0 0.0175 0" rpy="0 0 0"/>
+  </joint>
+  
+  <joint name="depth_joint" type="fixed">
+    <parent link="${ns}_link" />
+    <child link="depth" />
+    <origin xyz="0 -0.0115 0" rpy="0 0 0"/>
+  </joint>
+    
+    
+  <gazebo reference="${ns}_link">
+    <self_collide>0</self_collide>
+    <enable_wind>0</enable_wind>
+    <kinematic>0</kinematic>
+    <gravity>1</gravity>
+    <!--<mu>1</mu>-->
+    <mu2>1</mu2>
+    <fdir1>0 0 0</fdir1>
+    <!--<slip1>0</slip1>
+    <slip2>0</slip2>-->
+    <kp>1e+13</kp>
+    <kd>1</kd>
+    <!--<max_vel>0.01</max_vel>
+    <min_depth>0</min_depth>-->
+      
+    <sensor name="color" type="camera">
+      <pose frame="">0 -0.0115 0 0 0 0</pose>
+      <camera name="__default__">
+        <horizontal_fov>0.7417</horizontal_fov>
+        <image>
+          <width>1920</width>
+          <height>1080</height>
+          <format>RGB_INT8</format>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>100</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <always_on>1</always_on>
+      <update_rate>60</update_rate>
+      <visualize>1</visualize>
+    </sensor>
+      
+    <sensor name="stereo_right_imager" type="camera">
+      <pose frame="">0 -0.0325 0 0 0 0</pose>
+      <camera name="__default__">
+        <horizontal_fov>1.59174</horizontal_fov>
+        <image>
+          <width>1280</width>
+          <height>800</height>
+          <format>L_INT8</format>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>100</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <always_on>1</always_on>
+      <update_rate>60</update_rate>
+      <visualize>0</visualize>
+    </sensor>
+    
+    <sensor name="stereo_left_imager" type="camera">
+      <pose frame="">0 0.0175 0 0 0 0</pose>
+      <camera name="__default__">
+        <horizontal_fov>1.59174</horizontal_fov>
+        <image>
+          <width>1280</width>
+          <height>800</height>
+          <format>L_INT8</format>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>100</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <always_on>1</always_on>
+      <update_rate>60</update_rate>
+      <visualize>0</visualize>
+    </sensor>
+    
+    <sensor name="depth" type="depth">
+      <pose frame="">0 -0.0115 0 0 0 0</pose>
+      <camera name="__default__">
+        <horizontal_fov>1.047</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>100</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <always_on>1</always_on>
+      <update_rate>60</update_rate>
+      <visualize>0</visualize>
+    </sensor>
+  </gazebo>
+  
+</xacro:macro>
+</robot>

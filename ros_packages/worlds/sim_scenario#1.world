@@ -16,7 +16,7 @@
     <include>
     	<uri>model://cocacola_bottle</uri>
       <name>cocacola_bottle</name>
-      <pose>0.5 0.6 0.98 0 0 0</pose>
+      <pose>0.62 0.538 0.98 0 0 0</pose>
     </include>
     
     <!-- <physics type="ode">

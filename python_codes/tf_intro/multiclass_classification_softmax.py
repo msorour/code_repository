@@ -120,3 +120,4 @@ print 'Actual images of digits:'
 for i in range(10):
     ax[i].imshow(np.reshape(test_X[i],(28,28)))
 plt.show()
+

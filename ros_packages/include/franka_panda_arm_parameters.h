@@ -120,5 +120,24 @@
 #define Fs7 0.5
 
 
+#define joint_safety_margin 0.1
+
+#define arm_joint_0_max   2.8973
+#define arm_joint_0_min   -2.8973
+#define arm_joint_1_max   1.7628
+#define arm_joint_1_min   -1.7628
+#define arm_joint_2_max   2.8973
+#define arm_joint_2_min   -2.8973
+#define arm_joint_3_max   -0.0698
+#define arm_joint_3_min   -3.0718
+#define arm_joint_4_max   2.8973
+#define arm_joint_4_min   -2.8973
+#define arm_joint_5_max   3.7525
+#define arm_joint_5_min   -0.0175
+#define arm_joint_6_max   2.8973
+#define arm_joint_6_min   -2.8973
+
+
+
 
 

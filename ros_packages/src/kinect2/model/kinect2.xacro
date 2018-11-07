@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!-- This is a hand-made URDF XACRO file for the Microsoft Kinect-2 sensor (Xbox ONE) -->
+<!-- Copyright Universitaet Bremen - Instititute for Artificial Intelligence. Author: Alexis Maldonado -->
+<!-- License: GPLv3+ -->
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="kinect2_sensor"> 
+<xacro:macro name="kinect2_sensor" params=" ns:='' description_pkg:='kinect2_description' connected_to:='' origin_xyz:='0 0 0' origin_rpy:='0 0 0' ">
+
+  <material name="Kinect2Grey">
+    <color rgba="0.15 0.15 0.15 1.0"/>
+  </material>
+
+  <xacro:unless value="${connected_to == ''}">
+	  <joint name="${ns}_joint_${connected_to}" type="fixed">
+		  <parent link="${connected_to}"/>
+		  <child link="${ns}_kinect2_rgb_optical_frame"/>
+		  <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+	  </joint>
+  </xacro:unless>
+
+  <!-- Used for fixing robot to Gazebo ground in case the robot is not connected to any other component -->
+  <xacro:if value="${connected_to == ''}">
+	  <link name="world"/>
+	  <joint name="fix_to_world" type="fixed">
+		  <parent link="world"/>
+		  <child link="${ns}_kinect2_rgb_optical_frame"/>
+		  <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+	  </joint>
+  </xacro:if>
+
+  <link name="${ns}_kinect2_rgb_optical_frame">
+    <visual>
+      <geometry>
+        <!-- these meshes were exported in mm, so scale back to m -->
+        <mesh filename="package://${description_pkg}/model/meshes/kinect2_origin_on_rgb_optical_frame.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="Kinect2Grey"/>
+    </visual>
+
+    <collision>
+      <geometry>
+        <mesh filename="package://${description_pkg}/model/meshes/kinect2_origin_on_rgb_optical_frame.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </collision>
+    
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia ixx="0.0001" ixy="0.0001" ixz="0.0001" iyy="0.0001" iyz="0.0001" izz="0.0001"/>
+    </inertial>
+  </link>
+
+</xacro:macro>
+</robot>
