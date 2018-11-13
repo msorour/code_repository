@@ -149,8 +149,8 @@
       <camera name="__default__">
         <horizontal_fov>0.7417</horizontal_fov>
         <image>
-          <width>1920</width>
-          <height>1080</height>
+          <width>640</width>
+          <height>480</height>
           <format>RGB_INT8</format>
         </image>
         <clip>
@@ -173,8 +173,8 @@
       <camera name="__default__">
         <horizontal_fov>1.59174</horizontal_fov>
         <image>
-          <width>1280</width>
-          <height>800</height>
+          <width>640</width>
+          <height>480</height>
           <format>L_INT8</format>
         </image>
         <clip>
@@ -197,8 +197,8 @@
       <camera name="__default__">
         <horizontal_fov>1.59174</horizontal_fov>
         <image>
-          <width>1280</width>
-          <height>800</height>
+          <width>640</width>
+          <height>480</height>
           <format>L_INT8</format>
         </image>
         <clip>

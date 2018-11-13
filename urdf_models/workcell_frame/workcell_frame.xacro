@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="realsense_d435">
+
+<xacro:macro name="workcell-assembly-v2" params=" connected_to:='' ns:='workcell_frame' origin_rpy:='0 0 0' origin_xyz:='0 0 0' ">
+
+  <xacro:unless value="${connected_to == ''}">
+	  <joint name="${ns}_joint_${connected_to}" type="fixed">
+		  <parent link="${connected_to}"/>
+		  <child link="workcell-assembly-v2"/>
+		  <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+	  </joint>
+  </xacro:unless>
+
+  <!-- Used for fixing robot to Gazebo ground in case the robot is not connected to any other component -->
+  <xacro:if value="${connected_to == ''}">
+	  <link name="world"/>
+	  <joint name="fix_to_world" type="fixed">
+		  <parent link="world"/>
+		  <child link="workcell-assembly-v2"/>
+		  <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+	  </joint>
+  </xacro:if>
+  
+  <static>false</static>
+  
+  <!-- workcell-assembly-v2 -->
+  <link name="workcell-assembly-v2">
+    <pose>0 0 0.07 0 0 0</pose>
+    <inertial>
+      <mass>13.55</mass>
+      <inertia><ixx>0.294</ixx><iyy>0.294</iyy><izz>0.023</izz><ixy>0</ixy><ixz>0</ixz><iyz>0</iyz></inertia>
+    </inertial>
+    <collision name="collision">
+      <geometry>
+            <mesh filename="file://$(find urdf_models)/workcell_frame/meshes/workcell-assembly-v2.stl"/>
+            <!-- <uri>model://workcell-assembly-v2/meshes/workcell-assembly-v2.stl</uri> -->
+      </geometry>
+    </collision>
+    <visual name="visual">
+      <geometry>
+          <mesh filename="file://$(find urdf_models)/workcell_frame/meshes/workcell-assembly-v2.stl"/>
+      </geometry>
+    </visual>
+  </link>
+  
+  
+  <!-- robot-base-fixation1 -->
+  <link name="robot-base-fixation1">
+    <pose>0.62 0.138 0.97 0 0 0</pose>			<!-- to move the arm-base edit the x-coordinate -->
+    <inertial>
+      <mass>1.84</mass>
+      <inertia><ixx>0.294</ixx><iyy>0.294</iyy><izz>0.023</izz><ixy>0</ixy><ixz>0</ixz><iyz>0</iyz></inertia>
+    </inertial>
+    <collision name="collision">
+      <geometry>
+          <mesh filename="file://$(find urdf_models)/workcell_frame/meshes/robot-base-fixation.stl"/>
+      </geometry>
+    </collision>
+    <visual name="visual">
+      <geometry>
+          <mesh filename="file://$(find urdf_models)/workcell_frame/meshes/robot-base-fixation.stl"/>
+      </geometry>
+    </visual>
+  </link>
+  
+  <!-- robot-base-fixation2 -->
+  <link name="robot-base-fixation2">
+    <pose>1.42 0.138 0.97 0 0 0</pose>			<!-- to move the arm-base edit the x-coordinate -->
+    <inertial>
+      <mass>1.84</mass>
+      <inertia><ixx>0.294</ixx><iyy>0.294</iyy><izz>0.023</izz><ixy>0</ixy><ixz>0</ixz><iyz>0</iyz></inertia>
+    </inertial>
+    <collision name="collision">
+      <geometry>
+            <mesh filename="file://$(find urdf_models)/workcell_frame/meshes/robot-base-fixation.stl"/>
+      </geometry>
+    </collision>
+    <visual name="visual">
+      <geometry>
+          <mesh filename="file://$(find urdf_models)/workcell_frame/meshes/robot-base-fixation.stl"/>
+      </geometry>
+    </visual>
+  </link>
+  
+  <!-- camera-movable-fixation1 -->
+  <link name="camera-movable-fixation1">
+    <pose>0.02 0.42 2.25 0 0 0</pose>			<!-- to move the camera edit the y-coordinate -->
+    <inertial>
+      <mass>1.84</mass>
+      <inertia><ixx>0.294</ixx><iyy>0.294</iyy><izz>0.023</izz><ixy>0</ixy><ixz>0</ixz><iyz>0</iyz></inertia>
+    </inertial>
+    <collision name="collision">
+      <geometry>
+          <mesh filename="file://$(find urdf_models)/workcell_frame/meshes/camera-movable-fixation.stl"/>
+      </geometry>
+    </collision>
+    <visual name="visual">
+      <geometry>
+          <mesh filename="file://$(find urdf_models)/workcell_frame/meshes/camera-movable-fixation.stl"/>
+      </geometry>
+    </visual>
+  </link>
+  
+  <!-- camera-movable-fixation2 -->
+  <link name="camera-movable-fixation2">
+    <pose>1.04 0.62 2.25 0 0 0</pose>			<!-- to move the camera edit the y-coordinate -->
+    <inertial>
+      <mass>1.84</mass>
+      <inertia><ixx>0.294</ixx><iyy>0.294</iyy><izz>0.023</izz><ixy>0</ixy><ixz>0</ixz><iyz>0</iyz></inertia>
+    </inertial>
+    <collision name="collision">
+      <geometry>
+          <mesh filename="file://$(find urdf_models)/workcell_frame/meshes/camera-movable-fixation.stl"/>
+      </geometry>
+    </collision>
+    <visual name="visual">
+      <geometry>
+          <mesh filename="file://$(find urdf_models)/workcell_frame/meshes/camera-movable-fixation.stl"/>
+      </geometry>
+    </visual>
+  </link>
+  
+  
+  
+  
+  <!-- fix to ground -->
+  <joint name="fix-to-ground" type="fixed">
+    <pose>0 0 0 0 0 0</pose>
+    <parent>world</parent>
+    <child>workcell-assembly-v2</child>
+  </joint>
+  
+  <!-- fix robot-base-fixation1 to workcell -->
+  <joint name="fix-robot-base-fixation1" type="fixed">
+    <pose>0 0 0 0 0 0</pose>
+    <parent>workcell-assembly-v2</parent>
+    <child>robot-base-fixation1</child>
+  </joint>
+  
+  <!-- fix robot-base-fixation2 to workcell -->
+  <joint name="fix-robot-base-fixation2" type="fixed">
+    <pose>0 0 0 0 0 0</pose>
+    <parent>workcell-assembly-v2</parent>
+    <child>robot-base-fixation2</child>
+  </joint>
+  
+  <!-- fix camera-movable-fixation1 to workcell -->
+  <joint name="fix-camera-movable-fixation1" type="fixed">
+    <pose>0 0 0 0 0 0</pose>
+    <parent>workcell-assembly-v2</parent>
+    <child>camera-movable-fixation1</child>
+  </joint>
+  
+  <!-- fix camera-movable-fixation2 to workcell -->
+  <joint name="fix-camera-movable-fixation2" type="fixed">
+    <pose>0 0 0 0 0 0</pose>
+    <parent>workcell-assembly-v2</parent>
+    <child>camera-movable-fixation2</child>
+  </joint>
+  
+  
+</xacro:macro>
+</robot>

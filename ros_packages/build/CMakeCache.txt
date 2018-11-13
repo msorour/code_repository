@@ -1265,6 +1265,12 @@ trajectory_msgs_DIR:PATH=/opt/ros/kinetic/share/trajectory_msgs/cmake
 //The directory containing a CMake configuration file for urdf.
 urdf_DIR:PATH=/opt/ros/kinetic/share/urdf/cmake
 
+//Value Computed by CMake
+urdf_models_BINARY_DIR:STATIC=/home/work/code_repository/ros_packages/build/urdf_models
+
+//Value Computed by CMake
+urdf_models_SOURCE_DIR:STATIC=/home/work/code_repository/ros_packages/src/urdf_models
+
 //The directory containing a CMake configuration file for xacro.
 xacro_DIR:PATH=/opt/ros/kinetic/share/xacro/cmake
 
@@ -1461,7 +1467,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=20
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=18
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

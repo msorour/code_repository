@@ -41,7 +41,7 @@ RealSenseCamRosPlugin::~RealSenseCamRosPlugin(){}
 /////////////////////////////////////////////////
 void RealSenseCamRosPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf){
   // Output the name of the model
-  std::cout << std::endl << "RealSenseCamRosPlugin: The realsense_camera plugin is attach to model " << _model->GetName() << std::endl;
+  std::cout << std::endl << "RealSenseCamRosPlugin: The realsense_camera plugin is attached to model " << _model->GetName() << std::endl;
 
   // Store a pointer to the this model
   this->rsModel = _model;
@@ -98,17 +98,18 @@ void RealSenseCamRosPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
   }
   ROS_INFO("Realsense Gazebo ROS plugin loading.");
   
-  this->rosnode_ = new ros::NodeHandle("~/realsense");
+  std::string rosTopicRoot = "/" + this->rsModel->GetName();
+  this->rosnode_ = new ros::NodeHandle(rosTopicRoot + "/realsense");
 
   // initialize camera_info_manager
   this->camera_info_manager_.reset(new camera_info_manager::CameraInfoManager(*this->rosnode_, "realsensecam"));
   
   this->itnode_ = new image_transport::ImageTransport(*this->rosnode_);
   
-  this->color_pub_ = this->itnode_->advertiseCamera("/camera/color/image_raw", 2);
-  this->ir1_pub_ = this->itnode_->advertiseCamera("/camera/ir/image_raw", 2);
-  this->ir2_pub_ = this->itnode_->advertiseCamera("/camera/ir2/image_raw", 2);
-  this->depth_pub_ = this->itnode_->advertiseCamera("/camera/depth/image_raw", 2);
+  this->color_pub_ = this->itnode_->advertiseCamera(rosTopicRoot+"/camera/color/image_raw", 2);
+  this->ir1_pub_ = this->itnode_->advertiseCamera(rosTopicRoot+"/camera/ir/image_raw", 2);
+  this->ir2_pub_ = this->itnode_->advertiseCamera(rosTopicRoot+"/camera/ir2/image_raw", 2);
+  this->depth_pub_ = this->itnode_->advertiseCamera(rosTopicRoot+"/camera/depth/image_raw", 2);
 
 }
 

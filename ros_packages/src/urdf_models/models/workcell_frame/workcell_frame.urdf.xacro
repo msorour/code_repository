@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="workcell_frame">
+  <xacro:property name="cell_name" value="master_cell" />
+  <xacro:include filename="$(find urdf_models)/models/workcell_frame/workcell_frame.xacro"/>
+  <xacro:workcell_frame connected_to="" ns="${cell_name}" xyz="0 0 0.07" rpy="0 0 0" />
+  
+</robot>

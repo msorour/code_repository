@@ -1,11 +1,20 @@
 <?xml version='1.0' encoding='utf-8'?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda_arm_plus_allegro_right_hand">
   
-  <xacro:include filename="$(find franka_panda_arm_description)/model/panda_arm_gazebo.xacro" />
-  <xacro:include filename="$(find allegro_right_hand_description)/model/allegro_right_hand.xacro"/>
-  <xacro:panda_arm arm_id="panda_arm" xyz="0.62 0.138 0.986" rpy="0 0 ${pi/2}" />
+  <xacro:property name="cell_name" value="master_cell" />
+  
+  <!-- for .dae files visualization problem in Gazebo8 -->
   <transparent opaque="RGB_ZERO"> <color>1 1 1 1</color> </transparent> <transparency><float>1</float></transparency>
   
+  <!-- Workcell frame model -->
+  <xacro:include filename="$(find urdf_models)/models/workcell_frame/workcell_frame.xacro"/>
+  <xacro:workcell_frame connected_to="" ns="${cell_name}" xyz="0 0 0.07" rpy="0 0 0" />
+  
+  <!-- Franka-Panda arm model -->
+  <xacro:include filename="$(find franka_panda_arm_description)/model/panda_arm_gazebo.xacro" />
+  <xacro:panda_arm connected_to='${cell_name}_workcell_assembly' arm_id="panda_arm" xyz="0.62 0.138 0.986" rpy="0 0 ${pi/2}" />
+  
+  <!-- Franka-Panda arm to Allegro hand connection -->
   <link name="franka_panda_arm_allegro_hand_connection">
     <visual>
       <geometry>
@@ -33,9 +42,23 @@
     <origin xyz="0 0 0"/>
   </joint>
   
+  <!-- Allegro right hand model -->
+  <xacro:include filename="$(find allegro_right_hand_description)/model/allegro_right_hand.xacro"/>
   <!-- 0.0091=(-0.0113+0.0204) : -0.0113 to put the allegro hand Palm frame at zero position then add 0.0.0204(40.8mm/2) to put the same frame at center of panda-allegro-connection  -->
   <xacro:allegro_right_hand ns="panda_arm" x="-0.0091" y="0" z="0.02" roll="0" pitch="0" yaw="${pi}" connected_to="franka_panda_arm_allegro_hand_connection" />
   
+  <!-- ReadSense-d435 depth camera -->
+  <xacro:include filename="$(find realsense_d435_description)/model/realsense_d435.xacro"/>
+  <xacro:realsense_d435 connected_to="franka_panda_arm_allegro_hand_connection" ns="panda_arm" origin_rpy="0 ${-pi/2} 0" origin_xyz="-0.07 0 0" />
+  
+  <gazebo>
+    <plugin name="RealSenseCamRosPlugin" filename="libRealSenseCamRosPlugin.so"> </plugin>
+  </gazebo>
+  
+  <!-- Kinect v2 depth camera -->
+  <xacro:include filename="$(find kinect2_description)/urdf/kinect2/kinect2.xacro"/>
+  <kinect2_sensor parent="${cell_name}_workcell_assembly" prefix="" name="kinect2" cam_px="0.0" cam_py="0" cam_pz="2.40" cam_or="0" cam_op="0.52" cam_oy="0"/>
+
   <gazebo>
     <plugin name="generic_interface_plugin" filename="libgeneric_interface_plugin.so">
     	<joint1_init> 0.00 </joint1_init>
@@ -88,8 +111,4 @@
     </plugin>
   </gazebo>
   
-  <!-- Kinect v2 -->
- <xacro:include filename="$(find kinect2_description)/urdf/kinect2/kinect2.xacro"/>
- <kinect2_sensor parent="panda_arm_link8" prefix="" name="panda_arm_link8/kinect2" cam_px="0.0" cam_py="0" cam_pz="-0.20" cam_or="0" cam_op="0.52" cam_oy="0"/>
-
 </robot>

@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="workcell_frame">
+
+<xacro:macro name="workcell_frame" params="ns:='robot_cell' description_pkg:='urdf_models' connected_to:='' xyz:='0 0 0.07' rpy:='0 0 0'">
+
+<static>true</static>
+
+<xacro:unless value="${connected_to == ''}">
+	<joint name="${ns}_joint_${connected_to}" type="fixed">
+		<parent link="${connected_to}"/>
+		<child link="${ns}_workcell_assembly"/>
+		<origin rpy="${rpy}" xyz="${xyz}"/>
+	</joint>
+</xacro:unless>
+
+<!-- Used for fixing robot to Gazebo ground in case the robot is not connected to any other component -->
+<xacro:if value="${connected_to == ''}">
+	<link name="world"/>
+	<joint name="fix_to_world" type="fixed">
+		<parent link="world"/>
+		<child link="${ns}_workcell_assembly"/>
+		<origin xyz="${xyz}" rpy="${rpy}"/>
+	</joint>
+</xacro:if>
+
+<!-- Links -->
+<link name="${ns}_workcell_assembly">
+	<visual>
+		<geometry>
+		<mesh filename="package://${description_pkg}/models/workcell_frame/meshes/workcell_assembly.stl"/>
+		</geometry>
+	</visual>
+	<collision>
+		<geometry>
+		<mesh filename="package://${description_pkg}/models/workcell_frame/meshes/workcell_assembly.stl"/>
+		</geometry>
+	</collision>
+	<inertial>
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<mass value="2.0"/>
+		<inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+	</inertial>
+</link>
+
+<link name="arm1_base_fixation">
+	<visual>
+		<geometry>
+		<mesh filename="package://${description_pkg}/models/workcell_frame/meshes/arm_base_fixation.stl"/>
+		</geometry>
+	</visual>
+	<collision>
+		<geometry>
+		<mesh filename="package://${description_pkg}/models/workcell_frame/meshes/arm_base_fixation.stl"/>
+		</geometry>
+	</collision>
+	<inertial>
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<mass value="2.0"/>
+		<inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+	</inertial>
+</link>
+
+<link name="arm2_base_fixation">
+	<visual>
+		<geometry>
+		<mesh filename="package://${description_pkg}/models/workcell_frame/meshes/arm_base_fixation.stl"/>
+		</geometry>
+	</visual>
+	<collision>
+		<geometry>
+		<mesh filename="package://${description_pkg}/models/workcell_frame/meshes/arm_base_fixation.stl"/>
+		</geometry>
+	</collision>
+	<inertial>
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<mass value="2.0"/>
+		<inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+	</inertial>
+</link>
+
+<link name="camera1_fixation">
+	<visual>
+		<geometry>
+		<mesh filename="package://${description_pkg}/models/workcell_frame/meshes/camera_fixation.stl"/>
+		</geometry>
+	</visual>
+	<collision>
+		<geometry>
+		<mesh filename="package://${description_pkg}/models/workcell_frame/meshes/camera_fixation.stl"/>
+		</geometry>
+	</collision>
+	<inertial>
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<mass value="2.0"/>
+		<inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+	</inertial>
+</link>
+
+<link name="camera2_fixation">
+	<visual>
+		<geometry>
+		<mesh filename="package://${description_pkg}/models/workcell_frame/meshes/camera_fixation.stl"/>
+		</geometry>
+	</visual>
+	<collision>
+		<geometry>
+		<mesh filename="package://${description_pkg}/models/workcell_frame/meshes/camera_fixation.stl"/>
+		</geometry>
+	</collision>
+	<inertial>
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<mass value="2.0"/>
+		<inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+	</inertial>
+</link>
+
+
+
+<!-- Joints -->
+<joint name="arm1_base_fixation_joint" type="fixed">
+  <parent link="${ns}_workcell_assembly" />
+  <child link="arm1_base_fixation" />
+  <origin xyz="0.62 0.138 0.9" rpy="0 0 0"/>    <!-- to move the arm_base edit the x-coordinate -->
+</joint>
+
+<joint name="arm2_base_fixation_joint" type="fixed">
+  <parent link="${ns}_workcell_assembly" />
+  <child link="arm2_base_fixation" />
+  <origin xyz="1.42 0.138 0.9" rpy="0 0 0"/>    <!-- to move the arm_base edit the x-coordinate -->
+</joint>
+
+<joint name="camera1_fixation_joint" type="fixed">
+  <parent link="${ns}_workcell_assembly" />
+  <child link="camera1_fixation" />
+  <origin xyz="0.02 0.42 2.18" rpy="0 0 0"/>    <!-- to move the camera edit the y-coordinate -->
+</joint>
+
+<joint name="camera2_fixation_joint" type="fixed">
+  <parent link="${ns}_workcell_assembly" />
+  <child link="camera2_fixation" />
+  <origin xyz="1.04 0.62 2.18" rpy="0 0 0"/>    <!-- to move the camera edit the y-coordinate -->
+</joint>
+
+
+</xacro:macro>
+</robot>
+

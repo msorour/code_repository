@@ -1,5 +1,5 @@
-#ifndef _FRANKA_PANDA_CONTROL_PLUGIN_HH_
-#define _FRANKA_PANDA_CONTROL_PLUGIN_HH_
+#ifndef _GENERIC_INTERFACE_PLUGIN_HH_
+#define _GENERIC_INTERFACE_PLUGIN_HH_
 
 #include <functional>
 #include <gazebo/gazebo.hh>
