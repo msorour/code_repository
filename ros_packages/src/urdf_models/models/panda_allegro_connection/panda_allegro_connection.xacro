@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda_allegro_connection">
+
+<xacro:macro name="panda_allegro_connection" params="ns:='' description_pkg:='urdf_models' connected_to:='' xyz:='0 0 0' rpy:='0 0 0'">
+
+<static>false</static>
+
+<xacro:unless value="${connected_to == ''}">
+	<joint name="${ns}_joint_${connected_to}" type="fixed">
+		<parent link="${connected_to}"/>
+		<child link="${ns}_panda_allegro_connection"/>
+		<origin rpy="${rpy}" xyz="${xyz}"/>
+	</joint>
+</xacro:unless>
+
+<!-- Used for fixing robot to Gazebo ground in case the robot is not connected to any other component -->
+<xacro:if value="${connected_to == ''}">
+	<link name="world"/>
+	<joint name="fix_to_world" type="fixed">
+		<parent link="world"/>
+		<child link="${ns}_panda_allegro_connection"/>
+		<origin xyz="${xyz}" rpy="${rpy}"/>
+	</joint>
+</xacro:if>
+
+<link name="${ns}_panda_allegro_connection">
+  <visual>
+    <geometry>
+    <mesh filename="package://${description_pkg}/models/panda_allegro_connection/meshes/panda_allegro_realsense_connection.stl"/>
+    </geometry>
+    <origin rpy="0 0 ${pi/2}" xyz="0 0 0"/>
+  </visual>
+  <collision>
+    <geometry>
+    <mesh filename="package://${description_pkg}/models/panda_allegro_connection/meshes/panda_allegro_realsense_connection.stl"/>
+    </geometry>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </collision>
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="0.1"/>
+    <inertia ixx="0.001" ixy="0.001" ixz="0.001" iyy="0.001" iyz="0.001" izz="0.001"/>
+  </inertial>
+</link>
+<gazebo reference="${ns}_panda_allegro_connection"><material>Gazebo/BlueGlow</material></gazebo>
+
+</xacro:macro>
+</robot>
+

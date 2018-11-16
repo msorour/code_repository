@@ -43,6 +43,8 @@ string
 -
 memory
 -
+vector
+-
 
 /opt/ros/kinetic/include/camera_info_manager/camera_info_manager.h
 ros/ros.h

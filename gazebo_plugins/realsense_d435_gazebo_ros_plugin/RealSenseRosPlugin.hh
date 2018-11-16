@@ -19,6 +19,7 @@
 
 #include <string>
 #include <memory>
+#include <vector>
 
 namespace gazebo{
   /// \brief A plugin that simulates Real Sense camera streams.
@@ -97,6 +98,9 @@ namespace gazebo{
     /// \brief Pointer to the World Update event connection.
     protected: event::ConnectionPtr updateConnection;
     
+    // vector of sensors available
+    protected: sensors::Sensor_V sensor;
+    protected: std::vector<std::string> realsense_sensor;
     
     // ROS
     protected: boost::shared_ptr<camera_info_manager::CameraInfoManager> camera_info_manager_;

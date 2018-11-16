@@ -9,7 +9,7 @@ void GenericInterfacePlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf
   joint_count = _model->GetJointCount();
   std::string model_name = _model->GetName();
   // Safety check
-  if (joint_count==0){std::cerr << "Invalid joint count, plugin not loaded\n";return;}
+  if (joint_count==0){std::cerr << "GenericInterfacePlugin: nvalid joint count, plugin not loaded\n";return;}
   
   // A plugin attachment confirmation message
   std::cerr << "\nThe GenericInterfacePlugin is attached to model[" << model_name << "]\n";
@@ -20,7 +20,7 @@ void GenericInterfacePlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf
   // Get the joints
   this->joint = _model->GetJoints();
   for(int k=0; k<joint_count; k++)
-  	std::cerr << "Joint"<<k<< "Scoped Name: " << this->joint[k]->GetScopedName() << "\n";
+  	std::cerr << "GenericInterfacePlugin: Joint"<<k<< "Scoped Name: " << this->joint[k]->GetScopedName() << "\n";
   
   // Get number of active joints (assuming active joints are only revolute at the moment)
   for(int k=0; k<joint_count; k++){

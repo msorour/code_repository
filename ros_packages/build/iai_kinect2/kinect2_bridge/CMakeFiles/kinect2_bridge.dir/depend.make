@@ -5,6 +5,13 @@ iai_kinect2/kinect2_bridge/CMakeFiles/kinect2_bridge.dir/src/kinect2_bridge.cpp.
 iai_kinect2/kinect2_bridge/CMakeFiles/kinect2_bridge.dir/src/kinect2_bridge.cpp.o: /home/work/code_repository/ros_packages/src/iai_kinect2/kinect2_bridge/src/kinect2_bridge.cpp
 iai_kinect2/kinect2_bridge/CMakeFiles/kinect2_bridge.dir/src/kinect2_bridge.cpp.o: /home/work/code_repository/ros_packages/src/iai_kinect2/kinect2_registration/include/kinect2_registration/kinect2_console.h
 iai_kinect2/kinect2_bridge/CMakeFiles/kinect2_bridge.dir/src/kinect2_bridge.cpp.o: /home/work/code_repository/ros_packages/src/iai_kinect2/kinect2_registration/include/kinect2_registration/kinect2_registration.h
+iai_kinect2/kinect2_bridge/CMakeFiles/kinect2_bridge.dir/src/kinect2_bridge.cpp.o: /home/work/freenect2/include/libfreenect2/config.h
+iai_kinect2/kinect2_bridge/CMakeFiles/kinect2_bridge.dir/src/kinect2_bridge.cpp.o: /home/work/freenect2/include/libfreenect2/export.h
+iai_kinect2/kinect2_bridge/CMakeFiles/kinect2_bridge.dir/src/kinect2_bridge.cpp.o: /home/work/freenect2/include/libfreenect2/frame_listener.hpp
+iai_kinect2/kinect2_bridge/CMakeFiles/kinect2_bridge.dir/src/kinect2_bridge.cpp.o: /home/work/freenect2/include/libfreenect2/frame_listener_impl.h
+iai_kinect2/kinect2_bridge/CMakeFiles/kinect2_bridge.dir/src/kinect2_bridge.cpp.o: /home/work/freenect2/include/libfreenect2/libfreenect2.hpp
+iai_kinect2/kinect2_bridge/CMakeFiles/kinect2_bridge.dir/src/kinect2_bridge.cpp.o: /home/work/freenect2/include/libfreenect2/packet_pipeline.h
+iai_kinect2/kinect2_bridge/CMakeFiles/kinect2_bridge.dir/src/kinect2_bridge.cpp.o: /home/work/freenect2/include/libfreenect2/registration.h
 iai_kinect2/kinect2_bridge/CMakeFiles/kinect2_bridge.dir/src/kinect2_bridge.cpp.o: /opt/ros/kinetic/include/class_loader/./class_loader.hpp
 iai_kinect2/kinect2_bridge/CMakeFiles/kinect2_bridge.dir/src/kinect2_bridge.cpp.o: /opt/ros/kinetic/include/class_loader/class_loader.h
 iai_kinect2/kinect2_bridge/CMakeFiles/kinect2_bridge.dir/src/kinect2_bridge.cpp.o: /opt/ros/kinetic/include/class_loader/class_loader_core.hpp

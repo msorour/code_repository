@@ -8,7 +8,7 @@
   <arg name="headless" 			default="false"/>
   <arg name="debug" 				default="false"/>
 	
-	<arg name="arm_name" 			value="franka_panda_arm_plus_allegro_right_hand" />
+	<arg name="arm_name" 			value="master_cell" />
 	
 	<!-- Load the URDF into the ROS Parameter Server -->
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(find franka_panda_arm_plus_allegro_right_hand_control_gazebo)/model/franka_panda_arm_plus_allegro_right_hand_control_gazebo_plugin.urdf.xacro" />

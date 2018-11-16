@@ -116,12 +116,12 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/work/code_repository/ros_packages/build/gtest/cmake_install.cmake")
   include("/home/work/code_repository/ros_packages/build/iai_kinect2/iai_kinect2/cmake_install.cmake")
   include("/home/work/code_repository/ros_packages/build/iai_kinect2/kinect2_registration/cmake_install.cmake")
   include("/home/work/code_repository/ros_packages/build/iai_kinect2/kinect2_bridge/cmake_install.cmake")
   include("/home/work/code_repository/ros_packages/build/iai_kinect2/kinect2_calibration/cmake_install.cmake")
   include("/home/work/code_repository/ros_packages/build/iai_kinect2/kinect2_viewer/cmake_install.cmake")
+  include("/home/work/code_repository/ros_packages/build/realsense/realsense2_camera/cmake_install.cmake")
   include("/home/work/code_repository/ros_packages/build/allegro_right_hand_control_gazebo/cmake_install.cmake")
   include("/home/work/code_repository/ros_packages/build/allegro_right_hand_description/cmake_install.cmake")
   include("/home/work/code_repository/ros_packages/build/franka_panda_arm_control_gazebo/cmake_install.cmake")

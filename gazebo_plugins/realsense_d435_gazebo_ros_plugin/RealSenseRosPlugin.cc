@@ -1,10 +1,10 @@
 #include "RealSenseRosPlugin.hh"
 #include <sensor_msgs/fill_image.h>
 
-#define DEPTH_PUB_FREQ_HZ 60
-#define COLOR_PUB_FREQ_HZ 60
-#define IRED1_PUB_FREQ_HZ 60
-#define IRED2_PUB_FREQ_HZ 60
+#define DEPTH_PUB_FREQ_HZ 30
+#define COLOR_PUB_FREQ_HZ 30
+#define IRED1_PUB_FREQ_HZ 30
+#define IRED2_PUB_FREQ_HZ 30
 
 #define DEPTH_CAMERA_NAME "depth"
 #define COLOR_CAMERA_NAME "color"
@@ -42,7 +42,12 @@ RealSenseCamRosPlugin::~RealSenseCamRosPlugin(){}
 void RealSenseCamRosPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf){
   // Output the name of the model
   std::cout << std::endl << "RealSenseCamRosPlugin: The realsense_camera plugin is attached to model " << _model->GetName() << std::endl;
-
+  
+  std::string model_name = _model->GetName();
+  int sensor_count = _model->GetSensorCount();
+  std::cerr << "RealSenseCamRosPlugin: model_name: "<< model_name << "\n";
+  std::cerr << "RealSenseCamRosPlugin: sensor_count: "<< sensor_count << "\n";
+  
   // Store a pointer to the this model
   this->rsModel = _model;
 
@@ -51,13 +56,30 @@ void RealSenseCamRosPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
 
   // Sensors Manager
   sensors::SensorManager *smanager = sensors::SensorManager::Instance();
-
+  
+  this->sensor = smanager->GetSensors();
+  
+  // Get sensor names
+  for(int k=0; k<sensor_count; k++){
+  	std::cerr << "RealSenseCamRosPlugin: Sensor"<<k<< ": " << this->sensor[k]->Name() << "\n";
+  	if(this->sensor[k]->Name().find("realsense") != std::string::npos)
+  	  this->realsense_sensor.push_back(this->sensor[k]->Name());
+  }
+  std::cerr << "\n";
+  for(int k=0; k<sensor_count; k++)
+  	std::cerr << "RealSenseCamRosPlugin: Sensor"<<k<< ": " << this->realsense_sensor[k] << "\n";
+  std::cerr << "\n";
   // Get Cameras Renderers
+  this->depthCam = std::dynamic_pointer_cast<sensors::DepthCameraSensor>(smanager->GetSensor(this->realsense_sensor[3]))->DepthCamera();
+  this->ired1Cam = std::dynamic_pointer_cast<sensors::CameraSensor>     (smanager->GetSensor(this->realsense_sensor[2]))->Camera();
+  this->ired2Cam = std::dynamic_pointer_cast<sensors::CameraSensor>     (smanager->GetSensor(this->realsense_sensor[1]))->Camera();
+  this->colorCam = std::dynamic_pointer_cast<sensors::CameraSensor>     (smanager->GetSensor(this->realsense_sensor[0]))->Camera();
+  /*
   this->depthCam = std::dynamic_pointer_cast<sensors::DepthCameraSensor>(smanager->GetSensor(DEPTH_CAMERA_NAME))->DepthCamera();
   this->ired1Cam = std::dynamic_pointer_cast<sensors::CameraSensor>     (smanager->GetSensor(IRED1_CAMERA_NAME))->Camera();
   this->ired2Cam = std::dynamic_pointer_cast<sensors::CameraSensor>     (smanager->GetSensor(IRED2_CAMERA_NAME))->Camera();
   this->colorCam = std::dynamic_pointer_cast<sensors::CameraSensor>     (smanager->GetSensor(COLOR_CAMERA_NAME))->Camera();
-
+  */
   // Check if camera renderers have been found successfuly
   if (!this->depthCam){std::cerr << "RealSenseCamRosPlugin: Depth Camera has not been found"      << std::endl; return;}
   if (!this->ired1Cam){std::cerr << "RealSenseCamRosPlugin: InfraRed Camera 1 has not been found" << std::endl; return;}
@@ -66,14 +88,15 @@ void RealSenseCamRosPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
 
   // Resize Depth Map dimensions
   try{this->depthMap.resize(this->depthCam->ImageWidth() * this->depthCam->ImageHeight());}
-  catch (std::bad_alloc &e){std::cerr << "RealSenseCamRosPlugin: depthMap allocation failed: " << e.what() << std::endl; return;}
+  catch(std::bad_alloc &e){std::cerr << "RealSenseCamRosPlugin: depthMap allocation failed: " << e.what() << std::endl; return;}
 
   // Setup Transport Node
   this->transportNode = transport::NodePtr(new transport::Node());
-  this->transportNode->Init(this->world->GetName());
+  //this->transportNode->Init(this->world->GetName());    //Gazebo7
+  this->transportNode->Init(this->world->Name());         //Gazebo8
 
   // Setup Publishers
-  std::string rsTopicRoot = "~/" + this->rsModel->GetName() + "/rs/stream/";
+  std::string rsTopicRoot = "~/" + model_name + "/realsense/stream/";
 
   this->depthPub = this->transportNode->Advertise<msgs::ImageStamped>(rsTopicRoot + DEPTH_CAMERA_TOPIC, 1, DEPTH_PUB_FREQ_HZ);
   this->ired1Pub = this->transportNode->Advertise<msgs::ImageStamped>(rsTopicRoot + IRED1_CAMERA_TOPIC, 1, DEPTH_PUB_FREQ_HZ);
@@ -98,7 +121,7 @@ void RealSenseCamRosPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
   }
   ROS_INFO("Realsense Gazebo ROS plugin loading.");
   
-  std::string rosTopicRoot = "/" + this->rsModel->GetName();
+  std::string rosTopicRoot = "/" + model_name;
   this->rosnode_ = new ros::NodeHandle(rosTopicRoot + "/realsense");
 
   // initialize camera_info_manager
@@ -106,10 +129,10 @@ void RealSenseCamRosPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
   
   this->itnode_ = new image_transport::ImageTransport(*this->rosnode_);
   
-  this->color_pub_ = this->itnode_->advertiseCamera(rosTopicRoot+"/camera/color/image_raw", 2);
-  this->ir1_pub_ = this->itnode_->advertiseCamera(rosTopicRoot+"/camera/ir/image_raw", 2);
-  this->ir2_pub_ = this->itnode_->advertiseCamera(rosTopicRoot+"/camera/ir2/image_raw", 2);
-  this->depth_pub_ = this->itnode_->advertiseCamera(rosTopicRoot+"/camera/depth/image_raw", 2);
+  this->color_pub_ = this->itnode_->advertiseCamera(rosTopicRoot+"/realsense/color/image_raw", 2);
+  this->ir1_pub_ = this->itnode_->advertiseCamera(rosTopicRoot+"/realsense/ir/image_raw", 2);
+  this->ir2_pub_ = this->itnode_->advertiseCamera(rosTopicRoot+"/realsense/ir2/image_raw", 2);
+  this->depth_pub_ = this->itnode_->advertiseCamera(rosTopicRoot+"/realsense/depth/image_raw", 2);
 
 }
 
@@ -118,7 +141,8 @@ void RealSenseCamRosPlugin::OnNewFrame(const rendering::CameraPtr cam, const tra
   msgs::ImageStamped msg;
 
   // Set Simulation Time
-  msgs::Set(msg.mutable_time(), this->world->GetSimTime());
+  //msgs::Set(msg.mutable_time(), this->world->GetSimTime());       // Gazebo7
+  msgs::Set(msg.mutable_time(), this->world->SimTime().Double());   // Gazebo8
 
   // Set Image Dimensions
   msg.mutable_image()->set_width(cam->ImageWidth());
@@ -136,7 +160,8 @@ void RealSenseCamRosPlugin::OnNewFrame(const rendering::CameraPtr cam, const tra
   
   
   // ROS
-  common::Time current_time = this->world->GetSimTime();
+  //common::Time current_time = this->world->GetSimTime();       // Gazebo7
+  common::Time current_time = this->world->SimTime().Double();   // Gazebo8
 
   // identify camera
   std::string camera_id = cam->Name();
@@ -194,7 +219,8 @@ void RealSenseCamRosPlugin::OnNewDepthFrame(){
   }
 
   // Pack realsense scaled depth map
-  msgs::Set(msg.mutable_time(), this->world->GetSimTime());
+  //msgs::Set(msg.mutable_time(), this->world->GetSimTime());       // Gazebo7
+  msgs::Set(msg.mutable_time(), this->world->SimTime().Double());   // Gazebo8
   msg.mutable_image()->set_width(this->depthCam->ImageWidth());
   msg.mutable_image()->set_height(this->depthCam->ImageHeight());
   msg.mutable_image()->set_pixel_format(common::Image::L_INT16);
@@ -210,7 +236,8 @@ void RealSenseCamRosPlugin::OnNewDepthFrame(){
   
   // ROS
   // get current time
-  common::Time current_time = this->world->GetSimTime();
+  //common::Time current_time = this->world->GetSimTime();       // Gazebo7
+  common::Time current_time = this->world->SimTime().Double();   // Gazebo8
 
   // copy data into image
   this->depth_msg_.header.frame_id = COLOR_CAMERA_NAME;

@@ -30,5 +30,10 @@ sudo apt-get install ros-kinetic-navigation-oru
 source /opt/ros/kinetic/setup.bash
 
 
+install (real )realsense ROS package by following instructions here:
+https://github.com/intel-ros/realsense
+
+
+
 ##
 

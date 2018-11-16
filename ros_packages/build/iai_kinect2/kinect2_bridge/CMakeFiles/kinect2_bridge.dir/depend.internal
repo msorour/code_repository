@@ -6,6 +6,13 @@ iai_kinect2/kinect2_bridge/CMakeFiles/kinect2_bridge.dir/src/kinect2_bridge.cpp.
  /home/work/code_repository/ros_packages/src/iai_kinect2/kinect2_bridge/src/kinect2_bridge.cpp
  /home/work/code_repository/ros_packages/src/iai_kinect2/kinect2_registration/include/kinect2_registration/kinect2_console.h
  /home/work/code_repository/ros_packages/src/iai_kinect2/kinect2_registration/include/kinect2_registration/kinect2_registration.h
+ /home/work/freenect2/include/libfreenect2/config.h
+ /home/work/freenect2/include/libfreenect2/export.h
+ /home/work/freenect2/include/libfreenect2/frame_listener.hpp
+ /home/work/freenect2/include/libfreenect2/frame_listener_impl.h
+ /home/work/freenect2/include/libfreenect2/libfreenect2.hpp
+ /home/work/freenect2/include/libfreenect2/packet_pipeline.h
+ /home/work/freenect2/include/libfreenect2/registration.h
  /opt/ros/kinetic/include/class_loader/./class_loader.hpp
  /opt/ros/kinetic/include/class_loader/class_loader.h
  /opt/ros/kinetic/include/class_loader/class_loader_core.hpp

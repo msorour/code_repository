@@ -122,17 +122,6 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # The main all target
 all: cmake_check_build_system
 	cd /home/work/code_repository/ros_packages/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/ros_packages/build/CMakeFiles /home/work/code_repository/ros_packages/build/allegro_right_hand_control_gazebo/CMakeFiles/progress.marks
@@ -667,7 +656,6 @@ help:
 	@echo "... trajectory_msgs_generate_messages_nodejs"
 	@echo "... install"
 	@echo "... std_srvs_generate_messages_cpp"
-	@echo "... test"
 	@echo "... std_srvs_generate_messages_eus"
 	@echo "... nav_msgs_generate_messages_py"
 	@echo "... std_srvs_generate_messages_lisp"
