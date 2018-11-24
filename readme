@@ -1,25 +1,6 @@
 
-## Install ROS + GAZEBO-8:
-*install Gazebo8 from LCAS repository 
-(https://github.com/CentroEPiaggio/iliad_wiki/wiki/1.-ROS-Kinetic-and-Gazebo8-setup)
-(https://github.com/LCAS/rosdistro/wiki#using-the-l-cas-repository-if-you-just-want-to-use-our-software):
-
-1. add the L-CAS public key to verify packages:
->> curl -s http://lcas.lincoln.ac.uk/repos/public.key | sudo apt-key add -
-
-2. add the L-CAS repository:
->> sudo apt-add-repository http://lcas.lincoln.ac.uk/ubuntu/main
-
-3. update your index:
->> sudo apt-get update
-
-4. 
->> sudo apt-get install ros-kinetic-navigation-oru
->> sudo apt-get install ros-kinetic-spencer-people-tracking-full
->> sudo apt-get install ros-indigo-strands-desktop
-
-OR:
-
+### Install ROS Kinetic + GAZEBO-8:
+###################################
 sudo apt-get remove ros-kinetic-desktop-full
 sudo apt-get remove ros-kinetic-gazebo*
 sudo apt-get upgrade
@@ -29,11 +10,65 @@ sudo apt-get install ros-kinetic-orunav-mpc
 sudo apt-get install ros-kinetic-navigation-oru
 source /opt/ros/kinetic/setup.bash
 
-
+### Realsense depth camera "REAL HARDWARE":
+###########################################
 install (real )realsense ROS package by following instructions here:
 https://github.com/intel-ros/realsense
 
+### INSTALL the ALLEGRO-HAND "REAL HARDWARE" (last checked to work: 24-11-2018):
+#############################################
+instructions in this file are updated from those found in : http://wiki.wonikrobotics.com/AllegroHandWiki/index.php/Allegro_Hand_Linux_Project
+
+1. install necessary packages:
+sudo apt-get install cmake gcc g++ libpopt-dev
+
+2. install PCAN-USB driver for Linux (version 8.6.0 tested to work):
+-> download the driver: https://www.peak-system.com/fileadmin/media/linux/index.htm#download
+tar -xzvf peak-linux-driver-x.x.tar.gz
+cd peak-linux-driver-x.x
+make NET=NO
+sudo make install
+sudo modprobe pcan
+
+3. install PCAN-Basic API for Linux:
+-> scroll down to and download "PCAN-Basic API (Linux)" at this webpage: https://www.peak-system.com/Software-APIs.305.0.html?&L=1
+tar -xzvf PCAN_Basic_Linux-x.x.x.tar.gz
+cd PCAN_Basic_Linux-x.x.x/pcanbasic
+make
+sudo make install
+
+4. install Grasping Library for Linux, "libBHand":
+-> download from: http://wiki.wonikrobotics.com/AllegroHandWiki/index.php/Grasping_Library_for_Linux
+unzip LibBHand_{32|64}.zip
+cd libBHand_{32|64}
+sudo make install
+sudo ldconfig
+
+5. build Allegro Hand Project using cmake "out of source build" style:
+-> download from: https://github.com/simlabrobotics/allegro_hand_linux
+unzip Allegro_hand_linux.zip
+cd allegro_hand_linux
+mkdir build
+cd build
+cmake ..
+make
+make install
+
+6. Connect PCAN-USB and Allegro Hand (make sure to power off Allegro Hand)
+-> to connect the Allegro hand to PEAK-PCAN (know the CAN_L and CAN_H pins) refer to the datasheet:
+http://wiki.wonikrobotics.com/AllegroHandWiki/images/e/e6/PEAK_PCAN_Data_Sheet.pdf
+where "green wire of allegro hand cable" to be connected to "CAN_L" and the "yellow" one to the "CAN_H" 
+
+7. Start the grasping program: "grasp":
+./build/bin/grasp
+
+8. Power on Allegro Hand.
+
+9. Use keyboard command to move Allegro Hand (fingers move relatively fast, so don't panic!):
+h -> home position
+g -> grasp1 (this one is not good!)
+k -> grasp2
+q -> quit
 
 
-##
 
