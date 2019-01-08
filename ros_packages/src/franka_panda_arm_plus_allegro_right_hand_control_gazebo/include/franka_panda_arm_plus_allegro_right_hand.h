@@ -1,3 +1,4 @@
+
 namespace franka_panda_gazebo_controller
 {
 	Eigen::VectorXd joint_velocity_error(7);

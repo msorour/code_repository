@@ -1,0 +1,10 @@
+/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles/edit_cache.dir
+/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles/rebuild_cache.dir
+/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles/region_of_interest.dir
+/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles/pcd_read.dir
+/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles/cloud_visualizer.dir
+/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles/allegro_finger_workspace_in_ellipsoids.dir
+/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles/pcd_write_test.dir
+/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles/allegro_hand_workspace_visualisation.dir
+/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles/allegro_right_hand_to_point_cloud.dir
+/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles/stl_to_point_cloud_visualizer.dir

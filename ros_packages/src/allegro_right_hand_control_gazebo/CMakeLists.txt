@@ -13,6 +13,11 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   xacro
+  
+  PCL
+  VTK
+  pcl_conversions
+  pcl_ros
 )
 
 ## System dependencies are found with CMake's conventions

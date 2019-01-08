@@ -1,10 +1,24 @@
 #include "ros/ros.h"
+#include <image_transport/image_transport.h>
+#include <cv_bridge/cv_bridge.h>
+#include <sensor_msgs/image_encodings.h>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/highgui/highgui.hpp>
+
+#include <pcl/visualization/pcl_visualizer.h>
+#include <pcl/io/pcd_io.h>
+#include <sensor_msgs/PointCloud2.h>
+#include <pcl_conversions/pcl_conversions.h>
+#include <pcl/point_cloud.h>
+#include <pcl/point_types.h>
+
 #include "std_msgs/Float32MultiArray.h"
 #include "../../../include/Eigen/Dense"
 #include "../../../include/useful_implementations.h"
 #include "../../../include/AllegroRightHandModel.h"
 #include "../../../include/FrankaPandaArmModel.h"
 #include "../include/franka_panda_arm_plus_allegro_right_hand.h"
+
 #include <iostream>
 #include <fstream>
 #include <time.h>
@@ -13,9 +27,38 @@ using namespace std;
 using namespace Eigen;
 using namespace franka_panda_gazebo_controller;
 
+
 void log_data(void);
 void open_logs(void);
 void close_logs(void);
+
+// /master_cell/kinect2/sd/points
+
+class ImageConverter{
+  ros::NodeHandle nh_;
+  image_transport::ImageTransport it_;
+  image_transport::Subscriber image_sub_;
+
+  public:
+    std::string window_name="";
+    ImageConverter(std::string image_topic_name) : it_(nh_){
+      // Subscrive to input video feed
+      image_sub_ = it_.subscribe(image_topic_name, 1, &ImageConverter::imageCb, this);
+      cv::namedWindow(window_name);
+    }
+    
+    ~ImageConverter(){cv::destroyWindow(window_name);}
+
+    void imageCb(const sensor_msgs::ImageConstPtr& msg){
+      cv_bridge::CvImagePtr cv_ptr;
+      try{cv_ptr = cv_bridge::toCvCopy(msg);}
+      catch (cv_bridge::Exception& e){ROS_ERROR("cv_bridge exception: %s", e.what()); return;}
+      
+      // Update GUI Window
+      cv::imshow(window_name, cv_ptr->image);
+      cv::waitKey(3);
+    }
+};
 
 void GetJointPositionState(const std_msgs::Float32MultiArray::ConstPtr& _msg){
   joint_position_sim_time = _msg->data[0];
@@ -56,9 +99,10 @@ int main(int argc, char **argv){
   ros::Subscriber JointPositionStateSub = n.subscribe("/"+model_name+"/joint_state/position", 10, GetJointPositionState);
   ros::Subscriber JointVelocityStateSub = n.subscribe("/"+model_name+"/joint_state/velocity", 10, GetJointVelocityState);
   ros::Rate loop_rate(100);
+  
 	
 	// Wait for a few moments till correct joint values are loaded
-	while (ros::ok() and ros::Time::now().toSec() < start_program_delay ){
+	while (ros::ok() and ros::Time::now().toSec() < start_program_delay*10 ){
   	ros::spinOnce();
     loop_rate.sleep();
   }
@@ -74,14 +118,11 @@ int main(int argc, char **argv){
 	arm_joint_safe_mean = (arm_joint_safe_max+arm_joint_safe_min)/2;
 	
 	pose_rpy_bE_desired << 0.2, -0.2, 0.3, 0, 0, 0;
-	position_Ptt_desired << 0.02, 0.05, 0.07;
-	position_Pit_desired << 0.04, 0.05, 0.15;
-	position_Pmt_desired << 0.04, 0.0, 0.15;
-	position_Ppt_desired << 0.04, -0.05, 0.15;
-	    position_Ptt_desired << 0.08, 0.07, 0.04;
-    	position_Pit_desired << 0.07, 0.05, 0.17;
-    	position_Pmt_desired << 0.07, 0.0, 0.17;
-    	position_Ppt_desired << 0.07, -0.05, 0.17;
+	
+  position_Ptt_desired << 0.08, 0.07, 0.04;
+	position_Pit_desired << 0.07, 0.05, 0.17;
+	position_Pmt_desired << 0.07, 0.0, 0.17;
+	position_Ppt_desired << 0.07, -0.05, 0.17;
 	
 	start_time = ros::Time::now().toSec();
 	trajectory_duration = 5.0;
@@ -95,13 +136,27 @@ int main(int argc, char **argv){
  	cout << "initial pose_rpy_bE = " << pose_rpy_bE.transpose()  << endl;
  	pose_rpy_bE_init = pose_rpy_bE;
  	
+ 	
+ 	
+ 	
+ 	
+ 	
+  
+  
+  
+  
+  
+  
+  
+ 	
+ 	
  	time_now = ros::Time::now().toSec();
  	time_past = time_now;
 	
 	geometric_jacobian = arm_geometric_jacobian_matrix(arm_joint_position,"base");
 	geometric_jacobian_past = geometric_jacobian;
 	open_logs();
-  //while (ros::ok() and ros::Time::now().toSec()<20 ){
+	//while (ros::ok() and ros::Time::now().toSec()<20 ){
   while (ros::ok()){
   	time_now = ros::Time::now().toSec();
   	//cout << "time_now = " << time_now  << endl;
@@ -261,7 +316,6 @@ int main(int argc, char **argv){
     loop_rate.sleep();
   }
   close_logs();
-	
   return 0;
 }
 

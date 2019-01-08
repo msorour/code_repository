@@ -108,7 +108,7 @@ void RealSenseCamRosPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
   this->newIred1FrameConn = this->ired1Cam->ConnectNewImageFrame(std::bind(&RealSenseCamRosPlugin::OnNewFrame, this, this->ired1Cam, this->ired1Pub));
   this->newIred2FrameConn = this->ired2Cam->ConnectNewImageFrame(std::bind(&RealSenseCamRosPlugin::OnNewFrame, this, this->ired2Cam, this->ired2Pub));
   this->newColorFrameConn = this->colorCam->ConnectNewImageFrame(std::bind(&RealSenseCamRosPlugin::OnNewFrame, this, this->colorCam, this->colorPub));
-  
+
   // Listen to the update event
   this->updateConnection = event::Events::ConnectWorldUpdateBegin(boost::bind(&RealSenseCamRosPlugin::OnUpdate, this));
   
@@ -129,10 +129,10 @@ void RealSenseCamRosPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
   
   this->itnode_ = new image_transport::ImageTransport(*this->rosnode_);
   
-  this->color_pub_ = this->itnode_->advertiseCamera(rosTopicRoot+"/realsense/color/image_raw", 2);
-  this->ir1_pub_ = this->itnode_->advertiseCamera(rosTopicRoot+"/realsense/ir/image_raw", 2);
-  this->ir2_pub_ = this->itnode_->advertiseCamera(rosTopicRoot+"/realsense/ir2/image_raw", 2);
-  this->depth_pub_ = this->itnode_->advertiseCamera(rosTopicRoot+"/realsense/depth/image_raw", 2);
+  this->color_pub_  = this->itnode_->advertiseCamera(rosTopicRoot+"/realsense/color/image_raw", 2);
+  this->ir1_pub_    = this->itnode_->advertiseCamera(rosTopicRoot+"/realsense/ir1/image_raw", 2);
+  this->ir2_pub_    = this->itnode_->advertiseCamera(rosTopicRoot+"/realsense/ir2/image_raw", 2);
+  this->depth_pub_  = this->itnode_->advertiseCamera(rosTopicRoot+"/realsense/depth/image_raw", 2);
 
 }
 
@@ -224,14 +224,11 @@ void RealSenseCamRosPlugin::OnNewDepthFrame(){
   msg.mutable_image()->set_width(this->depthCam->ImageWidth());
   msg.mutable_image()->set_height(this->depthCam->ImageHeight());
   msg.mutable_image()->set_pixel_format(common::Image::L_INT16);
-  msg.mutable_image()->set_step(this->depthCam->ImageWidth() *
-                                this->depthCam->ImageDepth());
-  msg.mutable_image()->set_data(
-      this->depthMap.data(),
-      sizeof(*this->depthMap.data()) * imageSize);
+  msg.mutable_image()->set_step(this->depthCam->ImageWidth() * this->depthCam->ImageDepth());
+  msg.mutable_image()->set_data(this->depthMap.data(), sizeof(*this->depthMap.data()) * imageSize);
 
   // Publish realsense scaled depth map
-  this->depthPub->Publish(msg);
+  // this->depthPub->Publish(msg);
   
   
   // ROS

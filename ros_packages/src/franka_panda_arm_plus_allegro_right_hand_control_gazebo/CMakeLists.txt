@@ -13,6 +13,17 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   xacro
+  
+  OpenCV
+  sensor_msgs
+  cv_bridge
+  std_msgs
+  image_transport
+  
+  PCL
+  VTK
+  pcl_conversions
+  pcl_ros
 )
 
 ## System dependencies are found with CMake's conventions
@@ -205,4 +216,7 @@ target_link_libraries(franka_panda_arm_plus_allegro_right_hand_gazebo_joint_cont
 
 add_executable(franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy src/franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy.cpp)
 target_link_libraries(franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy ${catkin_LIBRARIES})
+
+add_executable(workcell_high_level_control src/high_level_control.cpp)
+target_link_libraries(workcell_high_level_control ${catkin_LIBRARIES})
 

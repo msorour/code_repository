@@ -1390,84 +1390,6 @@ realsense2_camera_gennodejs/fast:
 .PHONY : realsense2_camera_gennodejs/fast
 
 #=============================================================================
-# Target rules for targets named allegro_right_hand_joint_controller
-
-# Build rule for target.
-allegro_right_hand_joint_controller: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_joint_controller
-.PHONY : allegro_right_hand_joint_controller
-
-# fast build rule for target.
-allegro_right_hand_joint_controller/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_joint_controller.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_joint_controller.dir/build
-.PHONY : allegro_right_hand_joint_controller/fast
-
-#=============================================================================
-# Target rules for targets named allegro_right_hand_controller
-
-# Build rule for target.
-allegro_right_hand_controller: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_controller
-.PHONY : allegro_right_hand_controller
-
-# fast build rule for target.
-allegro_right_hand_controller/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_controller.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_controller.dir/build
-.PHONY : allegro_right_hand_controller/fast
-
-#=============================================================================
-# Target rules for targets named nav_msgs_generate_messages_nodejs
-
-# Build rule for target.
-nav_msgs_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 nav_msgs_generate_messages_nodejs
-.PHONY : nav_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-nav_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build
-.PHONY : nav_msgs_generate_messages_nodejs/fast
-
-#=============================================================================
-# Target rules for targets named allegro_right_hand_control_gazebo_xacro_generated_to_devel_space_
-
-# Build rule for target.
-allegro_right_hand_control_gazebo_xacro_generated_to_devel_space_: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_control_gazebo_xacro_generated_to_devel_space_
-.PHONY : allegro_right_hand_control_gazebo_xacro_generated_to_devel_space_
-
-# fast build rule for target.
-allegro_right_hand_control_gazebo_xacro_generated_to_devel_space_/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_control_gazebo_xacro_generated_to_devel_space_.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_control_gazebo_xacro_generated_to_devel_space_.dir/build
-.PHONY : allegro_right_hand_control_gazebo_xacro_generated_to_devel_space_/fast
-
-#=============================================================================
-# Target rules for targets named nav_msgs_generate_messages_lisp
-
-# Build rule for target.
-nav_msgs_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 nav_msgs_generate_messages_lisp
-.PHONY : nav_msgs_generate_messages_lisp
-
-# fast build rule for target.
-nav_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build
-.PHONY : nav_msgs_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named nav_msgs_generate_messages_eus
-
-# Build rule for target.
-nav_msgs_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 nav_msgs_generate_messages_eus
-.PHONY : nav_msgs_generate_messages_eus
-
-# fast build rule for target.
-nav_msgs_generate_messages_eus/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/nav_msgs_generate_messages_eus.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/nav_msgs_generate_messages_eus.dir/build
-.PHONY : nav_msgs_generate_messages_eus/fast
-
-#=============================================================================
 # Target rules for targets named allegro_right_hand_finger_workspace
 
 # Build rule for target.
@@ -1481,225 +1403,30 @@ allegro_right_hand_finger_workspace/fast:
 .PHONY : allegro_right_hand_finger_workspace/fast
 
 #=============================================================================
-# Target rules for targets named gazebo_msgs_generate_messages_py
+# Target rules for targets named allegro_right_hand_joint_controller
 
 # Build rule for target.
-gazebo_msgs_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gazebo_msgs_generate_messages_py
-.PHONY : gazebo_msgs_generate_messages_py
+allegro_right_hand_joint_controller: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_joint_controller
+.PHONY : allegro_right_hand_joint_controller
 
 # fast build rule for target.
-gazebo_msgs_generate_messages_py/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build
-.PHONY : gazebo_msgs_generate_messages_py/fast
+allegro_right_hand_joint_controller/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_joint_controller.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_joint_controller.dir/build
+.PHONY : allegro_right_hand_joint_controller/fast
 
 #=============================================================================
-# Target rules for targets named gazebo_plugins_gencfg
+# Target rules for targets named std_srvs_generate_messages_py
 
 # Build rule for target.
-gazebo_plugins_gencfg: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gazebo_plugins_gencfg
-.PHONY : gazebo_plugins_gencfg
+std_srvs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_srvs_generate_messages_py
+.PHONY : std_srvs_generate_messages_py
 
 # fast build rule for target.
-gazebo_plugins_gencfg/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/gazebo_plugins_gencfg.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/gazebo_plugins_gencfg.dir/build
-.PHONY : gazebo_plugins_gencfg/fast
-
-#=============================================================================
-# Target rules for targets named gazebo_msgs_generate_messages_lisp
-
-# Build rule for target.
-gazebo_msgs_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gazebo_msgs_generate_messages_lisp
-.PHONY : gazebo_msgs_generate_messages_lisp
-
-# fast build rule for target.
-gazebo_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/build
-.PHONY : gazebo_msgs_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named gazebo_msgs_generate_messages_nodejs
-
-# Build rule for target.
-gazebo_msgs_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gazebo_msgs_generate_messages_nodejs
-.PHONY : gazebo_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-gazebo_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/build
-.PHONY : gazebo_msgs_generate_messages_nodejs/fast
-
-#=============================================================================
-# Target rules for targets named trajectory_msgs_generate_messages_lisp
-
-# Build rule for target.
-trajectory_msgs_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 trajectory_msgs_generate_messages_lisp
-.PHONY : trajectory_msgs_generate_messages_lisp
-
-# fast build rule for target.
-trajectory_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/build
-.PHONY : trajectory_msgs_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named gazebo_msgs_generate_messages_eus
-
-# Build rule for target.
-gazebo_msgs_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gazebo_msgs_generate_messages_eus
-.PHONY : gazebo_msgs_generate_messages_eus
-
-# fast build rule for target.
-gazebo_msgs_generate_messages_eus/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/build
-.PHONY : gazebo_msgs_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named trajectory_msgs_generate_messages_py
-
-# Build rule for target.
-trajectory_msgs_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 trajectory_msgs_generate_messages_py
-.PHONY : trajectory_msgs_generate_messages_py
-
-# fast build rule for target.
-trajectory_msgs_generate_messages_py/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/trajectory_msgs_generate_messages_py.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/trajectory_msgs_generate_messages_py.dir/build
-.PHONY : trajectory_msgs_generate_messages_py/fast
-
-#=============================================================================
-# Target rules for targets named trajectory_msgs_generate_messages_cpp
-
-# Build rule for target.
-trajectory_msgs_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 trajectory_msgs_generate_messages_cpp
-.PHONY : trajectory_msgs_generate_messages_cpp
-
-# fast build rule for target.
-trajectory_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/build
-.PHONY : trajectory_msgs_generate_messages_cpp/fast
-
-#=============================================================================
-# Target rules for targets named gazebo_ros_gencfg
-
-# Build rule for target.
-gazebo_ros_gencfg: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gazebo_ros_gencfg
-.PHONY : gazebo_ros_gencfg
-
-# fast build rule for target.
-gazebo_ros_gencfg/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/gazebo_ros_gencfg.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/gazebo_ros_gencfg.dir/build
-.PHONY : gazebo_ros_gencfg/fast
-
-#=============================================================================
-# Target rules for targets named trajectory_msgs_generate_messages_eus
-
-# Build rule for target.
-trajectory_msgs_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 trajectory_msgs_generate_messages_eus
-.PHONY : trajectory_msgs_generate_messages_eus
-
-# fast build rule for target.
-trajectory_msgs_generate_messages_eus/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/build
-.PHONY : trajectory_msgs_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named trajectory_msgs_generate_messages_nodejs
-
-# Build rule for target.
-trajectory_msgs_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 trajectory_msgs_generate_messages_nodejs
-.PHONY : trajectory_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-trajectory_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/build
-.PHONY : trajectory_msgs_generate_messages_nodejs/fast
-
-#=============================================================================
-# Target rules for targets named std_srvs_generate_messages_cpp
-
-# Build rule for target.
-std_srvs_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 std_srvs_generate_messages_cpp
-.PHONY : std_srvs_generate_messages_cpp
-
-# fast build rule for target.
-std_srvs_generate_messages_cpp/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/build
-.PHONY : std_srvs_generate_messages_cpp/fast
-
-#=============================================================================
-# Target rules for targets named std_srvs_generate_messages_eus
-
-# Build rule for target.
-std_srvs_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 std_srvs_generate_messages_eus
-.PHONY : std_srvs_generate_messages_eus
-
-# fast build rule for target.
-std_srvs_generate_messages_eus/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/build
-.PHONY : std_srvs_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named nav_msgs_generate_messages_py
-
-# Build rule for target.
-nav_msgs_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 nav_msgs_generate_messages_py
-.PHONY : nav_msgs_generate_messages_py
-
-# fast build rule for target.
-nav_msgs_generate_messages_py/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/nav_msgs_generate_messages_py.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/nav_msgs_generate_messages_py.dir/build
-.PHONY : nav_msgs_generate_messages_py/fast
-
-#=============================================================================
-# Target rules for targets named std_srvs_generate_messages_lisp
-
-# Build rule for target.
-std_srvs_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 std_srvs_generate_messages_lisp
-.PHONY : std_srvs_generate_messages_lisp
-
-# fast build rule for target.
-std_srvs_generate_messages_lisp/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/build
-.PHONY : std_srvs_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named nav_msgs_generate_messages_cpp
-
-# Build rule for target.
-nav_msgs_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 nav_msgs_generate_messages_cpp
-.PHONY : nav_msgs_generate_messages_cpp
-
-# fast build rule for target.
-nav_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build
-.PHONY : nav_msgs_generate_messages_cpp/fast
-
-#=============================================================================
-# Target rules for targets named gazebo_msgs_generate_messages_cpp
-
-# Build rule for target.
-gazebo_msgs_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gazebo_msgs_generate_messages_cpp
-.PHONY : gazebo_msgs_generate_messages_cpp
-
-# fast build rule for target.
-gazebo_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build
-.PHONY : gazebo_msgs_generate_messages_cpp/fast
+std_srvs_generate_messages_py/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/build
+.PHONY : std_srvs_generate_messages_py/fast
 
 #=============================================================================
 # Target rules for targets named std_srvs_generate_messages_nodejs
@@ -1715,17 +1442,472 @@ std_srvs_generate_messages_nodejs/fast:
 .PHONY : std_srvs_generate_messages_nodejs/fast
 
 #=============================================================================
-# Target rules for targets named std_srvs_generate_messages_py
+# Target rules for targets named gazebo_msgs_generate_messages_cpp
 
 # Build rule for target.
-std_srvs_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 std_srvs_generate_messages_py
-.PHONY : std_srvs_generate_messages_py
+gazebo_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gazebo_msgs_generate_messages_cpp
+.PHONY : gazebo_msgs_generate_messages_cpp
 
 # fast build rule for target.
-std_srvs_generate_messages_py/fast:
-	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/build
-.PHONY : std_srvs_generate_messages_py/fast
+gazebo_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build
+.PHONY : gazebo_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named nav_msgs_generate_messages_py
+
+# Build rule for target.
+nav_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 nav_msgs_generate_messages_py
+.PHONY : nav_msgs_generate_messages_py
+
+# fast build rule for target.
+nav_msgs_generate_messages_py/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/nav_msgs_generate_messages_py.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/nav_msgs_generate_messages_py.dir/build
+.PHONY : nav_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named std_srvs_generate_messages_eus
+
+# Build rule for target.
+std_srvs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_srvs_generate_messages_eus
+.PHONY : std_srvs_generate_messages_eus
+
+# fast build rule for target.
+std_srvs_generate_messages_eus/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/build
+.PHONY : std_srvs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named pcl_msgs_generate_messages_py
+
+# Build rule for target.
+pcl_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pcl_msgs_generate_messages_py
+.PHONY : pcl_msgs_generate_messages_py
+
+# fast build rule for target.
+pcl_msgs_generate_messages_py/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/pcl_msgs_generate_messages_py.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/pcl_msgs_generate_messages_py.dir/build
+.PHONY : pcl_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named std_srvs_generate_messages_cpp
+
+# Build rule for target.
+std_srvs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_srvs_generate_messages_cpp
+.PHONY : std_srvs_generate_messages_cpp
+
+# fast build rule for target.
+std_srvs_generate_messages_cpp/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/build
+.PHONY : std_srvs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named trajectory_msgs_generate_messages_nodejs
+
+# Build rule for target.
+trajectory_msgs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 trajectory_msgs_generate_messages_nodejs
+.PHONY : trajectory_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+trajectory_msgs_generate_messages_nodejs/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/build
+.PHONY : trajectory_msgs_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named trajectory_msgs_generate_messages_eus
+
+# Build rule for target.
+trajectory_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 trajectory_msgs_generate_messages_eus
+.PHONY : trajectory_msgs_generate_messages_eus
+
+# fast build rule for target.
+trajectory_msgs_generate_messages_eus/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/build
+.PHONY : trajectory_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named gazebo_ros_gencfg
+
+# Build rule for target.
+gazebo_ros_gencfg: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gazebo_ros_gencfg
+.PHONY : gazebo_ros_gencfg
+
+# fast build rule for target.
+gazebo_ros_gencfg/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/gazebo_ros_gencfg.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/gazebo_ros_gencfg.dir/build
+.PHONY : gazebo_ros_gencfg/fast
+
+#=============================================================================
+# Target rules for targets named trajectory_msgs_generate_messages_cpp
+
+# Build rule for target.
+trajectory_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 trajectory_msgs_generate_messages_cpp
+.PHONY : trajectory_msgs_generate_messages_cpp
+
+# fast build rule for target.
+trajectory_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/build
+.PHONY : trajectory_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named nav_msgs_generate_messages_cpp
+
+# Build rule for target.
+nav_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 nav_msgs_generate_messages_cpp
+.PHONY : nav_msgs_generate_messages_cpp
+
+# fast build rule for target.
+nav_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build
+.PHONY : nav_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named gazebo_msgs_generate_messages_eus
+
+# Build rule for target.
+gazebo_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gazebo_msgs_generate_messages_eus
+.PHONY : gazebo_msgs_generate_messages_eus
+
+# fast build rule for target.
+gazebo_msgs_generate_messages_eus/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/build
+.PHONY : gazebo_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named trajectory_msgs_generate_messages_lisp
+
+# Build rule for target.
+trajectory_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 trajectory_msgs_generate_messages_lisp
+.PHONY : trajectory_msgs_generate_messages_lisp
+
+# fast build rule for target.
+trajectory_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/build
+.PHONY : trajectory_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named pcl_msgs_generate_messages_eus
+
+# Build rule for target.
+pcl_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pcl_msgs_generate_messages_eus
+.PHONY : pcl_msgs_generate_messages_eus
+
+# fast build rule for target.
+pcl_msgs_generate_messages_eus/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build
+.PHONY : pcl_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named gazebo_msgs_generate_messages_nodejs
+
+# Build rule for target.
+gazebo_msgs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gazebo_msgs_generate_messages_nodejs
+.PHONY : gazebo_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+gazebo_msgs_generate_messages_nodejs/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/build
+.PHONY : gazebo_msgs_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named gazebo_msgs_generate_messages_lisp
+
+# Build rule for target.
+gazebo_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gazebo_msgs_generate_messages_lisp
+.PHONY : gazebo_msgs_generate_messages_lisp
+
+# fast build rule for target.
+gazebo_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/build
+.PHONY : gazebo_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named gazebo_plugins_gencfg
+
+# Build rule for target.
+gazebo_plugins_gencfg: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gazebo_plugins_gencfg
+.PHONY : gazebo_plugins_gencfg
+
+# fast build rule for target.
+gazebo_plugins_gencfg/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/gazebo_plugins_gencfg.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/gazebo_plugins_gencfg.dir/build
+.PHONY : gazebo_plugins_gencfg/fast
+
+#=============================================================================
+# Target rules for targets named trajectory_msgs_generate_messages_py
+
+# Build rule for target.
+trajectory_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 trajectory_msgs_generate_messages_py
+.PHONY : trajectory_msgs_generate_messages_py
+
+# fast build rule for target.
+trajectory_msgs_generate_messages_py/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/trajectory_msgs_generate_messages_py.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/trajectory_msgs_generate_messages_py.dir/build
+.PHONY : trajectory_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named gazebo_msgs_generate_messages_py
+
+# Build rule for target.
+gazebo_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gazebo_msgs_generate_messages_py
+.PHONY : gazebo_msgs_generate_messages_py
+
+# fast build rule for target.
+gazebo_msgs_generate_messages_py/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build
+.PHONY : gazebo_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named topic_tools_generate_messages_cpp
+
+# Build rule for target.
+topic_tools_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 topic_tools_generate_messages_cpp
+.PHONY : topic_tools_generate_messages_cpp
+
+# fast build rule for target.
+topic_tools_generate_messages_cpp/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/topic_tools_generate_messages_cpp.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/topic_tools_generate_messages_cpp.dir/build
+.PHONY : topic_tools_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named nav_msgs_generate_messages_eus
+
+# Build rule for target.
+nav_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 nav_msgs_generate_messages_eus
+.PHONY : nav_msgs_generate_messages_eus
+
+# fast build rule for target.
+nav_msgs_generate_messages_eus/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/nav_msgs_generate_messages_eus.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/nav_msgs_generate_messages_eus.dir/build
+.PHONY : nav_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named nav_msgs_generate_messages_lisp
+
+# Build rule for target.
+nav_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 nav_msgs_generate_messages_lisp
+.PHONY : nav_msgs_generate_messages_lisp
+
+# fast build rule for target.
+nav_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build
+.PHONY : nav_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named allegro_right_hand_control_gazebo_xacro_generated_to_devel_space_
+
+# Build rule for target.
+allegro_right_hand_control_gazebo_xacro_generated_to_devel_space_: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_control_gazebo_xacro_generated_to_devel_space_
+.PHONY : allegro_right_hand_control_gazebo_xacro_generated_to_devel_space_
+
+# fast build rule for target.
+allegro_right_hand_control_gazebo_xacro_generated_to_devel_space_/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_control_gazebo_xacro_generated_to_devel_space_.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_control_gazebo_xacro_generated_to_devel_space_.dir/build
+.PHONY : allegro_right_hand_control_gazebo_xacro_generated_to_devel_space_/fast
+
+#=============================================================================
+# Target rules for targets named nav_msgs_generate_messages_nodejs
+
+# Build rule for target.
+nav_msgs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 nav_msgs_generate_messages_nodejs
+.PHONY : nav_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+nav_msgs_generate_messages_nodejs/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build
+.PHONY : nav_msgs_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named pcl_msgs_generate_messages_cpp
+
+# Build rule for target.
+pcl_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pcl_msgs_generate_messages_cpp
+.PHONY : pcl_msgs_generate_messages_cpp
+
+# fast build rule for target.
+pcl_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/build
+.PHONY : pcl_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named pcl_msgs_generate_messages_nodejs
+
+# Build rule for target.
+pcl_msgs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pcl_msgs_generate_messages_nodejs
+.PHONY : pcl_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+pcl_msgs_generate_messages_nodejs/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build
+.PHONY : pcl_msgs_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named allegro_right_hand_controller
+
+# Build rule for target.
+allegro_right_hand_controller: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_controller
+.PHONY : allegro_right_hand_controller
+
+# fast build rule for target.
+allegro_right_hand_controller/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_controller.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/allegro_right_hand_controller.dir/build
+.PHONY : allegro_right_hand_controller/fast
+
+#=============================================================================
+# Target rules for targets named pcl_msgs_generate_messages_lisp
+
+# Build rule for target.
+pcl_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pcl_msgs_generate_messages_lisp
+.PHONY : pcl_msgs_generate_messages_lisp
+
+# fast build rule for target.
+pcl_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/build
+.PHONY : pcl_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named topic_tools_generate_messages_eus
+
+# Build rule for target.
+topic_tools_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 topic_tools_generate_messages_eus
+.PHONY : topic_tools_generate_messages_eus
+
+# fast build rule for target.
+topic_tools_generate_messages_eus/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/topic_tools_generate_messages_eus.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/topic_tools_generate_messages_eus.dir/build
+.PHONY : topic_tools_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named std_srvs_generate_messages_lisp
+
+# Build rule for target.
+std_srvs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_srvs_generate_messages_lisp
+.PHONY : std_srvs_generate_messages_lisp
+
+# fast build rule for target.
+std_srvs_generate_messages_lisp/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/build
+.PHONY : std_srvs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named nodelet_topic_tools_gencfg
+
+# Build rule for target.
+nodelet_topic_tools_gencfg: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 nodelet_topic_tools_gencfg
+.PHONY : nodelet_topic_tools_gencfg
+
+# fast build rule for target.
+nodelet_topic_tools_gencfg/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/nodelet_topic_tools_gencfg.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/nodelet_topic_tools_gencfg.dir/build
+.PHONY : nodelet_topic_tools_gencfg/fast
+
+#=============================================================================
+# Target rules for targets named topic_tools_generate_messages_lisp
+
+# Build rule for target.
+topic_tools_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 topic_tools_generate_messages_lisp
+.PHONY : topic_tools_generate_messages_lisp
+
+# fast build rule for target.
+topic_tools_generate_messages_lisp/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/topic_tools_generate_messages_lisp.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/topic_tools_generate_messages_lisp.dir/build
+.PHONY : topic_tools_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named pcl_ros_gencfg
+
+# Build rule for target.
+pcl_ros_gencfg: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pcl_ros_gencfg
+.PHONY : pcl_ros_gencfg
+
+# fast build rule for target.
+pcl_ros_gencfg/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/pcl_ros_gencfg.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/pcl_ros_gencfg.dir/build
+.PHONY : pcl_ros_gencfg/fast
+
+#=============================================================================
+# Target rules for targets named topic_tools_generate_messages_nodejs
+
+# Build rule for target.
+topic_tools_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 topic_tools_generate_messages_nodejs
+.PHONY : topic_tools_generate_messages_nodejs
+
+# fast build rule for target.
+topic_tools_generate_messages_nodejs/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/topic_tools_generate_messages_nodejs.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/topic_tools_generate_messages_nodejs.dir/build
+.PHONY : topic_tools_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named topic_tools_generate_messages_py
+
+# Build rule for target.
+topic_tools_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 topic_tools_generate_messages_py
+.PHONY : topic_tools_generate_messages_py
+
+# fast build rule for target.
+topic_tools_generate_messages_py/fast:
+	$(MAKE) -f allegro_right_hand_control_gazebo/CMakeFiles/topic_tools_generate_messages_py.dir/build.make allegro_right_hand_control_gazebo/CMakeFiles/topic_tools_generate_messages_py.dir/build
+.PHONY : topic_tools_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named allegro_right_hand_controller_real
+
+# Build rule for target.
+allegro_right_hand_controller_real: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_controller_real
+.PHONY : allegro_right_hand_controller_real
+
+# fast build rule for target.
+allegro_right_hand_controller_real/fast:
+	$(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build
+.PHONY : allegro_right_hand_controller_real/fast
+
+#=============================================================================
+# Target rules for targets named allegro_right_hand_control_real_xacro_generated_to_devel_space_
+
+# Build rule for target.
+allegro_right_hand_control_real_xacro_generated_to_devel_space_: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_control_real_xacro_generated_to_devel_space_
+.PHONY : allegro_right_hand_control_real_xacro_generated_to_devel_space_
+
+# fast build rule for target.
+allegro_right_hand_control_real_xacro_generated_to_devel_space_/fast:
+	$(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_control_real_xacro_generated_to_devel_space_.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_control_real_xacro_generated_to_devel_space_.dir/build
+.PHONY : allegro_right_hand_control_real_xacro_generated_to_devel_space_/fast
 
 #=============================================================================
 # Target rules for targets named allegro_right_hand_description_xacro_generated_to_devel_space_
@@ -1843,6 +2025,19 @@ franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy: 
 franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy/fast:
 	$(MAKE) -f franka_panda_arm_plus_allegro_right_hand_control_gazebo/CMakeFiles/franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy.dir/build.make franka_panda_arm_plus_allegro_right_hand_control_gazebo/CMakeFiles/franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy.dir/build
 .PHONY : franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy/fast
+
+#=============================================================================
+# Target rules for targets named workcell_high_level_control
+
+# Build rule for target.
+workcell_high_level_control: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 workcell_high_level_control
+.PHONY : workcell_high_level_control
+
+# fast build rule for target.
+workcell_high_level_control/fast:
+	$(MAKE) -f franka_panda_arm_plus_allegro_right_hand_control_gazebo/CMakeFiles/workcell_high_level_control.dir/build.make franka_panda_arm_plus_allegro_right_hand_control_gazebo/CMakeFiles/workcell_high_level_control.dir/build
+.PHONY : workcell_high_level_control/fast
 
 #=============================================================================
 # Target rules for targets named franka_panda_arm_plus_own_gripper_gazebo_joint_controller
@@ -2055,32 +2250,46 @@ help:
 	@echo "... realsense2_camera_genlisp"
 	@echo "... realsense2_camera_generate_messages_cpp"
 	@echo "... realsense2_camera_gennodejs"
-	@echo "... allegro_right_hand_joint_controller"
-	@echo "... allegro_right_hand_controller"
-	@echo "... nav_msgs_generate_messages_nodejs"
-	@echo "... allegro_right_hand_control_gazebo_xacro_generated_to_devel_space_"
-	@echo "... nav_msgs_generate_messages_lisp"
-	@echo "... nav_msgs_generate_messages_eus"
 	@echo "... allegro_right_hand_finger_workspace"
-	@echo "... gazebo_msgs_generate_messages_py"
-	@echo "... gazebo_plugins_gencfg"
-	@echo "... gazebo_msgs_generate_messages_lisp"
-	@echo "... gazebo_msgs_generate_messages_nodejs"
-	@echo "... trajectory_msgs_generate_messages_lisp"
-	@echo "... gazebo_msgs_generate_messages_eus"
-	@echo "... trajectory_msgs_generate_messages_py"
-	@echo "... trajectory_msgs_generate_messages_cpp"
-	@echo "... gazebo_ros_gencfg"
-	@echo "... trajectory_msgs_generate_messages_eus"
-	@echo "... trajectory_msgs_generate_messages_nodejs"
-	@echo "... std_srvs_generate_messages_cpp"
-	@echo "... std_srvs_generate_messages_eus"
-	@echo "... nav_msgs_generate_messages_py"
-	@echo "... std_srvs_generate_messages_lisp"
-	@echo "... nav_msgs_generate_messages_cpp"
-	@echo "... gazebo_msgs_generate_messages_cpp"
-	@echo "... std_srvs_generate_messages_nodejs"
+	@echo "... allegro_right_hand_joint_controller"
 	@echo "... std_srvs_generate_messages_py"
+	@echo "... std_srvs_generate_messages_nodejs"
+	@echo "... gazebo_msgs_generate_messages_cpp"
+	@echo "... nav_msgs_generate_messages_py"
+	@echo "... std_srvs_generate_messages_eus"
+	@echo "... pcl_msgs_generate_messages_py"
+	@echo "... std_srvs_generate_messages_cpp"
+	@echo "... trajectory_msgs_generate_messages_nodejs"
+	@echo "... trajectory_msgs_generate_messages_eus"
+	@echo "... gazebo_ros_gencfg"
+	@echo "... trajectory_msgs_generate_messages_cpp"
+	@echo "... nav_msgs_generate_messages_cpp"
+	@echo "... gazebo_msgs_generate_messages_eus"
+	@echo "... trajectory_msgs_generate_messages_lisp"
+	@echo "... pcl_msgs_generate_messages_eus"
+	@echo "... gazebo_msgs_generate_messages_nodejs"
+	@echo "... gazebo_msgs_generate_messages_lisp"
+	@echo "... gazebo_plugins_gencfg"
+	@echo "... trajectory_msgs_generate_messages_py"
+	@echo "... gazebo_msgs_generate_messages_py"
+	@echo "... topic_tools_generate_messages_cpp"
+	@echo "... nav_msgs_generate_messages_eus"
+	@echo "... nav_msgs_generate_messages_lisp"
+	@echo "... allegro_right_hand_control_gazebo_xacro_generated_to_devel_space_"
+	@echo "... nav_msgs_generate_messages_nodejs"
+	@echo "... pcl_msgs_generate_messages_cpp"
+	@echo "... pcl_msgs_generate_messages_nodejs"
+	@echo "... allegro_right_hand_controller"
+	@echo "... pcl_msgs_generate_messages_lisp"
+	@echo "... topic_tools_generate_messages_eus"
+	@echo "... std_srvs_generate_messages_lisp"
+	@echo "... nodelet_topic_tools_gencfg"
+	@echo "... topic_tools_generate_messages_lisp"
+	@echo "... pcl_ros_gencfg"
+	@echo "... topic_tools_generate_messages_nodejs"
+	@echo "... topic_tools_generate_messages_py"
+	@echo "... allegro_right_hand_controller_real"
+	@echo "... allegro_right_hand_control_real_xacro_generated_to_devel_space_"
 	@echo "... allegro_right_hand_description_xacro_generated_to_devel_space_"
 	@echo "... franka_panda_gazebo_joint_space_position_controller_node"
 	@echo "... franka_panda_arm_control_gazebo_xacro_generated_to_devel_space_"
@@ -2090,6 +2299,7 @@ help:
 	@echo "... franka_panda_arm_plus_allegro_right_hand_gazebo_joint_controller"
 	@echo "... franka_panda_arm_plus_allegro_right_hand_control_gazebo_xacro_generated_to_devel_space_"
 	@echo "... franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy"
+	@echo "... workcell_high_level_control"
 	@echo "... franka_panda_arm_plus_own_gripper_gazebo_joint_controller"
 	@echo "... franka_panda_arm_plus_own_gripper_control_gazebo_xacro_generated_to_devel_space_"
 	@echo "... franka_panda_arm_plus_own_gripper_gazebo_task_space_pose_controller_rpy"

@@ -1,10 +1,7 @@
 <?xml version="1.0"?>
-<!-- This is a hand-made URDF XACRO file for the Microsoft Kinect-2 sensor (Xbox ONE) -->
-<!-- Copyright Universitaet Bremen - Instititute for Artificial Intelligence. Author: Alexis Maldonado -->
-<!-- License: GPLv3+ -->
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="kinect2_sensor"> 
-<xacro:macro name="kinect2_sensor" params=" ns:='' description_pkg:='kinect2_description' connected_to:='' origin_xyz:='0 0 0' origin_rpy:='0 0 0' ">
+<xacro:macro name="kinect2_sensor" params=" ns:='' description_pkg:='kinect2' connected_to:='' origin_xyz:='0 0 0' origin_rpy:='0 0 0' ">
 
   <material name="Kinect2Grey">
     <color rgba="0.15 0.15 0.15 1.0"/>

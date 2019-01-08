@@ -1,0 +1,38 @@
+cmake_minimum_required(VERSION 2.8.3)
+
+set( CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}" ${CMAKE_MODULE_PATH} )
+
+#project(MY_GRAND_PROJECT)
+find_package(PCL 1.9 REQUIRED COMPONENTS)
+find_package(VTK REQUIRED)
+#find_package(KinectSDK2 REQUIRED)
+
+include_directories(${PCL_INCLUDE_DIRS})
+#include_directories(${KinectSDK2_INCLUDE_DIRS})
+
+link_directories(${PCL_LIBRARY_DIRS})
+#link_directories(${KinectSDK2_LIBRARY_DIRS})
+
+add_definitions(${PCL_DEFINITIONS})
+
+set (CMAKE_CXX_FLAGS "-O2 -Wall")
+
+add_executable(pcd_write_test pcd_write.cpp)
+add_executable(pcd_read pcd_read.cpp)
+#add_executable(openni_grapper kinect2_grabber.h openni_grapper.cpp)
+add_executable(cloud_visualizer cloud_visualizer.cpp)
+add_executable(stl_to_point_cloud_visualizer stl_to_point_cloud.cpp)
+add_executable(allegro_right_hand_to_point_cloud allegro_right_hand_ply_to_point_cloud.cpp)
+add_executable(allegro_finger_workspace_in_ellipsoids finger_workspace_in_ellipsoids.cpp)
+add_executable(allegro_hand_workspace_visualisation allegro_hand_workspace_visualisation.cpp)
+add_executable(region_of_interest region_of_interest.cpp)
+
+target_link_libraries(pcd_write_test ${PCL_LIBRARIES})
+target_link_libraries(pcd_read ${PCL_LIBRARIES})
+#target_link_libraries(openni_grapper ${PCL_LIBRARIES} ${KinectSDK2_LIBRARIES})
+target_link_libraries(cloud_visualizer ${PCL_LIBRARIES})
+target_link_libraries(stl_to_point_cloud_visualizer ${PCL_LIBRARIES})
+target_link_libraries(allegro_right_hand_to_point_cloud ${PCL_LIBRARIES})
+target_link_libraries(allegro_finger_workspace_in_ellipsoids ${PCL_LIBRARIES})
+target_link_libraries(allegro_hand_workspace_visualisation ${PCL_LIBRARIES})
+target_link_libraries(region_of_interest ${PCL_LIBRARIES})

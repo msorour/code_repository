@@ -99,6 +99,17 @@ install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
 
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: install/local
+
+.PHONY : install/local/fast
+
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -110,17 +121,6 @@ install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -199,6 +199,21 @@ franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy/f
 	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_arm_plus_allegro_right_hand_control_gazebo/CMakeFiles/franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy.dir/build.make franka_panda_arm_plus_allegro_right_hand_control_gazebo/CMakeFiles/franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy.dir/build
 .PHONY : franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy/fast
 
+# Convenience name for target.
+franka_panda_arm_plus_allegro_right_hand_control_gazebo/CMakeFiles/workcell_high_level_control.dir/rule:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 franka_panda_arm_plus_allegro_right_hand_control_gazebo/CMakeFiles/workcell_high_level_control.dir/rule
+.PHONY : franka_panda_arm_plus_allegro_right_hand_control_gazebo/CMakeFiles/workcell_high_level_control.dir/rule
+
+# Convenience name for target.
+workcell_high_level_control: franka_panda_arm_plus_allegro_right_hand_control_gazebo/CMakeFiles/workcell_high_level_control.dir/rule
+
+.PHONY : workcell_high_level_control
+
+# fast build rule for target.
+workcell_high_level_control/fast:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_arm_plus_allegro_right_hand_control_gazebo/CMakeFiles/workcell_high_level_control.dir/build.make franka_panda_arm_plus_allegro_right_hand_control_gazebo/CMakeFiles/workcell_high_level_control.dir/build
+.PHONY : workcell_high_level_control/fast
+
 src/franka_panda_arm_plus_allegro_right_hand_gazebo_joint_controller.o: src/franka_panda_arm_plus_allegro_right_hand_gazebo_joint_controller.cpp.o
 
 .PHONY : src/franka_panda_arm_plus_allegro_right_hand_gazebo_joint_controller.o
@@ -253,6 +268,33 @@ src/franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_r
 	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_arm_plus_allegro_right_hand_control_gazebo/CMakeFiles/franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy.dir/build.make franka_panda_arm_plus_allegro_right_hand_control_gazebo/CMakeFiles/franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy.dir/src/franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy.cpp.s
 .PHONY : src/franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy.cpp.s
 
+src/high_level_control.o: src/high_level_control.cpp.o
+
+.PHONY : src/high_level_control.o
+
+# target to build an object file
+src/high_level_control.cpp.o:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_arm_plus_allegro_right_hand_control_gazebo/CMakeFiles/workcell_high_level_control.dir/build.make franka_panda_arm_plus_allegro_right_hand_control_gazebo/CMakeFiles/workcell_high_level_control.dir/src/high_level_control.cpp.o
+.PHONY : src/high_level_control.cpp.o
+
+src/high_level_control.i: src/high_level_control.cpp.i
+
+.PHONY : src/high_level_control.i
+
+# target to preprocess a source file
+src/high_level_control.cpp.i:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_arm_plus_allegro_right_hand_control_gazebo/CMakeFiles/workcell_high_level_control.dir/build.make franka_panda_arm_plus_allegro_right_hand_control_gazebo/CMakeFiles/workcell_high_level_control.dir/src/high_level_control.cpp.i
+.PHONY : src/high_level_control.cpp.i
+
+src/high_level_control.s: src/high_level_control.cpp.s
+
+.PHONY : src/high_level_control.s
+
+# target to generate assembly for a file
+src/high_level_control.cpp.s:
+	cd /home/work/code_repository/ros_packages/build && $(MAKE) -f franka_panda_arm_plus_allegro_right_hand_control_gazebo/CMakeFiles/workcell_high_level_control.dir/build.make franka_panda_arm_plus_allegro_right_hand_control_gazebo/CMakeFiles/workcell_high_level_control.dir/src/high_level_control.cpp.s
+.PHONY : src/high_level_control.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -265,15 +307,19 @@ help:
 	@echo "... franka_panda_arm_plus_allegro_right_hand_gazebo_joint_controller"
 	@echo "... franka_panda_arm_plus_allegro_right_hand_control_gazebo_xacro_generated_to_devel_space_"
 	@echo "... install/strip"
-	@echo "... install"
-	@echo "... franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy"
 	@echo "... install/local"
+	@echo "... franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy"
+	@echo "... workcell_high_level_control"
+	@echo "... install"
 	@echo "... src/franka_panda_arm_plus_allegro_right_hand_gazebo_joint_controller.o"
 	@echo "... src/franka_panda_arm_plus_allegro_right_hand_gazebo_joint_controller.i"
 	@echo "... src/franka_panda_arm_plus_allegro_right_hand_gazebo_joint_controller.s"
 	@echo "... src/franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy.o"
 	@echo "... src/franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy.i"
 	@echo "... src/franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy.s"
+	@echo "... src/high_level_control.o"
+	@echo "... src/high_level_control.i"
+	@echo "... src/high_level_control.s"
 .PHONY : help
 
 

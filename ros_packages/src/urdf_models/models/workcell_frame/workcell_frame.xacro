@@ -3,7 +3,7 @@
 
 <xacro:macro name="workcell_frame" params="ns:='robot_cell' description_pkg:='urdf_models' connected_to:='' xyz:='0 0 0.07' rpy:='0 0 0'">
 
-<static>true</static>
+<!-- <static>true</static> -->
 
 <xacro:unless value="${connected_to == ''}">
 	<joint name="${ns}_joint_${connected_to}" type="fixed">
