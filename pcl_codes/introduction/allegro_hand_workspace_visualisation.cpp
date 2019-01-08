@@ -114,6 +114,12 @@ int main(){
   pcl::io::savePCDFileASCII(finger+"_workspace_as_ellipsoids.pcd", workspace_as_ellipsoids_point_cloud);
 	*/
 	
+	
+	
+	// save hand workspace ellipsoids point cloud
+	pcl::io::savePCDFileASCII("allegro_hand_workspace_as_ellipsoids.pcd", *augmented_cloud);
+	
+	
   //while ( !viewer->wasStopped() and !Hullviewer->wasStopped() ){
   while ( !viewer->wasStopped() ){
     viewer->spinOnce();

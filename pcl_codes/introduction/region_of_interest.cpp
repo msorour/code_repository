@@ -9,11 +9,9 @@
 #include <pcl/Vertices.h>
 #include <math.h>
 #include <unistd.h>   // for sleep
+#include "../../ros_packages/include/Eigen/Dense"
+#include <pcl/common/transforms.h>  
 
-#include <pcl/point_types.h>
-#include <pcl/kdtree/kdtree_flann.h>
-#include <pcl/features/normal_3d.h>
-#include <pcl/surface/gp3.h>
 
 int main(){
   //std::string object_name = "cocacola_bottle";
@@ -44,6 +42,13 @@ int main(){
   // for visualizing polygon mesh (.obj)
   boost::shared_ptr<pcl::visualization::PCLVisualizer> Hullviewer(new pcl::visualization::PCLVisualizer ("hull viewer"));
   Hullviewer->setBackgroundColor(0,0,0);
+  
+  
+  // load allegro hand workspace as ellipsoids
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr allegro_hand_workspace_ellipsoids_xyzrgb(new pcl::PointCloud<pcl::PointXYZRGB>);
+  pcl::io::loadPCDFile<pcl::PointXYZRGB>("allegro_hand_workspace_as_ellipsoids.pcd", *allegro_hand_workspace_ellipsoids_xyzrgb);
+  //Hullviewer->addPointCloud<pcl::PointXYZRGB>(allegro_hand_workspace_ellipsoids_xyzrgb, rgb,"hull viewer");
+  
   
   
   
@@ -122,8 +127,8 @@ int main(){
     if( object_mesh_vertices.points[i].z < far_point_in_neg_direction.z )
       far_point_in_neg_direction.z = object_mesh_vertices.points[i].z;
   }
-  // draw the axis line
-  viewer->addLine(far_point_in_pos_direction, far_point_in_neg_direction, "longest axis", 0); 
+  // draw the approximate axis line
+  viewer->addLine(far_point_in_pos_direction, far_point_in_neg_direction, "approximate major axis (object's longest dimension)", 0); 
   
   
   // divide the object verices into two sets on in the positive side of centroid and the other on the negative side
@@ -168,6 +173,39 @@ int main(){
   Hullviewer->addCoordinateSystem(0.1,centroid_far_neg_point.x, centroid_far_neg_point.y, centroid_far_neg_point.z);
   
   
+  
+  
+  // to be continued !
+  // computing object major axis orientation
+  // major axis vector
+  /*
+  Eigen::Vector3d major_axis_vector, projection;
+  double roll, pitch, yaw;
+  major_axis_vector[0] = centroid_far_pos_point.x - centroid_far_neg_point.x;
+  major_axis_vector[1] = centroid_far_pos_point.y - centroid_far_neg_point.y;
+  major_axis_vector[2] = centroid_far_pos_point.z - centroid_far_neg_point.z;
+  projection = major_axis_vector;
+  projection[2] = 0.0;
+  yaw = acos( major_axis_vector.dot(projection)/(major_axis_vector.array().abs()*projection.array().abs()) );
+  std::cout << major_axis_vector.dot(projection) << std::endl;
+  std::cout << (major_axis_vector.array().abs()*projection.array().abs()) << std::endl;
+  */
+  
+  double alpha;   // angle about (+ve) x-axis
+  double beta;    // angle about (+ve) y-axis
+  double gamma;   // angle about (+ve) z-axis
+  double vector_magnitude;
+  Eigen::Vector3d major_axis_vector;
+  major_axis_vector[0] = centroid_far_pos_point.x - centroid_far_neg_point.x;
+  major_axis_vector[1] = centroid_far_pos_point.y - centroid_far_neg_point.y;
+  major_axis_vector[2] = centroid_far_pos_point.z - centroid_far_neg_point.z;
+  vector_magnitude = sqrt( pow(major_axis_vector[0],2) + pow(major_axis_vector[1],2) + pow(major_axis_vector[2],2) );
+  alpha = acos( major_axis_vector[0]/vector_magnitude );
+  beta = acos( major_axis_vector[1]/vector_magnitude );
+  gamma = acos( major_axis_vector[2]/vector_magnitude );
+  std::cout << "alpha = " << alpha << std::endl;
+  std::cout << "beta  = " << beta << std::endl;
+  std::cout << "gamma = " << gamma << std::endl;
   
   
   // loading the graspable volume as a set of ellipsoids
@@ -238,6 +276,23 @@ int main(){
   viewer->updatePointCloud<pcl::PointXYZRGB>(augmented_cloud, rgb,"object cloud");
   Hullviewer->updatePointCloud<pcl::PointXYZRGB>(augmented_cloud, rgb,"object cloud");
   
+  // orienting the hand along the object's major axis
+  Eigen::Affine3f transform = Eigen::Affine3f::Identity();
+  transform.translation() << 0, 0, 0;
+  transform.rotate( Eigen::AngleAxisf( alpha, Eigen::Vector3f::UnitX() ) );
+  transform.rotate( Eigen::AngleAxisf( beta , Eigen::Vector3f::UnitY() ) );
+  transform.rotate( Eigen::AngleAxisf( alpha, Eigen::Vector3f::UnitX() ) );
+  //transform.rotate( Eigen::AngleAxisf( gamma, Eigen::Vector3f::UnitZ() ) );
+  
+  // Executing the transformation
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr hand_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
+  pcl::transformPointCloud(*allegro_hand_workspace_ellipsoids_xyzrgb, *hand_transformed_cloud, transform);
+  
+  
+  // view the hand workspace
+  *augmented_cloud += *hand_transformed_cloud;
+  viewer->updatePointCloud<pcl::PointXYZRGB>(augmented_cloud, rgb,"object cloud");
+  Hullviewer->updatePointCloud<pcl::PointXYZRGB>(augmented_cloud, rgb,"object cloud");
   
   
 	
