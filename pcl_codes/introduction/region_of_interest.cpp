@@ -16,7 +16,12 @@
 #include <pcl/surface/gp3.h>
 
 int main(){
-  std::string object_name = "cocacola_bottle";
+  //std::string object_name = "cocacola_bottle";
+  //std::string object_name = "object_with_major_axis_in_x";
+  //std::string object_name = "cocacola_bottle_in_x";
+  //std::string object_name = "cocacola_bottle_in_y";
+  std::string object_name = "cocacola_bottle_in_xyz";
+  
   
   pcl::PointCloud<pcl::PointXYZ>::Ptr object_cloud_xyz(new pcl::PointCloud<pcl::PointXYZ>);
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_cloud_xyzrgb(new pcl::PointCloud<pcl::PointXYZRGB>);
@@ -83,21 +88,19 @@ int main(){
   
   // get object centroid location
   pcl::CentroidPoint<pcl::PointXYZ> centroid;
-  for(unsigned int i=0;i<object_cloud_xyz->points.size();i++)
-    centroid.add( object_cloud_xyz->points[i] );
+  for(unsigned int i=0;i<object_mesh_vertices.points.size();i++)
+    centroid.add( object_mesh_vertices.points[i] );
   pcl::PointXYZ centroid_point;
   centroid.get(centroid_point);
   std::cout<< centroid_point << std::endl;  
   viewer->addCoordinateSystem(0.05,centroid_point.x, centroid_point.y, centroid_point.z);
+  Hullviewer->addCoordinateSystem(0.1,centroid_point.x, centroid_point.y, centroid_point.z);
   
   
   
   // object main axis estimation
   // generating the object's principal axis (axis of symmetry) we should align the graspable volume around it!
   // get the longest distance accross object vertices in x, y, and z directions, to know along which axis exists the axis of symmetry
-  double longest_dimension_in_x = 0.0;
-  double longest_dimension_in_y = 0.0;
-  double longest_dimension_in_z = 0.0;
   pcl::PointXYZ far_point_in_pos_direction;
   pcl::PointXYZ far_point_in_neg_direction;
   far_point_in_pos_direction = centroid_point;
@@ -118,132 +121,28 @@ int main(){
       far_point_in_pos_direction.z = object_mesh_vertices.points[i].z;
     if( object_mesh_vertices.points[i].z < far_point_in_neg_direction.z )
       far_point_in_neg_direction.z = object_mesh_vertices.points[i].z;
-    
-    /*
-    euclidean_distance = (object_mesh_vertices.points[i].x - centroid_point.x)*(object_mesh_vertices.points[i].x - centroid_point.x) + 
-                  (object_mesh_vertices.points[i].y - centroid_point.y)*(object_mesh_vertices.points[i].y - centroid_point.y) + 
-                  (object_mesh_vertices.points[i].z - centroid_point.z)*(object_mesh_vertices.points[i].z - centroid_point.z);
-    if(euclidean_distance < smallest_euclidean_distance){
-      smallest_euclidean_distance = euclidean_distance;
-      nearest_vertex_point.x = object_mesh_vertices.points[i].x;
-      nearest_vertex_point.y = object_mesh_vertices.points[i].y;
-      nearest_vertex_point.z = object_mesh_vertices.points[i].z;
-    }
-    */
   }
   // draw the axis line
   viewer->addLine(far_point_in_pos_direction, far_point_in_neg_direction, "longest axis", 0); 
   
-  // get the biggest dimention axis of the object
-  longest_dimension_in_x = far_point_in_pos_direction.x - far_point_in_neg_direction.x;
-  longest_dimension_in_y = far_point_in_pos_direction.y - far_point_in_neg_direction.y;
-  longest_dimension_in_z = far_point_in_pos_direction.z - far_point_in_neg_direction.z;
   
-  //
-  double a, b, c;
-  double ellipsoid_value;
+  // divide the object verices into two sets on in the positive side of centroid and the other on the negative side
   pcl::PointCloud<pcl::PointXYZ> cloud_far_pos;
   pcl::PointCloud<pcl::PointXYZ> cloud_far_neg;
   pcl::PointXYZ point;
-  if( (longest_dimension_in_x > longest_dimension_in_y) and (longest_dimension_in_x > longest_dimension_in_z) ){
-    // we need to integrate points in y and z axes then take the average
-    // make 2 big ellipsoids at both end points
-    a = 0.01;
-    b = 0.1;
-    c = 0.1;
-    // positive far side cloud building
-    for(unsigned int i=0;i<object_mesh_vertices.size();i++){
-      // equation of ellipsoid at far positive side
-      ellipsoid_value =   pow(object_mesh_vertices.points[i].x - far_point_in_pos_direction.x, 2)/pow(a, 2) 
-                        + pow(object_mesh_vertices.points[i].y - far_point_in_pos_direction.y, 2)/pow(b, 2) 
-                        + pow(object_mesh_vertices.points[i].z - far_point_in_pos_direction.z, 2)/pow(c, 2);
-      if( ellipsoid_value < 1.0 ){  // means the vertex point is inside the ellipsoid, then add it
-        point.x = object_mesh_vertices.points[i].x;
-        point.y = object_mesh_vertices.points[i].y;
-        point.z = object_mesh_vertices.points[i].z;
-        cloud_far_pos.points.push_back( point );
-      }
-    }
-    
-    // negative far side cloud building
-    for(unsigned int i=0;i<object_mesh_vertices.size();i++){
-      // equation of ellipsoid at far positive side
-      ellipsoid_value =   pow(object_mesh_vertices.points[i].x - far_point_in_neg_direction.x, 2)/pow(a, 2) 
-                        + pow(object_mesh_vertices.points[i].y - far_point_in_neg_direction.y, 2)/pow(b, 2) 
-                        + pow(object_mesh_vertices.points[i].z - far_point_in_neg_direction.z, 2)/pow(c, 2);
-      if( ellipsoid_value < 1.0 ){  // means the vertex point is inside the ellipsoid, then add it
-        point.x = object_mesh_vertices.points[i].x;
-        point.y = object_mesh_vertices.points[i].y;
-        point.z = object_mesh_vertices.points[i].z;
-        cloud_far_neg.points.push_back( point );
-      }
-    }
-  }
-  
-  if( (longest_dimension_in_y > longest_dimension_in_x) and (longest_dimension_in_y > longest_dimension_in_z) ){
-    a = 0.1;
-    b = 0.01;
-    c = 0.1;
-    // positive far side cloud building
-    for(unsigned int i=0;i<object_mesh_vertices.size();i++){
-      // equation of ellipsoid at far positive side
-      ellipsoid_value =   pow(object_mesh_vertices.points[i].x - far_point_in_pos_direction.x, 2)/pow(a, 2) 
-                        + pow(object_mesh_vertices.points[i].y - far_point_in_pos_direction.y, 2)/pow(b, 2) 
-                        + pow(object_mesh_vertices.points[i].z - far_point_in_pos_direction.z, 2)/pow(c, 2);
-      if( ellipsoid_value < 1.0 ){  // means the vertex point is inside the ellipsoid, then add it
-        point.x = object_mesh_vertices.points[i].x;
-        point.y = object_mesh_vertices.points[i].y;
-        point.z = object_mesh_vertices.points[i].z;
-        cloud_far_pos.points.push_back( point );
-      }
-    }
-    
-    // negative far side cloud building
-    for(unsigned int i=0;i<object_mesh_vertices.size();i++){
-      // equation of ellipsoid at far positive side
-      ellipsoid_value =   pow(object_mesh_vertices.points[i].x - far_point_in_neg_direction.x, 2)/pow(a, 2) 
-                        + pow(object_mesh_vertices.points[i].y - far_point_in_neg_direction.y, 2)/pow(b, 2) 
-                        + pow(object_mesh_vertices.points[i].z - far_point_in_neg_direction.z, 2)/pow(c, 2);
-      if( ellipsoid_value < 1.0 ){  // means the vertex point is inside the ellipsoid, then add it
-        point.x = object_mesh_vertices.points[i].x;
-        point.y = object_mesh_vertices.points[i].y;
-        point.z = object_mesh_vertices.points[i].z;
-        cloud_far_neg.points.push_back( point );
-      }
-    }
-  }
-  
-  if( (longest_dimension_in_z > longest_dimension_in_x) and (longest_dimension_in_z > longest_dimension_in_y) ){
-    a = 0.1;
-    b = 0.1;
-    c = 0.01;
-    // positive far side cloud building
-    for(unsigned int i=0;i<object_mesh_vertices.size();i++){
-      // equation of ellipsoid at far positive side
-      ellipsoid_value =   pow(object_mesh_vertices.points[i].x - far_point_in_pos_direction.x, 2)/pow(a, 2) 
-                        + pow(object_mesh_vertices.points[i].y - far_point_in_pos_direction.y, 2)/pow(b, 2) 
-                        + pow(object_mesh_vertices.points[i].z - far_point_in_pos_direction.z, 2)/pow(c, 2);
-      if( ellipsoid_value < 1.0 ){  // means the vertex point is inside the ellipsoid, then add it
-        point.x = object_mesh_vertices.points[i].x;
-        point.y = object_mesh_vertices.points[i].y;
-        point.z = object_mesh_vertices.points[i].z;
-        cloud_far_pos.points.push_back( point );
-      }
-    }
-    
-    // negative far side cloud building
-    for(unsigned int i=0;i<object_mesh_vertices.size();i++){
-      // equation of ellipsoid at far positive side
-      ellipsoid_value =   pow(object_mesh_vertices.points[i].x - far_point_in_neg_direction.x, 2)/pow(a, 2) 
-                        + pow(object_mesh_vertices.points[i].y - far_point_in_neg_direction.y, 2)/pow(b, 2) 
-                        + pow(object_mesh_vertices.points[i].z - far_point_in_neg_direction.z, 2)/pow(c, 2);
-      if( ellipsoid_value < 1.0 ){  // means the vertex point is inside the ellipsoid, then add it
-        point.x = object_mesh_vertices.points[i].x;
-        point.y = object_mesh_vertices.points[i].y;
-        point.z = object_mesh_vertices.points[i].z;
-        cloud_far_neg.points.push_back( point );
-      }
-    }
+  double distance_to_far_point_pos;
+  double distance_to_far_point_neg;
+  for(unsigned int i=0;i<object_mesh_vertices.size();i++){
+    distance_to_far_point_pos = (object_mesh_vertices.points[i].x - far_point_in_pos_direction.x)*(object_mesh_vertices.points[i].x - far_point_in_pos_direction.x) + 
+                                (object_mesh_vertices.points[i].y - far_point_in_pos_direction.y)*(object_mesh_vertices.points[i].y - far_point_in_pos_direction.y) + 
+                                (object_mesh_vertices.points[i].z - far_point_in_pos_direction.z)*(object_mesh_vertices.points[i].z - far_point_in_pos_direction.z);
+    distance_to_far_point_neg = (object_mesh_vertices.points[i].x - far_point_in_neg_direction.x)*(object_mesh_vertices.points[i].x - far_point_in_neg_direction.x) + 
+                                (object_mesh_vertices.points[i].y - far_point_in_neg_direction.y)*(object_mesh_vertices.points[i].y - far_point_in_neg_direction.y) + 
+                                (object_mesh_vertices.points[i].z - far_point_in_neg_direction.z)*(object_mesh_vertices.points[i].z - far_point_in_neg_direction.z);
+    if( distance_to_far_point_pos > distance_to_far_point_neg )
+      cloud_far_pos.points.push_back( object_mesh_vertices.points[i] );
+    else
+      cloud_far_neg.points.push_back( object_mesh_vertices.points[i] );
   }
   
   
@@ -265,6 +164,9 @@ int main(){
   
   viewer->addCoordinateSystem(0.05,centroid_far_pos_point.x, centroid_far_pos_point.y, centroid_far_pos_point.z);
   viewer->addCoordinateSystem(0.05,centroid_far_neg_point.x, centroid_far_neg_point.y, centroid_far_neg_point.z);
+  Hullviewer->addCoordinateSystem(0.1,centroid_far_pos_point.x, centroid_far_pos_point.y, centroid_far_pos_point.z);
+  Hullviewer->addCoordinateSystem(0.1,centroid_far_neg_point.x, centroid_far_neg_point.y, centroid_far_neg_point.z);
+  
   
   
   
@@ -334,7 +236,7 @@ int main(){
   }
   *augmented_cloud += ellipsoid_point_cloud;
   viewer->updatePointCloud<pcl::PointXYZRGB>(augmented_cloud, rgb,"object cloud");
-  
+  Hullviewer->updatePointCloud<pcl::PointXYZRGB>(augmented_cloud, rgb,"object cloud");
   
   
   
