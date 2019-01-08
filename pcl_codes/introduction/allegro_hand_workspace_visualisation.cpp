@@ -37,6 +37,10 @@ int main(){
   }
   *augmented_cloud = *allegro_hand_cloud_xyzrgb;
   
+  // to save hand + workspace ellipsoids
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr hand_workspace_ellipsoids_xyzrgb(new pcl::PointCloud<pcl::PointXYZRGB>);
+  *hand_workspace_ellipsoids_xyzrgb = *allegro_hand_cloud_xyzrgb;
+  
   // for visualization of point cloud
   boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer(new pcl::visualization::PCLVisualizer ("cloud viewer"));
   viewer->setBackgroundColor(255,255,255);
@@ -81,6 +85,8 @@ int main(){
     *augmented_cloud += *finger_workspace_cloud_xyzrgb;
     *augmented_cloud += *finger_workspace_as_ellipsoids_cloud_xyzrgb;
     
+    *hand_workspace_ellipsoids_xyzrgb += *finger_workspace_as_ellipsoids_cloud_xyzrgb;
+    
     viewer->updatePointCloud<pcl::PointXYZRGB>(augmented_cloud, rgb,"cloud");
     viewer->spinOnce();
   }
@@ -117,7 +123,8 @@ int main(){
 	
 	
 	// save hand workspace ellipsoids point cloud
-	pcl::io::savePCDFileASCII("allegro_hand_workspace_as_ellipsoids.pcd", *augmented_cloud);
+	//pcl::io::savePCDFileASCII("allegro_hand_workspace_as_ellipsoids.pcd", *augmented_cloud);
+	pcl::io::savePCDFileASCII("allegro_hand_workspace_as_ellipsoids.pcd", *hand_workspace_ellipsoids_xyzrgb);
 	
 	
   //while ( !viewer->wasStopped() and !Hullviewer->wasStopped() ){

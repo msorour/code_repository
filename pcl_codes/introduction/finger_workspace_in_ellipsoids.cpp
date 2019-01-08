@@ -10,7 +10,7 @@
 #include <unistd.h>   // for sleep
 
 int main(){
-  std::string finger = "pinky";
+  std::string finger = "thumb";
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr augmented_cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
   pcl::PointCloud<pcl::PointXYZ>::Ptr finger_workspace_cloud_xyz(new pcl::PointCloud<pcl::PointXYZ>);
   pcl::PointCloud<pcl::PointXYZ>::Ptr finger_workspace_cloud_light_xyz(new pcl::PointCloud<pcl::PointXYZ>);
@@ -52,7 +52,7 @@ int main(){
   double ellipsoid_value=1.0;
   double accuracy=0.001;
   double ellipsoid_x, ellipsoid_y, ellipsoid_z;
-  int ellipsoid_point_cloud_samples = 50;
+  int ellipsoid_point_cloud_samples = 25;
   unsigned int delay_microseconds = 1;
   pcl::PointCloud<pcl::PointXYZRGB> ellipsoid_point_cloud;
   pcl::PointXYZRGB ellipsoid_point;
@@ -75,9 +75,9 @@ int main(){
     ellipsoid_offset.x = cloud.points[it].x;
     ellipsoid_offset.y = cloud.points[it].y;
     ellipsoid_offset.z = cloud.points[it].z;
-    a=0.025;
-    b=0.025;
-    c=0.025;
+    a=0.01;
+    b=0.01;
+    c=0.01;
     
     
     // for this "seed" ellipsoid center point

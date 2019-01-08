@@ -15,10 +15,10 @@
 
 int main(){
   //std::string object_name = "cocacola_bottle";
-  //std::string object_name = "object_with_major_axis_in_x";
+  std::string object_name = "object_with_major_axis_in_x";
   //std::string object_name = "cocacola_bottle_in_x";
   //std::string object_name = "cocacola_bottle_in_y";
-  std::string object_name = "cocacola_bottle_in_xyz";
+  //std::string object_name = "cocacola_bottle_in_xyz";
   
   
   pcl::PointCloud<pcl::PointXYZ>::Ptr object_cloud_xyz(new pcl::PointCloud<pcl::PointXYZ>);
@@ -43,13 +43,13 @@ int main(){
   boost::shared_ptr<pcl::visualization::PCLVisualizer> Hullviewer(new pcl::visualization::PCLVisualizer ("hull viewer"));
   Hullviewer->setBackgroundColor(0,0,0);
   
-  
+  std::cout << "1... " << std::endl;
   // load allegro hand workspace as ellipsoids
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr allegro_hand_workspace_ellipsoids_xyzrgb(new pcl::PointCloud<pcl::PointXYZRGB>);
   pcl::io::loadPCDFile<pcl::PointXYZRGB>("allegro_hand_workspace_as_ellipsoids.pcd", *allegro_hand_workspace_ellipsoids_xyzrgb);
   //Hullviewer->addPointCloud<pcl::PointXYZRGB>(allegro_hand_workspace_ellipsoids_xyzrgb, rgb,"hull viewer");
   
-  
+  std::cout << "2... " << std::endl;
   
   
   /*
@@ -81,9 +81,11 @@ int main(){
   // loading mesh to save development time!
   pcl::PolygonMesh object_mesh;
   pcl::io::loadOBJFile(object_name+".obj", object_mesh );
+  std::cout << "3... " << std::endl;
   
   // getting the vertices of the polygon mesh loaded
   pcl::PointCloud<pcl::PointXYZ> object_mesh_vertices;
+  std::cout << "4... " << std::endl;
   pcl::fromPCLPointCloud2(object_mesh.cloud, object_mesh_vertices);
   
   std::cout << "number of vertices: " << object_mesh_vertices.size() << std::endl;
@@ -238,7 +240,7 @@ int main(){
   
   
   // generate and view the point cloud of the graspable volume ellipsoids
-  int ellipsoid_point_cloud_samples = 100;
+  int ellipsoid_point_cloud_samples = 50;
   double ellipsoid_x, ellipsoid_y, ellipsoid_z;
   pcl::PointCloud<pcl::PointXYZRGB> ellipsoid_point_cloud;
   pcl::PointXYZRGB ellipsoid_point;
@@ -281,8 +283,7 @@ int main(){
   transform.translation() << 0, 0, 0;
   transform.rotate( Eigen::AngleAxisf( alpha, Eigen::Vector3f::UnitX() ) );
   transform.rotate( Eigen::AngleAxisf( beta , Eigen::Vector3f::UnitY() ) );
-  transform.rotate( Eigen::AngleAxisf( alpha, Eigen::Vector3f::UnitX() ) );
-  //transform.rotate( Eigen::AngleAxisf( gamma, Eigen::Vector3f::UnitZ() ) );
+  transform.rotate( Eigen::AngleAxisf( gamma, Eigen::Vector3f::UnitZ() ) );
   
   // Executing the transformation
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr hand_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
@@ -292,7 +293,7 @@ int main(){
   // view the hand workspace
   *augmented_cloud += *hand_transformed_cloud;
   viewer->updatePointCloud<pcl::PointXYZRGB>(augmented_cloud, rgb,"object cloud");
-  Hullviewer->updatePointCloud<pcl::PointXYZRGB>(augmented_cloud, rgb,"object cloud");
+  //Hullviewer->updatePointCloud<pcl::PointXYZRGB>(augmented_cloud, rgb,"object cloud");
   
   
 	
