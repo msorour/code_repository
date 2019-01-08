@@ -158,7 +158,7 @@ int main(){
           ellipsoid_point.r = 250;
           ellipsoid_point.g = 0;
           ellipsoid_point.b = 0;
-          ellipsoid_point_cloud.points.push_back( ellipsoid_point );          
+          ellipsoid_point_cloud.points.push_back( ellipsoid_point );
         }
       }
       augmented_cloud->clear();
