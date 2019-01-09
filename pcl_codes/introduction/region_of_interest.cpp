@@ -290,8 +290,10 @@ int main(int argc, char **argv){
   std::cout << "orthogonal_vector_1 = " << std::endl << orthogonal_vector_1 << std::endl;
   std::cout << "orthogonal_vector_2 = " << std::endl << orthogonal_vector_2 << std::endl;
   
+  // only issue is: if the object and hand are alligned from beginning !?
+  // this is a quick fix, need some time to do properly !
   double epsilon = 0.05;
-  if( (major_axis_vector.dot(unit_z)> 1-epsilon) and ( (orthogonal_vector_1.dot(unit_x)> 1-epsilon) or (orthogonal_vector_1.dot(unit_y)> 1-epsilon) ) )
+  if( (major_axis_vector.dot(unit_z)> 1.0-epsilon) and ( (fabs(orthogonal_vector_1.dot(unit_x))> 1.0-epsilon) or (fabs(orthogonal_vector_1.dot(unit_y))> 1.0-epsilon) or (fabs(orthogonal_vector_2.dot(unit_x))> 1.0-epsilon) or (fabs(orthogonal_vector_2.dot(unit_y))> 1.0-epsilon) ) )
     rotation_matrix = Eigen::Matrix3d::Identity();
   else
     rotation_matrix <<  orthogonal_vector_1.dot(unit_x), orthogonal_vector_2.dot(unit_x), major_axis_vector.dot(unit_x),
@@ -299,9 +301,6 @@ int main(int argc, char **argv){
                         orthogonal_vector_1.dot(unit_z), orthogonal_vector_2.dot(unit_z), major_axis_vector.dot(unit_z);
   
   std::cout << "R = " << std::endl << rotation_matrix << std::endl;
-  std::cout << "R = " << std::endl << major_axis_vector.dot(unit_z) << std::endl;
-  std::cout << "R = " << std::endl << orthogonal_vector_1.dot(unit_x) << std::endl;
-  std::cout << "R = " << std::endl << orthogonal_vector_1.dot(unit_y) << std::endl;
   transform << rotation_matrix, translation,
                0, 0, 0, 1;
   
