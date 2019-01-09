@@ -5,6 +5,7 @@ Eigen::Matrix3d Roty(double t);
 Eigen::Matrix3d Rotz(double t);
 Eigen::Matrix3d skew_symm_matrix(Eigen::Vector3d vec);
 Eigen::VectorXd transformation_matrix_to_pose_rpy(Eigen::Matrix4d TM);
+Eigen::Vector3d rotation_matrix_to_rpy(Eigen::Matrix3d RM);
 Eigen::Matrix3d rpy_to_direction_cosines(Eigen::Vector3d rpy);
 Eigen::MatrixXd geometric_to_analytic_jacobian_rpy(Eigen::VectorXd pose);
 Eigen::MatrixXd Pinv_damped(Eigen::MatrixXd J, double damping);
@@ -68,6 +69,27 @@ Eigen::VectorXd transformation_matrix_to_pose_rpy(Eigen::Matrix4d TM){
   
   POSE << Px, Py, Pz, gamma, beta, alpha;
   return POSE;
+}
+
+Eigen::Vector3d rotation_matrix_to_rpy(Eigen::Matrix3d RM){
+	Eigen::Vector3d RPY(3);
+  
+  double sx,sy,sz,nx,ny,nz,ax,ay,az;
+  double alpha,beta,gamma;
+  // alpha -> yaw : about z
+  // beta  -> pitch : about y
+  // gamma -> roll : about x
+  
+  sx = RM(0,0);		sy = RM(1,0);		sz = RM(2,0);
+  nx = RM(0,1);		ny = RM(1,1);		nz = RM(2,1);
+  ax = RM(0,2);		ay = RM(1,2);		az = RM(2,2);
+  
+  alpha = atan2( sy , sx ); 
+  beta  = atan2( -sz , sqrt( nz*nz + az*az ) );
+  gamma = atan2( nz , az );
+  
+  RPY << gamma, beta, alpha;
+  return RPY;
 }
 
 Eigen::Matrix3d rpy_to_direction_cosines(Eigen::Vector3d rpy){

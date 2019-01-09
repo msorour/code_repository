@@ -214,8 +214,8 @@ CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /home/work/code_repo
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /home/work/code_repository/ros_packages/include/Eigen/src/plugins/CommonCwiseUnaryOps.h
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /home/work/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseBinaryOps.h
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /home/work/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseUnaryOps.h
+CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /home/work/code_repository/ros_packages/include/useful_implementations.h
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/include/eigen3/Eigen/Core
-CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/include/eigen3/Eigen/Dense
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/include/eigen3/Eigen/Eigenvalues
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/include/eigen3/Eigen/Geometry
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/include/eigen3/Eigen/LU
