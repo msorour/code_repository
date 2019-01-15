@@ -216,6 +216,8 @@ CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o
  /home/work/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseBinaryOps.h
  /home/work/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseUnaryOps.h
  /home/work/code_repository/ros_packages/include/useful_implementations.h
+ /home/work/software/QuadProgpp-master/src/Array.hh
+ /home/work/software/QuadProgpp-master/src/QuadProg++.hh
  /usr/include/eigen3/Eigen/Core
  /usr/include/eigen3/Eigen/Eigenvalues
  /usr/include/eigen3/Eigen/Geometry
@@ -272,6 +274,10 @@ CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o
  /usr/local/include/pcl-1.9/pcl/conversions.h
  /usr/local/include/pcl-1.9/pcl/correspondence.h
  /usr/local/include/pcl-1.9/pcl/exceptions.h
+ /usr/local/include/pcl-1.9/pcl/features/feature.h
+ /usr/local/include/pcl-1.9/pcl/features/impl/feature.hpp
+ /usr/local/include/pcl-1.9/pcl/features/impl/normal_3d.hpp
+ /usr/local/include/pcl-1.9/pcl/features/normal_3d.h
  /usr/local/include/pcl-1.9/pcl/for_each_type.h
  /usr/local/include/pcl-1.9/pcl/geometry/planar_polygon.h
  /usr/local/include/pcl-1.9/pcl/impl/cloud_iterator.hpp
@@ -285,6 +291,11 @@ CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o
  /usr/local/include/pcl-1.9/pcl/io/lzf.h
  /usr/local/include/pcl-1.9/pcl/io/obj_io.h
  /usr/local/include/pcl-1.9/pcl/io/pcd_io.h
+ /usr/local/include/pcl-1.9/pcl/io/ply/byte_order.h
+ /usr/local/include/pcl-1.9/pcl/io/ply/io_operators.h
+ /usr/local/include/pcl-1.9/pcl/io/ply/ply.h
+ /usr/local/include/pcl-1.9/pcl/io/ply/ply_parser.h
+ /usr/local/include/pcl-1.9/pcl/io/ply_io.h
  /usr/local/include/pcl-1.9/pcl/kdtree/flann.h
  /usr/local/include/pcl-1.9/pcl/kdtree/impl/kdtree_flann.hpp
  /usr/local/include/pcl-1.9/pcl/kdtree/kdtree.h

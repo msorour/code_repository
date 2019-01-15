@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named pose_estimation_of_rigid_objects
+
+# Build rule for target.
+pose_estimation_of_rigid_objects: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pose_estimation_of_rigid_objects
+.PHONY : pose_estimation_of_rigid_objects
+
+# fast build rule for target.
+pose_estimation_of_rigid_objects/fast:
+	$(MAKE) -f CMakeFiles/pose_estimation_of_rigid_objects.dir/build.make CMakeFiles/pose_estimation_of_rigid_objects.dir/build
+.PHONY : pose_estimation_of_rigid_objects/fast
+
+#=============================================================================
 # Target rules for targets named region_of_interest
 
 # Build rule for target.
@@ -213,6 +226,33 @@ stl_to_point_cloud_visualizer: cmake_check_build_system
 stl_to_point_cloud_visualizer/fast:
 	$(MAKE) -f CMakeFiles/stl_to_point_cloud_visualizer.dir/build.make CMakeFiles/stl_to_point_cloud_visualizer.dir/build
 .PHONY : stl_to_point_cloud_visualizer/fast
+
+alignment_prerejective.o: alignment_prerejective.cpp.o
+
+.PHONY : alignment_prerejective.o
+
+# target to build an object file
+alignment_prerejective.cpp.o:
+	$(MAKE) -f CMakeFiles/pose_estimation_of_rigid_objects.dir/build.make CMakeFiles/pose_estimation_of_rigid_objects.dir/alignment_prerejective.cpp.o
+.PHONY : alignment_prerejective.cpp.o
+
+alignment_prerejective.i: alignment_prerejective.cpp.i
+
+.PHONY : alignment_prerejective.i
+
+# target to preprocess a source file
+alignment_prerejective.cpp.i:
+	$(MAKE) -f CMakeFiles/pose_estimation_of_rigid_objects.dir/build.make CMakeFiles/pose_estimation_of_rigid_objects.dir/alignment_prerejective.cpp.i
+.PHONY : alignment_prerejective.cpp.i
+
+alignment_prerejective.s: alignment_prerejective.cpp.s
+
+.PHONY : alignment_prerejective.s
+
+# target to generate assembly for a file
+alignment_prerejective.cpp.s:
+	$(MAKE) -f CMakeFiles/pose_estimation_of_rigid_objects.dir/build.make CMakeFiles/pose_estimation_of_rigid_objects.dir/alignment_prerejective.cpp.s
+.PHONY : alignment_prerejective.cpp.s
 
 allegro_hand_workspace_visualisation.o: allegro_hand_workspace_visualisation.cpp.o
 
@@ -438,6 +478,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... pose_estimation_of_rigid_objects"
 	@echo "... region_of_interest"
 	@echo "... pcd_read"
 	@echo "... cloud_visualizer"
@@ -446,6 +487,9 @@ help:
 	@echo "... allegro_hand_workspace_visualisation"
 	@echo "... allegro_right_hand_to_point_cloud"
 	@echo "... stl_to_point_cloud_visualizer"
+	@echo "... alignment_prerejective.o"
+	@echo "... alignment_prerejective.i"
+	@echo "... alignment_prerejective.s"
 	@echo "... allegro_hand_workspace_visualisation.o"
 	@echo "... allegro_hand_workspace_visualisation.i"
 	@echo "... allegro_hand_workspace_visualisation.s"

@@ -215,6 +215,8 @@ CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /home/work/code_repo
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /home/work/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseBinaryOps.h
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /home/work/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseUnaryOps.h
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /home/work/code_repository/ros_packages/include/useful_implementations.h
+CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /home/work/software/QuadProgpp-master/src/Array.hh
+CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /home/work/software/QuadProgpp-master/src/QuadProg++.hh
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/include/eigen3/Eigen/Core
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/include/eigen3/Eigen/Eigenvalues
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/include/eigen3/Eigen/Geometry
@@ -271,6 +273,10 @@ CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/local/include/p
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/local/include/pcl-1.9/pcl/conversions.h
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/local/include/pcl-1.9/pcl/correspondence.h
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/local/include/pcl-1.9/pcl/exceptions.h
+CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/local/include/pcl-1.9/pcl/features/feature.h
+CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/local/include/pcl-1.9/pcl/features/impl/feature.hpp
+CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/local/include/pcl-1.9/pcl/features/impl/normal_3d.hpp
+CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/local/include/pcl-1.9/pcl/features/normal_3d.h
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/local/include/pcl-1.9/pcl/for_each_type.h
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/local/include/pcl-1.9/pcl/geometry/planar_polygon.h
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/local/include/pcl-1.9/pcl/impl/cloud_iterator.hpp
@@ -284,6 +290,11 @@ CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/local/include/p
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/local/include/pcl-1.9/pcl/io/lzf.h
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/local/include/pcl-1.9/pcl/io/obj_io.h
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/local/include/pcl-1.9/pcl/io/pcd_io.h
+CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/local/include/pcl-1.9/pcl/io/ply/byte_order.h
+CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/local/include/pcl-1.9/pcl/io/ply/io_operators.h
+CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/local/include/pcl-1.9/pcl/io/ply/ply.h
+CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/local/include/pcl-1.9/pcl/io/ply/ply_parser.h
+CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/local/include/pcl-1.9/pcl/io/ply_io.h
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/local/include/pcl-1.9/pcl/kdtree/flann.h
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/local/include/pcl-1.9/pcl/kdtree/impl/kdtree_flann.hpp
 CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o: /usr/local/include/pcl-1.9/pcl/kdtree/kdtree.h

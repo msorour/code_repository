@@ -22,6 +22,8 @@ int main(){
   pcl::PointCloud<pcl::PointXYZ>::Ptr finger_workspace_cloud_xyz(new pcl::PointCloud<pcl::PointXYZ>);
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr finger_workspace_cloud_xyzrgb(new pcl::PointCloud<pcl::PointXYZRGB>);
   
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr hand_workspace_cloud_xyzrgb(new pcl::PointCloud<pcl::PointXYZRGB>);
+  
   pcl::PointCloud<pcl::PointXYZ>::Ptr finger_workspace_as_ellipsoids_cloud_xyz(new pcl::PointCloud<pcl::PointXYZ>);
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr finger_workspace_as_ellipsoids_cloud_xyzrgb(new pcl::PointCloud<pcl::PointXYZRGB>);
   
@@ -82,6 +84,8 @@ int main(){
       finger_workspace_as_ellipsoids_cloud_xyzrgb->points[i].b = b;
     }
     
+    *hand_workspace_cloud_xyzrgb += *finger_workspace_cloud_xyzrgb;
+    
     *augmented_cloud += *finger_workspace_cloud_xyzrgb;
     *augmented_cloud += *finger_workspace_as_ellipsoids_cloud_xyzrgb;
     
@@ -125,6 +129,7 @@ int main(){
 	// save hand workspace ellipsoids point cloud
 	//pcl::io::savePCDFileASCII("allegro_hand_workspace_as_ellipsoids.pcd", *augmented_cloud);
 	pcl::io::savePCDFileASCII("allegro_hand_workspace_as_ellipsoids.pcd", *hand_workspace_ellipsoids_xyzrgb);
+	pcl::io::savePCDFileASCII("allegro_hand_workspace.pcd", *hand_workspace_cloud_xyzrgb);
 	
 	
   //while ( !viewer->wasStopped() and !Hullviewer->wasStopped() ){

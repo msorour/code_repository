@@ -174,6 +174,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
+  "CMakeFiles/pose_estimation_of_rigid_objects.dir/DependInfo.cmake"
   "CMakeFiles/region_of_interest.dir/DependInfo.cmake"
   "CMakeFiles/pcd_read.dir/DependInfo.cmake"
   "CMakeFiles/cloud_visualizer.dir/DependInfo.cmake"

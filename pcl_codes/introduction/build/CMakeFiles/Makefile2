@@ -60,13 +60,50 @@ CMAKE_SOURCE_DIR = /home/work/code_repository/pcl_codes/introduction
 CMAKE_BINARY_DIR = /home/work/code_repository/pcl_codes/introduction/build
 
 #=============================================================================
+# Target rules for target CMakeFiles/pose_estimation_of_rigid_objects.dir
+
+# All Build rule for target.
+CMakeFiles/pose_estimation_of_rigid_objects.dir/all:
+	$(MAKE) -f CMakeFiles/pose_estimation_of_rigid_objects.dir/build.make CMakeFiles/pose_estimation_of_rigid_objects.dir/depend
+	$(MAKE) -f CMakeFiles/pose_estimation_of_rigid_objects.dir/build.make CMakeFiles/pose_estimation_of_rigid_objects.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=13,14 "Built target pose_estimation_of_rigid_objects"
+.PHONY : CMakeFiles/pose_estimation_of_rigid_objects.dir/all
+
+# Include target in all.
+all: CMakeFiles/pose_estimation_of_rigid_objects.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/pose_estimation_of_rigid_objects.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/introduction/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/pose_estimation_of_rigid_objects.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/introduction/build/CMakeFiles 0
+.PHONY : CMakeFiles/pose_estimation_of_rigid_objects.dir/rule
+
+# Convenience name for target.
+pose_estimation_of_rigid_objects: CMakeFiles/pose_estimation_of_rigid_objects.dir/rule
+
+.PHONY : pose_estimation_of_rigid_objects
+
+# clean rule for target.
+CMakeFiles/pose_estimation_of_rigid_objects.dir/clean:
+	$(MAKE) -f CMakeFiles/pose_estimation_of_rigid_objects.dir/build.make CMakeFiles/pose_estimation_of_rigid_objects.dir/clean
+.PHONY : CMakeFiles/pose_estimation_of_rigid_objects.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/pose_estimation_of_rigid_objects.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/region_of_interest.dir
 
 # All Build rule for target.
 CMakeFiles/region_of_interest.dir/all:
 	$(MAKE) -f CMakeFiles/region_of_interest.dir/build.make CMakeFiles/region_of_interest.dir/depend
 	$(MAKE) -f CMakeFiles/region_of_interest.dir/build.make CMakeFiles/region_of_interest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=13,14 "Built target region_of_interest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=15,16 "Built target region_of_interest"
 .PHONY : CMakeFiles/region_of_interest.dir/all
 
 # Include target in all.
@@ -325,7 +362,7 @@ clean: CMakeFiles/allegro_right_hand_to_point_cloud.dir/clean
 CMakeFiles/stl_to_point_cloud_visualizer.dir/all:
 	$(MAKE) -f CMakeFiles/stl_to_point_cloud_visualizer.dir/build.make CMakeFiles/stl_to_point_cloud_visualizer.dir/depend
 	$(MAKE) -f CMakeFiles/stl_to_point_cloud_visualizer.dir/build.make CMakeFiles/stl_to_point_cloud_visualizer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=15,16 "Built target stl_to_point_cloud_visualizer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=17,18 "Built target stl_to_point_cloud_visualizer"
 .PHONY : CMakeFiles/stl_to_point_cloud_visualizer.dir/all
 
 # Include target in all.
