@@ -60,50 +60,13 @@ CMAKE_SOURCE_DIR = /home/work/code_repository/pcl_codes/introduction
 CMAKE_BINARY_DIR = /home/work/code_repository/pcl_codes/introduction/build
 
 #=============================================================================
-# Target rules for target CMakeFiles/pose_estimation_of_rigid_objects.dir
-
-# All Build rule for target.
-CMakeFiles/pose_estimation_of_rigid_objects.dir/all:
-	$(MAKE) -f CMakeFiles/pose_estimation_of_rigid_objects.dir/build.make CMakeFiles/pose_estimation_of_rigid_objects.dir/depend
-	$(MAKE) -f CMakeFiles/pose_estimation_of_rigid_objects.dir/build.make CMakeFiles/pose_estimation_of_rigid_objects.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=13,14 "Built target pose_estimation_of_rigid_objects"
-.PHONY : CMakeFiles/pose_estimation_of_rigid_objects.dir/all
-
-# Include target in all.
-all: CMakeFiles/pose_estimation_of_rigid_objects.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/pose_estimation_of_rigid_objects.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/introduction/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/pose_estimation_of_rigid_objects.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/introduction/build/CMakeFiles 0
-.PHONY : CMakeFiles/pose_estimation_of_rigid_objects.dir/rule
-
-# Convenience name for target.
-pose_estimation_of_rigid_objects: CMakeFiles/pose_estimation_of_rigid_objects.dir/rule
-
-.PHONY : pose_estimation_of_rigid_objects
-
-# clean rule for target.
-CMakeFiles/pose_estimation_of_rigid_objects.dir/clean:
-	$(MAKE) -f CMakeFiles/pose_estimation_of_rigid_objects.dir/build.make CMakeFiles/pose_estimation_of_rigid_objects.dir/clean
-.PHONY : CMakeFiles/pose_estimation_of_rigid_objects.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/pose_estimation_of_rigid_objects.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
 # Target rules for target CMakeFiles/region_of_interest.dir
 
 # All Build rule for target.
 CMakeFiles/region_of_interest.dir/all:
 	$(MAKE) -f CMakeFiles/region_of_interest.dir/build.make CMakeFiles/region_of_interest.dir/depend
 	$(MAKE) -f CMakeFiles/region_of_interest.dir/build.make CMakeFiles/region_of_interest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=15,16 "Built target region_of_interest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=19,20 "Built target region_of_interest"
 .PHONY : CMakeFiles/region_of_interest.dir/all
 
 # Include target in all.
@@ -134,13 +97,161 @@ clean: CMakeFiles/region_of_interest.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/allegro_hand_workspace_as_spheres.dir
+
+# All Build rule for target.
+CMakeFiles/allegro_hand_workspace_as_spheres.dir/all:
+	$(MAKE) -f CMakeFiles/allegro_hand_workspace_as_spheres.dir/build.make CMakeFiles/allegro_hand_workspace_as_spheres.dir/depend
+	$(MAKE) -f CMakeFiles/allegro_hand_workspace_as_spheres.dir/build.make CMakeFiles/allegro_hand_workspace_as_spheres.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=5,6 "Built target allegro_hand_workspace_as_spheres"
+.PHONY : CMakeFiles/allegro_hand_workspace_as_spheres.dir/all
+
+# Include target in all.
+all: CMakeFiles/allegro_hand_workspace_as_spheres.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/allegro_hand_workspace_as_spheres.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/introduction/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/allegro_hand_workspace_as_spheres.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/introduction/build/CMakeFiles 0
+.PHONY : CMakeFiles/allegro_hand_workspace_as_spheres.dir/rule
+
+# Convenience name for target.
+allegro_hand_workspace_as_spheres: CMakeFiles/allegro_hand_workspace_as_spheres.dir/rule
+
+.PHONY : allegro_hand_workspace_as_spheres
+
+# clean rule for target.
+CMakeFiles/allegro_hand_workspace_as_spheres.dir/clean:
+	$(MAKE) -f CMakeFiles/allegro_hand_workspace_as_spheres.dir/build.make CMakeFiles/allegro_hand_workspace_as_spheres.dir/clean
+.PHONY : CMakeFiles/allegro_hand_workspace_as_spheres.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/allegro_hand_workspace_as_spheres.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/pose_estimation_of_rigid_objects.dir
+
+# All Build rule for target.
+CMakeFiles/pose_estimation_of_rigid_objects.dir/all:
+	$(MAKE) -f CMakeFiles/pose_estimation_of_rigid_objects.dir/build.make CMakeFiles/pose_estimation_of_rigid_objects.dir/depend
+	$(MAKE) -f CMakeFiles/pose_estimation_of_rigid_objects.dir/build.make CMakeFiles/pose_estimation_of_rigid_objects.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=17,18 "Built target pose_estimation_of_rigid_objects"
+.PHONY : CMakeFiles/pose_estimation_of_rigid_objects.dir/all
+
+# Include target in all.
+all: CMakeFiles/pose_estimation_of_rigid_objects.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/pose_estimation_of_rigid_objects.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/introduction/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/pose_estimation_of_rigid_objects.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/introduction/build/CMakeFiles 0
+.PHONY : CMakeFiles/pose_estimation_of_rigid_objects.dir/rule
+
+# Convenience name for target.
+pose_estimation_of_rigid_objects: CMakeFiles/pose_estimation_of_rigid_objects.dir/rule
+
+.PHONY : pose_estimation_of_rigid_objects
+
+# clean rule for target.
+CMakeFiles/pose_estimation_of_rigid_objects.dir/clean:
+	$(MAKE) -f CMakeFiles/pose_estimation_of_rigid_objects.dir/build.make CMakeFiles/pose_estimation_of_rigid_objects.dir/clean
+.PHONY : CMakeFiles/pose_estimation_of_rigid_objects.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/pose_estimation_of_rigid_objects.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/region_of_interest_spheres.dir
+
+# All Build rule for target.
+CMakeFiles/region_of_interest_spheres.dir/all:
+	$(MAKE) -f CMakeFiles/region_of_interest_spheres.dir/build.make CMakeFiles/region_of_interest_spheres.dir/depend
+	$(MAKE) -f CMakeFiles/region_of_interest_spheres.dir/build.make CMakeFiles/region_of_interest_spheres.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=21,22 "Built target region_of_interest_spheres"
+.PHONY : CMakeFiles/region_of_interest_spheres.dir/all
+
+# Include target in all.
+all: CMakeFiles/region_of_interest_spheres.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/region_of_interest_spheres.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/introduction/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/region_of_interest_spheres.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/introduction/build/CMakeFiles 0
+.PHONY : CMakeFiles/region_of_interest_spheres.dir/rule
+
+# Convenience name for target.
+region_of_interest_spheres: CMakeFiles/region_of_interest_spheres.dir/rule
+
+.PHONY : region_of_interest_spheres
+
+# clean rule for target.
+CMakeFiles/region_of_interest_spheres.dir/clean:
+	$(MAKE) -f CMakeFiles/region_of_interest_spheres.dir/build.make CMakeFiles/region_of_interest_spheres.dir/clean
+.PHONY : CMakeFiles/region_of_interest_spheres.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/region_of_interest_spheres.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/allegro_finger_workspace_in_spheres.dir
+
+# All Build rule for target.
+CMakeFiles/allegro_finger_workspace_in_spheres.dir/all:
+	$(MAKE) -f CMakeFiles/allegro_finger_workspace_in_spheres.dir/build.make CMakeFiles/allegro_finger_workspace_in_spheres.dir/depend
+	$(MAKE) -f CMakeFiles/allegro_finger_workspace_in_spheres.dir/build.make CMakeFiles/allegro_finger_workspace_in_spheres.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=3,4 "Built target allegro_finger_workspace_in_spheres"
+.PHONY : CMakeFiles/allegro_finger_workspace_in_spheres.dir/all
+
+# Include target in all.
+all: CMakeFiles/allegro_finger_workspace_in_spheres.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/allegro_finger_workspace_in_spheres.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/introduction/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/allegro_finger_workspace_in_spheres.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/introduction/build/CMakeFiles 0
+.PHONY : CMakeFiles/allegro_finger_workspace_in_spheres.dir/rule
+
+# Convenience name for target.
+allegro_finger_workspace_in_spheres: CMakeFiles/allegro_finger_workspace_in_spheres.dir/rule
+
+.PHONY : allegro_finger_workspace_in_spheres
+
+# clean rule for target.
+CMakeFiles/allegro_finger_workspace_in_spheres.dir/clean:
+	$(MAKE) -f CMakeFiles/allegro_finger_workspace_in_spheres.dir/build.make CMakeFiles/allegro_finger_workspace_in_spheres.dir/clean
+.PHONY : CMakeFiles/allegro_finger_workspace_in_spheres.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/allegro_finger_workspace_in_spheres.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/pcd_read.dir
 
 # All Build rule for target.
 CMakeFiles/pcd_read.dir/all:
 	$(MAKE) -f CMakeFiles/pcd_read.dir/build.make CMakeFiles/pcd_read.dir/depend
 	$(MAKE) -f CMakeFiles/pcd_read.dir/build.make CMakeFiles/pcd_read.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=9,10 "Built target pcd_read"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=13,14 "Built target pcd_read"
 .PHONY : CMakeFiles/pcd_read.dir/all
 
 # Include target in all.
@@ -177,7 +288,7 @@ clean: CMakeFiles/pcd_read.dir/clean
 CMakeFiles/cloud_visualizer.dir/all:
 	$(MAKE) -f CMakeFiles/cloud_visualizer.dir/build.make CMakeFiles/cloud_visualizer.dir/depend
 	$(MAKE) -f CMakeFiles/cloud_visualizer.dir/build.make CMakeFiles/cloud_visualizer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=7,8 "Built target cloud_visualizer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=11,12 "Built target cloud_visualizer"
 .PHONY : CMakeFiles/cloud_visualizer.dir/all
 
 # Include target in all.
@@ -251,7 +362,7 @@ clean: CMakeFiles/allegro_finger_workspace_in_ellipsoids.dir/clean
 CMakeFiles/pcd_write_test.dir/all:
 	$(MAKE) -f CMakeFiles/pcd_write_test.dir/build.make CMakeFiles/pcd_write_test.dir/depend
 	$(MAKE) -f CMakeFiles/pcd_write_test.dir/build.make CMakeFiles/pcd_write_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=11,12 "Built target pcd_write_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=15,16 "Built target pcd_write_test"
 .PHONY : CMakeFiles/pcd_write_test.dir/all
 
 # Include target in all.
@@ -288,7 +399,7 @@ clean: CMakeFiles/pcd_write_test.dir/clean
 CMakeFiles/allegro_hand_workspace_visualisation.dir/all:
 	$(MAKE) -f CMakeFiles/allegro_hand_workspace_visualisation.dir/build.make CMakeFiles/allegro_hand_workspace_visualisation.dir/depend
 	$(MAKE) -f CMakeFiles/allegro_hand_workspace_visualisation.dir/build.make CMakeFiles/allegro_hand_workspace_visualisation.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=3,4 "Built target allegro_hand_workspace_visualisation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=7,8 "Built target allegro_hand_workspace_visualisation"
 .PHONY : CMakeFiles/allegro_hand_workspace_visualisation.dir/all
 
 # Include target in all.
@@ -325,7 +436,7 @@ clean: CMakeFiles/allegro_hand_workspace_visualisation.dir/clean
 CMakeFiles/allegro_right_hand_to_point_cloud.dir/all:
 	$(MAKE) -f CMakeFiles/allegro_right_hand_to_point_cloud.dir/build.make CMakeFiles/allegro_right_hand_to_point_cloud.dir/depend
 	$(MAKE) -f CMakeFiles/allegro_right_hand_to_point_cloud.dir/build.make CMakeFiles/allegro_right_hand_to_point_cloud.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=5,6 "Built target allegro_right_hand_to_point_cloud"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=9,10 "Built target allegro_right_hand_to_point_cloud"
 .PHONY : CMakeFiles/allegro_right_hand_to_point_cloud.dir/all
 
 # Include target in all.
@@ -362,7 +473,7 @@ clean: CMakeFiles/allegro_right_hand_to_point_cloud.dir/clean
 CMakeFiles/stl_to_point_cloud_visualizer.dir/all:
 	$(MAKE) -f CMakeFiles/stl_to_point_cloud_visualizer.dir/build.make CMakeFiles/stl_to_point_cloud_visualizer.dir/depend
 	$(MAKE) -f CMakeFiles/stl_to_point_cloud_visualizer.dir/build.make CMakeFiles/stl_to_point_cloud_visualizer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=17,18 "Built target stl_to_point_cloud_visualizer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles --progress-num=23,24 "Built target stl_to_point_cloud_visualizer"
 .PHONY : CMakeFiles/stl_to_point_cloud_visualizer.dir/all
 
 # Include target in all.

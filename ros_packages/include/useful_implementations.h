@@ -3,6 +3,9 @@
 Eigen::Matrix3d Rotx(double t);
 Eigen::Matrix3d Roty(double t);
 Eigen::Matrix3d Rotz(double t);
+Eigen::Matrix3f Rotx_float(float t);
+Eigen::Matrix3f Roty_float(float t);
+Eigen::Matrix3f Rotz_float(float t);
 Eigen::Matrix3d skew_symm_matrix(Eigen::Vector3d vec);
 Eigen::VectorXd transformation_matrix_to_pose_rpy(Eigen::Matrix4d TM);
 Eigen::Vector3d rotation_matrix_to_rpy(Eigen::Matrix3d RM);
@@ -35,6 +38,28 @@ Eigen::Matrix3d Roty(double t){
 }
 Eigen::Matrix3d Rotz(double t){
 	Eigen::Matrix3d R;
+	R << cos(t), -sin(t), 0,
+			 sin(t),  cos(t), 0,
+			  	 	0, 			 0, 1;
+	return R;
+}
+
+Eigen::Matrix3f Rotx_float(float t){
+	Eigen::Matrix3f R;
+	R << 1, 		 0,			 	0,
+			 0, cos(t), -sin(t),
+			 0, sin(t),  cos(t);
+	return R;
+}
+Eigen::Matrix3f Roty_float(float t){
+	Eigen::Matrix3f R;
+	R <<  cos(t), 0,	sin(t),
+			 			 0, 1, 			 0,
+			 -sin(t), 0,  cos(t);
+	return R;
+}
+Eigen::Matrix3f Rotz_float(float t){
+	Eigen::Matrix3f R;
 	R << cos(t), -sin(t), 0,
 			 sin(t),  cos(t), 0,
 			  	 	0, 			 0, 1;

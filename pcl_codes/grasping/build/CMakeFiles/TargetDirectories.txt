@@ -1,0 +1,13 @@
+/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/edit_cache.dir
+/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/rebuild_cache.dir
+/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/region_of_interest_spheres.dir
+/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/region_of_interest.dir
+/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/cloud_visualizer.dir
+/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/step_7_touch_the_object_with_palm.dir
+/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/step_6_allign_hand_with_roi.dir
+/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/step_2_hand_workspace_sampling.dir
+/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/step_3_hand_workspace_ellipsoids.dir
+/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/step_3_hand_workspace_spheres.dir
+/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir
+/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/step_4_object_pose_approximation.dir
+/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/step_5_region_of_interest.dir

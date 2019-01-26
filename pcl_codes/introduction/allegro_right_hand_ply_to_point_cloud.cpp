@@ -29,7 +29,8 @@ int main(){
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr pinky_cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr allegro_hand_cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
   
-  boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer(new pcl::visualization::PCLVisualizer ("3D Viewer"));
+  boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer(new pcl::visualization::PCLVisualizer ("allegro hand point cloud"));
+  viewer->setBackgroundColor(255,255,255);
   std::string id = "cloud";
   
   // load .ply meshes, we first generate .ply file from the .stl file using meshlab software
@@ -270,13 +271,18 @@ int main(){
   *allegro_hand_cloud = *allegro_hand_cloud + *middle_cloud;
   *allegro_hand_cloud = *allegro_hand_cloud + *pinky_cloud;
   
+  // modify the hand cloud : shift the zero point upwards by 95mm to be inline with the kinematic model we use
+  // TODO : shift in +ve x-axis as well
+  for(unsigned int i=0;i<allegro_hand_cloud->points.size();i++){
+    allegro_hand_cloud->points[i].z += 0.095;
+  }
   
   // save the allegro hand cloud data
   pcl::io::savePCDFileASCII("allegro_right_hand_model_cloud.pcd", *allegro_hand_cloud);
   
   
-  viewer->addPointCloud( allegro_hand_cloud, id );
-  viewer->addCoordinateSystem(0.01);
+  viewer->addPointCloud( allegro_hand_cloud, "allegro hand point cloud" );
+  viewer->addCoordinateSystem(0.05);
   
   while (!viewer->wasStopped()){
     viewer->spinOnce();

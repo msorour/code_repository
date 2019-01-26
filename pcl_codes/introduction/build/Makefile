@@ -111,6 +111,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named region_of_interest
+
+# Build rule for target.
+region_of_interest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 region_of_interest
+.PHONY : region_of_interest
+
+# fast build rule for target.
+region_of_interest/fast:
+	$(MAKE) -f CMakeFiles/region_of_interest.dir/build.make CMakeFiles/region_of_interest.dir/build
+.PHONY : region_of_interest/fast
+
+#=============================================================================
+# Target rules for targets named allegro_hand_workspace_as_spheres
+
+# Build rule for target.
+allegro_hand_workspace_as_spheres: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 allegro_hand_workspace_as_spheres
+.PHONY : allegro_hand_workspace_as_spheres
+
+# fast build rule for target.
+allegro_hand_workspace_as_spheres/fast:
+	$(MAKE) -f CMakeFiles/allegro_hand_workspace_as_spheres.dir/build.make CMakeFiles/allegro_hand_workspace_as_spheres.dir/build
+.PHONY : allegro_hand_workspace_as_spheres/fast
+
+#=============================================================================
 # Target rules for targets named pose_estimation_of_rigid_objects
 
 # Build rule for target.
@@ -124,17 +150,30 @@ pose_estimation_of_rigid_objects/fast:
 .PHONY : pose_estimation_of_rigid_objects/fast
 
 #=============================================================================
-# Target rules for targets named region_of_interest
+# Target rules for targets named region_of_interest_spheres
 
 # Build rule for target.
-region_of_interest: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 region_of_interest
-.PHONY : region_of_interest
+region_of_interest_spheres: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 region_of_interest_spheres
+.PHONY : region_of_interest_spheres
 
 # fast build rule for target.
-region_of_interest/fast:
-	$(MAKE) -f CMakeFiles/region_of_interest.dir/build.make CMakeFiles/region_of_interest.dir/build
-.PHONY : region_of_interest/fast
+region_of_interest_spheres/fast:
+	$(MAKE) -f CMakeFiles/region_of_interest_spheres.dir/build.make CMakeFiles/region_of_interest_spheres.dir/build
+.PHONY : region_of_interest_spheres/fast
+
+#=============================================================================
+# Target rules for targets named allegro_finger_workspace_in_spheres
+
+# Build rule for target.
+allegro_finger_workspace_in_spheres: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 allegro_finger_workspace_in_spheres
+.PHONY : allegro_finger_workspace_in_spheres
+
+# fast build rule for target.
+allegro_finger_workspace_in_spheres/fast:
+	$(MAKE) -f CMakeFiles/allegro_finger_workspace_in_spheres.dir/build.make CMakeFiles/allegro_finger_workspace_in_spheres.dir/build
+.PHONY : allegro_finger_workspace_in_spheres/fast
 
 #=============================================================================
 # Target rules for targets named pcd_read
@@ -254,6 +293,33 @@ alignment_prerejective.cpp.s:
 	$(MAKE) -f CMakeFiles/pose_estimation_of_rigid_objects.dir/build.make CMakeFiles/pose_estimation_of_rigid_objects.dir/alignment_prerejective.cpp.s
 .PHONY : alignment_prerejective.cpp.s
 
+allegro_hand_workspace_as_spheres.o: allegro_hand_workspace_as_spheres.cpp.o
+
+.PHONY : allegro_hand_workspace_as_spheres.o
+
+# target to build an object file
+allegro_hand_workspace_as_spheres.cpp.o:
+	$(MAKE) -f CMakeFiles/allegro_hand_workspace_as_spheres.dir/build.make CMakeFiles/allegro_hand_workspace_as_spheres.dir/allegro_hand_workspace_as_spheres.cpp.o
+.PHONY : allegro_hand_workspace_as_spheres.cpp.o
+
+allegro_hand_workspace_as_spheres.i: allegro_hand_workspace_as_spheres.cpp.i
+
+.PHONY : allegro_hand_workspace_as_spheres.i
+
+# target to preprocess a source file
+allegro_hand_workspace_as_spheres.cpp.i:
+	$(MAKE) -f CMakeFiles/allegro_hand_workspace_as_spheres.dir/build.make CMakeFiles/allegro_hand_workspace_as_spheres.dir/allegro_hand_workspace_as_spheres.cpp.i
+.PHONY : allegro_hand_workspace_as_spheres.cpp.i
+
+allegro_hand_workspace_as_spheres.s: allegro_hand_workspace_as_spheres.cpp.s
+
+.PHONY : allegro_hand_workspace_as_spheres.s
+
+# target to generate assembly for a file
+allegro_hand_workspace_as_spheres.cpp.s:
+	$(MAKE) -f CMakeFiles/allegro_hand_workspace_as_spheres.dir/build.make CMakeFiles/allegro_hand_workspace_as_spheres.dir/allegro_hand_workspace_as_spheres.cpp.s
+.PHONY : allegro_hand_workspace_as_spheres.cpp.s
+
 allegro_hand_workspace_visualisation.o: allegro_hand_workspace_visualisation.cpp.o
 
 .PHONY : allegro_hand_workspace_visualisation.o
@@ -362,6 +428,33 @@ finger_workspace_in_ellipsoids.cpp.s:
 	$(MAKE) -f CMakeFiles/allegro_finger_workspace_in_ellipsoids.dir/build.make CMakeFiles/allegro_finger_workspace_in_ellipsoids.dir/finger_workspace_in_ellipsoids.cpp.s
 .PHONY : finger_workspace_in_ellipsoids.cpp.s
 
+finger_workspace_in_spheres.o: finger_workspace_in_spheres.cpp.o
+
+.PHONY : finger_workspace_in_spheres.o
+
+# target to build an object file
+finger_workspace_in_spheres.cpp.o:
+	$(MAKE) -f CMakeFiles/allegro_finger_workspace_in_spheres.dir/build.make CMakeFiles/allegro_finger_workspace_in_spheres.dir/finger_workspace_in_spheres.cpp.o
+.PHONY : finger_workspace_in_spheres.cpp.o
+
+finger_workspace_in_spheres.i: finger_workspace_in_spheres.cpp.i
+
+.PHONY : finger_workspace_in_spheres.i
+
+# target to preprocess a source file
+finger_workspace_in_spheres.cpp.i:
+	$(MAKE) -f CMakeFiles/allegro_finger_workspace_in_spheres.dir/build.make CMakeFiles/allegro_finger_workspace_in_spheres.dir/finger_workspace_in_spheres.cpp.i
+.PHONY : finger_workspace_in_spheres.cpp.i
+
+finger_workspace_in_spheres.s: finger_workspace_in_spheres.cpp.s
+
+.PHONY : finger_workspace_in_spheres.s
+
+# target to generate assembly for a file
+finger_workspace_in_spheres.cpp.s:
+	$(MAKE) -f CMakeFiles/allegro_finger_workspace_in_spheres.dir/build.make CMakeFiles/allegro_finger_workspace_in_spheres.dir/finger_workspace_in_spheres.cpp.s
+.PHONY : finger_workspace_in_spheres.cpp.s
+
 pcd_read.o: pcd_read.cpp.o
 
 .PHONY : pcd_read.o
@@ -443,6 +536,33 @@ region_of_interest.cpp.s:
 	$(MAKE) -f CMakeFiles/region_of_interest.dir/build.make CMakeFiles/region_of_interest.dir/region_of_interest.cpp.s
 .PHONY : region_of_interest.cpp.s
 
+region_of_interest_spheres.o: region_of_interest_spheres.cpp.o
+
+.PHONY : region_of_interest_spheres.o
+
+# target to build an object file
+region_of_interest_spheres.cpp.o:
+	$(MAKE) -f CMakeFiles/region_of_interest_spheres.dir/build.make CMakeFiles/region_of_interest_spheres.dir/region_of_interest_spheres.cpp.o
+.PHONY : region_of_interest_spheres.cpp.o
+
+region_of_interest_spheres.i: region_of_interest_spheres.cpp.i
+
+.PHONY : region_of_interest_spheres.i
+
+# target to preprocess a source file
+region_of_interest_spheres.cpp.i:
+	$(MAKE) -f CMakeFiles/region_of_interest_spheres.dir/build.make CMakeFiles/region_of_interest_spheres.dir/region_of_interest_spheres.cpp.i
+.PHONY : region_of_interest_spheres.cpp.i
+
+region_of_interest_spheres.s: region_of_interest_spheres.cpp.s
+
+.PHONY : region_of_interest_spheres.s
+
+# target to generate assembly for a file
+region_of_interest_spheres.cpp.s:
+	$(MAKE) -f CMakeFiles/region_of_interest_spheres.dir/build.make CMakeFiles/region_of_interest_spheres.dir/region_of_interest_spheres.cpp.s
+.PHONY : region_of_interest_spheres.cpp.s
+
 stl_to_point_cloud.o: stl_to_point_cloud.cpp.o
 
 .PHONY : stl_to_point_cloud.o
@@ -477,9 +597,12 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... region_of_interest"
+	@echo "... allegro_hand_workspace_as_spheres"
 	@echo "... rebuild_cache"
 	@echo "... pose_estimation_of_rigid_objects"
-	@echo "... region_of_interest"
+	@echo "... region_of_interest_spheres"
+	@echo "... allegro_finger_workspace_in_spheres"
 	@echo "... pcd_read"
 	@echo "... cloud_visualizer"
 	@echo "... allegro_finger_workspace_in_ellipsoids"
@@ -490,6 +613,9 @@ help:
 	@echo "... alignment_prerejective.o"
 	@echo "... alignment_prerejective.i"
 	@echo "... alignment_prerejective.s"
+	@echo "... allegro_hand_workspace_as_spheres.o"
+	@echo "... allegro_hand_workspace_as_spheres.i"
+	@echo "... allegro_hand_workspace_as_spheres.s"
 	@echo "... allegro_hand_workspace_visualisation.o"
 	@echo "... allegro_hand_workspace_visualisation.i"
 	@echo "... allegro_hand_workspace_visualisation.s"
@@ -502,6 +628,9 @@ help:
 	@echo "... finger_workspace_in_ellipsoids.o"
 	@echo "... finger_workspace_in_ellipsoids.i"
 	@echo "... finger_workspace_in_ellipsoids.s"
+	@echo "... finger_workspace_in_spheres.o"
+	@echo "... finger_workspace_in_spheres.i"
+	@echo "... finger_workspace_in_spheres.s"
 	@echo "... pcd_read.o"
 	@echo "... pcd_read.i"
 	@echo "... pcd_read.s"
@@ -511,6 +640,9 @@ help:
 	@echo "... region_of_interest.o"
 	@echo "... region_of_interest.i"
 	@echo "... region_of_interest.s"
+	@echo "... region_of_interest_spheres.o"
+	@echo "... region_of_interest_spheres.i"
+	@echo "... region_of_interest_spheres.s"
 	@echo "... stl_to_point_cloud.o"
 	@echo "... stl_to_point_cloud.i"
 	@echo "... stl_to_point_cloud.s"

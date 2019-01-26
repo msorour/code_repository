@@ -10,7 +10,7 @@
 #include <unistd.h>   // for sleep
 
 int main(){
-  std::string finger = "thumb";
+  std::string finger = "middle";
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr augmented_cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
   pcl::PointCloud<pcl::PointXYZ>::Ptr finger_workspace_cloud_xyz(new pcl::PointCloud<pcl::PointXYZ>);
   pcl::PointCloud<pcl::PointXYZ>::Ptr finger_workspace_cloud_light_xyz(new pcl::PointCloud<pcl::PointXYZ>);
@@ -33,7 +33,7 @@ int main(){
   boost::shared_ptr<pcl::visualization::PCLVisualizer> Hullviewer(new pcl::visualization::PCLVisualizer ("hull viewer"));
   pcl::ConcaveHull<pcl::PointXYZ> concave_hull;
   concave_hull.setInputCloud( finger_workspace_cloud_xyz );
-  concave_hull.setAlpha( 0.05f );
+  concave_hull.setAlpha( 0.01f );
   concave_hull.reconstruct( mesh_out );
   Hullviewer->setBackgroundColor(0,0,0);
   Hullviewer->addPolygonMesh(mesh_out,"hull");
@@ -53,7 +53,7 @@ int main(){
   double accuracy=0.001;
   double ellipsoid_x, ellipsoid_y, ellipsoid_z;
   int ellipsoid_point_cloud_samples = 25;
-  unsigned int delay_microseconds = 1;
+  unsigned int delay_microseconds = 1000;
   pcl::PointCloud<pcl::PointXYZRGB> ellipsoid_point_cloud;
   pcl::PointXYZRGB ellipsoid_point;
   pcl::PointXYZ ellipsoid_offset;
@@ -70,16 +70,23 @@ int main(){
   
   
   // iterate through all points of the point cloud !
-  for(unsigned int it=0; it<cloud.points.size(); it++){
-    std::cout<< "cloud point: " << cloud.points[it] << std::endl;
+  //for(unsigned int it=0; it<cloud.points.size(); it++){
+  for(unsigned int it=0; it<finger_workspace_cloud_light_xyz->size(); it++){
+    /*std::cout<< "cloud point: " << cloud.points[it] << std::endl;
     ellipsoid_offset.x = cloud.points[it].x;
     ellipsoid_offset.y = cloud.points[it].y;
-    ellipsoid_offset.z = cloud.points[it].z;
+    ellipsoid_offset.z = cloud.points[it].z;*/
+    std::cout<< "cloud point: " << finger_workspace_cloud_light_xyz->points[it] << std::endl;
+    ellipsoid_offset.x = finger_workspace_cloud_light_xyz->points[it].x;
+    ellipsoid_offset.y = finger_workspace_cloud_light_xyz->points[it].y;
+    ellipsoid_offset.z = finger_workspace_cloud_light_xyz->points[it].z;
     a=0.01;
     b=0.01;
     c=0.01;
     
     
+    
+    /*
     // for this "seed" ellipsoid center point
     //
     // find largest possible "a" dimension
@@ -227,6 +234,185 @@ int main(){
     // save largest ellipsoid at this sampled workspace point to file
     workspace_ellipsoids << a_best<<", "<< b_best<<", "<< c_best<<", "<< ellipsoid_offset.x<<", "<< ellipsoid_offset.y<<", "<< ellipsoid_offset.z<<"\n";
     std::cout<< "iteration: " <<it<< ", a_best=" <<a_best<< ", b_best=" <<b_best<< ", c_best=" <<c_best<<std::endl;
+    
+    */
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    bool stop = false;
+    // for this "seed" ellipsoid center point
+    //
+    // find largest possible "a" dimension
+    while(!stop){
+      a += accuracy;
+      for(unsigned int j=0;j<poly_mesh_vertices.size();j++){
+        // equation of ellipsoid
+        ellipsoid_value =   pow(poly_mesh_vertices.points[j].x - ellipsoid_offset.x, 2)/pow(a, 2) 
+                          + pow(poly_mesh_vertices.points[j].y - ellipsoid_offset.y, 2)/pow(b, 2) 
+                          + pow(poly_mesh_vertices.points[j].z - ellipsoid_offset.z, 2)/pow(c, 2);
+        if( ellipsoid_value < 1.0 )
+          break;
+      }
+      if( ellipsoid_value < 1.0 ){
+        a_best = a - accuracy;
+        break;
+        stop = true;
+      }
+      else{
+        // generate and view the point cloud of the ellipsoid
+        ellipsoid_point_cloud.clear();
+        for(int k=0; k<ellipsoid_point_cloud_samples; k++){
+          ellipsoid_x = (-a+ellipsoid_offset.x) + k*2*a/ellipsoid_point_cloud_samples;
+          for(int l=0; l<ellipsoid_point_cloud_samples; l++){
+            ellipsoid_y = (-b+ellipsoid_offset.y) + l*2*b/ellipsoid_point_cloud_samples;
+            ellipsoid_z = ellipsoid_offset.z + c*sqrt( 1 - pow(ellipsoid_x-ellipsoid_offset.x, 2)/pow(a, 2) - pow(ellipsoid_y-ellipsoid_offset.y, 2)/pow(b, 2) );
+            ellipsoid_point.x = ellipsoid_x;
+            ellipsoid_point.y = ellipsoid_y;
+            ellipsoid_point.z = ellipsoid_z;
+            ellipsoid_point.r = 250;
+            ellipsoid_point.g = 0;
+            ellipsoid_point.b = 0;
+            ellipsoid_point_cloud.points.push_back( ellipsoid_point );
+            
+            ellipsoid_z = ellipsoid_offset.z - c*sqrt( 1 - pow(ellipsoid_x-ellipsoid_offset.x, 2)/pow(a, 2) - pow(ellipsoid_y-ellipsoid_offset.y, 2)/pow(b, 2) );
+            ellipsoid_point.x = ellipsoid_x;
+            ellipsoid_point.y = ellipsoid_y;
+            ellipsoid_point.z = ellipsoid_z;
+            ellipsoid_point.r = 250;
+            ellipsoid_point.g = 0;
+            ellipsoid_point.b = 0;
+            ellipsoid_point_cloud.points.push_back( ellipsoid_point );          
+          }
+        }
+      }
+      usleep(delay_microseconds);
+    }
+    
+    stop = false;
+    //
+    // find largest possible "b" dimension
+    while(!stop){
+      b += accuracy;
+      for(unsigned int j=0;j<poly_mesh_vertices.size();j++){
+        // equation of ellipsoid
+        ellipsoid_value =   pow(poly_mesh_vertices.points[j].x - ellipsoid_offset.x, 2)/pow(a_best, 2) 
+                          + pow(poly_mesh_vertices.points[j].y - ellipsoid_offset.y, 2)/pow(b, 2) 
+                          + pow(poly_mesh_vertices.points[j].z - ellipsoid_offset.z, 2)/pow(c, 2);
+        if( ellipsoid_value < 1.0 )
+          break;
+      }
+      if( ellipsoid_value < 1.0 ){
+        b_best = b - accuracy;
+        break;
+        stop = true;
+      }
+      else{
+        // generate and view the point cloud of the ellipsoid
+        ellipsoid_point_cloud.clear();
+        for(int k=0; k<ellipsoid_point_cloud_samples; k++){
+          ellipsoid_x = (-a_best+ellipsoid_offset.x) + k*2*a_best/ellipsoid_point_cloud_samples;
+          for(int l=0; l<ellipsoid_point_cloud_samples; l++){
+            ellipsoid_y = (-b+ellipsoid_offset.y) + l*2*b/ellipsoid_point_cloud_samples;
+            ellipsoid_z = ellipsoid_offset.z + c*sqrt( 1 - pow(ellipsoid_x-ellipsoid_offset.x, 2)/pow(a_best, 2) - pow(ellipsoid_y-ellipsoid_offset.y, 2)/pow(b, 2) );
+            ellipsoid_point.x = ellipsoid_x;
+            ellipsoid_point.y = ellipsoid_y;
+            ellipsoid_point.z = ellipsoid_z;
+            ellipsoid_point.r = 250;
+            ellipsoid_point.g = 0;
+            ellipsoid_point.b = 0;
+            ellipsoid_point_cloud.points.push_back( ellipsoid_point );
+            
+            ellipsoid_z = ellipsoid_offset.z - c*sqrt( 1 - pow(ellipsoid_x-ellipsoid_offset.x, 2)/pow(a_best, 2) - pow(ellipsoid_y-ellipsoid_offset.y, 2)/pow(b, 2) );
+            ellipsoid_point.x = ellipsoid_x;
+            ellipsoid_point.y = ellipsoid_y;
+            ellipsoid_point.z = ellipsoid_z;
+            ellipsoid_point.r = 250;
+            ellipsoid_point.g = 0;
+            ellipsoid_point.b = 0;
+            ellipsoid_point_cloud.points.push_back( ellipsoid_point );          
+          }
+        }
+      }
+      usleep(delay_microseconds);
+    }
+    
+    
+    stop = false;
+    //
+    // find largest possible "c" dimension
+    while(!stop){
+      c += accuracy;
+      for(unsigned int j=0;j<poly_mesh_vertices.size();j++){
+        // equation of ellipsoid
+        ellipsoid_value =   pow(poly_mesh_vertices.points[j].x - ellipsoid_offset.x, 2)/pow(a_best, 2) 
+                          + pow(poly_mesh_vertices.points[j].y - ellipsoid_offset.y, 2)/pow(b_best, 2) 
+                          + pow(poly_mesh_vertices.points[j].z - ellipsoid_offset.z, 2)/pow(c, 2);
+        if( ellipsoid_value < 1.0 )
+          break;
+      }
+      if( ellipsoid_value < 1.0 ){
+        c_best = c - accuracy;
+        break;
+        stop = true;
+      }
+      else{
+        // generate and view the point cloud of the ellipsoid
+        ellipsoid_point_cloud.clear();
+        for(int k=0; k<ellipsoid_point_cloud_samples; k++){
+          ellipsoid_x = (-a_best+ellipsoid_offset.x) + k*2*a_best/ellipsoid_point_cloud_samples;
+          for(int l=0; l<ellipsoid_point_cloud_samples; l++){
+            ellipsoid_y = (-b_best+ellipsoid_offset.y) + l*2*b_best/ellipsoid_point_cloud_samples;
+            ellipsoid_z = ellipsoid_offset.z + c*sqrt( 1 - pow(ellipsoid_x-ellipsoid_offset.x, 2)/pow(a_best, 2) - pow(ellipsoid_y-ellipsoid_offset.y, 2)/pow(b_best, 2) );
+            ellipsoid_point.x = ellipsoid_x;
+            ellipsoid_point.y = ellipsoid_y;
+            ellipsoid_point.z = ellipsoid_z;
+            ellipsoid_point.r = 250;
+            ellipsoid_point.g = 0;
+            ellipsoid_point.b = 0;
+            ellipsoid_point_cloud.points.push_back( ellipsoid_point );
+            
+            ellipsoid_z = ellipsoid_offset.z - c*sqrt( 1 - pow(ellipsoid_x-ellipsoid_offset.x, 2)/pow(a_best, 2) - pow(ellipsoid_y-ellipsoid_offset.y, 2)/pow(b_best, 2) );
+            ellipsoid_point.x = ellipsoid_x;
+            ellipsoid_point.y = ellipsoid_y;
+            ellipsoid_point.z = ellipsoid_z;
+            ellipsoid_point.r = 250;
+            ellipsoid_point.g = 0;
+            ellipsoid_point.b = 0;
+            ellipsoid_point_cloud.points.push_back( ellipsoid_point );          
+          }
+        }
+        *augmented_cloud += ellipsoid_point_cloud;
+        workspace_as_ellipsoids_point_cloud += ellipsoid_point_cloud;
+        // visualize the ellipsoid inside the original workspace point cloud
+        viewer->updatePointCloud<pcl::PointXYZRGB>(augmented_cloud, rgb,"cloud");
+        viewer->spinOnce();
+      }
+      usleep(delay_microseconds);
+    }
+    
+    // save largest ellipsoid at this sampled workspace point to file
+    workspace_ellipsoids << a_best<<", "<< b_best<<", "<< c_best<<", "<< ellipsoid_offset.x<<", "<< ellipsoid_offset.y<<", "<< ellipsoid_offset.z<<"\n";
+    std::cout<< "iteration: " <<it<< ", a_best=" <<a_best<< ", b_best=" <<b_best<< ", c_best=" <<c_best<<std::endl;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
   
   }
   std::cout<< "Finished iterations!" <<std::endl;

@@ -1,7 +1,10 @@
 /home/work/code_repository/pcl_codes/introduction/build/CMakeFiles/edit_cache.dir
+/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles/region_of_interest.dir
+/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles/allegro_hand_workspace_as_spheres.dir
 /home/work/code_repository/pcl_codes/introduction/build/CMakeFiles/rebuild_cache.dir
 /home/work/code_repository/pcl_codes/introduction/build/CMakeFiles/pose_estimation_of_rigid_objects.dir
-/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles/region_of_interest.dir
+/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles/region_of_interest_spheres.dir
+/home/work/code_repository/pcl_codes/introduction/build/CMakeFiles/allegro_finger_workspace_in_spheres.dir
 /home/work/code_repository/pcl_codes/introduction/build/CMakeFiles/pcd_read.dir
 /home/work/code_repository/pcl_codes/introduction/build/CMakeFiles/cloud_visualizer.dir
 /home/work/code_repository/pcl_codes/introduction/build/CMakeFiles/allegro_finger_workspace_in_ellipsoids.dir

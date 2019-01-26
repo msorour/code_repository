@@ -110,7 +110,7 @@ int main(int argc, char **argv){
 	middle_joint_position_desired << 0.0, 0.0, 0.0, 0.0;
 	pinky_joint_position_desired  << 0.0, 0.0, 0.0, 0.0;
 	
-	int number_of_sample_points = 3;
+	int number_of_sample_points = 4;
 	
 	
 	
@@ -388,12 +388,23 @@ int main(int argc, char **argv){
 	
 	// Fill in the cloud data
   /*
+  // generated with number of samples = 13
   pcl::io::savePCDFileASCII("/home/work/code_repository/ros_packages/src/allegro_right_hand_control_gazebo/src/thumb_workspace.pcd" , thumb_workspace_cloud);
 	pcl::io::savePCDFileASCII("/home/work/code_repository/ros_packages/src/allegro_right_hand_control_gazebo/src/index_workspace.pcd" , index_workspace_cloud);
 	pcl::io::savePCDFileASCII("/home/work/code_repository/ros_packages/src/allegro_right_hand_control_gazebo/src/middle_workspace.pcd", middle_workspace_cloud);
 	pcl::io::savePCDFileASCII("/home/work/code_repository/ros_packages/src/allegro_right_hand_control_gazebo/src/pinky_workspace.pcd" , pinky_workspace_cloud);
 	pcl::io::savePCDFileASCII("/home/work/code_repository/ros_packages/src/allegro_right_hand_control_gazebo/src/allegro_right_hand_workspace.pcd", cloud);
 	*/
+	/*
+	// generated with number of samples = 9
+  pcl::io::savePCDFileASCII("/home/work/code_repository/ros_packages/src/allegro_right_hand_control_gazebo/src/thumb_workspace.pcd" , thumb_workspace_cloud);
+	pcl::io::savePCDFileASCII("/home/work/code_repository/ros_packages/src/allegro_right_hand_control_gazebo/src/index_workspace.pcd" , index_workspace_cloud);
+	pcl::io::savePCDFileASCII("/home/work/code_repository/ros_packages/src/allegro_right_hand_control_gazebo/src/middle_workspace.pcd", middle_workspace_cloud);
+	pcl::io::savePCDFileASCII("/home/work/code_repository/ros_packages/src/allegro_right_hand_control_gazebo/src/pinky_workspace.pcd" , pinky_workspace_cloud);
+	pcl::io::savePCDFileASCII("/home/work/code_repository/ros_packages/src/allegro_right_hand_control_gazebo/src/allegro_right_hand_workspace.pcd", cloud);
+	*/
+	
+	// generated with number of samples = 4
 	pcl::io::savePCDFileASCII("/home/work/code_repository/ros_packages/src/allegro_right_hand_control_gazebo/src/thumb_workspace_light.pcd" , thumb_workspace_cloud);
 	pcl::io::savePCDFileASCII("/home/work/code_repository/ros_packages/src/allegro_right_hand_control_gazebo/src/index_workspace_light.pcd" , index_workspace_cloud);
 	pcl::io::savePCDFileASCII("/home/work/code_repository/ros_packages/src/allegro_right_hand_control_gazebo/src/middle_workspace_light.pcd", middle_workspace_cloud);
@@ -408,11 +419,12 @@ int main(int argc, char **argv){
 	
 	// Visualize to check
 	//pcl::io::loadPCDFile<pcl::PointXYZRGB>("/home/work/code_repository/ros_packages/src/allegro_right_hand_control_gazebo/src/allegro_right_hand_workspace.pcd", *augmented_cloud);
-	augmented_cloud->clear();
-	pcl::io::loadPCDFile<pcl::PointXYZRGB>("/home/work/code_repository/ros_packages/src/allegro_right_hand_control_gazebo/src/allegro_right_hand_workspace_light.pcd", *augmented_cloud);
-	*augmented_cloud += thumb_ellipsoid_workspace_cloud_xyzrgb;
-  viewer->addPointCloud(augmented_cloud,"allegro hand workspace cloud");
-	viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 3, "allegro hand workspace cloud");
+	
+	//augmented_cloud->clear();
+	//pcl::io::loadPCDFile<pcl::PointXYZRGB>("/home/work/code_repository/ros_packages/src/allegro_right_hand_control_gazebo/src/allegro_right_hand_workspace_light.pcd", *augmented_cloud);
+	//*augmented_cloud += thumb_ellipsoid_workspace_cloud_xyzrgb;
+  //viewer->addPointCloud(augmented_cloud,"allegro hand workspace cloud");
+	//viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 3, "allegro hand workspace cloud");
 	
 	while (!viewer->wasStopped()){ viewer->spinOnce(); }
 	return 0;
