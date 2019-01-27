@@ -5,6 +5,7 @@
 /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/cloud_visualizer.dir
 /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/step_7_touch_the_object_with_palm.dir
 /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/step_6_allign_hand_with_roi.dir
+/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir
 /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/step_2_hand_workspace_sampling.dir
 /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/step_3_hand_workspace_ellipsoids.dir
 /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/step_3_hand_workspace_spheres.dir

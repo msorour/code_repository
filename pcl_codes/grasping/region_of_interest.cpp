@@ -1469,7 +1469,7 @@ int main(int argc, char **argv){
   
   // draw the thumb workspace ellipsoids [filtered]
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr thumb_ellipsoid_point_cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
-  ellipsoid_point_cloud_samples = 30;
+  ellipsoid_point_cloud_samples = 100;
   for(unsigned int j=0; j<thumb_ellipsoid_a_filtered.size(); j++){
     for(unsigned int k=0; k<ellipsoid_point_cloud_samples; k++){
       ellipsoid_x = (-thumb_ellipsoid_a_filtered[j]+thumb_ellipsoid_offset_x_filtered[j]) + k*2*thumb_ellipsoid_a_filtered[j]/ellipsoid_point_cloud_samples;

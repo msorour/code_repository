@@ -245,6 +245,43 @@ clean: CMakeFiles/step_6_allign_hand_with_roi.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir
+
+# All Build rule for target.
+CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/all:
+	$(MAKE) -f CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build.make CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/depend
+	$(MAKE) -f CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build.make CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=23,24 "Built target step_8_filter_hand_workspace_merging_with_object_surface"
+.PHONY : CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/all
+
+# Include target in all.
+all: CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+.PHONY : CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/rule
+
+# Convenience name for target.
+step_8_filter_hand_workspace_merging_with_object_surface: CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/rule
+
+.PHONY : step_8_filter_hand_workspace_merging_with_object_surface
+
+# clean rule for target.
+CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/clean:
+	$(MAKE) -f CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build.make CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/clean
+.PHONY : CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/step_2_hand_workspace_sampling.dir
 
 # All Build rule for target.

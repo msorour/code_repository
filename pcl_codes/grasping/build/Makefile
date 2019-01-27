@@ -176,6 +176,19 @@ step_6_allign_hand_with_roi/fast:
 .PHONY : step_6_allign_hand_with_roi/fast
 
 #=============================================================================
+# Target rules for targets named step_8_filter_hand_workspace_merging_with_object_surface
+
+# Build rule for target.
+step_8_filter_hand_workspace_merging_with_object_surface: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 step_8_filter_hand_workspace_merging_with_object_surface
+.PHONY : step_8_filter_hand_workspace_merging_with_object_surface
+
+# fast build rule for target.
+step_8_filter_hand_workspace_merging_with_object_surface/fast:
+	$(MAKE) -f CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build.make CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build
+.PHONY : step_8_filter_hand_workspace_merging_with_object_surface/fast
+
+#=============================================================================
 # Target rules for targets named step_2_hand_workspace_sampling
 
 # Build rule for target.
@@ -550,6 +563,33 @@ step_7_touch_the_object_with_palm.cpp.s:
 	$(MAKE) -f CMakeFiles/step_7_touch_the_object_with_palm.dir/build.make CMakeFiles/step_7_touch_the_object_with_palm.dir/step_7_touch_the_object_with_palm.cpp.s
 .PHONY : step_7_touch_the_object_with_palm.cpp.s
 
+step_8_filter_hand_workspace_merging_with_object_surface.o: step_8_filter_hand_workspace_merging_with_object_surface.cpp.o
+
+.PHONY : step_8_filter_hand_workspace_merging_with_object_surface.o
+
+# target to build an object file
+step_8_filter_hand_workspace_merging_with_object_surface.cpp.o:
+	$(MAKE) -f CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build.make CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/step_8_filter_hand_workspace_merging_with_object_surface.cpp.o
+.PHONY : step_8_filter_hand_workspace_merging_with_object_surface.cpp.o
+
+step_8_filter_hand_workspace_merging_with_object_surface.i: step_8_filter_hand_workspace_merging_with_object_surface.cpp.i
+
+.PHONY : step_8_filter_hand_workspace_merging_with_object_surface.i
+
+# target to preprocess a source file
+step_8_filter_hand_workspace_merging_with_object_surface.cpp.i:
+	$(MAKE) -f CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build.make CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/step_8_filter_hand_workspace_merging_with_object_surface.cpp.i
+.PHONY : step_8_filter_hand_workspace_merging_with_object_surface.cpp.i
+
+step_8_filter_hand_workspace_merging_with_object_surface.s: step_8_filter_hand_workspace_merging_with_object_surface.cpp.s
+
+.PHONY : step_8_filter_hand_workspace_merging_with_object_surface.s
+
+# target to generate assembly for a file
+step_8_filter_hand_workspace_merging_with_object_surface.cpp.s:
+	$(MAKE) -f CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build.make CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/step_8_filter_hand_workspace_merging_with_object_surface.cpp.s
+.PHONY : step_8_filter_hand_workspace_merging_with_object_surface.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -563,6 +603,7 @@ help:
 	@echo "... cloud_visualizer"
 	@echo "... step_7_touch_the_object_with_palm"
 	@echo "... step_6_allign_hand_with_roi"
+	@echo "... step_8_filter_hand_workspace_merging_with_object_surface"
 	@echo "... step_2_hand_workspace_sampling"
 	@echo "... step_3_hand_workspace_ellipsoids"
 	@echo "... step_3_hand_workspace_spheres"
@@ -602,6 +643,9 @@ help:
 	@echo "... step_7_touch_the_object_with_palm.o"
 	@echo "... step_7_touch_the_object_with_palm.i"
 	@echo "... step_7_touch_the_object_with_palm.s"
+	@echo "... step_8_filter_hand_workspace_merging_with_object_surface.o"
+	@echo "... step_8_filter_hand_workspace_merging_with_object_surface.i"
+	@echo "... step_8_filter_hand_workspace_merging_with_object_surface.s"
 .PHONY : help
 
 

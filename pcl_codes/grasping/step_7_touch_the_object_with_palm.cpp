@@ -335,7 +335,6 @@ int main(int argc, char **argv){
   
   
   for(int i=0; i<finger_list.size(); i++){
-    std::vector<double> ellipsoid_a, ellipsoid_b, ellipsoid_c, ellipsoid_offset_x, ellipsoid_offset_y, ellipsoid_offset_z;
     std::vector<double> data;
     std::string line;
     ifstream convex_workspace_file(finger_list[i]+"_workspace_" +workspace_type+"_"+sampling+".txt");
@@ -977,59 +976,6 @@ int main(int argc, char **argv){
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  /*
-  // generating the concave hull
-  pcl::PolygonMesh mesh_out;
-  pcl::PointCloud<pcl::PointXYZ>::Ptr hull(new pcl::PointCloud<pcl::PointXYZ>);
-  pcl::ConcaveHull<pcl::PointXYZ> concave_hull;
-  concave_hull.setInputCloud( object_cloud_xyz );
-  concave_hull.setAlpha( 0.01f );
-  concave_hull.reconstruct( mesh_out );
-  
-  // for visualization
-  boost::shared_ptr<pcl::visualization::PCLVisualizer> Hullviewer(new pcl::visualization::PCLVisualizer ("hull viewer"));
-  Hullviewer->setBackgroundColor(0,0,0);
-  Hullviewer->addPolygonMesh(mesh_out,"hull");
-  
-  // save the polygon mesh
-  pcl::io::saveOBJFile(object_name+".obj", mesh_out );
-  
-  // getting the vertices of the polygon mesh generated
-  pcl::PointCloud<pcl::PointXYZ> poly_mesh_vertices;
-  pcl::fromPCLPointCloud2(mesh_out.cloud, poly_mesh_vertices);
-  
-  std::cout << "number of vertices: " << poly_mesh_vertices.size() << std::endl;
-  */
-  
-  
-  
-  /*
-  // trial : this might not be what I want to do afterall !!!
-  // what i think i need is to get the centroid of workspace only and use it as the centroid for HAND-CLOUD+WORKSPACE-CLOUD
-  pcl::PointXYZRGB workspace_only_centroid_point;
-  pcl::CentroidPoint<pcl::PointXYZRGB> workspace_only_centroid;
-  
-  // iterating the workspace
-  //pcl::PointCloud<pcl::PointXYZRGB>::Ptr workspace_only_cloud_xyzrgb(new pcl::PointCloud<pcl::PointXYZRGB>());
-  for(unsigned int i=0; i<allegro_hand_workspace_convex_xyzrgb->size(); i++){
-    if( (allegro_hand_workspace_convex_xyzrgb->points[i].r != 0) or (allegro_hand_workspace_convex_xyzrgb->points[i].g != 0) or (allegro_hand_workspace_convex_xyzrgb->points[i].b != 0) ){
-      //workspace_only_cloud_xyzrgb->points.push_back( allegro_hand_workspace_convex_xyzrgb->points[i] );
-      if(allegro_hand_workspace_convex_xyzrgb->points[i].x == allegro_hand_workspace_convex_xyzrgb->points[i].x and allegro_hand_workspace_convex_xyzrgb->points[i].y == allegro_hand_workspace_convex_xyzrgb->points[i].y and allegro_hand_workspace_convex_xyzrgb->points[i].z == allegro_hand_workspace_convex_xyzrgb->points[i].z)
-        workspace_only_centroid.add( allegro_hand_workspace_convex_xyzrgb->points[i] );
-    }
-  }
-  // get the centroid point
-  workspace_only_centroid.get(workspace_only_centroid_point);
-  //viewer->addCoordinateSystem(0.1,workspace_only_centroid_point.x,workspace_only_centroid_point.y,workspace_only_centroid_point.z+0.3);
-  std::cout << "workspace_only_centroid_point = " << workspace_only_centroid_point << std::endl;
-  */
   
   
   

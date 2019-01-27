@@ -335,7 +335,6 @@ int main(int argc, char **argv){
   
   
   for(int i=0; i<finger_list.size(); i++){
-    std::vector<double> ellipsoid_a, ellipsoid_b, ellipsoid_c, ellipsoid_offset_x, ellipsoid_offset_y, ellipsoid_offset_z;
     std::vector<double> data;
     std::string line;
     ifstream convex_workspace_file(finger_list[i]+"_workspace_" +workspace_type+"_"+sampling+".txt");

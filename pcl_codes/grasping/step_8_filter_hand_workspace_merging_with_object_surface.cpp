@@ -266,8 +266,7 @@ int main(int argc, char **argv){
   
   Eigen::Affine3f transform = Eigen::Affine3f::Identity();
   transform.matrix() = object_transform;
-  
-  //viewer->addCoordinateSystem(0.1, transform, "object coordinate frame", 0);
+  viewer->addCoordinateSystem(0.1, transform, "object coordinate frame", 0);
   
   std::cout << "object transformation matrix: " << std::endl << object_transform << std::endl << std::endl;
   
@@ -481,19 +480,19 @@ int main(int argc, char **argv){
       }
     }
   }
-  /*
+  
   pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> red_color  (thumb_workspace_convex_xyzrgb, 255, 0, 0);
-  viewer->addPointCloud<pcl::PointXYZRGB>(thumb_workspace_convex_xyzrgb, red_color, "red cloud");
+  //viewer->addPointCloud<pcl::PointXYZRGB>(thumb_workspace_convex_xyzrgb, red_color, "red cloud");
   
   pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> green_color(index_workspace_convex_xyzrgb, 0, 255, 0);
-  viewer->addPointCloud<pcl::PointXYZRGB>(index_workspace_convex_xyzrgb, green_color, "green cloud");
+  //viewer->addPointCloud<pcl::PointXYZRGB>(index_workspace_convex_xyzrgb, green_color, "green cloud");
   
   pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> blue_color (middle_workspace_convex_xyzrgb, 0, 0, 255);
-  viewer->addPointCloud<pcl::PointXYZRGB>(middle_workspace_convex_xyzrgb, blue_color, "blue cloud");
+  //viewer->addPointCloud<pcl::PointXYZRGB>(middle_workspace_convex_xyzrgb, blue_color, "blue cloud");
   
   pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> grey_color (pinky_workspace_convex_xyzrgb, 100, 100, 100);
-  viewer->addPointCloud<pcl::PointXYZRGB>(pinky_workspace_convex_xyzrgb, grey_color, "grey cloud");
-  */
+  //viewer->addPointCloud<pcl::PointXYZRGB>(pinky_workspace_convex_xyzrgb, grey_color, "grey cloud");
+  
   /*
   *augmented_cloud += *thumb_workspace_convex_xyzrgb;
   *augmented_cloud += *index_workspace_convex_xyzrgb;
@@ -695,6 +694,7 @@ int main(int argc, char **argv){
   // obtain the complete object subcloud with height as that of region of interest starting from object centroid
   // to make it easy we use the object point cloud transformed to the object frame
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_roi_sub_cloud_in_object_frame_xyzrgb  (new pcl::PointCloud<pcl::PointXYZRGB>());
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_roi_sub_cloud_in_hand_frame_xyzrgb    (new pcl::PointCloud<pcl::PointXYZRGB>());
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_roi_sub_cloud_in_object_global_xyzrgb (new pcl::PointCloud<pcl::PointXYZRGB>());
   Eigen::Vector4f object_centroid_point_in_object_frame_4d;
   
@@ -707,6 +707,7 @@ int main(int argc, char **argv){
   }
   
   pcl::transformPointCloud(*object_roi_sub_cloud_in_object_frame_xyzrgb, *object_roi_sub_cloud_in_object_global_xyzrgb, object_transform);
+  
   //*augmented_cloud += *object_roi_sub_cloud_in_object_frame_xyzrgb;
   //*augmented_cloud += *object_roi_sub_cloud_in_object_global_xyzrgb;
   
@@ -714,12 +715,12 @@ int main(int argc, char **argv){
   
   // check if the object subcloud is completely contained in the region of interest
   bool object_subcloud_fully_contained = false;
-  double special_ellipsoid_value;
+  double special_convex_shape_value;
   for(unsigned int i=0; i<object_roi_sub_cloud_in_object_frame_xyzrgb->size(); i++){
-    special_ellipsoid_value =  pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].x - object_centroid_point_in_object_frame_4d(0), 10)/pow(roi_l, 10) 
+    special_convex_shape_value =  pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].x - object_centroid_point_in_object_frame_4d(0), 10)/pow(roi_l, 10) 
                              + pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].y - object_centroid_point_in_object_frame_4d(1), 10)/pow(roi_w, 10) 
                              + pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].z - object_centroid_point_in_object_frame_4d(2), 2) /pow(roi_h, 2);
-    if( special_ellipsoid_value <= 1.0 )
+    if( special_convex_shape_value <= 1.0 )
       object_subcloud_fully_contained = true;
     else{
       object_subcloud_fully_contained = false;
@@ -809,10 +810,10 @@ int main(int argc, char **argv){
         
         pcl::transformPointCloud(*object_roi_sub_cloud_in_object_frame_xyzrgb, *object_roi_sub_cloud_in_object_global_xyzrgb, object_transform);
         for(unsigned int i=0; i<object_roi_sub_cloud_in_object_frame_xyzrgb->size(); i++){
-          special_ellipsoid_value =  pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].x - roi_translation_in_object_frame(0), 10)/pow(roi_l, 10) 
-                                   + pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].y - roi_translation_in_object_frame(1), 10)/pow(roi_w, 10) 
-                                   + pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].z - roi_translation_in_object_frame(2), 2) /pow(roi_h, 2);
-          if( special_ellipsoid_value <= 1.0 )
+          special_convex_shape_value = pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].x - roi_translation_in_object_frame(0), 10)/pow(roi_l, 10) 
+                                     + pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].y - roi_translation_in_object_frame(1), 10)/pow(roi_w, 10) 
+                                     + pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].z - roi_translation_in_object_frame(2), 2) /pow(roi_h, 2);
+          if( special_convex_shape_value <= 1.0 )
             object_subcloud_fully_contained = true;
           else{
             object_subcloud_fully_contained = false;
@@ -860,7 +861,7 @@ int main(int argc, char **argv){
   Eigen::Matrix4f hand_transform = Eigen::Matrix4f::Identity();
   
   dummy_translation << 0,0,0;
-  dummy_transform << Rotx_float(-1.57), dummy_translation,
+  dummy_transform << Rotx_float(1.57), dummy_translation,
                      0,0,0,1;
   hand_transform = roi_transform_in_object_frame*dummy_transform;
   hand_transform = roi_transform*hand_transform;
@@ -870,16 +871,14 @@ int main(int argc, char **argv){
   dummy_transform << Eigen::Matrix3f::Identity(), dummy_translation,
                      0,0,0,1;
   hand_transform = hand_transform*dummy_transform;
-  
-  pcl::transformPointCloud(*allegro_hand_xyzrgb, *allegro_hand_xyzrgb, hand_transform);
   /*
+  pcl::transformPointCloud(*allegro_hand_xyzrgb, *allegro_hand_xyzrgb, hand_transform);
   pcl::transformPointCloud(*thumb_workspace_convex_xyzrgb, *thumb_workspace_convex_xyzrgb, hand_transform);
   pcl::transformPointCloud(*index_workspace_convex_xyzrgb, *index_workspace_convex_xyzrgb, hand_transform);
   pcl::transformPointCloud(*middle_workspace_convex_xyzrgb, *middle_workspace_convex_xyzrgb, hand_transform);
   pcl::transformPointCloud(*pinky_workspace_convex_xyzrgb, *pinky_workspace_convex_xyzrgb, hand_transform);
-  */
+  
   *augmented_cloud += *allegro_hand_xyzrgb;
-  /*
   *augmented_cloud += *thumb_workspace_convex_xyzrgb;
   *augmented_cloud += *index_workspace_convex_xyzrgb;
   *augmented_cloud += *middle_workspace_convex_xyzrgb;
@@ -892,7 +891,482 @@ int main(int argc, char **argv){
   
   
   
+  begin = clock();
+  // STEP#5
+  // get the nearest object point to the palm center point
+  Eigen::Vector4f palm_center_point_in_hand_frame, palm_center_point_in_global_frame;
+  palm_center_point_in_hand_frame << 0.0, 0.0, 0.0475, 1.0;
+  palm_center_point_in_global_frame = hand_transform*palm_center_point_in_hand_frame;
   
+  // find the nearest 3 points on object to these 3 palm points
+  double distance_to_palm_center_point = 1000000;
+  double euclidean_distance;
+  pcl::PointXYZRGB nearest_object_point_to_palm_center_point;
+  pcl::PointXYZRGB nearest_object_point_to_palm_right_point;
+  pcl::PointXYZRGB nearest_object_point_to_palm_left_point;
+  
+  // I need to use the object point cloud expressed in hand frame!!!
+  Eigen::Matrix4f inverse_hand_transform;
+  hand_rotation <<  hand_transform(0,0), hand_transform(0,1), hand_transform(0,2),
+                    hand_transform(1,0), hand_transform(1,1), hand_transform(1,2),
+                    hand_transform(2,0), hand_transform(2,1), hand_transform(2,2);
+  hand_translation << hand_transform(0,3), hand_transform(1,3), hand_transform(2,3);
+  inverse_hand_transform << hand_rotation.transpose(), -hand_rotation.transpose()*hand_translation,  // from khalil's book page 21
+                            0, 0, 0, 1;
+  
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_cloud_in_hand_frame_xyzrgb (new pcl::PointCloud<pcl::PointXYZRGB>());
+  pcl::transformPointCloud(object_mesh_vertices_xyzrgb, *object_cloud_in_hand_frame_xyzrgb, inverse_hand_transform);
+  //*augmented_cloud += *object_cloud_in_hand_frame_xyzrgb;
+  
+  for(unsigned int i=0; i<object_cloud_in_hand_frame_xyzrgb->size(); i++){
+    euclidean_distance = pow( palm_center_point_in_hand_frame(0)-object_cloud_in_hand_frame_xyzrgb->points[i].x ,2) + 
+                         pow( palm_center_point_in_hand_frame(1)-object_cloud_in_hand_frame_xyzrgb->points[i].y ,2) + 
+                         pow( palm_center_point_in_hand_frame(2)-object_cloud_in_hand_frame_xyzrgb->points[i].z ,2);
+    if( euclidean_distance < distance_to_palm_center_point ){
+      nearest_object_point_to_palm_center_point = object_cloud_in_hand_frame_xyzrgb->points[i];
+      distance_to_palm_center_point = euclidean_distance;
+    }
+  }
+  
+  // use the palm center point to get the distance to object, the translate the hand in +ve x-axis to touch the object
+  // convert nearest point found in previous step to the transformed hand frame
+  Eigen::Vector3f dummy_vector;
+  dummy_vector << nearest_object_point_to_palm_center_point.x-palm_center_point_in_hand_frame(0), 
+                  nearest_object_point_to_palm_center_point.y-palm_center_point_in_hand_frame(1),
+                  nearest_object_point_to_palm_center_point.z-palm_center_point_in_hand_frame(2);
+  
+  // translate the hand to touch the object at nearest point
+  dummy_translation << dummy_vector(0),0,0;
+  dummy_transform << Eigen::Matrix3f::Identity(), dummy_translation,
+                     0,0,0,1;
+  hand_transform = hand_transform*dummy_transform;
+
+  //pcl::transformPointCloud(*allegro_hand_workspace_ellipsoids_xyzrgb, *hand_transformed_cloud, hand_transform);
+  
+  
+  
+  
+  // TO DEBUG
+  ///////
+  /////// DONOT do the transform to see the workspace in hand frame !!!
+  
+  
+  pcl::transformPointCloud(*allegro_hand_xyzrgb, *allegro_hand_xyzrgb, hand_transform);
+  /*
+  pcl::transformPointCloud(*thumb_workspace_convex_xyzrgb, *thumb_workspace_convex_xyzrgb, hand_transform);
+  pcl::transformPointCloud(*index_workspace_convex_xyzrgb, *index_workspace_convex_xyzrgb, hand_transform);
+  pcl::transformPointCloud(*middle_workspace_convex_xyzrgb, *middle_workspace_convex_xyzrgb, hand_transform);
+  pcl::transformPointCloud(*pinky_workspace_convex_xyzrgb, *pinky_workspace_convex_xyzrgb, hand_transform);
+  */
+  /*
+  viewer->addPointCloud<pcl::PointXYZRGB>(thumb_workspace_convex_xyzrgb, red_color, "red cloud");
+  viewer->addPointCloud<pcl::PointXYZRGB>(index_workspace_convex_xyzrgb, green_color, "green cloud");
+  viewer->addPointCloud<pcl::PointXYZRGB>(middle_workspace_convex_xyzrgb, blue_color, "blue cloud");
+  viewer->addPointCloud<pcl::PointXYZRGB>(pinky_workspace_convex_xyzrgb, grey_color, "grey cloud");
+  */
+  
+  
+  *augmented_cloud += *allegro_hand_xyzrgb;
+  
+  
+  // very important !!!
+  // after transforming the hand, update the object transform with respect to hand
+  hand_rotation <<  hand_transform(0,0), hand_transform(0,1), hand_transform(0,2),
+                    hand_transform(1,0), hand_transform(1,1), hand_transform(1,2),
+                    hand_transform(2,0), hand_transform(2,1), hand_transform(2,2);
+  hand_translation << hand_transform(0,3), hand_transform(1,3), hand_transform(2,3);
+  inverse_hand_transform << hand_rotation.transpose(), -hand_rotation.transpose()*hand_translation,  // from khalil's book page 21
+                            0, 0, 0, 1;
+  pcl::transformPointCloud(object_mesh_vertices_xyzrgb, *object_cloud_in_hand_frame_xyzrgb, inverse_hand_transform);
+  //*augmented_cloud += *object_cloud_in_hand_frame_xyzrgb;
+  
+  
+  
+  /*
+  *augmented_cloud += *thumb_workspace_convex_xyzrgb;
+  *augmented_cloud += *index_workspace_convex_xyzrgb;
+  *augmented_cloud += *middle_workspace_convex_xyzrgb;
+  *augmented_cloud += *pinky_workspace_convex_xyzrgb;
+  */
+  
+  
+  end = clock();
+	time_spent = (double)( end - begin )/ CLOCKS_PER_SEC;
+	std::cout << "time spent to get the hand to touch object = " << time_spent << std::endl << std::endl;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  begin = clock();
+  // STEP#6
+  double convex_shape_value, largest_convex_shape_value;
+  Eigen::Vector4f object_centroid_point_in_hand_frame_4d;
+  object_centroid_point_in_hand_frame_4d << object_centroid_point.x, object_centroid_point.y, object_centroid_point.z, 1;
+  object_centroid_point_in_hand_frame_4d = inverse_hand_transform*object_centroid_point_in_hand_frame_4d;
+  
+  //
+  pcl::transformPointCloud(*object_roi_sub_cloud_in_object_global_xyzrgb, *object_roi_sub_cloud_in_hand_frame_xyzrgb, inverse_hand_transform);
+  //*augmented_cloud += *object_roi_sub_cloud_in_hand_frame_xyzrgb;
+  //*augmented_cloud += *object_roi_sub_cloud_in_object_global_xyzrgb;
+  
+  // filter the convex workspace shapes merging with object surface
+  // offset of convex shape (ellipsoid or sphere)
+  pcl::PointCloud<pcl::PointXYZ> filtered_thumb_workspace_convex_offset;
+  pcl::PointCloud<pcl::PointXYZ> filtered_index_workspace_convex_offset;
+  pcl::PointCloud<pcl::PointXYZ> filtered_middle_workspace_convex_offset;
+  pcl::PointCloud<pcl::PointXYZ> filtered_pinky_workspace_convex_offset;
+  
+  // parameter of convex shape = {a,b,c} for ellipsoid or {r} for sphere
+  pcl::PointCloud<pcl::PointXYZ> filtered_thumb_workspace_convex_parameter;
+  pcl::PointCloud<pcl::PointXYZ> filtered_index_workspace_convex_parameter;
+  pcl::PointCloud<pcl::PointXYZ> filtered_middle_workspace_convex_parameter;
+  pcl::PointCloud<pcl::PointXYZ> filtered_pinky_workspace_convex_parameter;
+  
+  // filtered object points
+  pcl::PointCloud<pcl::PointXYZRGB> filtered_object_points_near_thumb_in_hand_frame;
+  pcl::PointCloud<pcl::PointXYZRGB> filtered_object_points_near_index_in_hand_frame;
+  pcl::PointCloud<pcl::PointXYZRGB> filtered_object_points_near_middle_in_hand_frame;
+  pcl::PointCloud<pcl::PointXYZRGB> filtered_object_points_near_pinky_in_hand_frame;
+  
+  //
+  pcl::PointXYZ convex_shape_offset_to_save, convex_shape_parameter_to_save;
+  pcl::PointXYZRGB object_point_to_save;
+  bool point_to_save_exist = false;
+  
+  // filtering
+  for(int i=0; i<finger_list.size(); i++){
+    for(unsigned int j=0; j<thumb_workspace_convex_offset.size(); j++){
+      largest_convex_shape_value = 0.0;
+      point_to_save_exist = false;
+      
+      // iterate through all object points 
+      // (we can do better by iterating through object points in ROI only)
+      //for(unsigned int k=0; k<object_cloud_in_hand_frame_xyzrgb->size(); k++){
+      for(unsigned int k=0; k<object_roi_sub_cloud_in_hand_frame_xyzrgb->size(); k++){
+      
+      
+      
+        if(finger_list[i]=="thumb"){
+          convex_shape_offset.x = thumb_workspace_convex_offset.points[j].x;
+          convex_shape_offset.y = thumb_workspace_convex_offset.points[j].y;
+          convex_shape_offset.z = thumb_workspace_convex_offset.points[j].z;
+          convex_shape_parameter.x = thumb_workspace_convex_parameter.points[j].x;
+          convex_shape_parameter.y = thumb_workspace_convex_parameter.points[j].y;
+          convex_shape_parameter.z = thumb_workspace_convex_parameter.points[j].z;
+          
+          //convex_shape_value =  pow(object_cloud_in_hand_frame_xyzrgb->points[k].x - convex_shape_offset.x, 2)/pow(convex_shape_parameter.x, 2) 
+          //                    + pow(object_cloud_in_hand_frame_xyzrgb->points[k].y - convex_shape_offset.y, 2)/pow(convex_shape_parameter.y, 2) 
+          //                    + pow(object_cloud_in_hand_frame_xyzrgb->points[k].z - convex_shape_offset.z, 2)/pow(convex_shape_parameter.z, 2);
+          convex_shape_value =  pow(object_roi_sub_cloud_in_hand_frame_xyzrgb->points[k].x - convex_shape_offset.x, 2)/pow(convex_shape_parameter.x, 2) 
+                              + pow(object_roi_sub_cloud_in_hand_frame_xyzrgb->points[k].y - convex_shape_offset.y, 2)/pow(convex_shape_parameter.y, 2) 
+                              + pow(object_roi_sub_cloud_in_hand_frame_xyzrgb->points[k].z - convex_shape_offset.z, 2)/pow(convex_shape_parameter.z, 2);
+          
+          if(convex_shape_value < 1.0){
+            if(convex_shape_offset.z < object_centroid_point_in_hand_frame_4d(2)){    // filter thumb convex shapes on -ve z-axis (object centroid expressed in hand frame)
+              if( largest_convex_shape_value < convex_shape_value ){
+                convex_shape_offset_to_save = convex_shape_offset;
+                convex_shape_parameter_to_save = convex_shape_parameter;
+                //object_point_to_save = object_cloud_in_hand_frame_xyzrgb->points[k];
+                object_point_to_save = object_roi_sub_cloud_in_hand_frame_xyzrgb->points[k];
+                point_to_save_exist = true;
+              }
+            }
+          }
+        }
+        
+        
+        else if(finger_list[i]=="index"){
+          convex_shape_offset.x = index_workspace_convex_offset.points[j].x;
+          convex_shape_offset.y = index_workspace_convex_offset.points[j].y;
+          convex_shape_offset.z = index_workspace_convex_offset.points[j].z;
+          convex_shape_parameter.x = index_workspace_convex_parameter.points[j].x;
+          convex_shape_parameter.y = index_workspace_convex_parameter.points[j].y;
+          convex_shape_parameter.z = index_workspace_convex_parameter.points[j].z;
+          
+          //convex_shape_value =  pow(object_cloud_in_hand_frame_xyzrgb->points[k].x - convex_shape_offset.x, 2)/pow(convex_shape_parameter.x, 2) 
+          //                    + pow(object_cloud_in_hand_frame_xyzrgb->points[k].y - convex_shape_offset.y, 2)/pow(convex_shape_parameter.y, 2) 
+          //                    + pow(object_cloud_in_hand_frame_xyzrgb->points[k].z - convex_shape_offset.z, 2)/pow(convex_shape_parameter.z, 2);
+          convex_shape_value =  pow(object_roi_sub_cloud_in_hand_frame_xyzrgb->points[k].x - convex_shape_offset.x, 2)/pow(convex_shape_parameter.x, 2) 
+                              + pow(object_roi_sub_cloud_in_hand_frame_xyzrgb->points[k].y - convex_shape_offset.y, 2)/pow(convex_shape_parameter.y, 2) 
+                              + pow(object_roi_sub_cloud_in_hand_frame_xyzrgb->points[k].z - convex_shape_offset.z, 2)/pow(convex_shape_parameter.z, 2);
+          
+          if(convex_shape_value < 1.0){
+            if(convex_shape_offset.z > object_centroid_point_in_hand_frame_4d(2)){    // filter index convex shapes on +ve z-axis (object centroid expressed in hand frame)
+              if( largest_convex_shape_value < convex_shape_value ){
+                convex_shape_offset_to_save = convex_shape_offset;
+                convex_shape_parameter_to_save = convex_shape_parameter;
+                //object_point_to_save = object_cloud_in_hand_frame_xyzrgb->points[k];
+                object_point_to_save = object_roi_sub_cloud_in_hand_frame_xyzrgb->points[k];
+                point_to_save_exist = true;
+              }
+            }
+          }
+        }
+        
+        
+        else if(finger_list[i]=="middle"){
+          convex_shape_offset.x = middle_workspace_convex_offset.points[j].x;
+          convex_shape_offset.y = middle_workspace_convex_offset.points[j].y;
+          convex_shape_offset.z = middle_workspace_convex_offset.points[j].z;
+          convex_shape_parameter.x = middle_workspace_convex_parameter.points[j].x;
+          convex_shape_parameter.y = middle_workspace_convex_parameter.points[j].y;
+          convex_shape_parameter.z = middle_workspace_convex_parameter.points[j].z;
+          
+          //convex_shape_value =  pow(object_cloud_in_hand_frame_xyzrgb->points[k].x - convex_shape_offset.x, 2)/pow(convex_shape_parameter.x, 2) 
+          //                    + pow(object_cloud_in_hand_frame_xyzrgb->points[k].y - convex_shape_offset.y, 2)/pow(convex_shape_parameter.y, 2) 
+          //                    + pow(object_cloud_in_hand_frame_xyzrgb->points[k].z - convex_shape_offset.z, 2)/pow(convex_shape_parameter.z, 2);
+          convex_shape_value =  pow(object_roi_sub_cloud_in_hand_frame_xyzrgb->points[k].x - convex_shape_offset.x, 2)/pow(convex_shape_parameter.x, 2) 
+                              + pow(object_roi_sub_cloud_in_hand_frame_xyzrgb->points[k].y - convex_shape_offset.y, 2)/pow(convex_shape_parameter.y, 2) 
+                              + pow(object_roi_sub_cloud_in_hand_frame_xyzrgb->points[k].z - convex_shape_offset.z, 2)/pow(convex_shape_parameter.z, 2);
+          
+          if(convex_shape_value < 1.0){
+            if(convex_shape_offset.z > object_centroid_point_in_hand_frame_4d(2)){    // filter middle convex shapes on +ve z-axis (object centroid expressed in hand frame)
+              if( largest_convex_shape_value < convex_shape_value ){
+                convex_shape_offset_to_save = convex_shape_offset;
+                convex_shape_parameter_to_save = convex_shape_parameter;
+                //object_point_to_save = object_cloud_in_hand_frame_xyzrgb->points[k];
+                object_point_to_save = object_roi_sub_cloud_in_hand_frame_xyzrgb->points[k];
+                point_to_save_exist = true;
+              }
+            }
+          }
+        }
+        
+        
+        else if(finger_list[i]=="pinky"){
+          convex_shape_offset.x = pinky_workspace_convex_offset.points[j].x;
+          convex_shape_offset.y = pinky_workspace_convex_offset.points[j].y;
+          convex_shape_offset.z = pinky_workspace_convex_offset.points[j].z;
+          convex_shape_parameter.x = pinky_workspace_convex_parameter.points[j].x;
+          convex_shape_parameter.y = pinky_workspace_convex_parameter.points[j].y;
+          convex_shape_parameter.z = pinky_workspace_convex_parameter.points[j].z;
+          
+          //convex_shape_value =  pow(object_cloud_in_hand_frame_xyzrgb->points[k].x - convex_shape_offset.x, 2)/pow(convex_shape_parameter.x, 2) 
+          //                    + pow(object_cloud_in_hand_frame_xyzrgb->points[k].y - convex_shape_offset.y, 2)/pow(convex_shape_parameter.y, 2) 
+          //                    + pow(object_cloud_in_hand_frame_xyzrgb->points[k].z - convex_shape_offset.z, 2)/pow(convex_shape_parameter.z, 2);
+          convex_shape_value =  pow(object_roi_sub_cloud_in_hand_frame_xyzrgb->points[k].x - convex_shape_offset.x, 2)/pow(convex_shape_parameter.x, 2) 
+                              + pow(object_roi_sub_cloud_in_hand_frame_xyzrgb->points[k].y - convex_shape_offset.y, 2)/pow(convex_shape_parameter.y, 2) 
+                              + pow(object_roi_sub_cloud_in_hand_frame_xyzrgb->points[k].z - convex_shape_offset.z, 2)/pow(convex_shape_parameter.z, 2);
+          
+          if(convex_shape_value < 1.0){
+            if(convex_shape_offset.z > object_centroid_point_in_hand_frame_4d(2)){    // filter pinky convex shapes on +ve z-axis (object centroid expressed in hand frame)
+              if( largest_convex_shape_value < convex_shape_value ){
+                convex_shape_offset_to_save = convex_shape_offset;
+                convex_shape_parameter_to_save = convex_shape_parameter;
+                //object_point_to_save = object_cloud_in_hand_frame_xyzrgb->points[k];
+                object_point_to_save = object_roi_sub_cloud_in_hand_frame_xyzrgb->points[k];
+                point_to_save_exist = true;
+              }
+            }
+          }
+        }
+        
+      
+      }
+      
+      
+      if(finger_list[i]=="thumb" and point_to_save_exist){
+        filtered_thumb_workspace_convex_offset.push_back( convex_shape_offset_to_save );
+        filtered_thumb_workspace_convex_parameter.push_back( convex_shape_parameter_to_save );
+        filtered_object_points_near_thumb_in_hand_frame.push_back( object_point_to_save );
+      }
+      else if(finger_list[i]=="index" and point_to_save_exist){
+        filtered_index_workspace_convex_offset.push_back( convex_shape_offset );
+        filtered_index_workspace_convex_parameter.push_back( convex_shape_parameter );
+        filtered_object_points_near_index_in_hand_frame.push_back( object_point_to_save );
+      }
+      else if(finger_list[i]=="middle" and point_to_save_exist){
+        filtered_middle_workspace_convex_offset.push_back( convex_shape_offset );
+        filtered_middle_workspace_convex_parameter.push_back( convex_shape_parameter );
+        filtered_object_points_near_middle_in_hand_frame.push_back( object_point_to_save );
+      }
+      else if(finger_list[i]=="pinky" and point_to_save_exist){
+        filtered_pinky_workspace_convex_offset.push_back( convex_shape_offset );
+        filtered_pinky_workspace_convex_parameter.push_back( convex_shape_parameter );
+        filtered_object_points_near_pinky_in_hand_frame.push_back( object_point_to_save );
+      }
+      
+      
+      
+    }
+  }
+  
+  
+  
+  
+  
+  // generate and view the point cloud of the convex workspace
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr filtered_thumb_workspace_convex_xyzrgb        (new pcl::PointCloud<pcl::PointXYZRGB>);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr filtered_index_workspace_convex_xyzrgb        (new pcl::PointCloud<pcl::PointXYZRGB>);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr filtered_middle_workspace_convex_xyzrgb       (new pcl::PointCloud<pcl::PointXYZRGB>);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr filtered_pinky_workspace_convex_xyzrgb        (new pcl::PointCloud<pcl::PointXYZRGB>);
+  
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> filtered_red_color  (filtered_thumb_workspace_convex_xyzrgb, 255, 0, 0);
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> filtered_green_color(filtered_index_workspace_convex_xyzrgb, 0, 255, 0);
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> filtered_blue_color (filtered_middle_workspace_convex_xyzrgb, 0, 0, 255);
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> filtered_grey_color (filtered_pinky_workspace_convex_xyzrgb, 100, 100, 100);
+  
+  std::cout << "filtered_thumb_workspace_convex_offset.size() = "<<  filtered_thumb_workspace_convex_offset.size()  << endl;
+  std::cout << "filtered_index_workspace_convex_offset.size() = "<<  filtered_index_workspace_convex_offset.size()  << endl;
+  std::cout << "filtered_middle_workspace_convex_offset.size() = "<< filtered_middle_workspace_convex_offset.size() << endl;
+  std::cout << "filtered_pinky_workspace_convex_offset.size() = "<<  filtered_pinky_workspace_convex_offset.size()  << endl<< endl;
+  
+  std::cout << "filtered_object_points_near_thumb_in_hand_frame.size() = "<<  filtered_object_points_near_thumb_in_hand_frame.size()  << endl;
+  std::cout << "filtered_object_points_near_index_in_hand_frame.size() = "<<  filtered_object_points_near_index_in_hand_frame.size()  << endl;
+  std::cout << "filtered_object_points_near_middle_in_hand_frame.size() = "<< filtered_object_points_near_middle_in_hand_frame.size() << endl;
+  std::cout << "filtered_object_points_near_pinky_in_hand_frame.size() = "<<  filtered_object_points_near_pinky_in_hand_frame.size()  << endl<< endl;
+  
+  point_cloud_samples = 30;
+  for(unsigned int j=0; j<filtered_thumb_workspace_convex_offset.size(); j++){
+    convex_shape_offset.x = filtered_thumb_workspace_convex_offset.points[j].x;
+    convex_shape_offset.y = filtered_thumb_workspace_convex_offset.points[j].y;
+    convex_shape_offset.z = filtered_thumb_workspace_convex_offset.points[j].z;
+    convex_shape_parameter.x = filtered_thumb_workspace_convex_parameter.points[j].x;
+    convex_shape_parameter.y = filtered_thumb_workspace_convex_parameter.points[j].y;
+    convex_shape_parameter.z = filtered_thumb_workspace_convex_parameter.points[j].z;
+    
+    for(unsigned int k=0; k<point_cloud_samples; k++){
+      value_x = (-convex_shape_parameter.x+convex_shape_offset.x) + k*2*convex_shape_parameter.x/point_cloud_samples;
+      for(unsigned int l=0; l<point_cloud_samples; l++){
+        value_y = (-convex_shape_parameter.y+convex_shape_offset.y) + l*2*convex_shape_parameter.y/point_cloud_samples;
+        value_z = convex_shape_offset.z + convex_shape_parameter.z*sqrt( 1 - pow(value_x-convex_shape_offset.x, 2)/pow(convex_shape_parameter.x, 2) - pow(value_y-convex_shape_offset.y, 2)/pow(convex_shape_parameter.y, 2) );
+        point_xyzrgb.x = value_x;
+        point_xyzrgb.y = value_y;
+        point_xyzrgb.z = value_z;
+        filtered_thumb_workspace_convex_xyzrgb->points.push_back( point_xyzrgb );
+        point_xyzrgb.r = 255;  point_xyzrgb.g = 0;  point_xyzrgb.b = 0;
+        
+        value_z = convex_shape_offset.z - convex_shape_parameter.z*sqrt( 1 - pow(value_x-convex_shape_offset.x, 2)/pow(convex_shape_parameter.x, 2) - pow(value_y-convex_shape_offset.y, 2)/pow(convex_shape_parameter.y, 2) );
+        point_xyzrgb.x = value_x;
+        point_xyzrgb.y = value_y;
+        point_xyzrgb.z = value_z;
+        
+        filtered_thumb_workspace_convex_xyzrgb->points.push_back( point_xyzrgb );
+        point_xyzrgb.r = 255;  point_xyzrgb.g = 0;  point_xyzrgb.b = 0; 
+      }
+    }
+  }
+    
+  for(unsigned int j=0; j<filtered_index_workspace_convex_offset.size(); j++){
+    convex_shape_offset.x = filtered_index_workspace_convex_offset.points[j].x;
+    convex_shape_offset.y = filtered_index_workspace_convex_offset.points[j].y;
+    convex_shape_offset.z = filtered_index_workspace_convex_offset.points[j].z;
+    convex_shape_parameter.x = filtered_index_workspace_convex_parameter.points[j].x;
+    convex_shape_parameter.y = filtered_index_workspace_convex_parameter.points[j].y;
+    convex_shape_parameter.z = filtered_index_workspace_convex_parameter.points[j].z;
+    
+    for(unsigned int k=0; k<point_cloud_samples; k++){
+      value_x = (-convex_shape_parameter.x+convex_shape_offset.x) + k*2*convex_shape_parameter.x/point_cloud_samples;
+      for(unsigned int l=0; l<point_cloud_samples; l++){
+        value_y = (-convex_shape_parameter.y+convex_shape_offset.y) + l*2*convex_shape_parameter.y/point_cloud_samples;
+        value_z = convex_shape_offset.z + convex_shape_parameter.z*sqrt( 1 - pow(value_x-convex_shape_offset.x, 2)/pow(convex_shape_parameter.x, 2) - pow(value_y-convex_shape_offset.y, 2)/pow(convex_shape_parameter.y, 2) );
+        point_xyzrgb.x = value_x;
+        point_xyzrgb.y = value_y;
+        point_xyzrgb.z = value_z;
+        filtered_index_workspace_convex_xyzrgb->points.push_back( point_xyzrgb );
+        point_xyzrgb.r = 255;  point_xyzrgb.g = 0;  point_xyzrgb.b = 0;
+        
+        value_z = convex_shape_offset.z - convex_shape_parameter.z*sqrt( 1 - pow(value_x-convex_shape_offset.x, 2)/pow(convex_shape_parameter.x, 2) - pow(value_y-convex_shape_offset.y, 2)/pow(convex_shape_parameter.y, 2) );
+        point_xyzrgb.x = value_x;
+        point_xyzrgb.y = value_y;
+        point_xyzrgb.z = value_z;
+        
+        filtered_index_workspace_convex_xyzrgb->points.push_back( point_xyzrgb );
+        point_xyzrgb.r = 255;  point_xyzrgb.g = 0;  point_xyzrgb.b = 0; 
+      }
+    }
+  }
+    
+  
+  for(unsigned int j=0; j<filtered_middle_workspace_convex_offset.size(); j++){
+    convex_shape_offset.x = filtered_middle_workspace_convex_offset.points[j].x;
+    convex_shape_offset.y = filtered_middle_workspace_convex_offset.points[j].y;
+    convex_shape_offset.z = filtered_middle_workspace_convex_offset.points[j].z;
+    convex_shape_parameter.x = filtered_middle_workspace_convex_parameter.points[j].x;
+    convex_shape_parameter.y = filtered_middle_workspace_convex_parameter.points[j].y;
+    convex_shape_parameter.z = filtered_middle_workspace_convex_parameter.points[j].z;
+    
+    for(unsigned int k=0; k<point_cloud_samples; k++){
+      value_x = (-convex_shape_parameter.x+convex_shape_offset.x) + k*2*convex_shape_parameter.x/point_cloud_samples;
+      for(unsigned int l=0; l<point_cloud_samples; l++){
+        value_y = (-convex_shape_parameter.y+convex_shape_offset.y) + l*2*convex_shape_parameter.y/point_cloud_samples;
+        value_z = convex_shape_offset.z + convex_shape_parameter.z*sqrt( 1 - pow(value_x-convex_shape_offset.x, 2)/pow(convex_shape_parameter.x, 2) - pow(value_y-convex_shape_offset.y, 2)/pow(convex_shape_parameter.y, 2) );
+        point_xyzrgb.x = value_x;
+        point_xyzrgb.y = value_y;
+        point_xyzrgb.z = value_z;
+        filtered_middle_workspace_convex_xyzrgb->points.push_back( point_xyzrgb );
+        point_xyzrgb.r = 255;  point_xyzrgb.g = 0;  point_xyzrgb.b = 0;
+        
+        value_z = convex_shape_offset.z - convex_shape_parameter.z*sqrt( 1 - pow(value_x-convex_shape_offset.x, 2)/pow(convex_shape_parameter.x, 2) - pow(value_y-convex_shape_offset.y, 2)/pow(convex_shape_parameter.y, 2) );
+        point_xyzrgb.x = value_x;
+        point_xyzrgb.y = value_y;
+        point_xyzrgb.z = value_z;
+        
+        filtered_middle_workspace_convex_xyzrgb->points.push_back( point_xyzrgb );
+        point_xyzrgb.r = 255;  point_xyzrgb.g = 0;  point_xyzrgb.b = 0; 
+      }
+    }
+  }
+  
+  
+  for(unsigned int j=0; j<filtered_pinky_workspace_convex_offset.size(); j++){
+    convex_shape_offset.x = filtered_pinky_workspace_convex_offset.points[j].x;
+    convex_shape_offset.y = filtered_pinky_workspace_convex_offset.points[j].y;
+    convex_shape_offset.z = filtered_pinky_workspace_convex_offset.points[j].z;
+    convex_shape_parameter.x = filtered_pinky_workspace_convex_parameter.points[j].x;
+    convex_shape_parameter.y = filtered_pinky_workspace_convex_parameter.points[j].y;
+    convex_shape_parameter.z = filtered_pinky_workspace_convex_parameter.points[j].z;
+    
+    for(unsigned int k=0; k<point_cloud_samples; k++){
+      value_x = (-convex_shape_parameter.x+convex_shape_offset.x) + k*2*convex_shape_parameter.x/point_cloud_samples;
+      for(unsigned int l=0; l<point_cloud_samples; l++){
+        value_y = (-convex_shape_parameter.y+convex_shape_offset.y) + l*2*convex_shape_parameter.y/point_cloud_samples;
+        value_z = convex_shape_offset.z + convex_shape_parameter.z*sqrt( 1 - pow(value_x-convex_shape_offset.x, 2)/pow(convex_shape_parameter.x, 2) - pow(value_y-convex_shape_offset.y, 2)/pow(convex_shape_parameter.y, 2) );
+        point_xyzrgb.x = value_x;
+        point_xyzrgb.y = value_y;
+        point_xyzrgb.z = value_z;
+        filtered_pinky_workspace_convex_xyzrgb->points.push_back( point_xyzrgb );
+        point_xyzrgb.r = 255;  point_xyzrgb.g = 0;  point_xyzrgb.b = 0;
+        
+        value_z = convex_shape_offset.z - convex_shape_parameter.z*sqrt( 1 - pow(value_x-convex_shape_offset.x, 2)/pow(convex_shape_parameter.x, 2) - pow(value_y-convex_shape_offset.y, 2)/pow(convex_shape_parameter.y, 2) );
+        point_xyzrgb.x = value_x;
+        point_xyzrgb.y = value_y;
+        point_xyzrgb.z = value_z;
+        
+        filtered_pinky_workspace_convex_xyzrgb->points.push_back( point_xyzrgb );
+        point_xyzrgb.r = 255;  point_xyzrgb.g = 0;  point_xyzrgb.b = 0; 
+      }
+    }
+  }
+  
+  pcl::transformPointCloud(*filtered_thumb_workspace_convex_xyzrgb, *filtered_thumb_workspace_convex_xyzrgb, hand_transform);
+  pcl::transformPointCloud(*filtered_index_workspace_convex_xyzrgb, *filtered_index_workspace_convex_xyzrgb, hand_transform);
+  pcl::transformPointCloud(*filtered_middle_workspace_convex_xyzrgb, *filtered_middle_workspace_convex_xyzrgb, hand_transform);
+  pcl::transformPointCloud(*filtered_pinky_workspace_convex_xyzrgb, *filtered_pinky_workspace_convex_xyzrgb, hand_transform);
+  
+  viewer->addPointCloud<pcl::PointXYZRGB>(filtered_thumb_workspace_convex_xyzrgb, filtered_red_color, "filtered red cloud");
+  viewer->addPointCloud<pcl::PointXYZRGB>(filtered_index_workspace_convex_xyzrgb, filtered_green_color, "filtered green cloud");
+  viewer->addPointCloud<pcl::PointXYZRGB>(filtered_middle_workspace_convex_xyzrgb, filtered_blue_color, "filtered blue cloud");
+  viewer->addPointCloud<pcl::PointXYZRGB>(filtered_pinky_workspace_convex_xyzrgb, filtered_grey_color, "filtered grey cloud");
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  end = clock();
+	time_spent = (double)( end - begin )/ CLOCKS_PER_SEC;
+	std::cout << "time spent to filter convex workspace merging with object surface = " << time_spent << std::endl << std::endl;
   
   
   
@@ -901,13 +1375,14 @@ int main(int argc, char **argv){
   
   
   // add to visualized point cloud
+  //*augmented_cloud += *roi_in_global_frame;
   viewer->updatePointCloud<pcl::PointXYZRGB>(augmented_cloud, rgb,"object cloud");
   
 	
   while ( !viewer->wasStopped() ){
     viewer->spinOnce();
     Hullviewer->spinOnce();
-    viewer->saveScreenshot("hand_alligned_with_region_of_interest.png");
+    //viewer->saveScreenshot("palm_contact.png");
   } 
   return 0;
 }
