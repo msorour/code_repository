@@ -150,6 +150,19 @@ cloud_visualizer/fast:
 .PHONY : cloud_visualizer/fast
 
 #=============================================================================
+# Target rules for targets named step_9_grasp_locations_optimization
+
+# Build rule for target.
+step_9_grasp_locations_optimization: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 step_9_grasp_locations_optimization
+.PHONY : step_9_grasp_locations_optimization
+
+# fast build rule for target.
+step_9_grasp_locations_optimization/fast:
+	$(MAKE) -f CMakeFiles/step_9_grasp_locations_optimization.dir/build.make CMakeFiles/step_9_grasp_locations_optimization.dir/build
+.PHONY : step_9_grasp_locations_optimization/fast
+
+#=============================================================================
 # Target rules for targets named step_7_touch_the_object_with_palm
 
 # Build rule for target.
@@ -590,6 +603,33 @@ step_8_filter_hand_workspace_merging_with_object_surface.cpp.s:
 	$(MAKE) -f CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build.make CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/step_8_filter_hand_workspace_merging_with_object_surface.cpp.s
 .PHONY : step_8_filter_hand_workspace_merging_with_object_surface.cpp.s
 
+step_9_grasp_locations_optimization.o: step_9_grasp_locations_optimization.cpp.o
+
+.PHONY : step_9_grasp_locations_optimization.o
+
+# target to build an object file
+step_9_grasp_locations_optimization.cpp.o:
+	$(MAKE) -f CMakeFiles/step_9_grasp_locations_optimization.dir/build.make CMakeFiles/step_9_grasp_locations_optimization.dir/step_9_grasp_locations_optimization.cpp.o
+.PHONY : step_9_grasp_locations_optimization.cpp.o
+
+step_9_grasp_locations_optimization.i: step_9_grasp_locations_optimization.cpp.i
+
+.PHONY : step_9_grasp_locations_optimization.i
+
+# target to preprocess a source file
+step_9_grasp_locations_optimization.cpp.i:
+	$(MAKE) -f CMakeFiles/step_9_grasp_locations_optimization.dir/build.make CMakeFiles/step_9_grasp_locations_optimization.dir/step_9_grasp_locations_optimization.cpp.i
+.PHONY : step_9_grasp_locations_optimization.cpp.i
+
+step_9_grasp_locations_optimization.s: step_9_grasp_locations_optimization.cpp.s
+
+.PHONY : step_9_grasp_locations_optimization.s
+
+# target to generate assembly for a file
+step_9_grasp_locations_optimization.cpp.s:
+	$(MAKE) -f CMakeFiles/step_9_grasp_locations_optimization.dir/build.make CMakeFiles/step_9_grasp_locations_optimization.dir/step_9_grasp_locations_optimization.cpp.s
+.PHONY : step_9_grasp_locations_optimization.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -601,6 +641,7 @@ help:
 	@echo "... region_of_interest_spheres"
 	@echo "... region_of_interest"
 	@echo "... cloud_visualizer"
+	@echo "... step_9_grasp_locations_optimization"
 	@echo "... step_7_touch_the_object_with_palm"
 	@echo "... step_6_allign_hand_with_roi"
 	@echo "... step_8_filter_hand_workspace_merging_with_object_surface"
@@ -646,6 +687,9 @@ help:
 	@echo "... step_8_filter_hand_workspace_merging_with_object_surface.o"
 	@echo "... step_8_filter_hand_workspace_merging_with_object_surface.i"
 	@echo "... step_8_filter_hand_workspace_merging_with_object_surface.s"
+	@echo "... step_9_grasp_locations_optimization.o"
+	@echo "... step_9_grasp_locations_optimization.i"
+	@echo "... step_9_grasp_locations_optimization.s"
 .PHONY : help
 
 

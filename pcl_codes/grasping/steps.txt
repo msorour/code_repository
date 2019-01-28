@@ -26,3 +26,8 @@
 7# hand touches the object using the palm
 ./step_7_touch_the_object_with_palm vase_xyz_rot ellipsoids 3
 ./step_7_touch_the_object_with_palm vase_xyz_rot spheres 3
+
+8# filter workspace merging with object surface
+./step_8_filter_hand_workspace_merging_with_object_surface box_of_cereal_xyz_2 spheres 3
+
+

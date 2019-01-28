@@ -27,6 +27,7 @@ add_executable(step_5_region_of_interest step_5_region_of_interest.cpp)
 add_executable(step_6_allign_hand_with_roi step_6_allign_hand_with_roi.cpp)
 add_executable(step_7_touch_the_object_with_palm step_7_touch_the_object_with_palm.cpp)
 add_executable(step_8_filter_hand_workspace_merging_with_object_surface step_8_filter_hand_workspace_merging_with_object_surface.cpp)
+add_executable(step_9_grasp_locations_optimization step_9_grasp_locations_optimization.cpp)
 
 add_executable(cloud_visualizer cloud_visualizer.cpp)
 
@@ -44,6 +45,7 @@ target_link_libraries(step_5_region_of_interest ${PCL_LIBRARIES})
 target_link_libraries(step_6_allign_hand_with_roi ${PCL_LIBRARIES})
 target_link_libraries(step_7_touch_the_object_with_palm ${PCL_LIBRARIES})
 target_link_libraries(step_8_filter_hand_workspace_merging_with_object_surface ${PCL_LIBRARIES})
+target_link_libraries(step_9_grasp_locations_optimization ${PCL_LIBRARIES} quadprog)
 
 target_link_libraries(cloud_visualizer ${PCL_LIBRARIES})
 

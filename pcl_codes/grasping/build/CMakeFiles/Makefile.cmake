@@ -177,6 +177,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/region_of_interest_spheres.dir/DependInfo.cmake"
   "CMakeFiles/region_of_interest.dir/DependInfo.cmake"
   "CMakeFiles/cloud_visualizer.dir/DependInfo.cmake"
+  "CMakeFiles/step_9_grasp_locations_optimization.dir/DependInfo.cmake"
   "CMakeFiles/step_7_touch_the_object_with_palm.dir/DependInfo.cmake"
   "CMakeFiles/step_6_allign_hand_with_roi.dir/DependInfo.cmake"
   "CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/DependInfo.cmake"
