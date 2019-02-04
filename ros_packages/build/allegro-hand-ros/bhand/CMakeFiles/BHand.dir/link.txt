@@ -1,0 +1,1 @@
+/usr/bin/c++  -fPIC -O3 -DNDEBUG  -shared -Wl,-soname,libBHand.so -o /home/work/code_repository/ros_packages/devel/lib/libBHand.so  

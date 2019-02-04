@@ -17,6 +17,7 @@
 #include <pcl/io/ply_io.h>
 #include <time.h>
 #include "/home/work/software/QuadProgpp-master/src/QuadProg++.hh"
+#include "grasping_algorithm.h"
 
 int main(int argc, char **argv){
   std::string object_name, workspace_type, sampling;
@@ -101,7 +102,7 @@ int main(int argc, char **argv){
   
   
   
-  
+  /*
   
   begin = clock();
   //
@@ -121,22 +122,47 @@ int main(int argc, char **argv){
   pcl::PointXYZ far_point_in_neg_direction;
   far_point_in_pos_direction = object_centroid_point;
   far_point_in_neg_direction = object_centroid_point;
+  double largest_euclidean_distance_pos=0.0;
+  double largest_euclidean_distance_neg=0.0;
+  double euclidean_distance;
+  
+  //for(unsigned int i=0;i<object_mesh_vertices.size();i++){
+    // get the extreme points on object
+  //  if( object_mesh_vertices.points[i].x > far_point_in_pos_direction.x )
+  //    far_point_in_pos_direction.x = object_mesh_vertices.points[i].x;
+  //  if( object_mesh_vertices.points[i].x < far_point_in_neg_direction.x )
+  //    far_point_in_neg_direction.x = object_mesh_vertices.points[i].x;
+    
+  //  if( object_mesh_vertices.points[i].y > far_point_in_pos_direction.y )
+  //    far_point_in_pos_direction.y = object_mesh_vertices.points[i].y;
+  //  if( object_mesh_vertices.points[i].y < far_point_in_neg_direction.y )
+  //    far_point_in_neg_direction.y = object_mesh_vertices.points[i].y;
+  //  
+  //  if( object_mesh_vertices.points[i].z > far_point_in_pos_direction.z )
+  //    far_point_in_pos_direction.z = object_mesh_vertices.points[i].z;
+  //  if( object_mesh_vertices.points[i].z < far_point_in_neg_direction.z )
+  //    far_point_in_neg_direction.z = object_mesh_vertices.points[i].z;
+ // }
+  
   for(unsigned int i=0;i<object_mesh_vertices.size();i++){
     // get the extreme points on object
-    if( object_mesh_vertices.points[i].x > far_point_in_pos_direction.x )
-      far_point_in_pos_direction.x = object_mesh_vertices.points[i].x;
-    if( object_mesh_vertices.points[i].x < far_point_in_neg_direction.x )
-      far_point_in_neg_direction.x = object_mesh_vertices.points[i].x;
-    
-    if( object_mesh_vertices.points[i].y > far_point_in_pos_direction.y )
-      far_point_in_pos_direction.y = object_mesh_vertices.points[i].y;
-    if( object_mesh_vertices.points[i].y < far_point_in_neg_direction.y )
-      far_point_in_neg_direction.y = object_mesh_vertices.points[i].y;
-    
-    if( object_mesh_vertices.points[i].z > far_point_in_pos_direction.z )
-      far_point_in_pos_direction.z = object_mesh_vertices.points[i].z;
-    if( object_mesh_vertices.points[i].z < far_point_in_neg_direction.z )
-      far_point_in_neg_direction.z = object_mesh_vertices.points[i].z;
+    euclidean_distance = pow(object_mesh_vertices.points[i].x-object_centroid_point.x,2) + pow(object_mesh_vertices.points[i].y-object_centroid_point.y,2) + pow(object_mesh_vertices.points[i].z-object_centroid_point.z,2);
+    if( object_mesh_vertices.points[i].x > object_centroid_point.x and object_mesh_vertices.points[i].y > object_centroid_point.y and object_mesh_vertices.points[i].z > object_centroid_point.z ){
+      if( euclidean_distance > largest_euclidean_distance_pos ){
+        far_point_in_pos_direction.x = object_mesh_vertices.points[i].x;
+        far_point_in_pos_direction.y = object_mesh_vertices.points[i].y;
+        far_point_in_pos_direction.z = object_mesh_vertices.points[i].z;
+        largest_euclidean_distance_pos = euclidean_distance;
+      }
+    }
+  if( object_mesh_vertices.points[i].x < object_centroid_point.x and object_mesh_vertices.points[i].y < object_centroid_point.y and object_mesh_vertices.points[i].z < object_centroid_point.z ){
+    if( euclidean_distance > largest_euclidean_distance_neg ){
+        far_point_in_neg_direction.x = object_mesh_vertices.points[i].x;
+        far_point_in_neg_direction.y = object_mesh_vertices.points[i].y;
+        far_point_in_neg_direction.z = object_mesh_vertices.points[i].z;
+        largest_euclidean_distance_neg = euclidean_distance;
+      }
+    }
   }
   
   // divide the object verices into two sets, one on the positive side of centroid and the other on the negative side
@@ -185,20 +211,20 @@ int main(int argc, char **argv){
   object_z_axis_vector[1] = centroid_far_pos_point.y - centroid_far_neg_point.y;
   object_z_axis_vector[2] = centroid_far_pos_point.z - centroid_far_neg_point.z;
   
-  /*
+  
   // normalize the major axis vector:
-  Eigen::Vector3d object_z_axis_vector_normalized;
-  object_z_axis_vector_normalized = object_z_axis_vector.normalized();
-  double alpha;   // angle about (+ve) x-axis
-  double beta;    // angle about (+ve) y-axis
-  double gamma;   // angle about (+ve) z-axis
-  alpha = acos( object_z_axis_vector_normalized[0] );
-  beta  = acos( object_z_axis_vector_normalized[1] );
-  gamma = acos( object_z_axis_vector_normalized[2] );
+  //Eigen::Vector3d object_z_axis_vector_normalized;
+  //object_z_axis_vector_normalized = object_z_axis_vector.normalized();
+  //double alpha;   // angle about (+ve) x-axis
+  //double beta;    // angle about (+ve) y-axis
+  //double gamma;   // angle about (+ve) z-axis
+  //alpha = acos( object_z_axis_vector_normalized[0] );
+  //beta  = acos( object_z_axis_vector_normalized[1] );
+  //gamma = acos( object_z_axis_vector_normalized[2] );
   //std::cout << "alpha = " << alpha << std::endl;
   //std::cout << "beta  = " << beta << std::endl;
   //std::cout << "gamma = " << gamma << std::endl << std::endl;
-  */
+  
   
   // computing perpendicular axis to the major one (x-axis)
   // we have to take into account intersection with y-axis to make it more versatile and robust
@@ -265,21 +291,41 @@ int main(int argc, char **argv){
   object_transform << object_rotation, object_translation,
                       0,0,0,1;
   
-  Eigen::Affine3f transform = Eigen::Affine3f::Identity();
-  transform.matrix() = object_transform;
-  viewer->addCoordinateSystem(0.1, transform, "object coordinate frame", 0);
+  //Eigen::Affine3f transform = Eigen::Affine3f::Identity();
+  //transform.matrix() = object_transform;
+  //viewer->addCoordinateSystem(0.1, transform, "object coordinate frame", 0);
   
-  std::cout << "object transformation matrix: " << std::endl << object_transform << std::endl << std::endl;
+  //std::cout << "object transformation matrix: " << std::endl << object_transform << std::endl << std::endl;
   
   end = clock();
 	time_spent = (double)( end - begin )/ CLOCKS_PER_SEC;
 	std::cout << "time spent to estimate object orientation = " << time_spent << std::endl << std::endl;
   
+  */
   
   
   
   
   
+  // STEP#4 : compute object transformation matrix
+  Eigen::Matrix3f object_rotation;
+  Eigen::Vector3f object_translation;
+  Eigen::Matrix4f object_transform;
+  object_transform = Eigen::Matrix4f::Identity();
+  Eigen::Vector4f object_far_point_in_pos_direction_in_global_frame;
+  Eigen::Vector4f object_far_point_in_neg_direction_in_global_frame;
+  Eigen::Vector3f object_major_dimensions;
+  step_4_object_pose_approximation( object_mesh_vertices, object_transform, object_far_point_in_pos_direction_in_global_frame, object_far_point_in_neg_direction_in_global_frame, object_major_dimensions );
+  Eigen::Affine3f transform = Eigen::Affine3f::Identity();
+  transform.matrix() = object_transform;
+  viewer->addCoordinateSystem(0.1, transform, "object coordinate frame", 0);
+  viewer->addCoordinateSystem(0.1,object_far_point_in_pos_direction_in_global_frame(0),object_far_point_in_pos_direction_in_global_frame(1),object_far_point_in_pos_direction_in_global_frame(2));
+  viewer->addCoordinateSystem(0.1,object_far_point_in_neg_direction_in_global_frame(0),object_far_point_in_neg_direction_in_global_frame(1),object_far_point_in_neg_direction_in_global_frame(2));
+  
+  object_rotation    << object_transform(0,0), object_transform(0,1), object_transform(0,2),
+                        object_transform(1,0), object_transform(1,1), object_transform(1,2),
+                        object_transform(2,0), object_transform(2,1), object_transform(2,2);
+  object_translation << object_transform(0,3), object_transform(1,3), object_transform(2,3);
   
   viewer->updatePointCloud<pcl::PointXYZRGB>(augmented_cloud, rgb,"object cloud");
   Hullviewer->updatePointCloud<pcl::PointXYZRGB>(augmented_cloud, rgb,"object cloud");
@@ -291,7 +337,12 @@ int main(int argc, char **argv){
   
   
   
-  
+  // get object centroid location
+  pcl::CentroidPoint<pcl::PointXYZ> object_centroid;
+  pcl::PointXYZ object_centroid_point;
+  for(unsigned int i=0;i<object_mesh_vertices.points.size();i++)
+    object_centroid.add( object_mesh_vertices.points[i] );
+  object_centroid.get(object_centroid_point);
   
   
   
@@ -598,7 +649,7 @@ int main(int argc, char **argv){
   
   
   
-  
+  /*
   // computing the object major dimentions along its x, y, and z-axes
   // get the centroid first
   pcl::PointXYZRGB centroid_point_transformed_object;
@@ -632,13 +683,14 @@ int main(int argc, char **argv){
   object_major_dimensions.x = farest_point_pos.x - farest_point_neg.x;
   object_major_dimensions.y = farest_point_pos.y - farest_point_neg.y;
   object_major_dimensions.z = farest_point_pos.z - farest_point_neg.z;
+  */
   std::cout << "object_major_dimensions = " << std::endl << object_major_dimensions << std::endl;
   
   
   
   
   
-  begin = clock();
+  //begin = clock();
   //
   // REGION OF INTEREST (ROI)
   // a cuboid volume of width = maximum hand openning, height = finger thickness, length = arbitrary for the moment
@@ -676,6 +728,7 @@ int main(int argc, char **argv){
   }
   //*augmented_cloud += roi_point_cloud;
   
+  
   // orient the region of interest scanner with the object orientation
   // and translate the roi scanner to the centroid of object
   Eigen::Matrix3f roi_rotation;
@@ -688,14 +741,16 @@ int main(int argc, char **argv){
   //*augmented_cloud += *roi_in_global_frame;
   
   
+  unsigned int counter = 0;
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> roi_color  (roi_in_global_frame, 255, 0, 255);
+  viewer->addPointCloud<pcl::PointXYZRGB>(roi_in_global_frame, roi_color, "roi cloud");
   
   
-  
+  /*
   // STEP#1 : Check if the object subcloud is completely contained in the region of interest special ellipsoid
   // obtain the complete object subcloud with height as that of region of interest starting from object centroid
   // to make it easy we use the object point cloud transformed to the object frame
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_roi_sub_cloud_in_object_frame_xyzrgb  (new pcl::PointCloud<pcl::PointXYZRGB>());
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_roi_sub_cloud_in_hand_frame_xyzrgb    (new pcl::PointCloud<pcl::PointXYZRGB>());
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_roi_sub_cloud_in_object_global_xyzrgb (new pcl::PointCloud<pcl::PointXYZRGB>());
   Eigen::Vector4f object_centroid_point_in_object_frame_4d;
   
@@ -738,7 +793,7 @@ int main(int argc, char **argv){
   // translate from down to top of object major axis (z-axis)
   float linear_scanning_resolution = 0.1;    // in meters
   float rotary_scanning_resolution = 0.3;    // in radians
-  int number_of_scan_translations = ceil( object_major_dimensions.z/linear_scanning_resolution );
+  int number_of_scan_translations = ceil( object_major_dimensions(2)/linear_scanning_resolution );
   int number_of_scan_rotations = ceil( 3.14159/rotary_scanning_resolution );
   Eigen::Vector4f object_far_point_in_neg_direction_4f;
   Eigen::Matrix3f roi_rotation_in_object_frame;
@@ -749,7 +804,8 @@ int main(int argc, char **argv){
   Eigen::Vector3f roi_translation_in_object_frame_total;
   Eigen::Matrix4f roi_transform_in_object_frame = Eigen::Matrix4f::Identity();
   
-  object_far_point_in_neg_direction_4f << far_point_in_neg_direction.x, far_point_in_neg_direction.y, far_point_in_neg_direction.z, 1;
+  //object_far_point_in_neg_direction_4f << far_point_in_neg_direction.x, far_point_in_neg_direction.y, far_point_in_neg_direction.z, 1;
+  object_far_point_in_neg_direction_4f = object_far_point_in_neg_direction_in_global_frame;
   object_far_point_in_neg_direction_4f = object_transform*object_far_point_in_neg_direction_4f;
   // if object is not fully contained in the roi, move the roi scanner (special ellipsoid) to start scanning location
   if(!object_subcloud_fully_contained){
@@ -795,11 +851,11 @@ int main(int argc, char **argv){
         roi_transform_in_object_frame = roi_transform_in_object_frame*roi_transform_in_object_frame_incremental;
         pcl::transformPointCloud(roi_point_cloud, *roi_in_object_frame, roi_transform_in_object_frame);
         
-        /*
-        dummy_translation_4d << roi_translation_in_object_frame(0), roi_translation_in_object_frame(1), roi_translation_in_object_frame(2), 1;
-        dummy_translation_4d = object_transform*dummy_translation_4d;
-        viewer->addCoordinateSystem(0.1,dummy_translation_4d(0),dummy_translation_4d(1),dummy_translation_4d(2));
-        */
+        
+        //dummy_translation_4d << roi_translation_in_object_frame(0), roi_translation_in_object_frame(1), roi_translation_in_object_frame(2), 1;
+        //dummy_translation_4d = object_transform*dummy_translation_4d;
+        //viewer->addCoordinateSystem(0.1,dummy_translation_4d(0),dummy_translation_4d(1),dummy_translation_4d(2));
+        
         
         // check if the object subcloud is completely contained in the region of interest
         object_roi_sub_cloud_in_object_frame_xyzrgb->clear();
@@ -826,7 +882,7 @@ int main(int argc, char **argv){
         // update the roi_in_global_frame to be able to view the point cloud!
         pcl::transformPointCloud(*roi_in_object_frame, *roi_in_global_frame, roi_transform);
         //pcl::transformPointCloud(roi_point_cloud, *roi_in_global_frame, roi_transform);
-        viewer->updatePointCloud<pcl::PointXYZRGB>(roi_in_global_frame, roi_color, "roi cloud");
+        //viewer->updatePointCloud<pcl::PointXYZRGB>(roi_in_global_frame, roi_color, "roi cloud");
         //viewer->updatePointCloud<pcl::PointXYZRGB>(object_roi_sub_cloud_in_object_frame_xyzrgb, object_subcloud_roi_color, "object subcloud roi cloud");
         viewer->updatePointCloud<pcl::PointXYZRGB>(augmented_cloud, rgb,"object cloud");
         
@@ -841,14 +897,54 @@ int main(int argc, char **argv){
   }
   
   
-  
+  std::cout << "roi_transform_in_object_frame = " << std::endl << roi_transform_in_object_frame << std::endl;
   
   end = clock();
 	time_spent = (double)( end - begin )/ CLOCKS_PER_SEC;
 	std::cout << "time spent to find region of interest = " << time_spent << std::endl << std::endl;
+  */
   
   
   
+  /////////
+  // STEP#5 : region of interest
+  /*
+  Eigen::Vector3f roi_dimensions;
+  Eigen::Matrix4f roi_transform_in_object_frame_again;
+  roi_dimensions << roi_l, roi_w, roi_h;
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_roi_sub_cloud_in_object_global_xyzrgb_again (new pcl::PointCloud<pcl::PointXYZRGB>());
+  
+  step_5_region_of_interest( object_mesh_vertices, object_transform , object_far_point_in_pos_direction_in_global_frame, object_far_point_in_neg_direction_in_global_frame, object_major_dimensions, roi_dimensions, roi_transform_in_object_frame_again, object_roi_sub_cloud_in_object_global_xyzrgb_again );
+  
+  
+  
+  pcl::transformPointCloud(roi_point_cloud, *roi_in_object_frame, roi_transform_in_object_frame_again);
+  pcl::transformPointCloud(*roi_in_object_frame, *roi_in_global_frame, roi_transform);
+  viewer->updatePointCloud<pcl::PointXYZRGB>(roi_in_global_frame, roi_color, "roi cloud");
+  viewer->spinOnce();
+  */
+  
+  
+  
+  
+  Eigen::Vector3f roi_dimensions;
+  Eigen::Matrix4f roi_transform_in_object_frame_again;
+  Eigen::Matrix4f hand_transform;
+  Eigen::Matrix3f hand_rotation;
+  Eigen::Vector3f hand_translation;
+  roi_dimensions << roi_l, roi_w, roi_h;
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_roi_sub_cloud_in_object_global_xyzrgb_again (new pcl::PointCloud<pcl::PointXYZRGB>());
+  Eigen::Vector3f hand_dimensions;
+  hand_dimensions << 0.2477, 0.13948, 0.0548;
+  
+  step_5_region_of_interest( object_mesh_vertices, object_transform , object_far_point_in_pos_direction_in_global_frame, object_far_point_in_neg_direction_in_global_frame, object_major_dimensions, roi_dimensions, roi_transform_in_object_frame_again, object_roi_sub_cloud_in_object_global_xyzrgb_again, hand_transform, hand_dimensions );
+  
+  
+  
+  pcl::transformPointCloud(roi_point_cloud, *roi_in_object_frame, roi_transform_in_object_frame_again);
+  pcl::transformPointCloud(*roi_in_object_frame, *roi_in_global_frame, roi_transform);
+  viewer->updatePointCloud<pcl::PointXYZRGB>(roi_in_global_frame, roi_color, "roi cloud");
+  viewer->spinOnce();
   
   
   
@@ -857,6 +953,7 @@ int main(int argc, char **argv){
   //
   // STEP#4
   // allign the hand with the region of iterest
+  /*
   Eigen::Matrix3f hand_rotation;
   Eigen::Vector3f hand_translation;
   Eigen::Matrix4f hand_transform = Eigen::Matrix4f::Identity();
@@ -864,7 +961,8 @@ int main(int argc, char **argv){
   dummy_translation << 0,0,0;
   dummy_transform << Rotx_float(1.57), dummy_translation,
                      0,0,0,1;
-  hand_transform = roi_transform_in_object_frame*dummy_transform;
+  //hand_transform = roi_transform_in_object_frame*dummy_transform;
+  hand_transform = roi_transform_in_object_frame_again*dummy_transform;
   hand_transform = roi_transform*hand_transform;
   
   // apply another translation to finish the allignment
@@ -872,6 +970,7 @@ int main(int argc, char **argv){
   dummy_transform << Eigen::Matrix3f::Identity(), dummy_translation,
                      0,0,0,1;
   hand_transform = hand_transform*dummy_transform;
+  */
   /*
   pcl::transformPointCloud(*allegro_hand_xyzrgb, *allegro_hand_xyzrgb, hand_transform);
   pcl::transformPointCloud(*thumb_workspace_convex_xyzrgb, *thumb_workspace_convex_xyzrgb, hand_transform);
@@ -918,7 +1017,7 @@ int main(int argc, char **argv){
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_cloud_in_hand_frame_xyzrgb (new pcl::PointCloud<pcl::PointXYZRGB>());
   pcl::transformPointCloud(object_mesh_vertices_xyzrgb, *object_cloud_in_hand_frame_xyzrgb, inverse_hand_transform);
   //*augmented_cloud += *object_cloud_in_hand_frame_xyzrgb;
-  
+  //double euclidean_distance;
   for(unsigned int i=0; i<object_cloud_in_hand_frame_xyzrgb->size(); i++){
     euclidean_distance = pow( palm_center_point_in_hand_frame(0)-object_cloud_in_hand_frame_xyzrgb->points[i].x ,2) + 
                          pow( palm_center_point_in_hand_frame(1)-object_cloud_in_hand_frame_xyzrgb->points[i].y ,2) + 
@@ -1014,7 +1113,11 @@ int main(int argc, char **argv){
   object_centroid_point_in_hand_frame_4d = inverse_hand_transform*object_centroid_point_in_hand_frame_4d;
   
   //
-  pcl::transformPointCloud(*object_roi_sub_cloud_in_object_global_xyzrgb, *object_roi_sub_cloud_in_hand_frame_xyzrgb, inverse_hand_transform);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_roi_sub_cloud_in_hand_frame_xyzrgb    (new pcl::PointCloud<pcl::PointXYZRGB>());
+  //pcl::transformPointCloud(*object_roi_sub_cloud_in_object_global_xyzrgb, *object_roi_sub_cloud_in_hand_frame_xyzrgb, inverse_hand_transform);
+  pcl::transformPointCloud(*object_roi_sub_cloud_in_object_global_xyzrgb_again, *object_roi_sub_cloud_in_hand_frame_xyzrgb, inverse_hand_transform);
+  
+  
   //*augmented_cloud += *object_roi_sub_cloud_in_hand_frame_xyzrgb;
   //*augmented_cloud += *object_roi_sub_cloud_in_object_global_xyzrgb;
   
@@ -1202,7 +1305,6 @@ int main(int argc, char **argv){
   
   
   
-  
   // generate and view the point cloud of the convex workspace
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr filtered_thumb_workspace_convex_xyzrgb        (new pcl::PointCloud<pcl::PointXYZRGB>);
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr filtered_index_workspace_convex_xyzrgb        (new pcl::PointCloud<pcl::PointXYZRGB>);
@@ -1383,8 +1485,8 @@ int main(int argc, char **argv){
   Eigen::MatrixXd G(12,12);
   Eigen::VectorXd g(12);
   
-	Eigen::MatrixXd A(8,12);
-	Eigen::VectorXd B(8);
+	Eigen::MatrixXd A(10,12);
+	Eigen::VectorXd B(10);
 	
 	quadprogpp::Matrix<double> G2, CE, CI;
   quadprogpp::Vector<double> g0, ce0, ci0, x2;
@@ -1404,25 +1506,36 @@ int main(int argc, char **argv){
        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2;
   
-  A <<  0, -1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,    // C#1 : thumb & middle y-coordinates must be almost equal
-        0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0,    // C#2 : thumb & middle y-coordinates must be almost equal
-        -1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0,    // C#3 : thumb & middle x-coordinates must be almost equal
-        1, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0,    // C#4 : thumb & middle x-coordinates must be almost equal
-        0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0,    // C#5 : thumb  z-coordinates should be -ve (with respect to workspace centroid coordinate frame !!!)
-        0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,     // C#6 : index  z-coordinates should be +ve
-        0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,     // C#7 : middle z-coordinates should be +ve
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1;     // C#8 : pinky  z-coordinates should be +ve
+  A <<  0, -1, 0, 0, 0, 0, 0,  1, 0, 0, 0, 0,    // C#1 : thumb & middle y-coordinates must be almost equal
+        0,  1, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0,    // C#2 : thumb & middle y-coordinates must be almost equal
+        -1, 0, 0, 0, 0, 0,  1, 0, 0, 0, 0, 0,    // C#3 : thumb & middle x-coordinates must be almost equal
+        1,  0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0,    // C#4 : thumb & middle x-coordinates must be almost equal
+        
+        0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0,     // C#5 : thumb  z-coordinates should be -ve (with respect to workspace centroid coordinate frame !!!)
+        0, 0,  0, 0, 0, 1, 0, 0, 0, 0, 0, 0,     // C#6 : index  z-coordinates should be +ve
+        0, 0,  0, 0, 0, 0, 0, 0, 1, 0, 0, 0,     // C#7 : middle z-coordinates should be +ve
+        0, 0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 1,     // C#8 : pinky  z-coordinates should be +ve
+        
+        0, 0, 0, 0, 1, 0, 0, -1, 0, 0,  0, 0,    // C#9 : index & middle y-coordinates distance bigger than finger diameter
+        0, 0, 0, 0, 0, 0, 0,  1, 0, 0, -1, 0;    // C#10: index & middle y-coordinates distance bigger than finger diameter
+  
+        //0, 0, 0, 0, -1, 0, 0,  2, 0, 0, -1, 0,   // C#11: index & middle y-coordinates distance must be almost equal to that of pinky and middle to ensure zero moment on object
+        //0, 0, 0, 0,  1, 0, 0, -2, 0, 0,  1, 0,   // C#12: index & middle y-coordinates distance must be almost equal to that of pinky and middle to ensure zero moment on object
+        //0, 0, 0, 0,  1, 0, 0,  0, 0, 0, -1, 0,   // C#13: index & middle y-coordinates distance must be almost equal to that of pinky and middle to ensure zero moment on object
+        //0, 0, 0, 0, -1, 0, 0,  0, 0, 0,  1, 0;   // C#14: index & middle y-coordinates distance must be almost equal to that of pinky and middle to ensure zero moment on object
   
   
-  double delta1 = 0.003;
+  double delta1 = 0.003, delta2 = 0.035, delta3 = 0.005;
+  
   //B << delta1, delta1, delta1, delta1, hand_workspace_centroid_point.z, hand_workspace_centroid_point.z, hand_workspace_centroid_point.z, hand_workspace_centroid_point.z;
-  B << delta1, delta1, delta1, delta1, object_centroid_point_in_hand_frame_4d(2), object_centroid_point_in_hand_frame_4d(2), object_centroid_point_in_hand_frame_4d(2), object_centroid_point_in_hand_frame_4d(2);
+  //B << delta1, delta1, delta1, delta1, object_centroid_point_in_hand_frame_4d(2), object_centroid_point_in_hand_frame_4d(2), object_centroid_point_in_hand_frame_4d(2), object_centroid_point_in_hand_frame_4d(2), -delta2, -delta2, delta3, delta3, delta3, delta3;
+  B << delta1, delta1, delta1, delta1, object_centroid_point_in_hand_frame_4d(2), object_centroid_point_in_hand_frame_4d(2), object_centroid_point_in_hand_frame_4d(2), object_centroid_point_in_hand_frame_4d(2), -delta2, -delta2;
   
   n = 12;
   G2.resize(n, n);
   g0.resize(n);
   
-  p = 8;
+  p = 10;
   CI.resize(n, p);
   ci0.resize(p);
   
@@ -1573,7 +1686,6 @@ int main(int argc, char **argv){
 	thumb_grasp_point.z = thumb_grasp_point_4d(2);
 	viewer->addSphere<pcl::PointXYZ>(thumb_grasp_point, 0.01, 1.0, 0.0, 0.0, id);
 	
-	
 	pcl::PointXYZ index_grasp_point;
 	Eigen::Vector4f index_grasp_point_4d;
 	id="min sphere index";
@@ -1599,7 +1711,6 @@ int main(int argc, char **argv){
 	middle_grasp_point.y = middle_grasp_point_4d(1);
 	middle_grasp_point.z = middle_grasp_point_4d(2);
 	viewer->addSphere<pcl::PointXYZ>(middle_grasp_point, 0.01, 0.0, 0.0, 1.0, id);
-	
 	
 	pcl::PointXYZ pinky_grasp_point;
 	Eigen::Vector4f pinky_grasp_point_4d;

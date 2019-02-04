@@ -3,9 +3,9 @@
 ./step_1_allegro_right_hand_model_to_point_cloud
 
 2# generate point cloud of the workspace of each finger passing the number of joint space samples
-// to generate the light workspace points to be used in generating convex shapes
+## to generate the light workspace points to be used in generating convex shapes
 ./step_2_hand_workspace_sampling 3 convex_shape_generation
-// to generate the high resolution workspace points
+## to generate the high resolution workspace points
 ./step_2_hand_workspace_sampling 3 normal
 
 3# generate ellipsoids making up the workspace per finger and save to .pcd file
@@ -30,4 +30,5 @@
 8# filter workspace merging with object surface
 ./step_8_filter_hand_workspace_merging_with_object_surface box_of_cereal_xyz_2 spheres 3
 
-
+9# optimization to find grasping points
+./step_9_grasp_locations_optimization box_of_cereal_xyz_2 spheres 3

@@ -75,7 +75,7 @@ int main(int argc, char **argv){
   Eigen::Vector4d thumb_joint_safe_max, index_joint_safe_max, middle_joint_safe_max, pinky_joint_safe_max;
   double joint_margin;
 	if(role == "convex_shape_generation")
-	  joint_margin = 0.4;
+	  joint_margin = 0.2;
 	else
     joint_margin = 0.1;
   
@@ -116,10 +116,10 @@ int main(int argc, char **argv){
 	      for(int loop3=0;loop3<number_of_sample_points;loop3++){
 	        for(int loop4=0;loop4<number_of_sample_points;loop4++){
 	          if(finger_list[finger_index]=="thumb"){
-          	  joint_position_desired << (thumb_joint_safe_min(0)+thumb_joint_safe_range(0)*loop1/number_of_sample_points),
-          	                            (thumb_joint_safe_min(1)+thumb_joint_safe_range(1)*loop2/number_of_sample_points),
-          	                            (thumb_joint_safe_min(2)+thumb_joint_safe_range(2)*loop3/number_of_sample_points),
-          	                            (thumb_joint_safe_min(3)+thumb_joint_safe_range(3)*loop4/number_of_sample_points);
+          	  joint_position_desired << (thumb_joint_safe_min(0)+thumb_joint_safe_range(0)*loop1/(number_of_sample_points-1)),
+          	                            (thumb_joint_safe_min(1)+thumb_joint_safe_range(1)*loop2/(number_of_sample_points-1)),
+          	                            (thumb_joint_safe_min(2)+thumb_joint_safe_range(2)*loop3/(number_of_sample_points-1)),
+          	                            (thumb_joint_safe_min(3)+thumb_joint_safe_range(3)*loop4/(number_of_sample_points-1));
           	  DGM  = finger_direct_geometric_model("thumb",joint_position_desired);
           	  pose_rpy = transformation_matrix_to_pose_rpy(DGM);
           	  point.x = pose_rpy(0);  point.y = pose_rpy(1);  point.z = pose_rpy(2);
@@ -129,10 +129,10 @@ int main(int argc, char **argv){
           	  *augmented_cloud += allegro_hand_cloud_xyzrgb;
         	  }
         	  else if(finger_list[finger_index]=="index"){
-          	  joint_position_desired << (index_joint_safe_min(0)+index_joint_safe_range(0)*loop1/number_of_sample_points),
-          	                            (index_joint_safe_min(1)+index_joint_safe_range(1)*loop2/number_of_sample_points),
-          	                            (index_joint_safe_min(2)+index_joint_safe_range(2)*loop3/number_of_sample_points),
-          	                            (index_joint_safe_min(3)+index_joint_safe_range(3)*loop4/number_of_sample_points);
+          	  joint_position_desired << (index_joint_safe_min(0)+index_joint_safe_range(0)*loop1/(number_of_sample_points-1)),
+          	                            (index_joint_safe_min(1)+index_joint_safe_range(1)*loop2/(number_of_sample_points-1)),
+          	                            (index_joint_safe_min(2)+index_joint_safe_range(2)*loop3/(number_of_sample_points-1)),
+          	                            (index_joint_safe_min(3)+index_joint_safe_range(3)*loop4/(number_of_sample_points-1));
           	  DGM  = finger_direct_geometric_model("index",joint_position_desired);
           	  pose_rpy = transformation_matrix_to_pose_rpy(DGM);
           	  point.x = pose_rpy(0);  point.y = pose_rpy(1);  point.z = pose_rpy(2);
@@ -143,10 +143,10 @@ int main(int argc, char **argv){
           	  *augmented_cloud += thumb_workspace_cloud;
         	  }
         	  else if(finger_list[finger_index]=="middle"){
-          	  joint_position_desired << (middle_joint_safe_min(0)+middle_joint_safe_range(0)*loop1/number_of_sample_points),
-          	                            (middle_joint_safe_min(1)+middle_joint_safe_range(1)*loop2/number_of_sample_points),
-          	                            (middle_joint_safe_min(2)+middle_joint_safe_range(2)*loop3/number_of_sample_points),
-          	                            (middle_joint_safe_min(3)+middle_joint_safe_range(3)*loop4/number_of_sample_points);
+          	  joint_position_desired << (middle_joint_safe_min(0)+middle_joint_safe_range(0)*loop1/(number_of_sample_points-1)),
+          	                            (middle_joint_safe_min(1)+middle_joint_safe_range(1)*loop2/(number_of_sample_points-1)),
+          	                            (middle_joint_safe_min(2)+middle_joint_safe_range(2)*loop3/(number_of_sample_points-1)),
+          	                            (middle_joint_safe_min(3)+middle_joint_safe_range(3)*loop4/(number_of_sample_points-1));
           	  DGM  = finger_direct_geometric_model("middle",joint_position_desired);
           	  pose_rpy = transformation_matrix_to_pose_rpy(DGM);
           	  point.x = pose_rpy(0);  point.y = pose_rpy(1);  point.z = pose_rpy(2);
@@ -158,10 +158,10 @@ int main(int argc, char **argv){
           	  *augmented_cloud += index_workspace_cloud;
         	  }
         	  else if(finger_list[finger_index]=="pinky"){
-          	  joint_position_desired << (pinky_joint_safe_min(0)+pinky_joint_safe_range(0)*loop1/number_of_sample_points),
-          	                            (pinky_joint_safe_min(1)+pinky_joint_safe_range(1)*loop2/number_of_sample_points),
-          	                            (pinky_joint_safe_min(2)+pinky_joint_safe_range(2)*loop3/number_of_sample_points),
-          	                            (pinky_joint_safe_min(3)+pinky_joint_safe_range(3)*loop4/number_of_sample_points);
+          	  joint_position_desired << (pinky_joint_safe_min(0)+pinky_joint_safe_range(0)*loop1/(number_of_sample_points-1)),
+          	                            (pinky_joint_safe_min(1)+pinky_joint_safe_range(1)*loop2/(number_of_sample_points-1)),
+          	                            (pinky_joint_safe_min(2)+pinky_joint_safe_range(2)*loop3/(number_of_sample_points-1)),
+          	                            (pinky_joint_safe_min(3)+pinky_joint_safe_range(3)*loop4/(number_of_sample_points-1));
           	  DGM  = finger_direct_geometric_model("pinky",joint_position_desired);
           	  pose_rpy = transformation_matrix_to_pose_rpy(DGM);
           	  point.x = pose_rpy(0);  point.y = pose_rpy(1);  point.z = pose_rpy(2);

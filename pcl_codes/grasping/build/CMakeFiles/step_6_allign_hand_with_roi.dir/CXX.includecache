@@ -6,6 +6,44 @@
 
 #IncludeRegexTransform: 
 
+/home/work/code_repository/pcl_codes/grasping/grasping_algorithm.h
+iostream
+-
+fstream
+-
+sstream
+-
+pcl/visualization/pcl_visualizer.h
+-
+pcl/io/pcd_io.h
+-
+pcl/surface/concave_hull.h
+-
+pcl/io/obj_io.h
+-
+pcl/common/centroid.h
+-
+pcl/Vertices.h
+-
+math.h
+-
+unistd.h
+-
+../../ros_packages/include/Eigen/Dense
+/home/work/code_repository/ros_packages/include/Eigen/Dense
+../../ros_packages/include/useful_implementations.h
+/home/work/code_repository/ros_packages/include/useful_implementations.h
+pcl/common/common_headers.h
+-
+pcl/common/transforms.h
+-
+pcl/ModelCoefficients.h
+-
+pcl/io/ply_io.h
+-
+time.h
+-
+
 /home/work/code_repository/pcl_codes/grasping/step_6_allign_hand_with_roi.cpp
 iostream
 -
@@ -43,6 +81,8 @@ pcl/io/ply_io.h
 -
 time.h
 -
+grasping_algorithm.h
+/home/work/code_repository/pcl_codes/grasping/grasping_algorithm.h
 
 /home/work/code_repository/ros_packages/include/Eigen/Cholesky
 Core

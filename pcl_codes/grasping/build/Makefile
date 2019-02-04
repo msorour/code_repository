@@ -111,32 +111,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named region_of_interest_spheres
-
-# Build rule for target.
-region_of_interest_spheres: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 region_of_interest_spheres
-.PHONY : region_of_interest_spheres
-
-# fast build rule for target.
-region_of_interest_spheres/fast:
-	$(MAKE) -f CMakeFiles/region_of_interest_spheres.dir/build.make CMakeFiles/region_of_interest_spheres.dir/build
-.PHONY : region_of_interest_spheres/fast
-
-#=============================================================================
-# Target rules for targets named region_of_interest
-
-# Build rule for target.
-region_of_interest: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 region_of_interest
-.PHONY : region_of_interest
-
-# fast build rule for target.
-region_of_interest/fast:
-	$(MAKE) -f CMakeFiles/region_of_interest.dir/build.make CMakeFiles/region_of_interest.dir/build
-.PHONY : region_of_interest/fast
-
-#=============================================================================
 # Target rules for targets named cloud_visualizer
 
 # Build rule for target.
@@ -148,6 +122,19 @@ cloud_visualizer: cmake_check_build_system
 cloud_visualizer/fast:
 	$(MAKE) -f CMakeFiles/cloud_visualizer.dir/build.make CMakeFiles/cloud_visualizer.dir/build
 .PHONY : cloud_visualizer/fast
+
+#=============================================================================
+# Target rules for targets named grasping_algorithm_main
+
+# Build rule for target.
+grasping_algorithm_main: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grasping_algorithm_main
+.PHONY : grasping_algorithm_main
+
+# fast build rule for target.
+grasping_algorithm_main/fast:
+	$(MAKE) -f CMakeFiles/grasping_algorithm_main.dir/build.make CMakeFiles/grasping_algorithm_main.dir/build
+.PHONY : grasping_algorithm_main/fast
 
 #=============================================================================
 # Target rules for targets named step_9_grasp_locations_optimization
@@ -306,59 +293,32 @@ cloud_visualizer.cpp.s:
 	$(MAKE) -f CMakeFiles/cloud_visualizer.dir/build.make CMakeFiles/cloud_visualizer.dir/cloud_visualizer.cpp.s
 .PHONY : cloud_visualizer.cpp.s
 
-region_of_interest.o: region_of_interest.cpp.o
+grasping_algorithm_main.o: grasping_algorithm_main.cpp.o
 
-.PHONY : region_of_interest.o
-
-# target to build an object file
-region_of_interest.cpp.o:
-	$(MAKE) -f CMakeFiles/region_of_interest.dir/build.make CMakeFiles/region_of_interest.dir/region_of_interest.cpp.o
-.PHONY : region_of_interest.cpp.o
-
-region_of_interest.i: region_of_interest.cpp.i
-
-.PHONY : region_of_interest.i
-
-# target to preprocess a source file
-region_of_interest.cpp.i:
-	$(MAKE) -f CMakeFiles/region_of_interest.dir/build.make CMakeFiles/region_of_interest.dir/region_of_interest.cpp.i
-.PHONY : region_of_interest.cpp.i
-
-region_of_interest.s: region_of_interest.cpp.s
-
-.PHONY : region_of_interest.s
-
-# target to generate assembly for a file
-region_of_interest.cpp.s:
-	$(MAKE) -f CMakeFiles/region_of_interest.dir/build.make CMakeFiles/region_of_interest.dir/region_of_interest.cpp.s
-.PHONY : region_of_interest.cpp.s
-
-region_of_interest_spheres.o: region_of_interest_spheres.cpp.o
-
-.PHONY : region_of_interest_spheres.o
+.PHONY : grasping_algorithm_main.o
 
 # target to build an object file
-region_of_interest_spheres.cpp.o:
-	$(MAKE) -f CMakeFiles/region_of_interest_spheres.dir/build.make CMakeFiles/region_of_interest_spheres.dir/region_of_interest_spheres.cpp.o
-.PHONY : region_of_interest_spheres.cpp.o
+grasping_algorithm_main.cpp.o:
+	$(MAKE) -f CMakeFiles/grasping_algorithm_main.dir/build.make CMakeFiles/grasping_algorithm_main.dir/grasping_algorithm_main.cpp.o
+.PHONY : grasping_algorithm_main.cpp.o
 
-region_of_interest_spheres.i: region_of_interest_spheres.cpp.i
+grasping_algorithm_main.i: grasping_algorithm_main.cpp.i
 
-.PHONY : region_of_interest_spheres.i
+.PHONY : grasping_algorithm_main.i
 
 # target to preprocess a source file
-region_of_interest_spheres.cpp.i:
-	$(MAKE) -f CMakeFiles/region_of_interest_spheres.dir/build.make CMakeFiles/region_of_interest_spheres.dir/region_of_interest_spheres.cpp.i
-.PHONY : region_of_interest_spheres.cpp.i
+grasping_algorithm_main.cpp.i:
+	$(MAKE) -f CMakeFiles/grasping_algorithm_main.dir/build.make CMakeFiles/grasping_algorithm_main.dir/grasping_algorithm_main.cpp.i
+.PHONY : grasping_algorithm_main.cpp.i
 
-region_of_interest_spheres.s: region_of_interest_spheres.cpp.s
+grasping_algorithm_main.s: grasping_algorithm_main.cpp.s
 
-.PHONY : region_of_interest_spheres.s
+.PHONY : grasping_algorithm_main.s
 
 # target to generate assembly for a file
-region_of_interest_spheres.cpp.s:
-	$(MAKE) -f CMakeFiles/region_of_interest_spheres.dir/build.make CMakeFiles/region_of_interest_spheres.dir/region_of_interest_spheres.cpp.s
-.PHONY : region_of_interest_spheres.cpp.s
+grasping_algorithm_main.cpp.s:
+	$(MAKE) -f CMakeFiles/grasping_algorithm_main.dir/build.make CMakeFiles/grasping_algorithm_main.dir/grasping_algorithm_main.cpp.s
+.PHONY : grasping_algorithm_main.cpp.s
 
 step_1_allegro_right_hand_model_to_point_cloud.o: step_1_allegro_right_hand_model_to_point_cloud.cpp.o
 
@@ -637,10 +597,9 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... rebuild_cache"
-	@echo "... region_of_interest_spheres"
-	@echo "... region_of_interest"
 	@echo "... cloud_visualizer"
+	@echo "... rebuild_cache"
+	@echo "... grasping_algorithm_main"
 	@echo "... step_9_grasp_locations_optimization"
 	@echo "... step_7_touch_the_object_with_palm"
 	@echo "... step_6_allign_hand_with_roi"
@@ -654,12 +613,9 @@ help:
 	@echo "... cloud_visualizer.o"
 	@echo "... cloud_visualizer.i"
 	@echo "... cloud_visualizer.s"
-	@echo "... region_of_interest.o"
-	@echo "... region_of_interest.i"
-	@echo "... region_of_interest.s"
-	@echo "... region_of_interest_spheres.o"
-	@echo "... region_of_interest_spheres.i"
-	@echo "... region_of_interest_spheres.s"
+	@echo "... grasping_algorithm_main.o"
+	@echo "... grasping_algorithm_main.i"
+	@echo "... grasping_algorithm_main.s"
 	@echo "... step_1_allegro_right_hand_model_to_point_cloud.o"
 	@echo "... step_1_allegro_right_hand_model_to_point_cloud.i"
 	@echo "... step_1_allegro_right_hand_model_to_point_cloud.s"

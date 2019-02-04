@@ -120,6 +120,12 @@ int main(int argc, char **argv){
   pcl::PointXYZ far_point_in_neg_direction;
   far_point_in_pos_direction = object_centroid_point;
   far_point_in_neg_direction = object_centroid_point;
+  double largest_euclidean_distance_pos=0.0;
+  double largest_euclidean_distance_neg=0.0;
+  double euclidean_distance;
+  
+  // TRIAL#1
+  /*
   for(unsigned int i=0;i<object_mesh_vertices.size();i++){
     // get the extreme points on object
     if( object_mesh_vertices.points[i].x > far_point_in_pos_direction.x )
@@ -137,6 +143,67 @@ int main(int argc, char **argv){
     if( object_mesh_vertices.points[i].z < far_point_in_neg_direction.z )
       far_point_in_neg_direction.z = object_mesh_vertices.points[i].z;
   }
+  */
+  
+  // TRIAL#2
+  /*
+  for(unsigned int i=0;i<object_mesh_vertices.size();i++){
+    // get the extreme points on object
+    euclidean_distance = pow(object_mesh_vertices.points[i].x-object_centroid_point.x,2) + pow(object_mesh_vertices.points[i].y-object_centroid_point.y,2) + pow(object_mesh_vertices.points[i].z-object_centroid_point.z,2);
+    if( object_mesh_vertices.points[i].x > object_centroid_point.x and object_mesh_vertices.points[i].y > object_centroid_point.y and object_mesh_vertices.points[i].z > object_centroid_point.z ){
+      if( euclidean_distance > largest_euclidean_distance_pos ){
+        far_point_in_pos_direction.x = object_mesh_vertices.points[i].x;
+        far_point_in_pos_direction.y = object_mesh_vertices.points[i].y;
+        far_point_in_pos_direction.z = object_mesh_vertices.points[i].z;
+        largest_euclidean_distance_pos = euclidean_distance;
+      }
+    }
+  if( object_mesh_vertices.points[i].x < object_centroid_point.x and object_mesh_vertices.points[i].y < object_centroid_point.y and object_mesh_vertices.points[i].z < object_centroid_point.z ){
+    if( euclidean_distance > largest_euclidean_distance_neg ){
+        far_point_in_neg_direction.x = object_mesh_vertices.points[i].x;
+        far_point_in_neg_direction.y = object_mesh_vertices.points[i].y;
+        far_point_in_neg_direction.z = object_mesh_vertices.points[i].z;
+        largest_euclidean_distance_neg = euclidean_distance;
+      }
+    }
+  }
+  */
+  
+  // TRIAL#3 (Best till now, there is always small error but it is robust)
+  // get the extreme points on object
+  std::vector<double> eu_distance;
+  int index_of_max_pos=0;
+  int index_of_max_neg=0;
+  
+  // get farthest point from centroid
+  for(unsigned int i=0;i<object_mesh_vertices.size();i++)
+    eu_distance.push_back( pow(object_mesh_vertices.points[i].x-object_centroid_point.x,2) + pow(object_mesh_vertices.points[i].y-object_centroid_point.y,2) + pow(object_mesh_vertices.points[i].z-object_centroid_point.z,2) );
+  
+  // fetch this point (name it: "far point in positive side")
+  for(unsigned int i=0; i<eu_distance.size(); i++)
+    if(eu_distance[i]>eu_distance[index_of_max_pos])
+      index_of_max_pos = i;
+  
+  // get the farthest point from "far point in positive side"
+  eu_distance.clear();
+  for(unsigned int i=0;i<object_mesh_vertices.size();i++)
+    eu_distance.push_back( pow(object_mesh_vertices.points[i].x-object_mesh_vertices.points[index_of_max_pos].x,2) + pow(object_mesh_vertices.points[i].y-object_mesh_vertices.points[index_of_max_pos].y,2) + pow(object_mesh_vertices.points[i].z-object_mesh_vertices.points[index_of_max_pos].z,2) );
+  
+  // fetch the point (name it: "far point in negative side")
+  for(unsigned int i=0; i<eu_distance.size(); i++)
+    if(eu_distance[i]>eu_distance[index_of_max_neg])
+      index_of_max_neg = i;
+  
+  far_point_in_pos_direction.x = object_mesh_vertices.points[index_of_max_pos].x;
+  far_point_in_pos_direction.y = object_mesh_vertices.points[index_of_max_pos].y;
+  far_point_in_pos_direction.z = object_mesh_vertices.points[index_of_max_pos].z;
+  
+  far_point_in_neg_direction.x = object_mesh_vertices.points[index_of_max_neg].x;
+  far_point_in_neg_direction.y = object_mesh_vertices.points[index_of_max_neg].y;
+  far_point_in_neg_direction.z = object_mesh_vertices.points[index_of_max_neg].z;
+  
+  //viewer->addCoordinateSystem(0.1, far_point_in_pos_direction.x, far_point_in_pos_direction.y, far_point_in_pos_direction.z);
+  //viewer->addCoordinateSystem(0.1, far_point_in_neg_direction.x, far_point_in_neg_direction.y, far_point_in_neg_direction.z);
   
   // divide the object verices into two sets, one on the positive side of centroid and the other on the negative side
   pcl::PointCloud<pcl::PointXYZ> cloud_far_pos;
@@ -269,12 +336,161 @@ int main(int argc, char **argv){
   object_transform << object_rotation, object_translation,
                       0,0,0,1;
   
+  
+  
+  
+  
+  
+  
+  // compute the object far points in object frame then make correction
+  Eigen::Vector4f far_point_in_pos_direction_in_object_frame;
+  Eigen::Vector4f far_point_in_neg_direction_in_object_frame;
+  Eigen::Matrix4f inverse_object_transform;
+  inverse_object_transform << object_rotation.transpose(), -object_rotation.transpose()*object_translation,  // from khalil's book page 21
+                              0, 0, 0, 1;
+  
+  far_point_in_pos_direction_in_object_frame << far_point_in_pos_direction.x, far_point_in_pos_direction.y, far_point_in_pos_direction.z, 1;
+  far_point_in_neg_direction_in_object_frame << far_point_in_neg_direction.x, far_point_in_neg_direction.y, far_point_in_neg_direction.z, 1;
+  
+  far_point_in_pos_direction_in_object_frame = inverse_object_transform*far_point_in_pos_direction_in_object_frame;
+  far_point_in_neg_direction_in_object_frame = inverse_object_transform*far_point_in_neg_direction_in_object_frame;
+  
+  //std::cout << "far_point_in_pos_direction_in_object_frame: " << std::endl << far_point_in_pos_direction_in_object_frame << std::endl;
+  //std::cout << "far_point_in_neg_direction_in_object_frame: " << std::endl << far_point_in_neg_direction_in_object_frame << std::endl;
+  
+  // set x and y components to 0 and leave the z component
+  far_point_in_pos_direction_in_object_frame(0) = 0;
+  far_point_in_pos_direction_in_object_frame(1) = 0;
+  far_point_in_neg_direction_in_object_frame(0) = 0;
+  far_point_in_neg_direction_in_object_frame(1) = 0;
+  
+  // convert to global frame
+  Eigen::Vector4f far_point_in_pos_direction_in_global_frame;
+  Eigen::Vector4f far_point_in_neg_direction_in_global_frame;
+  
+  far_point_in_pos_direction_in_global_frame = object_transform*far_point_in_pos_direction_in_object_frame;
+  far_point_in_neg_direction_in_global_frame = object_transform*far_point_in_neg_direction_in_object_frame;
+  
+  
+  
+  
+  
+  //
+  //
+  // use the updated points to compute a more accurate object frame
+  far_point_in_pos_direction.x = far_point_in_pos_direction_in_global_frame(0);
+  far_point_in_pos_direction.y = far_point_in_pos_direction_in_global_frame(1);
+  far_point_in_pos_direction.z = far_point_in_pos_direction_in_global_frame(2);
+  
+  far_point_in_neg_direction.x = far_point_in_neg_direction_in_global_frame(0);
+  far_point_in_neg_direction.y = far_point_in_neg_direction_in_global_frame(1);
+  far_point_in_neg_direction.z = far_point_in_neg_direction_in_global_frame(2);
+  
+  viewer->addCoordinateSystem(0.1, far_point_in_pos_direction.x, far_point_in_pos_direction.y, far_point_in_pos_direction.z);
+  viewer->addCoordinateSystem(0.1, far_point_in_neg_direction.x, far_point_in_neg_direction.y, far_point_in_neg_direction.z);
+  
+  // divide the object verices into two sets, one on the positive side of centroid and the other on the negative side
+  cloud_far_pos.clear();
+  cloud_far_neg.clear();
+  for(unsigned int i=0;i<object_mesh_vertices.size();i++){
+    distance_to_far_point_pos = (object_mesh_vertices.points[i].x - far_point_in_pos_direction.x)*(object_mesh_vertices.points[i].x - far_point_in_pos_direction.x) + 
+                                (object_mesh_vertices.points[i].y - far_point_in_pos_direction.y)*(object_mesh_vertices.points[i].y - far_point_in_pos_direction.y) + 
+                                (object_mesh_vertices.points[i].z - far_point_in_pos_direction.z)*(object_mesh_vertices.points[i].z - far_point_in_pos_direction.z);
+    distance_to_far_point_neg = (object_mesh_vertices.points[i].x - far_point_in_neg_direction.x)*(object_mesh_vertices.points[i].x - far_point_in_neg_direction.x) + 
+                                (object_mesh_vertices.points[i].y - far_point_in_neg_direction.y)*(object_mesh_vertices.points[i].y - far_point_in_neg_direction.y) + 
+                                (object_mesh_vertices.points[i].z - far_point_in_neg_direction.z)*(object_mesh_vertices.points[i].z - far_point_in_neg_direction.z);
+    if( distance_to_far_point_pos < distance_to_far_point_neg )
+      cloud_far_pos.points.push_back( object_mesh_vertices.points[i] );
+    else
+      cloud_far_neg.points.push_back( object_mesh_vertices.points[i] );
+  }
+  
+  // getting the 2 far sides points (centroids)
+  pcl::CentroidPoint<pcl::PointXYZ> centroid_far_pos_again;
+  pcl::CentroidPoint<pcl::PointXYZ> centroid_far_neg_again;
+  for(unsigned int i=0;i<cloud_far_pos.points.size();i++)
+    centroid_far_pos_again.add( cloud_far_pos.points[i] );
+  centroid_far_pos_again.get(centroid_far_pos_point);
+  for(unsigned int i=0;i<cloud_far_neg.points.size();i++)
+    centroid_far_neg.add( cloud_far_neg.points[i] );
+  centroid_far_neg.get(centroid_far_neg_point);
+  
+  // computing object's major axis (z-axis) orientation
+  // major axis vector
+  object_z_axis_vector[0] = centroid_far_pos_point.x - centroid_far_neg_point.x;
+  object_z_axis_vector[1] = centroid_far_pos_point.y - centroid_far_neg_point.y;
+  object_z_axis_vector[2] = centroid_far_pos_point.z - centroid_far_neg_point.z;
+  
+  // computing perpendicular axis to the major one (x-axis)
+  // we have to take into account intersection with y-axis to make it more versatile and robust
+  slope = object_z_axis_vector[1]/object_z_axis_vector[0];
+  y_intercept = centroid_far_pos_point.y - slope*centroid_far_pos_point.x;
+  cloud_far_pos_x_axis.clear();
+  cloud_far_neg_x_axis.clear();
+  for(unsigned int i=0;i<object_mesh_vertices.size();i++){
+    if( object_mesh_vertices.points[i].y > (slope*object_mesh_vertices.points[i].x + y_intercept) )
+      cloud_far_pos_x_axis.points.push_back( object_mesh_vertices.points[i] );
+    else
+      cloud_far_neg_x_axis.points.push_back( object_mesh_vertices.points[i] );
+  }
+  
+  // getting the 2 far sides points (centroids)
+  pcl::CentroidPoint<pcl::PointXYZ> centroid_far_pos_x_axis_again;
+  pcl::CentroidPoint<pcl::PointXYZ> centroid_far_neg_x_axis_again;
+  for(unsigned int i=0;i<cloud_far_pos_x_axis.points.size();i++)
+    centroid_far_pos_x_axis_again.add( cloud_far_pos_x_axis.points[i] );
+  centroid_far_pos_x_axis_again.get(centroid_far_pos_point_x_axis);
+  for(unsigned int i=0;i<cloud_far_neg_x_axis.points.size();i++)
+    centroid_far_neg_x_axis_again.add( cloud_far_neg_x_axis.points[i] );
+  centroid_far_neg_x_axis_again.get(centroid_far_neg_point_x_axis);
+  
+  object_x_axis_vector[0] = centroid_far_pos_point_x_axis.x - centroid_far_neg_point_x_axis.x;
+  object_x_axis_vector[1] = centroid_far_pos_point_x_axis.y - centroid_far_neg_point_x_axis.y;
+  object_x_axis_vector[2] = centroid_far_pos_point_x_axis.z - centroid_far_neg_point_x_axis.z;
+  
+  
+  /*
+  std::basic_string<char> name = "z-axis (object's longest dimension)";
+  viewer->addArrow<pcl::PointXYZ>(centroid_far_pos_point, centroid_far_neg_point, 0.0, 0.0, 1.0, 0, name, 0);
+  
+  name = "x axis";
+  viewer->addArrow<pcl::PointXYZ>(centroid_far_pos_point_x_axis_again, centroid_far_neg_point_x_axis, 1.0, 0.0, 0.0, 0, name, 0);
+  */
+  
+  // computing y-axis
+  // generating an orthogornal frame out of the z-axis and the x-axis vectors
+  unit_x << 1,0,0;
+  unit_y << 0,1,0;
+  unit_z << 0,0,1;
+  object_x_axis_vector_normalized = object_x_axis_vector.normalized();
+  object_z_axis_vector_normalized = object_z_axis_vector.normalized();
+  object_y_axis_vector_normalized = object_z_axis_vector_normalized.cross(object_x_axis_vector_normalized);
+  object_y_axis_vector_normalized.normalize();
+  
+  // compute object transform and show its coordinate system
+  object_rotation <<  object_x_axis_vector_normalized.dot(unit_x), object_y_axis_vector_normalized.dot(unit_x), object_z_axis_vector_normalized.dot(unit_x),
+                      object_x_axis_vector_normalized.dot(unit_y), object_y_axis_vector_normalized.dot(unit_y), object_z_axis_vector_normalized.dot(unit_y),
+                      object_x_axis_vector_normalized.dot(unit_z), object_y_axis_vector_normalized.dot(unit_z), object_z_axis_vector_normalized.dot(unit_z);
+  object_translation << object_centroid_point.x,object_centroid_point.y,object_centroid_point.z;
+  object_transform << object_rotation, object_translation,
+                      0,0,0,1;
+  
   Eigen::Affine3f transform = Eigen::Affine3f::Identity();
   transform.matrix() = object_transform;
   
-  //viewer->addCoordinateSystem(0.1, transform, "object coordinate frame", 0);
+  viewer->addCoordinateSystem(0.1, transform, "object coordinate frame", 0);
   
   std::cout << "object transformation matrix: " << std::endl << object_transform << std::endl << std::endl;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   

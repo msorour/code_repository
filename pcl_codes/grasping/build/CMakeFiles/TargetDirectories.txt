@@ -1,8 +1,7 @@
 /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/edit_cache.dir
-/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/rebuild_cache.dir
-/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/region_of_interest_spheres.dir
-/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/region_of_interest.dir
 /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/cloud_visualizer.dir
+/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/rebuild_cache.dir
+/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/grasping_algorithm_main.dir
 /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/step_9_grasp_locations_optimization.dir
 /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/step_7_touch_the_object_with_palm.dir
 /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles/step_6_allign_hand_with_roi.dir

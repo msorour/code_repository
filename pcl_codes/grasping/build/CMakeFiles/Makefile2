@@ -60,80 +60,6 @@ CMAKE_SOURCE_DIR = /home/work/code_repository/pcl_codes/grasping
 CMAKE_BINARY_DIR = /home/work/code_repository/pcl_codes/grasping/build
 
 #=============================================================================
-# Target rules for target CMakeFiles/region_of_interest_spheres.dir
-
-# All Build rule for target.
-CMakeFiles/region_of_interest_spheres.dir/all:
-	$(MAKE) -f CMakeFiles/region_of_interest_spheres.dir/build.make CMakeFiles/region_of_interest_spheres.dir/depend
-	$(MAKE) -f CMakeFiles/region_of_interest_spheres.dir/build.make CMakeFiles/region_of_interest_spheres.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=5,6 "Built target region_of_interest_spheres"
-.PHONY : CMakeFiles/region_of_interest_spheres.dir/all
-
-# Include target in all.
-all: CMakeFiles/region_of_interest_spheres.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/region_of_interest_spheres.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/region_of_interest_spheres.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
-.PHONY : CMakeFiles/region_of_interest_spheres.dir/rule
-
-# Convenience name for target.
-region_of_interest_spheres: CMakeFiles/region_of_interest_spheres.dir/rule
-
-.PHONY : region_of_interest_spheres
-
-# clean rule for target.
-CMakeFiles/region_of_interest_spheres.dir/clean:
-	$(MAKE) -f CMakeFiles/region_of_interest_spheres.dir/build.make CMakeFiles/region_of_interest_spheres.dir/clean
-.PHONY : CMakeFiles/region_of_interest_spheres.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/region_of_interest_spheres.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/region_of_interest.dir
-
-# All Build rule for target.
-CMakeFiles/region_of_interest.dir/all:
-	$(MAKE) -f CMakeFiles/region_of_interest.dir/build.make CMakeFiles/region_of_interest.dir/depend
-	$(MAKE) -f CMakeFiles/region_of_interest.dir/build.make CMakeFiles/region_of_interest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=3,4 "Built target region_of_interest"
-.PHONY : CMakeFiles/region_of_interest.dir/all
-
-# Include target in all.
-all: CMakeFiles/region_of_interest.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/region_of_interest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/region_of_interest.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
-.PHONY : CMakeFiles/region_of_interest.dir/rule
-
-# Convenience name for target.
-region_of_interest: CMakeFiles/region_of_interest.dir/rule
-
-.PHONY : region_of_interest
-
-# clean rule for target.
-CMakeFiles/region_of_interest.dir/clean:
-	$(MAKE) -f CMakeFiles/region_of_interest.dir/build.make CMakeFiles/region_of_interest.dir/clean
-.PHONY : CMakeFiles/region_of_interest.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/region_of_interest.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
 # Target rules for target CMakeFiles/cloud_visualizer.dir
 
 # All Build rule for target.
@@ -171,13 +97,50 @@ clean: CMakeFiles/cloud_visualizer.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/grasping_algorithm_main.dir
+
+# All Build rule for target.
+CMakeFiles/grasping_algorithm_main.dir/all:
+	$(MAKE) -f CMakeFiles/grasping_algorithm_main.dir/build.make CMakeFiles/grasping_algorithm_main.dir/depend
+	$(MAKE) -f CMakeFiles/grasping_algorithm_main.dir/build.make CMakeFiles/grasping_algorithm_main.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=3,4 "Built target grasping_algorithm_main"
+.PHONY : CMakeFiles/grasping_algorithm_main.dir/all
+
+# Include target in all.
+all: CMakeFiles/grasping_algorithm_main.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/grasping_algorithm_main.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/grasping_algorithm_main.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+.PHONY : CMakeFiles/grasping_algorithm_main.dir/rule
+
+# Convenience name for target.
+grasping_algorithm_main: CMakeFiles/grasping_algorithm_main.dir/rule
+
+.PHONY : grasping_algorithm_main
+
+# clean rule for target.
+CMakeFiles/grasping_algorithm_main.dir/clean:
+	$(MAKE) -f CMakeFiles/grasping_algorithm_main.dir/build.make CMakeFiles/grasping_algorithm_main.dir/clean
+.PHONY : CMakeFiles/grasping_algorithm_main.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/grasping_algorithm_main.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/step_9_grasp_locations_optimization.dir
 
 # All Build rule for target.
 CMakeFiles/step_9_grasp_locations_optimization.dir/all:
 	$(MAKE) -f CMakeFiles/step_9_grasp_locations_optimization.dir/build.make CMakeFiles/step_9_grasp_locations_optimization.dir/depend
 	$(MAKE) -f CMakeFiles/step_9_grasp_locations_optimization.dir/build.make CMakeFiles/step_9_grasp_locations_optimization.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=25,26 "Built target step_9_grasp_locations_optimization"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=23,24 "Built target step_9_grasp_locations_optimization"
 .PHONY : CMakeFiles/step_9_grasp_locations_optimization.dir/all
 
 # Include target in all.
@@ -214,7 +177,7 @@ clean: CMakeFiles/step_9_grasp_locations_optimization.dir/clean
 CMakeFiles/step_7_touch_the_object_with_palm.dir/all:
 	$(MAKE) -f CMakeFiles/step_7_touch_the_object_with_palm.dir/build.make CMakeFiles/step_7_touch_the_object_with_palm.dir/depend
 	$(MAKE) -f CMakeFiles/step_7_touch_the_object_with_palm.dir/build.make CMakeFiles/step_7_touch_the_object_with_palm.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=21,22 "Built target step_7_touch_the_object_with_palm"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=19,20 "Built target step_7_touch_the_object_with_palm"
 .PHONY : CMakeFiles/step_7_touch_the_object_with_palm.dir/all
 
 # Include target in all.
@@ -251,7 +214,7 @@ clean: CMakeFiles/step_7_touch_the_object_with_palm.dir/clean
 CMakeFiles/step_6_allign_hand_with_roi.dir/all:
 	$(MAKE) -f CMakeFiles/step_6_allign_hand_with_roi.dir/build.make CMakeFiles/step_6_allign_hand_with_roi.dir/depend
 	$(MAKE) -f CMakeFiles/step_6_allign_hand_with_roi.dir/build.make CMakeFiles/step_6_allign_hand_with_roi.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=19,20 "Built target step_6_allign_hand_with_roi"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=17,18 "Built target step_6_allign_hand_with_roi"
 .PHONY : CMakeFiles/step_6_allign_hand_with_roi.dir/all
 
 # Include target in all.
@@ -288,7 +251,7 @@ clean: CMakeFiles/step_6_allign_hand_with_roi.dir/clean
 CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/all:
 	$(MAKE) -f CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build.make CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/depend
 	$(MAKE) -f CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build.make CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=23,24 "Built target step_8_filter_hand_workspace_merging_with_object_surface"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=21,22 "Built target step_8_filter_hand_workspace_merging_with_object_surface"
 .PHONY : CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/all
 
 # Include target in all.
@@ -325,7 +288,7 @@ clean: CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/c
 CMakeFiles/step_2_hand_workspace_sampling.dir/all:
 	$(MAKE) -f CMakeFiles/step_2_hand_workspace_sampling.dir/build.make CMakeFiles/step_2_hand_workspace_sampling.dir/depend
 	$(MAKE) -f CMakeFiles/step_2_hand_workspace_sampling.dir/build.make CMakeFiles/step_2_hand_workspace_sampling.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=9,10 "Built target step_2_hand_workspace_sampling"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=7,8 "Built target step_2_hand_workspace_sampling"
 .PHONY : CMakeFiles/step_2_hand_workspace_sampling.dir/all
 
 # Include target in all.
@@ -362,7 +325,7 @@ clean: CMakeFiles/step_2_hand_workspace_sampling.dir/clean
 CMakeFiles/step_3_hand_workspace_ellipsoids.dir/all:
 	$(MAKE) -f CMakeFiles/step_3_hand_workspace_ellipsoids.dir/build.make CMakeFiles/step_3_hand_workspace_ellipsoids.dir/depend
 	$(MAKE) -f CMakeFiles/step_3_hand_workspace_ellipsoids.dir/build.make CMakeFiles/step_3_hand_workspace_ellipsoids.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=11,12 "Built target step_3_hand_workspace_ellipsoids"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=9,10 "Built target step_3_hand_workspace_ellipsoids"
 .PHONY : CMakeFiles/step_3_hand_workspace_ellipsoids.dir/all
 
 # Include target in all.
@@ -399,7 +362,7 @@ clean: CMakeFiles/step_3_hand_workspace_ellipsoids.dir/clean
 CMakeFiles/step_3_hand_workspace_spheres.dir/all:
 	$(MAKE) -f CMakeFiles/step_3_hand_workspace_spheres.dir/build.make CMakeFiles/step_3_hand_workspace_spheres.dir/depend
 	$(MAKE) -f CMakeFiles/step_3_hand_workspace_spheres.dir/build.make CMakeFiles/step_3_hand_workspace_spheres.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=13,14 "Built target step_3_hand_workspace_spheres"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=11,12 "Built target step_3_hand_workspace_spheres"
 .PHONY : CMakeFiles/step_3_hand_workspace_spheres.dir/all
 
 # Include target in all.
@@ -436,7 +399,7 @@ clean: CMakeFiles/step_3_hand_workspace_spheres.dir/clean
 CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/all:
 	$(MAKE) -f CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/build.make CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/depend
 	$(MAKE) -f CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/build.make CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=7,8 "Built target step_1_allegro_right_hand_model_to_point_cloud"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=5,6 "Built target step_1_allegro_right_hand_model_to_point_cloud"
 .PHONY : CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/all
 
 # Include target in all.
@@ -473,7 +436,7 @@ clean: CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/clean
 CMakeFiles/step_4_object_pose_approximation.dir/all:
 	$(MAKE) -f CMakeFiles/step_4_object_pose_approximation.dir/build.make CMakeFiles/step_4_object_pose_approximation.dir/depend
 	$(MAKE) -f CMakeFiles/step_4_object_pose_approximation.dir/build.make CMakeFiles/step_4_object_pose_approximation.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=15,16 "Built target step_4_object_pose_approximation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=13,14 "Built target step_4_object_pose_approximation"
 .PHONY : CMakeFiles/step_4_object_pose_approximation.dir/all
 
 # Include target in all.
@@ -510,7 +473,7 @@ clean: CMakeFiles/step_4_object_pose_approximation.dir/clean
 CMakeFiles/step_5_region_of_interest.dir/all:
 	$(MAKE) -f CMakeFiles/step_5_region_of_interest.dir/build.make CMakeFiles/step_5_region_of_interest.dir/depend
 	$(MAKE) -f CMakeFiles/step_5_region_of_interest.dir/build.make CMakeFiles/step_5_region_of_interest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=17,18 "Built target step_5_region_of_interest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=15,16 "Built target step_5_region_of_interest"
 .PHONY : CMakeFiles/step_5_region_of_interest.dir/all
 
 # Include target in all.

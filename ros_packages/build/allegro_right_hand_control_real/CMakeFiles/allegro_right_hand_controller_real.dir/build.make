@@ -222,6 +222,7 @@ allegro_right_hand_controller_real_EXTERNAL_OBJECTS =
 /home/work/code_repository/ros_packages/devel/lib/allegro_right_hand_control_real/allegro_right_hand_controller_real: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
 /home/work/code_repository/ros_packages/devel/lib/allegro_right_hand_control_real/allegro_right_hand_controller_real: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/work/code_repository/ros_packages/devel/lib/allegro_right_hand_control_real/allegro_right_hand_controller_real: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
+/home/work/code_repository/ros_packages/devel/lib/allegro_right_hand_control_real/allegro_right_hand_controller_real: /home/work/code_repository/ros_packages/devel/lib/libBHand.so
 /home/work/code_repository/ros_packages/devel/lib/allegro_right_hand_control_real/allegro_right_hand_controller_real: allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/work/code_repository/ros_packages/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable /home/work/code_repository/ros_packages/devel/lib/allegro_right_hand_control_real/allegro_right_hand_controller_real"
 	cd /home/work/code_repository/ros_packages/build/allegro_right_hand_control_real && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/allegro_right_hand_controller_real.dir/link.txt --verbose=$(VERBOSE)

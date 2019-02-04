@@ -16,6 +16,7 @@
 #include <pcl/ModelCoefficients.h>
 #include <pcl/io/ply_io.h>
 #include <time.h>
+#include "grasping_algorithm.h"
 
 int main(int argc, char **argv){
   std::string object_name, workspace_type, sampling;
@@ -99,7 +100,7 @@ int main(int argc, char **argv){
   
   
   
-  
+  /*
   
   
   begin = clock();
@@ -184,20 +185,7 @@ int main(int argc, char **argv){
   object_z_axis_vector[1] = centroid_far_pos_point.y - centroid_far_neg_point.y;
   object_z_axis_vector[2] = centroid_far_pos_point.z - centroid_far_neg_point.z;
   
-  /*
-  // normalize the major axis vector:
-  Eigen::Vector3d object_z_axis_vector_normalized;
-  object_z_axis_vector_normalized = object_z_axis_vector.normalized();
-  double alpha;   // angle about (+ve) x-axis
-  double beta;    // angle about (+ve) y-axis
-  double gamma;   // angle about (+ve) z-axis
-  alpha = acos( object_z_axis_vector_normalized[0] );
-  beta  = acos( object_z_axis_vector_normalized[1] );
-  gamma = acos( object_z_axis_vector_normalized[2] );
-  //std::cout << "alpha = " << alpha << std::endl;
-  //std::cout << "beta  = " << beta << std::endl;
-  //std::cout << "gamma = " << gamma << std::endl << std::endl;
-  */
+  
   
   // computing perpendicular axis to the major one (x-axis)
   // we have to take into account intersection with y-axis to make it more versatile and robust
@@ -276,6 +264,57 @@ int main(int argc, char **argv){
 	std::cout << "time spent to estimate object orientation = " << time_spent << std::endl << std::endl;
   
   
+  */
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  // getting compact !!!
+  Eigen::Matrix3f object_rotation;
+  Eigen::Vector3f object_translation;
+  Eigen::Matrix4f object_transform;
+  object_transform = Eigen::Matrix4f::Identity();
+  //object_transform = step_4_object_pose_approximation( object_mesh_vertices );
+  Eigen::Vector4f object_far_point_in_pos_direction_in_global_frame;
+  Eigen::Vector4f object_far_point_in_neg_direction_in_global_frame;
+  Eigen::Vector3f object_major_dimensions;
+  step_4_object_pose_approximation( object_mesh_vertices, object_transform, object_far_point_in_pos_direction_in_global_frame, object_far_point_in_neg_direction_in_global_frame, object_major_dimensions );
+  Eigen::Affine3f transform = Eigen::Affine3f::Identity();
+  transform.matrix() = object_transform;
+  viewer->addCoordinateSystem(0.1, transform, "object coordinate frame", 0);
+  viewer->addCoordinateSystem(0.1,object_far_point_in_pos_direction_in_global_frame(0),object_far_point_in_pos_direction_in_global_frame(1),object_far_point_in_pos_direction_in_global_frame(2));
+  viewer->addCoordinateSystem(0.1,object_far_point_in_neg_direction_in_global_frame(0),object_far_point_in_neg_direction_in_global_frame(1),object_far_point_in_neg_direction_in_global_frame(2));
+  
+  object_rotation    << object_transform(0,0), object_transform(0,1), object_transform(0,2),
+                        object_transform(1,0), object_transform(1,1), object_transform(1,2),
+                        object_transform(2,0), object_transform(2,1), object_transform(2,2);
+  object_translation << object_transform(0,3), object_transform(1,3), object_transform(2,3);
+  
+  
+  
+  // get object centroid location
+  pcl::CentroidPoint<pcl::PointXYZ> object_centroid;
+  pcl::PointXYZ object_centroid_point;
+  for(unsigned int i=0;i<object_mesh_vertices.points.size();i++)
+    object_centroid.add( object_mesh_vertices.points[i] );
+  object_centroid.get(object_centroid_point);
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -300,12 +339,16 @@ int main(int argc, char **argv){
   
   
   
-  Eigen::Matrix4f dummy_transform;
   Eigen::Vector3f dummy_translation;
-  Eigen::Matrix3f dummy_rotation;
+  
+  int point_cloud_samples = 30;
+  double value_x, value_y, value_z;
+  pcl::PointXYZRGB point_xyzrgb;
   
   
+  /*
   begin = clock();
+  
   std::vector<std::string> finger_list;
   finger_list.push_back("thumb");
   finger_list.push_back("index");
@@ -392,9 +435,6 @@ int main(int argc, char **argv){
   
   
   // generate and view the point cloud of the convex workspace
-  int point_cloud_samples = 30;
-  double value_x, value_y, value_z;
-  pcl::PointXYZRGB point_xyzrgb;
   pcl::PointXYZ convex_shape_offset, convex_shape_parameter;
   for(int i=0; i<finger_list.size(); i++){
     for(unsigned int j=0; j<thumb_workspace_convex_offset.size(); j++){
@@ -481,6 +521,8 @@ int main(int argc, char **argv){
       }
     }
   }
+  */
+  
   /*
   pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> red_color  (thumb_workspace_convex_xyzrgb, 255, 0, 0);
   viewer->addPointCloud<pcl::PointXYZRGB>(thumb_workspace_convex_xyzrgb, red_color, "red cloud");
@@ -501,6 +543,8 @@ int main(int argc, char **argv){
   *augmented_cloud += *pinky_workspace_convex_xyzrgb;
   */
   
+  
+  /*
   // load allegro hand only
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr allegro_hand_xyzrgb(new pcl::PointCloud<pcl::PointXYZRGB>);
   pcl::io::loadPCDFile<pcl::PointXYZRGB>("allegro_right_hand_model_cloud.pcd", *allegro_hand_xyzrgb);
@@ -513,7 +557,7 @@ int main(int argc, char **argv){
   end = clock();
 	time_spent = (double)( end - begin )/ CLOCKS_PER_SEC;
 	std::cout << "time spent to load and make convex workspace point cloud = " << time_spent << std::endl << std::endl;
-  
+  */
   
   
   /*
@@ -598,7 +642,7 @@ int main(int argc, char **argv){
   
   
   
-  
+  /*
   // computing the object major dimentions along its x, y, and z-axes
   // get the centroid first
   pcl::PointXYZRGB centroid_point_transformed_object;
@@ -632,7 +676,18 @@ int main(int argc, char **argv){
   object_major_dimensions.x = farest_point_pos.x - farest_point_neg.x;
   object_major_dimensions.y = farest_point_pos.y - farest_point_neg.y;
   object_major_dimensions.z = farest_point_pos.z - farest_point_neg.z;
+  */
+  
   std::cout << "object_major_dimensions = " << std::endl << object_major_dimensions << std::endl;
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -647,14 +702,15 @@ int main(int argc, char **argv){
   double roi_h = 0.14/2;  // 28mm is finger tip diameter - along object z-axis
   //double roi_w = max_hand_opening_approx/2 + 0.1;
   //double roi_l = 0.3/2 + 0.05;
-  double roi_w = max_hand_opening_approx/2;
+  double roi_w = max_hand_opening_approx/1.7;
+  //double roi_w = 1.0;
   double roi_l = 0.3/2;
   pcl::PointCloud<pcl::PointXYZRGB> roi_point_cloud;
   
   // draw the special ellipsoid
   // centered at origin with orientation coincident to that of origin frame
   roi_point_cloud.clear();
-  point_cloud_samples = 500;
+  point_cloud_samples = 200;
   for(unsigned int k=0; k<point_cloud_samples; k++){
     value_x = (-roi_l) + k*2*roi_l/point_cloud_samples;
     for(unsigned int l=0; l<point_cloud_samples; l++){
@@ -716,8 +772,8 @@ int main(int argc, char **argv){
   bool object_subcloud_fully_contained = false;
   double special_ellipsoid_value;
   for(unsigned int i=0; i<object_roi_sub_cloud_in_object_frame_xyzrgb->size(); i++){
-    special_ellipsoid_value =  pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].x - object_centroid_point_in_object_frame_4d(0), 10)/pow(roi_l, 10) 
-                             + pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].y - object_centroid_point_in_object_frame_4d(1), 10)/pow(roi_w, 10) 
+    special_ellipsoid_value =  pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].x - object_centroid_point_in_object_frame_4d(0), 30)/pow(roi_l, 30) 
+                             + pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].y - object_centroid_point_in_object_frame_4d(1), 30)/pow(roi_w, 30) 
                              + pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].z - object_centroid_point_in_object_frame_4d(2), 2) /pow(roi_h, 2);
     if( special_ellipsoid_value <= 1.0 )
       object_subcloud_fully_contained = true;
@@ -734,11 +790,13 @@ int main(int argc, char **argv){
   
   // STEP#2 : If NOT completely contained, start scanning action
   // translate from down to top of object major axis (z-axis)
-  float linear_scanning_resolution = 0.1;    // in meters
-  float rotary_scanning_resolution = 0.3;    // in radians
-  int number_of_scan_translations = ceil( object_major_dimensions.z/linear_scanning_resolution );
-  int number_of_scan_rotations = ceil( 3.14159/rotary_scanning_resolution );
-  Eigen::Vector4f object_far_point_in_neg_direction_4f;
+  float linear_scanning_resolution = 0.01;    // in meters
+  float rotary_scanning_resolution = 0.314159;    // in radians
+  int number_of_scan_translations = object_major_dimensions(2)/linear_scanning_resolution;
+  std::cout << "number_of_scan_translations = " << number_of_scan_translations << std::endl;
+  int number_of_scan_rotations = 3.14159/rotary_scanning_resolution;
+  std::cout << "number_of_scan_rotations = " << number_of_scan_rotations << std::endl;
+  Eigen::Vector4f object_far_point_in_neg_direction_in_object_frame;
   Eigen::Matrix3f roi_rotation_in_object_frame;
   Eigen::Vector3f roi_translation_in_object_frame;
   Eigen::Matrix4f roi_transform_in_object_frame_incremental;
@@ -747,14 +805,17 @@ int main(int argc, char **argv){
   Eigen::Vector3f roi_translation_in_object_frame_total;
   Eigen::Matrix4f roi_transform_in_object_frame = Eigen::Matrix4f::Identity();
   
-  object_far_point_in_neg_direction_4f << far_point_in_neg_direction.x, far_point_in_neg_direction.y, far_point_in_neg_direction.z, 1;
-  object_far_point_in_neg_direction_4f = object_transform*object_far_point_in_neg_direction_4f;
+  //object_far_point_in_neg_direction_in_object_frame << far_point_in_neg_direction.x, far_point_in_neg_direction.y, far_point_in_neg_direction.z, 1;
+  object_far_point_in_neg_direction_in_object_frame = object_far_point_in_neg_direction_in_global_frame;
+  object_far_point_in_neg_direction_in_object_frame = inverse_object_transform*object_far_point_in_neg_direction_in_object_frame;
+  
   // if object is not fully contained in the roi, move the roi scanner (special ellipsoid) to start scanning location
   if(!object_subcloud_fully_contained){
     *roi_in_object_frame = roi_point_cloud;
     
     roi_rotation_in_object_frame = Eigen::Matrix3f::Identity();
-    roi_translation_in_object_frame << 0,0,(abs(object_far_point_in_neg_direction_4f(2)-object_centroid_point.z) - roi_h);
+    //roi_translation_in_object_frame << 0,0,(fabs(object_far_point_in_neg_direction_in_object_frame(2)-object_centroid_point.z) - roi_h);
+    roi_translation_in_object_frame << 0,0,(object_far_point_in_neg_direction_in_object_frame(2) + roi_h);
     roi_transform_in_object_frame_incremental <<  roi_rotation_in_object_frame, roi_translation_in_object_frame,
                                       0, 0, 0, 1;
     pcl::transformPointCloud(*roi_in_object_frame, *roi_in_object_frame, roi_transform_in_object_frame_incremental);
@@ -808,8 +869,8 @@ int main(int argc, char **argv){
         
         pcl::transformPointCloud(*object_roi_sub_cloud_in_object_frame_xyzrgb, *object_roi_sub_cloud_in_object_global_xyzrgb, object_transform);
         for(unsigned int i=0; i<object_roi_sub_cloud_in_object_frame_xyzrgb->size(); i++){
-          special_ellipsoid_value =  pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].x - roi_translation_in_object_frame(0), 10)/pow(roi_l, 10) 
-                                   + pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].y - roi_translation_in_object_frame(1), 10)/pow(roi_w, 10) 
+          special_ellipsoid_value =  pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].x - roi_translation_in_object_frame(0), 30)/pow(roi_l, 30) 
+                                   + pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].y - roi_translation_in_object_frame(1), 30)/pow(roi_w, 30) 
                                    + pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].z - roi_translation_in_object_frame(2), 2) /pow(roi_h, 2);
           if( special_ellipsoid_value <= 1.0 )
             object_subcloud_fully_contained = true;
@@ -828,7 +889,7 @@ int main(int argc, char **argv){
         viewer->updatePointCloud<pcl::PointXYZRGB>(augmented_cloud, rgb,"object cloud");
         
         viewer->spinOnce();
-        usleep(500000);
+        usleep(1);
         
         if(object_subcloud_fully_contained){break;}
       }
@@ -837,12 +898,34 @@ int main(int argc, char **argv){
     }
   }
   
+  std::cout << "roi_transform_in_object_frame = " << std::endl << roi_transform_in_object_frame << std::endl;
+  
   
   
   
   end = clock();
 	time_spent = (double)( end - begin )/ CLOCKS_PER_SEC;
 	std::cout << "time spent to find region of interest = " << time_spent << std::endl << std::endl;
+  
+  
+  
+  
+  
+  
+  Eigen::Vector3f roi_dimensions;
+  Eigen::Matrix4f roi_transform_in_object_frame_again;
+  Eigen::Matrix4f hand_transform;
+  roi_dimensions << roi_l, roi_w, roi_h;
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_roi_sub_cloud_in_object_global_xyzrgb_again (new pcl::PointCloud<pcl::PointXYZRGB>());
+  Eigen::Vector3f hand_dimensions;
+  hand_dimensions << 247.7, 139.48, 54.8;
+  
+  step_5_region_of_interest( object_mesh_vertices, object_transform , object_far_point_in_pos_direction_in_global_frame, object_far_point_in_neg_direction_in_global_frame, object_major_dimensions, roi_dimensions, roi_transform_in_object_frame_again, object_roi_sub_cloud_in_object_global_xyzrgb_again, hand_transform, hand_dimensions );
+  
+  //augmented_cloud->clear();
+  //*augmented_cloud += *object_roi_sub_cloud_in_object_global_xyzrgb_again;
+  //*augmented_cloud += *object_roi_sub_cloud_in_object_global_xyzrgb;
+  
   
   
   

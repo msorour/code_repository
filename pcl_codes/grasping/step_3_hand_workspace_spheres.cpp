@@ -56,10 +56,10 @@ int main(int argc, char **argv){
   double r_best=0.0;
   double r_max=0.0;
   double sphere_value=1.0;
-  double accuracy=0.002;
+  double accuracy=0.001;
   double sphere_x, sphere_y, sphere_z;
-  int sphere_point_cloud_samples = 25;
-  unsigned int delay_microseconds = 1000;
+  int sphere_point_cloud_samples = 20;
+  unsigned int delay_microseconds = 1;
   pcl::PointCloud<pcl::PointXYZRGB> sphere_point_cloud;
   pcl::PointXYZRGB sphere_point;
   pcl::PointXYZ sphere_offset;
@@ -112,7 +112,7 @@ int main(int argc, char **argv){
       sphere_offset.y = finger_workspace_cloud_light_xyz->points[it].y;
       sphere_offset.z = finger_workspace_cloud_light_xyz->points[it].z;
       r=0.001;
-      r_max=0.02;
+      r_max=0.05;
       
       
       
@@ -230,7 +230,7 @@ int main(int argc, char **argv){
 	}   // end of fingers loop
 	
 	
-	viewer->saveScreenshot("allegro_hand_workspace_spheres.png");
+	viewer->saveScreenshot("allegro_hand_workspace_spheres_"+std::to_string(workspace_low_sampled)+".png");
 	
   while ( !viewer->wasStopped() and !Hullviewer->wasStopped() ){
     viewer->spinOnce();

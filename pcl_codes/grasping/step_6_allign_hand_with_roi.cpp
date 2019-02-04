@@ -16,6 +16,7 @@
 #include <pcl/ModelCoefficients.h>
 #include <pcl/io/ply_io.h>
 #include <time.h>
+#include "grasping_algorithm.h"
 
 int main(int argc, char **argv){
   std::string object_name, workspace_type, sampling;
@@ -871,14 +872,14 @@ int main(int argc, char **argv){
                      0,0,0,1;
   hand_transform = hand_transform*dummy_transform;
   
-  pcl::transformPointCloud(*allegro_hand_xyzrgb, *allegro_hand_xyzrgb, hand_transform);
+  //pcl::transformPointCloud(*allegro_hand_xyzrgb, *allegro_hand_xyzrgb, hand_transform);
   /*
   pcl::transformPointCloud(*thumb_workspace_convex_xyzrgb, *thumb_workspace_convex_xyzrgb, hand_transform);
   pcl::transformPointCloud(*index_workspace_convex_xyzrgb, *index_workspace_convex_xyzrgb, hand_transform);
   pcl::transformPointCloud(*middle_workspace_convex_xyzrgb, *middle_workspace_convex_xyzrgb, hand_transform);
   pcl::transformPointCloud(*pinky_workspace_convex_xyzrgb, *pinky_workspace_convex_xyzrgb, hand_transform);
   */
-  *augmented_cloud += *allegro_hand_xyzrgb;
+  //*augmented_cloud += *allegro_hand_xyzrgb;
   /*
   *augmented_cloud += *thumb_workspace_convex_xyzrgb;
   *augmented_cloud += *index_workspace_convex_xyzrgb;
@@ -892,11 +893,43 @@ int main(int argc, char **argv){
   
   
   
+  // STEP#4 : compute object transformation matrix
+  //Eigen::Matrix3f object_rotation;
+  //Eigen::Vector3f object_translation;
+  //Eigen::Matrix4f object_transform;
+  object_transform = Eigen::Matrix4f::Identity();
+  Eigen::Vector4f object_far_point_in_pos_direction_in_global_frame;
+  Eigen::Vector4f object_far_point_in_neg_direction_in_global_frame;
+  Eigen::Vector3f object_major_dimensions_again;
+  step_4_object_pose_approximation( object_mesh_vertices, object_transform, object_far_point_in_pos_direction_in_global_frame, object_far_point_in_neg_direction_in_global_frame, object_major_dimensions_again );
+  //Eigen::Affine3f transform = Eigen::Affine3f::Identity();
+  //transform.matrix() = object_transform;
+  //viewer->addCoordinateSystem(0.1, transform, "object coordinate frame", 0);
+  //viewer->addCoordinateSystem(0.1,object_far_point_in_pos_direction_in_global_frame(0),object_far_point_in_pos_direction_in_global_frame(1),object_far_point_in_pos_direction_in_global_frame(2));
+  //viewer->addCoordinateSystem(0.1,object_far_point_in_neg_direction_in_global_frame(0),object_far_point_in_neg_direction_in_global_frame(1),object_far_point_in_neg_direction_in_global_frame(2));
+  
+  object_rotation    << object_transform(0,0), object_transform(0,1), object_transform(0,2),
+                        object_transform(1,0), object_transform(1,1), object_transform(1,2),
+                        object_transform(2,0), object_transform(2,1), object_transform(2,2);
+  object_translation << object_transform(0,3), object_transform(1,3), object_transform(2,3);
   
   
+  Eigen::Vector3f roi_dimensions;
+  Eigen::Matrix4f roi_transform_in_object_frame_again;
+  Eigen::Matrix4f hand_transform_again;
+  //Eigen::Matrix3f hand_rotation;
+  //Eigen::Vector3f hand_translation;
+  roi_dimensions << roi_l, roi_w, roi_h;
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_roi_sub_cloud_in_object_global_xyzrgb_again (new pcl::PointCloud<pcl::PointXYZRGB>());
+  Eigen::Vector3f hand_dimensions;
+  hand_dimensions << 0.2477, 0.13948, 0.0548;
+  
+  step_5_region_of_interest( object_mesh_vertices, object_transform , object_far_point_in_pos_direction_in_global_frame, object_far_point_in_neg_direction_in_global_frame, object_major_dimensions_again, roi_dimensions, roi_transform_in_object_frame_again, object_roi_sub_cloud_in_object_global_xyzrgb_again, hand_transform_again, hand_dimensions );
+  std::cout << "hand_transform_again = " << hand_transform_again << std::endl << std::endl;
   
   
-  
+  pcl::transformPointCloud(*allegro_hand_xyzrgb, *allegro_hand_xyzrgb, hand_transform_again);
+  *augmented_cloud += *allegro_hand_xyzrgb;
   
   
   
