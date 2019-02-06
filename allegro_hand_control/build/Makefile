@@ -254,6 +254,19 @@ rosgraph_msgs_generate_messages_lisp/fast:
 .PHONY : rosgraph_msgs_generate_messages_lisp/fast
 
 #=============================================================================
+# Target rules for targets named allegro_right_hand_position_controller_traj
+
+# Build rule for target.
+allegro_right_hand_position_controller_traj: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_position_controller_traj
+.PHONY : allegro_right_hand_position_controller_traj
+
+# fast build rule for target.
+allegro_right_hand_position_controller_traj/fast:
+	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller_traj.dir/build.make CMakeFiles/allegro_right_hand_position_controller_traj.dir/build
+.PHONY : allegro_right_hand_position_controller_traj/fast
+
+#=============================================================================
 # Target rules for targets named std_msgs_generate_messages_cpp
 
 # Build rule for target.
@@ -371,6 +384,33 @@ src/allegro_right_hand_position_controller.cpp.s:
 	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller.dir/build.make CMakeFiles/allegro_right_hand_position_controller.dir/src/allegro_right_hand_position_controller.cpp.s
 .PHONY : src/allegro_right_hand_position_controller.cpp.s
 
+src/allegro_right_hand_position_controller_traj.o: src/allegro_right_hand_position_controller_traj.cpp.o
+
+.PHONY : src/allegro_right_hand_position_controller_traj.o
+
+# target to build an object file
+src/allegro_right_hand_position_controller_traj.cpp.o:
+	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller_traj.dir/build.make CMakeFiles/allegro_right_hand_position_controller_traj.dir/src/allegro_right_hand_position_controller_traj.cpp.o
+.PHONY : src/allegro_right_hand_position_controller_traj.cpp.o
+
+src/allegro_right_hand_position_controller_traj.i: src/allegro_right_hand_position_controller_traj.cpp.i
+
+.PHONY : src/allegro_right_hand_position_controller_traj.i
+
+# target to preprocess a source file
+src/allegro_right_hand_position_controller_traj.cpp.i:
+	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller_traj.dir/build.make CMakeFiles/allegro_right_hand_position_controller_traj.dir/src/allegro_right_hand_position_controller_traj.cpp.i
+.PHONY : src/allegro_right_hand_position_controller_traj.cpp.i
+
+src/allegro_right_hand_position_controller_traj.s: src/allegro_right_hand_position_controller_traj.cpp.s
+
+.PHONY : src/allegro_right_hand_position_controller_traj.s
+
+# target to generate assembly for a file
+src/allegro_right_hand_position_controller_traj.cpp.s:
+	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller_traj.dir/build.make CMakeFiles/allegro_right_hand_position_controller_traj.dir/src/allegro_right_hand_position_controller_traj.cpp.s
+.PHONY : src/allegro_right_hand_position_controller_traj.cpp.s
+
 src/canAPI.o: src/canAPI.cpp.o
 
 .PHONY : src/canAPI.o
@@ -379,6 +419,7 @@ src/canAPI.o: src/canAPI.cpp.o
 src/canAPI.cpp.o:
 	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller.dir/build.make CMakeFiles/allegro_right_hand_position_controller.dir/src/canAPI.cpp.o
 	$(MAKE) -f CMakeFiles/grasp.dir/build.make CMakeFiles/grasp.dir/src/canAPI.cpp.o
+	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller_traj.dir/build.make CMakeFiles/allegro_right_hand_position_controller_traj.dir/src/canAPI.cpp.o
 .PHONY : src/canAPI.cpp.o
 
 src/canAPI.i: src/canAPI.cpp.i
@@ -389,6 +430,7 @@ src/canAPI.i: src/canAPI.cpp.i
 src/canAPI.cpp.i:
 	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller.dir/build.make CMakeFiles/allegro_right_hand_position_controller.dir/src/canAPI.cpp.i
 	$(MAKE) -f CMakeFiles/grasp.dir/build.make CMakeFiles/grasp.dir/src/canAPI.cpp.i
+	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller_traj.dir/build.make CMakeFiles/allegro_right_hand_position_controller_traj.dir/src/canAPI.cpp.i
 .PHONY : src/canAPI.cpp.i
 
 src/canAPI.s: src/canAPI.cpp.s
@@ -399,6 +441,7 @@ src/canAPI.s: src/canAPI.cpp.s
 src/canAPI.cpp.s:
 	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller.dir/build.make CMakeFiles/allegro_right_hand_position_controller.dir/src/canAPI.cpp.s
 	$(MAKE) -f CMakeFiles/grasp.dir/build.make CMakeFiles/grasp.dir/src/canAPI.cpp.s
+	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller_traj.dir/build.make CMakeFiles/allegro_right_hand_position_controller_traj.dir/src/canAPI.cpp.s
 .PHONY : src/canAPI.cpp.s
 
 src/interface.o: src/interface.cpp.o
@@ -501,6 +544,7 @@ help:
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
+	@echo "... allegro_right_hand_position_controller_traj"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
 	@echo "... rosgraph_msgs_generate_messages_py"
@@ -511,6 +555,9 @@ help:
 	@echo "... src/allegro_right_hand_position_controller.o"
 	@echo "... src/allegro_right_hand_position_controller.i"
 	@echo "... src/allegro_right_hand_position_controller.s"
+	@echo "... src/allegro_right_hand_position_controller_traj.o"
+	@echo "... src/allegro_right_hand_position_controller_traj.i"
+	@echo "... src/allegro_right_hand_position_controller_traj.s"
 	@echo "... src/canAPI.o"
 	@echo "... src/canAPI.i"
 	@echo "... src/canAPI.s"

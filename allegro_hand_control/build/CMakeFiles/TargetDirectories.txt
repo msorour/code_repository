@@ -11,6 +11,7 @@
 /home/work/code_repository/allegro_hand_control/build/CMakeFiles/roscpp_generate_messages_cpp.dir
 /home/work/code_repository/allegro_hand_control/build/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir
 /home/work/code_repository/allegro_hand_control/build/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir
+/home/work/code_repository/allegro_hand_control/build/CMakeFiles/allegro_right_hand_position_controller_traj.dir
 /home/work/code_repository/allegro_hand_control/build/CMakeFiles/std_msgs_generate_messages_cpp.dir
 /home/work/code_repository/allegro_hand_control/build/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir
 /home/work/code_repository/allegro_hand_control/build/CMakeFiles/rosgraph_msgs_generate_messages_py.dir

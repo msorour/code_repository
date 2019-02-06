@@ -32,7 +32,7 @@ int main(int argc, char* argv[]){
   
   Eigen::Vector3d position_Ptt_desired, position_Pit_desired, position_Pmt_desired, position_Ppt_desired;
   
-  position_Ptt_desired << 0.02,  0.00, 0.08;
+  position_Ptt_desired << 0.02,  0.00, 0.09;
   
   position_Pit_desired << 0.05,  0.05, 0.19;
   position_Pmt_desired << 0.05,   0.0, 0.19;

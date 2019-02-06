@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/work/code_repository/pcl_codes/grasping/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -77,6 +66,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,6 +111,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named cluster_extraction
+
+# Build rule for target.
+cluster_extraction: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 cluster_extraction
+.PHONY : cluster_extraction
+
+# fast build rule for target.
+cluster_extraction/fast:
+	$(MAKE) -f CMakeFiles/cluster_extraction.dir/build.make CMakeFiles/cluster_extraction.dir/build
+.PHONY : cluster_extraction/fast
+
+#=============================================================================
+# Target rules for targets named capture_realsense_point_cloud
+
+# Build rule for target.
+capture_realsense_point_cloud: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 capture_realsense_point_cloud
+.PHONY : capture_realsense_point_cloud
+
+# fast build rule for target.
+capture_realsense_point_cloud/fast:
+	$(MAKE) -f CMakeFiles/capture_realsense_point_cloud.dir/build.make CMakeFiles/capture_realsense_point_cloud.dir/build
+.PHONY : capture_realsense_point_cloud/fast
+
+#=============================================================================
 # Target rules for targets named cloud_visualizer
 
 # Build rule for target.
@@ -137,19 +163,6 @@ grasping_algorithm_main/fast:
 .PHONY : grasping_algorithm_main/fast
 
 #=============================================================================
-# Target rules for targets named step_9_grasp_locations_optimization
-
-# Build rule for target.
-step_9_grasp_locations_optimization: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 step_9_grasp_locations_optimization
-.PHONY : step_9_grasp_locations_optimization
-
-# fast build rule for target.
-step_9_grasp_locations_optimization/fast:
-	$(MAKE) -f CMakeFiles/step_9_grasp_locations_optimization.dir/build.make CMakeFiles/step_9_grasp_locations_optimization.dir/build
-.PHONY : step_9_grasp_locations_optimization/fast
-
-#=============================================================================
 # Target rules for targets named step_7_touch_the_object_with_palm
 
 # Build rule for target.
@@ -163,43 +176,17 @@ step_7_touch_the_object_with_palm/fast:
 .PHONY : step_7_touch_the_object_with_palm/fast
 
 #=============================================================================
-# Target rules for targets named step_6_allign_hand_with_roi
+# Target rules for targets named step_5_region_of_interest
 
 # Build rule for target.
-step_6_allign_hand_with_roi: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 step_6_allign_hand_with_roi
-.PHONY : step_6_allign_hand_with_roi
+step_5_region_of_interest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 step_5_region_of_interest
+.PHONY : step_5_region_of_interest
 
 # fast build rule for target.
-step_6_allign_hand_with_roi/fast:
-	$(MAKE) -f CMakeFiles/step_6_allign_hand_with_roi.dir/build.make CMakeFiles/step_6_allign_hand_with_roi.dir/build
-.PHONY : step_6_allign_hand_with_roi/fast
-
-#=============================================================================
-# Target rules for targets named step_8_filter_hand_workspace_merging_with_object_surface
-
-# Build rule for target.
-step_8_filter_hand_workspace_merging_with_object_surface: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 step_8_filter_hand_workspace_merging_with_object_surface
-.PHONY : step_8_filter_hand_workspace_merging_with_object_surface
-
-# fast build rule for target.
-step_8_filter_hand_workspace_merging_with_object_surface/fast:
-	$(MAKE) -f CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build.make CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build
-.PHONY : step_8_filter_hand_workspace_merging_with_object_surface/fast
-
-#=============================================================================
-# Target rules for targets named step_2_hand_workspace_sampling
-
-# Build rule for target.
-step_2_hand_workspace_sampling: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 step_2_hand_workspace_sampling
-.PHONY : step_2_hand_workspace_sampling
-
-# fast build rule for target.
-step_2_hand_workspace_sampling/fast:
-	$(MAKE) -f CMakeFiles/step_2_hand_workspace_sampling.dir/build.make CMakeFiles/step_2_hand_workspace_sampling.dir/build
-.PHONY : step_2_hand_workspace_sampling/fast
+step_5_region_of_interest/fast:
+	$(MAKE) -f CMakeFiles/step_5_region_of_interest.dir/build.make CMakeFiles/step_5_region_of_interest.dir/build
+.PHONY : step_5_region_of_interest/fast
 
 #=============================================================================
 # Target rules for targets named step_3_hand_workspace_ellipsoids
@@ -215,6 +202,84 @@ step_3_hand_workspace_ellipsoids/fast:
 .PHONY : step_3_hand_workspace_ellipsoids/fast
 
 #=============================================================================
+# Target rules for targets named step_2_hand_workspace_sampling
+
+# Build rule for target.
+step_2_hand_workspace_sampling: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 step_2_hand_workspace_sampling
+.PHONY : step_2_hand_workspace_sampling
+
+# fast build rule for target.
+step_2_hand_workspace_sampling/fast:
+	$(MAKE) -f CMakeFiles/step_2_hand_workspace_sampling.dir/build.make CMakeFiles/step_2_hand_workspace_sampling.dir/build
+.PHONY : step_2_hand_workspace_sampling/fast
+
+#=============================================================================
+# Target rules for targets named roscpp_generate_messages_py
+
+# Build rule for target.
+roscpp_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_py
+.PHONY : roscpp_generate_messages_py
+
+# fast build rule for target.
+roscpp_generate_messages_py/fast:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_py.dir/build.make CMakeFiles/roscpp_generate_messages_py.dir/build
+.PHONY : roscpp_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named roscpp_generate_messages_eus
+
+# Build rule for target.
+roscpp_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_eus
+.PHONY : roscpp_generate_messages_eus
+
+# fast build rule for target.
+roscpp_generate_messages_eus/fast:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_eus.dir/build.make CMakeFiles/roscpp_generate_messages_eus.dir/build
+.PHONY : roscpp_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named roscpp_generate_messages_lisp
+
+# Build rule for target.
+roscpp_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_lisp
+.PHONY : roscpp_generate_messages_lisp
+
+# fast build rule for target.
+roscpp_generate_messages_lisp/fast:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_lisp.dir/build.make CMakeFiles/roscpp_generate_messages_lisp.dir/build
+.PHONY : roscpp_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named rosgraph_msgs_generate_messages_cpp
+
+# Build rule for target.
+rosgraph_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_cpp
+.PHONY : rosgraph_msgs_generate_messages_cpp
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named std_msgs_generate_messages_lisp
+
+# Build rule for target.
+std_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_lisp
+.PHONY : std_msgs_generate_messages_lisp
+
+# fast build rule for target.
+std_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+.PHONY : std_msgs_generate_messages_lisp/fast
+
+#=============================================================================
 # Target rules for targets named step_3_hand_workspace_spheres
 
 # Build rule for target.
@@ -228,17 +293,30 @@ step_3_hand_workspace_spheres/fast:
 .PHONY : step_3_hand_workspace_spheres/fast
 
 #=============================================================================
-# Target rules for targets named step_1_allegro_right_hand_model_to_point_cloud
+# Target rules for targets named roscpp_generate_messages_cpp
 
 # Build rule for target.
-step_1_allegro_right_hand_model_to_point_cloud: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 step_1_allegro_right_hand_model_to_point_cloud
-.PHONY : step_1_allegro_right_hand_model_to_point_cloud
+roscpp_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_cpp
+.PHONY : roscpp_generate_messages_cpp
 
 # fast build rule for target.
-step_1_allegro_right_hand_model_to_point_cloud/fast:
-	$(MAKE) -f CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/build.make CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/build
-.PHONY : step_1_allegro_right_hand_model_to_point_cloud/fast
+roscpp_generate_messages_cpp/fast:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_cpp.dir/build.make CMakeFiles/roscpp_generate_messages_cpp.dir/build
+.PHONY : roscpp_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named step_8_filter_hand_workspace_merging_with_object_surface
+
+# Build rule for target.
+step_8_filter_hand_workspace_merging_with_object_surface: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 step_8_filter_hand_workspace_merging_with_object_surface
+.PHONY : step_8_filter_hand_workspace_merging_with_object_surface
+
+# fast build rule for target.
+step_8_filter_hand_workspace_merging_with_object_surface/fast:
+	$(MAKE) -f CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build.make CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build
+.PHONY : step_8_filter_hand_workspace_merging_with_object_surface/fast
 
 #=============================================================================
 # Target rules for targets named step_4_object_pose_approximation
@@ -254,17 +332,187 @@ step_4_object_pose_approximation/fast:
 .PHONY : step_4_object_pose_approximation/fast
 
 #=============================================================================
-# Target rules for targets named step_5_region_of_interest
+# Target rules for targets named rosgraph_msgs_generate_messages_eus
 
 # Build rule for target.
-step_5_region_of_interest: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 step_5_region_of_interest
-.PHONY : step_5_region_of_interest
+rosgraph_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_eus
+.PHONY : rosgraph_msgs_generate_messages_eus
 
 # fast build rule for target.
-step_5_region_of_interest/fast:
-	$(MAKE) -f CMakeFiles/step_5_region_of_interest.dir/build.make CMakeFiles/step_5_region_of_interest.dir/build
-.PHONY : step_5_region_of_interest/fast
+rosgraph_msgs_generate_messages_eus/fast:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+.PHONY : rosgraph_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named step_1_allegro_right_hand_model_to_point_cloud
+
+# Build rule for target.
+step_1_allegro_right_hand_model_to_point_cloud: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 step_1_allegro_right_hand_model_to_point_cloud
+.PHONY : step_1_allegro_right_hand_model_to_point_cloud
+
+# fast build rule for target.
+step_1_allegro_right_hand_model_to_point_cloud/fast:
+	$(MAKE) -f CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/build.make CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/build
+.PHONY : step_1_allegro_right_hand_model_to_point_cloud/fast
+
+#=============================================================================
+# Target rules for targets named rosgraph_msgs_generate_messages_lisp
+
+# Build rule for target.
+rosgraph_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_lisp
+.PHONY : rosgraph_msgs_generate_messages_lisp
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named step_6_allign_hand_with_roi
+
+# Build rule for target.
+step_6_allign_hand_with_roi: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 step_6_allign_hand_with_roi
+.PHONY : step_6_allign_hand_with_roi
+
+# fast build rule for target.
+step_6_allign_hand_with_roi/fast:
+	$(MAKE) -f CMakeFiles/step_6_allign_hand_with_roi.dir/build.make CMakeFiles/step_6_allign_hand_with_roi.dir/build
+.PHONY : step_6_allign_hand_with_roi/fast
+
+#=============================================================================
+# Target rules for targets named std_msgs_generate_messages_cpp
+
+# Build rule for target.
+std_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_cpp
+.PHONY : std_msgs_generate_messages_cpp
+
+# fast build rule for target.
+std_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+.PHONY : std_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named rosgraph_msgs_generate_messages_nodejs
+
+# Build rule for target.
+rosgraph_msgs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_nodejs
+.PHONY : rosgraph_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_nodejs/fast:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
+.PHONY : rosgraph_msgs_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named rosgraph_msgs_generate_messages_py
+
+# Build rule for target.
+rosgraph_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_py
+.PHONY : rosgraph_msgs_generate_messages_py
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_py/fast:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+.PHONY : rosgraph_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named std_msgs_generate_messages_eus
+
+# Build rule for target.
+std_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_eus
+.PHONY : std_msgs_generate_messages_eus
+
+# fast build rule for target.
+std_msgs_generate_messages_eus/fast:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_eus.dir/build.make CMakeFiles/std_msgs_generate_messages_eus.dir/build
+.PHONY : std_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named std_msgs_generate_messages_nodejs
+
+# Build rule for target.
+std_msgs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_nodejs
+.PHONY : std_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+std_msgs_generate_messages_nodejs/fast:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
+.PHONY : std_msgs_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named step_9_grasp_locations_optimization
+
+# Build rule for target.
+step_9_grasp_locations_optimization: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 step_9_grasp_locations_optimization
+.PHONY : step_9_grasp_locations_optimization
+
+# fast build rule for target.
+step_9_grasp_locations_optimization/fast:
+	$(MAKE) -f CMakeFiles/step_9_grasp_locations_optimization.dir/build.make CMakeFiles/step_9_grasp_locations_optimization.dir/build
+.PHONY : step_9_grasp_locations_optimization/fast
+
+#=============================================================================
+# Target rules for targets named roscpp_generate_messages_nodejs
+
+# Build rule for target.
+roscpp_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_nodejs
+.PHONY : roscpp_generate_messages_nodejs
+
+# fast build rule for target.
+roscpp_generate_messages_nodejs/fast:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+.PHONY : roscpp_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named std_msgs_generate_messages_py
+
+# Build rule for target.
+std_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_py
+.PHONY : std_msgs_generate_messages_py
+
+# fast build rule for target.
+std_msgs_generate_messages_py/fast:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_py.dir/build.make CMakeFiles/std_msgs_generate_messages_py.dir/build
+.PHONY : std_msgs_generate_messages_py/fast
+
+capture_realsense_point_cloud.o: capture_realsense_point_cloud.cpp.o
+
+.PHONY : capture_realsense_point_cloud.o
+
+# target to build an object file
+capture_realsense_point_cloud.cpp.o:
+	$(MAKE) -f CMakeFiles/capture_realsense_point_cloud.dir/build.make CMakeFiles/capture_realsense_point_cloud.dir/capture_realsense_point_cloud.cpp.o
+.PHONY : capture_realsense_point_cloud.cpp.o
+
+capture_realsense_point_cloud.i: capture_realsense_point_cloud.cpp.i
+
+.PHONY : capture_realsense_point_cloud.i
+
+# target to preprocess a source file
+capture_realsense_point_cloud.cpp.i:
+	$(MAKE) -f CMakeFiles/capture_realsense_point_cloud.dir/build.make CMakeFiles/capture_realsense_point_cloud.dir/capture_realsense_point_cloud.cpp.i
+.PHONY : capture_realsense_point_cloud.cpp.i
+
+capture_realsense_point_cloud.s: capture_realsense_point_cloud.cpp.s
+
+.PHONY : capture_realsense_point_cloud.s
+
+# target to generate assembly for a file
+capture_realsense_point_cloud.cpp.s:
+	$(MAKE) -f CMakeFiles/capture_realsense_point_cloud.dir/build.make CMakeFiles/capture_realsense_point_cloud.dir/capture_realsense_point_cloud.cpp.s
+.PHONY : capture_realsense_point_cloud.cpp.s
 
 cloud_visualizer.o: cloud_visualizer.cpp.o
 
@@ -292,6 +540,33 @@ cloud_visualizer.s: cloud_visualizer.cpp.s
 cloud_visualizer.cpp.s:
 	$(MAKE) -f CMakeFiles/cloud_visualizer.dir/build.make CMakeFiles/cloud_visualizer.dir/cloud_visualizer.cpp.s
 .PHONY : cloud_visualizer.cpp.s
+
+cluster_extraction.o: cluster_extraction.cpp.o
+
+.PHONY : cluster_extraction.o
+
+# target to build an object file
+cluster_extraction.cpp.o:
+	$(MAKE) -f CMakeFiles/cluster_extraction.dir/build.make CMakeFiles/cluster_extraction.dir/cluster_extraction.cpp.o
+.PHONY : cluster_extraction.cpp.o
+
+cluster_extraction.i: cluster_extraction.cpp.i
+
+.PHONY : cluster_extraction.i
+
+# target to preprocess a source file
+cluster_extraction.cpp.i:
+	$(MAKE) -f CMakeFiles/cluster_extraction.dir/build.make CMakeFiles/cluster_extraction.dir/cluster_extraction.cpp.i
+.PHONY : cluster_extraction.cpp.i
+
+cluster_extraction.s: cluster_extraction.cpp.s
+
+.PHONY : cluster_extraction.s
+
+# target to generate assembly for a file
+cluster_extraction.cpp.s:
+	$(MAKE) -f CMakeFiles/cluster_extraction.dir/build.make CMakeFiles/cluster_extraction.dir/cluster_extraction.cpp.s
+.PHONY : cluster_extraction.cpp.s
 
 grasping_algorithm_main.o: grasping_algorithm_main.cpp.o
 
@@ -596,23 +871,46 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... edit_cache"
-	@echo "... cloud_visualizer"
 	@echo "... rebuild_cache"
+	@echo "... cluster_extraction"
+	@echo "... capture_realsense_point_cloud"
+	@echo "... cloud_visualizer"
 	@echo "... grasping_algorithm_main"
-	@echo "... step_9_grasp_locations_optimization"
 	@echo "... step_7_touch_the_object_with_palm"
-	@echo "... step_6_allign_hand_with_roi"
-	@echo "... step_8_filter_hand_workspace_merging_with_object_surface"
-	@echo "... step_2_hand_workspace_sampling"
-	@echo "... step_3_hand_workspace_ellipsoids"
-	@echo "... step_3_hand_workspace_spheres"
-	@echo "... step_1_allegro_right_hand_model_to_point_cloud"
-	@echo "... step_4_object_pose_approximation"
 	@echo "... step_5_region_of_interest"
+	@echo "... step_3_hand_workspace_ellipsoids"
+	@echo "... step_2_hand_workspace_sampling"
+	@echo "... roscpp_generate_messages_py"
+	@echo "... roscpp_generate_messages_eus"
+	@echo "... edit_cache"
+	@echo "... roscpp_generate_messages_lisp"
+	@echo "... rosgraph_msgs_generate_messages_cpp"
+	@echo "... std_msgs_generate_messages_lisp"
+	@echo "... step_3_hand_workspace_spheres"
+	@echo "... roscpp_generate_messages_cpp"
+	@echo "... step_8_filter_hand_workspace_merging_with_object_surface"
+	@echo "... step_4_object_pose_approximation"
+	@echo "... rosgraph_msgs_generate_messages_eus"
+	@echo "... step_1_allegro_right_hand_model_to_point_cloud"
+	@echo "... rosgraph_msgs_generate_messages_lisp"
+	@echo "... step_6_allign_hand_with_roi"
+	@echo "... std_msgs_generate_messages_cpp"
+	@echo "... rosgraph_msgs_generate_messages_nodejs"
+	@echo "... rosgraph_msgs_generate_messages_py"
+	@echo "... std_msgs_generate_messages_eus"
+	@echo "... std_msgs_generate_messages_nodejs"
+	@echo "... step_9_grasp_locations_optimization"
+	@echo "... roscpp_generate_messages_nodejs"
+	@echo "... std_msgs_generate_messages_py"
+	@echo "... capture_realsense_point_cloud.o"
+	@echo "... capture_realsense_point_cloud.i"
+	@echo "... capture_realsense_point_cloud.s"
 	@echo "... cloud_visualizer.o"
 	@echo "... cloud_visualizer.i"
 	@echo "... cloud_visualizer.s"
+	@echo "... cluster_extraction.o"
+	@echo "... cluster_extraction.i"
+	@echo "... cluster_extraction.s"
 	@echo "... grasping_algorithm_main.o"
 	@echo "... grasping_algorithm_main.i"
 	@echo "... grasping_algorithm_main.s"

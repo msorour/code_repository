@@ -60,13 +60,87 @@ CMAKE_SOURCE_DIR = /home/work/code_repository/pcl_codes/grasping
 CMAKE_BINARY_DIR = /home/work/code_repository/pcl_codes/grasping/build
 
 #=============================================================================
+# Target rules for target CMakeFiles/cluster_extraction.dir
+
+# All Build rule for target.
+CMakeFiles/cluster_extraction.dir/all:
+	$(MAKE) -f CMakeFiles/cluster_extraction.dir/build.make CMakeFiles/cluster_extraction.dir/depend
+	$(MAKE) -f CMakeFiles/cluster_extraction.dir/build.make CMakeFiles/cluster_extraction.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=5,6 "Built target cluster_extraction"
+.PHONY : CMakeFiles/cluster_extraction.dir/all
+
+# Include target in all.
+all: CMakeFiles/cluster_extraction.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/cluster_extraction.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/cluster_extraction.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+.PHONY : CMakeFiles/cluster_extraction.dir/rule
+
+# Convenience name for target.
+cluster_extraction: CMakeFiles/cluster_extraction.dir/rule
+
+.PHONY : cluster_extraction
+
+# clean rule for target.
+CMakeFiles/cluster_extraction.dir/clean:
+	$(MAKE) -f CMakeFiles/cluster_extraction.dir/build.make CMakeFiles/cluster_extraction.dir/clean
+.PHONY : CMakeFiles/cluster_extraction.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/cluster_extraction.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/capture_realsense_point_cloud.dir
+
+# All Build rule for target.
+CMakeFiles/capture_realsense_point_cloud.dir/all:
+	$(MAKE) -f CMakeFiles/capture_realsense_point_cloud.dir/build.make CMakeFiles/capture_realsense_point_cloud.dir/depend
+	$(MAKE) -f CMakeFiles/capture_realsense_point_cloud.dir/build.make CMakeFiles/capture_realsense_point_cloud.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=1,2 "Built target capture_realsense_point_cloud"
+.PHONY : CMakeFiles/capture_realsense_point_cloud.dir/all
+
+# Include target in all.
+all: CMakeFiles/capture_realsense_point_cloud.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/capture_realsense_point_cloud.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/capture_realsense_point_cloud.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+.PHONY : CMakeFiles/capture_realsense_point_cloud.dir/rule
+
+# Convenience name for target.
+capture_realsense_point_cloud: CMakeFiles/capture_realsense_point_cloud.dir/rule
+
+.PHONY : capture_realsense_point_cloud
+
+# clean rule for target.
+CMakeFiles/capture_realsense_point_cloud.dir/clean:
+	$(MAKE) -f CMakeFiles/capture_realsense_point_cloud.dir/build.make CMakeFiles/capture_realsense_point_cloud.dir/clean
+.PHONY : CMakeFiles/capture_realsense_point_cloud.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/capture_realsense_point_cloud.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/cloud_visualizer.dir
 
 # All Build rule for target.
 CMakeFiles/cloud_visualizer.dir/all:
 	$(MAKE) -f CMakeFiles/cloud_visualizer.dir/build.make CMakeFiles/cloud_visualizer.dir/depend
 	$(MAKE) -f CMakeFiles/cloud_visualizer.dir/build.make CMakeFiles/cloud_visualizer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=1,2 "Built target cloud_visualizer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=3,4 "Built target cloud_visualizer"
 .PHONY : CMakeFiles/cloud_visualizer.dir/all
 
 # Include target in all.
@@ -103,7 +177,7 @@ clean: CMakeFiles/cloud_visualizer.dir/clean
 CMakeFiles/grasping_algorithm_main.dir/all:
 	$(MAKE) -f CMakeFiles/grasping_algorithm_main.dir/build.make CMakeFiles/grasping_algorithm_main.dir/depend
 	$(MAKE) -f CMakeFiles/grasping_algorithm_main.dir/build.make CMakeFiles/grasping_algorithm_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=3,4 "Built target grasping_algorithm_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=7,8 "Built target grasping_algorithm_main"
 .PHONY : CMakeFiles/grasping_algorithm_main.dir/all
 
 # Include target in all.
@@ -134,50 +208,13 @@ clean: CMakeFiles/grasping_algorithm_main.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/step_9_grasp_locations_optimization.dir
-
-# All Build rule for target.
-CMakeFiles/step_9_grasp_locations_optimization.dir/all:
-	$(MAKE) -f CMakeFiles/step_9_grasp_locations_optimization.dir/build.make CMakeFiles/step_9_grasp_locations_optimization.dir/depend
-	$(MAKE) -f CMakeFiles/step_9_grasp_locations_optimization.dir/build.make CMakeFiles/step_9_grasp_locations_optimization.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=23,24 "Built target step_9_grasp_locations_optimization"
-.PHONY : CMakeFiles/step_9_grasp_locations_optimization.dir/all
-
-# Include target in all.
-all: CMakeFiles/step_9_grasp_locations_optimization.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/step_9_grasp_locations_optimization.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/step_9_grasp_locations_optimization.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
-.PHONY : CMakeFiles/step_9_grasp_locations_optimization.dir/rule
-
-# Convenience name for target.
-step_9_grasp_locations_optimization: CMakeFiles/step_9_grasp_locations_optimization.dir/rule
-
-.PHONY : step_9_grasp_locations_optimization
-
-# clean rule for target.
-CMakeFiles/step_9_grasp_locations_optimization.dir/clean:
-	$(MAKE) -f CMakeFiles/step_9_grasp_locations_optimization.dir/build.make CMakeFiles/step_9_grasp_locations_optimization.dir/clean
-.PHONY : CMakeFiles/step_9_grasp_locations_optimization.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/step_9_grasp_locations_optimization.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
 # Target rules for target CMakeFiles/step_7_touch_the_object_with_palm.dir
 
 # All Build rule for target.
 CMakeFiles/step_7_touch_the_object_with_palm.dir/all:
 	$(MAKE) -f CMakeFiles/step_7_touch_the_object_with_palm.dir/build.make CMakeFiles/step_7_touch_the_object_with_palm.dir/depend
 	$(MAKE) -f CMakeFiles/step_7_touch_the_object_with_palm.dir/build.make CMakeFiles/step_7_touch_the_object_with_palm.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=19,20 "Built target step_7_touch_the_object_with_palm"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=23,24 "Built target step_7_touch_the_object_with_palm"
 .PHONY : CMakeFiles/step_7_touch_the_object_with_palm.dir/all
 
 # Include target in all.
@@ -208,113 +245,39 @@ clean: CMakeFiles/step_7_touch_the_object_with_palm.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/step_6_allign_hand_with_roi.dir
+# Target rules for target CMakeFiles/step_5_region_of_interest.dir
 
 # All Build rule for target.
-CMakeFiles/step_6_allign_hand_with_roi.dir/all:
-	$(MAKE) -f CMakeFiles/step_6_allign_hand_with_roi.dir/build.make CMakeFiles/step_6_allign_hand_with_roi.dir/depend
-	$(MAKE) -f CMakeFiles/step_6_allign_hand_with_roi.dir/build.make CMakeFiles/step_6_allign_hand_with_roi.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=17,18 "Built target step_6_allign_hand_with_roi"
-.PHONY : CMakeFiles/step_6_allign_hand_with_roi.dir/all
+CMakeFiles/step_5_region_of_interest.dir/all:
+	$(MAKE) -f CMakeFiles/step_5_region_of_interest.dir/build.make CMakeFiles/step_5_region_of_interest.dir/depend
+	$(MAKE) -f CMakeFiles/step_5_region_of_interest.dir/build.make CMakeFiles/step_5_region_of_interest.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=19,20 "Built target step_5_region_of_interest"
+.PHONY : CMakeFiles/step_5_region_of_interest.dir/all
 
 # Include target in all.
-all: CMakeFiles/step_6_allign_hand_with_roi.dir/all
+all: CMakeFiles/step_5_region_of_interest.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/step_6_allign_hand_with_roi.dir/rule: cmake_check_build_system
+CMakeFiles/step_5_region_of_interest.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/step_6_allign_hand_with_roi.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/step_5_region_of_interest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
-.PHONY : CMakeFiles/step_6_allign_hand_with_roi.dir/rule
+.PHONY : CMakeFiles/step_5_region_of_interest.dir/rule
 
 # Convenience name for target.
-step_6_allign_hand_with_roi: CMakeFiles/step_6_allign_hand_with_roi.dir/rule
+step_5_region_of_interest: CMakeFiles/step_5_region_of_interest.dir/rule
 
-.PHONY : step_6_allign_hand_with_roi
-
-# clean rule for target.
-CMakeFiles/step_6_allign_hand_with_roi.dir/clean:
-	$(MAKE) -f CMakeFiles/step_6_allign_hand_with_roi.dir/build.make CMakeFiles/step_6_allign_hand_with_roi.dir/clean
-.PHONY : CMakeFiles/step_6_allign_hand_with_roi.dir/clean
+.PHONY : step_5_region_of_interest
 
 # clean rule for target.
-clean: CMakeFiles/step_6_allign_hand_with_roi.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir
-
-# All Build rule for target.
-CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/all:
-	$(MAKE) -f CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build.make CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/depend
-	$(MAKE) -f CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build.make CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=21,22 "Built target step_8_filter_hand_workspace_merging_with_object_surface"
-.PHONY : CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/all
-
-# Include target in all.
-all: CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
-.PHONY : CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/rule
-
-# Convenience name for target.
-step_8_filter_hand_workspace_merging_with_object_surface: CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/rule
-
-.PHONY : step_8_filter_hand_workspace_merging_with_object_surface
+CMakeFiles/step_5_region_of_interest.dir/clean:
+	$(MAKE) -f CMakeFiles/step_5_region_of_interest.dir/build.make CMakeFiles/step_5_region_of_interest.dir/clean
+.PHONY : CMakeFiles/step_5_region_of_interest.dir/clean
 
 # clean rule for target.
-CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/clean:
-	$(MAKE) -f CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build.make CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/clean
-.PHONY : CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/step_2_hand_workspace_sampling.dir
-
-# All Build rule for target.
-CMakeFiles/step_2_hand_workspace_sampling.dir/all:
-	$(MAKE) -f CMakeFiles/step_2_hand_workspace_sampling.dir/build.make CMakeFiles/step_2_hand_workspace_sampling.dir/depend
-	$(MAKE) -f CMakeFiles/step_2_hand_workspace_sampling.dir/build.make CMakeFiles/step_2_hand_workspace_sampling.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=7,8 "Built target step_2_hand_workspace_sampling"
-.PHONY : CMakeFiles/step_2_hand_workspace_sampling.dir/all
-
-# Include target in all.
-all: CMakeFiles/step_2_hand_workspace_sampling.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/step_2_hand_workspace_sampling.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/step_2_hand_workspace_sampling.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
-.PHONY : CMakeFiles/step_2_hand_workspace_sampling.dir/rule
-
-# Convenience name for target.
-step_2_hand_workspace_sampling: CMakeFiles/step_2_hand_workspace_sampling.dir/rule
-
-.PHONY : step_2_hand_workspace_sampling
-
-# clean rule for target.
-CMakeFiles/step_2_hand_workspace_sampling.dir/clean:
-	$(MAKE) -f CMakeFiles/step_2_hand_workspace_sampling.dir/build.make CMakeFiles/step_2_hand_workspace_sampling.dir/clean
-.PHONY : CMakeFiles/step_2_hand_workspace_sampling.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/step_2_hand_workspace_sampling.dir/clean
+clean: CMakeFiles/step_5_region_of_interest.dir/clean
 
 .PHONY : clean
 
@@ -325,7 +288,7 @@ clean: CMakeFiles/step_2_hand_workspace_sampling.dir/clean
 CMakeFiles/step_3_hand_workspace_ellipsoids.dir/all:
 	$(MAKE) -f CMakeFiles/step_3_hand_workspace_ellipsoids.dir/build.make CMakeFiles/step_3_hand_workspace_ellipsoids.dir/depend
 	$(MAKE) -f CMakeFiles/step_3_hand_workspace_ellipsoids.dir/build.make CMakeFiles/step_3_hand_workspace_ellipsoids.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=9,10 "Built target step_3_hand_workspace_ellipsoids"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=13,14 "Built target step_3_hand_workspace_ellipsoids"
 .PHONY : CMakeFiles/step_3_hand_workspace_ellipsoids.dir/all
 
 # Include target in all.
@@ -356,13 +319,210 @@ clean: CMakeFiles/step_3_hand_workspace_ellipsoids.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/step_2_hand_workspace_sampling.dir
+
+# All Build rule for target.
+CMakeFiles/step_2_hand_workspace_sampling.dir/all:
+	$(MAKE) -f CMakeFiles/step_2_hand_workspace_sampling.dir/build.make CMakeFiles/step_2_hand_workspace_sampling.dir/depend
+	$(MAKE) -f CMakeFiles/step_2_hand_workspace_sampling.dir/build.make CMakeFiles/step_2_hand_workspace_sampling.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=11,12 "Built target step_2_hand_workspace_sampling"
+.PHONY : CMakeFiles/step_2_hand_workspace_sampling.dir/all
+
+# Include target in all.
+all: CMakeFiles/step_2_hand_workspace_sampling.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/step_2_hand_workspace_sampling.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/step_2_hand_workspace_sampling.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+.PHONY : CMakeFiles/step_2_hand_workspace_sampling.dir/rule
+
+# Convenience name for target.
+step_2_hand_workspace_sampling: CMakeFiles/step_2_hand_workspace_sampling.dir/rule
+
+.PHONY : step_2_hand_workspace_sampling
+
+# clean rule for target.
+CMakeFiles/step_2_hand_workspace_sampling.dir/clean:
+	$(MAKE) -f CMakeFiles/step_2_hand_workspace_sampling.dir/build.make CMakeFiles/step_2_hand_workspace_sampling.dir/clean
+.PHONY : CMakeFiles/step_2_hand_workspace_sampling.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/step_2_hand_workspace_sampling.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/roscpp_generate_messages_py.dir
+
+# All Build rule for target.
+CMakeFiles/roscpp_generate_messages_py.dir/all:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_py.dir/build.make CMakeFiles/roscpp_generate_messages_py.dir/depend
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_py.dir/build.make CMakeFiles/roscpp_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_py"
+.PHONY : CMakeFiles/roscpp_generate_messages_py.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/roscpp_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/roscpp_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+.PHONY : CMakeFiles/roscpp_generate_messages_py.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_py: CMakeFiles/roscpp_generate_messages_py.dir/rule
+
+.PHONY : roscpp_generate_messages_py
+
+# clean rule for target.
+CMakeFiles/roscpp_generate_messages_py.dir/clean:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_py.dir/build.make CMakeFiles/roscpp_generate_messages_py.dir/clean
+.PHONY : CMakeFiles/roscpp_generate_messages_py.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/roscpp_generate_messages_py.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/roscpp_generate_messages_eus.dir
+
+# All Build rule for target.
+CMakeFiles/roscpp_generate_messages_eus.dir/all:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_eus.dir/build.make CMakeFiles/roscpp_generate_messages_eus.dir/depend
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_eus.dir/build.make CMakeFiles/roscpp_generate_messages_eus.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_eus"
+.PHONY : CMakeFiles/roscpp_generate_messages_eus.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/roscpp_generate_messages_eus.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/roscpp_generate_messages_eus.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+.PHONY : CMakeFiles/roscpp_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_eus: CMakeFiles/roscpp_generate_messages_eus.dir/rule
+
+.PHONY : roscpp_generate_messages_eus
+
+# clean rule for target.
+CMakeFiles/roscpp_generate_messages_eus.dir/clean:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_eus.dir/build.make CMakeFiles/roscpp_generate_messages_eus.dir/clean
+.PHONY : CMakeFiles/roscpp_generate_messages_eus.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/roscpp_generate_messages_eus.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/roscpp_generate_messages_lisp.dir
+
+# All Build rule for target.
+CMakeFiles/roscpp_generate_messages_lisp.dir/all:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_lisp.dir/build.make CMakeFiles/roscpp_generate_messages_lisp.dir/depend
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_lisp.dir/build.make CMakeFiles/roscpp_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_lisp"
+.PHONY : CMakeFiles/roscpp_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/roscpp_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/roscpp_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+.PHONY : CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_lisp: CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+
+.PHONY : roscpp_generate_messages_lisp
+
+# clean rule for target.
+CMakeFiles/roscpp_generate_messages_lisp.dir/clean:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_lisp.dir/build.make CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+.PHONY : CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir
+
+# All Build rule for target.
+CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_cpp"
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_cpp: CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_cpp
+
+# clean rule for target.
+CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/std_msgs_generate_messages_lisp.dir
+
+# All Build rule for target.
+CMakeFiles/std_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make CMakeFiles/std_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_lisp"
+.PHONY : CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/std_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+.PHONY : CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_lisp: CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : std_msgs_generate_messages_lisp
+
+# clean rule for target.
+CMakeFiles/std_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+.PHONY : CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/step_3_hand_workspace_spheres.dir
 
 # All Build rule for target.
 CMakeFiles/step_3_hand_workspace_spheres.dir/all:
 	$(MAKE) -f CMakeFiles/step_3_hand_workspace_spheres.dir/build.make CMakeFiles/step_3_hand_workspace_spheres.dir/depend
 	$(MAKE) -f CMakeFiles/step_3_hand_workspace_spheres.dir/build.make CMakeFiles/step_3_hand_workspace_spheres.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=11,12 "Built target step_3_hand_workspace_spheres"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=15,16 "Built target step_3_hand_workspace_spheres"
 .PHONY : CMakeFiles/step_3_hand_workspace_spheres.dir/all
 
 # Include target in all.
@@ -393,39 +553,71 @@ clean: CMakeFiles/step_3_hand_workspace_spheres.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir
+# Target rules for target CMakeFiles/roscpp_generate_messages_cpp.dir
 
 # All Build rule for target.
-CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/all:
-	$(MAKE) -f CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/build.make CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/depend
-	$(MAKE) -f CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/build.make CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=5,6 "Built target step_1_allegro_right_hand_model_to_point_cloud"
-.PHONY : CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/all
+CMakeFiles/roscpp_generate_messages_cpp.dir/all:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_cpp.dir/build.make CMakeFiles/roscpp_generate_messages_cpp.dir/depend
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_cpp.dir/build.make CMakeFiles/roscpp_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_cpp"
+.PHONY : CMakeFiles/roscpp_generate_messages_cpp.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/roscpp_generate_messages_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/roscpp_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+.PHONY : CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_cpp: CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+
+.PHONY : roscpp_generate_messages_cpp
+
+# clean rule for target.
+CMakeFiles/roscpp_generate_messages_cpp.dir/clean:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_cpp.dir/build.make CMakeFiles/roscpp_generate_messages_cpp.dir/clean
+.PHONY : CMakeFiles/roscpp_generate_messages_cpp.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/roscpp_generate_messages_cpp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir
+
+# All Build rule for target.
+CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/all:
+	$(MAKE) -f CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build.make CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/depend
+	$(MAKE) -f CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build.make CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=25,26 "Built target step_8_filter_hand_workspace_merging_with_object_surface"
+.PHONY : CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/all
 
 # Include target in all.
-all: CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/all
+all: CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/rule: cmake_check_build_system
+CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
-.PHONY : CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/rule
+.PHONY : CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/rule
 
 # Convenience name for target.
-step_1_allegro_right_hand_model_to_point_cloud: CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/rule
+step_8_filter_hand_workspace_merging_with_object_surface: CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/rule
 
-.PHONY : step_1_allegro_right_hand_model_to_point_cloud
-
-# clean rule for target.
-CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/clean:
-	$(MAKE) -f CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/build.make CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/clean
-.PHONY : CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/clean
+.PHONY : step_8_filter_hand_workspace_merging_with_object_surface
 
 # clean rule for target.
-clean: CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/clean
+CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/clean:
+	$(MAKE) -f CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/build.make CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/clean
+.PHONY : CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/step_8_filter_hand_workspace_merging_with_object_surface.dir/clean
 
 .PHONY : clean
 
@@ -436,7 +628,7 @@ clean: CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/clean
 CMakeFiles/step_4_object_pose_approximation.dir/all:
 	$(MAKE) -f CMakeFiles/step_4_object_pose_approximation.dir/build.make CMakeFiles/step_4_object_pose_approximation.dir/depend
 	$(MAKE) -f CMakeFiles/step_4_object_pose_approximation.dir/build.make CMakeFiles/step_4_object_pose_approximation.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=13,14 "Built target step_4_object_pose_approximation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=17,18 "Built target step_4_object_pose_approximation"
 .PHONY : CMakeFiles/step_4_object_pose_approximation.dir/all
 
 # Include target in all.
@@ -467,39 +659,401 @@ clean: CMakeFiles/step_4_object_pose_approximation.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/step_5_region_of_interest.dir
+# Target rules for target CMakeFiles/rosgraph_msgs_generate_messages_eus.dir
 
 # All Build rule for target.
-CMakeFiles/step_5_region_of_interest.dir/all:
-	$(MAKE) -f CMakeFiles/step_5_region_of_interest.dir/build.make CMakeFiles/step_5_region_of_interest.dir/depend
-	$(MAKE) -f CMakeFiles/step_5_region_of_interest.dir/build.make CMakeFiles/step_5_region_of_interest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=15,16 "Built target step_5_region_of_interest"
-.PHONY : CMakeFiles/step_5_region_of_interest.dir/all
+CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/depend
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_eus"
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_eus: CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_eus
+
+# clean rule for target.
+CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir
+
+# All Build rule for target.
+CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/all:
+	$(MAKE) -f CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/build.make CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/depend
+	$(MAKE) -f CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/build.make CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=9,10 "Built target step_1_allegro_right_hand_model_to_point_cloud"
+.PHONY : CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/all
 
 # Include target in all.
-all: CMakeFiles/step_5_region_of_interest.dir/all
+all: CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/step_5_region_of_interest.dir/rule: cmake_check_build_system
+CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/step_5_region_of_interest.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
-.PHONY : CMakeFiles/step_5_region_of_interest.dir/rule
+.PHONY : CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/rule
 
 # Convenience name for target.
-step_5_region_of_interest: CMakeFiles/step_5_region_of_interest.dir/rule
+step_1_allegro_right_hand_model_to_point_cloud: CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/rule
 
-.PHONY : step_5_region_of_interest
-
-# clean rule for target.
-CMakeFiles/step_5_region_of_interest.dir/clean:
-	$(MAKE) -f CMakeFiles/step_5_region_of_interest.dir/build.make CMakeFiles/step_5_region_of_interest.dir/clean
-.PHONY : CMakeFiles/step_5_region_of_interest.dir/clean
+.PHONY : step_1_allegro_right_hand_model_to_point_cloud
 
 # clean rule for target.
-clean: CMakeFiles/step_5_region_of_interest.dir/clean
+CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/clean:
+	$(MAKE) -f CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/build.make CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/clean
+.PHONY : CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir
+
+# All Build rule for target.
+CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_lisp"
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_lisp: CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_lisp
+
+# clean rule for target.
+CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/step_6_allign_hand_with_roi.dir
+
+# All Build rule for target.
+CMakeFiles/step_6_allign_hand_with_roi.dir/all:
+	$(MAKE) -f CMakeFiles/step_6_allign_hand_with_roi.dir/build.make CMakeFiles/step_6_allign_hand_with_roi.dir/depend
+	$(MAKE) -f CMakeFiles/step_6_allign_hand_with_roi.dir/build.make CMakeFiles/step_6_allign_hand_with_roi.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=21,22 "Built target step_6_allign_hand_with_roi"
+.PHONY : CMakeFiles/step_6_allign_hand_with_roi.dir/all
+
+# Include target in all.
+all: CMakeFiles/step_6_allign_hand_with_roi.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/step_6_allign_hand_with_roi.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/step_6_allign_hand_with_roi.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+.PHONY : CMakeFiles/step_6_allign_hand_with_roi.dir/rule
+
+# Convenience name for target.
+step_6_allign_hand_with_roi: CMakeFiles/step_6_allign_hand_with_roi.dir/rule
+
+.PHONY : step_6_allign_hand_with_roi
+
+# clean rule for target.
+CMakeFiles/step_6_allign_hand_with_roi.dir/clean:
+	$(MAKE) -f CMakeFiles/step_6_allign_hand_with_roi.dir/build.make CMakeFiles/step_6_allign_hand_with_roi.dir/clean
+.PHONY : CMakeFiles/step_6_allign_hand_with_roi.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/step_6_allign_hand_with_roi.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/std_msgs_generate_messages_cpp.dir
+
+# All Build rule for target.
+CMakeFiles/std_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make CMakeFiles/std_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_cpp"
+.PHONY : CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/std_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+.PHONY : CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_cpp: CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : std_msgs_generate_messages_cpp
+
+# clean rule for target.
+CMakeFiles/std_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+.PHONY : CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir
+
+# All Build rule for target.
+CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/depend
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_nodejs"
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_nodejs: CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_nodejs
+
+# clean rule for target.
+CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/rosgraph_msgs_generate_messages_py.dir
+
+# All Build rule for target.
+CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_py"
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_py: CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_py
+
+# clean rule for target.
+CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/std_msgs_generate_messages_eus.dir
+
+# All Build rule for target.
+CMakeFiles/std_msgs_generate_messages_eus.dir/all:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_eus.dir/build.make CMakeFiles/std_msgs_generate_messages_eus.dir/depend
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_eus.dir/build.make CMakeFiles/std_msgs_generate_messages_eus.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_eus"
+.PHONY : CMakeFiles/std_msgs_generate_messages_eus.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/std_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/std_msgs_generate_messages_eus.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+.PHONY : CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_eus: CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+
+.PHONY : std_msgs_generate_messages_eus
+
+# clean rule for target.
+CMakeFiles/std_msgs_generate_messages_eus.dir/clean:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_eus.dir/build.make CMakeFiles/std_msgs_generate_messages_eus.dir/clean
+.PHONY : CMakeFiles/std_msgs_generate_messages_eus.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/std_msgs_generate_messages_eus.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/std_msgs_generate_messages_nodejs.dir
+
+# All Build rule for target.
+CMakeFiles/std_msgs_generate_messages_nodejs.dir/all:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make CMakeFiles/std_msgs_generate_messages_nodejs.dir/depend
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_nodejs"
+.PHONY : CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+.PHONY : CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_nodejs: CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : std_msgs_generate_messages_nodejs
+
+# clean rule for target.
+CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
+.PHONY : CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/step_9_grasp_locations_optimization.dir
+
+# All Build rule for target.
+CMakeFiles/step_9_grasp_locations_optimization.dir/all:
+	$(MAKE) -f CMakeFiles/step_9_grasp_locations_optimization.dir/build.make CMakeFiles/step_9_grasp_locations_optimization.dir/depend
+	$(MAKE) -f CMakeFiles/step_9_grasp_locations_optimization.dir/build.make CMakeFiles/step_9_grasp_locations_optimization.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num=27,28 "Built target step_9_grasp_locations_optimization"
+.PHONY : CMakeFiles/step_9_grasp_locations_optimization.dir/all
+
+# Include target in all.
+all: CMakeFiles/step_9_grasp_locations_optimization.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/step_9_grasp_locations_optimization.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/step_9_grasp_locations_optimization.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+.PHONY : CMakeFiles/step_9_grasp_locations_optimization.dir/rule
+
+# Convenience name for target.
+step_9_grasp_locations_optimization: CMakeFiles/step_9_grasp_locations_optimization.dir/rule
+
+.PHONY : step_9_grasp_locations_optimization
+
+# clean rule for target.
+CMakeFiles/step_9_grasp_locations_optimization.dir/clean:
+	$(MAKE) -f CMakeFiles/step_9_grasp_locations_optimization.dir/build.make CMakeFiles/step_9_grasp_locations_optimization.dir/clean
+.PHONY : CMakeFiles/step_9_grasp_locations_optimization.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/step_9_grasp_locations_optimization.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/roscpp_generate_messages_nodejs.dir
+
+# All Build rule for target.
+CMakeFiles/roscpp_generate_messages_nodejs.dir/all:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make CMakeFiles/roscpp_generate_messages_nodejs.dir/depend
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_nodejs"
+.PHONY : CMakeFiles/roscpp_generate_messages_nodejs.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/roscpp_generate_messages_nodejs.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/roscpp_generate_messages_nodejs.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+.PHONY : CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_nodejs: CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+
+.PHONY : roscpp_generate_messages_nodejs
+
+# clean rule for target.
+CMakeFiles/roscpp_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
+.PHONY : CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/std_msgs_generate_messages_py.dir
+
+# All Build rule for target.
+CMakeFiles/std_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_py.dir/build.make CMakeFiles/std_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_py.dir/build.make CMakeFiles/std_msgs_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/pcl_codes/grasping/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_py"
+.PHONY : CMakeFiles/std_msgs_generate_messages_py.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/std_msgs_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/std_msgs_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping/build/CMakeFiles 0
+.PHONY : CMakeFiles/std_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_py: CMakeFiles/std_msgs_generate_messages_py.dir/rule
+
+.PHONY : std_msgs_generate_messages_py
+
+# clean rule for target.
+CMakeFiles/std_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_py.dir/build.make CMakeFiles/std_msgs_generate_messages_py.dir/clean
+.PHONY : CMakeFiles/std_msgs_generate_messages_py.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/std_msgs_generate_messages_py.dir/clean
 
 .PHONY : clean
 

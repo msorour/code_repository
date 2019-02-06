@@ -45,67 +45,11 @@ boost::shared_ptr<pcl::visualization::PCLVisualizer> realsense_viewer (new pcl::
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr augmented_cloud (new pcl::PointCloud<pcl::PointXYZRGB>);
 pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB> rgb(augmented_cloud);
 
-class ImageConverter{
-  ros::NodeHandle nh_;
-  image_transport::ImageTransport it_;
-  image_transport::Subscriber image_sub_;
 
-  public:
-    std::string window_name="";
-    ImageConverter(std::string image_topic_name) : it_(nh_){
-      // Subscrive to input video feed
-      image_sub_ = it_.subscribe(image_topic_name, 1, &ImageConverter::imageCb, this);
-      cv::namedWindow(window_name);
-    }
-    
-    ~ImageConverter(){cv::destroyWindow(window_name);}
-
-    void imageCb(const sensor_msgs::ImageConstPtr& msg){
-      cv_bridge::CvImagePtr cv_ptr;
-      try{cv_ptr = cv_bridge::toCvCopy(msg);}
-      catch(cv_bridge::Exception& e){ROS_ERROR("cv_bridge exception: %s", e.what()); return;}
-      
-      // Update GUI Window
-      cv::imshow(window_name, cv_ptr->image);
-      cv::waitKey(3);
-    }
-};
-
-
-
-
-
-
-void view_point_cloud( const PointCloudXYZRGB::ConstPtr& msg ){  
-  
-  // Executing the transformation
-  //pcl::PointCloud<pcl::PointXYZ>::Ptr transformed_cloud(new pcl::PointCloud<pcl::PointXYZ>());
-  //pcl::transformPointCloud(*msg, *transformed_cloud, transform);
+void view_point_cloud( const PointCloudXYZRGB::ConstPtr& msg ){
   *augmented_cloud = *msg;
-  
-  if(!realsense_viewer->addPointCloud(augmented_cloud, rgb,"realsense cloud"))
-    realsense_viewer->updatePointCloud<pcl::PointXYZRGB>(msg, "realsense cloud");
-  
-  
-  //realsense_viewer->addCoordinateSystem (1.0);
-  //realsense_viewer->initCameraParameters ();
+  realsense_viewer->updatePointCloud<pcl::PointXYZRGB>(augmented_cloud, rgb, "realsense cloud");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 int main(int argc, char **argv){
@@ -118,9 +62,10 @@ int main(int argc, char **argv){
   
   realsense_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1, "realsense cloud");
   realsense_viewer->setBackgroundColor(255,255,255);
+  realsense_viewer->addCoordinateSystem(0.2);
   
-  
-  ros::Subscriber sub = n.subscribe<PointCloudXYZRGB>("/camera/depth/image_rect_raw", 1, view_point_cloud);
+  realsense_viewer->addPointCloud(augmented_cloud, rgb,"realsense cloud");
+  ros::Subscriber sub = n.subscribe<PointCloudXYZRGB>("/camera/depth/color/points", 1, view_point_cloud);
   
   
 	
@@ -130,33 +75,16 @@ int main(int argc, char **argv){
     loop_rate.sleep();
   }
   
-  
- 	
- 	
- 	
- 	
- 	
  	double time_now = ros::Time::now().toSec();
  	
   while (ros::ok() and !realsense_viewer->wasStopped()){
   	time_now = ros::Time::now().toSec();
   	//cout << "time_now = " << time_now  << endl;
-  	
-  	
-  	
     realsense_viewer->spinOnce();
-  	
   	
     ros::spinOnce();
     loop_rate.sleep();
   }
-
   return 0;
 }
-
-
-
-
-
-
 

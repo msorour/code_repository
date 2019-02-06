@@ -210,6 +210,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/roscpp_generate_messages_cpp.dir/DependInfo.cmake"
   "CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/DependInfo.cmake"
   "CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/DependInfo.cmake"
+  "CMakeFiles/allegro_right_hand_position_controller_traj.dir/DependInfo.cmake"
   "CMakeFiles/std_msgs_generate_messages_cpp.dir/DependInfo.cmake"
   "CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/DependInfo.cmake"
   "CMakeFiles/rosgraph_msgs_generate_messages_py.dir/DependInfo.cmake"

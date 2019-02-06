@@ -465,7 +465,7 @@ void UpdateIndexDesiredPosition(const std_msgs::Float32MultiArray::ConstPtr& _ms
   // _msg->data[0] is ros time in milliseconds
 	for(int i=1; i<4; i++)
 	  index_tip_position_command.data.push_back(_msg->data[i]);
-	std::cout<< "index tip position command = " << index_tip_position_command.data[0] << ", " << index_tip_position_command.data[1] << ", " << index_tip_position_command.data[2] << std::endl;
+	//std::cout<< "index tip position command = " << index_tip_position_command.data[0] << ", " << index_tip_position_command.data[1] << ", " << index_tip_position_command.data[2] << std::endl;
 	position_Pit_desired << index_tip_position_command.data[0],  index_tip_position_command.data[1], index_tip_position_command.data[2];
 }
 
@@ -475,7 +475,7 @@ void UpdateMiddleDesiredPosition(const std_msgs::Float32MultiArray::ConstPtr& _m
   // _msg->data[0] is ros time in milliseconds
 	for(int i=1; i<4; i++)
 	  middle_tip_position_command.data.push_back(_msg->data[i]);
-	std::cout<< "middle tip position command = " << middle_tip_position_command.data[0] << ", " << middle_tip_position_command.data[1] << ", " << middle_tip_position_command.data[2] << std::endl;
+	//std::cout<< "middle tip position command = " << middle_tip_position_command.data[0] << ", " << middle_tip_position_command.data[1] << ", " << middle_tip_position_command.data[2] << std::endl;
 	position_Pmt_desired << middle_tip_position_command.data[0],  middle_tip_position_command.data[1], middle_tip_position_command.data[2];
 }
 
@@ -485,7 +485,7 @@ void UpdatePinkyDesiredPosition(const std_msgs::Float32MultiArray::ConstPtr& _ms
   // _msg->data[0] is ros time in milliseconds
 	for(int i=1; i<4; i++)
 	  pinky_tip_position_command.data.push_back(_msg->data[i]);
-	std::cout<< "pinky tip position command = " << pinky_tip_position_command.data[0] << ", " << pinky_tip_position_command.data[1] << ", " << pinky_tip_position_command.data[2] << std::endl;
+	//std::cout<< "pinky tip position command = " << pinky_tip_position_command.data[0] << ", " << pinky_tip_position_command.data[1] << ", " << pinky_tip_position_command.data[2] << std::endl;
 	position_Ppt_desired << pinky_tip_position_command.data[0],  pinky_tip_position_command.data[1], pinky_tip_position_command.data[2];
 }
 
@@ -495,7 +495,7 @@ void UpdateThumbDesiredPosition(const std_msgs::Float32MultiArray::ConstPtr& _ms
   // _msg->data[0] is ros time in milliseconds
 	for(int i=1; i<4; i++)
 	  thumb_tip_position_command.data.push_back(_msg->data[i]);
-	std::cout<< "thumb tip position command = " << thumb_tip_position_command.data[0] << ", " << thumb_tip_position_command.data[1] << ", " << thumb_tip_position_command.data[2] << std::endl;
+	//std::cout<< "thumb tip position command = " << thumb_tip_position_command.data[0] << ", " << thumb_tip_position_command.data[1] << ", " << thumb_tip_position_command.data[2] << std::endl;
 	position_Ptt_desired << thumb_tip_position_command.data[0],  thumb_tip_position_command.data[1], thumb_tip_position_command.data[2];
 }
 
@@ -540,8 +540,11 @@ int main(int argc, TCHAR* argv[]){
   // ROS
   ros::init(argc, argv, "allegro_right_hand_position_control");
   ros::NodeHandle n;
-  //ros::Publisher finger_tip_position_pub = n.advertise<std_msgs::Float32MultiArray>("/allegro_right_hand/joint_state/finger_tip_position", 10);
-  ros::Publisher  index_joint_position_pub = n.advertise<std_msgs::Float32MultiArray>("/allegro_right_hand/joint_state/index/position", 10);
+  
+  ros::Publisher  index_joint_position_pub  = n.advertise<std_msgs::Float32MultiArray>("/allegro_right_hand/joint_state/index/position", 10);
+  ros::Publisher  middle_joint_position_pub = n.advertise<std_msgs::Float32MultiArray>("/allegro_right_hand/joint_state/middle/position", 10);
+  ros::Publisher  pinky_joint_position_pub  = n.advertise<std_msgs::Float32MultiArray>("/allegro_right_hand/joint_state/pinky/position", 10);
+  ros::Publisher  thumb_joint_position_pub  = n.advertise<std_msgs::Float32MultiArray>("/allegro_right_hand/joint_state/thumb/position", 10);
   
   ros::Subscriber index_tip_position_command_sub  = n.subscribe("/allegro_right_hand/workspace_command/index/tip_position" , 10, UpdateIndexDesiredPosition);
   ros::Subscriber middle_tip_position_command_sub = n.subscribe("/allegro_right_hand/workspace_command/middle/tip_position", 10, UpdateMiddleDesiredPosition);
@@ -561,14 +564,6 @@ int main(int argc, TCHAR* argv[]){
   memset(cur_des, 0, sizeof(cur_des));
   curTime = 0.0;
 
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   if(CreateBHandAlgorithm() && OpenCAN()){
@@ -728,26 +723,34 @@ int main(int argc, TCHAR* argv[]){
       //std::cout<<"thumb_joint_position  = " << thumb_joint_position.transpose() << std::endl;
       
       
-      std_msgs::Float32MultiArray index_joint_position_vector;
+      std_msgs::Float32MultiArray index_joint_position_vector, middle_joint_position_vector, pinky_joint_position_vector, thumb_joint_position_vector;
       index_joint_position_vector.data.clear();
-      ros_time_now = ros::Time::now().toNSec();
-      index_joint_position_vector.data.push_back( (ros_time_now-ros_time_start)/1000000 );
-      for(int i=0; i<4; i++)
-        index_joint_position_vector.data.push_back(index_joint_position(i));
+      middle_joint_position_vector.data.clear();
+      pinky_joint_position_vector.data.clear();
+      thumb_joint_position_vector.data.clear();
       
-      index_joint_position_pub.publish( index_joint_position_vector );
+      ros_time_now = ros::Time::now().toNSec();
+      index_joint_position_vector.data.push_back ( (ros_time_now)/1000000 );
+      middle_joint_position_vector.data.push_back( (ros_time_now)/1000000 );
+      pinky_joint_position_vector.data.push_back ( (ros_time_now)/1000000 );
+      thumb_joint_position_vector.data.push_back ( (ros_time_now)/1000000 );
+      for(int i=0; i<4; i++){
+        index_joint_position_vector.data.push_back(index_joint_position(i));
+        middle_joint_position_vector.data.push_back(middle_joint_position(i));
+        pinky_joint_position_vector.data.push_back(pinky_joint_position(i));
+        thumb_joint_position_vector.data.push_back(thumb_joint_position(i));
+      }
+      index_joint_position_pub.publish ( index_joint_position_vector );
+      middle_joint_position_pub.publish( middle_joint_position_vector );
+      pinky_joint_position_pub.publish ( pinky_joint_position_vector );
+      thumb_joint_position_pub.publish ( thumb_joint_position_vector );
+      
       ros::spinOnce();
       loop_rate.sleep();
-      
     }
-    
-    
-    
   }
-  
   CloseCAN();
   DestroyBHandAlgorithm();
-
   return 0;
 }
 
