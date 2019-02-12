@@ -47,7 +47,7 @@
     	<joint4_init> -1.57</joint4_init>
     	<joint5_init> 0.00 </joint5_init>
     	<joint6_init> 1.57 </joint6_init>
-    	<joint7_init> 0.70 </joint7_init>
+    	<joint7_init> 0.00 </joint7_init>
     	<joint8_init> 0.000</joint8_init>
     	<joint9_init> 0.500</joint9_init>
     	<joint10_init>0.500</joint10_init>
@@ -70,7 +70,7 @@
     	<joint27_init>-1.57</joint27_init>
     	<joint28_init>0.00 </joint28_init>
     	<joint29_init>1.57 </joint29_init>
-    	<joint30_init>0.70 </joint30_init>
+    	<joint30_init>0.00 </joint30_init>
     	
     	<joint1_velocity_limit>1.0 </joint1_velocity_limit>
     	<joint2_velocity_limit>1.0 </joint2_velocity_limit>

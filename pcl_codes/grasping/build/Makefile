@@ -215,6 +215,19 @@ step_2_hand_workspace_sampling/fast:
 .PHONY : step_2_hand_workspace_sampling/fast
 
 #=============================================================================
+# Target rules for targets named step_1_franka_gripper_model_to_point_cloud
+
+# Build rule for target.
+step_1_franka_gripper_model_to_point_cloud: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 step_1_franka_gripper_model_to_point_cloud
+.PHONY : step_1_franka_gripper_model_to_point_cloud
+
+# fast build rule for target.
+step_1_franka_gripper_model_to_point_cloud/fast:
+	$(MAKE) -f CMakeFiles/step_1_franka_gripper_model_to_point_cloud.dir/build.make CMakeFiles/step_1_franka_gripper_model_to_point_cloud.dir/build
+.PHONY : step_1_franka_gripper_model_to_point_cloud/fast
+
+#=============================================================================
 # Target rules for targets named roscpp_generate_messages_py
 
 # Build rule for target.
@@ -622,6 +635,33 @@ step_1_allegro_right_hand_model_to_point_cloud.cpp.s:
 	$(MAKE) -f CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/build.make CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/step_1_allegro_right_hand_model_to_point_cloud.cpp.s
 .PHONY : step_1_allegro_right_hand_model_to_point_cloud.cpp.s
 
+step_1_franka_gripper_model_to_point_cloud.o: step_1_franka_gripper_model_to_point_cloud.cpp.o
+
+.PHONY : step_1_franka_gripper_model_to_point_cloud.o
+
+# target to build an object file
+step_1_franka_gripper_model_to_point_cloud.cpp.o:
+	$(MAKE) -f CMakeFiles/step_1_franka_gripper_model_to_point_cloud.dir/build.make CMakeFiles/step_1_franka_gripper_model_to_point_cloud.dir/step_1_franka_gripper_model_to_point_cloud.cpp.o
+.PHONY : step_1_franka_gripper_model_to_point_cloud.cpp.o
+
+step_1_franka_gripper_model_to_point_cloud.i: step_1_franka_gripper_model_to_point_cloud.cpp.i
+
+.PHONY : step_1_franka_gripper_model_to_point_cloud.i
+
+# target to preprocess a source file
+step_1_franka_gripper_model_to_point_cloud.cpp.i:
+	$(MAKE) -f CMakeFiles/step_1_franka_gripper_model_to_point_cloud.dir/build.make CMakeFiles/step_1_franka_gripper_model_to_point_cloud.dir/step_1_franka_gripper_model_to_point_cloud.cpp.i
+.PHONY : step_1_franka_gripper_model_to_point_cloud.cpp.i
+
+step_1_franka_gripper_model_to_point_cloud.s: step_1_franka_gripper_model_to_point_cloud.cpp.s
+
+.PHONY : step_1_franka_gripper_model_to_point_cloud.s
+
+# target to generate assembly for a file
+step_1_franka_gripper_model_to_point_cloud.cpp.s:
+	$(MAKE) -f CMakeFiles/step_1_franka_gripper_model_to_point_cloud.dir/build.make CMakeFiles/step_1_franka_gripper_model_to_point_cloud.dir/step_1_franka_gripper_model_to_point_cloud.cpp.s
+.PHONY : step_1_franka_gripper_model_to_point_cloud.cpp.s
+
 step_2_hand_workspace_sampling.o: step_2_hand_workspace_sampling.cpp.o
 
 .PHONY : step_2_hand_workspace_sampling.o
@@ -880,6 +920,7 @@ help:
 	@echo "... step_5_region_of_interest"
 	@echo "... step_3_hand_workspace_ellipsoids"
 	@echo "... step_2_hand_workspace_sampling"
+	@echo "... step_1_franka_gripper_model_to_point_cloud"
 	@echo "... roscpp_generate_messages_py"
 	@echo "... roscpp_generate_messages_eus"
 	@echo "... edit_cache"
@@ -917,6 +958,9 @@ help:
 	@echo "... step_1_allegro_right_hand_model_to_point_cloud.o"
 	@echo "... step_1_allegro_right_hand_model_to_point_cloud.i"
 	@echo "... step_1_allegro_right_hand_model_to_point_cloud.s"
+	@echo "... step_1_franka_gripper_model_to_point_cloud.o"
+	@echo "... step_1_franka_gripper_model_to_point_cloud.i"
+	@echo "... step_1_franka_gripper_model_to_point_cloud.s"
 	@echo "... step_2_hand_workspace_sampling.o"
 	@echo "... step_2_hand_workspace_sampling.i"
 	@echo "... step_2_hand_workspace_sampling.s"

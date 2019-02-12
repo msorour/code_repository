@@ -215,6 +215,7 @@ CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/step_1_allegro_rig
  /home/work/code_repository/ros_packages/include/Eigen/src/plugins/CommonCwiseUnaryOps.h
  /home/work/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseBinaryOps.h
  /home/work/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseUnaryOps.h
+ /home/work/code_repository/ros_packages/include/useful_implementations.h
  /opt/ros/kinetic/include/ros/advertise_options.h
  /opt/ros/kinetic/include/ros/advertise_service_options.h
  /opt/ros/kinetic/include/ros/assert.h
@@ -273,7 +274,6 @@ CMakeFiles/step_1_allegro_right_hand_model_to_point_cloud.dir/step_1_allegro_rig
  /opt/ros/kinetic/include/xmlrpcpp/XmlRpcDecl.h
  /opt/ros/kinetic/include/xmlrpcpp/XmlRpcValue.h
  /usr/include/eigen3/Eigen/Core
- /usr/include/eigen3/Eigen/Dense
  /usr/include/eigen3/Eigen/Eigenvalues
  /usr/include/eigen3/Eigen/Geometry
  /usr/include/eigen3/Eigen/LU

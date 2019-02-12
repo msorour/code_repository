@@ -23,6 +23,8 @@ pcl/common/transforms.h
 -
 ../../ros_packages/include/Eigen/Dense
 /home/work/code_repository/ros_packages/include/Eigen/Dense
+../../ros_packages/include/useful_implementations.h
+/home/work/code_repository/ros_packages/include/useful_implementations.h
 
 /home/work/code_repository/ros_packages/include/Eigen/Cholesky
 Core
@@ -1084,6 +1086,10 @@ lapacke_mangling.h
 
 /home/work/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseUnaryOps.h
 
+/home/work/code_repository/ros_packages/include/useful_implementations.h
+Eigen/Dense
+/home/work/code_repository/ros_packages/include/Eigen/Dense
+
 /opt/ros/kinetic/include/ros/advertise_options.h
 ros/forwards.h
 /opt/ros/kinetic/include/ros/ros/forwards.h
@@ -2045,22 +2051,6 @@ src/Core/GlobalFunctions.h
 /usr/include/eigen3/Eigen/src/Core/GlobalFunctions.h
 src/Core/util/ReenableStupidWarnings.h
 /usr/include/eigen3/Eigen/src/Core/util/ReenableStupidWarnings.h
-
-/usr/include/eigen3/Eigen/Dense
-Core
-/usr/include/eigen3/Eigen/Core
-LU
-/usr/include/eigen3/Eigen/LU
-Cholesky
-/usr/include/eigen3/Eigen/Cholesky
-QR
-/usr/include/eigen3/Eigen/QR
-SVD
-/usr/include/eigen3/Eigen/SVD
-Geometry
-/usr/include/eigen3/Eigen/Geometry
-Eigenvalues
-/usr/include/eigen3/Eigen/Eigenvalues
 
 /usr/include/eigen3/Eigen/Eigenvalues
 Core

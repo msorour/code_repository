@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named grasping_algorithm
+
+# Build rule for target.
+grasping_algorithm: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grasping_algorithm
+.PHONY : grasping_algorithm
+
+# fast build rule for target.
+grasping_algorithm/fast:
+	$(MAKE) -f CMakeFiles/grasping_algorithm.dir/build.make CMakeFiles/grasping_algorithm.dir/build
+.PHONY : grasping_algorithm/fast
+
+#=============================================================================
 # Target rules for targets named step_1_downsampling_object_cloud
 
 # Build rule for target.
@@ -398,6 +411,33 @@ cluster_extraction.cpp.s:
 	$(MAKE) -f CMakeFiles/cluster_extraction.dir/build.make CMakeFiles/cluster_extraction.dir/cluster_extraction.cpp.s
 .PHONY : cluster_extraction.cpp.s
 
+grasping_algorithm.o: grasping_algorithm.cpp.o
+
+.PHONY : grasping_algorithm.o
+
+# target to build an object file
+grasping_algorithm.cpp.o:
+	$(MAKE) -f CMakeFiles/grasping_algorithm.dir/build.make CMakeFiles/grasping_algorithm.dir/grasping_algorithm.cpp.o
+.PHONY : grasping_algorithm.cpp.o
+
+grasping_algorithm.i: grasping_algorithm.cpp.i
+
+.PHONY : grasping_algorithm.i
+
+# target to preprocess a source file
+grasping_algorithm.cpp.i:
+	$(MAKE) -f CMakeFiles/grasping_algorithm.dir/build.make CMakeFiles/grasping_algorithm.dir/grasping_algorithm.cpp.i
+.PHONY : grasping_algorithm.cpp.i
+
+grasping_algorithm.s: grasping_algorithm.cpp.s
+
+.PHONY : grasping_algorithm.s
+
+# target to generate assembly for a file
+grasping_algorithm.cpp.s:
+	$(MAKE) -f CMakeFiles/grasping_algorithm.dir/build.make CMakeFiles/grasping_algorithm.dir/grasping_algorithm.cpp.s
+.PHONY : grasping_algorithm.cpp.s
+
 step_1_downsampling_object_cloud.o: step_1_downsampling_object_cloud.cpp.o
 
 .PHONY : step_1_downsampling_object_cloud.o
@@ -432,6 +472,7 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
+	@echo "... grasping_algorithm"
 	@echo "... step_1_downsampling_object_cloud"
 	@echo "... cluster_extraction"
 	@echo "... roscpp_generate_messages_py"
@@ -457,6 +498,9 @@ help:
 	@echo "... cluster_extraction.o"
 	@echo "... cluster_extraction.i"
 	@echo "... cluster_extraction.s"
+	@echo "... grasping_algorithm.o"
+	@echo "... grasping_algorithm.i"
+	@echo "... grasping_algorithm.s"
 	@echo "... step_1_downsampling_object_cloud.o"
 	@echo "... step_1_downsampling_object_cloud.i"
 	@echo "... step_1_downsampling_object_cloud.s"

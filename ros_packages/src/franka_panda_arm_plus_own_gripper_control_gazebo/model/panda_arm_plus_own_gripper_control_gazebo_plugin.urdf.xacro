@@ -1,6 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda_arm_plus_own_gripper">
   
+  <!-- for .dae files visualization problem in Gazebo8 -->
+  <transparent opaque="RGB_ZERO"> <color>1 1 1 1</color> </transparent> <transparency><float>1</float></transparency>
+  
   <xacro:include filename="$(find franka_panda_arm_description)/model/panda_arm_gazebo.xacro" />
   <xacro:include filename="$(find franka_panda_gripper_description)/model/panda_gripper_gazebo.xacro"/>
   <xacro:panda_arm arm_id="panda_arm" xyz="0.62 0.138 0.986" rpy="0 0 ${pi/2}" />

@@ -21,8 +21,8 @@ int main (int argc, char** argv){
   
   // Read in the cloud data
   pcl::PCDReader reader;
-  pcl::PointCloud<pcl::PointXYZ>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZ>), cloud_f (new pcl::PointCloud<pcl::PointXYZ>);
-  reader.read (file_name, *cloud);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZ>);
+  reader.read(file_name, *cloud);
   
   std::cout << "PointCloud before downsampling has: " << cloud->points.size () << " data points." << std::endl; //*
 

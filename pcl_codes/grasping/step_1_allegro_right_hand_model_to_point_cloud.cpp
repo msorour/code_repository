@@ -6,6 +6,7 @@
 #include <pcl/common/common_headers.h>
 #include <pcl/common/transforms.h>
 #include "../../ros_packages/include/Eigen/Dense"
+#include "../../ros_packages/include/useful_implementations.h"
 
 int main(){
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr base_link_cloud   (new pcl::PointCloud<pcl::PointXYZRGB>);
@@ -24,6 +25,10 @@ int main(){
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr index_cloud       (new pcl::PointCloud<pcl::PointXYZRGB>);
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr middle_cloud      (new pcl::PointCloud<pcl::PointXYZRGB>);
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr pinky_cloud       (new pcl::PointCloud<pcl::PointXYZRGB>);
+  
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr connection_cloud  (new pcl::PointCloud<pcl::PointXYZRGB>);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr camera_cloud      (new pcl::PointCloud<pcl::PointXYZRGB>);
+  
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr allegro_hand_cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
   
   boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer(new pcl::visualization::PCLVisualizer ("allegro hand point cloud"));
@@ -31,17 +36,20 @@ int main(){
   std::string id = "cloud";
   
   // load .ply meshes, we first generate .ply file from the .stl file using meshlab software
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allego_right_hand_meshes/base_link.ply", *base_link_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allego_right_hand_meshes/link_0.0.ply", *link_0_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allego_right_hand_meshes/link_1.0.ply", *link_1_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allego_right_hand_meshes/link_2.0.ply", *link_2_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allego_right_hand_meshes/link_3.0.ply", *link_3_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allego_right_hand_meshes/link_3.0_tip.ply", *link_3_tip_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allego_right_hand_meshes/link_12.0_right.ply", *link_12_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allego_right_hand_meshes/link_13.0.ply", *link_13_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allego_right_hand_meshes/link_14.0.ply", *link_14_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allego_right_hand_meshes/link_15.0.ply", *link_15_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allego_right_hand_meshes/link_15.0_tip.ply", *link_15_tip_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/base_link.ply", *base_link_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/link_0.0.ply", *link_0_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/link_1.0.ply", *link_1_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/link_2.0.ply", *link_2_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/link_3.0.ply", *link_3_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/link_3.0_tip.ply", *link_3_tip_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/link_12.0_right.ply", *link_12_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/link_13.0.ply", *link_13_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/link_14.0.ply", *link_14_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/link_15.0.ply", *link_15_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/link_15.0_tip.ply", *link_15_tip_cloud);
+  
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/panda_allegro_realsense_connection.ply", *connection_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/realsense_d435.ply", *camera_cloud);
   
   
   //
@@ -268,14 +276,68 @@ int main(){
   *allegro_hand_cloud = *allegro_hand_cloud + *middle_cloud;
   *allegro_hand_cloud = *allegro_hand_cloud + *pinky_cloud;
   
+  
+  Eigen::Vector3f hand_translation;
+  hand_translation << -0.0091, 0, 0.095+0.02;
+  Eigen::Matrix3f hand_rotation = Rotz_float(M_PI);
+  Eigen::Matrix4f hand_transform;
+  hand_transform << hand_rotation, hand_translation,
+               0, 0, 0, 1;
+  
+  pcl::transformPointCloud(*allegro_hand_cloud, *allegro_hand_cloud, hand_transform);
+  
+  
+  /*
   // modify the hand cloud : shift the zero point to be identical with the kinematic model we use
   for(unsigned int i=0;i<allegro_hand_cloud->points.size();i++){
     allegro_hand_cloud->points[i].x -= 0.0098;
+    allegro_hand_cloud->points[i].x -= 0.0091;
+    
+    allegro_hand_cloud->points[i].z += 0.095;
+    allegro_hand_cloud->points[i].z += 0.02;
+  }
+  */
+  
+  Eigen::Vector3f camera_translation;
+  camera_translation << -0.0673, 0, -0.02;
+  Eigen::Matrix3f camera_rotation = Roty_float(-M_PI/2);
+  Eigen::Matrix4f camera_transform;
+  camera_transform << camera_rotation, camera_translation,
+               0, 0, 0, 1;
+  pcl::transformPointCloud(*camera_cloud, *camera_cloud, camera_transform);
+  
+  Eigen::Vector3f connection_translation;
+  connection_translation << 0, 0, 0;
+  Eigen::Matrix3f connection_rotation = Rotz_float(M_PI/2);
+  Eigen::Matrix4f connection_transform;
+  connection_transform << connection_rotation, connection_translation,
+               0, 0, 0, 1;
+  pcl::transformPointCloud(*connection_cloud, *connection_cloud, connection_transform);
+  
+  
+  *allegro_hand_cloud += *connection_cloud;
+  *allegro_hand_cloud += *camera_cloud;
+  
+  
+  
+  
+  Eigen::Matrix4f inverse_hand_transform;
+  inverse_hand_transform << hand_rotation.transpose(), -hand_rotation.transpose()*hand_translation,  // from khalil's book page 21
+                              0, 0, 0, 1;
+  pcl::transformPointCloud(*allegro_hand_cloud, *allegro_hand_cloud, inverse_hand_transform);
+  
+  
+  // modify the hand cloud : shift the zero point to be identical with the kinematic model we use
+  for(unsigned int i=0;i<allegro_hand_cloud->points.size();i++){
+    allegro_hand_cloud->points[i].x -= 0.0113;
     allegro_hand_cloud->points[i].z += 0.095;
   }
   
+  
+  
+  
   // save the allegro hand cloud data
-  pcl::io::savePCDFileASCII("allegro_right_hand_model_cloud.pcd", *allegro_hand_cloud);
+  pcl::io::savePCDFileASCII("allegro_right_hand_model_cloud_plus_camera.pcd", *allegro_hand_cloud);
   
   
   viewer->addPointCloud( allegro_hand_cloud, "allegro hand point cloud" );

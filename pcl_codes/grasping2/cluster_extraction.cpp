@@ -78,6 +78,9 @@ int main (int argc, char** argv){
     // Get the points associated with the planar surface
     extract.filter (*cloud_plane);
     std::cout << "PointCloud representing the planar component: " << cloud_plane->points.size () << " data points." << std::endl;
+    
+    // save plane cloud
+    writer.write<pcl::PointXYZ>("table.pcd", *cloud_plane, false);
 
     // Remove the planar inliers, extract the rest
     extract.setNegative (true);

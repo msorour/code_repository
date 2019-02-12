@@ -43,6 +43,8 @@ math.h
 -
 unistd.h
 -
+geometry_msgs/PoseStamped.h
+/home/work/code_repository/pcl_codes/grasping2/geometry_msgs/PoseStamped.h
 
 /home/work/code_repository/ros_packages/include/Eigen/Cholesky
 Core

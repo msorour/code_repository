@@ -19,6 +19,8 @@ set (CMAKE_CXX_FLAGS "-O2 -Wall")
 set (CMAKE_CXX_STANDARD 11)
 
 add_executable(step_1_allegro_right_hand_model_to_point_cloud step_1_allegro_right_hand_model_to_point_cloud.cpp)
+add_executable(step_1_franka_gripper_model_to_point_cloud step_1_franka_gripper_model_to_point_cloud.cpp)
+
 add_executable(step_2_hand_workspace_sampling step_2_hand_workspace_sampling.cpp)
 add_executable(step_3_hand_workspace_ellipsoids step_3_hand_workspace_ellipsoids.cpp)
 add_executable(step_3_hand_workspace_spheres step_3_hand_workspace_spheres.cpp)
@@ -35,6 +37,7 @@ add_executable(capture_realsense_point_cloud capture_realsense_point_cloud.cpp)
 add_executable (cluster_extraction cluster_extraction.cpp)
 
 target_link_libraries(step_1_allegro_right_hand_model_to_point_cloud ${PCL_LIBRARIES})
+target_link_libraries(step_1_franka_gripper_model_to_point_cloud ${PCL_LIBRARIES})
 target_link_libraries(step_2_hand_workspace_sampling ${PCL_LIBRARIES})
 target_link_libraries(step_3_hand_workspace_ellipsoids ${PCL_LIBRARIES})
 target_link_libraries(step_3_hand_workspace_spheres ${PCL_LIBRARIES})

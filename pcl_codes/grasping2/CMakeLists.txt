@@ -27,3 +27,6 @@ target_link_libraries (cluster_extraction ${PCL_LIBRARIES})
 
 add_executable (step_1_downsampling_object_cloud step_1_downsampling_object_cloud.cpp)
 target_link_libraries (step_1_downsampling_object_cloud ${PCL_LIBRARIES})
+
+add_executable (grasping_algorithm grasping_algorithm.cpp)
+target_link_libraries (grasping_algorithm ${PCL_LIBRARIES})
