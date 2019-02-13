@@ -55,7 +55,6 @@ int main (int argc, char** argv){
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_cloud_in_object_frame_xyzrgb              (new pcl::PointCloud<pcl::PointXYZRGB>);
   pcl::PointCloud<pcl::PointXYZ>::Ptr    object_cloud_in_gripper_frame_xyz                (new pcl::PointCloud<pcl::PointXYZ>);
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_cloud_in_gripper_frame_xyzrgb             (new pcl::PointCloud<pcl::PointXYZRGB>);
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_cloud_transformed_in_gripper_frame_xyzrgb (new pcl::PointCloud<pcl::PointXYZRGB>);
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_sampling_in_object_frame_xyzrgb           (new pcl::PointCloud<pcl::PointXYZRGB>);
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_sampling_in_camera_optical_frame_xyzrgb   (new pcl::PointCloud<pcl::PointXYZRGB>);
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_sampling_in_gripper_frame_xyzrgb          (new pcl::PointCloud<pcl::PointXYZRGB>);
@@ -63,22 +62,14 @@ int main (int argc, char** argv){
   pcl::PointCloud<pcl::PointXYZ>::Ptr    object_plane_cloud_in_camera_frame_xyz           (new pcl::PointCloud<pcl::PointXYZ>);
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_plane_cloud_in_camera_frame_xyzrgb        (new pcl::PointCloud<pcl::PointXYZRGB>);
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_plane_cloud_in_object_plane_frame_xyzrgb  (new pcl::PointCloud<pcl::PointXYZRGB>);
-  pcl::PointCloud<pcl::PointXYZ>::Ptr    object_plane_cloud_in_object_plane_frame_xyz     (new pcl::PointCloud<pcl::PointXYZ>);
-  pcl::PointCloud<pcl::PointXYZ>::Ptr    object_plane_cloud_in_gripper_frame_xyz          (new pcl::PointCloud<pcl::PointXYZ>);
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_plane_transformed_cloud_xyzrgb            (new pcl::PointCloud<pcl::PointXYZRGB>);
   
-  pcl::PointCloud<pcl::PointXYZ>::Ptr    gripper_cloud_in_gripper_frame_xyz                      (new pcl::PointCloud<pcl::PointXYZ>);
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr gripper_cloud_in_gripper_frame_xyzrgb                   (new pcl::PointCloud<pcl::PointXYZRGB>);
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr gripper_cloud_transformed_in_gripper_frame_xyzrgb       (new pcl::PointCloud<pcl::PointXYZRGB>);
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr gripper_cloud_transformed_in_object_plane_frame_xyzrgb  (new pcl::PointCloud<pcl::PointXYZRGB>);
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr gripper_cloud_in_arm_link8_frame_xyzrgb                 (new pcl::PointCloud<pcl::PointXYZRGB>);
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr gripper_cloud_in_workspace_centroid_frame_xyzrgb        (new pcl::PointCloud<pcl::PointXYZRGB>);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr    gripper_cloud_in_gripper_frame_xyz               (new pcl::PointCloud<pcl::PointXYZ>);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr gripper_cloud_in_gripper_frame_xyzrgb            (new pcl::PointCloud<pcl::PointXYZRGB>);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr gripper_cloud_transformed_in_gripper_frame_xyzrgb(new pcl::PointCloud<pcl::PointXYZRGB>);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr gripper_cloud_in_arm_link8_frame_xyzrgb          (new pcl::PointCloud<pcl::PointXYZRGB>);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr gripper_cloud_in_workspace_centroid_frame_xyzrgb (new pcl::PointCloud<pcl::PointXYZRGB>);
   
-  
-  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> red_color  (object_cloud_in_camera_frame_xyzrgb, 255, 0, 0);
-  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> green_color(object_cloud_in_object_frame_xyzrgb, 0, 255, 0);
-  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> blue_color (object_cloud_in_gripper_frame_xyzrgb, 0, 0, 255);
-  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> grey_color (object_plane_cloud_in_object_plane_frame_xyzrgb, 100, 100, 100);
   
   
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr scene_cloud_xyzrgb                               (new pcl::PointCloud<pcl::PointXYZRGB>);
@@ -94,7 +85,7 @@ int main (int argc, char** argv){
   reader.read(object_plane_file_name, *object_plane_cloud_in_camera_frame_xyz);
   copyPointCloud(*object_cloud_in_camera_frame_xyz, *object_cloud_in_camera_frame_xyzrgb);    // converting to rgb will set values to 0 (object color is black)
   copyPointCloud(*object_plane_cloud_in_camera_frame_xyz, *object_plane_cloud_in_camera_frame_xyzrgb);
-  //copyPointCloud(*gripper_cloud_in_gripper_frame_xyz, *gripper_cloud_in_gripper_frame_xyzrgb);
+  copyPointCloud(*gripper_cloud_in_gripper_frame_xyz, *gripper_cloud_in_gripper_frame_xyzrgb);
     
   std::cout << "Object point cloud before downsampling has:      " << object_cloud_in_camera_frame_xyz->points.size()        << " data points." << std::endl; //*
   std::cout << "Table plane point cloud before downsampling has: " << object_plane_cloud_in_camera_frame_xyz->points.size()  << " data points." << std::endl; //*
@@ -118,15 +109,6 @@ int main (int argc, char** argv){
   
   
   
-  // downsampling gripper point cloud
-  // Create the filtering object: downsample the dataset using a leaf size of 1cm
-  pcl::PointCloud<pcl::PointXYZ>::Ptr gripper_cloud_downsampled (new pcl::PointCloud<pcl::PointXYZ>);
-  vg.setInputCloud(gripper_cloud_in_gripper_frame_xyz);
-  vg.setLeafSize(leaf_size, leaf_size, leaf_size);
-  vg.filter (*gripper_cloud_downsampled);
-  std::cout << "Gripper point cloud after downsampling has:       " << gripper_cloud_downsampled->points.size()  << " data points." << std::endl; //*
-  
-  copyPointCloud(*gripper_cloud_downsampled, *gripper_cloud_in_gripper_frame_xyzrgb);
   
   
   
@@ -148,7 +130,7 @@ int main (int argc, char** argv){
   object_plane_cloud_viewer->addCoordinateSystem(0.1);
   object_plane_cloud_viewer->setCameraPosition(0.569223, 0.312599 , 0.486299, -0.0307768, -0.017401, 0.0562987, -0.38203, -0.231229, 0.894755, 0);
   object_plane_cloud_viewer->setBackgroundColor(255,255,255);
-  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB>object_plane_cloud_rgb(object_plane_cloud_in_camera_frame_xyzrgb, 255, 0, 0);
+  pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB>object_plane_cloud_rgb(object_plane_cloud_in_camera_frame_xyzrgb);
   object_plane_cloud_viewer->addPointCloud(object_plane_cloud_in_camera_frame_xyzrgb, object_plane_cloud_rgb, "object_plane cloud viewer");
   object_plane_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2, "object_plane cloud viewer");
   
@@ -157,10 +139,10 @@ int main (int argc, char** argv){
   gripper_cloud_viewer->addCoordinateSystem(0.1);
   gripper_cloud_viewer->setCameraPosition(0.569223, 0.312599 , 0.486299, -0.0307768, -0.017401, 0.0562987, -0.38203, -0.231229, 0.894755, 0);
   gripper_cloud_viewer->setBackgroundColor(255,255,255);
-  pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB>gripper_cloud_rgb(gripper_cloud_in_gripper_frame_xyzrgb);
-  gripper_cloud_viewer->addPointCloud(gripper_cloud_in_gripper_frame_xyzrgb, gripper_cloud_rgb, "gripper cloud viewer");
-  //pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB>gripper_cloud_rgb(gripper_cloud_in_workspace_centroid_frame_xyzrgb);
-  //gripper_cloud_viewer->addPointCloud(gripper_cloud_in_workspace_centroid_frame_xyzrgb, gripper_cloud_rgb, "gripper cloud viewer");
+  //pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB>gripper_cloud_rgb(gripper_cloud_in_gripper_frame_xyzrgb);
+  //gripper_cloud_viewer->addPointCloud(gripper_cloud_in_gripper_frame_xyzrgb, gripper_cloud_rgb, "gripper cloud viewer");
+  pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB>gripper_cloud_rgb(gripper_cloud_in_workspace_centroid_frame_xyzrgb);
+  gripper_cloud_viewer->addPointCloud(gripper_cloud_in_workspace_centroid_frame_xyzrgb, gripper_cloud_rgb, "gripper cloud viewer");
   gripper_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2, "gripper cloud viewer");
   
   // all scene items
@@ -307,53 +289,78 @@ int main (int argc, char** argv){
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  // transforming point clouds
-  pcl::transformPointCloud(*gripper_cloud_in_gripper_frame_xyzrgb, *gripper_cloud_in_arm_link8_frame_xyzrgb, gripper_wrt_arm_link8_frame_transform);
-  pcl::transformPointCloud(*object_cloud_in_camera_frame_xyzrgb, *object_cloud_in_gripper_frame_xyzrgb, camera_optical_frame_wrt_gripper_frame_transform);
-  
-  pcl::transformPointCloud(*object_plane_cloud_in_camera_frame_xyzrgb, *object_plane_transformed_cloud_xyzrgb, camera_optical_frame_wrt_gripper_frame_transform);
-  pcl::transformPointCloud(*object_plane_cloud_in_camera_frame_xyz, *object_plane_cloud_in_gripper_frame_xyz, camera_optical_frame_wrt_gripper_frame_transform);
-  
-  
-  //pcl::transformPointCloud(*object_cloud_in_camera_frame_xyzrgb, *object_cloud_in_object_frame_xyzrgb, inverse_object_transform);
-  pcl::transformPointCloud(*object_cloud_in_gripper_frame_xyzrgb, *object_cloud_in_object_frame_xyzrgb, inverse_object_transform);
-  
-  //*object_cloud_in_object_frame_xyzrgb += *object_cloud_in_camera_frame_xyzrgb;
-  object_cloud_viewer->updatePointCloud(object_cloud_in_object_frame_xyzrgb, object_cloud_rgb, "object cloud viewer");
-  
-  
-  for(unsigned int i=0; i<object_cloud_in_gripper_frame_xyzrgb->points.size(); i++){
-    object_cloud_in_gripper_frame_xyzrgb->points[i].r=255;
+  /*
+  // STEP#5 : region of interest
+  double roi_h = 0.14/2;  // 28mm is finger tip diameter - along object z-axis
+  double roi_w = 0.17/2;
+  double roi_l = 0.3/2;
+  pcl::PointCloud<pcl::PointXYZRGB> roi_point_cloud;
+  pcl::PointXYZRGB point_xyzrgb;
+  // draw the special ellipsoid
+  // centered at origin with orientation coincident to that of origin frame
+  roi_point_cloud.clear();
+  int point_cloud_samples = 250;
+  double value_x, value_y, value_z;
+  for(unsigned int k=0; k<point_cloud_samples; k++){
+    value_x = (-roi_l) + k*2*roi_l/point_cloud_samples;
+    for(unsigned int l=0; l<point_cloud_samples; l++){
+      value_y = (-roi_w) + l*2*roi_w/point_cloud_samples;
+      value_z = roi_h*sqrt( 1 - pow(value_x, 10)/pow(roi_l, 10) - pow(value_y, 10)/pow(roi_w, 10) );
+      point_xyzrgb.x = value_x;
+      point_xyzrgb.y = value_y;
+      point_xyzrgb.z = value_z;
+      point_xyzrgb.r = 255;  point_xyzrgb.g = 0;  point_xyzrgb.b = 0;
+      roi_point_cloud.points.push_back( point_xyzrgb );
+      
+      value_z = - roi_h*sqrt( 1 - pow(value_x, 10)/pow(roi_l, 10) - pow(value_y, 10)/pow(roi_w, 10) );
+      point_xyzrgb.x = value_x;
+      point_xyzrgb.y = value_y;
+      point_xyzrgb.z = value_z;
+      point_xyzrgb.r = 255;  point_xyzrgb.g = 0;  point_xyzrgb.b = 0;
+      roi_point_cloud.points.push_back( point_xyzrgb );    
+    }
   }
-  for(unsigned int i=0; i<object_plane_transformed_cloud_xyzrgb->points.size(); i++){
-    object_plane_transformed_cloud_xyzrgb->points[i].r=255;
-  }
   
-  *scene_cloud_xyzrgb += *object_cloud_in_camera_frame_xyzrgb;
-  *scene_cloud_xyzrgb += *object_plane_cloud_in_camera_frame_xyzrgb;
-  *scene_cloud_xyzrgb += *object_cloud_in_gripper_frame_xyzrgb;
-  *scene_cloud_xyzrgb += *object_plane_transformed_cloud_xyzrgb;
-  //*scene_cloud_xyzrgb += *gripper_cloud_in_gripper_frame_xyzrgb;
-  *scene_cloud_xyzrgb += *gripper_cloud_in_arm_link8_frame_xyzrgb;
-  *scene_cloud_xyzrgb += *object_sampling_in_gripper_frame_xyzrgb;
-  scene_cloud_viewer->updatePointCloud(scene_cloud_xyzrgb, scene_cloud_rgb, "scene cloud viewer");
+  Eigen::Matrix3f roi_rotation;
+  Eigen::Vector3f roi_translation;
+  Eigen::Matrix4f roi_transform;
+  roi_transform = object_transform;
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr roi_in_global_frame (new pcl::PointCloud<pcl::PointXYZRGB>());
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr roi_in_object_frame (new pcl::PointCloud<pcl::PointXYZRGB>());
+  pcl::transformPointCloud(roi_point_cloud, *roi_in_global_frame, roi_transform);
   
   
+  unsigned int counter = 0;
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> roi_color  (roi_in_global_frame, 255, 0, 255);
+  object_cloud_viewer->addPointCloud<pcl::PointXYZRGB>(roi_in_global_frame, roi_color, "roi cloud");
+  
+  
+  Eigen::Vector3f roi_dimensions;
+  Eigen::Matrix4f roi_transform_in_object_frame;
+  Eigen::Matrix4f hand_transform;
+  Eigen::Matrix3f hand_rotation;
+  Eigen::Vector3f hand_translation;
+  roi_dimensions << roi_l, roi_w, roi_h;
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_roi_sub_cloud_in_object_global_xyzrgb_again (new pcl::PointCloud<pcl::PointXYZRGB>());
+  Eigen::Vector3f hand_dimensions;
+  hand_dimensions << 0.2477, 0.13948, 0.0548;
+  
+  step_5_region_of_interest( *object_cloud_in_camera_frame_xyz, object_transform , object_far_point_in_pos_direction_in_global_frame, object_far_point_in_neg_direction_in_global_frame, object_major_dimensions, roi_dimensions, roi_transform_in_object_frame, object_roi_sub_cloud_in_object_global_xyzrgb_again, hand_transform, hand_dimensions );
   
   
   
+  pcl::transformPointCloud(roi_point_cloud, *roi_in_object_frame, roi_transform_in_object_frame);
+  pcl::transformPointCloud(*roi_in_object_frame, *roi_in_global_frame, roi_transform);
   
+  transform.matrix() = hand_transform;
+  object_cloud_viewer->addCoordinateSystem(0.1, transform, "hand proposed frame", 0);
   
+  transform.matrix() = roi_transform_in_object_frame*object_transform;
+  object_cloud_viewer->addCoordinateSystem(0.1, transform, "region of interest frame", 0);
   
-  
+  object_cloud_viewer->updatePointCloud<pcl::PointXYZRGB>(roi_in_global_frame, roi_color, "roi cloud");
+  object_cloud_viewer->spinOnce();
+  */
   
   
   
@@ -397,7 +404,7 @@ int main (int argc, char** argv){
     }
   }
   
-  //*gripper_cloud_in_gripper_frame_xyzrgb += gripper_support_point_cloud_in_gripper_frame;
+  *gripper_cloud_in_gripper_frame_xyzrgb += gripper_support_point_cloud_in_gripper_frame;
   gripper_cloud_viewer->updatePointCloud(gripper_cloud_in_gripper_frame_xyzrgb, gripper_cloud_rgb, "gripper cloud viewer");
   
   
@@ -419,8 +426,7 @@ int main (int argc, char** argv){
   Eigen::Vector4f object_plane_far_point_in_pos_direction_in_global_frame;
   Eigen::Vector4f object_plane_far_point_in_neg_direction_in_global_frame;
   Eigen::Vector3f object_plane_major_dimensions;
-  //step_4_object_pose_approximation( *object_plane_cloud_in_camera_frame_xyz, object_plane_transform, object_plane_far_point_in_pos_direction_in_global_frame, object_plane_far_point_in_neg_direction_in_global_frame, object_plane_major_dimensions );
-  step_4_object_pose_approximation( *object_plane_cloud_in_gripper_frame_xyz, object_plane_transform, object_plane_far_point_in_pos_direction_in_global_frame, object_plane_far_point_in_neg_direction_in_global_frame, object_plane_major_dimensions );
+  step_4_object_pose_approximation( *object_plane_cloud_in_camera_frame_xyz, object_plane_transform, object_plane_far_point_in_pos_direction_in_global_frame, object_plane_far_point_in_neg_direction_in_global_frame, object_plane_major_dimensions );
   transform.matrix() = object_plane_transform;
   //object_plane_cloud_viewer->addCoordinateSystem(0.1, transform, "object plane coordinate frame", 0);
   object_plane_rotation    << object_plane_transform(0,0), object_plane_transform(0,1), object_plane_transform(0,2),
@@ -432,9 +438,7 @@ int main (int argc, char** argv){
   Eigen::Matrix4f inverse_object_plane_transform;
   inverse_object_plane_transform << object_plane_rotation.transpose(), -object_plane_rotation.transpose()*object_plane_translation,  // from khalil's book page 21
                                     0, 0, 0, 1;
-  pcl::transformPointCloud(*object_plane_cloud_in_gripper_frame_xyz, *object_plane_cloud_in_object_plane_frame_xyz, inverse_object_plane_transform);
-  copyPointCloud(*object_plane_cloud_in_object_plane_frame_xyz, *object_plane_cloud_in_object_plane_frame_xyzrgb);
-  
+  pcl::transformPointCloud(*object_plane_cloud_in_camera_frame_xyzrgb, *object_plane_cloud_in_object_plane_frame_xyzrgb, inverse_object_plane_transform);
   
   // object plane centroid location
   pcl::CentroidPoint<pcl::PointXYZ> object_plane_centroid;
@@ -444,7 +448,7 @@ int main (int argc, char** argv){
   object_plane_centroid.get(object_plane_centroid_point);
   
   object_plane_x = 0.35; object_plane_y = 0.05; object_plane_z = 0.35;
-  object_plane_offset_x = 0.0; object_plane_offset_y = 0.05; object_plane_offset_z = 0.0;
+  object_plane_offset_x = 0.0; object_plane_offset_y = -0.05; object_plane_offset_z = 0.0;
   
   // draw the special ellipsoid
   // centered at origin with orientation coincident to that of origin frame
@@ -472,7 +476,7 @@ int main (int argc, char** argv){
   *object_plane_cloud_in_object_plane_frame_xyzrgb += object_plane_special_ellipsoid_point_cloud_in_object_plane_frame;
   //*object_plane_cloud_in_camera_frame_xyzrgb += object_plane_special_ellipsoid_point_cloud_in_object_plane_frame;
   
-  object_plane_cloud_viewer->updatePointCloud(object_plane_cloud_in_object_plane_frame_xyzrgb, grey_color, "object_plane cloud viewer");
+  object_plane_cloud_viewer->updatePointCloud(object_plane_cloud_in_object_plane_frame_xyzrgb, object_plane_cloud_rgb, "object_plane cloud viewer");
   
   
   
@@ -635,14 +639,45 @@ int main (int argc, char** argv){
       }
     }
   }
+  
+  
+  
+  
+  
+  // transforming point clouds
+  pcl::transformPointCloud(*gripper_cloud_in_gripper_frame_xyzrgb, *gripper_cloud_in_arm_link8_frame_xyzrgb, gripper_wrt_arm_link8_frame_transform);
+  pcl::transformPointCloud(*object_cloud_in_camera_frame_xyzrgb, *object_cloud_in_gripper_frame_xyzrgb, camera_optical_frame_wrt_gripper_frame_transform);
+  pcl::transformPointCloud(*object_plane_cloud_in_camera_frame_xyzrgb, *object_plane_transformed_cloud_xyzrgb, camera_optical_frame_wrt_gripper_frame_transform);
+  
+  // converting object sampling from object frame to camera optical frame to gripper frame
+  //pcl::transformPointCloud(*object_sampling_in_object_frame_xyzrgb, *object_sampling_in_camera_optical_frame_xyzrgb, object_transform);
+  //pcl::transformPointCloud(*object_sampling_in_camera_optical_frame_xyzrgb, *object_sampling_in_gripper_frame_xyzrgb, camera_optical_frame_wrt_gripper_frame_transform);
+  
   pcl::transformPointCloud(*object_sampling_in_object_frame_xyzrgb, *object_sampling_in_gripper_frame_xyzrgb, object_transform);
+  
+  //pcl::transformPointCloud(*object_cloud_in_camera_frame_xyzrgb, *object_cloud_in_object_frame_xyzrgb, inverse_object_transform);
+  pcl::transformPointCloud(*object_cloud_in_gripper_frame_xyzrgb, *object_cloud_in_object_frame_xyzrgb, inverse_object_transform);
+  
   *object_cloud_in_object_frame_xyzrgb += *object_sampling_in_object_frame_xyzrgb;
+  //*object_cloud_in_object_frame_xyzrgb += *object_cloud_in_camera_frame_xyzrgb;
+  object_cloud_viewer->updatePointCloud(object_cloud_in_object_frame_xyzrgb, object_cloud_rgb, "object cloud viewer");
   
   
+  for(unsigned int i=0; i<object_cloud_in_gripper_frame_xyzrgb->points.size(); i++){
+    object_cloud_in_gripper_frame_xyzrgb->points[i].r=255;
+  }
+  for(unsigned int i=0; i<object_plane_transformed_cloud_xyzrgb->points.size(); i++){
+    object_plane_transformed_cloud_xyzrgb->points[i].r=255;
+  }
   
-  
-  
-  
+  *scene_cloud_xyzrgb += *object_cloud_in_camera_frame_xyzrgb;
+  *scene_cloud_xyzrgb += *object_plane_cloud_in_camera_frame_xyzrgb;
+  *scene_cloud_xyzrgb += *object_cloud_in_gripper_frame_xyzrgb;
+  *scene_cloud_xyzrgb += *object_plane_transformed_cloud_xyzrgb;
+  //*scene_cloud_xyzrgb += *gripper_cloud_in_gripper_frame_xyzrgb;
+  *scene_cloud_xyzrgb += *gripper_cloud_in_arm_link8_frame_xyzrgb;
+  *scene_cloud_xyzrgb += *object_sampling_in_gripper_frame_xyzrgb;
+  scene_cloud_viewer->updatePointCloud(scene_cloud_xyzrgb, scene_cloud_rgb, "scene cloud viewer");
   
   
   
@@ -658,6 +693,8 @@ int main (int argc, char** argv){
   
   
   // load workspace spheres and compute the centroid in the gripper frame
+  
+  begin = clock();
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr gripper_augmented_workspace_xyzrgb   (new pcl::PointCloud<pcl::PointXYZRGB>);
   
   
@@ -827,9 +864,16 @@ int main (int argc, char** argv){
   }
   
   
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> red_color  (thumb_workspace_convex_xyzrgb, 255, 0, 0);
   gripper_cloud_viewer->addPointCloud<pcl::PointXYZRGB>(thumb_workspace_convex_xyzrgb, red_color, "red cloud");
+  
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> green_color(index_workspace_convex_xyzrgb, 0, 255, 0);
   gripper_cloud_viewer->addPointCloud<pcl::PointXYZRGB>(index_workspace_convex_xyzrgb, green_color, "green cloud");
+  
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> blue_color (middle_workspace_convex_xyzrgb, 0, 0, 255);
   gripper_cloud_viewer->addPointCloud<pcl::PointXYZRGB>(middle_workspace_convex_xyzrgb, blue_color, "blue cloud");
+  
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> grey_color (pinky_workspace_convex_xyzrgb, 100, 100, 100);
   gripper_cloud_viewer->addPointCloud<pcl::PointXYZRGB>(pinky_workspace_convex_xyzrgb, grey_color, "grey cloud");
   
   *gripper_augmented_workspace_xyzrgb = *thumb_workspace_convex_xyzrgb;
@@ -995,7 +1039,6 @@ int main (int argc, char** argv){
   Eigen::Vector3f gripper_translation;
   Eigen::Matrix3f gripper_rotation;
   Eigen::Matrix4f gripper_transform;
-  Eigen::Matrix4f inverse_gripper_transform;
   
   Eigen::Vector3f workspace_centroid_wrt_gripper_frame_translation;
   Eigen::Matrix3f workspace_centroid_wrt_gripper_frame_rotation;
@@ -1009,9 +1052,92 @@ int main (int argc, char** argv){
                                                             0, 0, 0, 1;
   
   //
-  //pcl::transformPointCloud(*gripper_cloud_in_gripper_frame_xyzrgb, *gripper_cloud_in_workspace_centroid_frame_xyzrgb, workspace_centroid_wrt_gripper_frame_transform_inverse);
-  //gripper_cloud_viewer->updatePointCloud(gripper_cloud_in_workspace_centroid_frame_xyzrgb, gripper_cloud_rgb, "gripper cloud viewer");
+  pcl::transformPointCloud(*gripper_cloud_in_gripper_frame_xyzrgb, *gripper_cloud_in_workspace_centroid_frame_xyzrgb, workspace_centroid_wrt_gripper_frame_transform_inverse);
+  gripper_cloud_viewer->updatePointCloud(gripper_cloud_in_workspace_centroid_frame_xyzrgb, gripper_cloud_rgb, "gripper cloud viewer");
   
+  /*
+  // orient the gripper to match the object orientation
+  // then orient the gripper such that grasping action is perpendicular to the object's major axis (z-axis)
+  Eigen::Matrix4f initial_gripper_orientation_transform;
+  dummy_translation << 0,0,0;
+  if(gripper_file_name.find("allegro_right_hand")!=std::string::npos){
+    initial_gripper_orientation_transform << object_rotation*Rotx_float(M_PI/2), dummy_translation,
+                                             0,0,0,1;
+  }
+  else if(gripper_file_name.find("franka_gripper")!=std::string::npos){
+    initial_gripper_orientation_transform << object_rotation*Roty_float(M_PI/2), dummy_translation,
+                                             0,0,0,1;
+  }
+  
+  scene_cloud_viewer->addPointCloud(gripper_cloud_transformed_in_gripper_frame_xyzrgb, scene_cloud_rgb, "gripper cloud");
+  
+  Eigen::Vector4f gripper_workspace_centroid_point_in_gripper_frame_transformed;
+  int orientation_samples = 10;
+  double orientation_range = M_PI;
+  double orientation_step = orientation_range/orientation_samples;
+  
+  // iterate through all points in the "object sampling cloud"
+  for(unsigned int i=0; i<object_sampling_in_gripper_frame_xyzrgb->points.size(); i++){
+    // STEP
+    // translate the gripper workspace:
+    // place gripper workspace centroid at the current "object sampled point"
+    gripper_workspace_centroid_point_in_gripper_frame_transformed << gripper_workspace_centroid_point_in_gripper_frame.x, gripper_workspace_centroid_point_in_gripper_frame.y, gripper_workspace_centroid_point_in_gripper_frame.z,1;
+    gripper_workspace_centroid_point_in_gripper_frame_transformed = initial_gripper_orientation_transform*gripper_workspace_centroid_point_in_gripper_frame_transformed;
+    dummy_translation << object_sampling_in_gripper_frame_xyzrgb->points[i].x-gripper_workspace_centroid_point_in_gripper_frame_transformed(0),
+                         object_sampling_in_gripper_frame_xyzrgb->points[i].y-gripper_workspace_centroid_point_in_gripper_frame_transformed(1),
+                         object_sampling_in_gripper_frame_xyzrgb->points[i].z-gripper_workspace_centroid_point_in_gripper_frame_transformed(2);
+    dummy_rotation = Eigen::Matrix3f::Identity();
+    dummy_transform << dummy_rotation, dummy_translation,
+                       0,0,0,1;
+    gripper_transform = dummy_transform*initial_gripper_orientation_transform;
+    
+    // STEP
+    // iterate through the range of possible orientations about object's major axis (z-axis)
+    for(unsigned int j=0; j<orientation_samples; j++){
+      // rotate about y-axis for allegro
+      dummy_translation << 0,0,0;
+      dummy_rotation = Roty_float(i*orientation_range/orientation_samples);
+      dummy_transform << dummy_rotation, dummy_translation,
+                         0,0,0,1;
+      //gripper_transform = gripper_transform*workspace_centroid_wrt_gripper_frame_transform*dummy_transform;
+      
+      // consider each point in the "gripper point cloud" as small sphere
+      // check if any point of the "object_plane plane point cloud" is inside any of the "gripper sphere cloud"
+      
+      // if the current gripper pose candidate doesn't collide with object_plane
+      // check if any point of the "object point cloud" is inside any of the "gripper sphere cloud"
+      
+      // if the current gripper pose candidate doesn't collide with the object
+      // register this gripper pose candidate
+      
+      
+      
+    }
+    
+    
+    pcl::transformPointCloud(*gripper_cloud_in_gripper_frame_xyzrgb, *gripper_cloud_transformed_in_gripper_frame_xyzrgb, gripper_transform);
+    //*scene_cloud_xyzrgb += *gripper_cloud_transformed_in_gripper_frame_xyzrgb;
+    scene_cloud_viewer->updatePointCloud(gripper_cloud_transformed_in_gripper_frame_xyzrgb, scene_cloud_rgb, "gripper cloud");
+    scene_cloud_viewer->updatePointCloud(scene_cloud_xyzrgb, scene_cloud_rgb, "scene cloud viewer");
+    //transform.matrix() = gripper_transform*gripper_workspace_centroid_transform_wrt_gripper_frame;
+    //scene_cloud_viewer->addCoordinateSystem(0.1, transform, "gripper transform", 0);
+    scene_cloud_viewer->spinOnce();
+    
+    usleep(1);
+    
+  }
+  */
+  
+  
+  
+  
+  
+  
+  
+  
+  // trial#2
+  // orient the gripper to match the object orientation
+  // then orient the gripper such that grasping action is perpendicular to the object's major axis (z-axis)
   Eigen::Matrix4f initial_gripper_orientation_transform;
   Eigen::Matrix4f gripper_transform_before_orientation_loop;
   scene_cloud_viewer->addPointCloud(gripper_cloud_transformed_in_gripper_frame_xyzrgb, scene_cloud_rgb, "gripper cloud");
@@ -1021,13 +1147,6 @@ int main (int argc, char** argv){
   double orientation_range = M_PI;
   double orientation_step = orientation_range/orientation_samples;
   
-  double special_ellipsoid_value;
-  bool gripper_collides_with_object_plane = false;
-  bool gripper_collides_with_object = false;
-  object_plane_cloud_viewer->addPointCloud(gripper_cloud_transformed_in_object_plane_frame_xyzrgb, object_plane_cloud_rgb, "gripper in object plane frame");
-  gripper_cloud_viewer->addPointCloud(object_cloud_transformed_in_gripper_frame_xyzrgb, gripper_cloud_rgb, "object transformed to gripper frame");
-  
-  // GRASPING CODE
   // iterate through all points in the "object sampling cloud"
   for(unsigned int i=0; i<object_sampling_in_gripper_frame_xyzrgb->points.size(); i++){
   //for(unsigned int i=0; i<1; i++){
@@ -1055,7 +1174,6 @@ int main (int argc, char** argv){
     gripper_transform *= initial_gripper_orientation_transform;
     
     
-    
     // STEP
     // iterate through the range of possible orientations about object's major axis (z-axis)
     gripper_transform_before_orientation_loop = gripper_transform;
@@ -1078,74 +1196,13 @@ int main (int argc, char** argv){
       gripper_rotation << gripper_transform(0,0), gripper_transform(0,1), gripper_transform(0,2),
                           gripper_transform(1,0), gripper_transform(1,1), gripper_transform(1,2),
                           gripper_transform(2,0), gripper_transform(2,1), gripper_transform(2,2);
-      gripper_translation << gripper_transform(0,3), gripper_transform(1,3), gripper_transform(2,3);
-      // transform the gripper to the pose candidate
-      pcl::transformPointCloud(*gripper_cloud_in_gripper_frame_xyzrgb, *gripper_cloud_transformed_in_gripper_frame_xyzrgb, gripper_transform);
       
       
+      // consider each point in the "gripper point cloud" as small sphere
+      // check if any point of the "object_plane plane point cloud" is inside any of the "gripper sphere cloud"
       
-      
-      
-      // STEP
-      // check if the current gripper pose collides with object_plane
-      // transform the gripper point cloud to object_plane frame to be able to use the special ellipsoid
-      pcl::transformPointCloud(*gripper_cloud_transformed_in_gripper_frame_xyzrgb, *gripper_cloud_transformed_in_object_plane_frame_xyzrgb, inverse_object_plane_transform);
-      gripper_collides_with_object_plane = false;
-      for(unsigned int k=0; k<gripper_cloud_transformed_in_object_plane_frame_xyzrgb->size(); k++){
-        special_ellipsoid_value =  pow(gripper_cloud_transformed_in_object_plane_frame_xyzrgb->points[k].x - object_plane_offset_x, 10)/pow(object_plane_x, 10) 
-                                 + pow(gripper_cloud_transformed_in_object_plane_frame_xyzrgb->points[k].y - object_plane_offset_y, 10)/pow(object_plane_y, 10) 
-                                 + pow(gripper_cloud_transformed_in_object_plane_frame_xyzrgb->points[k].z - object_plane_offset_z, 2) /pow(object_plane_z, 2);
-        if( special_ellipsoid_value < 1 ){
-          gripper_collides_with_object_plane = true;
-          break;
-        }
-      }
-      //std::cout << "gripper collides with object plane = " << gripper_collides_with_object_plane << std::endl;
-      
-      
-      
-      
-      
-      // STEP
-      // if the gripper doesn't collide with the table (object plane)
-      // check that the gripper doesn't collide with object
-      // this is done by checking gripper special ellipsoids
-      // first apply the inverse gripper transform on the object cloud
-      inverse_gripper_transform << gripper_rotation.transpose(), -gripper_rotation.transpose()*gripper_translation,  // from khalil's book page 21
-                                   0, 0, 0, 1;
-      pcl::transformPointCloud(*object_cloud_in_gripper_frame_xyzrgb, *object_cloud_transformed_in_gripper_frame_xyzrgb, inverse_gripper_transform);
-      gripper_collides_with_object = false;
-      //if(!gripper_collides_with_object_plane){
-        for(unsigned int k=0; k<object_cloud_transformed_in_gripper_frame_xyzrgb->size(); k++){
-          // for each point check it is not inside any of the gripper ellipsoids
-          for(unsigned int l=0; l<gripper_x.size(); l++){
-            special_ellipsoid_value =  pow(object_cloud_transformed_in_gripper_frame_xyzrgb->points[k].x - gripper_offset_x[l], 10)/pow(gripper_x[l], 10) 
-                                     + pow(object_cloud_transformed_in_gripper_frame_xyzrgb->points[k].y - gripper_offset_y[l], 10)/pow(gripper_y[l], 10) 
-                                     + pow(object_cloud_transformed_in_gripper_frame_xyzrgb->points[k].z - gripper_offset_z[l], 2) /pow(gripper_z[l], 2);
-            if( special_ellipsoid_value < 1 ){
-              gripper_collides_with_object = true;
-              break;
-            }
-          }
-          if(gripper_collides_with_object)
-            break;
-        }
-      //}
-      std::cout << "gripper collides with object = " << gripper_collides_with_object << std::endl;
-      
-      
-      scene_cloud_viewer->updatePointCloud(gripper_cloud_transformed_in_gripper_frame_xyzrgb, scene_cloud_rgb, "gripper cloud");
-      scene_cloud_viewer->updatePointCloud(scene_cloud_xyzrgb, scene_cloud_rgb, "scene cloud viewer");
-      scene_cloud_viewer->spinOnce();
-      
-      // show object transformation in gripper frame
-      gripper_cloud_viewer->updatePointCloud(object_cloud_transformed_in_gripper_frame_xyzrgb, gripper_cloud_rgb, "object transformed to gripper frame");
-      gripper_cloud_viewer->spinOnce();
-      
-      //object_plane_cloud_viewer->updatePointCloud(gripper_cloud_transformed_in_object_plane_frame_xyzrgb, object_plane_cloud_rgb, "gripper in object plane frame");
-      //object_plane_cloud_viewer->spinOnce();
-      
-      
+      // if the current gripper pose candidate doesn't collide with object_plane
+      // check if any point of the "object point cloud" is inside any of the "gripper sphere cloud"
       
       // if the current gripper pose candidate doesn't collide with the object
       // register this gripper pose candidate
@@ -1153,21 +1210,72 @@ int main (int argc, char** argv){
       
       
       
+      pcl::transformPointCloud(*gripper_cloud_in_gripper_frame_xyzrgb, *gripper_cloud_transformed_in_gripper_frame_xyzrgb, gripper_transform);
+      scene_cloud_viewer->updatePointCloud(gripper_cloud_transformed_in_gripper_frame_xyzrgb, scene_cloud_rgb, "gripper cloud");
+      scene_cloud_viewer->updatePointCloud(scene_cloud_xyzrgb, scene_cloud_rgb, "scene cloud viewer");
+      scene_cloud_viewer->spinOnce();
       
     }
-      
+    
+    
+    
   }
   
   
   
   
+  
+  /*
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr   gripper_as_set_of_special_ellipsoids   (new pcl::PointCloud<pcl::PointXYZRGB>);
+  scene_cloud_viewer->addPointCloud(gripper_as_set_of_special_ellipsoids, scene_cloud_rgb, "gripper special ellipsoids");
+  point_cloud_samples = 200;
+  
+  Eigen::Vector3f gripper_sphere_parameter;
+  Eigen::Vector4f gripper_sphere_offset;
+  
+  // draw the special ellipsoid
+  for(unsigned int j=0; j<gripper_x.size(); j++){
+    for(unsigned int k=0; k<point_cloud_samples; k++){
+      gripper_sphere_parameter << gripper_x[j], gripper_y[j], gripper_z[j];
+      gripper_sphere_offset << gripper_offset_x[j], gripper_offset_y[j], gripper_offset_z[j],1;
+      gripper_sphere_parameter = gripper_rotation*gripper_sphere_parameter;
+      gripper_sphere_offset = gripper_transform*gripper_sphere_offset;
+      
+      value_x = (-gripper_sphere_parameter(0) + gripper_sphere_offset(0)) + k*2*gripper_sphere_parameter(0)/point_cloud_samples;
+      for(unsigned int l=0; l<point_cloud_samples; l++){
+        value_y = (-gripper_sphere_parameter(1) + gripper_sphere_offset(1)) + l*2*gripper_sphere_parameter(1)/point_cloud_samples;
+        value_z = gripper_sphere_offset(2) + gripper_sphere_parameter(2)*sqrt( 1 - pow(value_x-gripper_sphere_offset(0), 10)/pow(gripper_sphere_parameter(0), 10) - pow(value_y-gripper_sphere_offset(1), 10)/pow(gripper_sphere_parameter(1), 10) );
+        point_xyzrgb.x = value_x;
+        point_xyzrgb.y = value_y;
+        point_xyzrgb.z = value_z;
+        point_xyzrgb.r = 255;  point_xyzrgb.g = 0;  point_xyzrgb.b = 0;
+        gripper_as_set_of_special_ellipsoids->points.push_back( point_xyzrgb );
+        
+        value_z = gripper_sphere_offset(2) - gripper_sphere_parameter(2)*sqrt( 1 - pow(value_x-gripper_sphere_offset(0), 10)/pow(gripper_sphere_parameter(0), 10) - pow(value_y-gripper_sphere_offset(1), 10)/pow(gripper_sphere_parameter(1), 10) );
+        point_xyzrgb.x = value_x;
+        point_xyzrgb.y = value_y;
+        point_xyzrgb.z = value_z;
+        point_xyzrgb.r = 255;  point_xyzrgb.g = 0;  point_xyzrgb.b = 0;
+        gripper_as_set_of_special_ellipsoids->points.push_back( point_xyzrgb );
+      }
+    }
+  }
+  
+  
+  *gripper_cloud_in_gripper_frame_xyzrgb += *gripper_as_set_of_special_ellipsoids;
+  gripper_cloud_viewer->updatePointCloud(gripper_cloud_in_gripper_frame_xyzrgb, gripper_cloud_rgb, "gripper cloud viewer");
+  
+  scene_cloud_viewer->updatePointCloud(gripper_as_set_of_special_ellipsoids, scene_cloud_rgb, "gripper special ellipsoids");
+  */
+  
+  
+  
+  /*
   pcl::transformPointCloud(*gripper_cloud_in_gripper_frame_xyzrgb, *gripper_cloud_transformed_in_gripper_frame_xyzrgb, gripper_transform);
   scene_cloud_viewer->updatePointCloud(gripper_cloud_transformed_in_gripper_frame_xyzrgb, scene_cloud_rgb, "gripper cloud");
   scene_cloud_viewer->updatePointCloud(scene_cloud_xyzrgb, scene_cloud_rgb, "scene cloud viewer");
   scene_cloud_viewer->spinOnce();
-  
-  object_plane_cloud_viewer->updatePointCloud(gripper_cloud_transformed_in_object_plane_frame_xyzrgb, object_plane_cloud_rgb, "gripper in object plane frame");
-  object_plane_cloud_viewer->spinOnce();
+  */
   
   end = clock();
 	time_spent = (double)( end - begin )/ CLOCKS_PER_SEC;
