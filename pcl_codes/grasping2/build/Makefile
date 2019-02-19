@@ -111,6 +111,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named cloud_visualizer2
+
+# Build rule for target.
+cloud_visualizer2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 cloud_visualizer2
+.PHONY : cloud_visualizer2
+
+# fast build rule for target.
+cloud_visualizer2/fast:
+	$(MAKE) -f CMakeFiles/cloud_visualizer2.dir/build.make CMakeFiles/cloud_visualizer2.dir/build
+.PHONY : cloud_visualizer2/fast
+
+#=============================================================================
+# Target rules for targets named cloud_visualizer
+
+# Build rule for target.
+cloud_visualizer: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 cloud_visualizer
+.PHONY : cloud_visualizer
+
+# fast build rule for target.
+cloud_visualizer/fast:
+	$(MAKE) -f CMakeFiles/cloud_visualizer.dir/build.make CMakeFiles/cloud_visualizer.dir/build
+.PHONY : cloud_visualizer/fast
+
+#=============================================================================
 # Target rules for targets named grasping_algorithm
 
 # Build rule for target.
@@ -254,19 +280,6 @@ rosgraph_msgs_generate_messages_lisp/fast:
 .PHONY : rosgraph_msgs_generate_messages_lisp/fast
 
 #=============================================================================
-# Target rules for targets named capture_realsense_point_cloud
-
-# Build rule for target.
-capture_realsense_point_cloud: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 capture_realsense_point_cloud
-.PHONY : capture_realsense_point_cloud
-
-# fast build rule for target.
-capture_realsense_point_cloud/fast:
-	$(MAKE) -f CMakeFiles/capture_realsense_point_cloud.dir/build.make CMakeFiles/capture_realsense_point_cloud.dir/build
-.PHONY : capture_realsense_point_cloud/fast
-
-#=============================================================================
 # Target rules for targets named std_msgs_generate_messages_cpp
 
 # Build rule for target.
@@ -357,32 +370,72 @@ std_msgs_generate_messages_py/fast:
 	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_py.dir/build.make CMakeFiles/std_msgs_generate_messages_py.dir/build
 .PHONY : std_msgs_generate_messages_py/fast
 
-capture_realsense_point_cloud.o: capture_realsense_point_cloud.cpp.o
+#=============================================================================
+# Target rules for targets named step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table
 
-.PHONY : capture_realsense_point_cloud.o
+# Build rule for target.
+step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table
+.PHONY : step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table
+
+# fast build rule for target.
+step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table/fast:
+	$(MAKE) -f CMakeFiles/step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.dir/build.make CMakeFiles/step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.dir/build
+.PHONY : step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table/fast
+
+cloud_visualizer.o: cloud_visualizer.cpp.o
+
+.PHONY : cloud_visualizer.o
 
 # target to build an object file
-capture_realsense_point_cloud.cpp.o:
-	$(MAKE) -f CMakeFiles/capture_realsense_point_cloud.dir/build.make CMakeFiles/capture_realsense_point_cloud.dir/capture_realsense_point_cloud.cpp.o
-.PHONY : capture_realsense_point_cloud.cpp.o
+cloud_visualizer.cpp.o:
+	$(MAKE) -f CMakeFiles/cloud_visualizer.dir/build.make CMakeFiles/cloud_visualizer.dir/cloud_visualizer.cpp.o
+.PHONY : cloud_visualizer.cpp.o
 
-capture_realsense_point_cloud.i: capture_realsense_point_cloud.cpp.i
+cloud_visualizer.i: cloud_visualizer.cpp.i
 
-.PHONY : capture_realsense_point_cloud.i
+.PHONY : cloud_visualizer.i
 
 # target to preprocess a source file
-capture_realsense_point_cloud.cpp.i:
-	$(MAKE) -f CMakeFiles/capture_realsense_point_cloud.dir/build.make CMakeFiles/capture_realsense_point_cloud.dir/capture_realsense_point_cloud.cpp.i
-.PHONY : capture_realsense_point_cloud.cpp.i
+cloud_visualizer.cpp.i:
+	$(MAKE) -f CMakeFiles/cloud_visualizer.dir/build.make CMakeFiles/cloud_visualizer.dir/cloud_visualizer.cpp.i
+.PHONY : cloud_visualizer.cpp.i
 
-capture_realsense_point_cloud.s: capture_realsense_point_cloud.cpp.s
+cloud_visualizer.s: cloud_visualizer.cpp.s
 
-.PHONY : capture_realsense_point_cloud.s
+.PHONY : cloud_visualizer.s
 
 # target to generate assembly for a file
-capture_realsense_point_cloud.cpp.s:
-	$(MAKE) -f CMakeFiles/capture_realsense_point_cloud.dir/build.make CMakeFiles/capture_realsense_point_cloud.dir/capture_realsense_point_cloud.cpp.s
-.PHONY : capture_realsense_point_cloud.cpp.s
+cloud_visualizer.cpp.s:
+	$(MAKE) -f CMakeFiles/cloud_visualizer.dir/build.make CMakeFiles/cloud_visualizer.dir/cloud_visualizer.cpp.s
+.PHONY : cloud_visualizer.cpp.s
+
+cloud_visualizer2.o: cloud_visualizer2.cpp.o
+
+.PHONY : cloud_visualizer2.o
+
+# target to build an object file
+cloud_visualizer2.cpp.o:
+	$(MAKE) -f CMakeFiles/cloud_visualizer2.dir/build.make CMakeFiles/cloud_visualizer2.dir/cloud_visualizer2.cpp.o
+.PHONY : cloud_visualizer2.cpp.o
+
+cloud_visualizer2.i: cloud_visualizer2.cpp.i
+
+.PHONY : cloud_visualizer2.i
+
+# target to preprocess a source file
+cloud_visualizer2.cpp.i:
+	$(MAKE) -f CMakeFiles/cloud_visualizer2.dir/build.make CMakeFiles/cloud_visualizer2.dir/cloud_visualizer2.cpp.i
+.PHONY : cloud_visualizer2.cpp.i
+
+cloud_visualizer2.s: cloud_visualizer2.cpp.s
+
+.PHONY : cloud_visualizer2.s
+
+# target to generate assembly for a file
+cloud_visualizer2.cpp.s:
+	$(MAKE) -f CMakeFiles/cloud_visualizer2.dir/build.make CMakeFiles/cloud_visualizer2.dir/cloud_visualizer2.cpp.s
+.PHONY : cloud_visualizer2.cpp.s
 
 cluster_extraction.o: cluster_extraction.cpp.o
 
@@ -438,6 +491,33 @@ grasping_algorithm.cpp.s:
 	$(MAKE) -f CMakeFiles/grasping_algorithm.dir/build.make CMakeFiles/grasping_algorithm.dir/grasping_algorithm.cpp.s
 .PHONY : grasping_algorithm.cpp.s
 
+step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.o: step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.cpp.o
+
+.PHONY : step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.o
+
+# target to build an object file
+step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.cpp.o:
+	$(MAKE) -f CMakeFiles/step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.dir/build.make CMakeFiles/step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.dir/step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.cpp.o
+.PHONY : step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.cpp.o
+
+step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.i: step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.cpp.i
+
+.PHONY : step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.i
+
+# target to preprocess a source file
+step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.cpp.i:
+	$(MAKE) -f CMakeFiles/step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.dir/build.make CMakeFiles/step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.dir/step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.cpp.i
+.PHONY : step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.cpp.i
+
+step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.s: step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.cpp.s
+
+.PHONY : step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.s
+
+# target to generate assembly for a file
+step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.cpp.s:
+	$(MAKE) -f CMakeFiles/step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.dir/build.make CMakeFiles/step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.dir/step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.cpp.s
+.PHONY : step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.cpp.s
+
 step_1_downsampling_object_cloud.o: step_1_downsampling_object_cloud.cpp.o
 
 .PHONY : step_1_downsampling_object_cloud.o
@@ -472,6 +552,8 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
+	@echo "... cloud_visualizer2"
+	@echo "... cloud_visualizer"
 	@echo "... grasping_algorithm"
 	@echo "... step_1_downsampling_object_cloud"
 	@echo "... cluster_extraction"
@@ -484,7 +566,6 @@ help:
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... capture_realsense_point_cloud"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
 	@echo "... rosgraph_msgs_generate_messages_py"
@@ -492,15 +573,22 @@ help:
 	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... std_msgs_generate_messages_py"
-	@echo "... capture_realsense_point_cloud.o"
-	@echo "... capture_realsense_point_cloud.i"
-	@echo "... capture_realsense_point_cloud.s"
+	@echo "... step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table"
+	@echo "... cloud_visualizer.o"
+	@echo "... cloud_visualizer.i"
+	@echo "... cloud_visualizer.s"
+	@echo "... cloud_visualizer2.o"
+	@echo "... cloud_visualizer2.i"
+	@echo "... cloud_visualizer2.s"
 	@echo "... cluster_extraction.o"
 	@echo "... cluster_extraction.i"
 	@echo "... cluster_extraction.s"
 	@echo "... grasping_algorithm.o"
 	@echo "... grasping_algorithm.i"
 	@echo "... grasping_algorithm.s"
+	@echo "... step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.o"
+	@echo "... step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.i"
+	@echo "... step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.s"
 	@echo "... step_1_downsampling_object_cloud.o"
 	@echo "... step_1_downsampling_object_cloud.i"
 	@echo "... step_1_downsampling_object_cloud.s"

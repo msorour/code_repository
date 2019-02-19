@@ -29,7 +29,7 @@ void step_4_object_pose_approximation( pcl::PointCloud<pcl::PointXYZ> object_clo
   begin = clock();
   double time_spent;
   
-  std::cout << "size of object point cloud: " << object_cloud_in_global_frame.size() << std::endl << std::endl;
+  //std::cout << "size of object point cloud: " << object_cloud_in_global_frame.size() << std::endl << std::endl;
   
   
   
@@ -389,7 +389,7 @@ void step_4_object_pose_approximation( pcl::PointCloud<pcl::PointXYZ> object_clo
   transform.matrix() = object_transform;
   viewer->addCoordinateSystem(0.1, transform, "object coordinate frame", 0);
   */
-  std::cout << "object transformation matrix: " << std::endl << object_transform << std::endl << std::endl;
+  //std::cout << "object transformation matrix: " << std::endl << object_transform << std::endl << std::endl;
   
   
   
@@ -428,7 +428,7 @@ void step_4_object_pose_approximation( pcl::PointCloud<pcl::PointXYZ> object_clo
   object_major_dimensions <<  fabs(far_point_in_pos_direction.x-far_point_in_neg_direction.x),
                               fabs(far_point_in_pos_direction.y-far_point_in_neg_direction.y),
                               fabs(far_point_in_pos_direction.z-far_point_in_neg_direction.z);
-  std::cout << "object_major_dimensions = " << std::endl << object_major_dimensions << std::endl;
+  //std::cout << "object_major_dimensions = " << std::endl << object_major_dimensions << std::endl;
   
   
   
@@ -437,7 +437,7 @@ void step_4_object_pose_approximation( pcl::PointCloud<pcl::PointXYZ> object_clo
   
   end = clock();
 	time_spent = (double)( end - begin )/ CLOCKS_PER_SEC;
-	std::cout << "time spent to estimate object pose = " << time_spent << std::endl << std::endl;
+	std::cout << "time spent to estimate object pose = " << time_spent << std::endl;
 }
 
 

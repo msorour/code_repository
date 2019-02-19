@@ -19,8 +19,8 @@ set (CMAKE_CXX_FLAGS "-O2 -Wall")
 set (CMAKE_CXX_STANDARD 11)
 
 
-add_executable(capture_realsense_point_cloud capture_realsense_point_cloud.cpp)
-target_link_libraries(capture_realsense_point_cloud pthread ${PCL_LIBRARIES} ${roscpp_LIBRARIES})
+add_executable(step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.cpp)
+target_link_libraries(step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table pthread ${PCL_LIBRARIES} ${roscpp_LIBRARIES})
 
 add_executable (cluster_extraction cluster_extraction.cpp)
 target_link_libraries (cluster_extraction ${PCL_LIBRARIES})
@@ -29,4 +29,10 @@ add_executable (step_1_downsampling_object_cloud step_1_downsampling_object_clou
 target_link_libraries (step_1_downsampling_object_cloud ${PCL_LIBRARIES})
 
 add_executable (grasping_algorithm grasping_algorithm.cpp)
-target_link_libraries (grasping_algorithm ${PCL_LIBRARIES})
+target_link_libraries (grasping_algorithm ${PCL_LIBRARIES} quadprog)
+
+add_executable (cloud_visualizer cloud_visualizer.cpp)
+target_link_libraries (cloud_visualizer ${PCL_LIBRARIES} quadprog)
+
+add_executable (cloud_visualizer2 cloud_visualizer2.cpp)
+target_link_libraries (cloud_visualizer2 ${PCL_LIBRARIES} quadprog)
