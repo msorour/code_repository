@@ -6,27 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/franka3/grasping_msorour/code_repository/QuadProgpp/src/Array.hh
-set
--
-stdexcept
--
-iostream
--
-iomanip
--
-cmath
--
-cstdlib
--
-stdexcept
--
-
-/home/franka3/grasping_msorour/code_repository/QuadProgpp/src/QuadProg++.hh
-Array.hh
-/home/franka3/grasping_msorour/code_repository/QuadProgpp/src/Array.hh
-
-/home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/grasping_algorithm.cpp
+/home/work/code_repository/pcl_codes/grasping2/grasping_algorithm.cpp
 pcl/point_types.h
 -
 pcl/io/pcd_io.h
@@ -40,12 +20,12 @@ time.h
 pcl/common/transforms.h
 -
 include/useful_implementations.h
-/home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/include/useful_implementations.h
+/home/work/code_repository/pcl_codes/grasping2/include/useful_implementations.h
 include/grasping_algorithm.h
-/home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/include/grasping_algorithm.h
+/home/work/code_repository/pcl_codes/grasping2/include/grasping_algorithm.h
 math.h
 -
-/home/franka3/grasping_msorour/code_repository/QuadProgpp/src/QuadProg++.hh
+/home/work/software/QuadProgpp-master/src/QuadProg++.hh
 -
 iostream
 -
@@ -70,9 +50,9 @@ math.h
 unistd.h
 -
 ../../ros_packages/include/Eigen/Dense
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Dense
+/home/work/code_repository/ros_packages/include/Eigen/Dense
 ../../ros_packages/include/useful_implementations.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/useful_implementations.h
+/home/work/code_repository/ros_packages/include/useful_implementations.h
 pcl/common/common_headers.h
 -
 pcl/common/transforms.h
@@ -86,7 +66,7 @@ time.h
 /home/work/software/QuadProgpp-master/src/QuadProg++.hh
 -
 
-/home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/include/grasping_algorithm.h
+/home/work/code_repository/pcl_codes/grasping2/include/grasping_algorithm.h
 iostream
 -
 fstream
@@ -110,9 +90,9 @@ math.h
 unistd.h
 -
 ../../ros_packages/include/Eigen/Dense
-/home/franka3/grasping_msorour/code_repository/pcl_codes/ros_packages/include/Eigen/Dense
+/home/work/code_repository/pcl_codes/ros_packages/include/Eigen/Dense
 ../../ros_packages/include/useful_implementations.h
-/home/franka3/grasping_msorour/code_repository/pcl_codes/ros_packages/include/useful_implementations.h
+/home/work/code_repository/pcl_codes/ros_packages/include/useful_implementations.h
 pcl/common/common_headers.h
 -
 pcl/common/transforms.h
@@ -124,43 +104,43 @@ pcl/io/ply_io.h
 time.h
 -
 
-/home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/include/useful_implementations.h
+/home/work/code_repository/pcl_codes/grasping2/include/useful_implementations.h
 Eigen/Dense
-/home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/include/Eigen/Dense
+/home/work/code_repository/pcl_codes/grasping2/include/Eigen/Dense
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Cholesky
+/home/work/code_repository/ros_packages/include/Eigen/Cholesky
 Core
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Core
+/home/work/code_repository/ros_packages/include/Eigen/Core
 Jacobi
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Jacobi
+/home/work/code_repository/ros_packages/include/Eigen/Jacobi
 src/Core/util/DisableStupidWarnings.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/DisableStupidWarnings.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/DisableStupidWarnings.h
 src/Cholesky/LLT.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Cholesky/LLT.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Cholesky/LLT.h
 src/Cholesky/LDLT.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Cholesky/LDLT.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Cholesky/LDLT.h
 mkl_lapacke.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/mkl_lapacke.h
+/home/work/code_repository/ros_packages/include/Eigen/mkl_lapacke.h
 src/misc/lapacke.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/misc/lapacke.h
+/home/work/code_repository/ros_packages/include/Eigen/src/misc/lapacke.h
 src/Cholesky/LLT_LAPACKE.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Cholesky/LLT_LAPACKE.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Cholesky/LLT_LAPACKE.h
 src/Core/util/ReenableStupidWarnings.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/ReenableStupidWarnings.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/ReenableStupidWarnings.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Core
+/home/work/code_repository/ros_packages/include/Eigen/Core
 src/Core/util/DisableStupidWarnings.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/DisableStupidWarnings.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/DisableStupidWarnings.h
 math_functions.hpp
 -
 new
 -
 src/Core/util/Macros.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/Macros.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/Macros.h
 complex
 -
 src/Core/util/MKL_support.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/MKL_support.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/MKL_support.h
 malloc.h
 -
 immintrin.h
@@ -228,789 +208,789 @@ iostream
 intrin.h
 -
 src/Core/util/Constants.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/Constants.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/Constants.h
 src/Core/util/Meta.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/Meta.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/Meta.h
 src/Core/util/ForwardDeclarations.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/ForwardDeclarations.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/ForwardDeclarations.h
 src/Core/util/StaticAssert.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/StaticAssert.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/StaticAssert.h
 src/Core/util/XprHelper.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/XprHelper.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/XprHelper.h
 src/Core/util/Memory.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/Memory.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/Memory.h
 src/Core/NumTraits.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/NumTraits.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/NumTraits.h
 src/Core/MathFunctions.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/MathFunctions.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/MathFunctions.h
 src/Core/GenericPacketMath.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/GenericPacketMath.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/GenericPacketMath.h
 src/Core/MathFunctionsImpl.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/MathFunctionsImpl.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/MathFunctionsImpl.h
 src/Core/arch/Default/ConjHelper.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/Default/ConjHelper.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/Default/ConjHelper.h
 src/Core/arch/SSE/PacketMath.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/PacketMath.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/PacketMath.h
 src/Core/arch/AVX/PacketMath.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX/PacketMath.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX/PacketMath.h
 src/Core/arch/AVX512/PacketMath.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX512/PacketMath.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX512/PacketMath.h
 src/Core/arch/AVX512/MathFunctions.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX512/MathFunctions.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX512/MathFunctions.h
 src/Core/arch/SSE/PacketMath.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/PacketMath.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/PacketMath.h
 src/Core/arch/SSE/Complex.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/Complex.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/Complex.h
 src/Core/arch/SSE/MathFunctions.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/MathFunctions.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/MathFunctions.h
 src/Core/arch/AVX/PacketMath.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX/PacketMath.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX/PacketMath.h
 src/Core/arch/AVX/MathFunctions.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX/MathFunctions.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX/MathFunctions.h
 src/Core/arch/AVX/Complex.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX/Complex.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX/Complex.h
 src/Core/arch/AVX/TypeCasting.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX/TypeCasting.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX/TypeCasting.h
 src/Core/arch/SSE/TypeCasting.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/TypeCasting.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/TypeCasting.h
 src/Core/arch/SSE/PacketMath.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/PacketMath.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/PacketMath.h
 src/Core/arch/SSE/MathFunctions.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/MathFunctions.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/MathFunctions.h
 src/Core/arch/SSE/Complex.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/Complex.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/Complex.h
 src/Core/arch/SSE/TypeCasting.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/TypeCasting.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/TypeCasting.h
 src/Core/arch/AltiVec/PacketMath.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/AltiVec/PacketMath.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/AltiVec/PacketMath.h
 src/Core/arch/AltiVec/MathFunctions.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/AltiVec/MathFunctions.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/AltiVec/MathFunctions.h
 src/Core/arch/AltiVec/Complex.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/AltiVec/Complex.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/AltiVec/Complex.h
 src/Core/arch/NEON/PacketMath.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/NEON/PacketMath.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/NEON/PacketMath.h
 src/Core/arch/NEON/MathFunctions.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/NEON/MathFunctions.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/NEON/MathFunctions.h
 src/Core/arch/NEON/Complex.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/NEON/Complex.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/NEON/Complex.h
 src/Core/arch/ZVector/PacketMath.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/ZVector/PacketMath.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/ZVector/PacketMath.h
 src/Core/arch/ZVector/MathFunctions.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/ZVector/MathFunctions.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/ZVector/MathFunctions.h
 src/Core/arch/ZVector/Complex.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/ZVector/Complex.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/ZVector/Complex.h
 src/Core/arch/CUDA/Half.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/Half.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/Half.h
 src/Core/arch/CUDA/PacketMathHalf.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/PacketMathHalf.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/PacketMathHalf.h
 src/Core/arch/CUDA/TypeCasting.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/TypeCasting.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/TypeCasting.h
 src/Core/arch/CUDA/PacketMath.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/PacketMath.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/PacketMath.h
 src/Core/arch/CUDA/MathFunctions.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/MathFunctions.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/MathFunctions.h
 src/Core/arch/Default/Settings.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/Default/Settings.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/Default/Settings.h
 src/Core/functors/TernaryFunctors.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/functors/TernaryFunctors.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/functors/TernaryFunctors.h
 src/Core/functors/BinaryFunctors.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/functors/BinaryFunctors.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/functors/BinaryFunctors.h
 src/Core/functors/UnaryFunctors.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/functors/UnaryFunctors.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/functors/UnaryFunctors.h
 src/Core/functors/NullaryFunctors.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/functors/NullaryFunctors.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/functors/NullaryFunctors.h
 src/Core/functors/StlFunctors.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/functors/StlFunctors.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/functors/StlFunctors.h
 src/Core/functors/AssignmentFunctors.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/functors/AssignmentFunctors.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/functors/AssignmentFunctors.h
 src/Core/arch/CUDA/Complex.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/Complex.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/Complex.h
 src/Core/IO.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/IO.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/IO.h
 src/Core/DenseCoeffsBase.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/DenseCoeffsBase.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/DenseCoeffsBase.h
 src/Core/DenseBase.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/DenseBase.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/DenseBase.h
 src/Core/MatrixBase.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/MatrixBase.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/MatrixBase.h
 src/Core/EigenBase.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/EigenBase.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/EigenBase.h
 src/Core/Product.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Product.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Product.h
 src/Core/CoreEvaluators.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/CoreEvaluators.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/CoreEvaluators.h
 src/Core/AssignEvaluator.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/AssignEvaluator.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/AssignEvaluator.h
 src/Core/Assign.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Assign.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Assign.h
 src/Core/ArrayBase.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/ArrayBase.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/ArrayBase.h
 src/Core/util/BlasUtil.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/BlasUtil.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/BlasUtil.h
 src/Core/DenseStorage.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/DenseStorage.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/DenseStorage.h
 src/Core/NestByValue.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/NestByValue.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/NestByValue.h
 src/Core/ReturnByValue.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/ReturnByValue.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/ReturnByValue.h
 src/Core/NoAlias.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/NoAlias.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/NoAlias.h
 src/Core/PlainObjectBase.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/PlainObjectBase.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/PlainObjectBase.h
 src/Core/Matrix.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Matrix.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Matrix.h
 src/Core/Array.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Array.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Array.h
 src/Core/CwiseTernaryOp.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/CwiseTernaryOp.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/CwiseTernaryOp.h
 src/Core/CwiseBinaryOp.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/CwiseBinaryOp.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/CwiseBinaryOp.h
 src/Core/CwiseUnaryOp.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/CwiseUnaryOp.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/CwiseUnaryOp.h
 src/Core/CwiseNullaryOp.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/CwiseNullaryOp.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/CwiseNullaryOp.h
 src/Core/CwiseUnaryView.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/CwiseUnaryView.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/CwiseUnaryView.h
 src/Core/SelfCwiseBinaryOp.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/SelfCwiseBinaryOp.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/SelfCwiseBinaryOp.h
 src/Core/Dot.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Dot.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Dot.h
 src/Core/StableNorm.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/StableNorm.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/StableNorm.h
 src/Core/Stride.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Stride.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Stride.h
 src/Core/MapBase.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/MapBase.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/MapBase.h
 src/Core/Map.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Map.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Map.h
 src/Core/Ref.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Ref.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Ref.h
 src/Core/Block.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Block.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Block.h
 src/Core/VectorBlock.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/VectorBlock.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/VectorBlock.h
 src/Core/Transpose.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Transpose.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Transpose.h
 src/Core/DiagonalMatrix.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/DiagonalMatrix.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/DiagonalMatrix.h
 src/Core/Diagonal.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Diagonal.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Diagonal.h
 src/Core/DiagonalProduct.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/DiagonalProduct.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/DiagonalProduct.h
 src/Core/Redux.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Redux.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Redux.h
 src/Core/Visitor.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Visitor.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Visitor.h
 src/Core/Fuzzy.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Fuzzy.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Fuzzy.h
 src/Core/Swap.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Swap.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Swap.h
 src/Core/CommaInitializer.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/CommaInitializer.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/CommaInitializer.h
 src/Core/GeneralProduct.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/GeneralProduct.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/GeneralProduct.h
 src/Core/Solve.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Solve.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Solve.h
 src/Core/Inverse.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Inverse.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Inverse.h
 src/Core/SolverBase.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/SolverBase.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/SolverBase.h
 src/Core/PermutationMatrix.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/PermutationMatrix.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/PermutationMatrix.h
 src/Core/Transpositions.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Transpositions.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Transpositions.h
 src/Core/TriangularMatrix.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/TriangularMatrix.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/TriangularMatrix.h
 src/Core/SelfAdjointView.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/SelfAdjointView.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/SelfAdjointView.h
 src/Core/products/GeneralBlockPanelKernel.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralBlockPanelKernel.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralBlockPanelKernel.h
 src/Core/products/Parallelizer.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/Parallelizer.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/Parallelizer.h
 src/Core/ProductEvaluators.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/ProductEvaluators.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/ProductEvaluators.h
 src/Core/products/GeneralMatrixVector.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixVector.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixVector.h
 src/Core/products/GeneralMatrixMatrix.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixMatrix.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixMatrix.h
 src/Core/SolveTriangular.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/SolveTriangular.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/SolveTriangular.h
 src/Core/products/GeneralMatrixMatrixTriangular.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixMatrixTriangular.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixMatrixTriangular.h
 src/Core/products/SelfadjointMatrixVector.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointMatrixVector.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointMatrixVector.h
 src/Core/products/SelfadjointMatrixMatrix.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointMatrixMatrix.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointMatrixMatrix.h
 src/Core/products/SelfadjointProduct.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointProduct.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointProduct.h
 src/Core/products/SelfadjointRank2Update.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointRank2Update.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointRank2Update.h
 src/Core/products/TriangularMatrixVector.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularMatrixVector.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularMatrixVector.h
 src/Core/products/TriangularMatrixMatrix.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularMatrixMatrix.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularMatrixMatrix.h
 src/Core/products/TriangularSolverMatrix.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularSolverMatrix.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularSolverMatrix.h
 src/Core/products/TriangularSolverVector.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularSolverVector.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularSolverVector.h
 src/Core/BandMatrix.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/BandMatrix.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/BandMatrix.h
 src/Core/CoreIterators.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/CoreIterators.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/CoreIterators.h
 src/Core/ConditionEstimator.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/ConditionEstimator.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/ConditionEstimator.h
 src/Core/BooleanRedux.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/BooleanRedux.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/BooleanRedux.h
 src/Core/Select.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Select.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Select.h
 src/Core/VectorwiseOp.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/VectorwiseOp.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/VectorwiseOp.h
 src/Core/Random.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Random.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Random.h
 src/Core/Replicate.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Replicate.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Replicate.h
 src/Core/Reverse.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Reverse.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Reverse.h
 src/Core/ArrayWrapper.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/ArrayWrapper.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/ArrayWrapper.h
 src/Core/products/GeneralMatrixMatrix_BLAS.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixMatrix_BLAS.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixMatrix_BLAS.h
 src/Core/products/GeneralMatrixVector_BLAS.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixVector_BLAS.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixVector_BLAS.h
 src/Core/products/GeneralMatrixMatrixTriangular_BLAS.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixMatrixTriangular_BLAS.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixMatrixTriangular_BLAS.h
 src/Core/products/SelfadjointMatrixMatrix_BLAS.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointMatrixMatrix_BLAS.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointMatrixMatrix_BLAS.h
 src/Core/products/SelfadjointMatrixVector_BLAS.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointMatrixVector_BLAS.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointMatrixVector_BLAS.h
 src/Core/products/TriangularMatrixMatrix_BLAS.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularMatrixMatrix_BLAS.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularMatrixMatrix_BLAS.h
 src/Core/products/TriangularMatrixVector_BLAS.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularMatrixVector_BLAS.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularMatrixVector_BLAS.h
 src/Core/products/TriangularSolverMatrix_BLAS.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularSolverMatrix_BLAS.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularSolverMatrix_BLAS.h
 src/Core/Assign_MKL.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Assign_MKL.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Assign_MKL.h
 src/Core/GlobalFunctions.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/GlobalFunctions.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/GlobalFunctions.h
 src/Core/util/ReenableStupidWarnings.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/ReenableStupidWarnings.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/ReenableStupidWarnings.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Dense
+/home/work/code_repository/ros_packages/include/Eigen/Dense
 Core
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Core
+/home/work/code_repository/ros_packages/include/Eigen/Core
 LU
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/LU
+/home/work/code_repository/ros_packages/include/Eigen/LU
 Cholesky
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Cholesky
+/home/work/code_repository/ros_packages/include/Eigen/Cholesky
 QR
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/QR
+/home/work/code_repository/ros_packages/include/Eigen/QR
 SVD
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/SVD
+/home/work/code_repository/ros_packages/include/Eigen/SVD
 Geometry
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Geometry
+/home/work/code_repository/ros_packages/include/Eigen/Geometry
 Eigenvalues
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Eigenvalues
+/home/work/code_repository/ros_packages/include/Eigen/Eigenvalues
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Eigenvalues
+/home/work/code_repository/ros_packages/include/Eigen/Eigenvalues
 Core
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Core
+/home/work/code_repository/ros_packages/include/Eigen/Core
 src/Core/util/DisableStupidWarnings.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/DisableStupidWarnings.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/DisableStupidWarnings.h
 Cholesky
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Cholesky
+/home/work/code_repository/ros_packages/include/Eigen/Cholesky
 Jacobi
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Jacobi
+/home/work/code_repository/ros_packages/include/Eigen/Jacobi
 Householder
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Householder
+/home/work/code_repository/ros_packages/include/Eigen/Householder
 LU
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/LU
+/home/work/code_repository/ros_packages/include/Eigen/LU
 Geometry
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Geometry
+/home/work/code_repository/ros_packages/include/Eigen/Geometry
 src/misc/RealSvd2x2.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/misc/RealSvd2x2.h
+/home/work/code_repository/ros_packages/include/Eigen/src/misc/RealSvd2x2.h
 src/Eigenvalues/Tridiagonalization.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/Tridiagonalization.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/Tridiagonalization.h
 src/Eigenvalues/RealSchur.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/RealSchur.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/RealSchur.h
 src/Eigenvalues/EigenSolver.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/EigenSolver.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/EigenSolver.h
 src/Eigenvalues/SelfAdjointEigenSolver.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/SelfAdjointEigenSolver.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/SelfAdjointEigenSolver.h
 src/Eigenvalues/GeneralizedSelfAdjointEigenSolver.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/GeneralizedSelfAdjointEigenSolver.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/GeneralizedSelfAdjointEigenSolver.h
 src/Eigenvalues/HessenbergDecomposition.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/HessenbergDecomposition.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/HessenbergDecomposition.h
 src/Eigenvalues/ComplexSchur.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/ComplexSchur.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/ComplexSchur.h
 src/Eigenvalues/ComplexEigenSolver.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/ComplexEigenSolver.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/ComplexEigenSolver.h
 src/Eigenvalues/RealQZ.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/RealQZ.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/RealQZ.h
 src/Eigenvalues/GeneralizedEigenSolver.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h
 src/Eigenvalues/MatrixBaseEigenvalues.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h
 mkl_lapacke.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/mkl_lapacke.h
+/home/work/code_repository/ros_packages/include/Eigen/mkl_lapacke.h
 src/misc/lapacke.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/misc/lapacke.h
+/home/work/code_repository/ros_packages/include/Eigen/src/misc/lapacke.h
 src/Eigenvalues/RealSchur_LAPACKE.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/RealSchur_LAPACKE.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/RealSchur_LAPACKE.h
 src/Eigenvalues/ComplexSchur_LAPACKE.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/ComplexSchur_LAPACKE.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/ComplexSchur_LAPACKE.h
 src/Eigenvalues/SelfAdjointEigenSolver_LAPACKE.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/SelfAdjointEigenSolver_LAPACKE.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/SelfAdjointEigenSolver_LAPACKE.h
 src/Core/util/ReenableStupidWarnings.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/ReenableStupidWarnings.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/ReenableStupidWarnings.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Geometry
+/home/work/code_repository/ros_packages/include/Eigen/Geometry
 Core
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Core
+/home/work/code_repository/ros_packages/include/Eigen/Core
 src/Core/util/DisableStupidWarnings.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/DisableStupidWarnings.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/DisableStupidWarnings.h
 SVD
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/SVD
+/home/work/code_repository/ros_packages/include/Eigen/SVD
 LU
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/LU
+/home/work/code_repository/ros_packages/include/Eigen/LU
 limits
 -
 src/Geometry/OrthoMethods.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/OrthoMethods.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/OrthoMethods.h
 src/Geometry/EulerAngles.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/EulerAngles.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/EulerAngles.h
 src/Geometry/Homogeneous.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/Homogeneous.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/Homogeneous.h
 src/Geometry/RotationBase.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/RotationBase.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/RotationBase.h
 src/Geometry/Rotation2D.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/Rotation2D.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/Rotation2D.h
 src/Geometry/Quaternion.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/Quaternion.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/Quaternion.h
 src/Geometry/AngleAxis.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/AngleAxis.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/AngleAxis.h
 src/Geometry/Transform.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/Transform.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/Transform.h
 src/Geometry/Translation.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/Translation.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/Translation.h
 src/Geometry/Scaling.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/Scaling.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/Scaling.h
 src/Geometry/Hyperplane.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/Hyperplane.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/Hyperplane.h
 src/Geometry/ParametrizedLine.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/ParametrizedLine.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/ParametrizedLine.h
 src/Geometry/AlignedBox.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/AlignedBox.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/AlignedBox.h
 src/Geometry/Umeyama.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/Umeyama.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/Umeyama.h
 src/Geometry/arch/Geometry_SSE.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/arch/Geometry_SSE.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/arch/Geometry_SSE.h
 src/Core/util/ReenableStupidWarnings.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/ReenableStupidWarnings.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/ReenableStupidWarnings.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Householder
+/home/work/code_repository/ros_packages/include/Eigen/Householder
 Core
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Core
+/home/work/code_repository/ros_packages/include/Eigen/Core
 src/Core/util/DisableStupidWarnings.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/DisableStupidWarnings.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/DisableStupidWarnings.h
 src/Householder/Householder.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Householder/Householder.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Householder/Householder.h
 src/Householder/HouseholderSequence.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Householder/HouseholderSequence.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Householder/HouseholderSequence.h
 src/Householder/BlockHouseholder.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Householder/BlockHouseholder.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Householder/BlockHouseholder.h
 src/Core/util/ReenableStupidWarnings.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/ReenableStupidWarnings.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/ReenableStupidWarnings.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Jacobi
+/home/work/code_repository/ros_packages/include/Eigen/Jacobi
 Core
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Core
+/home/work/code_repository/ros_packages/include/Eigen/Core
 src/Core/util/DisableStupidWarnings.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/DisableStupidWarnings.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/DisableStupidWarnings.h
 src/Jacobi/Jacobi.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Jacobi/Jacobi.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Jacobi/Jacobi.h
 src/Core/util/ReenableStupidWarnings.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/ReenableStupidWarnings.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/ReenableStupidWarnings.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/LU
+/home/work/code_repository/ros_packages/include/Eigen/LU
 Core
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Core
+/home/work/code_repository/ros_packages/include/Eigen/Core
 src/Core/util/DisableStupidWarnings.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/DisableStupidWarnings.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/DisableStupidWarnings.h
 src/misc/Kernel.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/misc/Kernel.h
+/home/work/code_repository/ros_packages/include/Eigen/src/misc/Kernel.h
 src/misc/Image.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/misc/Image.h
+/home/work/code_repository/ros_packages/include/Eigen/src/misc/Image.h
 src/LU/FullPivLU.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/LU/FullPivLU.h
+/home/work/code_repository/ros_packages/include/Eigen/src/LU/FullPivLU.h
 src/LU/PartialPivLU.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/LU/PartialPivLU.h
+/home/work/code_repository/ros_packages/include/Eigen/src/LU/PartialPivLU.h
 mkl_lapacke.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/mkl_lapacke.h
+/home/work/code_repository/ros_packages/include/Eigen/mkl_lapacke.h
 src/misc/lapacke.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/misc/lapacke.h
+/home/work/code_repository/ros_packages/include/Eigen/src/misc/lapacke.h
 src/LU/PartialPivLU_LAPACKE.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/LU/PartialPivLU_LAPACKE.h
+/home/work/code_repository/ros_packages/include/Eigen/src/LU/PartialPivLU_LAPACKE.h
 src/LU/Determinant.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/LU/Determinant.h
+/home/work/code_repository/ros_packages/include/Eigen/src/LU/Determinant.h
 src/LU/InverseImpl.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/LU/InverseImpl.h
+/home/work/code_repository/ros_packages/include/Eigen/src/LU/InverseImpl.h
 src/LU/arch/Inverse_SSE.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/LU/arch/Inverse_SSE.h
+/home/work/code_repository/ros_packages/include/Eigen/src/LU/arch/Inverse_SSE.h
 src/Core/util/ReenableStupidWarnings.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/ReenableStupidWarnings.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/ReenableStupidWarnings.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/QR
+/home/work/code_repository/ros_packages/include/Eigen/QR
 Core
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Core
+/home/work/code_repository/ros_packages/include/Eigen/Core
 src/Core/util/DisableStupidWarnings.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/DisableStupidWarnings.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/DisableStupidWarnings.h
 Cholesky
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Cholesky
+/home/work/code_repository/ros_packages/include/Eigen/Cholesky
 Jacobi
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Jacobi
+/home/work/code_repository/ros_packages/include/Eigen/Jacobi
 Householder
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Householder
+/home/work/code_repository/ros_packages/include/Eigen/Householder
 src/QR/HouseholderQR.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/QR/HouseholderQR.h
+/home/work/code_repository/ros_packages/include/Eigen/src/QR/HouseholderQR.h
 src/QR/FullPivHouseholderQR.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/QR/FullPivHouseholderQR.h
+/home/work/code_repository/ros_packages/include/Eigen/src/QR/FullPivHouseholderQR.h
 src/QR/ColPivHouseholderQR.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/QR/ColPivHouseholderQR.h
+/home/work/code_repository/ros_packages/include/Eigen/src/QR/ColPivHouseholderQR.h
 src/QR/CompleteOrthogonalDecomposition.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/QR/CompleteOrthogonalDecomposition.h
+/home/work/code_repository/ros_packages/include/Eigen/src/QR/CompleteOrthogonalDecomposition.h
 mkl_lapacke.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/mkl_lapacke.h
+/home/work/code_repository/ros_packages/include/Eigen/mkl_lapacke.h
 src/misc/lapacke.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/misc/lapacke.h
+/home/work/code_repository/ros_packages/include/Eigen/src/misc/lapacke.h
 src/QR/HouseholderQR_LAPACKE.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/QR/HouseholderQR_LAPACKE.h
+/home/work/code_repository/ros_packages/include/Eigen/src/QR/HouseholderQR_LAPACKE.h
 src/QR/ColPivHouseholderQR_LAPACKE.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/QR/ColPivHouseholderQR_LAPACKE.h
+/home/work/code_repository/ros_packages/include/Eigen/src/QR/ColPivHouseholderQR_LAPACKE.h
 src/Core/util/ReenableStupidWarnings.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/ReenableStupidWarnings.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/ReenableStupidWarnings.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/SVD
+/home/work/code_repository/ros_packages/include/Eigen/SVD
 QR
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/QR
+/home/work/code_repository/ros_packages/include/Eigen/QR
 Householder
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Householder
+/home/work/code_repository/ros_packages/include/Eigen/Householder
 Jacobi
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Jacobi
+/home/work/code_repository/ros_packages/include/Eigen/Jacobi
 src/Core/util/DisableStupidWarnings.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/DisableStupidWarnings.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/DisableStupidWarnings.h
 src/misc/RealSvd2x2.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/misc/RealSvd2x2.h
+/home/work/code_repository/ros_packages/include/Eigen/src/misc/RealSvd2x2.h
 src/SVD/UpperBidiagonalization.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/SVD/UpperBidiagonalization.h
+/home/work/code_repository/ros_packages/include/Eigen/src/SVD/UpperBidiagonalization.h
 src/SVD/SVDBase.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/SVD/SVDBase.h
+/home/work/code_repository/ros_packages/include/Eigen/src/SVD/SVDBase.h
 src/SVD/JacobiSVD.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/SVD/JacobiSVD.h
+/home/work/code_repository/ros_packages/include/Eigen/src/SVD/JacobiSVD.h
 src/SVD/BDCSVD.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/SVD/BDCSVD.h
+/home/work/code_repository/ros_packages/include/Eigen/src/SVD/BDCSVD.h
 mkl_lapacke.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/mkl_lapacke.h
+/home/work/code_repository/ros_packages/include/Eigen/mkl_lapacke.h
 src/misc/lapacke.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/misc/lapacke.h
+/home/work/code_repository/ros_packages/include/Eigen/src/misc/lapacke.h
 src/SVD/JacobiSVD_LAPACKE.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/SVD/JacobiSVD_LAPACKE.h
+/home/work/code_repository/ros_packages/include/Eigen/src/SVD/JacobiSVD_LAPACKE.h
 src/Core/util/ReenableStupidWarnings.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/ReenableStupidWarnings.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/ReenableStupidWarnings.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Cholesky/LDLT.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Cholesky/LDLT.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Cholesky/LLT.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Cholesky/LLT.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Cholesky/LLT_LAPACKE.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Cholesky/LLT_LAPACKE.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Array.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Array.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/ArrayBase.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/ArrayBase.h
 ../plugins/CommonCwiseUnaryOps.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/plugins/CommonCwiseUnaryOps.h
+/home/work/code_repository/ros_packages/include/Eigen/src/plugins/CommonCwiseUnaryOps.h
 ../plugins/MatrixCwiseUnaryOps.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseUnaryOps.h
+/home/work/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseUnaryOps.h
 ../plugins/ArrayCwiseUnaryOps.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/plugins/ArrayCwiseUnaryOps.h
+/home/work/code_repository/ros_packages/include/Eigen/src/plugins/ArrayCwiseUnaryOps.h
 ../plugins/CommonCwiseBinaryOps.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/plugins/CommonCwiseBinaryOps.h
+/home/work/code_repository/ros_packages/include/Eigen/src/plugins/CommonCwiseBinaryOps.h
 ../plugins/MatrixCwiseBinaryOps.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseBinaryOps.h
+/home/work/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseBinaryOps.h
 ../plugins/ArrayCwiseBinaryOps.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/plugins/ArrayCwiseBinaryOps.h
+/home/work/code_repository/ros_packages/include/Eigen/src/plugins/ArrayCwiseBinaryOps.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/ArrayWrapper.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/ArrayWrapper.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Assign.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Assign.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/AssignEvaluator.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/AssignEvaluator.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Assign_MKL.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Assign_MKL.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/BandMatrix.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/BandMatrix.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Block.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Block.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/BooleanRedux.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/BooleanRedux.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/CommaInitializer.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/CommaInitializer.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/ConditionEstimator.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/ConditionEstimator.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/CoreEvaluators.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/CoreEvaluators.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/CoreIterators.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/CoreIterators.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/CwiseBinaryOp.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/CwiseBinaryOp.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/CwiseNullaryOp.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/CwiseNullaryOp.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/CwiseTernaryOp.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/CwiseTernaryOp.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/CwiseUnaryOp.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/CwiseUnaryOp.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/CwiseUnaryView.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/CwiseUnaryView.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/DenseBase.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/DenseBase.h
 ../plugins/BlockMethods.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/plugins/BlockMethods.h
+/home/work/code_repository/ros_packages/include/Eigen/src/plugins/BlockMethods.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/DenseCoeffsBase.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/DenseCoeffsBase.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/DenseStorage.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/DenseStorage.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Diagonal.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Diagonal.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/DiagonalMatrix.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/DiagonalMatrix.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/DiagonalProduct.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/DiagonalProduct.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Dot.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Dot.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/EigenBase.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/EigenBase.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Fuzzy.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Fuzzy.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/GeneralProduct.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/GeneralProduct.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/GenericPacketMath.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/GenericPacketMath.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/GlobalFunctions.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/GlobalFunctions.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/IO.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/IO.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Inverse.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Inverse.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Map.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Map.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/MapBase.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/MapBase.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/MathFunctions.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/MathFunctions.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/MathFunctionsImpl.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/MathFunctionsImpl.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Matrix.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Matrix.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/MatrixBase.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/MatrixBase.h
 ../plugins/CommonCwiseUnaryOps.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/plugins/CommonCwiseUnaryOps.h
+/home/work/code_repository/ros_packages/include/Eigen/src/plugins/CommonCwiseUnaryOps.h
 ../plugins/CommonCwiseBinaryOps.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/plugins/CommonCwiseBinaryOps.h
+/home/work/code_repository/ros_packages/include/Eigen/src/plugins/CommonCwiseBinaryOps.h
 ../plugins/MatrixCwiseUnaryOps.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseUnaryOps.h
+/home/work/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseUnaryOps.h
 ../plugins/MatrixCwiseBinaryOps.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseBinaryOps.h
+/home/work/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseBinaryOps.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/NestByValue.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/NestByValue.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/NoAlias.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/NoAlias.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/NumTraits.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/NumTraits.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/PermutationMatrix.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/PermutationMatrix.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/PlainObjectBase.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/PlainObjectBase.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Product.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Product.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/ProductEvaluators.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/ProductEvaluators.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Random.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Random.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Redux.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Redux.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Ref.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Ref.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Replicate.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Replicate.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/ReturnByValue.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/ReturnByValue.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Reverse.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Reverse.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Select.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Select.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/SelfAdjointView.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/SelfAdjointView.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/SelfCwiseBinaryOp.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/SelfCwiseBinaryOp.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Solve.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Solve.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/SolveTriangular.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/SolveTriangular.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/SolverBase.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/SolverBase.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/StableNorm.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/StableNorm.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Stride.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Stride.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Swap.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Swap.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Transpose.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Transpose.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Transpositions.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Transpositions.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/TriangularMatrix.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/TriangularMatrix.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/VectorBlock.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/VectorBlock.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/VectorwiseOp.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/VectorwiseOp.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/Visitor.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/Visitor.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX/Complex.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX/Complex.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX/MathFunctions.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX/MathFunctions.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX/PacketMath.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX/PacketMath.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX/TypeCasting.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX/TypeCasting.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX512/MathFunctions.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX512/MathFunctions.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX512/PacketMath.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/AVX512/PacketMath.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/AltiVec/Complex.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/AltiVec/Complex.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/AltiVec/MathFunctions.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/AltiVec/MathFunctions.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/AltiVec/PacketMath.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/AltiVec/PacketMath.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/Complex.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/Complex.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/Half.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/Half.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/MathFunctions.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/MathFunctions.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/PacketMath.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/PacketMath.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/PacketMathHalf.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/PacketMathHalf.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/TypeCasting.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/CUDA/TypeCasting.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/Default/ConjHelper.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/Default/ConjHelper.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/Default/Settings.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/Default/Settings.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/NEON/Complex.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/NEON/Complex.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/NEON/MathFunctions.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/NEON/MathFunctions.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/NEON/PacketMath.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/NEON/PacketMath.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/Complex.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/Complex.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/MathFunctions.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/MathFunctions.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/PacketMath.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/PacketMath.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/TypeCasting.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/SSE/TypeCasting.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/ZVector/Complex.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/ZVector/Complex.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/ZVector/MathFunctions.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/ZVector/MathFunctions.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/arch/ZVector/PacketMath.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/arch/ZVector/PacketMath.h
 stdint.h
 -
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/functors/AssignmentFunctors.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/functors/AssignmentFunctors.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/functors/BinaryFunctors.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/functors/BinaryFunctors.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/functors/NullaryFunctors.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/functors/NullaryFunctors.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/functors/StlFunctors.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/functors/StlFunctors.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/functors/TernaryFunctors.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/functors/TernaryFunctors.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/functors/UnaryFunctors.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/functors/UnaryFunctors.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralBlockPanelKernel.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralBlockPanelKernel.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixMatrix.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixMatrix.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixMatrixTriangular.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixMatrixTriangular.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixMatrixTriangular_BLAS.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixMatrixTriangular_BLAS.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixMatrix_BLAS.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixMatrix_BLAS.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixVector.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixVector.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixVector_BLAS.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/GeneralMatrixVector_BLAS.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/Parallelizer.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/Parallelizer.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointMatrixMatrix.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointMatrixMatrix.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointMatrixMatrix_BLAS.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointMatrixMatrix_BLAS.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointMatrixVector.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointMatrixVector.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointMatrixVector_BLAS.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointMatrixVector_BLAS.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointProduct.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointProduct.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointRank2Update.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/SelfadjointRank2Update.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularMatrixMatrix.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularMatrixMatrix.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularMatrixMatrix_BLAS.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularMatrixMatrix_BLAS.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularMatrixVector.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularMatrixVector.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularMatrixVector_BLAS.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularMatrixVector_BLAS.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularSolverMatrix.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularSolverMatrix.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularSolverMatrix_BLAS.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularSolverMatrix_BLAS.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularSolverVector.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/products/TriangularSolverVector.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/BlasUtil.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/BlasUtil.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/Constants.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/Constants.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/DisableStupidWarnings.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/DisableStupidWarnings.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/ForwardDeclarations.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/ForwardDeclarations.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/MKL_support.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/MKL_support.h
 mkl.h
 -
 ../../misc/blas.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/misc/blas.h
+/home/work/code_repository/ros_packages/include/Eigen/src/misc/blas.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/Macros.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/Macros.h
 cstdlib
 -
 iostream
 -
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/Memory.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/Memory.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/Meta.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/Meta.h
 cfloat
 -
 math_constants.h
@@ -1018,151 +998,151 @@ math_constants.h
 cstdint
 -
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/ReenableStupidWarnings.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/ReenableStupidWarnings.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/StaticAssert.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/StaticAssert.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Core/util/XprHelper.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Core/util/XprHelper.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./ComplexSchur.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./ComplexSchur.h
 ./HessenbergDecomposition.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/././HessenbergDecomposition.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/././HessenbergDecomposition.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./HessenbergDecomposition.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./HessenbergDecomposition.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./RealQZ.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./RealQZ.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./RealSchur.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./RealSchur.h
 ./HessenbergDecomposition.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/././HessenbergDecomposition.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/././HessenbergDecomposition.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./Tridiagonalization.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./Tridiagonalization.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/ComplexEigenSolver.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/ComplexEigenSolver.h
 ./ComplexSchur.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./ComplexSchur.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./ComplexSchur.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/ComplexSchur.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/ComplexSchur.h
 ./HessenbergDecomposition.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./HessenbergDecomposition.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./HessenbergDecomposition.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/ComplexSchur_LAPACKE.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/ComplexSchur_LAPACKE.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/EigenSolver.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/EigenSolver.h
 ./RealSchur.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./RealSchur.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./RealSchur.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h
 ./RealQZ.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./RealQZ.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./RealQZ.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/GeneralizedSelfAdjointEigenSolver.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/GeneralizedSelfAdjointEigenSolver.h
 ./Tridiagonalization.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./Tridiagonalization.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./Tridiagonalization.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/HessenbergDecomposition.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/HessenbergDecomposition.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/RealQZ.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/RealQZ.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/RealSchur.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/RealSchur.h
 ./HessenbergDecomposition.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./HessenbergDecomposition.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./HessenbergDecomposition.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/RealSchur_LAPACKE.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/RealSchur_LAPACKE.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/SelfAdjointEigenSolver.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/SelfAdjointEigenSolver.h
 ./Tridiagonalization.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./Tridiagonalization.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/./Tridiagonalization.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/SelfAdjointEigenSolver_LAPACKE.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/SelfAdjointEigenSolver_LAPACKE.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Eigenvalues/Tridiagonalization.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Eigenvalues/Tridiagonalization.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/AlignedBox.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/AlignedBox.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/AngleAxis.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/AngleAxis.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/EulerAngles.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/EulerAngles.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/Homogeneous.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/Homogeneous.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/Hyperplane.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/Hyperplane.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/OrthoMethods.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/OrthoMethods.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/ParametrizedLine.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/ParametrizedLine.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/Quaternion.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/Quaternion.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/Rotation2D.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/Rotation2D.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/RotationBase.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/RotationBase.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/Scaling.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/Scaling.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/Transform.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/Transform.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/Translation.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/Translation.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/Umeyama.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/Umeyama.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Geometry/arch/Geometry_SSE.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Geometry/arch/Geometry_SSE.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Householder/BlockHouseholder.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Householder/BlockHouseholder.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Householder/Householder.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Householder/Householder.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Householder/HouseholderSequence.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Householder/HouseholderSequence.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/Jacobi/Jacobi.h
+/home/work/code_repository/ros_packages/include/Eigen/src/Jacobi/Jacobi.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/LU/Determinant.h
+/home/work/code_repository/ros_packages/include/Eigen/src/LU/Determinant.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/LU/FullPivLU.h
+/home/work/code_repository/ros_packages/include/Eigen/src/LU/FullPivLU.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/LU/InverseImpl.h
+/home/work/code_repository/ros_packages/include/Eigen/src/LU/InverseImpl.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/LU/PartialPivLU.h
+/home/work/code_repository/ros_packages/include/Eigen/src/LU/PartialPivLU.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/LU/PartialPivLU_LAPACKE.h
+/home/work/code_repository/ros_packages/include/Eigen/src/LU/PartialPivLU_LAPACKE.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/LU/arch/Inverse_SSE.h
+/home/work/code_repository/ros_packages/include/Eigen/src/LU/arch/Inverse_SSE.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/QR/ColPivHouseholderQR.h
+/home/work/code_repository/ros_packages/include/Eigen/src/QR/ColPivHouseholderQR.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/QR/ColPivHouseholderQR_LAPACKE.h
+/home/work/code_repository/ros_packages/include/Eigen/src/QR/ColPivHouseholderQR_LAPACKE.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/QR/CompleteOrthogonalDecomposition.h
+/home/work/code_repository/ros_packages/include/Eigen/src/QR/CompleteOrthogonalDecomposition.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/QR/FullPivHouseholderQR.h
+/home/work/code_repository/ros_packages/include/Eigen/src/QR/FullPivHouseholderQR.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/QR/HouseholderQR.h
+/home/work/code_repository/ros_packages/include/Eigen/src/QR/HouseholderQR.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/QR/HouseholderQR_LAPACKE.h
+/home/work/code_repository/ros_packages/include/Eigen/src/QR/HouseholderQR_LAPACKE.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/SVD/BDCSVD.h
+/home/work/code_repository/ros_packages/include/Eigen/src/SVD/BDCSVD.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/SVD/JacobiSVD.h
+/home/work/code_repository/ros_packages/include/Eigen/src/SVD/JacobiSVD.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/SVD/JacobiSVD_LAPACKE.h
+/home/work/code_repository/ros_packages/include/Eigen/src/SVD/JacobiSVD_LAPACKE.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/SVD/SVDBase.h
+/home/work/code_repository/ros_packages/include/Eigen/src/SVD/SVDBase.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/SVD/UpperBidiagonalization.h
+/home/work/code_repository/ros_packages/include/Eigen/src/SVD/UpperBidiagonalization.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/misc/Image.h
+/home/work/code_repository/ros_packages/include/Eigen/src/misc/Image.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/misc/Kernel.h
+/home/work/code_repository/ros_packages/include/Eigen/src/misc/Kernel.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/misc/RealSvd2x2.h
+/home/work/code_repository/ros_packages/include/Eigen/src/misc/RealSvd2x2.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/misc/blas.h
+/home/work/code_repository/ros_packages/include/Eigen/src/misc/blas.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/misc/lapacke.h
+/home/work/code_repository/ros_packages/include/Eigen/src/misc/lapacke.h
 lapacke_config.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/misc/lapacke_config.h
+/home/work/code_repository/ros_packages/include/Eigen/src/misc/lapacke_config.h
 stdlib.h
 -
 complex.h
@@ -1170,27 +1150,47 @@ complex.h
 complex.h
 -
 lapacke_mangling.h
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/misc/lapacke_mangling.h
+/home/work/code_repository/ros_packages/include/Eigen/src/misc/lapacke_mangling.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/misc/lapacke_mangling.h
+/home/work/code_repository/ros_packages/include/Eigen/src/misc/lapacke_mangling.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/plugins/ArrayCwiseBinaryOps.h
+/home/work/code_repository/ros_packages/include/Eigen/src/plugins/ArrayCwiseBinaryOps.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/plugins/ArrayCwiseUnaryOps.h
+/home/work/code_repository/ros_packages/include/Eigen/src/plugins/ArrayCwiseUnaryOps.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/plugins/BlockMethods.h
+/home/work/code_repository/ros_packages/include/Eigen/src/plugins/BlockMethods.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/plugins/CommonCwiseBinaryOps.h
+/home/work/code_repository/ros_packages/include/Eigen/src/plugins/CommonCwiseBinaryOps.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/plugins/CommonCwiseUnaryOps.h
+/home/work/code_repository/ros_packages/include/Eigen/src/plugins/CommonCwiseUnaryOps.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseBinaryOps.h
+/home/work/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseBinaryOps.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseUnaryOps.h
+/home/work/code_repository/ros_packages/include/Eigen/src/plugins/MatrixCwiseUnaryOps.h
 
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/useful_implementations.h
+/home/work/code_repository/ros_packages/include/useful_implementations.h
 Eigen/Dense
-/home/franka3/grasping_msorour/code_repository/ros_packages/include/Eigen/Dense
+/home/work/code_repository/ros_packages/include/Eigen/Dense
+
+/home/work/software/QuadProgpp-master/src/Array.hh
+set
+-
+stdexcept
+-
+iostream
+-
+iomanip
+-
+cmath
+-
+cstdlib
+-
+stdexcept
+-
+
+/home/work/software/QuadProgpp-master/src/QuadProg++.hh
+Array.hh
+/home/work/software/QuadProgpp-master/src/Array.hh
 
 /usr/include/eigen3/Eigen/Core
 src/Core/util/DisableStupidWarnings.h
@@ -1706,7 +1706,7 @@ details.h
 
 /usr/include/eigen3/Eigen/src/StlSupport/details.h
 
-/usr/include/pcl-1.7/pcl/ModelCoefficients.h
+/usr/local/include/pcl-1.9/pcl/ModelCoefficients.h
 string
 -
 vector
@@ -1716,7 +1716,7 @@ ostream
 pcl/PCLHeader.h
 -
 
-/usr/include/pcl-1.7/pcl/PCLHeader.h
+/usr/local/include/pcl-1.9/pcl/PCLHeader.h
 string
 -
 vector
@@ -1728,7 +1728,7 @@ pcl/pcl_macros.h
 ostream
 -
 
-/usr/include/pcl-1.7/pcl/PCLImage.h
+/usr/local/include/pcl-1.9/pcl/PCLImage.h
 string
 -
 vector
@@ -1738,7 +1738,7 @@ ostream
 pcl/PCLHeader.h
 -
 
-/usr/include/pcl-1.7/pcl/PCLPointCloud2.h
+/usr/local/include/pcl-1.9/pcl/PCLPointCloud2.h
 string
 -
 vector
@@ -1752,7 +1752,7 @@ pcl/PCLHeader.h
 pcl/PCLPointField.h
 -
 
-/usr/include/pcl-1.7/pcl/PCLPointField.h
+/usr/local/include/pcl-1.9/pcl/PCLPointField.h
 string
 -
 vector
@@ -1764,7 +1764,7 @@ boost/shared_ptr.hpp
 pcl/pcl_macros.h
 -
 
-/usr/include/pcl-1.7/pcl/PointIndices.h
+/usr/local/include/pcl-1.9/pcl/PointIndices.h
 string
 -
 vector
@@ -1774,7 +1774,7 @@ ostream
 pcl/PCLHeader.h
 -
 
-/usr/include/pcl-1.7/pcl/PolygonMesh.h
+/usr/local/include/pcl-1.9/pcl/PolygonMesh.h
 string
 -
 vector
@@ -1788,7 +1788,7 @@ pcl/PCLPointCloud2.h
 pcl/Vertices.h
 -
 
-/usr/include/pcl-1.7/pcl/TextureMesh.h
+/usr/local/include/pcl-1.9/pcl/TextureMesh.h
 Eigen/Core
 -
 string
@@ -1798,17 +1798,19 @@ pcl/PCLPointCloud2.h
 pcl/Vertices.h
 -
 
-/usr/include/pcl-1.7/pcl/Vertices.h
+/usr/local/include/pcl-1.9/pcl/Vertices.h
 string
 -
 vector
 -
 ostream
 -
+boost/shared_ptr.hpp
+-
 pcl/pcl_macros.h
 -
 
-/usr/include/pcl-1.7/pcl/cloud_iterator.h
+/usr/local/include/pcl-1.9/pcl/cloud_iterator.h
 pcl/point_cloud.h
 -
 pcl/PointIndices.h
@@ -1818,11 +1820,11 @@ pcl/correspondence.h
 pcl/impl/cloud_iterator.hpp
 -
 
-/usr/include/pcl-1.7/pcl/common/angles.h
+/usr/local/include/pcl-1.9/pcl/common/angles.h
 pcl/common/impl/angles.hpp
 -
 
-/usr/include/pcl-1.7/pcl/common/centroid.h
+/usr/local/include/pcl-1.9/pcl/common/centroid.h
 pcl/point_cloud.h
 -
 pcl/point_traits.h
@@ -1836,7 +1838,13 @@ pcl/common/impl/accumulators.hpp
 pcl/common/impl/centroid.hpp
 -
 
-/usr/include/pcl-1.7/pcl/common/common.h
+/usr/local/include/pcl-1.9/pcl/common/colors.h
+pcl/pcl_macros.h
+-
+pcl/point_types.h
+-
+
+/usr/local/include/pcl-1.9/pcl/common/common.h
 pcl/pcl_base.h
 -
 cfloat
@@ -1844,7 +1852,7 @@ cfloat
 pcl/common/impl/common.hpp
 -
 
-/usr/include/pcl-1.7/pcl/common/common_headers.h
+/usr/local/include/pcl-1.9/pcl/common/common_headers.h
 pcl/common/common.h
 -
 pcl/common/norms.h
@@ -1858,15 +1866,15 @@ pcl/common/file_io.h
 pcl/common/eigen.h
 -
 
-/usr/include/pcl-1.7/pcl/common/concatenate.h
+/usr/local/include/pcl-1.9/pcl/common/concatenate.h
 pcl/conversions.h
 -
 
-/usr/include/pcl-1.7/pcl/common/copy_point.h
+/usr/local/include/pcl-1.9/pcl/common/copy_point.h
 pcl/common/impl/copy_point.hpp
 -
 
-/usr/include/pcl-1.7/pcl/common/eigen.h
+/usr/local/include/pcl-1.9/pcl/common/eigen.h
 cmath
 -
 pcl/ModelCoefficients.h
@@ -1890,7 +1898,7 @@ Eigen/Eigenvalues
 pcl/common/impl/eigen.hpp
 -
 
-/usr/include/pcl-1.7/pcl/common/file_io.h
+/usr/local/include/pcl-1.9/pcl/common/file_io.h
 iostream
 -
 dirent.h
@@ -1902,7 +1910,7 @@ algorithm
 pcl/common/impl/file_io.hpp
 -
 
-/usr/include/pcl-1.7/pcl/common/impl/accumulators.hpp
+/usr/local/include/pcl-1.9/pcl/common/impl/accumulators.hpp
 map
 -
 boost/mpl/filter_view.hpp
@@ -1916,13 +1924,13 @@ boost/fusion/include/as_vector.hpp
 pcl/point_types.h
 -
 
-/usr/include/pcl-1.7/pcl/common/impl/angles.hpp
+/usr/local/include/pcl-1.9/pcl/common/impl/angles.hpp
 cmath
 -
 pcl/pcl_macros.h
 -
 
-/usr/include/pcl-1.7/pcl/common/impl/centroid.hpp
+/usr/local/include/pcl-1.9/pcl/common/impl/centroid.hpp
 pcl/common/centroid.h
 -
 pcl/conversions.h
@@ -1930,13 +1938,13 @@ pcl/conversions.h
 boost/mpl/size.hpp
 -
 
-/usr/include/pcl-1.7/pcl/common/impl/common.hpp
+/usr/local/include/pcl-1.9/pcl/common/impl/common.hpp
 pcl/point_types.h
 -
 pcl/common/common.h
 -
 
-/usr/include/pcl-1.7/pcl/common/impl/copy_point.hpp
+/usr/local/include/pcl-1.9/pcl/common/impl/copy_point.hpp
 pcl/point_types.h
 -
 pcl/point_traits.h
@@ -1946,13 +1954,13 @@ pcl/for_each_type.h
 pcl/common/concatenate.h
 -
 
-/usr/include/pcl-1.7/pcl/common/impl/eigen.hpp
+/usr/local/include/pcl-1.9/pcl/common/impl/eigen.hpp
 pcl/console/print.h
 -
 
-/usr/include/pcl-1.7/pcl/common/impl/file_io.hpp
+/usr/local/include/pcl-1.9/pcl/common/impl/file_io.hpp
 
-/usr/include/pcl-1.7/pcl/common/impl/io.hpp
+/usr/local/include/pcl-1.9/pcl/common/impl/io.hpp
 pcl/common/concatenate.h
 -
 pcl/common/copy_point.h
@@ -1960,19 +1968,23 @@ pcl/common/copy_point.h
 pcl/point_types.h
 -
 
-/usr/include/pcl-1.7/pcl/common/impl/norms.hpp
+/usr/local/include/pcl-1.9/pcl/common/impl/norms.hpp
 pcl/pcl_macros.h
 -
 pcl/console/print.h
 -
 
-/usr/include/pcl-1.7/pcl/common/impl/projection_matrix.hpp
+/usr/local/include/pcl-1.9/pcl/common/impl/projection_matrix.hpp
 pcl/cloud_iterator.h
 -
 
-/usr/include/pcl-1.7/pcl/common/impl/transforms.hpp
+/usr/local/include/pcl-1.9/pcl/common/impl/transforms.hpp
+xmmintrin.h
+-
+immintrin.h
+-
 
-/usr/include/pcl-1.7/pcl/common/io.h
+/usr/local/include/pcl-1.9/pcl/common/io.h
 string
 -
 pcl/pcl_base.h
@@ -1988,15 +2000,15 @@ locale
 pcl/common/impl/io.hpp
 -
 
-/usr/include/pcl-1.7/pcl/common/norms.h
+/usr/local/include/pcl-1.9/pcl/common/norms.h
 pcl/common/impl/norms.hpp
 -
 
-/usr/include/pcl-1.7/pcl/common/point_tests.h
+/usr/local/include/pcl-1.9/pcl/common/point_tests.h
 Eigen/src/StlSupport/details.h
 -
 
-/usr/include/pcl-1.7/pcl/common/projection_matrix.h
+/usr/local/include/pcl-1.9/pcl/common/projection_matrix.h
 pcl/common/eigen.h
 -
 pcl/console/print.h
@@ -2004,15 +2016,17 @@ pcl/console/print.h
 pcl/common/impl/projection_matrix.hpp
 -
 
-/usr/include/pcl-1.7/pcl/common/time.h
+/usr/local/include/pcl-1.9/pcl/common/time.h
 cmath
+-
+queue
 -
 string
 -
 boost/date_time/posix_time/posix_time.hpp
 -
 
-/usr/include/pcl-1.7/pcl/common/transforms.h
+/usr/local/include/pcl-1.9/pcl/common/transforms.h
 pcl/point_cloud.h
 -
 pcl/point_types.h
@@ -2026,7 +2040,7 @@ pcl/PointIndices.h
 pcl/common/impl/transforms.hpp
 -
 
-/usr/include/pcl-1.7/pcl/console/print.h
+/usr/local/include/pcl-1.9/pcl/console/print.h
 stdio.h
 -
 stdarg.h
@@ -2036,7 +2050,7 @@ pcl/pcl_exports.h
 pcl/pcl_config.h
 -
 
-/usr/include/pcl-1.7/pcl/conversions.h
+/usr/local/include/pcl-1.9/pcl/conversions.h
 pcl/PCLPointField.h
 -
 pcl/PCLPointCloud2.h
@@ -2056,7 +2070,7 @@ pcl/console/print.h
 boost/foreach.hpp
 -
 
-/usr/include/pcl-1.7/pcl/correspondence.h
+/usr/local/include/pcl-1.9/pcl/correspondence.h
 boost/shared_ptr.hpp
 -
 Eigen/StdVector
@@ -2066,7 +2080,7 @@ Eigen/Geometry
 pcl/pcl_exports.h
 -
 
-/usr/include/pcl-1.7/pcl/exceptions.h
+/usr/local/include/pcl-1.9/pcl/exceptions.h
 stdexcept
 -
 sstream
@@ -2076,7 +2090,7 @@ pcl/pcl_macros.h
 boost/current_function.hpp
 -
 
-/usr/include/pcl-1.7/pcl/filters/boost.h
+/usr/local/include/pcl-1.9/pcl/filters/boost.h
 boost/random.hpp
 -
 boost/random/normal_distribution.hpp
@@ -2100,8 +2114,10 @@ boost/function.hpp
 boost/optional.hpp
 -
 
-/usr/include/pcl-1.7/pcl/filters/filter.h
+/usr/local/include/pcl-1.9/pcl/filters/filter.h
 pcl/pcl_base.h
+-
+pcl/common/io.h
 -
 pcl/conversions.h
 -
@@ -2114,13 +2130,15 @@ pcl/PointIndices.h
 pcl/filters/impl/filter.hpp
 -
 
-/usr/include/pcl-1.7/pcl/filters/impl/filter.hpp
+/usr/local/include/pcl-1.9/pcl/filters/impl/filter.hpp
 pcl/pcl_macros.h
 -
 pcl/filters/filter.h
 -
 
-/usr/include/pcl-1.7/pcl/filters/impl/voxel_grid.hpp
+/usr/local/include/pcl-1.9/pcl/filters/impl/voxel_grid.hpp
+pcl/common/centroid.h
+-
 pcl/common/common.h
 -
 pcl/common/io.h
@@ -2128,7 +2146,7 @@ pcl/common/io.h
 pcl/filters/voxel_grid.h
 -
 
-/usr/include/pcl-1.7/pcl/filters/voxel_grid.h
+/usr/local/include/pcl-1.9/pcl/filters/voxel_grid.h
 pcl/filters/boost.h
 -
 pcl/filters/filter.h
@@ -2138,7 +2156,7 @@ map
 pcl/filters/impl/voxel_grid.hpp
 -
 
-/usr/include/pcl-1.7/pcl/for_each_type.h
+/usr/local/include/pcl-1.9/pcl/for_each_type.h
 boost/mpl/is_sequence.hpp
 -
 boost/mpl/begin_end.hpp
@@ -2160,7 +2178,7 @@ boost/mpl/aux_/unwrap.hpp
 boost/type_traits/is_same.hpp
 -
 
-/usr/include/pcl-1.7/pcl/geometry/planar_polygon.h
+/usr/local/include/pcl-1.9/pcl/geometry/planar_polygon.h
 pcl/common/eigen.h
 -
 pcl/point_cloud.h
@@ -2168,11 +2186,25 @@ pcl/point_cloud.h
 pcl/ModelCoefficients.h
 -
 
-/usr/include/pcl-1.7/pcl/impl/cloud_iterator.hpp
+/usr/local/include/pcl-1.9/pcl/impl/cloud_iterator.hpp
 pcl/cloud_iterator.h
 -
 
-/usr/include/pcl-1.7/pcl/impl/pcl_base.hpp
+/usr/local/include/pcl-1.9/pcl/impl/instantiate.hpp
+pcl/pcl_config.h
+-
+boost/preprocessor/seq/for_each.hpp
+-
+boost/preprocessor/seq/for_each_product.hpp
+-
+boost/preprocessor/seq/to_tuple.hpp
+-
+boost/preprocessor/cat.hpp
+-
+boost/preprocessor/expand.hpp
+-
+
+/usr/local/include/pcl-1.9/pcl/impl/pcl_base.hpp
 pcl/pcl_base.h
 -
 pcl/console/print.h
@@ -2180,7 +2212,7 @@ pcl/console/print.h
 cstddef
 -
 
-/usr/include/pcl-1.7/pcl/impl/point_types.hpp
+/usr/local/include/pcl-1.9/pcl/impl/point_types.hpp
 Eigen/Core
 -
 ostream
@@ -2188,7 +2220,9 @@ ostream
 pcl/common/point_tests.h
 -
 
-/usr/include/pcl-1.7/pcl/io/boost.h
+/usr/local/include/pcl-1.9/pcl/io/boost.h
+boost/version.hpp
+-
 boost/numeric/conversion/cast.hpp
 -
 boost/thread/mutex.hpp
@@ -2225,8 +2259,6 @@ boost/mpl/transform.hpp
 -
 boost/mpl/vector.hpp
 -
-boost/algorithm/string.hpp
--
 boost/date_time/posix_time/posix_time.hpp
 -
 boost/chrono.hpp
@@ -2237,8 +2269,6 @@ boost/foreach.hpp
 -
 boost/shared_array.hpp
 -
-boost/interprocess/sync/file_lock.hpp
--
 boost/interprocess/permissions.hpp
 -
 boost/iostreams/device/mapped_file.hpp
@@ -2247,8 +2277,12 @@ boost/signals2.hpp
 -
 boost/signals2/slot.hpp
 -
+boost/algorithm/string.hpp
+-
+boost/interprocess/sync/file_lock.hpp
+-
 
-/usr/include/pcl-1.7/pcl/io/file_io.h
+/usr/local/include/pcl-1.9/pcl/io/file_io.h
 pcl/pcl_macros.h
 -
 pcl/common/io.h
@@ -2264,7 +2298,7 @@ pcl/PolygonMesh.h
 pcl/TextureMesh.h
 -
 
-/usr/include/pcl-1.7/pcl/io/impl/pcd_io.hpp
+/usr/local/include/pcl-1.9/pcl/io/impl/pcd_io.hpp
 fstream
 -
 fcntl.h
@@ -2273,26 +2307,42 @@ string
 -
 stdlib.h
 -
-pcl/io/boost.h
--
 pcl/console/print.h
 -
+pcl/io/boost.h
+-
+pcl/io/low_level_io.h
+-
 pcl/io/pcd_io.h
--
-io.h
--
-windows.h
--
-sys/mman.h
 -
 pcl/io/lzf.h
 -
 
-/usr/include/pcl-1.7/pcl/io/lzf.h
+/usr/local/include/pcl-1.9/pcl/io/low_level_io.h
+io.h
+-
+windows.h
+-
+BaseTsd.h
+-
+unistd.h
+-
+sys/mman.h
+-
+sys/types.h
+-
+sys/stat.h
+-
+sys/fcntl.h
+-
+cerrno
+-
+
+/usr/local/include/pcl-1.9/pcl/io/lzf.h
 pcl/pcl_macros.h
 -
 
-/usr/include/pcl-1.7/pcl/io/obj_io.h
+/usr/local/include/pcl-1.9/pcl/io/obj_io.h
 pcl/pcl_macros.h
 -
 pcl/TextureMesh.h
@@ -2302,7 +2352,7 @@ pcl/PolygonMesh.h
 pcl/io/file_io.h
 -
 
-/usr/include/pcl-1.7/pcl/io/pcd_io.h
+/usr/local/include/pcl-1.9/pcl/io/pcd_io.h
 pcl/point_cloud.h
 -
 pcl/io/file_io.h
@@ -2310,11 +2360,11 @@ pcl/io/file_io.h
 pcl/io/impl/pcd_io.hpp
 -
 
-/usr/include/pcl-1.7/pcl/io/ply/byte_order.h
+/usr/local/include/pcl-1.9/pcl/io/ply/byte_order.h
 boost/detail/endian.hpp
 -
 
-/usr/include/pcl-1.7/pcl/io/ply/io_operators.h
+/usr/local/include/pcl-1.9/pcl/io/ply/io_operators.h
 istream
 -
 limits
@@ -2322,13 +2372,13 @@ limits
 ostream
 -
 
-/usr/include/pcl-1.7/pcl/io/ply/ply.h
+/usr/local/include/pcl-1.9/pcl/io/ply/ply.h
 pcl/io/boost.h
 -
 pcl/io/ply/byte_order.h
 -
 
-/usr/include/pcl-1.7/pcl/io/ply/ply_parser.h
+/usr/local/include/pcl-1.9/pcl/io/ply/ply_parser.h
 fstream
 -
 iostream
@@ -2350,7 +2400,7 @@ pcl/io/ply/io_operators.h
 pcl/pcl_macros.h
 -
 
-/usr/include/pcl-1.7/pcl/io/ply_io.h
+/usr/local/include/pcl-1.9/pcl/io/ply_io.h
 pcl/io/boost.h
 -
 pcl/io/file_io.h
@@ -2362,11 +2412,11 @@ pcl/PolygonMesh.h
 sstream
 -
 
-/usr/include/pcl-1.7/pcl/kdtree/flann.h
+/usr/local/include/pcl-1.9/pcl/kdtree/flann.h
 flann/flann.hpp
 -
 
-/usr/include/pcl-1.7/pcl/kdtree/impl/kdtree_flann.hpp
+/usr/local/include/pcl-1.9/pcl/kdtree/impl/kdtree_flann.hpp
 cstdio
 -
 pcl/kdtree/kdtree_flann.h
@@ -2376,7 +2426,7 @@ pcl/kdtree/flann.h
 pcl/console/print.h
 -
 
-/usr/include/pcl-1.7/pcl/kdtree/kdtree.h
+/usr/local/include/pcl-1.9/pcl/kdtree/kdtree.h
 limits.h
 -
 pcl/pcl_macros.h
@@ -2390,7 +2440,7 @@ pcl/common/io.h
 pcl/common/copy_point.h
 -
 
-/usr/include/pcl-1.7/pcl/kdtree/kdtree_flann.h
+/usr/local/include/pcl-1.9/pcl/kdtree/kdtree_flann.h
 pcl/kdtree/kdtree.h
 -
 pcl/kdtree/flann.h
@@ -2400,41 +2450,43 @@ boost/shared_array.hpp
 pcl/kdtree/impl/kdtree_flann.hpp
 -
 
-/usr/include/pcl-1.7/pcl/octree/impl/octree_pointcloud.hpp
+/usr/local/include/pcl-1.9/pcl/octree/impl/octree_base.hpp
 vector
 -
+pcl/impl/instantiate.hpp
+-
+
+/usr/local/include/pcl-1.9/pcl/octree/impl/octree_iterator.hpp
+pcl/console/print.h
+-
+
+/usr/local/include/pcl-1.9/pcl/octree/impl/octree_pointcloud.hpp
 assert.h
 -
 pcl/common/common.h
 -
+pcl/octree/impl/octree_base.hpp
+-
 
-/usr/include/pcl-1.7/pcl/octree/impl/octree_search.hpp
-pcl/point_cloud.h
--
-pcl/point_types.h
--
-pcl/common/common.h
--
+/usr/local/include/pcl-1.9/pcl/octree/impl/octree_search.hpp
 assert.h
 -
 
-/usr/include/pcl-1.7/pcl/octree/octree_base.h
-cstddef
--
+/usr/local/include/pcl-1.9/pcl/octree/octree_base.h
 vector
 -
-octree_nodes.h
-/usr/include/pcl-1.7/pcl/octree/octree_nodes.h
-octree_container.h
-/usr/include/pcl-1.7/pcl/octree/octree_container.h
-octree_key.h
-/usr/include/pcl-1.7/pcl/octree/octree_key.h
-octree_iterator.h
-/usr/include/pcl-1.7/pcl/octree/octree_iterator.h
-
-/usr/include/pcl-1.7/pcl/octree/octree_container.h
-string.h
+pcl/octree/octree_nodes.h
 -
+pcl/octree/octree_container.h
+-
+pcl/octree/octree_key.h
+-
+pcl/octree/octree_iterator.h
+-
+pcl/octree/impl/octree_base.hpp
+-
+
+/usr/local/include/pcl-1.9/pcl/octree/octree_container.h
 vector
 -
 cstddef
@@ -2442,73 +2494,57 @@ cstddef
 pcl/pcl_macros.h
 -
 
-/usr/include/pcl-1.7/pcl/octree/octree_iterator.h
+/usr/local/include/pcl-1.9/pcl/octree/octree_iterator.h
 cstddef
 -
 vector
 -
 deque
 -
-octree_nodes.h
-/usr/include/pcl-1.7/pcl/octree/octree_nodes.h
-octree_key.h
-/usr/include/pcl-1.7/pcl/octree/octree_key.h
-pcl/point_cloud.h
+pcl/octree/octree_nodes.h
 -
-pcl/point_types.h
+pcl/octree/octree_key.h
 -
 iterator
 -
-
-/usr/include/pcl-1.7/pcl/octree/octree_key.h
-string
+pcl/octree/impl/octree_iterator.hpp
 -
 
-/usr/include/pcl-1.7/pcl/octree/octree_nodes.h
+/usr/local/include/pcl-1.9/pcl/octree/octree_key.h
+
+/usr/local/include/pcl-1.9/pcl/octree/octree_nodes.h
 cstddef
 -
 assert.h
--
-cstring
--
-string.h
 -
 Eigen/Core
 -
 pcl/pcl_macros.h
 -
 octree_container.h
-/usr/include/pcl-1.7/pcl/octree/octree_container.h
+/usr/local/include/pcl-1.9/pcl/octree/octree_container.h
 
-/usr/include/pcl-1.7/pcl/octree/octree_pointcloud.h
-octree_base.h
-/usr/include/pcl-1.7/pcl/octree/octree_base.h
+/usr/local/include/pcl-1.9/pcl/octree/octree_pointcloud.h
+pcl/octree/octree_base.h
+-
 pcl/point_cloud.h
 -
 pcl/point_types.h
 -
-queue
--
 vector
--
-algorithm
--
-iostream
 -
 pcl/octree/impl/octree_pointcloud.hpp
 -
 
-/usr/include/pcl-1.7/pcl/octree/octree_search.h
+/usr/local/include/pcl-1.9/pcl/octree/octree_search.h
 pcl/point_cloud.h
 -
-pcl/point_types.h
+pcl/octree/octree_pointcloud.h
 -
-octree_pointcloud.h
-/usr/include/pcl-1.7/pcl/octree/octree_pointcloud.h
 pcl/octree/impl/octree_search.hpp
 -
 
-/usr/include/pcl-1.7/pcl/pcl_base.h
+/usr/local/include/pcl-1.9/pcl/pcl_base.h
 pcl/pcl_macros.h
 -
 boost/shared_ptr.hpp
@@ -2526,11 +2562,11 @@ pcl/PCLPointCloud2.h
 pcl/impl/pcl_base.hpp
 -
 
-/usr/include/pcl-1.7/pcl/pcl_config.h
+/usr/local/include/pcl-1.9/pcl/pcl_config.h
 
-/usr/include/pcl-1.7/pcl/pcl_exports.h
+/usr/local/include/pcl-1.9/pcl/pcl_exports.h
 
-/usr/include/pcl-1.7/pcl/pcl_macros.h
+/usr/local/include/pcl-1.9/pcl/pcl_macros.h
 pcl/pcl_config.h
 -
 boost/cstdint.hpp
@@ -2555,8 +2591,12 @@ stdio.h
 -
 math.h
 -
+malloc.h
+-
+mm_malloc.h
+-
 
-/usr/include/pcl-1.7/pcl/point_cloud.h
+/usr/local/include/pcl-1.9/pcl/point_cloud.h
 Eigen/StdVector
 -
 Eigen/Geometry
@@ -2568,7 +2608,7 @@ pcl/exceptions.h
 pcl/point_traits.h
 -
 
-/usr/include/pcl-1.7/pcl/point_representation.h
+/usr/local/include/pcl-1.9/pcl/point_representation.h
 pcl/point_types.h
 -
 pcl/pcl_macros.h
@@ -2576,9 +2616,9 @@ pcl/pcl_macros.h
 pcl/for_each_type.h
 -
 
-/usr/include/pcl-1.7/pcl/point_traits.h
+/usr/local/include/pcl-1.9/pcl/point_traits.h
 pcl/pcl_macros.h
-/usr/include/pcl-1.7/pcl/pcl/pcl_macros.h
+/usr/local/include/pcl-1.9/pcl/pcl/pcl_macros.h
 pcl/PCLPointField.h
 -
 boost/type_traits/remove_all_extents.hpp
@@ -2594,7 +2634,7 @@ Eigen/Core
 Eigen/src/StlSupport/details.h
 -
 
-/usr/include/pcl-1.7/pcl/point_types.h
+/usr/local/include/pcl-1.9/pcl/point_types.h
 pcl/pcl_macros.h
 -
 bitset
@@ -2610,7 +2650,7 @@ boost/mpl/vector.hpp
 pcl/impl/point_types.hpp
 -
 
-/usr/include/pcl-1.7/pcl/register_point_struct.h
+/usr/local/include/pcl-1.9/pcl/register_point_struct.h
 pcl/pcl_macros.h
 -
 pcl/point_traits.h
@@ -2634,13 +2674,13 @@ boost/type_traits.hpp
 stddef.h
 -
 
-/usr/include/pcl-1.7/pcl/search/impl/kdtree.hpp
+/usr/local/include/pcl-1.9/pcl/search/impl/kdtree.hpp
 pcl/search/kdtree.h
 -
 pcl/search/impl/search.hpp
 -
 
-/usr/include/pcl-1.7/pcl/search/impl/organized.hpp
+/usr/local/include/pcl-1.9/pcl/search/impl/organized.hpp
 pcl/search/organized.h
 -
 pcl/common/eigen.h
@@ -2650,11 +2690,11 @@ pcl/common/time.h
 Eigen/Eigenvalues
 -
 
-/usr/include/pcl-1.7/pcl/search/impl/search.hpp
+/usr/local/include/pcl-1.9/pcl/search/impl/search.hpp
 pcl/search/search.h
 -
 
-/usr/include/pcl-1.7/pcl/search/kdtree.h
+/usr/local/include/pcl-1.9/pcl/search/kdtree.h
 pcl/search/search.h
 -
 pcl/kdtree/kdtree_flann.h
@@ -2662,7 +2702,7 @@ pcl/kdtree/kdtree_flann.h
 pcl/search/impl/kdtree.hpp
 -
 
-/usr/include/pcl-1.7/pcl/search/octree.h
+/usr/local/include/pcl-1.9/pcl/search/octree.h
 pcl/search/search.h
 -
 pcl/octree/octree_search.h
@@ -2670,7 +2710,7 @@ pcl/octree/octree_search.h
 pcl/octree/impl/octree_search.hpp
 -
 
-/usr/include/pcl-1.7/pcl/search/organized.h
+/usr/local/include/pcl-1.9/pcl/search/organized.h
 pcl/point_cloud.h
 -
 pcl/point_types.h
@@ -2690,7 +2730,7 @@ pcl/common/projection_matrix.h
 pcl/search/impl/organized.hpp
 -
 
-/usr/include/pcl-1.7/pcl/search/pcl_search.h
+/usr/local/include/pcl-1.9/pcl/search/pcl_search.h
 pcl/search/search.h
 -
 pcl/search/kdtree.h
@@ -2700,7 +2740,7 @@ pcl/search/octree.h
 pcl/search/organized.h
 -
 
-/usr/include/pcl-1.7/pcl/search/search.h
+/usr/local/include/pcl-1.9/pcl/search/search.h
 pcl/point_cloud.h
 -
 pcl/for_each_type.h
@@ -2712,7 +2752,7 @@ pcl/common/copy_point.h
 pcl/search/impl/search.hpp
 -
 
-/usr/include/pcl-1.7/pcl/surface/boost.h
+/usr/local/include/pcl-1.9/pcl/surface/boost.h
 boost/bind.hpp
 -
 boost/function.hpp
@@ -2726,7 +2766,7 @@ boost/dynamic_bitset/dynamic_bitset.hpp
 boost/shared_ptr.hpp
 -
 
-/usr/include/pcl-1.7/pcl/surface/concave_hull.h
+/usr/local/include/pcl-1.9/pcl/surface/concave_hull.h
 pcl/pcl_config.h
 -
 pcl/surface/convex_hull.h
@@ -2734,7 +2774,7 @@ pcl/surface/convex_hull.h
 pcl/surface/impl/concave_hull.hpp
 -
 
-/usr/include/pcl-1.7/pcl/surface/convex_hull.h
+/usr/local/include/pcl-1.9/pcl/surface/convex_hull.h
 pcl/pcl_config.h
 -
 pcl/surface/reconstruction.h
@@ -2746,7 +2786,7 @@ pcl/PolygonMesh.h
 pcl/surface/impl/convex_hull.hpp
 -
 
-/usr/include/pcl-1.7/pcl/surface/impl/concave_hull.hpp
+/usr/local/include/pcl-1.9/pcl/surface/impl/concave_hull.hpp
 pcl/pcl_config.h
 -
 map
@@ -2772,7 +2812,7 @@ stdlib.h
 pcl/surface/qhull.h
 -
 
-/usr/include/pcl-1.7/pcl/surface/impl/convex_hull.hpp
+/usr/local/include/pcl-1.9/pcl/surface/impl/convex_hull.hpp
 pcl/pcl_config.h
 -
 pcl/surface/convex_hull.h
@@ -2792,47 +2832,47 @@ stdlib.h
 pcl/surface/qhull.h
 -
 
-/usr/include/pcl-1.7/pcl/surface/impl/reconstruction.hpp
+/usr/local/include/pcl-1.9/pcl/surface/impl/reconstruction.hpp
 pcl/search/pcl_search.h
 -
 
-/usr/include/pcl-1.7/pcl/surface/qhull.h
+/usr/local/include/pcl-1.9/pcl/surface/qhull.h
 pcl/pcl_config.h
 -
 libqhull/libqhull.h
-/usr/include/pcl-1.7/pcl/surface/libqhull/libqhull.h
+/usr/local/include/pcl-1.9/pcl/surface/libqhull/libqhull.h
 libqhull/mem.h
-/usr/include/pcl-1.7/pcl/surface/libqhull/mem.h
+/usr/local/include/pcl-1.9/pcl/surface/libqhull/mem.h
 libqhull/qset.h
-/usr/include/pcl-1.7/pcl/surface/libqhull/qset.h
+/usr/local/include/pcl-1.9/pcl/surface/libqhull/qset.h
 libqhull/geom.h
-/usr/include/pcl-1.7/pcl/surface/libqhull/geom.h
+/usr/local/include/pcl-1.9/pcl/surface/libqhull/geom.h
 libqhull/merge.h
-/usr/include/pcl-1.7/pcl/surface/libqhull/merge.h
+/usr/local/include/pcl-1.9/pcl/surface/libqhull/merge.h
 libqhull/poly.h
-/usr/include/pcl-1.7/pcl/surface/libqhull/poly.h
+/usr/local/include/pcl-1.9/pcl/surface/libqhull/poly.h
 libqhull/io.h
-/usr/include/pcl-1.7/pcl/surface/libqhull/io.h
+/usr/local/include/pcl-1.9/pcl/surface/libqhull/io.h
 libqhull/stat.h
-/usr/include/pcl-1.7/pcl/surface/libqhull/stat.h
+/usr/local/include/pcl-1.9/pcl/surface/libqhull/stat.h
 qhull/qhull.h
-/usr/include/pcl-1.7/pcl/surface/qhull/qhull.h
+/usr/local/include/pcl-1.9/pcl/surface/qhull/qhull.h
 qhull/mem.h
-/usr/include/pcl-1.7/pcl/surface/qhull/mem.h
+/usr/local/include/pcl-1.9/pcl/surface/qhull/mem.h
 qhull/qset.h
-/usr/include/pcl-1.7/pcl/surface/qhull/qset.h
+/usr/local/include/pcl-1.9/pcl/surface/qhull/qset.h
 qhull/geom.h
-/usr/include/pcl-1.7/pcl/surface/qhull/geom.h
+/usr/local/include/pcl-1.9/pcl/surface/qhull/geom.h
 qhull/merge.h
-/usr/include/pcl-1.7/pcl/surface/qhull/merge.h
+/usr/local/include/pcl-1.9/pcl/surface/qhull/merge.h
 qhull/poly.h
-/usr/include/pcl-1.7/pcl/surface/qhull/poly.h
+/usr/local/include/pcl-1.9/pcl/surface/qhull/poly.h
 qhull/io.h
-/usr/include/pcl-1.7/pcl/surface/qhull/io.h
+/usr/local/include/pcl-1.9/pcl/surface/qhull/io.h
 qhull/stat.h
-/usr/include/pcl-1.7/pcl/surface/qhull/stat.h
+/usr/local/include/pcl-1.9/pcl/surface/qhull/stat.h
 
-/usr/include/pcl-1.7/pcl/surface/reconstruction.h
+/usr/local/include/pcl-1.9/pcl/surface/reconstruction.h
 pcl/pcl_base.h
 -
 pcl/PolygonMesh.h
@@ -2846,11 +2886,11 @@ pcl/surface/boost.h
 pcl/surface/impl/reconstruction.hpp
 -
 
-/usr/include/pcl-1.7/pcl/visualization/area_picking_event.h
+/usr/local/include/pcl-1.9/pcl/visualization/area_picking_event.h
 pcl/pcl_macros.h
 -
 
-/usr/include/pcl-1.7/pcl/visualization/boost.h
+/usr/local/include/pcl-1.9/pcl/visualization/boost.h
 boost/function.hpp
 -
 boost/shared_array.hpp
@@ -2882,7 +2922,7 @@ boost/date_time/posix_time/posix_time.hpp
 boost/filesystem.hpp
 -
 
-/usr/include/pcl-1.7/pcl/visualization/common/actor_map.h
+/usr/local/include/pcl-1.9/pcl/visualization/common/actor_map.h
 pcl/visualization/point_cloud_handlers.h
 -
 vector
@@ -2902,19 +2942,23 @@ pcl/PCLPointCloud2.h
 pcl/visualization/boost.h
 -
 
-/usr/include/pcl-1.7/pcl/visualization/common/common.h
+/usr/local/include/pcl-1.9/pcl/visualization/common/common.h
 pcl/pcl_macros.h
 -
 pcl/visualization/eigen.h
 -
 vtkMatrix4x4.h
 -
+vtkSmartPointer.h
+-
+vtkLookupTable.h
+-
 pcl/visualization/common/impl/common.hpp
 -
 
-/usr/include/pcl-1.7/pcl/visualization/common/impl/common.hpp
+/usr/local/include/pcl-1.9/pcl/visualization/common/impl/common.hpp
 
-/usr/include/pcl-1.7/pcl/visualization/common/impl/shapes.hpp
+/usr/local/include/pcl-1.9/pcl/visualization/common/impl/shapes.hpp
 vtkSmartPointer.h
 -
 vtkPoints.h
@@ -2924,13 +2968,13 @@ vtkPolygon.h
 vtkUnstructuredGrid.h
 -
 
-/usr/include/pcl-1.7/pcl/visualization/common/ren_win_interact_map.h
+/usr/local/include/pcl-1.9/pcl/visualization/common/ren_win_interact_map.h
 map
 -
 string
 -
 
-/usr/include/pcl-1.7/pcl/visualization/common/shapes.h
+/usr/local/include/pcl-1.9/pcl/visualization/common/shapes.h
 pcl/ModelCoefficients.h
 -
 pcl/point_cloud.h
@@ -2942,13 +2986,13 @@ pcl/geometry/planar_polygon.h
 pcl/visualization/common/impl/shapes.hpp
 -
 
-/usr/include/pcl-1.7/pcl/visualization/eigen.h
+/usr/local/include/pcl-1.9/pcl/visualization/eigen.h
 Eigen/Geometry
 -
 Eigen/Dense
 -
 
-/usr/include/pcl-1.7/pcl/visualization/impl/pcl_visualizer.hpp
+/usr/local/include/pcl-1.9/pcl/visualization/impl/pcl_visualizer.hpp
 vtkVersion.h
 -
 vtkSmartPointer.h
@@ -2962,6 +3006,8 @@ vtkVectorText.h
 vtkAlgorithmOutput.h
 -
 vtkFollower.h
+-
+vtkMath.h
 -
 vtkSphereSource.h
 -
@@ -2991,18 +3037,26 @@ vtkTextProperty.h
 -
 vtkLODActor.h
 -
+vtkLineSource.h
+-
 pcl/visualization/common/shapes.h
 -
 
-/usr/include/pcl-1.7/pcl/visualization/impl/point_cloud_color_handlers.hpp
+/usr/local/include/pcl-1.9/pcl/visualization/impl/point_cloud_color_handlers.hpp
+set
+-
+map
+-
+pcl/pcl_macros.h
+-
+pcl/common/colors.h
+-
+
+/usr/local/include/pcl-1.9/pcl/visualization/impl/point_cloud_geometry_handlers.hpp
 pcl/pcl_macros.h
 -
 
-/usr/include/pcl-1.7/pcl/visualization/impl/point_cloud_geometry_handlers.hpp
-pcl/pcl_macros.h
--
-
-/usr/include/pcl-1.7/pcl/visualization/interactor_style.h
+/usr/local/include/pcl-1.9/pcl/visualization/interactor_style.h
 pcl/console/print.h
 -
 pcl/visualization/common/actor_map.h
@@ -3022,15 +3076,15 @@ boost/signals2/signal.hpp
 vtkInteractorStyleRubberBandPick.h
 -
 
-/usr/include/pcl-1.7/pcl/visualization/keyboard_event.h
+/usr/local/include/pcl-1.9/pcl/visualization/keyboard_event.h
 string
 -
 
-/usr/include/pcl-1.7/pcl/visualization/mouse_event.h
+/usr/local/include/pcl-1.9/pcl/visualization/mouse_event.h
 pcl/visualization/keyboard_event.h
 -
 
-/usr/include/pcl-1.7/pcl/visualization/pcl_visualizer.h
+/usr/local/include/pcl-1.9/pcl/visualization/pcl_visualizer.h
 pcl/correspondence.h
 -
 pcl/ModelCoefficients.h
@@ -3058,7 +3112,7 @@ pcl/visualization/interactor_style.h
 pcl/visualization/impl/pcl_visualizer.hpp
 -
 
-/usr/include/pcl-1.7/pcl/visualization/point_cloud_color_handlers.h
+/usr/local/include/pcl-1.9/pcl/visualization/point_cloud_color_handlers.h
 pcl/point_cloud.h
 -
 pcl/common/io.h
@@ -3076,7 +3130,7 @@ vtkUnsignedCharArray.h
 pcl/visualization/impl/point_cloud_color_handlers.hpp
 -
 
-/usr/include/pcl-1.7/pcl/visualization/point_cloud_geometry_handlers.h
+/usr/local/include/pcl-1.9/pcl/visualization/point_cloud_geometry_handlers.h
 pcl/point_cloud.h
 -
 pcl/common/io.h
@@ -3090,13 +3144,13 @@ vtkFloatArray.h
 pcl/visualization/impl/point_cloud_geometry_handlers.hpp
 -
 
-/usr/include/pcl-1.7/pcl/visualization/point_cloud_handlers.h
+/usr/local/include/pcl-1.9/pcl/visualization/point_cloud_handlers.h
 pcl/visualization/point_cloud_geometry_handlers.h
 -
 pcl/visualization/point_cloud_color_handlers.h
 -
 
-/usr/include/pcl-1.7/pcl/visualization/point_picking_event.h
+/usr/local/include/pcl-1.9/pcl/visualization/point_picking_event.h
 pcl/pcl_macros.h
 -
 vector
@@ -3104,243 +3158,259 @@ vector
 vtkCommand.h
 -
 
-/usr/include/vtk-6.2/vtkABI.h
+/usr/local/include/vtk-6.3/vtkABI.h
 
-/usr/include/vtk-6.2/vtkAbstractArray.h
+/usr/local/include/vtk-6.3/vtkAbstractArray.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 vtkVariant.h
-/usr/include/vtk-6.2/vtkVariant.h
+/usr/local/include/vtk-6.3/vtkVariant.h
 
-/usr/include/vtk-6.2/vtkAbstractMapper.h
+/usr/local/include/vtk-6.3/vtkAbstractMapper.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkAlgorithm.h
-/usr/include/vtk-6.2/vtkAlgorithm.h
+/usr/local/include/vtk-6.3/vtkAlgorithm.h
 
-/usr/include/vtk-6.2/vtkAbstractMapper3D.h
+/usr/local/include/vtk-6.3/vtkAbstractMapper3D.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkAbstractMapper.h
-/usr/include/vtk-6.2/vtkAbstractMapper.h
+/usr/local/include/vtk-6.3/vtkAbstractMapper.h
 
-/usr/include/vtk-6.2/vtkActor.h
+/usr/local/include/vtk-6.3/vtkActor.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkProp3D.h
-/usr/include/vtk-6.2/vtkProp3D.h
+/usr/local/include/vtk-6.3/vtkProp3D.h
 
-/usr/include/vtk-6.2/vtkActor2D.h
+/usr/local/include/vtk-6.3/vtkActor2D.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkProp.h
-/usr/include/vtk-6.2/vtkProp.h
+/usr/local/include/vtk-6.3/vtkProp.h
 vtkCoordinate.h
-/usr/include/vtk-6.2/vtkCoordinate.h
+/usr/local/include/vtk-6.3/vtkCoordinate.h
 
-/usr/include/vtk-6.2/vtkActorCollection.h
+/usr/local/include/vtk-6.3/vtkActorCollection.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkPropCollection.h
-/usr/include/vtk-6.2/vtkPropCollection.h
+/usr/local/include/vtk-6.3/vtkPropCollection.h
 vtkActor.h
-/usr/include/vtk-6.2/vtkActor.h
+/usr/local/include/vtk-6.3/vtkActor.h
 
-/usr/include/vtk-6.2/vtkAlgorithm.h
+/usr/local/include/vtk-6.3/vtkAlgorithm.h
 vtkCommonExecutionModelModule.h
-/usr/include/vtk-6.2/vtkCommonExecutionModelModule.h
+/usr/local/include/vtk-6.3/vtkCommonExecutionModelModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 
-/usr/include/vtk-6.2/vtkAlgorithmOutput.h
+/usr/local/include/vtk-6.3/vtkAlgorithmOutput.h
 vtkCommonExecutionModelModule.h
-/usr/include/vtk-6.2/vtkCommonExecutionModelModule.h
+/usr/local/include/vtk-6.3/vtkCommonExecutionModelModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 
-/usr/include/vtk-6.2/vtkAppendPolyData.h
+/usr/local/include/vtk-6.3/vtkAppendPolyData.h
 vtkFiltersCoreModule.h
-/usr/include/vtk-6.2/vtkFiltersCoreModule.h
+/usr/local/include/vtk-6.3/vtkFiltersCoreModule.h
 vtkPolyDataAlgorithm.h
-/usr/include/vtk-6.2/vtkPolyDataAlgorithm.h
+/usr/local/include/vtk-6.3/vtkPolyDataAlgorithm.h
 
-/usr/include/vtk-6.2/vtkArrayIterator.h
+/usr/local/include/vtk-6.3/vtkArrayIterator.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 
-/usr/include/vtk-6.2/vtkArrayIteratorTemplate.h
+/usr/local/include/vtk-6.3/vtkArrayIteratorTemplate.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkTypeTemplate.h
-/usr/include/vtk-6.2/vtkTypeTemplate.h
+/usr/local/include/vtk-6.3/vtkTypeTemplate.h
 vtkArrayIterator.h
-/usr/include/vtk-6.2/vtkArrayIterator.h
+/usr/local/include/vtk-6.3/vtkArrayIterator.h
 vtkArrayIteratorTemplateImplicit.txx
-/usr/include/vtk-6.2/vtkArrayIteratorTemplateImplicit.txx
+/usr/local/include/vtk-6.3/vtkArrayIteratorTemplateImplicit.txx
 
-/usr/include/vtk-6.2/vtkArrayIteratorTemplate.txx
+/usr/local/include/vtk-6.3/vtkArrayIteratorTemplate.txx
 vtkArrayIteratorTemplate.h
-/usr/include/vtk-6.2/vtkArrayIteratorTemplate.h
+/usr/local/include/vtk-6.3/vtkArrayIteratorTemplate.h
 vtkAbstractArray.h
-/usr/include/vtk-6.2/vtkAbstractArray.h
+/usr/local/include/vtk-6.3/vtkAbstractArray.h
 vtkObjectFactory.h
-/usr/include/vtk-6.2/vtkObjectFactory.h
+/usr/local/include/vtk-6.3/vtkObjectFactory.h
 
-/usr/include/vtk-6.2/vtkArrayIteratorTemplateImplicit.txx
+/usr/local/include/vtk-6.3/vtkArrayIteratorTemplateImplicit.txx
 vtkArrayIteratorTemplate.txx
-/usr/include/vtk-6.2/vtkArrayIteratorTemplate.txx
+/usr/local/include/vtk-6.3/vtkArrayIteratorTemplate.txx
 
-/usr/include/vtk-6.2/vtkAtomicInt.h
+/usr/local/include/vtk-6.3/vtkAtomic.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
-vtkSystemIncludes.h
-/usr/include/vtk-6.2/vtkSystemIncludes.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
+vtkAtomicTypeConcepts.h
+/usr/local/include/vtk-6.3/vtkAtomicTypeConcepts.h
 vtkConfigure.h
-/usr/include/vtk-6.2/vtkConfigure.h
+/usr/local/include/vtk-6.3/vtkConfigure.h
+vtkSystemIncludes.h
+/usr/local/include/vtk-6.3/vtkSystemIncludes.h
+vtkType.h
+/usr/local/include/vtk-6.3/vtkType.h
+cstddef
+-
 libkern/OSAtomic.h
 -
 
-/usr/include/vtk-6.2/vtkAutoInit.h
+/usr/local/include/vtk-6.3/vtkAtomicTypeConcepts.h
+limits
+-
+
+/usr/local/include/vtk-6.3/vtkAtomicTypes.h
+vtkAtomic.h
+/usr/local/include/vtk-6.3/vtkAtomic.h
+vtkType.h
+/usr/local/include/vtk-6.3/vtkType.h
+
+/usr/local/include/vtk-6.3/vtkAutoInit.h
 vtkDebugLeaksManager.h
-/usr/include/vtk-6.2/vtkDebugLeaksManager.h
+/usr/local/include/vtk-6.3/vtkDebugLeaksManager.h
 vtkTimeStamp.h
-/usr/include/vtk-6.2/vtkTimeStamp.h
+/usr/local/include/vtk-6.3/vtkTimeStamp.h
 
-/usr/include/vtk-6.2/vtkCell.h
+/usr/local/include/vtk-6.3/vtkCell.h
 vtkCommonDataModelModule.h
-/usr/include/vtk-6.2/vtkCommonDataModelModule.h
+/usr/local/include/vtk-6.3/vtkCommonDataModelModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 vtkIdList.h
-/usr/include/vtk-6.2/vtkIdList.h
+/usr/local/include/vtk-6.3/vtkIdList.h
 vtkCellType.h
-/usr/include/vtk-6.2/vtkCellType.h
+/usr/local/include/vtk-6.3/vtkCellType.h
 
-/usr/include/vtk-6.2/vtkCellArray.h
+/usr/local/include/vtk-6.3/vtkCellArray.h
 vtkCommonDataModelModule.h
-/usr/include/vtk-6.2/vtkCommonDataModelModule.h
+/usr/local/include/vtk-6.3/vtkCommonDataModelModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 vtkIdTypeArray.h
-/usr/include/vtk-6.2/vtkIdTypeArray.h
+/usr/local/include/vtk-6.3/vtkIdTypeArray.h
 vtkCell.h
-/usr/include/vtk-6.2/vtkCell.h
+/usr/local/include/vtk-6.3/vtkCell.h
 
-/usr/include/vtk-6.2/vtkCellData.h
+/usr/local/include/vtk-6.3/vtkCellData.h
 vtkCommonDataModelModule.h
-/usr/include/vtk-6.2/vtkCommonDataModelModule.h
+/usr/local/include/vtk-6.3/vtkCommonDataModelModule.h
 vtkDataSetAttributes.h
-/usr/include/vtk-6.2/vtkDataSetAttributes.h
+/usr/local/include/vtk-6.3/vtkDataSetAttributes.h
 
-/usr/include/vtk-6.2/vtkCellLinks.h
+/usr/local/include/vtk-6.3/vtkCellLinks.h
 vtkCommonDataModelModule.h
-/usr/include/vtk-6.2/vtkCommonDataModelModule.h
+/usr/local/include/vtk-6.3/vtkCommonDataModelModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 
-/usr/include/vtk-6.2/vtkCellType.h
+/usr/local/include/vtk-6.3/vtkCellType.h
 
-/usr/include/vtk-6.2/vtkCellTypes.h
+/usr/local/include/vtk-6.3/vtkCellTypes.h
 vtkCommonDataModelModule.h
-/usr/include/vtk-6.2/vtkCommonDataModelModule.h
+/usr/local/include/vtk-6.3/vtkCommonDataModelModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 vtkIntArray.h
-/usr/include/vtk-6.2/vtkIntArray.h
+/usr/local/include/vtk-6.3/vtkIntArray.h
 vtkUnsignedCharArray.h
-/usr/include/vtk-6.2/vtkUnsignedCharArray.h
+/usr/local/include/vtk-6.3/vtkUnsignedCharArray.h
 vtkCellType.h
-/usr/include/vtk-6.2/vtkCellType.h
+/usr/local/include/vtk-6.3/vtkCellType.h
 
-/usr/include/vtk-6.2/vtkCollection.h
+/usr/local/include/vtk-6.3/vtkCollection.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 
-/usr/include/vtk-6.2/vtkCommand.h
+/usr/local/include/vtk-6.3/vtkCommand.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkObjectBase.h
-/usr/include/vtk-6.2/vtkObjectBase.h
+/usr/local/include/vtk-6.3/vtkObjectBase.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 
-/usr/include/vtk-6.2/vtkCommonDataModelModule.h
+/usr/local/include/vtk-6.3/vtkCommonDataModelModule.h
 
-/usr/include/vtk-6.2/vtkCommonExecutionModelModule.h
+/usr/local/include/vtk-6.3/vtkCommonExecutionModelModule.h
 
-/usr/include/vtk-6.2/vtkCommonInformationKeyManager.h
+/usr/local/include/vtk-6.3/vtkCommonInformationKeyManager.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkSystemIncludes.h
-/usr/include/vtk-6.2/vtkSystemIncludes.h
+/usr/local/include/vtk-6.3/vtkSystemIncludes.h
 vtkDebugLeaksManager.h
-/usr/include/vtk-6.2/vtkDebugLeaksManager.h
+/usr/local/include/vtk-6.3/vtkDebugLeaksManager.h
 
-/usr/include/vtk-6.2/vtkCommonMathModule.h
+/usr/local/include/vtk-6.3/vtkCommonMathModule.h
 
-/usr/include/vtk-6.2/vtkConfigure.h
+/usr/local/include/vtk-6.3/vtkConfigure.h
 vtkVersionMacros.h
-/usr/include/vtk-6.2/vtkVersionMacros.h
+/usr/local/include/vtk-6.3/vtkVersionMacros.h
 
-/usr/include/vtk-6.2/vtkCoordinate.h
+/usr/local/include/vtk-6.3/vtkCoordinate.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 
-/usr/include/vtk-6.2/vtkDataArray.h
+/usr/local/include/vtk-6.3/vtkDataArray.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkAbstractArray.h
-/usr/include/vtk-6.2/vtkAbstractArray.h
+/usr/local/include/vtk-6.3/vtkAbstractArray.h
 
-/usr/include/vtk-6.2/vtkDataArrayTemplate.h
+/usr/local/include/vtk-6.3/vtkDataArrayTemplate.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkTypedDataArray.h
-/usr/include/vtk-6.2/vtkTypedDataArray.h
+/usr/local/include/vtk-6.3/vtkTypedDataArray.h
 vtkTypeTemplate.h
-/usr/include/vtk-6.2/vtkTypeTemplate.h
+/usr/local/include/vtk-6.3/vtkTypeTemplate.h
 cassert
 -
 vtkDataArrayTemplateImplicit.txx
-/usr/include/vtk-6.2/vtkDataArrayTemplateImplicit.txx
+/usr/local/include/vtk-6.3/vtkDataArrayTemplateImplicit.txx
 
-/usr/include/vtk-6.2/vtkDataArrayTemplate.txx
+/usr/local/include/vtk-6.3/vtkDataArrayTemplate.txx
 vtkDataArrayTemplate.h
-/usr/include/vtk-6.2/vtkDataArrayTemplate.h
+/usr/local/include/vtk-6.3/vtkDataArrayTemplate.h
 vtkDataArrayPrivate.txx
-/usr/include/vtk-6.2/vtkDataArrayPrivate.txx
+/usr/local/include/vtk-6.3/vtkDataArrayPrivate.txx
 vtkArrayIteratorTemplate.h
-/usr/include/vtk-6.2/vtkArrayIteratorTemplate.h
+/usr/local/include/vtk-6.3/vtkArrayIteratorTemplate.h
 vtkDataArrayTemplateHelper.h
-/usr/include/vtk-6.2/vtkDataArrayTemplateHelper.h
+/usr/local/include/vtk-6.3/vtkDataArrayTemplateHelper.h
 vtkIdList.h
-/usr/include/vtk-6.2/vtkIdList.h
+/usr/local/include/vtk-6.3/vtkIdList.h
 vtkInformation.h
-/usr/include/vtk-6.2/vtkInformation.h
+/usr/local/include/vtk-6.3/vtkInformation.h
 vtkInformationDoubleVectorKey.h
-/usr/include/vtk-6.2/vtkInformationDoubleVectorKey.h
+/usr/local/include/vtk-6.3/vtkInformationDoubleVectorKey.h
 vtkInformationInformationVectorKey.h
-/usr/include/vtk-6.2/vtkInformationInformationVectorKey.h
+/usr/local/include/vtk-6.3/vtkInformationInformationVectorKey.h
 vtkInformationVector.h
-/usr/include/vtk-6.2/vtkInformationVector.h
+/usr/local/include/vtk-6.3/vtkInformationVector.h
 vtkMappedDataArray.h
-/usr/include/vtk-6.2/vtkMappedDataArray.h
+/usr/local/include/vtk-6.3/vtkMappedDataArray.h
 vtkSortDataArray.h
-/usr/include/vtk-6.2/vtkSortDataArray.h
+/usr/local/include/vtk-6.3/vtkSortDataArray.h
 vtkTypeTraits.h
-/usr/include/vtk-6.2/vtkTypeTraits.h
+/usr/local/include/vtk-6.3/vtkTypeTraits.h
 vtkVariantCast.h
-/usr/include/vtk-6.2/vtkVariantCast.h
+/usr/local/include/vtk-6.3/vtkVariantCast.h
 new
 -
 exception
@@ -3352,101 +3422,101 @@ algorithm
 map
 -
 
-/usr/include/vtk-6.2/vtkDataArrayTemplateHelper.h
+/usr/local/include/vtk-6.3/vtkDataArrayTemplateHelper.h
 vtkDataArrayTemplate.h
-/usr/include/vtk-6.2/vtkDataArrayTemplate.h
+/usr/local/include/vtk-6.3/vtkDataArrayTemplate.h
 
-/usr/include/vtk-6.2/vtkDataArrayTemplateImplicit.txx
+/usr/local/include/vtk-6.3/vtkDataArrayTemplateImplicit.txx
 vtkDataArrayTemplate.txx
-/usr/include/vtk-6.2/vtkDataArrayTemplate.txx
+/usr/local/include/vtk-6.3/vtkDataArrayTemplate.txx
 
-/usr/include/vtk-6.2/vtkDataObject.h
+/usr/local/include/vtk-6.3/vtkDataObject.h
 vtkCommonDataModelModule.h
-/usr/include/vtk-6.2/vtkCommonDataModelModule.h
+/usr/local/include/vtk-6.3/vtkCommonDataModelModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 
-/usr/include/vtk-6.2/vtkDataSet.h
+/usr/local/include/vtk-6.3/vtkDataSet.h
 vtkCommonDataModelModule.h
-/usr/include/vtk-6.2/vtkCommonDataModelModule.h
+/usr/local/include/vtk-6.3/vtkCommonDataModelModule.h
 vtkDataObject.h
-/usr/include/vtk-6.2/vtkDataObject.h
+/usr/local/include/vtk-6.3/vtkDataObject.h
 
-/usr/include/vtk-6.2/vtkDataSetAttributes.h
+/usr/local/include/vtk-6.3/vtkDataSetAttributes.h
 vtkCommonDataModelModule.h
-/usr/include/vtk-6.2/vtkCommonDataModelModule.h
+/usr/local/include/vtk-6.3/vtkCommonDataModelModule.h
 vtkFieldData.h
-/usr/include/vtk-6.2/vtkFieldData.h
+/usr/local/include/vtk-6.3/vtkFieldData.h
 
-/usr/include/vtk-6.2/vtkDataSetMapper.h
+/usr/local/include/vtk-6.3/vtkDataSetMapper.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkMapper.h
-/usr/include/vtk-6.2/vtkMapper.h
+/usr/local/include/vtk-6.3/vtkMapper.h
 
-/usr/include/vtk-6.2/vtkDataSetSurfaceFilter.h
+/usr/local/include/vtk-6.3/vtkDataSetSurfaceFilter.h
 vtkFiltersGeometryModule.h
-/usr/include/vtk-6.2/vtkFiltersGeometryModule.h
+/usr/local/include/vtk-6.3/vtkFiltersGeometryModule.h
 vtkPolyDataAlgorithm.h
-/usr/include/vtk-6.2/vtkPolyDataAlgorithm.h
+/usr/local/include/vtk-6.3/vtkPolyDataAlgorithm.h
 
-/usr/include/vtk-6.2/vtkDebugLeaksManager.h
+/usr/local/include/vtk-6.3/vtkDebugLeaksManager.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkSystemIncludes.h
-/usr/include/vtk-6.2/vtkSystemIncludes.h
+/usr/local/include/vtk-6.3/vtkSystemIncludes.h
 
-/usr/include/vtk-6.2/vtkFieldData.h
+/usr/local/include/vtk-6.3/vtkFieldData.h
 vtkCommonDataModelModule.h
-/usr/include/vtk-6.2/vtkCommonDataModelModule.h
+/usr/local/include/vtk-6.3/vtkCommonDataModelModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 vtkAbstractArray.h
-/usr/include/vtk-6.2/vtkAbstractArray.h
+/usr/local/include/vtk-6.3/vtkAbstractArray.h
 
-/usr/include/vtk-6.2/vtkFiltersCoreModule.h
+/usr/local/include/vtk-6.3/vtkFiltersCoreModule.h
 vtkAutoInit.h
-/usr/include/vtk-6.2/vtkAutoInit.h
+/usr/local/include/vtk-6.3/vtkAutoInit.h
 
-/usr/include/vtk-6.2/vtkFiltersGeneralModule.h
+/usr/local/include/vtk-6.3/vtkFiltersGeneralModule.h
 vtkFiltersCoreModule.h
-/usr/include/vtk-6.2/vtkFiltersCoreModule.h
+/usr/local/include/vtk-6.3/vtkFiltersCoreModule.h
 
-/usr/include/vtk-6.2/vtkFiltersGeometryModule.h
+/usr/local/include/vtk-6.3/vtkFiltersGeometryModule.h
 vtkFiltersCoreModule.h
-/usr/include/vtk-6.2/vtkFiltersCoreModule.h
+/usr/local/include/vtk-6.3/vtkFiltersCoreModule.h
 
-/usr/include/vtk-6.2/vtkFiltersModelingModule.h
+/usr/local/include/vtk-6.3/vtkFiltersModelingModule.h
 vtkFiltersGeneralModule.h
-/usr/include/vtk-6.2/vtkFiltersGeneralModule.h
+/usr/local/include/vtk-6.3/vtkFiltersGeneralModule.h
 vtkFiltersSourcesModule.h
-/usr/include/vtk-6.2/vtkFiltersSourcesModule.h
+/usr/local/include/vtk-6.3/vtkFiltersSourcesModule.h
 
-/usr/include/vtk-6.2/vtkFiltersSourcesModule.h
+/usr/local/include/vtk-6.3/vtkFiltersSourcesModule.h
 vtkFiltersGeneralModule.h
-/usr/include/vtk-6.2/vtkFiltersGeneralModule.h
+/usr/local/include/vtk-6.3/vtkFiltersGeneralModule.h
 
-/usr/include/vtk-6.2/vtkFloatArray.h
+/usr/local/include/vtk-6.3/vtkFloatArray.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkDataArray.h
-/usr/include/vtk-6.2/vtkDataArray.h
+/usr/local/include/vtk-6.3/vtkDataArray.h
 vtkDataArrayTemplate.h
-/usr/include/vtk-6.2/vtkDataArrayTemplate.h
+/usr/local/include/vtk-6.3/vtkDataArrayTemplate.h
 
-/usr/include/vtk-6.2/vtkFollower.h
+/usr/local/include/vtk-6.3/vtkFollower.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkActor.h
-/usr/include/vtk-6.2/vtkActor.h
+/usr/local/include/vtk-6.3/vtkActor.h
 
-/usr/include/vtk-6.2/vtkIOStream.h
+/usr/local/include/vtk-6.3/vtkIOStream.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkConfigure.h
-/usr/include/vtk-6.2/vtkConfigure.h
+/usr/local/include/vtk-6.3/vtkConfigure.h
 vtkWin32Header.h
-/usr/include/vtk-6.2/vtkWin32Header.h
+/usr/local/include/vtk-6.3/vtkWin32Header.h
 iostream
 -
 fstream
@@ -3454,363 +3524,403 @@ fstream
 iomanip
 -
 
-/usr/include/vtk-6.2/vtkIOStreamFwd.h
+/usr/local/include/vtk-6.3/vtkIOStreamFwd.h
 vtkConfigure.h
-/usr/include/vtk-6.2/vtkConfigure.h
+/usr/local/include/vtk-6.3/vtkConfigure.h
 iosfwd
 -
 
-/usr/include/vtk-6.2/vtkIdList.h
+/usr/local/include/vtk-6.3/vtkIdList.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 
-/usr/include/vtk-6.2/vtkIdTypeArray.h
+/usr/local/include/vtk-6.3/vtkIdTypeArray.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkDataArray.h
-/usr/include/vtk-6.2/vtkDataArray.h
+/usr/local/include/vtk-6.3/vtkDataArray.h
 vtkDataArrayTemplate.h
-/usr/include/vtk-6.2/vtkDataArrayTemplate.h
+/usr/local/include/vtk-6.3/vtkDataArrayTemplate.h
 
-/usr/include/vtk-6.2/vtkImageAlgorithm.h
+/usr/local/include/vtk-6.3/vtkImageAlgorithm.h
 vtkCommonExecutionModelModule.h
-/usr/include/vtk-6.2/vtkCommonExecutionModelModule.h
+/usr/local/include/vtk-6.3/vtkCommonExecutionModelModule.h
 vtkAlgorithm.h
-/usr/include/vtk-6.2/vtkAlgorithm.h
+/usr/local/include/vtk-6.3/vtkAlgorithm.h
 
-/usr/include/vtk-6.2/vtkIndent.h
+/usr/local/include/vtk-6.3/vtkIndent.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkSystemIncludes.h
-/usr/include/vtk-6.2/vtkSystemIncludes.h
+/usr/local/include/vtk-6.3/vtkSystemIncludes.h
 
-/usr/include/vtk-6.2/vtkInformation.h
+/usr/local/include/vtk-6.3/vtkInformation.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 
-/usr/include/vtk-6.2/vtkInformationDoubleVectorKey.h
+/usr/local/include/vtk-6.3/vtkInformationDoubleVectorKey.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkInformationKey.h
-/usr/include/vtk-6.2/vtkInformationKey.h
+/usr/local/include/vtk-6.3/vtkInformationKey.h
 vtkCommonInformationKeyManager.h
-/usr/include/vtk-6.2/vtkCommonInformationKeyManager.h
+/usr/local/include/vtk-6.3/vtkCommonInformationKeyManager.h
 
-/usr/include/vtk-6.2/vtkInformationInformationVectorKey.h
+/usr/local/include/vtk-6.3/vtkInformationInformationVectorKey.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkInformationKey.h
-/usr/include/vtk-6.2/vtkInformationKey.h
+/usr/local/include/vtk-6.3/vtkInformationKey.h
 vtkCommonInformationKeyManager.h
-/usr/include/vtk-6.2/vtkCommonInformationKeyManager.h
+/usr/local/include/vtk-6.3/vtkCommonInformationKeyManager.h
 
-/usr/include/vtk-6.2/vtkInformationKey.h
+/usr/local/include/vtk-6.3/vtkInformationKey.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkObjectBase.h
-/usr/include/vtk-6.2/vtkObjectBase.h
+/usr/local/include/vtk-6.3/vtkObjectBase.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 
-/usr/include/vtk-6.2/vtkInformationVector.h
+/usr/local/include/vtk-6.3/vtkInformationVector.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 
-/usr/include/vtk-6.2/vtkIntArray.h
+/usr/local/include/vtk-6.3/vtkIntArray.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkDataArray.h
-/usr/include/vtk-6.2/vtkDataArray.h
+/usr/local/include/vtk-6.3/vtkDataArray.h
 vtkDataArrayTemplate.h
-/usr/include/vtk-6.2/vtkDataArrayTemplate.h
+/usr/local/include/vtk-6.3/vtkDataArrayTemplate.h
 
-/usr/include/vtk-6.2/vtkInteractionStyleModule.h
+/usr/local/include/vtk-6.3/vtkInteractionStyleModule.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkAutoInit.h
-/usr/include/vtk-6.2/vtkAutoInit.h
+/usr/local/include/vtk-6.3/vtkAutoInit.h
 
-/usr/include/vtk-6.2/vtkInteractorObserver.h
+/usr/local/include/vtk-6.3/vtkInteractorObserver.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 
-/usr/include/vtk-6.2/vtkInteractorStyle.h
+/usr/local/include/vtk-6.3/vtkInteractorStyle.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkInteractorObserver.h
-/usr/include/vtk-6.2/vtkInteractorObserver.h
+/usr/local/include/vtk-6.3/vtkInteractorObserver.h
 
-/usr/include/vtk-6.2/vtkInteractorStyleRubberBandPick.h
+/usr/local/include/vtk-6.3/vtkInteractorStyleRubberBandPick.h
 vtkInteractionStyleModule.h
-/usr/include/vtk-6.2/vtkInteractionStyleModule.h
+/usr/local/include/vtk-6.3/vtkInteractionStyleModule.h
 vtkInteractorStyleTrackballCamera.h
-/usr/include/vtk-6.2/vtkInteractorStyleTrackballCamera.h
+/usr/local/include/vtk-6.3/vtkInteractorStyleTrackballCamera.h
 
-/usr/include/vtk-6.2/vtkInteractorStyleTrackballCamera.h
+/usr/local/include/vtk-6.3/vtkInteractorStyleTrackballCamera.h
 vtkInteractionStyleModule.h
-/usr/include/vtk-6.2/vtkInteractionStyleModule.h
+/usr/local/include/vtk-6.3/vtkInteractionStyleModule.h
 vtkInteractorStyle.h
-/usr/include/vtk-6.2/vtkInteractorStyle.h
+/usr/local/include/vtk-6.3/vtkInteractorStyle.h
 
-/usr/include/vtk-6.2/vtkLODActor.h
+/usr/local/include/vtk-6.3/vtkLODActor.h
 vtkRenderingLODModule.h
-/usr/include/vtk-6.2/vtkRenderingLODModule.h
+/usr/local/include/vtk-6.3/vtkRenderingLODModule.h
 vtkActor.h
-/usr/include/vtk-6.2/vtkActor.h
+/usr/local/include/vtk-6.3/vtkActor.h
 
-/usr/include/vtk-6.2/vtkLeaderActor2D.h
+/usr/local/include/vtk-6.3/vtkLeaderActor2D.h
 vtkRenderingAnnotationModule.h
-/usr/include/vtk-6.2/vtkRenderingAnnotationModule.h
+/usr/local/include/vtk-6.3/vtkRenderingAnnotationModule.h
 vtkActor2D.h
-/usr/include/vtk-6.2/vtkActor2D.h
+/usr/local/include/vtk-6.3/vtkActor2D.h
 
-/usr/include/vtk-6.2/vtkMappedDataArray.h
+/usr/local/include/vtk-6.3/vtkLineSource.h
+vtkFiltersSourcesModule.h
+/usr/local/include/vtk-6.3/vtkFiltersSourcesModule.h
+vtkPolyDataAlgorithm.h
+/usr/local/include/vtk-6.3/vtkPolyDataAlgorithm.h
+
+/usr/local/include/vtk-6.3/vtkLookupTable.h
+vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
+vtkScalarsToColors.h
+/usr/local/include/vtk-6.3/vtkScalarsToColors.h
+vtkUnsignedCharArray.h
+/usr/local/include/vtk-6.3/vtkUnsignedCharArray.h
+
+/usr/local/include/vtk-6.3/vtkMappedDataArray.h
 vtkTypedDataArray.h
-/usr/include/vtk-6.2/vtkTypedDataArray.h
+/usr/local/include/vtk-6.3/vtkTypedDataArray.h
 vtkTypeTemplate.h
-/usr/include/vtk-6.2/vtkTypeTemplate.h
+/usr/local/include/vtk-6.3/vtkTypeTemplate.h
 vtkMappedDataArray.txx
-/usr/include/vtk-6.2/vtkMappedDataArray.txx
+/usr/local/include/vtk-6.3/vtkMappedDataArray.txx
 
-/usr/include/vtk-6.2/vtkMappedDataArray.txx
+/usr/local/include/vtk-6.3/vtkMappedDataArray.txx
 vtkMappedDataArray.h
-/usr/include/vtk-6.2/vtkMappedDataArray.h
+/usr/local/include/vtk-6.3/vtkMappedDataArray.h
 vtkVariant.h
-/usr/include/vtk-6.2/vtkVariant.h
+/usr/local/include/vtk-6.3/vtkVariant.h
 
-/usr/include/vtk-6.2/vtkMapper.h
+/usr/local/include/vtk-6.3/vtkMapper.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkAbstractMapper3D.h
-/usr/include/vtk-6.2/vtkAbstractMapper3D.h
+/usr/local/include/vtk-6.3/vtkAbstractMapper3D.h
 vtkSystemIncludes.h
-/usr/include/vtk-6.2/vtkSystemIncludes.h
+/usr/local/include/vtk-6.3/vtkSystemIncludes.h
+vtkSmartPointer.h
+/usr/local/include/vtk-6.3/vtkSmartPointer.h
 
-/usr/include/vtk-6.2/vtkMatrix4x4.h
+/usr/local/include/vtk-6.3/vtkMath.h
+vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
+vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
+vtkMathConfigure.h
+/usr/local/include/vtk-6.3/vtkMathConfigure.h
+cassert
+-
+
+/usr/local/include/vtk-6.3/vtkMathConfigure.h
+cmath
+-
+float.h
+-
+
+/usr/local/include/vtk-6.3/vtkMatrix4x4.h
 vtkCommonMathModule.h
-/usr/include/vtk-6.2/vtkCommonMathModule.h
+/usr/local/include/vtk-6.3/vtkCommonMathModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 
-/usr/include/vtk-6.2/vtkOStrStreamWrapper.h
+/usr/local/include/vtk-6.3/vtkOStrStreamWrapper.h
 
-/usr/include/vtk-6.2/vtkOStreamWrapper.h
+/usr/local/include/vtk-6.3/vtkOStreamWrapper.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkObjectBase.h
-/usr/include/vtk-6.2/vtkObjectBase.h
+/usr/local/include/vtk-6.3/vtkObjectBase.h
 vtkSetGet.h
-/usr/include/vtk-6.2/vtkSetGet.h
+/usr/local/include/vtk-6.3/vtkSetGet.h
 vtkTimeStamp.h
-/usr/include/vtk-6.2/vtkTimeStamp.h
+/usr/local/include/vtk-6.3/vtkTimeStamp.h
 vtkWeakPointerBase.h
-/usr/include/vtk-6.2/vtkWeakPointerBase.h
+/usr/local/include/vtk-6.3/vtkWeakPointerBase.h
 
-/usr/include/vtk-6.2/vtkObjectBase.h
+/usr/local/include/vtk-6.3/vtkObjectBase.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
-vtkAtomicInt.h
-/usr/include/vtk-6.2/vtkAtomicInt.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkIndent.h
-/usr/include/vtk-6.2/vtkIndent.h
+/usr/local/include/vtk-6.3/vtkIndent.h
 vtkSystemIncludes.h
-/usr/include/vtk-6.2/vtkSystemIncludes.h
+/usr/local/include/vtk-6.3/vtkSystemIncludes.h
+vtkAtomicTypes.h
+/usr/local/include/vtk-6.3/vtkAtomicTypes.h
 
-/usr/include/vtk-6.2/vtkObjectFactory.h
+/usr/local/include/vtk-6.3/vtkObjectFactory.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 
-/usr/include/vtk-6.2/vtkPointData.h
+/usr/local/include/vtk-6.3/vtkPointData.h
 vtkCommonDataModelModule.h
-/usr/include/vtk-6.2/vtkCommonDataModelModule.h
+/usr/local/include/vtk-6.3/vtkCommonDataModelModule.h
 vtkDataSetAttributes.h
-/usr/include/vtk-6.2/vtkDataSetAttributes.h
+/usr/local/include/vtk-6.3/vtkDataSetAttributes.h
 
-/usr/include/vtk-6.2/vtkPointSet.h
+/usr/local/include/vtk-6.3/vtkPointSet.h
 vtkCommonDataModelModule.h
-/usr/include/vtk-6.2/vtkCommonDataModelModule.h
+/usr/local/include/vtk-6.3/vtkCommonDataModelModule.h
 vtkDataSet.h
-/usr/include/vtk-6.2/vtkDataSet.h
+/usr/local/include/vtk-6.3/vtkDataSet.h
 vtkPoints.h
-/usr/include/vtk-6.2/vtkPoints.h
+/usr/local/include/vtk-6.3/vtkPoints.h
 
-/usr/include/vtk-6.2/vtkPoints.h
+/usr/local/include/vtk-6.3/vtkPoints.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 vtkDataArray.h
-/usr/include/vtk-6.2/vtkDataArray.h
+/usr/local/include/vtk-6.3/vtkDataArray.h
 
-/usr/include/vtk-6.2/vtkPolyData.h
+/usr/local/include/vtk-6.3/vtkPolyData.h
 vtkCommonDataModelModule.h
-/usr/include/vtk-6.2/vtkCommonDataModelModule.h
+/usr/local/include/vtk-6.3/vtkCommonDataModelModule.h
 vtkPointSet.h
-/usr/include/vtk-6.2/vtkPointSet.h
+/usr/local/include/vtk-6.3/vtkPointSet.h
 vtkCellTypes.h
-/usr/include/vtk-6.2/vtkCellTypes.h
+/usr/local/include/vtk-6.3/vtkCellTypes.h
 vtkCellLinks.h
-/usr/include/vtk-6.2/vtkCellLinks.h
+/usr/local/include/vtk-6.3/vtkCellLinks.h
 
-/usr/include/vtk-6.2/vtkPolyDataAlgorithm.h
+/usr/local/include/vtk-6.3/vtkPolyDataAlgorithm.h
 vtkCommonExecutionModelModule.h
-/usr/include/vtk-6.2/vtkCommonExecutionModelModule.h
+/usr/local/include/vtk-6.3/vtkCommonExecutionModelModule.h
 vtkAlgorithm.h
-/usr/include/vtk-6.2/vtkAlgorithm.h
+/usr/local/include/vtk-6.3/vtkAlgorithm.h
 vtkPolyData.h
-/usr/include/vtk-6.2/vtkPolyData.h
+/usr/local/include/vtk-6.3/vtkPolyData.h
 
-/usr/include/vtk-6.2/vtkPolyDataMapper.h
+/usr/local/include/vtk-6.3/vtkPolyDataMapper.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkMapper.h
-/usr/include/vtk-6.2/vtkMapper.h
+/usr/local/include/vtk-6.3/vtkMapper.h
 vtkTexture.h
-/usr/include/vtk-6.2/vtkTexture.h
+/usr/local/include/vtk-6.3/vtkTexture.h
 
-/usr/include/vtk-6.2/vtkPolygon.h
+/usr/local/include/vtk-6.3/vtkPolygon.h
 vtkCommonDataModelModule.h
-/usr/include/vtk-6.2/vtkCommonDataModelModule.h
+/usr/local/include/vtk-6.3/vtkCommonDataModelModule.h
 vtkCell.h
-/usr/include/vtk-6.2/vtkCell.h
+/usr/local/include/vtk-6.3/vtkCell.h
 
-/usr/include/vtk-6.2/vtkProp.h
+/usr/local/include/vtk-6.3/vtkProp.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 
-/usr/include/vtk-6.2/vtkProp3D.h
+/usr/local/include/vtk-6.3/vtkProp3D.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkProp.h
-/usr/include/vtk-6.2/vtkProp.h
+/usr/local/include/vtk-6.3/vtkProp.h
 
-/usr/include/vtk-6.2/vtkPropCollection.h
+/usr/local/include/vtk-6.3/vtkPropCollection.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkCollection.h
-/usr/include/vtk-6.2/vtkCollection.h
+/usr/local/include/vtk-6.3/vtkCollection.h
 vtkProp.h
-/usr/include/vtk-6.2/vtkProp.h
+/usr/local/include/vtk-6.3/vtkProp.h
 
-/usr/include/vtk-6.2/vtkProperty.h
+/usr/local/include/vtk-6.3/vtkProperty.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 
-/usr/include/vtk-6.2/vtkProperty2D.h
+/usr/local/include/vtk-6.3/vtkProperty2D.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 
-/usr/include/vtk-6.2/vtkRenderer.h
+/usr/local/include/vtk-6.3/vtkRenderer.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkViewport.h
-/usr/include/vtk-6.2/vtkViewport.h
+/usr/local/include/vtk-6.3/vtkViewport.h
 vtkVolumeCollection.h
-/usr/include/vtk-6.2/vtkVolumeCollection.h
+/usr/local/include/vtk-6.3/vtkVolumeCollection.h
 vtkActorCollection.h
-/usr/include/vtk-6.2/vtkActorCollection.h
+/usr/local/include/vtk-6.3/vtkActorCollection.h
 
-/usr/include/vtk-6.2/vtkRendererCollection.h
+/usr/local/include/vtk-6.3/vtkRendererCollection.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkCollection.h
-/usr/include/vtk-6.2/vtkCollection.h
+/usr/local/include/vtk-6.3/vtkCollection.h
 vtkRenderer.h
-/usr/include/vtk-6.2/vtkRenderer.h
+/usr/local/include/vtk-6.3/vtkRenderer.h
 
-/usr/include/vtk-6.2/vtkRenderingAnnotationModule.h
+/usr/local/include/vtk-6.3/vtkRenderingAnnotationModule.h
 vtkRenderingFreeTypeModule.h
-/usr/include/vtk-6.2/vtkRenderingFreeTypeModule.h
+/usr/local/include/vtk-6.3/vtkRenderingFreeTypeModule.h
 
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkAutoInit.h
-/usr/include/vtk-6.2/vtkAutoInit.h
+/usr/local/include/vtk-6.3/vtkAutoInit.h
 
-/usr/include/vtk-6.2/vtkRenderingFreeTypeModule.h
+/usr/local/include/vtk-6.3/vtkRenderingFreeTypeModule.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkAutoInit.h
-/usr/include/vtk-6.2/vtkAutoInit.h
+/usr/local/include/vtk-6.3/vtkAutoInit.h
 
-/usr/include/vtk-6.2/vtkRenderingLODModule.h
+/usr/local/include/vtk-6.3/vtkRenderingLODModule.h
 vtkFiltersModelingModule.h
-/usr/include/vtk-6.2/vtkFiltersModelingModule.h
+/usr/local/include/vtk-6.3/vtkFiltersModelingModule.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 
-/usr/include/vtk-6.2/vtkSetGet.h
+/usr/local/include/vtk-6.3/vtkScalarsToColors.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
+vtkVariant.h
+/usr/local/include/vtk-6.3/vtkVariant.h
+vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
+
+/usr/local/include/vtk-6.3/vtkSetGet.h
+vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkSystemIncludes.h
-/usr/include/vtk-6.2/vtkSystemIncludes.h
+/usr/local/include/vtk-6.3/vtkSystemIncludes.h
 math.h
 -
 
-/usr/include/vtk-6.2/vtkSmartPointer.h
+/usr/local/include/vtk-6.3/vtkSmartPointer.h
 vtkSmartPointerBase.h
-/usr/include/vtk-6.2/vtkSmartPointerBase.h
+/usr/local/include/vtk-6.3/vtkSmartPointerBase.h
 
-/usr/include/vtk-6.2/vtkSmartPointerBase.h
+/usr/local/include/vtk-6.3/vtkSmartPointerBase.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkObjectBase.h
-/usr/include/vtk-6.2/vtkObjectBase.h
+/usr/local/include/vtk-6.3/vtkObjectBase.h
 
-/usr/include/vtk-6.2/vtkSortDataArray.h
+/usr/local/include/vtk-6.3/vtkSortDataArray.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 
-/usr/include/vtk-6.2/vtkSphereSource.h
+/usr/local/include/vtk-6.3/vtkSphereSource.h
 vtkFiltersSourcesModule.h
-/usr/include/vtk-6.2/vtkFiltersSourcesModule.h
+/usr/local/include/vtk-6.3/vtkFiltersSourcesModule.h
 vtkPolyDataAlgorithm.h
-/usr/include/vtk-6.2/vtkPolyDataAlgorithm.h
+/usr/local/include/vtk-6.3/vtkPolyDataAlgorithm.h
 
-/usr/include/vtk-6.2/vtkStdString.h
+/usr/local/include/vtk-6.3/vtkStdString.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkSystemIncludes.h
-/usr/include/vtk-6.2/vtkSystemIncludes.h
+/usr/local/include/vtk-6.3/vtkSystemIncludes.h
 string
 -
 
-/usr/include/vtk-6.2/vtkSystemIncludes.h
+/usr/local/include/vtk-6.3/vtkSystemIncludes.h
 vtkWin32Header.h
-/usr/include/vtk-6.2/vtkWin32Header.h
+/usr/local/include/vtk-6.3/vtkWin32Header.h
 vtkIOStreamFwd.h
-/usr/include/vtk-6.2/vtkIOStreamFwd.h
+/usr/local/include/vtk-6.3/vtkIOStreamFwd.h
 vtkIOStream.h
-/usr/include/vtk-6.2/vtkIOStream.h
+/usr/local/include/vtk-6.3/vtkIOStream.h
 vtkType.h
-/usr/include/vtk-6.2/vtkType.h
+/usr/local/include/vtk-6.3/vtkType.h
 vtkOStreamWrapper.h
-/usr/include/vtk-6.2/vtkOStreamWrapper.h
+/usr/local/include/vtk-6.3/vtkOStreamWrapper.h
 vtkOStrStreamWrapper.h
-/usr/include/vtk-6.2/vtkOStrStreamWrapper.h
+/usr/local/include/vtk-6.3/vtkOStrStreamWrapper.h
 stdio.h
 -
 stdlib.h
@@ -3822,195 +3932,167 @@ mem.h
 search.h
 -
 
-/usr/include/vtk-6.2/vtkTextProperty.h
+/usr/local/include/vtk-6.3/vtkTextProperty.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 
-/usr/include/vtk-6.2/vtkTexture.h
+/usr/local/include/vtk-6.3/vtkTexture.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkImageAlgorithm.h
-/usr/include/vtk-6.2/vtkImageAlgorithm.h
+/usr/local/include/vtk-6.3/vtkImageAlgorithm.h
 
-/usr/include/vtk-6.2/vtkTimeStamp.h
+/usr/local/include/vtk-6.3/vtkTimeStamp.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkSystemIncludes.h
-/usr/include/vtk-6.2/vtkSystemIncludes.h
+/usr/local/include/vtk-6.3/vtkSystemIncludes.h
 
-/usr/include/vtk-6.2/vtkType.h
+/usr/local/include/vtk-6.3/vtkType.h
 vtkConfigure.h
-/usr/include/vtk-6.2/vtkConfigure.h
+/usr/local/include/vtk-6.3/vtkConfigure.h
 
-/usr/include/vtk-6.2/vtkTypeTemplate.h
+/usr/local/include/vtk-6.3/vtkTypeTemplate.h
 vtkObjectBase.h
-/usr/include/vtk-6.2/vtkObjectBase.h
+/usr/local/include/vtk-6.3/vtkObjectBase.h
 string
 -
 typeinfo
 -
 
-/usr/include/vtk-6.2/vtkTypeTraits.h
+/usr/local/include/vtk-6.3/vtkTypeTraits.h
 vtkSystemIncludes.h
-/usr/include/vtk-6.2/vtkSystemIncludes.h
+/usr/local/include/vtk-6.3/vtkSystemIncludes.h
 
-/usr/include/vtk-6.2/vtkTypedDataArray.h
+/usr/local/include/vtk-6.3/vtkTypedDataArray.h
 vtkDataArray.h
-/usr/include/vtk-6.2/vtkDataArray.h
+/usr/local/include/vtk-6.3/vtkDataArray.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkTypeTemplate.h
-/usr/include/vtk-6.2/vtkTypeTemplate.h
+/usr/local/include/vtk-6.3/vtkTypeTemplate.h
 vtkTypeTraits.h
-/usr/include/vtk-6.2/vtkTypeTraits.h
+/usr/local/include/vtk-6.3/vtkTypeTraits.h
 vtkTypedDataArrayIterator.h
-/usr/include/vtk-6.2/vtkTypedDataArrayIterator.h
+/usr/local/include/vtk-6.3/vtkTypedDataArrayIterator.h
 vtkTypedDataArray.txx
-/usr/include/vtk-6.2/vtkTypedDataArray.txx
+/usr/local/include/vtk-6.3/vtkTypedDataArray.txx
 
-/usr/include/vtk-6.2/vtkTypedDataArray.txx
+/usr/local/include/vtk-6.3/vtkTypedDataArray.txx
 vtkTypedDataArray.h
-/usr/include/vtk-6.2/vtkTypedDataArray.h
+/usr/local/include/vtk-6.3/vtkTypedDataArray.h
 
-/usr/include/vtk-6.2/vtkTypedDataArrayIterator.h
+/usr/local/include/vtk-6.3/vtkTypedDataArrayIterator.h
 iterator
 -
 vtkTypedDataArray.h
-/usr/include/vtk-6.2/vtkTypedDataArray.h
+/usr/local/include/vtk-6.3/vtkTypedDataArray.h
 
-/usr/include/vtk-6.2/vtkUnicodeString.h
+/usr/local/include/vtk-6.3/vtkUnicodeString.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkSystemIncludes.h
-/usr/include/vtk-6.2/vtkSystemIncludes.h
+/usr/local/include/vtk-6.3/vtkSystemIncludes.h
 string
 -
 vector
 -
 
-/usr/include/vtk-6.2/vtkUnsignedCharArray.h
+/usr/local/include/vtk-6.3/vtkUnsignedCharArray.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkDataArray.h
-/usr/include/vtk-6.2/vtkDataArray.h
+/usr/local/include/vtk-6.3/vtkDataArray.h
 vtkDataArrayTemplate.h
-/usr/include/vtk-6.2/vtkDataArrayTemplate.h
+/usr/local/include/vtk-6.3/vtkDataArrayTemplate.h
 
-/usr/include/vtk-6.2/vtkUnstructuredGrid.h
+/usr/local/include/vtk-6.3/vtkUnstructuredGrid.h
 vtkCommonDataModelModule.h
-/usr/include/vtk-6.2/vtkCommonDataModelModule.h
+/usr/local/include/vtk-6.3/vtkCommonDataModelModule.h
 vtkUnstructuredGridBase.h
-/usr/include/vtk-6.2/vtkUnstructuredGridBase.h
+/usr/local/include/vtk-6.3/vtkUnstructuredGridBase.h
 
-/usr/include/vtk-6.2/vtkUnstructuredGridBase.h
+/usr/local/include/vtk-6.3/vtkUnstructuredGridBase.h
 vtkCommonDataModelModule.h
-/usr/include/vtk-6.2/vtkCommonDataModelModule.h
+/usr/local/include/vtk-6.3/vtkCommonDataModelModule.h
 vtkPointSet.h
-/usr/include/vtk-6.2/vtkPointSet.h
+/usr/local/include/vtk-6.3/vtkPointSet.h
 
-/usr/include/vtk-6.2/vtkVariant.h
+/usr/local/include/vtk-6.3/vtkVariant.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkType.h
-/usr/include/vtk-6.2/vtkType.h
+/usr/local/include/vtk-6.3/vtkType.h
 vtkSystemIncludes.h
-/usr/include/vtk-6.2/vtkSystemIncludes.h
+/usr/local/include/vtk-6.3/vtkSystemIncludes.h
 vtkSetGet.h
-/usr/include/vtk-6.2/vtkSetGet.h
+/usr/local/include/vtk-6.3/vtkSetGet.h
 vtkStdString.h
-/usr/include/vtk-6.2/vtkStdString.h
+/usr/local/include/vtk-6.3/vtkStdString.h
 vtkUnicodeString.h
-/usr/include/vtk-6.2/vtkUnicodeString.h
+/usr/local/include/vtk-6.3/vtkUnicodeString.h
 vtkVariantInlineOperators.h
-/usr/include/vtk-6.2/vtkVariantInlineOperators.h
+/usr/local/include/vtk-6.3/vtkVariantInlineOperators.h
 
-/usr/include/vtk-6.2/vtkVariantCast.h
+/usr/local/include/vtk-6.3/vtkVariantCast.h
 vtkUnicodeString.h
-/usr/include/vtk-6.2/vtkUnicodeString.h
+/usr/local/include/vtk-6.3/vtkUnicodeString.h
 typeinfo
 -
 
-/usr/include/vtk-6.2/vtkVariantInlineOperators.h
+/usr/local/include/vtk-6.3/vtkVariantInlineOperators.h
 climits
 -
 
-/usr/include/vtk-6.2/vtkVectorText.h
+/usr/local/include/vtk-6.3/vtkVectorText.h
 vtkRenderingFreeTypeModule.h
-/usr/include/vtk-6.2/vtkRenderingFreeTypeModule.h
+/usr/local/include/vtk-6.3/vtkRenderingFreeTypeModule.h
 vtkPolyDataAlgorithm.h
-/usr/include/vtk-6.2/vtkPolyDataAlgorithm.h
+/usr/local/include/vtk-6.3/vtkPolyDataAlgorithm.h
 
-/usr/include/vtk-6.2/vtkVersion.h
+/usr/local/include/vtk-6.3/vtkVersion.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 vtkVersionMacros.h
-/usr/include/vtk-6.2/vtkVersionMacros.h
+/usr/local/include/vtk-6.3/vtkVersionMacros.h
 
-/usr/include/vtk-6.2/vtkVersionMacros.h
+/usr/local/include/vtk-6.3/vtkVersionMacros.h
 
-/usr/include/vtk-6.2/vtkViewport.h
+/usr/local/include/vtk-6.3/vtkViewport.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkObject.h
-/usr/include/vtk-6.2/vtkObject.h
+/usr/local/include/vtk-6.3/vtkObject.h
 
-/usr/include/vtk-6.2/vtkVolume.h
+/usr/local/include/vtk-6.3/vtkVolume.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkProp3D.h
-/usr/include/vtk-6.2/vtkProp3D.h
+/usr/local/include/vtk-6.3/vtkProp3D.h
 
-/usr/include/vtk-6.2/vtkVolumeCollection.h
+/usr/local/include/vtk-6.3/vtkVolumeCollection.h
 vtkRenderingCoreModule.h
-/usr/include/vtk-6.2/vtkRenderingCoreModule.h
+/usr/local/include/vtk-6.3/vtkRenderingCoreModule.h
 vtkPropCollection.h
-/usr/include/vtk-6.2/vtkPropCollection.h
+/usr/local/include/vtk-6.3/vtkPropCollection.h
 vtkVolume.h
-/usr/include/vtk-6.2/vtkVolume.h
+/usr/local/include/vtk-6.3/vtkVolume.h
 
-/usr/include/vtk-6.2/vtkWeakPointerBase.h
+/usr/local/include/vtk-6.3/vtkWeakPointerBase.h
 vtkCommonCoreModule.h
-/usr/include/vtk-6.2/vtkCommonCoreModule.h
+/usr/local/include/vtk-6.3/vtkCommonCoreModule.h
 vtkObjectBase.h
-/usr/include/vtk-6.2/vtkObjectBase.h
+/usr/local/include/vtk-6.3/vtkObjectBase.h
 
-/usr/include/vtk-6.2/vtkWin32Header.h
+/usr/local/include/vtk-6.3/vtkWin32Header.h
 vtkConfigure.h
-/usr/include/vtk-6.2/vtkConfigure.h
+/usr/local/include/vtk-6.3/vtkConfigure.h
 vtkABI.h
-/usr/include/vtk-6.2/vtkABI.h
+/usr/local/include/vtk-6.3/vtkABI.h
 windows.h
--
-
-/usr/include/x86_64-linux-gnu/bits/mman-linux.h
-
-/usr/include/x86_64-linux-gnu/bits/mman.h
-bits/mman-linux.h
--
-
-/usr/include/x86_64-linux-gnu/bits/types.h
-features.h
--
-bits/wordsize.h
--
-bits/typesizes.h
--
-
-/usr/include/x86_64-linux-gnu/bits/typesizes.h
-
-/usr/include/x86_64-linux-gnu/bits/wordsize.h
-
-/usr/include/x86_64-linux-gnu/sys/mman.h
-features.h
--
-bits/types.h
--
-stddef.h
--
-bits/mman.h
 -
 

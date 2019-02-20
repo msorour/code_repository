@@ -14,7 +14,10 @@ reset && cmake .. && make && ./grasping_algorithm franka_gripper_model_cloud_plu
 #include "include/useful_implementations.h"
 #include "include/grasping_algorithm.h"
 #include <math.h>
-#include "/home/franka3/grasping_msorour/code_repository/QuadProgpp/src/QuadProg++.hh"
+//#include "/home/franka3/grasping_msorour/code_repository/QuadProgpp/src/QuadProg++.hh"
+#include "/home/work/software/QuadProgpp-master/src/QuadProg++.hh"
+
+
 
 /*
 #include <iostream>
