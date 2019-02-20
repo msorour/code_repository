@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 
 set( CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}" ${CMAKE_MODULE_PATH} )
 
-find_package(PCL 1.9 REQUIRED COMPONENTS)
+find_package(PCL 1.7 REQUIRED COMPONENTS)
 find_package(VTK REQUIRED)
 find_package(roscpp REQUIRED)
 find_package(std_msgs REQUIRED)

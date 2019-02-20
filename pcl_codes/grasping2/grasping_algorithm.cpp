@@ -14,7 +14,7 @@ reset && cmake .. && make && ./grasping_algorithm franka_gripper_model_cloud_plu
 #include "include/useful_implementations.h"
 #include "include/grasping_algorithm.h"
 #include <math.h>
-#include "/home/work/software/QuadProgpp-master/src/QuadProg++.hh"
+#include "/home/franka3/grasping_msorour/code_repository/QuadProgpp/src/QuadProg++.hh"
 
 /*
 #include <iostream>
@@ -672,7 +672,7 @@ int main (int argc, char** argv){
   
   
   // sampling the object around its z-axis for scanning
-  int object_sampling_in_x_axis = 10;   int object_sampling_in_y_axis = 10;   int object_sampling_in_z_axis = 1;
+  int object_sampling_in_x_axis = 15;   int object_sampling_in_y_axis = 15;   int object_sampling_in_z_axis = 7;
   object_sampling_in_object_frame_xyzrgb->clear();
   object_major_dimensions(0) = 0.95*object_major_dimensions(0);
   object_major_dimensions(1) = 0.95*object_major_dimensions(1);
@@ -1198,7 +1198,7 @@ int main (int argc, char** argv){
   pcl::PointCloud<pcl::PointXYZ>::Ptr    left_finger_workspace_active_spheres_parameter_best  (new pcl::PointCloud<pcl::PointXYZ>);
   
   
-  //*scene_cloud_xyzrgb += *object_plane_cloud_in_object_plane_frame_xyzrgb;
+  *scene_cloud_xyzrgb += *object_plane_cloud_in_object_plane_frame_xyzrgb;
   
   double time_elapsed_average_1 = 0.0;
   double time_elapsed_average_2 = 0.0;

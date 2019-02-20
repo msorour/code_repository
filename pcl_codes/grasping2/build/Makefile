@@ -48,13 +48,24 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/work/code_repository/pcl_codes/grasping2
+CMAKE_SOURCE_DIR = /home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/work/code_repository/pcl_codes/grasping2/build
+CMAKE_BINARY_DIR = /home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/build
 
 #=============================================================================
 # Targets provided globally by CMake.
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -67,22 +78,11 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping2/build/CMakeFiles /home/work/code_repository/pcl_codes/grasping2/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/build/CMakeFiles /home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/pcl_codes/grasping2/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,71 +111,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named cloud_visualizer2
-
-# Build rule for target.
-cloud_visualizer2: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 cloud_visualizer2
-.PHONY : cloud_visualizer2
-
-# fast build rule for target.
-cloud_visualizer2/fast:
-	$(MAKE) -f CMakeFiles/cloud_visualizer2.dir/build.make CMakeFiles/cloud_visualizer2.dir/build
-.PHONY : cloud_visualizer2/fast
-
-#=============================================================================
-# Target rules for targets named cloud_visualizer
-
-# Build rule for target.
-cloud_visualizer: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 cloud_visualizer
-.PHONY : cloud_visualizer
-
-# fast build rule for target.
-cloud_visualizer/fast:
-	$(MAKE) -f CMakeFiles/cloud_visualizer.dir/build.make CMakeFiles/cloud_visualizer.dir/build
-.PHONY : cloud_visualizer/fast
-
-#=============================================================================
-# Target rules for targets named grasping_algorithm
-
-# Build rule for target.
-grasping_algorithm: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 grasping_algorithm
-.PHONY : grasping_algorithm
-
-# fast build rule for target.
-grasping_algorithm/fast:
-	$(MAKE) -f CMakeFiles/grasping_algorithm.dir/build.make CMakeFiles/grasping_algorithm.dir/build
-.PHONY : grasping_algorithm/fast
-
-#=============================================================================
-# Target rules for targets named step_1_downsampling_object_cloud
-
-# Build rule for target.
-step_1_downsampling_object_cloud: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 step_1_downsampling_object_cloud
-.PHONY : step_1_downsampling_object_cloud
-
-# fast build rule for target.
-step_1_downsampling_object_cloud/fast:
-	$(MAKE) -f CMakeFiles/step_1_downsampling_object_cloud.dir/build.make CMakeFiles/step_1_downsampling_object_cloud.dir/build
-.PHONY : step_1_downsampling_object_cloud/fast
-
-#=============================================================================
-# Target rules for targets named cluster_extraction
-
-# Build rule for target.
-cluster_extraction: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 cluster_extraction
-.PHONY : cluster_extraction
-
-# fast build rule for target.
-cluster_extraction/fast:
-	$(MAKE) -f CMakeFiles/cluster_extraction.dir/build.make CMakeFiles/cluster_extraction.dir/build
-.PHONY : cluster_extraction/fast
-
-#=============================================================================
 # Target rules for targets named roscpp_generate_messages_py
 
 # Build rule for target.
@@ -187,110 +122,6 @@ roscpp_generate_messages_py: cmake_check_build_system
 roscpp_generate_messages_py/fast:
 	$(MAKE) -f CMakeFiles/roscpp_generate_messages_py.dir/build.make CMakeFiles/roscpp_generate_messages_py.dir/build
 .PHONY : roscpp_generate_messages_py/fast
-
-#=============================================================================
-# Target rules for targets named roscpp_generate_messages_eus
-
-# Build rule for target.
-roscpp_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_eus
-.PHONY : roscpp_generate_messages_eus
-
-# fast build rule for target.
-roscpp_generate_messages_eus/fast:
-	$(MAKE) -f CMakeFiles/roscpp_generate_messages_eus.dir/build.make CMakeFiles/roscpp_generate_messages_eus.dir/build
-.PHONY : roscpp_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named roscpp_generate_messages_lisp
-
-# Build rule for target.
-roscpp_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_lisp
-.PHONY : roscpp_generate_messages_lisp
-
-# fast build rule for target.
-roscpp_generate_messages_lisp/fast:
-	$(MAKE) -f CMakeFiles/roscpp_generate_messages_lisp.dir/build.make CMakeFiles/roscpp_generate_messages_lisp.dir/build
-.PHONY : roscpp_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named rosgraph_msgs_generate_messages_cpp
-
-# Build rule for target.
-rosgraph_msgs_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_cpp
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
-
-#=============================================================================
-# Target rules for targets named std_msgs_generate_messages_lisp
-
-# Build rule for target.
-std_msgs_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_lisp
-.PHONY : std_msgs_generate_messages_lisp
-
-# fast build rule for target.
-std_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-.PHONY : std_msgs_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named roscpp_generate_messages_cpp
-
-# Build rule for target.
-roscpp_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_cpp
-.PHONY : roscpp_generate_messages_cpp
-
-# fast build rule for target.
-roscpp_generate_messages_cpp/fast:
-	$(MAKE) -f CMakeFiles/roscpp_generate_messages_cpp.dir/build.make CMakeFiles/roscpp_generate_messages_cpp.dir/build
-.PHONY : roscpp_generate_messages_cpp/fast
-
-#=============================================================================
-# Target rules for targets named rosgraph_msgs_generate_messages_eus
-
-# Build rule for target.
-rosgraph_msgs_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_eus
-.PHONY : rosgraph_msgs_generate_messages_eus
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_eus/fast:
-	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
-.PHONY : rosgraph_msgs_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named rosgraph_msgs_generate_messages_lisp
-
-# Build rule for target.
-rosgraph_msgs_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_lisp
-.PHONY : rosgraph_msgs_generate_messages_lisp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named std_msgs_generate_messages_cpp
-
-# Build rule for target.
-std_msgs_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_cpp
-.PHONY : std_msgs_generate_messages_cpp
-
-# fast build rule for target.
-std_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make CMakeFiles/std_msgs_generate_messages_cpp.dir/build
-.PHONY : std_msgs_generate_messages_cpp/fast
 
 #=============================================================================
 # Target rules for targets named rosgraph_msgs_generate_messages_nodejs
@@ -306,6 +137,71 @@ rosgraph_msgs_generate_messages_nodejs/fast:
 .PHONY : rosgraph_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
+# Target rules for targets named grasping_algorithm
+
+# Build rule for target.
+grasping_algorithm: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grasping_algorithm
+.PHONY : grasping_algorithm
+
+# fast build rule for target.
+grasping_algorithm/fast:
+	$(MAKE) -f CMakeFiles/grasping_algorithm.dir/build.make CMakeFiles/grasping_algorithm.dir/build
+.PHONY : grasping_algorithm/fast
+
+#=============================================================================
+# Target rules for targets named roscpp_generate_messages_cpp
+
+# Build rule for target.
+roscpp_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_cpp
+.PHONY : roscpp_generate_messages_cpp
+
+# fast build rule for target.
+roscpp_generate_messages_cpp/fast:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_cpp.dir/build.make CMakeFiles/roscpp_generate_messages_cpp.dir/build
+.PHONY : roscpp_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named rosgraph_msgs_generate_messages_cpp
+
+# Build rule for target.
+rosgraph_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_cpp
+.PHONY : rosgraph_msgs_generate_messages_cpp
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named std_msgs_generate_messages_cpp
+
+# Build rule for target.
+std_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_cpp
+.PHONY : std_msgs_generate_messages_cpp
+
+# fast build rule for target.
+std_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+.PHONY : std_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named roscpp_generate_messages_eus
+
+# Build rule for target.
+roscpp_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_eus
+.PHONY : roscpp_generate_messages_eus
+
+# fast build rule for target.
+roscpp_generate_messages_eus/fast:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_eus.dir/build.make CMakeFiles/roscpp_generate_messages_eus.dir/build
+.PHONY : roscpp_generate_messages_eus/fast
+
+#=============================================================================
 # Target rules for targets named rosgraph_msgs_generate_messages_py
 
 # Build rule for target.
@@ -319,30 +215,17 @@ rosgraph_msgs_generate_messages_py/fast:
 .PHONY : rosgraph_msgs_generate_messages_py/fast
 
 #=============================================================================
-# Target rules for targets named std_msgs_generate_messages_eus
+# Target rules for targets named rosgraph_msgs_generate_messages_lisp
 
 # Build rule for target.
-std_msgs_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_eus
-.PHONY : std_msgs_generate_messages_eus
+rosgraph_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_lisp
+.PHONY : rosgraph_msgs_generate_messages_lisp
 
 # fast build rule for target.
-std_msgs_generate_messages_eus/fast:
-	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_eus.dir/build.make CMakeFiles/std_msgs_generate_messages_eus.dir/build
-.PHONY : std_msgs_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named std_msgs_generate_messages_nodejs
-
-# Build rule for target.
-std_msgs_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_nodejs
-.PHONY : std_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-std_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
-.PHONY : std_msgs_generate_messages_nodejs/fast
+rosgraph_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_lisp/fast
 
 #=============================================================================
 # Target rules for targets named roscpp_generate_messages_nodejs
@@ -358,6 +241,19 @@ roscpp_generate_messages_nodejs/fast:
 .PHONY : roscpp_generate_messages_nodejs/fast
 
 #=============================================================================
+# Target rules for targets named std_msgs_generate_messages_nodejs
+
+# Build rule for target.
+std_msgs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_nodejs
+.PHONY : std_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+std_msgs_generate_messages_nodejs/fast:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
+.PHONY : std_msgs_generate_messages_nodejs/fast
+
+#=============================================================================
 # Target rules for targets named std_msgs_generate_messages_py
 
 # Build rule for target.
@@ -371,6 +267,58 @@ std_msgs_generate_messages_py/fast:
 .PHONY : std_msgs_generate_messages_py/fast
 
 #=============================================================================
+# Target rules for targets named cloud_visualizer
+
+# Build rule for target.
+cloud_visualizer: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 cloud_visualizer
+.PHONY : cloud_visualizer
+
+# fast build rule for target.
+cloud_visualizer/fast:
+	$(MAKE) -f CMakeFiles/cloud_visualizer.dir/build.make CMakeFiles/cloud_visualizer.dir/build
+.PHONY : cloud_visualizer/fast
+
+#=============================================================================
+# Target rules for targets named roscpp_generate_messages_lisp
+
+# Build rule for target.
+roscpp_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_lisp
+.PHONY : roscpp_generate_messages_lisp
+
+# fast build rule for target.
+roscpp_generate_messages_lisp/fast:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_lisp.dir/build.make CMakeFiles/roscpp_generate_messages_lisp.dir/build
+.PHONY : roscpp_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named std_msgs_generate_messages_eus
+
+# Build rule for target.
+std_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_eus
+.PHONY : std_msgs_generate_messages_eus
+
+# fast build rule for target.
+std_msgs_generate_messages_eus/fast:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_eus.dir/build.make CMakeFiles/std_msgs_generate_messages_eus.dir/build
+.PHONY : std_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named std_msgs_generate_messages_lisp
+
+# Build rule for target.
+std_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_lisp
+.PHONY : std_msgs_generate_messages_lisp
+
+# fast build rule for target.
+std_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+.PHONY : std_msgs_generate_messages_lisp/fast
+
+#=============================================================================
 # Target rules for targets named step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table
 
 # Build rule for target.
@@ -382,6 +330,58 @@ step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table: cmake_chec
 step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table/fast:
 	$(MAKE) -f CMakeFiles/step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.dir/build.make CMakeFiles/step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.dir/build
 .PHONY : step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table/fast
+
+#=============================================================================
+# Target rules for targets named cluster_extraction
+
+# Build rule for target.
+cluster_extraction: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 cluster_extraction
+.PHONY : cluster_extraction
+
+# fast build rule for target.
+cluster_extraction/fast:
+	$(MAKE) -f CMakeFiles/cluster_extraction.dir/build.make CMakeFiles/cluster_extraction.dir/build
+.PHONY : cluster_extraction/fast
+
+#=============================================================================
+# Target rules for targets named cloud_visualizer2
+
+# Build rule for target.
+cloud_visualizer2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 cloud_visualizer2
+.PHONY : cloud_visualizer2
+
+# fast build rule for target.
+cloud_visualizer2/fast:
+	$(MAKE) -f CMakeFiles/cloud_visualizer2.dir/build.make CMakeFiles/cloud_visualizer2.dir/build
+.PHONY : cloud_visualizer2/fast
+
+#=============================================================================
+# Target rules for targets named rosgraph_msgs_generate_messages_eus
+
+# Build rule for target.
+rosgraph_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_eus
+.PHONY : rosgraph_msgs_generate_messages_eus
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_eus/fast:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+.PHONY : rosgraph_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named step_1_downsampling_object_cloud
+
+# Build rule for target.
+step_1_downsampling_object_cloud: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 step_1_downsampling_object_cloud
+.PHONY : step_1_downsampling_object_cloud
+
+# fast build rule for target.
+step_1_downsampling_object_cloud/fast:
+	$(MAKE) -f CMakeFiles/step_1_downsampling_object_cloud.dir/build.make CMakeFiles/step_1_downsampling_object_cloud.dir/build
+.PHONY : step_1_downsampling_object_cloud/fast
 
 cloud_visualizer.o: cloud_visualizer.cpp.o
 
@@ -551,29 +551,29 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
-	@echo "... cloud_visualizer2"
-	@echo "... cloud_visualizer"
-	@echo "... grasping_algorithm"
-	@echo "... step_1_downsampling_object_cloud"
-	@echo "... cluster_extraction"
-	@echo "... roscpp_generate_messages_py"
-	@echo "... roscpp_generate_messages_eus"
 	@echo "... edit_cache"
-	@echo "... roscpp_generate_messages_lisp"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
-	@echo "... std_msgs_generate_messages_lisp"
-	@echo "... roscpp_generate_messages_cpp"
-	@echo "... rosgraph_msgs_generate_messages_eus"
-	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... std_msgs_generate_messages_cpp"
+	@echo "... roscpp_generate_messages_py"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
+	@echo "... grasping_algorithm"
+	@echo "... rebuild_cache"
+	@echo "... roscpp_generate_messages_cpp"
+	@echo "... rosgraph_msgs_generate_messages_cpp"
+	@echo "... std_msgs_generate_messages_cpp"
+	@echo "... roscpp_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_py"
-	@echo "... std_msgs_generate_messages_eus"
-	@echo "... std_msgs_generate_messages_nodejs"
+	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_nodejs"
+	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... std_msgs_generate_messages_py"
+	@echo "... cloud_visualizer"
+	@echo "... roscpp_generate_messages_lisp"
+	@echo "... std_msgs_generate_messages_eus"
+	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table"
+	@echo "... cluster_extraction"
+	@echo "... cloud_visualizer2"
+	@echo "... rosgraph_msgs_generate_messages_eus"
+	@echo "... step_1_downsampling_object_cloud"
 	@echo "... cloud_visualizer.o"
 	@echo "... cloud_visualizer.i"
 	@echo "... cloud_visualizer.s"
