@@ -226,6 +226,20 @@ void step_4_object_pose_approximation( pcl::PointCloud<pcl::PointXYZ> object_clo
   object_x_axis_vector[1] = centroid_far_pos_point_x_axis.y - centroid_far_neg_point_x_axis.y;
   object_x_axis_vector[2] = centroid_far_pos_point_x_axis.z - centroid_far_neg_point_x_axis.z;
   
+  // however this just computed x-axis vector might not be perfectly perpendicular to the z-axis previously computed
+  // we shall project it onto a perpendicular axis to the z-axis
+  // first get a unit vector perpendicular to z-axis
+  object_x_axis_vector(1) = -( object_x_axis_vector(0)*object_z_axis_vector(0) + object_x_axis_vector(2)*object_z_axis_vector(2) )/object_z_axis_vector(1);
+  //object_x_axis_vector(2) = -( object_x_axis_vector(0)*object_z_axis_vector(0) + object_x_axis_vector(1)*object_z_axis_vector(1) )/object_z_axis_vector(2);
+  //object_x_axis_vector(0) = -( object_x_axis_vector(1)*object_z_axis_vector(1) + object_x_axis_vector(2)*object_z_axis_vector(2) )/object_z_axis_vector(0);
+  
+  //std::cout<<"object_z_axis_vector.dot(object_x_axis_vector) = "<<object_z_axis_vector.dot(object_x_axis_vector)<<std::endl;
+  
+  //unit_vector_perpendicular_to_z_axis.normalize();
+  // then project the computed x_axis onto it
+  //Eigen::Matrix3d dummy_rotation;
+  //dummy_rotation << object_x_axis_vector_normalized.dot(unit_x), object_y_axis_vector_normalized.dot(unit_x), object_z_axis_vector_normalized.dot(unit_x);
+  
   // computing y-axis
   // generating an orthogornal frame out of the z-axis and the x-axis vectors
   Eigen::Vector3d object_x_axis_vector_normalized;
@@ -237,7 +251,8 @@ void step_4_object_pose_approximation( pcl::PointCloud<pcl::PointXYZ> object_clo
   unit_z << 0,0,1;
   object_x_axis_vector_normalized = object_x_axis_vector.normalized();
   object_z_axis_vector_normalized = object_z_axis_vector.normalized();
-  object_y_axis_vector_normalized = object_z_axis_vector_normalized.cross(object_x_axis_vector_normalized);
+  //object_y_axis_vector_normalized = object_z_axis_vector_normalized.cross(object_x_axis_vector_normalized);
+  object_y_axis_vector_normalized = object_z_axis_vector.cross(object_x_axis_vector);
   object_y_axis_vector_normalized.normalize();
   
   
@@ -245,7 +260,6 @@ void step_4_object_pose_approximation( pcl::PointCloud<pcl::PointXYZ> object_clo
   // compute object transform and show its coordinate system
   Eigen::Matrix3f object_rotation;
   Eigen::Vector3f object_translation;
-  //Eigen::Matrix4f object_transform;
   
   object_rotation <<  object_x_axis_vector_normalized.dot(unit_x), object_y_axis_vector_normalized.dot(unit_x), object_z_axis_vector_normalized.dot(unit_x),
                       object_x_axis_vector_normalized.dot(unit_y), object_y_axis_vector_normalized.dot(unit_y), object_z_axis_vector_normalized.dot(unit_y),
@@ -366,6 +380,13 @@ void step_4_object_pose_approximation( pcl::PointCloud<pcl::PointXYZ> object_clo
   object_x_axis_vector[1] = centroid_far_pos_point_x_axis.y - centroid_far_neg_point_x_axis.y;
   object_x_axis_vector[2] = centroid_far_pos_point_x_axis.z - centroid_far_neg_point_x_axis.z;
   
+  // however this just computed x-axis vector might not be perfectly perpendicular to the z-axis previously computed
+  // we shall project it onto a perpendicular axis to the z-axis
+  // first get a unit vector perpendicular to z-axis
+  object_x_axis_vector(1) = -( object_x_axis_vector(0)*object_z_axis_vector(0) + object_x_axis_vector(2)*object_z_axis_vector(2) )/object_z_axis_vector(1);
+  //object_x_axis_vector(2) = -( object_x_axis_vector(0)*object_z_axis_vector(0) + object_x_axis_vector(1)*object_z_axis_vector(1) )/object_z_axis_vector(2);
+  //object_x_axis_vector(0) = -( object_x_axis_vector(1)*object_z_axis_vector(1) + object_x_axis_vector(2)*object_z_axis_vector(2) )/object_z_axis_vector(0);
+  
   // computing y-axis
   // generating an orthogornal frame out of the z-axis and the x-axis vectors
   unit_x << 1,0,0;
@@ -373,7 +394,8 @@ void step_4_object_pose_approximation( pcl::PointCloud<pcl::PointXYZ> object_clo
   unit_z << 0,0,1;
   object_x_axis_vector_normalized = object_x_axis_vector.normalized();
   object_z_axis_vector_normalized = object_z_axis_vector.normalized();
-  object_y_axis_vector_normalized = object_z_axis_vector_normalized.cross(object_x_axis_vector_normalized);
+  //object_y_axis_vector_normalized = object_z_axis_vector_normalized.cross(object_x_axis_vector_normalized);
+  object_y_axis_vector_normalized = object_z_axis_vector.cross(object_x_axis_vector);
   object_y_axis_vector_normalized.normalize();
   
   // compute object transform and show its coordinate system
@@ -383,6 +405,7 @@ void step_4_object_pose_approximation( pcl::PointCloud<pcl::PointXYZ> object_clo
   object_translation << object_centroid_point.x,object_centroid_point.y,object_centroid_point.z;
   object_transform << object_rotation, object_translation,
                       0,0,0,1;
+  
   
   /*
   Eigen::Affine3f transform = Eigen::Affine3f::Identity();
@@ -543,7 +566,7 @@ void step_5_region_of_interest( pcl::PointCloud<pcl::PointXYZ> object_cloud_in_g
   
   for(unsigned int i=0; i<object_cloud_in_object_frame_xyzrgb->size(); i++){
     if( (object_cloud_in_object_frame_xyzrgb->points[i].z > -roi_h) and (object_cloud_in_object_frame_xyzrgb->points[i].z < roi_h) )
-      object_roi_sub_cloud_in_object_frame_xyzrgb->push_back( object_cloud_in_object_frame_xyzrgb->points[i] );
+      object_roi_sub_cloud_in_object_frame_xyzrgb->points.push_back( object_cloud_in_object_frame_xyzrgb->points[i] );
   }
   
   pcl::transformPointCloud(*object_roi_sub_cloud_in_object_frame_xyzrgb, *object_roi_sub_cloud_in_object_global_xyzrgb, object_transform);
@@ -626,7 +649,7 @@ void step_5_region_of_interest( pcl::PointCloud<pcl::PointXYZ> object_cloud_in_g
         object_roi_sub_cloud_in_object_frame_xyzrgb->clear();
         for(unsigned int i=0; i<object_cloud_in_object_frame_xyzrgb->size(); i++){
           if( (object_cloud_in_object_frame_xyzrgb->points[i].z > roi_translation_in_object_frame(2)-roi_h) and (object_cloud_in_object_frame_xyzrgb->points[i].z < roi_translation_in_object_frame(2)+roi_h) )
-            object_roi_sub_cloud_in_object_frame_xyzrgb->push_back( object_cloud_in_object_frame_xyzrgb->points[i] );
+            object_roi_sub_cloud_in_object_frame_xyzrgb->points.push_back( object_cloud_in_object_frame_xyzrgb->points[i] );
         }
         
         pcl::transformPointCloud(*object_roi_sub_cloud_in_object_frame_xyzrgb, *object_roi_sub_cloud_in_object_global_xyzrgb, object_transform);
@@ -700,21 +723,419 @@ void step_5_region_of_interest( pcl::PointCloud<pcl::PointXYZ> object_cloud_in_g
 
 
 
-void step_6_allign_hand_with_roi( Eigen::Matrix4f& hand_transform, 
-                                  Eigen::Vector3f& roi_dimensions, 
-                                  Eigen::Vector3f& hand_dimensions ){
-  clock_t begin, end;
-  begin = clock();
-  double time_spent;
-  
-  
-  
-  
-  
-  end = clock();
-	time_spent = (double)( end - begin )/ CLOCKS_PER_SEC;
-	std::cout << "time spent to find region of interest = " << time_spent << std::endl << std::endl;
+void construct_special_ellipsoid_point_cloud( pcl::PointCloud<pcl::PointXYZRGB>::Ptr& special_ellipsoid_point_cloud, 
+                                              Eigen::Vector3f parameter,
+                                              Eigen::Vector3f offset,
+                                              int point_cloud_samples, 
+                                              int power, 
+                                              int red_value, 
+                                              int green_value, 
+                                              int blue_value ){
+  special_ellipsoid_point_cloud->clear();
+  pcl::PointXYZRGB point_xyzrgb;
+  double value_x, value_y, value_z;
+  for(unsigned int k=0; k<point_cloud_samples; k++){
+    value_x = (-parameter(0) + offset(0)) + k*2*parameter(0)/point_cloud_samples;
+    for(unsigned int l=0; l<point_cloud_samples; l++){
+      value_y = (-parameter(1) + offset(1)) + l*2*parameter(1)/point_cloud_samples;
+      value_z = offset(2) + parameter(2)*sqrt( 1 - pow(value_x-offset(0), power)/pow(parameter(0), power) - pow(value_y-offset(1), power)/pow(parameter(1), power) );
+      
+      if(!std::isnan(value_z)){
+        point_xyzrgb.x = value_x;
+        point_xyzrgb.y = value_y;
+        point_xyzrgb.z = value_z;
+        point_xyzrgb.r = red_value;  point_xyzrgb.g = green_value;  point_xyzrgb.b = blue_value;
+        special_ellipsoid_point_cloud->points.push_back( point_xyzrgb );
+        
+        value_z = offset(2) - parameter(2)*sqrt( 1 - pow(value_x-offset(0), power)/pow(parameter(0), power) - pow(value_y-offset(1), power)/pow(parameter(1), power) );
+        if(!std::isnan(value_z)){
+          point_xyzrgb.x = value_x;
+          point_xyzrgb.y = value_y;
+          point_xyzrgb.z = value_z;
+          point_xyzrgb.r = red_value;  point_xyzrgb.g = green_value;  point_xyzrgb.b = blue_value;
+          special_ellipsoid_point_cloud->points.push_back( point_xyzrgb );
+        }
+      }
+    }
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+void load_allegro_right_hand_workspace_spheres( pcl::PointCloud<pcl::PointXYZRGB>::Ptr& gripper_augmented_workspace_xyzrgb, 
+                                                Eigen::Vector3f& gripper_workspace_centroid_point_in_gripper_frame,
+                                                pcl::PointCloud<pcl::PointXYZ>::Ptr& thumb_workspace_convex_parameter,
+                                                pcl::PointCloud<pcl::PointXYZ>::Ptr& thumb_workspace_convex_offset, 
+                                                pcl::PointCloud<pcl::PointXYZ>::Ptr& index_workspace_convex_parameter,
+                                                pcl::PointCloud<pcl::PointXYZ>::Ptr& index_workspace_convex_offset, 
+                                                pcl::PointCloud<pcl::PointXYZ>::Ptr& middle_workspace_convex_parameter,
+                                                pcl::PointCloud<pcl::PointXYZ>::Ptr& middle_workspace_convex_offset, 
+                                                pcl::PointCloud<pcl::PointXYZ>::Ptr& pinky_workspace_convex_parameter,
+                                                pcl::PointCloud<pcl::PointXYZ>::Ptr& pinky_workspace_convex_offset ){
+  gripper_augmented_workspace_xyzrgb ->clear();
+  thumb_workspace_convex_parameter   ->clear();
+  thumb_workspace_convex_offset      ->clear();
+  index_workspace_convex_parameter   ->clear();
+  index_workspace_convex_offset      ->clear();
+  middle_workspace_convex_parameter  ->clear();
+  middle_workspace_convex_offset     ->clear();
+  pinky_workspace_convex_parameter   ->clear();
+  pinky_workspace_convex_offset      ->clear();
+  
+  // declarations for allegro hand
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr thumb_workspace_convex_xyzrgb        (new pcl::PointCloud<pcl::PointXYZRGB>);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr index_workspace_convex_xyzrgb        (new pcl::PointCloud<pcl::PointXYZRGB>);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr middle_workspace_convex_xyzrgb       (new pcl::PointCloud<pcl::PointXYZRGB>);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr pinky_workspace_convex_xyzrgb        (new pcl::PointCloud<pcl::PointXYZRGB>);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr  dummy_cloud_xyzrgb                  (new pcl::PointCloud<pcl::PointXYZRGB>);
+  
+  pcl::PointCloud<pcl::PointXYZ> workspace_convex_offset;
+  pcl::PointCloud<pcl::PointXYZ> workspace_convex_parameter;
+  
+  pcl::PointXYZ offset;
+  pcl::PointXYZ parameter;
+  std::vector<std::string> finger_list;
+  
+  Eigen::Vector3f parameter_vector, offset_vector;
+  
+  
+  
+  
+  
+  finger_list.push_back("thumb");  finger_list.push_back("index");  finger_list.push_back("middle");  finger_list.push_back("pinky");
+  for(int i=0; i<finger_list.size(); i++){
+    std::vector<double> data;
+    std::string line;
+    ifstream convex_workspace_file("../gripper_workspace/"+finger_list[i]+"_workspace_spheres_3.txt");
+    if(convex_workspace_file.is_open()){
+      while(getline( convex_workspace_file, line ) ){
+        std::istringstream string_stream( line );
+        std::string field;
+        data.clear();
+        while(string_stream){
+          if(!getline( string_stream, field, ',' )) break;
+          std::stringstream fs( field );
+          double f = 0.0;  // (default value is 0.0)
+          fs >> f;
+          data.push_back( f );
+        }
+        parameter.x = data[0];   parameter.y = data[0];   parameter.z = data[0];   offset.x = data[1];   offset.y = data[2];   offset.z = data[3];
+                
+        if(finger_list[i]=="thumb"){
+          thumb_workspace_convex_offset->points.push_back( offset );
+          thumb_workspace_convex_parameter->points.push_back( parameter );}
+        else if(finger_list[i]=="index"){
+          index_workspace_convex_offset->points.push_back( offset );
+          index_workspace_convex_parameter->points.push_back( parameter );}
+        else if(finger_list[i]=="middle"){
+          middle_workspace_convex_offset->points.push_back( offset );
+          middle_workspace_convex_parameter->points.push_back( parameter );}
+        else if(finger_list[i]=="pinky"){
+          pinky_workspace_convex_offset->points.push_back( offset );
+          pinky_workspace_convex_parameter->points.push_back( parameter );}
+      }
+    }
+    convex_workspace_file.close();
+  }
+      
+  // generate/draw the point cloud of the workspace spheres
+  for(int i=0; i<finger_list.size(); i++){
+    for(unsigned int j=0; j<thumb_workspace_convex_offset->size(); j++){
+      if(finger_list[i]=="thumb"){
+        parameter_vector << thumb_workspace_convex_parameter->points[j].x, thumb_workspace_convex_parameter->points[j].y, thumb_workspace_convex_parameter->points[j].z;
+        offset_vector    << thumb_workspace_convex_offset->points[j].x, thumb_workspace_convex_offset->points[j].y, thumb_workspace_convex_offset->points[j].z;
+        construct_special_ellipsoid_point_cloud( dummy_cloud_xyzrgb, parameter_vector, offset_vector, 30, 2, 255, 0, 0 );
+        *thumb_workspace_convex_xyzrgb += *dummy_cloud_xyzrgb;
+      }
+      else if(finger_list[i]=="index"){
+        parameter_vector << index_workspace_convex_parameter->points[j].x, index_workspace_convex_parameter->points[j].y, index_workspace_convex_parameter->points[j].z;
+        offset_vector    << index_workspace_convex_offset->points[j].x, index_workspace_convex_offset->points[j].y, index_workspace_convex_offset->points[j].z;
+        construct_special_ellipsoid_point_cloud( dummy_cloud_xyzrgb, parameter_vector, offset_vector, 30, 2, 0, 255, 0 );
+        *index_workspace_convex_xyzrgb += *dummy_cloud_xyzrgb;
+      }
+      else if(finger_list[i]=="middle"){
+        parameter_vector << middle_workspace_convex_parameter->points[j].x, middle_workspace_convex_parameter->points[j].y, middle_workspace_convex_parameter->points[j].z;
+        offset_vector    << middle_workspace_convex_offset->points[j].x, middle_workspace_convex_offset->points[j].y, middle_workspace_convex_offset->points[j].z;
+        construct_special_ellipsoid_point_cloud( dummy_cloud_xyzrgb, parameter_vector, offset_vector, 30, 2, 0, 0, 255 );
+        *middle_workspace_convex_xyzrgb += *dummy_cloud_xyzrgb;
+      }
+      else if(finger_list[i]=="pinky"){
+        parameter_vector << pinky_workspace_convex_parameter->points[j].x, pinky_workspace_convex_parameter->points[j].y, pinky_workspace_convex_parameter->points[j].z;
+        offset_vector    << pinky_workspace_convex_offset->points[j].x, pinky_workspace_convex_offset->points[j].y, pinky_workspace_convex_offset->points[j].z;
+        construct_special_ellipsoid_point_cloud( dummy_cloud_xyzrgb, parameter_vector, offset_vector, 30, 2, 100, 100, 100 );
+        *pinky_workspace_convex_xyzrgb += *dummy_cloud_xyzrgb;
+      }
+    }
+  }
+  *gripper_augmented_workspace_xyzrgb = *thumb_workspace_convex_xyzrgb;
+  *gripper_augmented_workspace_xyzrgb += *index_workspace_convex_xyzrgb;
+  *gripper_augmented_workspace_xyzrgb += *middle_workspace_convex_xyzrgb;
+  *gripper_augmented_workspace_xyzrgb += *pinky_workspace_convex_xyzrgb;
+  
+  
+  
+  
+  
+  // gripper augmented workspace centroid location
+  pcl::CentroidPoint<pcl::PointXYZRGB> gripper_workspace_centroid;
+  pcl::PointXYZRGB gripper_workspace_centroid_point_in_gripper_frame_xyzrgb;
+  for(unsigned int i=0;i<gripper_augmented_workspace_xyzrgb->points.size();i++)
+    gripper_workspace_centroid.add( gripper_augmented_workspace_xyzrgb->points[i] );
+  gripper_workspace_centroid.get(gripper_workspace_centroid_point_in_gripper_frame_xyzrgb);
+  gripper_workspace_centroid_point_in_gripper_frame << gripper_workspace_centroid_point_in_gripper_frame_xyzrgb.x, gripper_workspace_centroid_point_in_gripper_frame_xyzrgb.y, gripper_workspace_centroid_point_in_gripper_frame_xyzrgb.z;
+  
+  
+  
+  
+  
+  // filtering thumb workspace spheres
+  workspace_convex_offset.clear();
+  workspace_convex_parameter.clear();
+  for(unsigned int i=0;i<thumb_workspace_convex_offset->points.size();i++){
+    if(thumb_workspace_convex_offset->points[i].z < gripper_workspace_centroid_point_in_gripper_frame_xyzrgb.z){
+      workspace_convex_offset.points.push_back( thumb_workspace_convex_offset->points[i] );
+      workspace_convex_parameter.points.push_back( thumb_workspace_convex_parameter->points[i] );
+    }
+  }
+  thumb_workspace_convex_offset->clear();
+  thumb_workspace_convex_parameter->clear();
+  for(unsigned int i=0;i<workspace_convex_offset.points.size();i++){
+    thumb_workspace_convex_offset->points.push_back( workspace_convex_offset.points[i] );
+    thumb_workspace_convex_parameter->points.push_back( workspace_convex_parameter.points[i] );
+  }
+  
+  // filtering index workspace spheres
+  workspace_convex_offset.clear();
+  workspace_convex_parameter.clear();
+  for(unsigned int i=0;i<index_workspace_convex_offset->points.size();i++){
+    if(index_workspace_convex_offset->points[i].z > gripper_workspace_centroid_point_in_gripper_frame_xyzrgb.z){
+      workspace_convex_offset.points.push_back( index_workspace_convex_offset->points[i] );
+      workspace_convex_parameter.points.push_back( index_workspace_convex_parameter->points[i] );
+    }
+  }
+  index_workspace_convex_offset->clear();
+  index_workspace_convex_parameter->clear();
+  for(unsigned int i=0;i<workspace_convex_offset.points.size();i++){
+    index_workspace_convex_offset->points.push_back( workspace_convex_offset.points[i] );
+    index_workspace_convex_parameter->points.push_back( workspace_convex_parameter.points[i] );
+  }
+  
+  // filtering middle workspace spheres
+  workspace_convex_offset.clear();
+  workspace_convex_parameter.clear();
+  for(unsigned int i=0;i<middle_workspace_convex_offset->points.size();i++){
+    if(middle_workspace_convex_offset->points[i].z > gripper_workspace_centroid_point_in_gripper_frame_xyzrgb.z){
+      workspace_convex_offset.points.push_back( middle_workspace_convex_offset->points[i] );
+      workspace_convex_parameter.points.push_back( middle_workspace_convex_parameter->points[i] );
+    }
+  }
+  middle_workspace_convex_offset->clear();
+  middle_workspace_convex_parameter->clear();
+  for(unsigned int i=0;i<workspace_convex_offset.points.size();i++){
+    middle_workspace_convex_offset->points.push_back( workspace_convex_offset.points[i] );
+    middle_workspace_convex_parameter->points.push_back( workspace_convex_parameter.points[i] );
+  }
+  
+  // filtering pinky workspace spheres
+  workspace_convex_offset.clear();
+  workspace_convex_parameter.clear();
+  for(unsigned int i=0;i<pinky_workspace_convex_offset->points.size();i++){
+    if(pinky_workspace_convex_offset->points[i].z > gripper_workspace_centroid_point_in_gripper_frame_xyzrgb.z){
+      workspace_convex_offset.points.push_back( pinky_workspace_convex_offset->points[i] );
+      workspace_convex_parameter.points.push_back( pinky_workspace_convex_parameter->points[i] );
+    }
+  }
+  pinky_workspace_convex_offset->clear();
+  pinky_workspace_convex_parameter->clear();
+  for(unsigned int i=0;i<workspace_convex_offset.points.size();i++){
+    pinky_workspace_convex_offset->points.push_back( workspace_convex_offset.points[i] );
+    pinky_workspace_convex_parameter->points.push_back( workspace_convex_parameter.points[i] );
+  }
+  
+  
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void load_franka_gripper_workspace_spheres( pcl::PointCloud<pcl::PointXYZRGB>::Ptr& gripper_augmented_workspace_xyzrgb, 
+                                            Eigen::Vector3f& gripper_workspace_centroid_point_in_gripper_frame,
+                                            pcl::PointCloud<pcl::PointXYZ>::Ptr& right_finger_workspace_convex_parameter,
+                                            pcl::PointCloud<pcl::PointXYZ>::Ptr& right_finger_workspace_convex_offset, 
+                                            pcl::PointCloud<pcl::PointXYZ>::Ptr& left_finger_workspace_convex_parameter,
+                                            pcl::PointCloud<pcl::PointXYZ>::Ptr& left_finger_workspace_convex_offset ){
+  gripper_augmented_workspace_xyzrgb      ->clear();
+  right_finger_workspace_convex_parameter ->clear();
+  right_finger_workspace_convex_offset    ->clear();
+  left_finger_workspace_convex_parameter  ->clear();
+  left_finger_workspace_convex_offset     ->clear();
+  
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr right_finger_workspace_convex_xyzrgb        (new pcl::PointCloud<pcl::PointXYZRGB>);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr left_finger_workspace_convex_xyzrgb        (new pcl::PointCloud<pcl::PointXYZRGB>);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr dummy_cloud_xyzrgb                  (new pcl::PointCloud<pcl::PointXYZRGB>);
+  
+  pcl::PointXYZ offset;
+  pcl::PointXYZ parameter;
+  std::vector<std::string> finger_list;
+  Eigen::Vector3f parameter_vector, offset_vector;
+  
+  
+  
+  
+  
+  finger_list.push_back("franka_right_finger");    finger_list.push_back("franka_left_finger");
+    
+    for(int i=0; i<finger_list.size(); i++){
+      std::vector<double> data;
+      std::string line;
+      ifstream convex_workspace_file("../gripper_workspace/"+finger_list[i]+"_workspace_spheres_10.txt");
+      if(convex_workspace_file.is_open()){
+        while(getline( convex_workspace_file, line ) ){
+          std::istringstream string_stream( line );
+          std::string field;
+          data.clear();
+          while(string_stream){
+            if(!getline( string_stream, field, ',' )) break;
+            std::stringstream fs( field );
+            double f = 0.0;  // (default value is 0.0)
+            fs >> f;
+            data.push_back( f );
+          }
+          parameter.x = data[0];   parameter.y = data[0];   parameter.z = data[0];   offset.x = data[1];   offset.y = data[2];   offset.z = data[3];
+                  
+          if(finger_list[i]=="franka_right_finger"){
+            right_finger_workspace_convex_offset->points.push_back( offset );
+            right_finger_workspace_convex_parameter->points.push_back( parameter );}
+          else if(finger_list[i]=="franka_left_finger"){
+            left_finger_workspace_convex_offset->points.push_back( offset );
+            left_finger_workspace_convex_parameter->points.push_back( parameter );}
+        }
+      }
+      convex_workspace_file.close();
+    }
+    
+    // generate/draw the point cloud of the workspace spheres
+    for(int i=0; i<finger_list.size(); i++){
+      for(unsigned int j=0; j<right_finger_workspace_convex_offset->size(); j++){
+        if(finger_list[i]=="franka_right_finger"){
+          parameter_vector << right_finger_workspace_convex_parameter->points[j].x, right_finger_workspace_convex_parameter->points[j].y, right_finger_workspace_convex_parameter->points[j].z;
+          offset_vector    << right_finger_workspace_convex_offset->points[j].x, right_finger_workspace_convex_offset->points[j].y, right_finger_workspace_convex_offset->points[j].z;
+          construct_special_ellipsoid_point_cloud( dummy_cloud_xyzrgb, parameter_vector, offset_vector, 30, 2, 255, 0, 0 );
+          *right_finger_workspace_convex_xyzrgb += *dummy_cloud_xyzrgb;
+        }
+        else if(finger_list[i]=="franka_left_finger"){
+          parameter_vector << left_finger_workspace_convex_parameter->points[j].x, left_finger_workspace_convex_parameter->points[j].y, left_finger_workspace_convex_parameter->points[j].z;
+          offset_vector    << left_finger_workspace_convex_offset->points[j].x, left_finger_workspace_convex_offset->points[j].y, left_finger_workspace_convex_offset->points[j].z;
+          construct_special_ellipsoid_point_cloud( dummy_cloud_xyzrgb, parameter_vector, offset_vector, 30, 2, 0, 255, 0 );
+          *left_finger_workspace_convex_xyzrgb += *dummy_cloud_xyzrgb;
+        }
+      }
+    }
+    *gripper_augmented_workspace_xyzrgb = *right_finger_workspace_convex_xyzrgb;
+    *gripper_augmented_workspace_xyzrgb += *left_finger_workspace_convex_xyzrgb;
+  
+  
+  
+  
+  
+  // gripper augmented workspace centroid location
+  pcl::CentroidPoint<pcl::PointXYZRGB> gripper_workspace_centroid;
+  pcl::PointXYZRGB gripper_workspace_centroid_point_in_gripper_frame_xyzrgb;
+  for(unsigned int i=0;i<gripper_augmented_workspace_xyzrgb->points.size();i++)
+    gripper_workspace_centroid.add( gripper_augmented_workspace_xyzrgb->points[i] );
+  gripper_workspace_centroid.get(gripper_workspace_centroid_point_in_gripper_frame_xyzrgb);
+  gripper_workspace_centroid_point_in_gripper_frame << gripper_workspace_centroid_point_in_gripper_frame_xyzrgb.x, gripper_workspace_centroid_point_in_gripper_frame_xyzrgb.y, gripper_workspace_centroid_point_in_gripper_frame_xyzrgb.z;
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void metric_1_number_of_active_workspace_spheres_and_corresponding_object_points( pcl::PointCloud<pcl::PointXYZRGB>::Ptr&  object_cloud_transformed_in_gripper_frame_xyzrgb, 
+                                                                                  pcl::PointCloud<pcl::PointXYZ>::Ptr&     finger_workspace_convex_offset,
+                                                                                  pcl::PointCloud<pcl::PointXYZ>::Ptr&     finger_workspace_convex_parameter, 
+                                                                                  pcl::PointCloud<pcl::PointXYZRGB>::Ptr&  object_points_in_finger_workspace,
+                                                                                  pcl::PointCloud<pcl::PointXYZ>::Ptr&     finger_workspace_active_spheres_offset, 
+                                                                                  pcl::PointCloud<pcl::PointXYZ>::Ptr&     finger_workspace_active_spheres_parameter ){
+  int counter;
+  double sphere_value;
+  // Evaluation Metric#1 : number of object points && number of workspace spheres
+  object_points_in_finger_workspace->clear();
+  finger_workspace_active_spheres_offset->clear();
+  finger_workspace_active_spheres_parameter->clear();
+  // for each thumb workspace sphere
+  for(unsigned int l=0; l<finger_workspace_convex_offset->size(); l++){
+    counter = 0;
+    // for each point in object downsampled cloud
+    for(unsigned int k=0; k<object_cloud_transformed_in_gripper_frame_xyzrgb->size(); k++){
+      sphere_value = ( pow(object_cloud_transformed_in_gripper_frame_xyzrgb->points[k].x - finger_workspace_convex_offset->points[l].x, 2)
+                     + pow(object_cloud_transformed_in_gripper_frame_xyzrgb->points[k].y - finger_workspace_convex_offset->points[l].y, 2) 
+                     + pow(object_cloud_transformed_in_gripper_frame_xyzrgb->points[k].z - finger_workspace_convex_offset->points[l].z, 2) )/pow(finger_workspace_convex_parameter->points[l].x, 2);
+      // add all object points inside this workspace sphere
+      if( sphere_value < 1 ){
+        object_points_in_finger_workspace->points.push_back( object_cloud_transformed_in_gripper_frame_xyzrgb->points[k] );
+        counter++;
+      }
+    } // end of iteration through all object points
+    if(counter > 0){
+      //add this sphere to set of active spheres
+      finger_workspace_active_spheres_offset->points.push_back   ( finger_workspace_convex_offset    ->points[l] );
+      finger_workspace_active_spheres_parameter->points.push_back( finger_workspace_convex_parameter ->points[l] );
+    }    
+  } // end of iteration through all finger workspace spheres
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

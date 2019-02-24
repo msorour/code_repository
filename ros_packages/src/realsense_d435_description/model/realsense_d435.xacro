@@ -93,6 +93,7 @@
       </surface>
     </collision>
   </link>
+  <gazebo reference="${ns}_link"><material>Gazebo/BlueGlow</material></gazebo>
     
     
   <!-- Virtual links representing the cameras positons and orientations-->

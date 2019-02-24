@@ -137,6 +137,19 @@ cloud_visualizer/fast:
 .PHONY : cloud_visualizer/fast
 
 #=============================================================================
+# Target rules for targets named grasping_algorithm_photos_for_paper
+
+# Build rule for target.
+grasping_algorithm_photos_for_paper: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grasping_algorithm_photos_for_paper
+.PHONY : grasping_algorithm_photos_for_paper
+
+# fast build rule for target.
+grasping_algorithm_photos_for_paper/fast:
+	$(MAKE) -f CMakeFiles/grasping_algorithm_photos_for_paper.dir/build.make CMakeFiles/grasping_algorithm_photos_for_paper.dir/build
+.PHONY : grasping_algorithm_photos_for_paper/fast
+
+#=============================================================================
 # Target rules for targets named grasping_algorithm
 
 # Build rule for target.
@@ -491,6 +504,33 @@ grasping_algorithm.cpp.s:
 	$(MAKE) -f CMakeFiles/grasping_algorithm.dir/build.make CMakeFiles/grasping_algorithm.dir/grasping_algorithm.cpp.s
 .PHONY : grasping_algorithm.cpp.s
 
+grasping_algorithm_photos_for_paper.o: grasping_algorithm_photos_for_paper.cpp.o
+
+.PHONY : grasping_algorithm_photos_for_paper.o
+
+# target to build an object file
+grasping_algorithm_photos_for_paper.cpp.o:
+	$(MAKE) -f CMakeFiles/grasping_algorithm_photos_for_paper.dir/build.make CMakeFiles/grasping_algorithm_photos_for_paper.dir/grasping_algorithm_photos_for_paper.cpp.o
+.PHONY : grasping_algorithm_photos_for_paper.cpp.o
+
+grasping_algorithm_photos_for_paper.i: grasping_algorithm_photos_for_paper.cpp.i
+
+.PHONY : grasping_algorithm_photos_for_paper.i
+
+# target to preprocess a source file
+grasping_algorithm_photos_for_paper.cpp.i:
+	$(MAKE) -f CMakeFiles/grasping_algorithm_photos_for_paper.dir/build.make CMakeFiles/grasping_algorithm_photos_for_paper.dir/grasping_algorithm_photos_for_paper.cpp.i
+.PHONY : grasping_algorithm_photos_for_paper.cpp.i
+
+grasping_algorithm_photos_for_paper.s: grasping_algorithm_photos_for_paper.cpp.s
+
+.PHONY : grasping_algorithm_photos_for_paper.s
+
+# target to generate assembly for a file
+grasping_algorithm_photos_for_paper.cpp.s:
+	$(MAKE) -f CMakeFiles/grasping_algorithm_photos_for_paper.dir/build.make CMakeFiles/grasping_algorithm_photos_for_paper.dir/grasping_algorithm_photos_for_paper.cpp.s
+.PHONY : grasping_algorithm_photos_for_paper.cpp.s
+
 step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.o: step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.cpp.o
 
 .PHONY : step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.o
@@ -554,6 +594,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... cloud_visualizer2"
 	@echo "... cloud_visualizer"
+	@echo "... grasping_algorithm_photos_for_paper"
 	@echo "... grasping_algorithm"
 	@echo "... step_1_downsampling_object_cloud"
 	@echo "... cluster_extraction"
@@ -586,6 +627,9 @@ help:
 	@echo "... grasping_algorithm.o"
 	@echo "... grasping_algorithm.i"
 	@echo "... grasping_algorithm.s"
+	@echo "... grasping_algorithm_photos_for_paper.o"
+	@echo "... grasping_algorithm_photos_for_paper.i"
+	@echo "... grasping_algorithm_photos_for_paper.s"
 	@echo "... step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.o"
 	@echo "... step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.i"
 	@echo "... step_1_capture_and_stitch_point_clouds_then_cluster_object_and_table.s"

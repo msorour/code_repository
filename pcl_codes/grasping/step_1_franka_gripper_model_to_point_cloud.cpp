@@ -57,10 +57,8 @@ int main(){
   pcl::transformPointCloud(*left_finger_cloud, *left_finger_cloud, transform);
   
   
-  
-  
   // realsense camera
-  translation << 0.0673, 0, -0.02;
+  translation << -0.0673, 0, -0.02;
   rotation = Roty_float( -M_PI/2 );
   transform << rotation, translation,
                0, 0, 0, 1;
@@ -73,7 +71,11 @@ int main(){
                0, 0, 0, 1;
   pcl::transformPointCloud(*connection_cloud, *connection_cloud, transform);
   
-  
+  translation << 0, 0, 0;
+  rotation = Rotz_float( M_PI );
+  transform << rotation, translation,
+               0, 0, 0, 1;
+  pcl::transformPointCloud(*connection_cloud, *connection_cloud, transform);
   
   
   // concatenate point clouds

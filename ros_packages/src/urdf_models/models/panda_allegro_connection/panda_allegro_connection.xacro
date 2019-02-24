@@ -42,7 +42,8 @@
     <inertia ixx="0.001" ixy="0.001" ixz="0.001" iyy="0.001" iyz="0.001" izz="0.001"/>
   </inertial>
 </link>
-<gazebo reference="${ns}_panda_allegro_connection"><material>Gazebo/BlueGlow</material></gazebo>
+<!-- <gazebo reference="${ns}_panda_allegro_connection"><material>Gazebo/BlueGlow</material></gazebo> -->
+<gazebo reference="${ns}_panda_allegro_connection"><material>Gazebo/Green</material></gazebo>
 
 </xacro:macro>
 </robot>

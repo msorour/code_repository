@@ -201,6 +201,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/cloud_visualizer2.dir/DependInfo.cmake"
   "CMakeFiles/cloud_visualizer.dir/DependInfo.cmake"
+  "CMakeFiles/grasping_algorithm_photos_for_paper.dir/DependInfo.cmake"
   "CMakeFiles/grasping_algorithm.dir/DependInfo.cmake"
   "CMakeFiles/step_1_downsampling_object_cloud.dir/DependInfo.cmake"
   "CMakeFiles/cluster_extraction.dir/DependInfo.cmake"

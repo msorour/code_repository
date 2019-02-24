@@ -1,6 +1,7 @@
 /home/work/code_repository/pcl_codes/grasping2/build/CMakeFiles/rebuild_cache.dir
 /home/work/code_repository/pcl_codes/grasping2/build/CMakeFiles/cloud_visualizer2.dir
 /home/work/code_repository/pcl_codes/grasping2/build/CMakeFiles/cloud_visualizer.dir
+/home/work/code_repository/pcl_codes/grasping2/build/CMakeFiles/grasping_algorithm_photos_for_paper.dir
 /home/work/code_repository/pcl_codes/grasping2/build/CMakeFiles/grasping_algorithm.dir
 /home/work/code_repository/pcl_codes/grasping2/build/CMakeFiles/step_1_downsampling_object_cloud.dir
 /home/work/code_repository/pcl_codes/grasping2/build/CMakeFiles/cluster_extraction.dir
