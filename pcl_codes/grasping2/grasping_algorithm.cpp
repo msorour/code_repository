@@ -745,7 +745,7 @@ int main (int argc, char** argv){
             *pinky_workspace_active_spheres_parameter_best  = *pinky_workspace_active_spheres_parameter;
             
             //std::cout<<"metric#1 : "<<(object_points_in_thumb_workspace_best->size() + object_points_in_index_workspace_best->size() + object_points_in_middle_workspace_best->size() + object_points_in_pinky_workspace_best->size() )<<std::endl;
-            std::cout<<"metric#2 : "<<distance_between_gripper_support_and_object_centroid_best<<std::endl;
+            std::cout<<"metric#2 : "<<distance_between_gripper_support_and_object_centroid_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
             best_gripper_transform = gripper_transform;
           }
         }
@@ -802,7 +802,7 @@ int main (int argc, char** argv){
           *left_finger_workspace_active_spheres_parameter_best  = *left_finger_workspace_active_spheres_parameter;
           
           //std::cout<<"metric#1 : "<<object_points_in_right_finger_workspace_best->size() << ", " << object_points_in_left_finger_workspace_best->size()<<std::endl;
-          std::cout<<"metric#2 : "<<distance_between_gripper_support_and_object_centroid_best<<std::endl;
+          std::cout<<"metric#2 : "<<distance_between_gripper_support_and_object_centroid_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
           best_gripper_transform = gripper_transform;
           }
         }
