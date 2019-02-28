@@ -6,6 +6,8 @@ find_package(PCL 1.7 REQUIRED COMPONENTS)
 #find_package(VTK REQUIRED)
 find_package(roscpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(tf REQUIRED)
+find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs genmsg tf)
 
 include_directories(${PCL_INCLUDE_DIRS})
 include_directories(${roscpp_INCLUDE_DIRS})
@@ -39,3 +41,7 @@ target_link_libraries (cloud_visualizer ${PCL_LIBRARIES} quadprog)
 
 add_executable (cloud_visualizer2 cloud_visualizer2.cpp)
 target_link_libraries (cloud_visualizer2 ${PCL_LIBRARIES} quadprog)
+
+
+add_executable(grasping_algorithm_real_experiments grasping_algorithm_real_experiments.cpp)
+target_link_libraries(grasping_algorithm_real_experiments pthread ${PCL_LIBRARIES} ${roscpp_LIBRARIES} ${catkin_LIBRARIES})

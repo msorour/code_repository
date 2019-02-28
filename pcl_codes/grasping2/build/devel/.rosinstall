@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/build/devel/setup.sh

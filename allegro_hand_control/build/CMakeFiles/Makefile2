@@ -54,47 +54,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/work/code_repository/allegro_hand_control
+CMAKE_SOURCE_DIR = /home/franka3/grasping_msorour/code_repository/allegro_hand_control
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/work/code_repository/allegro_hand_control/build
-
-#=============================================================================
-# Target rules for target CMakeFiles/publish_finger_tip_position_commands.dir
-
-# All Build rule for target.
-CMakeFiles/publish_finger_tip_position_commands.dir/all:
-	$(MAKE) -f CMakeFiles/publish_finger_tip_position_commands.dir/build.make CMakeFiles/publish_finger_tip_position_commands.dir/depend
-	$(MAKE) -f CMakeFiles/publish_finger_tip_position_commands.dir/build.make CMakeFiles/publish_finger_tip_position_commands.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num=11,12 "Built target publish_finger_tip_position_commands"
-.PHONY : CMakeFiles/publish_finger_tip_position_commands.dir/all
-
-# Include target in all.
-all: CMakeFiles/publish_finger_tip_position_commands.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/publish_finger_tip_position_commands.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/publish_finger_tip_position_commands.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
-.PHONY : CMakeFiles/publish_finger_tip_position_commands.dir/rule
-
-# Convenience name for target.
-publish_finger_tip_position_commands: CMakeFiles/publish_finger_tip_position_commands.dir/rule
-
-.PHONY : publish_finger_tip_position_commands
-
-# clean rule for target.
-CMakeFiles/publish_finger_tip_position_commands.dir/clean:
-	$(MAKE) -f CMakeFiles/publish_finger_tip_position_commands.dir/build.make CMakeFiles/publish_finger_tip_position_commands.dir/clean
-.PHONY : CMakeFiles/publish_finger_tip_position_commands.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/publish_finger_tip_position_commands.dir/clean
-
-.PHONY : clean
+CMAKE_BINARY_DIR = /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build
 
 #=============================================================================
 # Target rules for target CMakeFiles/allegro_right_hand_position_controller.dir
@@ -103,7 +66,7 @@ clean: CMakeFiles/publish_finger_tip_position_commands.dir/clean
 CMakeFiles/allegro_right_hand_position_controller.dir/all:
 	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller.dir/build.make CMakeFiles/allegro_right_hand_position_controller.dir/depend
 	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller.dir/build.make CMakeFiles/allegro_right_hand_position_controller.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num=1,2,3 "Built target allegro_right_hand_position_controller"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num=1,2,3 "Built target allegro_right_hand_position_controller"
 .PHONY : CMakeFiles/allegro_right_hand_position_controller.dir/all
 
 # Include target in all.
@@ -113,9 +76,9 @@ all: CMakeFiles/allegro_right_hand_position_controller.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/allegro_right_hand_position_controller.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/allegro_right_hand_position_controller.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
 .PHONY : CMakeFiles/allegro_right_hand_position_controller.dir/rule
 
 # Convenience name for target.
@@ -134,109 +97,13 @@ clean: CMakeFiles/allegro_right_hand_position_controller.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/roscpp_generate_messages_py.dir
-
-# All Build rule for target.
-CMakeFiles/roscpp_generate_messages_py.dir/all:
-	$(MAKE) -f CMakeFiles/roscpp_generate_messages_py.dir/build.make CMakeFiles/roscpp_generate_messages_py.dir/depend
-	$(MAKE) -f CMakeFiles/roscpp_generate_messages_py.dir/build.make CMakeFiles/roscpp_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_py"
-.PHONY : CMakeFiles/roscpp_generate_messages_py.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/roscpp_generate_messages_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/roscpp_generate_messages_py.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
-.PHONY : CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_py: CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-.PHONY : roscpp_generate_messages_py
-
-# clean rule for target.
-CMakeFiles/roscpp_generate_messages_py.dir/clean:
-	$(MAKE) -f CMakeFiles/roscpp_generate_messages_py.dir/build.make CMakeFiles/roscpp_generate_messages_py.dir/clean
-.PHONY : CMakeFiles/roscpp_generate_messages_py.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/roscpp_generate_messages_py.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/roscpp_generate_messages_eus.dir
-
-# All Build rule for target.
-CMakeFiles/roscpp_generate_messages_eus.dir/all:
-	$(MAKE) -f CMakeFiles/roscpp_generate_messages_eus.dir/build.make CMakeFiles/roscpp_generate_messages_eus.dir/depend
-	$(MAKE) -f CMakeFiles/roscpp_generate_messages_eus.dir/build.make CMakeFiles/roscpp_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_eus"
-.PHONY : CMakeFiles/roscpp_generate_messages_eus.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/roscpp_generate_messages_eus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/roscpp_generate_messages_eus.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
-.PHONY : CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_eus: CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-.PHONY : roscpp_generate_messages_eus
-
-# clean rule for target.
-CMakeFiles/roscpp_generate_messages_eus.dir/clean:
-	$(MAKE) -f CMakeFiles/roscpp_generate_messages_eus.dir/build.make CMakeFiles/roscpp_generate_messages_eus.dir/clean
-.PHONY : CMakeFiles/roscpp_generate_messages_eus.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/roscpp_generate_messages_eus.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/roscpp_generate_messages_lisp.dir
-
-# All Build rule for target.
-CMakeFiles/roscpp_generate_messages_lisp.dir/all:
-	$(MAKE) -f CMakeFiles/roscpp_generate_messages_lisp.dir/build.make CMakeFiles/roscpp_generate_messages_lisp.dir/depend
-	$(MAKE) -f CMakeFiles/roscpp_generate_messages_lisp.dir/build.make CMakeFiles/roscpp_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_lisp"
-.PHONY : CMakeFiles/roscpp_generate_messages_lisp.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/roscpp_generate_messages_lisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/roscpp_generate_messages_lisp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
-.PHONY : CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_lisp: CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-.PHONY : roscpp_generate_messages_lisp
-
-# clean rule for target.
-CMakeFiles/roscpp_generate_messages_lisp.dir/clean:
-	$(MAKE) -f CMakeFiles/roscpp_generate_messages_lisp.dir/build.make CMakeFiles/roscpp_generate_messages_lisp.dir/clean
-.PHONY : CMakeFiles/roscpp_generate_messages_lisp.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/roscpp_generate_messages_lisp.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
 # Target rules for target CMakeFiles/grasp.dir
 
 # All Build rule for target.
 CMakeFiles/grasp.dir/all:
 	$(MAKE) -f CMakeFiles/grasp.dir/build.make CMakeFiles/grasp.dir/depend
 	$(MAKE) -f CMakeFiles/grasp.dir/build.make CMakeFiles/grasp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num=7,8,9,10 "Built target grasp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num=7,8,9,10 "Built target grasp"
 .PHONY : CMakeFiles/grasp.dir/all
 
 # Include target in all.
@@ -246,9 +113,9 @@ all: CMakeFiles/grasp.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/grasp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/grasp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
 .PHONY : CMakeFiles/grasp.dir/rule
 
 # Convenience name for target.
@@ -267,52 +134,20 @@ clean: CMakeFiles/grasp.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir
-
-# All Build rule for target.
-CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all:
-	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/depend
-	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_cpp"
-.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
-.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# clean rule for target.
-CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean:
-	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
-.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
 # Target rules for target CMakeFiles/std_msgs_generate_messages_lisp.dir
 
 # All Build rule for target.
 CMakeFiles/std_msgs_generate_messages_lisp.dir/all:
 	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make CMakeFiles/std_msgs_generate_messages_lisp.dir/depend
 	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_lisp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_lisp"
 .PHONY : CMakeFiles/std_msgs_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/std_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
 .PHONY : CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
@@ -331,249 +166,20 @@ clean: CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/roscpp_generate_messages_cpp.dir
-
-# All Build rule for target.
-CMakeFiles/roscpp_generate_messages_cpp.dir/all:
-	$(MAKE) -f CMakeFiles/roscpp_generate_messages_cpp.dir/build.make CMakeFiles/roscpp_generate_messages_cpp.dir/depend
-	$(MAKE) -f CMakeFiles/roscpp_generate_messages_cpp.dir/build.make CMakeFiles/roscpp_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_cpp"
-.PHONY : CMakeFiles/roscpp_generate_messages_cpp.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/roscpp_generate_messages_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/roscpp_generate_messages_cpp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
-.PHONY : CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_cpp: CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-.PHONY : roscpp_generate_messages_cpp
-
-# clean rule for target.
-CMakeFiles/roscpp_generate_messages_cpp.dir/clean:
-	$(MAKE) -f CMakeFiles/roscpp_generate_messages_cpp.dir/build.make CMakeFiles/roscpp_generate_messages_cpp.dir/clean
-.PHONY : CMakeFiles/roscpp_generate_messages_cpp.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/roscpp_generate_messages_cpp.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/rosgraph_msgs_generate_messages_eus.dir
-
-# All Build rule for target.
-CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all:
-	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/depend
-	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_eus"
-.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
-.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_eus: CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_eus
-
-# clean rule for target.
-CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean:
-	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
-.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir
-
-# All Build rule for target.
-CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all:
-	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/depend
-	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_lisp"
-.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
-.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_lisp
-
-# clean rule for target.
-CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean:
-	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
-.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/allegro_right_hand_position_controller_traj.dir
-
-# All Build rule for target.
-CMakeFiles/allegro_right_hand_position_controller_traj.dir/all:
-	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller_traj.dir/build.make CMakeFiles/allegro_right_hand_position_controller_traj.dir/depend
-	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller_traj.dir/build.make CMakeFiles/allegro_right_hand_position_controller_traj.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num=4,5,6 "Built target allegro_right_hand_position_controller_traj"
-.PHONY : CMakeFiles/allegro_right_hand_position_controller_traj.dir/all
-
-# Include target in all.
-all: CMakeFiles/allegro_right_hand_position_controller_traj.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/allegro_right_hand_position_controller_traj.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 3
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/allegro_right_hand_position_controller_traj.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
-.PHONY : CMakeFiles/allegro_right_hand_position_controller_traj.dir/rule
-
-# Convenience name for target.
-allegro_right_hand_position_controller_traj: CMakeFiles/allegro_right_hand_position_controller_traj.dir/rule
-
-.PHONY : allegro_right_hand_position_controller_traj
-
-# clean rule for target.
-CMakeFiles/allegro_right_hand_position_controller_traj.dir/clean:
-	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller_traj.dir/build.make CMakeFiles/allegro_right_hand_position_controller_traj.dir/clean
-.PHONY : CMakeFiles/allegro_right_hand_position_controller_traj.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/allegro_right_hand_position_controller_traj.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/std_msgs_generate_messages_cpp.dir
-
-# All Build rule for target.
-CMakeFiles/std_msgs_generate_messages_cpp.dir/all:
-	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make CMakeFiles/std_msgs_generate_messages_cpp.dir/depend
-	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make CMakeFiles/std_msgs_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_cpp"
-.PHONY : CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/std_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
-.PHONY : CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_cpp: CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : std_msgs_generate_messages_cpp
-
-# clean rule for target.
-CMakeFiles/std_msgs_generate_messages_cpp.dir/clean:
-	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
-.PHONY : CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir
-
-# All Build rule for target.
-CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all:
-	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/depend
-	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_nodejs"
-.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
-.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_nodejs: CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_nodejs
-
-# clean rule for target.
-CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean:
-	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
-.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/rosgraph_msgs_generate_messages_py.dir
-
-# All Build rule for target.
-CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all:
-	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_py.dir/depend
-	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_py"
-.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
-.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_py: CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_py
-
-# clean rule for target.
-CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean:
-	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
-.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
 # Target rules for target CMakeFiles/std_msgs_generate_messages_eus.dir
 
 # All Build rule for target.
 CMakeFiles/std_msgs_generate_messages_eus.dir/all:
 	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_eus.dir/build.make CMakeFiles/std_msgs_generate_messages_eus.dir/depend
 	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_eus.dir/build.make CMakeFiles/std_msgs_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_eus"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_eus"
 .PHONY : CMakeFiles/std_msgs_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/std_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/std_msgs_generate_messages_eus.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
 .PHONY : CMakeFiles/std_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
@@ -598,14 +204,14 @@ clean: CMakeFiles/std_msgs_generate_messages_eus.dir/clean
 CMakeFiles/std_msgs_generate_messages_nodejs.dir/all:
 	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make CMakeFiles/std_msgs_generate_messages_nodejs.dir/depend
 	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_nodejs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_nodejs"
 .PHONY : CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
 .PHONY : CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
@@ -624,20 +230,89 @@ clean: CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/roscpp_generate_messages_lisp.dir
+
+# All Build rule for target.
+CMakeFiles/roscpp_generate_messages_lisp.dir/all:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_lisp.dir/build.make CMakeFiles/roscpp_generate_messages_lisp.dir/depend
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_lisp.dir/build.make CMakeFiles/roscpp_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_lisp"
+.PHONY : CMakeFiles/roscpp_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/roscpp_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/roscpp_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
+.PHONY : CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_lisp: CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+
+.PHONY : roscpp_generate_messages_lisp
+
+# clean rule for target.
+CMakeFiles/roscpp_generate_messages_lisp.dir/clean:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_lisp.dir/build.make CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+.PHONY : CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/publish_finger_tip_position_commands.dir
+
+# All Build rule for target.
+CMakeFiles/publish_finger_tip_position_commands.dir/all:
+	$(MAKE) -f CMakeFiles/publish_finger_tip_position_commands.dir/build.make CMakeFiles/publish_finger_tip_position_commands.dir/depend
+	$(MAKE) -f CMakeFiles/publish_finger_tip_position_commands.dir/build.make CMakeFiles/publish_finger_tip_position_commands.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num=11,12 "Built target publish_finger_tip_position_commands"
+.PHONY : CMakeFiles/publish_finger_tip_position_commands.dir/all
+
+# Include target in all.
+all: CMakeFiles/publish_finger_tip_position_commands.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/publish_finger_tip_position_commands.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/publish_finger_tip_position_commands.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
+.PHONY : CMakeFiles/publish_finger_tip_position_commands.dir/rule
+
+# Convenience name for target.
+publish_finger_tip_position_commands: CMakeFiles/publish_finger_tip_position_commands.dir/rule
+
+.PHONY : publish_finger_tip_position_commands
+
+# clean rule for target.
+CMakeFiles/publish_finger_tip_position_commands.dir/clean:
+	$(MAKE) -f CMakeFiles/publish_finger_tip_position_commands.dir/build.make CMakeFiles/publish_finger_tip_position_commands.dir/clean
+.PHONY : CMakeFiles/publish_finger_tip_position_commands.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/publish_finger_tip_position_commands.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/roscpp_generate_messages_nodejs.dir
 
 # All Build rule for target.
 CMakeFiles/roscpp_generate_messages_nodejs.dir/all:
 	$(MAKE) -f CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make CMakeFiles/roscpp_generate_messages_nodejs.dir/depend
 	$(MAKE) -f CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make CMakeFiles/roscpp_generate_messages_nodejs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_nodejs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_nodejs"
 .PHONY : CMakeFiles/roscpp_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/roscpp_generate_messages_nodejs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
 .PHONY : CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
@@ -656,20 +331,313 @@ clean: CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/roscpp_generate_messages_eus.dir
+
+# All Build rule for target.
+CMakeFiles/roscpp_generate_messages_eus.dir/all:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_eus.dir/build.make CMakeFiles/roscpp_generate_messages_eus.dir/depend
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_eus.dir/build.make CMakeFiles/roscpp_generate_messages_eus.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_eus"
+.PHONY : CMakeFiles/roscpp_generate_messages_eus.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/roscpp_generate_messages_eus.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/roscpp_generate_messages_eus.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
+.PHONY : CMakeFiles/roscpp_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_eus: CMakeFiles/roscpp_generate_messages_eus.dir/rule
+
+.PHONY : roscpp_generate_messages_eus
+
+# clean rule for target.
+CMakeFiles/roscpp_generate_messages_eus.dir/clean:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_eus.dir/build.make CMakeFiles/roscpp_generate_messages_eus.dir/clean
+.PHONY : CMakeFiles/roscpp_generate_messages_eus.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/roscpp_generate_messages_eus.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/allegro_right_hand_position_controller_traj.dir
+
+# All Build rule for target.
+CMakeFiles/allegro_right_hand_position_controller_traj.dir/all:
+	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller_traj.dir/build.make CMakeFiles/allegro_right_hand_position_controller_traj.dir/depend
+	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller_traj.dir/build.make CMakeFiles/allegro_right_hand_position_controller_traj.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num=4,5,6 "Built target allegro_right_hand_position_controller_traj"
+.PHONY : CMakeFiles/allegro_right_hand_position_controller_traj.dir/all
+
+# Include target in all.
+all: CMakeFiles/allegro_right_hand_position_controller_traj.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/allegro_right_hand_position_controller_traj.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/allegro_right_hand_position_controller_traj.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
+.PHONY : CMakeFiles/allegro_right_hand_position_controller_traj.dir/rule
+
+# Convenience name for target.
+allegro_right_hand_position_controller_traj: CMakeFiles/allegro_right_hand_position_controller_traj.dir/rule
+
+.PHONY : allegro_right_hand_position_controller_traj
+
+# clean rule for target.
+CMakeFiles/allegro_right_hand_position_controller_traj.dir/clean:
+	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller_traj.dir/build.make CMakeFiles/allegro_right_hand_position_controller_traj.dir/clean
+.PHONY : CMakeFiles/allegro_right_hand_position_controller_traj.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/allegro_right_hand_position_controller_traj.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/std_msgs_generate_messages_cpp.dir
+
+# All Build rule for target.
+CMakeFiles/std_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make CMakeFiles/std_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_cpp"
+.PHONY : CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/std_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
+.PHONY : CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_cpp: CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : std_msgs_generate_messages_cpp
+
+# clean rule for target.
+CMakeFiles/std_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+.PHONY : CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/roscpp_generate_messages_cpp.dir
+
+# All Build rule for target.
+CMakeFiles/roscpp_generate_messages_cpp.dir/all:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_cpp.dir/build.make CMakeFiles/roscpp_generate_messages_cpp.dir/depend
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_cpp.dir/build.make CMakeFiles/roscpp_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_cpp"
+.PHONY : CMakeFiles/roscpp_generate_messages_cpp.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/roscpp_generate_messages_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/roscpp_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
+.PHONY : CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_cpp: CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+
+.PHONY : roscpp_generate_messages_cpp
+
+# clean rule for target.
+CMakeFiles/roscpp_generate_messages_cpp.dir/clean:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_cpp.dir/build.make CMakeFiles/roscpp_generate_messages_cpp.dir/clean
+.PHONY : CMakeFiles/roscpp_generate_messages_cpp.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/roscpp_generate_messages_cpp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir
+
+# All Build rule for target.
+CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/depend
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_nodejs"
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_nodejs: CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_nodejs
+
+# clean rule for target.
+CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/rosgraph_msgs_generate_messages_eus.dir
+
+# All Build rule for target.
+CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/depend
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_eus"
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_eus: CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_eus
+
+# clean rule for target.
+CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/roscpp_generate_messages_py.dir
+
+# All Build rule for target.
+CMakeFiles/roscpp_generate_messages_py.dir/all:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_py.dir/build.make CMakeFiles/roscpp_generate_messages_py.dir/depend
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_py.dir/build.make CMakeFiles/roscpp_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_py"
+.PHONY : CMakeFiles/roscpp_generate_messages_py.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/roscpp_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/roscpp_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
+.PHONY : CMakeFiles/roscpp_generate_messages_py.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_py: CMakeFiles/roscpp_generate_messages_py.dir/rule
+
+.PHONY : roscpp_generate_messages_py
+
+# clean rule for target.
+CMakeFiles/roscpp_generate_messages_py.dir/clean:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_py.dir/build.make CMakeFiles/roscpp_generate_messages_py.dir/clean
+.PHONY : CMakeFiles/roscpp_generate_messages_py.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/roscpp_generate_messages_py.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir
+
+# All Build rule for target.
+CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_cpp"
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_cpp: CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_cpp
+
+# clean rule for target.
+CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir
+
+# All Build rule for target.
+CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_lisp"
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_lisp: CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_lisp
+
+# clean rule for target.
+CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/std_msgs_generate_messages_py.dir
 
 # All Build rule for target.
 CMakeFiles/std_msgs_generate_messages_py.dir/all:
 	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_py.dir/build.make CMakeFiles/std_msgs_generate_messages_py.dir/depend
 	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_py.dir/build.make CMakeFiles/std_msgs_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_py"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_py"
 .PHONY : CMakeFiles/std_msgs_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/std_msgs_generate_messages_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/std_msgs_generate_messages_py.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/work/code_repository/allegro_hand_control/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
 .PHONY : CMakeFiles/std_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
@@ -684,6 +652,38 @@ CMakeFiles/std_msgs_generate_messages_py.dir/clean:
 
 # clean rule for target.
 clean: CMakeFiles/std_msgs_generate_messages_py.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/rosgraph_msgs_generate_messages_py.dir
+
+# All Build rule for target.
+CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_py"
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles 0
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_py: CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_py
+
+# clean rule for target.
+CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+.PHONY : CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
 
 .PHONY : clean
 

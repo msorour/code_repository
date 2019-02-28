@@ -16,8 +16,8 @@ reset && cmake .. && make && ./grasping_algorithm ../gripper_pcd_model/franka_gr
 #include "include/useful_implementations.h"
 #include "include/grasping_algorithm.h"
 #include <math.h>
-//#include "/home/franka3/grasping_msorour/code_repository/QuadProgpp/src/QuadProg++.hh"
-#include "/home/work/software/QuadProgpp-master/src/QuadProg++.hh"
+#include "/home/franka3/grasping_msorour/code_repository/QuadProgpp/src/QuadProg++.hh"
+//#include "/home/work/software/QuadProgpp-master/src/QuadProg++.hh"
 
 
 int main (int argc, char** argv){
@@ -220,7 +220,9 @@ int main (int argc, char** argv){
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Defining transformations
   // camera optical frame wrt arm hand frame
-  Eigen::Vector3f camera_depth_optical_frame_wrt_arm_hand_frame_translation;   camera_depth_optical_frame_wrt_arm_hand_frame_translation << -0.067, 0.033, -0.027;
+  //Eigen::Vector3f camera_depth_optical_frame_wrt_arm_hand_frame_translation;   camera_depth_optical_frame_wrt_arm_hand_frame_translation << -0.067, 0.033, -0.027; // originally i use
+  Eigen::Vector3f camera_depth_optical_frame_wrt_arm_hand_frame_translation;   camera_depth_optical_frame_wrt_arm_hand_frame_translation << -0.051, 0.023, -0.017; // from calibration
+  //Eigen::Vector3f camera_depth_optical_frame_wrt_arm_hand_frame_translation;   camera_depth_optical_frame_wrt_arm_hand_frame_translation << -0.06, 0.027, -0.022;  // hard tuned
   Eigen::Matrix4f camera_depth_optical_frame_wrt_arm_hand_frame_transform;
   camera_depth_optical_frame_wrt_arm_hand_frame_transform << Rotz_float(-M_PI/2), camera_depth_optical_frame_wrt_arm_hand_frame_translation,
                                                              0,0,0,1;
@@ -304,7 +306,7 @@ int main (int argc, char** argv){
                                                  0, 0, 0, 1;
   
   // sampling the object around its z-axis for scanning
-  int object_sampling_in_x_axis = 7;   int object_sampling_in_y_axis = 7;   int object_sampling_in_z_axis = 5;
+  int object_sampling_in_x_axis = 7;   int object_sampling_in_y_axis = 7;   int object_sampling_in_z_axis = 3;
   object_sampling_in_object_frame_xyzrgb->clear();
   object_major_dimensions(0) = 0.95*object_major_dimensions(0);
   object_major_dimensions(1) = 0.95*object_major_dimensions(1);
@@ -393,7 +395,7 @@ int main (int argc, char** argv){
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_plane_special_ellipsoid_point_cloud_in_arm_hand_frame      (new pcl::PointCloud<pcl::PointXYZRGB>);
   // define and draw object plane special ellipsoid
   object_plane_x = 0.35;       object_plane_y = 0.05;         object_plane_z = 0.35;
-  object_plane_offset_x = 0.0; object_plane_offset_y = -0.05; object_plane_offset_z = 0.0;
+  object_plane_offset_x = 0.0; object_plane_offset_y = 0.05; object_plane_offset_z = 0.0;
   parameter_vector << object_plane_x, object_plane_y, object_plane_z;
   offset_vector    << object_plane_offset_x, object_plane_offset_y, object_plane_offset_z;
   construct_special_ellipsoid_point_cloud( object_plane_special_ellipsoid_point_cloud_in_object_plane_frame, parameter_vector, offset_vector, 100, 10, 255, 0, 0 );
@@ -475,9 +477,21 @@ int main (int argc, char** argv){
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   begin2 = clock();
   
-  int orientation_samples = 10;
-  double orientation_range = 2*M_PI;
+  int orientation_samples = 5;
+  //double orientation_range = 2*M_PI;
+  double initial_orientation = M_PI/4;
+  double orientation_range = M_PI/2;
   double orientation_step = orientation_range/orientation_samples;
+  
+  if(gripper_model == "allegro_right_hand"){
+  	initial_orientation = M_PI/4;
+    orientation_range = 2*M_PI;
+  }
+  else if(gripper_model == "franka_gripper"){
+    initial_orientation = 6*M_PI/4;
+    orientation_range = 2*M_PI;
+  }
+  
   
   double special_ellipsoid_value;
   double sphere_value;
@@ -498,6 +512,8 @@ int main (int argc, char** argv){
   
   double distance_between_gripper_support_and_object_centroid;
   double distance_between_gripper_support_and_object_centroid_best = 1000.0;
+  double distance_between_gripper_fingers;
+  double distance_between_gripper_fingers_best = 0;
   
   Eigen::Vector3f workspace_centroid_wrt_gripper_frame_translation;
   Eigen::Matrix4f workspace_centroid_wrt_gripper_frame_transform;
@@ -536,7 +552,10 @@ int main (int argc, char** argv){
   Eigen::Matrix4f inverse_gripper_transform;
   
   Eigen::Vector4f object_centroid_point_transformed;
+  
   Eigen::Matrix4f best_gripper_transform;
+  Eigen::Matrix3f best_gripper_rotation;
+  Eigen::Vector3f best_gripper_translation;
   
   
   
@@ -571,9 +590,9 @@ int main (int argc, char** argv){
     dummy_translation << 0,0,0;
     for(unsigned int j=0; j<orientation_samples; j++){
       if(gripper_model == "allegro_right_hand"){
-        dummy_rotation = Roty_float(M_PI/4+j*orientation_range/orientation_samples);}
+        dummy_rotation = Roty_float(initial_orientation+j*orientation_range/orientation_samples);}
       else if(gripper_model == "franka_gripper"){
-        dummy_rotation = Rotx_float(M_PI/4+j*orientation_range/orientation_samples);}
+        dummy_rotation = Rotx_float(initial_orientation+j*orientation_range/orientation_samples);}
       dummy_transform << dummy_rotation, dummy_translation,
                          0,0,0,1;
       gripper_centroid_transform_in_gripper_centroid_frame = gripper_centroid_transform_before_orientation_loop*dummy_transform;
@@ -698,17 +717,7 @@ int main (int argc, char** argv){
                                                                                       pinky_workspace_convex_offset, pinky_workspace_convex_parameter,                                                        // input : gripper finger related
                                                                                       object_points_in_pinky_workspace, pinky_workspace_active_spheres_offset,   pinky_workspace_active_spheres_parameter );  // output
         
-        // Evaluation Metric#2 : how close the object centroid to gripper support offset (special ellipsoid)
-        begin5 = clock();
-        object_centroid_point_transformed << object_centroid_point_in_arm_hand_frame.x, object_centroid_point_in_arm_hand_frame.y, object_centroid_point_in_arm_hand_frame.z, 1;
-        object_centroid_point_transformed = inverse_gripper_transform*object_centroid_point_transformed;  // now we have the object centroid point transformed in arm hand frame
-        object_centroid_point_transformed = gripper_wrt_arm_hand_frame_inverse_transform*object_centroid_point_transformed;  // now we have the object centroid point transformed in gripper frame
-        distance_between_gripper_support_and_object_centroid = sqrt(pow(fabs(gripper_support_offset_x-object_centroid_point_transformed(0)),2)+
-                                                                    pow(fabs(gripper_support_offset_y-object_centroid_point_transformed(1)),2)+
-                                                                    pow(fabs(gripper_support_offset_z-object_centroid_point_transformed(2)),2));
-        end = clock();
-        time_spent = (double)( end - begin5 )/ CLOCKS_PER_SEC;
-        time_elapsed_checking_object_contact_with_gripper_support += time_spent;
+        
         
         
         // Evaluation
@@ -724,6 +733,19 @@ int main (int argc, char** argv){
           //if( (object_points_in_thumb_workspace->size() + object_points_in_index_workspace->size() + object_points_in_middle_workspace->size() + object_points_in_pinky_workspace->size()) > 
           //  (object_points_in_thumb_workspace_best->size() + object_points_in_index_workspace_best->size() + object_points_in_middle_workspace_best->size() + object_points_in_pinky_workspace_best->size() ) ){
           
+          
+          
+          
+          
+          // Evaluation Metric#2 : how close the object centroid to gripper support offset (special ellipsoid)
+		      object_centroid_point_transformed << object_centroid_point_in_arm_hand_frame.x, object_centroid_point_in_arm_hand_frame.y, object_centroid_point_in_arm_hand_frame.z, 1;
+		      object_centroid_point_transformed = inverse_gripper_transform*object_centroid_point_transformed;  // now we have the object centroid point transformed in arm hand frame
+		      object_centroid_point_transformed = gripper_wrt_arm_hand_frame_inverse_transform*object_centroid_point_transformed;  // now we have the object centroid point transformed in gripper frame
+		      distance_between_gripper_support_and_object_centroid = sqrt(pow(fabs(gripper_support_offset_x-object_centroid_point_transformed(0)),2)+
+		                                                                  pow(fabs(gripper_support_offset_y-object_centroid_point_transformed(1)),2)+
+		                                                                  pow(fabs(gripper_support_offset_z-object_centroid_point_transformed(2)),2));
+		      
+		      /*
           // this condition minimizes distance between object centroid and gripper support region
           if( distance_between_gripper_support_and_object_centroid < distance_between_gripper_support_and_object_centroid_best ){
             distance_between_gripper_support_and_object_centroid_best = distance_between_gripper_support_and_object_centroid;
@@ -748,7 +770,96 @@ int main (int argc, char** argv){
             std::cout<<"metric#2 : "<<distance_between_gripper_support_and_object_centroid_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
             best_gripper_transform = gripper_transform;
           }
+          */
+          
+          
+          
+          
+          
+          
+          
+          // METRIC#3
+          // Distance between finger contacts on object -> Maximize
+          // object_points_in_thumb_workspace_centroid_point
+					pcl::CentroidPoint<pcl::PointXYZRGB> object_points_in_thumb_workspace_centroid;
+					pcl::PointXYZRGB object_points_in_thumb_workspace_centroid_point;
+					for(unsigned int i=0;i<object_points_in_thumb_workspace->points.size();i++)
+						object_points_in_thumb_workspace_centroid.add( object_points_in_thumb_workspace->points[i] );
+					object_points_in_thumb_workspace_centroid.get(object_points_in_thumb_workspace_centroid_point);
+					
+					// object_points_in_index_workspace_centroid_point
+					pcl::CentroidPoint<pcl::PointXYZRGB> object_points_in_index_workspace_centroid;
+					pcl::PointXYZRGB object_points_in_index_workspace_centroid_point;
+					for(unsigned int i=0;i<object_points_in_index_workspace->points.size();i++)
+						object_points_in_index_workspace_centroid.add( object_points_in_index_workspace->points[i] );
+					object_points_in_index_workspace_centroid.get(object_points_in_index_workspace_centroid_point);
+					
+					distance_between_gripper_fingers = sqrt(pow(fabs(object_points_in_thumb_workspace_centroid_point.x-object_points_in_index_workspace_centroid_point.x),2)+
+                                                  pow(fabs(object_points_in_thumb_workspace_centroid_point.y-object_points_in_index_workspace_centroid_point.y),2)+
+                                                  pow(fabs(object_points_in_thumb_workspace_centroid_point.z-object_points_in_index_workspace_centroid_point.z),2));
+          
+          /*
+          // this condition maximizes distance between gripper fingers
+          if( distance_between_gripper_fingers > distance_between_gripper_fingers_best ){
+            distance_between_gripper_fingers_best = distance_between_gripper_fingers;
+            
+            // saving best object points
+            *object_points_in_thumb_workspace_best  = *object_points_in_thumb_workspace;
+            *object_points_in_index_workspace_best  = *object_points_in_index_workspace;
+            *object_points_in_middle_workspace_best = *object_points_in_middle_workspace;
+            *object_points_in_pinky_workspace_best  = *object_points_in_pinky_workspace;
+            
+            // saving the best workspace spheres
+            *thumb_workspace_active_spheres_offset_best     = *thumb_workspace_active_spheres_offset;
+            *thumb_workspace_active_spheres_parameter_best  = *thumb_workspace_active_spheres_parameter;
+            *index_workspace_active_spheres_offset_best     = *index_workspace_active_spheres_offset;
+            *index_workspace_active_spheres_parameter_best  = *index_workspace_active_spheres_parameter;
+            *middle_workspace_active_spheres_offset_best    = *middle_workspace_active_spheres_offset;
+            *middle_workspace_active_spheres_parameter_best = *middle_workspace_active_spheres_parameter;
+            *pinky_workspace_active_spheres_offset_best     = *pinky_workspace_active_spheres_offset;
+            *pinky_workspace_active_spheres_parameter_best  = *pinky_workspace_active_spheres_parameter;
+            
+            //std::cout<<"metric#1 : "<<(object_points_in_thumb_workspace_best->size() + object_points_in_index_workspace_best->size() + object_points_in_middle_workspace_best->size() + object_points_in_pinky_workspace_best->size() )<<std::endl;
+            std::cout<<"metric#3 : "<<distance_between_gripper_fingers_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
+            best_gripper_transform = gripper_transform;
+          }
+          */
+          
+          
+          
+          
+          // combining metric#2 and metric#3
+          // this condition minimizes distance between object centroid and gripper support region
+          if( (distance_between_gripper_support_and_object_centroid < distance_between_gripper_support_and_object_centroid_best) and (distance_between_gripper_fingers > distance_between_gripper_fingers_best) ){
+            distance_between_gripper_support_and_object_centroid_best = distance_between_gripper_support_and_object_centroid;
+            
+            // saving best object points
+            *object_points_in_thumb_workspace_best  = *object_points_in_thumb_workspace;
+            *object_points_in_index_workspace_best  = *object_points_in_index_workspace;
+            *object_points_in_middle_workspace_best = *object_points_in_middle_workspace;
+            *object_points_in_pinky_workspace_best  = *object_points_in_pinky_workspace;
+            
+            // saving the best workspace spheres
+            *thumb_workspace_active_spheres_offset_best     = *thumb_workspace_active_spheres_offset;
+            *thumb_workspace_active_spheres_parameter_best  = *thumb_workspace_active_spheres_parameter;
+            *index_workspace_active_spheres_offset_best     = *index_workspace_active_spheres_offset;
+            *index_workspace_active_spheres_parameter_best  = *index_workspace_active_spheres_parameter;
+            *middle_workspace_active_spheres_offset_best    = *middle_workspace_active_spheres_offset;
+            *middle_workspace_active_spheres_parameter_best = *middle_workspace_active_spheres_parameter;
+            *pinky_workspace_active_spheres_offset_best     = *pinky_workspace_active_spheres_offset;
+            *pinky_workspace_active_spheres_parameter_best  = *pinky_workspace_active_spheres_parameter;
+            
+            //std::cout<<"metric#1 : "<<(object_points_in_thumb_workspace_best->size() + object_points_in_index_workspace_best->size() + object_points_in_middle_workspace_best->size() + object_points_in_pinky_workspace_best->size() )<<std::endl;
+            std::cout<<"metric#2 : "<<distance_between_gripper_support_and_object_centroid_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
+            std::cout<<"metric#3 : "<<distance_between_gripper_fingers_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
+            best_gripper_transform = gripper_transform;
+          }
+          
+          
+          
+          
         }
+        else{std::cout<<"no finger-object contact solution found ! " <<std::endl;}
       
       
       }
@@ -766,17 +877,6 @@ int main (int argc, char** argv){
                                                                                       left_finger_workspace_convex_offset, left_finger_workspace_convex_parameter,                                                              // input : gripper finger related
                                                                                       object_points_in_left_finger_workspace, left_finger_workspace_active_spheres_offset, left_finger_workspace_active_spheres_parameter );    // output
         
-        // Evaluation Metric#2 : how close the object centroid to gripper support offset (special ellipsoid)
-        begin5 = clock();
-        object_centroid_point_transformed << object_centroid_point_in_arm_hand_frame.x, object_centroid_point_in_arm_hand_frame.y, object_centroid_point_in_arm_hand_frame.z, 1;
-        object_centroid_point_transformed = inverse_gripper_transform*object_centroid_point_transformed;  // now we have the object centroid point transformed in arm hand frame
-        object_centroid_point_transformed = gripper_wrt_arm_hand_frame_inverse_transform*object_centroid_point_transformed;  // now we have the object centroid point transformed in gripper frame
-        distance_between_gripper_support_and_object_centroid = sqrt(pow(fabs(gripper_support_offset_x-object_centroid_point_transformed(0)),2)+
-                                                                    pow(fabs(gripper_support_offset_y-object_centroid_point_transformed(1)),2)+
-                                                                    pow(fabs(gripper_support_offset_z-object_centroid_point_transformed(2)),2));
-        end = clock();
-        time_spent = (double)( end - begin5 )/ CLOCKS_PER_SEC;
-        time_elapsed_checking_object_contact_with_gripper_support += time_spent;
         
         
         // Evaluation
@@ -787,6 +887,17 @@ int main (int argc, char** argv){
           //if( (object_points_in_thumb_workspace->size() + object_points_in_index_workspace->size() + object_points_in_middle_workspace->size() + object_points_in_pinky_workspace->size()) > 
           //  (object_points_in_thumb_workspace_best->size() + object_points_in_index_workspace_best->size() + object_points_in_middle_workspace_best->size() + object_points_in_pinky_workspace_best->size() ) ){
           
+          
+          
+          // Evaluation Metric#2 : how close the object centroid to gripper support offset (special ellipsoid)
+		      object_centroid_point_transformed << object_centroid_point_in_arm_hand_frame.x, object_centroid_point_in_arm_hand_frame.y, object_centroid_point_in_arm_hand_frame.z, 1;
+		      object_centroid_point_transformed = inverse_gripper_transform*object_centroid_point_transformed;  // now we have the object centroid point transformed in arm hand frame
+		      object_centroid_point_transformed = gripper_wrt_arm_hand_frame_inverse_transform*object_centroid_point_transformed;  // now we have the object centroid point transformed in gripper frame
+		      distance_between_gripper_support_and_object_centroid = sqrt(pow(fabs(gripper_support_offset_x-object_centroid_point_transformed(0)),2)+
+		                                                                  pow(fabs(gripper_support_offset_y-object_centroid_point_transformed(1)),2)+
+		                                                                  pow(fabs(gripper_support_offset_z-object_centroid_point_transformed(2)),2));
+		      
+          /*
           // this condition minimizes distance between object centroid and gripper support region
           if( distance_between_gripper_support_and_object_centroid < distance_between_gripper_support_and_object_centroid_best ){
             distance_between_gripper_support_and_object_centroid_best = distance_between_gripper_support_and_object_centroid;
@@ -806,6 +917,88 @@ int main (int argc, char** argv){
           best_gripper_transform = gripper_transform;
           }
         }
+        */
+        
+        
+        
+        
+        
+        
+        // METRIC#3
+        // Distance between finger contacts on object -> Maximize
+        // object_points_in_right_finger_workspace_centroid_point
+				pcl::CentroidPoint<pcl::PointXYZRGB> object_points_in_right_finger_workspace_centroid;
+				pcl::PointXYZRGB object_points_in_right_finger_workspace_centroid_point;
+				for(unsigned int i=0;i<object_points_in_right_finger_workspace->points.size();i++)
+					object_points_in_right_finger_workspace_centroid.add( object_points_in_right_finger_workspace->points[i] );
+				object_points_in_right_finger_workspace_centroid.get(object_points_in_right_finger_workspace_centroid_point);
+				
+				// object_points_in_left_finger_workspace_centroid_point
+				pcl::CentroidPoint<pcl::PointXYZRGB> object_points_in_left_finger_workspace_centroid;
+				pcl::PointXYZRGB object_points_in_left_finger_workspace_centroid_point;
+				for(unsigned int i=0;i<object_points_in_left_finger_workspace->points.size();i++)
+					object_points_in_left_finger_workspace_centroid.add( object_points_in_left_finger_workspace->points[i] );
+				object_points_in_left_finger_workspace_centroid.get(object_points_in_left_finger_workspace_centroid_point);
+				
+				distance_between_gripper_fingers = sqrt(pow(fabs(object_points_in_right_finger_workspace_centroid_point.x-object_points_in_left_finger_workspace_centroid_point.x),2)+
+                                                pow(fabs(object_points_in_right_finger_workspace_centroid_point.y-object_points_in_left_finger_workspace_centroid_point.y),2)+
+                                                pow(fabs(object_points_in_right_finger_workspace_centroid_point.z-object_points_in_left_finger_workspace_centroid_point.z),2));
+        
+        /*
+        // this condition maximizes distance between gripper fingers
+        if( distance_between_gripper_fingers > distance_between_gripper_fingers_best ){
+          distance_between_gripper_fingers_best = distance_between_gripper_fingers;
+          
+          // saving best object points
+          *object_points_in_right_finger_workspace_best = *object_points_in_right_finger_workspace;
+          *object_points_in_left_finger_workspace_best  = *object_points_in_left_finger_workspace;
+          
+          // saving the best workspace spheres
+          *right_finger_workspace_active_spheres_offset_best     = *right_finger_workspace_active_spheres_offset;
+          *right_finger_workspace_active_spheres_parameter_best  = *right_finger_workspace_active_spheres_parameter;
+          *left_finger_workspace_active_spheres_offset_best     = *left_finger_workspace_active_spheres_offset;
+          *left_finger_workspace_active_spheres_parameter_best  = *left_finger_workspace_active_spheres_parameter;
+          
+          //std::cout<<"metric#1 : "<<(object_points_in_thumb_workspace_best->size() + object_points_in_index_workspace_best->size() + object_points_in_middle_workspace_best->size() + object_points_in_pinky_workspace_best->size() )<<std::endl;
+          std::cout<<"metric#3 : "<<distance_between_gripper_fingers_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
+          best_gripper_transform = gripper_transform;
+        }
+        */
+        
+        
+        
+        
+        // combining metric#2 and metric#3
+        // this condition minimizes distance between object centroid and gripper support region
+        if( (distance_between_gripper_support_and_object_centroid <= distance_between_gripper_support_and_object_centroid_best) and (distance_between_gripper_fingers >= distance_between_gripper_fingers_best) ){
+          distance_between_gripper_support_and_object_centroid_best = distance_between_gripper_support_and_object_centroid;
+          
+          // saving best object points
+          *object_points_in_right_finger_workspace_best = *object_points_in_right_finger_workspace;
+          *object_points_in_left_finger_workspace_best  = *object_points_in_left_finger_workspace;
+          
+          // saving the best workspace spheres
+          *right_finger_workspace_active_spheres_offset_best     = *right_finger_workspace_active_spheres_offset;
+          *right_finger_workspace_active_spheres_parameter_best  = *right_finger_workspace_active_spheres_parameter;
+          *left_finger_workspace_active_spheres_offset_best     = *left_finger_workspace_active_spheres_offset;
+          *left_finger_workspace_active_spheres_parameter_best  = *left_finger_workspace_active_spheres_parameter;
+          
+          //std::cout<<"metric#1 : "<<(object_points_in_thumb_workspace_best->size() + object_points_in_index_workspace_best->size() + object_points_in_middle_workspace_best->size() + object_points_in_pinky_workspace_best->size() )<<std::endl;
+          std::cout<<"metric#2 : "<<distance_between_gripper_support_and_object_centroid_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
+          std::cout<<"metric#3 : "<<distance_between_gripper_fingers_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
+          best_gripper_transform = gripper_transform;
+        }
+        
+        
+        
+        
+        
+        
+        }
+        else{std::cout<<"no finger-object contact solution found ! " <<std::endl;}
+        
+        
+        
       
       }
       }
@@ -994,6 +1187,16 @@ int main (int argc, char** argv){
   
   
   
+  // output
+  best_gripper_rotation    << best_gripper_transform(0,0), best_gripper_transform(0,1), best_gripper_transform(0,2),
+                              best_gripper_transform(1,0), best_gripper_transform(1,1), best_gripper_transform(1,2),
+                              best_gripper_transform(2,0), best_gripper_transform(2,1), best_gripper_transform(2,2);
+  best_gripper_translation << best_gripper_transform(0,3), best_gripper_transform(1,3), best_gripper_transform(2,3);
+  Eigen::Quaternionf best_gripper_rotation_quat(best_gripper_rotation);
+  //std::cout << "best_gripper_rotation    = " << best_gripper_rotation_quat.x() << ", " << best_gripper_rotation_quat.y() << ", " << best_gripper_rotation_quat.z() << ", " << best_gripper_rotation_quat.w() << std::endl;
+  //std::cout << "best_gripper_translation = " << best_gripper_translation << std::endl;
+  
+  std::cout << "best_gripper_transform = " << std::endl << best_gripper_transform << std::endl;
   
   end = clock();
 	time_spent = (double)( end - begin )/ CLOCKS_PER_SEC;

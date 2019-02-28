@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/work/code_repository/allegro_hand_control
+CMAKE_SOURCE_DIR = /home/franka3/grasping_msorour/code_repository/allegro_hand_control
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/work/code_repository/allegro_hand_control/build
+CMAKE_BINARY_DIR = /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/grasp.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/grasp.dir/flags.make
 
 CMakeFiles/grasp.dir/src/main.cpp.o: CMakeFiles/grasp.dir/flags.make
 CMakeFiles/grasp.dir/src/main.cpp.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/grasp.dir/src/main.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/grasp.dir/src/main.cpp.o -c /home/work/code_repository/allegro_hand_control/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/grasp.dir/src/main.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/grasp.dir/src/main.cpp.o -c /home/franka3/grasping_msorour/code_repository/allegro_hand_control/src/main.cpp
 
 CMakeFiles/grasp.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/grasp.dir/src/main.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/work/code_repository/allegro_hand_control/src/main.cpp > CMakeFiles/grasp.dir/src/main.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/franka3/grasping_msorour/code_repository/allegro_hand_control/src/main.cpp > CMakeFiles/grasp.dir/src/main.cpp.i
 
 CMakeFiles/grasp.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/grasp.dir/src/main.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/work/code_repository/allegro_hand_control/src/main.cpp -o CMakeFiles/grasp.dir/src/main.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/franka3/grasping_msorour/code_repository/allegro_hand_control/src/main.cpp -o CMakeFiles/grasp.dir/src/main.cpp.s
 
 CMakeFiles/grasp.dir/src/main.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/grasp.dir/src/main.cpp.o.provides.build: CMakeFiles/grasp.dir/src/mai
 
 CMakeFiles/grasp.dir/src/canAPI.cpp.o: CMakeFiles/grasp.dir/flags.make
 CMakeFiles/grasp.dir/src/canAPI.cpp.o: ../src/canAPI.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/grasp.dir/src/canAPI.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/grasp.dir/src/canAPI.cpp.o -c /home/work/code_repository/allegro_hand_control/src/canAPI.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/grasp.dir/src/canAPI.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/grasp.dir/src/canAPI.cpp.o -c /home/franka3/grasping_msorour/code_repository/allegro_hand_control/src/canAPI.cpp
 
 CMakeFiles/grasp.dir/src/canAPI.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/grasp.dir/src/canAPI.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/work/code_repository/allegro_hand_control/src/canAPI.cpp > CMakeFiles/grasp.dir/src/canAPI.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/franka3/grasping_msorour/code_repository/allegro_hand_control/src/canAPI.cpp > CMakeFiles/grasp.dir/src/canAPI.cpp.i
 
 CMakeFiles/grasp.dir/src/canAPI.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/grasp.dir/src/canAPI.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/work/code_repository/allegro_hand_control/src/canAPI.cpp -o CMakeFiles/grasp.dir/src/canAPI.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/franka3/grasping_msorour/code_repository/allegro_hand_control/src/canAPI.cpp -o CMakeFiles/grasp.dir/src/canAPI.cpp.s
 
 CMakeFiles/grasp.dir/src/canAPI.cpp.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/grasp.dir/src/canAPI.cpp.o.provides.build: CMakeFiles/grasp.dir/src/c
 
 CMakeFiles/grasp.dir/src/interface.cpp.o: CMakeFiles/grasp.dir/flags.make
 CMakeFiles/grasp.dir/src/interface.cpp.o: ../src/interface.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/grasp.dir/src/interface.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/grasp.dir/src/interface.cpp.o -c /home/work/code_repository/allegro_hand_control/src/interface.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/grasp.dir/src/interface.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/grasp.dir/src/interface.cpp.o -c /home/franka3/grasping_msorour/code_repository/allegro_hand_control/src/interface.cpp
 
 CMakeFiles/grasp.dir/src/interface.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/grasp.dir/src/interface.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/work/code_repository/allegro_hand_control/src/interface.cpp > CMakeFiles/grasp.dir/src/interface.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/franka3/grasping_msorour/code_repository/allegro_hand_control/src/interface.cpp > CMakeFiles/grasp.dir/src/interface.cpp.i
 
 CMakeFiles/grasp.dir/src/interface.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/grasp.dir/src/interface.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/work/code_repository/allegro_hand_control/src/interface.cpp -o CMakeFiles/grasp.dir/src/interface.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/franka3/grasping_msorour/code_repository/allegro_hand_control/src/interface.cpp -o CMakeFiles/grasp.dir/src/interface.cpp.s
 
 CMakeFiles/grasp.dir/src/interface.cpp.o.requires:
 
@@ -143,7 +143,7 @@ grasp: CMakeFiles/grasp.dir/src/canAPI.cpp.o
 grasp: CMakeFiles/grasp.dir/src/interface.cpp.o
 grasp: CMakeFiles/grasp.dir/build.make
 grasp: CMakeFiles/grasp.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable grasp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable grasp"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/grasp.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -162,6 +162,6 @@ CMakeFiles/grasp.dir/clean:
 .PHONY : CMakeFiles/grasp.dir/clean
 
 CMakeFiles/grasp.dir/depend:
-	cd /home/work/code_repository/allegro_hand_control/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/work/code_repository/allegro_hand_control /home/work/code_repository/allegro_hand_control /home/work/code_repository/allegro_hand_control/build /home/work/code_repository/allegro_hand_control/build /home/work/code_repository/allegro_hand_control/build/CMakeFiles/grasp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/franka3/grasping_msorour/code_repository/allegro_hand_control /home/franka3/grasping_msorour/code_repository/allegro_hand_control /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles/grasp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/grasp.dir/depend
 

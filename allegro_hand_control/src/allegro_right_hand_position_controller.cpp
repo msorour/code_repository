@@ -602,11 +602,17 @@ int main(int argc, TCHAR* argv[]){
     
     
     
-    position_Ptt_desired << 0.02,  0.00, 0.08;
-    position_Pit_desired << 0.04,  0.05, 0.20;
-    position_Pmt_desired << 0.04,   0.0, 0.20;
-    position_Ppt_desired << 0.04, -0.05, 0.20;
+    position_Ptt_desired << 0.01,  0.14, 0.07;
+    position_Pit_desired << 0.01,  0.05, 0.23;
+    position_Pmt_desired << 0.01,   0.0, 0.23;
+    position_Ppt_desired << 0.01, -0.05, 0.23;
     
+    /*
+    position_Ptt_desired << 0.07,  0.00, 0.05;
+		position_Pit_desired << 0.07,  0.04, 0.13;
+		position_Pmt_desired << 0.07,   0.0, 0.13;
+		position_Ppt_desired << 0.07, -0.04, 0.13;
+    */
     double ros_time_start = ros::Time::now().toNSec();
     double ros_time_now;
     
@@ -622,8 +628,11 @@ int main(int argc, TCHAR* argv[]){
       for(int i=12; i<16; i++)
         thumb_joint_position(i-12) = q[i];
       
-	    Kp_finger = 1.3;
-	    lambda = -2.0;
+	    Kp_finger = 0.7;
+	    lambda = -1.0;
+	    
+	    //std::cout << "thumb_joint_position = " << thumb_joint_position.transpose() << std::endl;
+	    //std::cout << "index_joint_position = " << index_joint_position.transpose() << std::endl;
 	    
       thumb_DGM  = finger_direct_geometric_model("thumb",thumb_joint_position);
 	    index_DGM  = finger_direct_geometric_model("index",index_joint_position);

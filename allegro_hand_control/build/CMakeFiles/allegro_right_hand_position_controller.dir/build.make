@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/work/code_repository/allegro_hand_control
+CMAKE_SOURCE_DIR = /home/franka3/grasping_msorour/code_repository/allegro_hand_control
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/work/code_repository/allegro_hand_control/build
+CMAKE_BINARY_DIR = /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/allegro_right_hand_position_controller.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/allegro_right_hand_position_controller.dir/flags.make
 
 CMakeFiles/allegro_right_hand_position_controller.dir/src/allegro_right_hand_position_controller.cpp.o: CMakeFiles/allegro_right_hand_position_controller.dir/flags.make
 CMakeFiles/allegro_right_hand_position_controller.dir/src/allegro_right_hand_position_controller.cpp.o: ../src/allegro_right_hand_position_controller.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/allegro_right_hand_position_controller.dir/src/allegro_right_hand_position_controller.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/allegro_right_hand_position_controller.dir/src/allegro_right_hand_position_controller.cpp.o -c /home/work/code_repository/allegro_hand_control/src/allegro_right_hand_position_controller.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/allegro_right_hand_position_controller.dir/src/allegro_right_hand_position_controller.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/allegro_right_hand_position_controller.dir/src/allegro_right_hand_position_controller.cpp.o -c /home/franka3/grasping_msorour/code_repository/allegro_hand_control/src/allegro_right_hand_position_controller.cpp
 
 CMakeFiles/allegro_right_hand_position_controller.dir/src/allegro_right_hand_position_controller.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/allegro_right_hand_position_controller.dir/src/allegro_right_hand_position_controller.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/work/code_repository/allegro_hand_control/src/allegro_right_hand_position_controller.cpp > CMakeFiles/allegro_right_hand_position_controller.dir/src/allegro_right_hand_position_controller.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/franka3/grasping_msorour/code_repository/allegro_hand_control/src/allegro_right_hand_position_controller.cpp > CMakeFiles/allegro_right_hand_position_controller.dir/src/allegro_right_hand_position_controller.cpp.i
 
 CMakeFiles/allegro_right_hand_position_controller.dir/src/allegro_right_hand_position_controller.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/allegro_right_hand_position_controller.dir/src/allegro_right_hand_position_controller.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/work/code_repository/allegro_hand_control/src/allegro_right_hand_position_controller.cpp -o CMakeFiles/allegro_right_hand_position_controller.dir/src/allegro_right_hand_position_controller.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/franka3/grasping_msorour/code_repository/allegro_hand_control/src/allegro_right_hand_position_controller.cpp -o CMakeFiles/allegro_right_hand_position_controller.dir/src/allegro_right_hand_position_controller.cpp.s
 
 CMakeFiles/allegro_right_hand_position_controller.dir/src/allegro_right_hand_position_controller.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/allegro_right_hand_position_controller.dir/src/allegro_right_hand_pos
 
 CMakeFiles/allegro_right_hand_position_controller.dir/src/canAPI.cpp.o: CMakeFiles/allegro_right_hand_position_controller.dir/flags.make
 CMakeFiles/allegro_right_hand_position_controller.dir/src/canAPI.cpp.o: ../src/canAPI.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/allegro_right_hand_position_controller.dir/src/canAPI.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/allegro_right_hand_position_controller.dir/src/canAPI.cpp.o -c /home/work/code_repository/allegro_hand_control/src/canAPI.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/allegro_right_hand_position_controller.dir/src/canAPI.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/allegro_right_hand_position_controller.dir/src/canAPI.cpp.o -c /home/franka3/grasping_msorour/code_repository/allegro_hand_control/src/canAPI.cpp
 
 CMakeFiles/allegro_right_hand_position_controller.dir/src/canAPI.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/allegro_right_hand_position_controller.dir/src/canAPI.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/work/code_repository/allegro_hand_control/src/canAPI.cpp > CMakeFiles/allegro_right_hand_position_controller.dir/src/canAPI.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/franka3/grasping_msorour/code_repository/allegro_hand_control/src/canAPI.cpp > CMakeFiles/allegro_right_hand_position_controller.dir/src/canAPI.cpp.i
 
 CMakeFiles/allegro_right_hand_position_controller.dir/src/canAPI.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/allegro_right_hand_position_controller.dir/src/canAPI.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/work/code_repository/allegro_hand_control/src/canAPI.cpp -o CMakeFiles/allegro_right_hand_position_controller.dir/src/canAPI.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/franka3/grasping_msorour/code_repository/allegro_hand_control/src/canAPI.cpp -o CMakeFiles/allegro_right_hand_position_controller.dir/src/canAPI.cpp.s
 
 CMakeFiles/allegro_right_hand_position_controller.dir/src/canAPI.cpp.o.requires:
 
@@ -136,7 +136,7 @@ allegro_right_hand_position_controller: /usr/lib/x86_64-linux-gnu/libboost_atomi
 allegro_right_hand_position_controller: /usr/lib/x86_64-linux-gnu/libpthread.so
 allegro_right_hand_position_controller: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
 allegro_right_hand_position_controller: CMakeFiles/allegro_right_hand_position_controller.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/work/code_repository/allegro_hand_control/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable allegro_right_hand_position_controller"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable allegro_right_hand_position_controller"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/allegro_right_hand_position_controller.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -154,6 +154,6 @@ CMakeFiles/allegro_right_hand_position_controller.dir/clean:
 .PHONY : CMakeFiles/allegro_right_hand_position_controller.dir/clean
 
 CMakeFiles/allegro_right_hand_position_controller.dir/depend:
-	cd /home/work/code_repository/allegro_hand_control/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/work/code_repository/allegro_hand_control /home/work/code_repository/allegro_hand_control /home/work/code_repository/allegro_hand_control/build /home/work/code_repository/allegro_hand_control/build /home/work/code_repository/allegro_hand_control/build/CMakeFiles/allegro_right_hand_position_controller.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/franka3/grasping_msorour/code_repository/allegro_hand_control /home/franka3/grasping_msorour/code_repository/allegro_hand_control /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles/allegro_right_hand_position_controller.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/allegro_right_hand_position_controller.dir/depend
 

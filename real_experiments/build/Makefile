@@ -166,6 +166,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named grasping_algorithm
+
+# Build rule for target.
+grasping_algorithm: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grasping_algorithm
+.PHONY : grasping_algorithm
+
+# fast build rule for target.
+grasping_algorithm/fast:
+	$(MAKE) -f CMakeFiles/grasping_algorithm.dir/build.make CMakeFiles/grasping_algorithm.dir/build
+.PHONY : grasping_algorithm/fast
+
+#=============================================================================
 # Target rules for targets named grasping_algorithm_real_experiments
 
 # Build rule for target.
@@ -841,6 +854,33 @@ _catkin_empty_exported_target/fast:
 	$(MAKE) -f CMakeFiles/_catkin_empty_exported_target.dir/build.make CMakeFiles/_catkin_empty_exported_target.dir/build
 .PHONY : _catkin_empty_exported_target/fast
 
+grasping_algorithm.o: grasping_algorithm.cpp.o
+
+.PHONY : grasping_algorithm.o
+
+# target to build an object file
+grasping_algorithm.cpp.o:
+	$(MAKE) -f CMakeFiles/grasping_algorithm.dir/build.make CMakeFiles/grasping_algorithm.dir/grasping_algorithm.cpp.o
+.PHONY : grasping_algorithm.cpp.o
+
+grasping_algorithm.i: grasping_algorithm.cpp.i
+
+.PHONY : grasping_algorithm.i
+
+# target to preprocess a source file
+grasping_algorithm.cpp.i:
+	$(MAKE) -f CMakeFiles/grasping_algorithm.dir/build.make CMakeFiles/grasping_algorithm.dir/grasping_algorithm.cpp.i
+.PHONY : grasping_algorithm.cpp.i
+
+grasping_algorithm.s: grasping_algorithm.cpp.s
+
+.PHONY : grasping_algorithm.s
+
+# target to generate assembly for a file
+grasping_algorithm.cpp.s:
+	$(MAKE) -f CMakeFiles/grasping_algorithm.dir/build.make CMakeFiles/grasping_algorithm.dir/grasping_algorithm.cpp.s
+.PHONY : grasping_algorithm.cpp.s
+
 grasping_algorithm_real_experiments.o: grasping_algorithm_real_experiments.cpp.o
 
 .PHONY : grasping_algorithm_real_experiments.o
@@ -876,6 +916,7 @@ help:
 	@echo "... depend"
 	@echo "... install/local"
 	@echo "... install/strip"
+	@echo "... grasping_algorithm"
 	@echo "... edit_cache"
 	@echo "... grasping_algorithm_real_experiments"
 	@echo "... tf2_msgs_generate_messages_nodejs"
@@ -933,6 +974,9 @@ help:
 	@echo "... sensor_msgs_generate_messages_lisp"
 	@echo "... download_extra_data"
 	@echo "... _catkin_empty_exported_target"
+	@echo "... grasping_algorithm.o"
+	@echo "... grasping_algorithm.i"
+	@echo "... grasping_algorithm.s"
 	@echo "... grasping_algorithm_real_experiments.o"
 	@echo "... grasping_algorithm_real_experiments.i"
 	@echo "... grasping_algorithm_real_experiments.s"
