@@ -44,30 +44,33 @@ int main(int argc, char* argv[]){
   position_Ppt_desired << 0.01, -0.05, 0.23;
   
   // hard code grasping steps
-  position_Ptt_desired1 << 0.08,  0.01, 0.03;
+  position_Ptt_desired1 << 0.05,  -0.02, 0.05;
 	position_Pit_desired1 << 0.05,  0.04, 0.20;
 	position_Pmt_desired1 << 0.05,   0.0, 0.20;
 	position_Ppt_desired1 << 0.05, -0.04, 0.20;
 	
-	position_Ptt_desired2 << 0.09,  0.01, 0.03;
-	position_Pit_desired2 << 0.07,  0.04, 0.16;
-	position_Pmt_desired2 << 0.07,   0.0, 0.16;
-	position_Ppt_desired2 << 0.07, -0.04, 0.16;
+	position_Ptt_desired2 << 0.08,  -0.02, 0.05;
+	position_Pit_desired2 << 0.08,  0.04, 0.16;
+	position_Pmt_desired2 << 0.08,   0.0, 0.16;
+	position_Ppt_desired2 << 0.08, -0.04, 0.16;
 	
-	position_Ptt_desired3 << 0.10,  0.01, 0.03;
+	position_Ptt_desired3 << 0.07,  -0.02, 0.05;
 	position_Pit_desired3 << 0.07,  0.04, 0.13;
 	position_Pmt_desired3 << 0.07,   0.0, 0.13;
 	position_Ppt_desired3 << 0.07, -0.04, 0.13;
 	
-	position_Ptt_desired4 << 0.07,  0.00, 0.05;
-	position_Pit_desired4 << 0.07,  0.04, 0.10;
-	position_Pmt_desired4 << 0.07,   0.0, 0.10;
-	position_Ppt_desired4 << 0.07, -0.04, 0.10;
+	position_Ptt_desired4 << 0.06,  -0.02, 0.05;
+	position_Pit_desired4 << 0.06,  0.04, 0.10;
+	position_Pmt_desired4 << 0.06,   0.0, 0.10;
+	position_Ppt_desired4 << 0.06, -0.04, 0.10;
   
-  position_Ptt_desired5 << 0.02,  0.00, 0.09;
-	position_Pit_desired5 << 0.03,  0.04, 0.08;
-	position_Pmt_desired5 << 0.03,   0.0, 0.08;
-	position_Ppt_desired5 << 0.03, -0.04, 0.08;
+  position_Ptt_desired5 << 0.04,  -0.02, 0.05;
+	position_Pit_desired5 << 0.04,  0.04, 0.05;
+	position_Pmt_desired5 << 0.04,   0.0, 0.05;
+	position_Ppt_desired5 << 0.04, -0.04, 0.05;
+	
+	
+	
 	
   
   double ros_time_now;
@@ -78,13 +81,167 @@ int main(int argc, char* argv[]){
     thumb_tip_position_command.data.clear();
     
     char execute;
-		std::cout << "Press [h] to go to home position or [g] to do simple grasp ... " << std::endl;
+		std::cout << "Press [h] to go to home position or [g] to do simple grasp or [t] to move thumb ... " << std::endl;
 		std::cin.get(execute);
 		if(execute == 'h'){
-			position_Ptt_desired << 0.01,  0.14, 0.07;
-			position_Pit_desired << 0.00,  0.05, 0.24;
-			position_Pmt_desired << 0.00,   0.0, 0.24;
-			position_Ppt_desired << 0.00, -0.05, 0.24;
+			
+			//
+			// send step#4 grasp
+			//
+			position_Ptt_desired = position_Ptt_desired4;
+			position_Pit_desired = position_Pit_desired4;
+			position_Pmt_desired = position_Pmt_desired4;
+			position_Ppt_desired = position_Ppt_desired4;
+			
+			ros_time_now = ros::Time::now().toNSec();
+			
+		  index_tip_position_command.data.clear();
+		  middle_tip_position_command.data.clear();
+		  pinky_tip_position_command.data.clear();
+		  thumb_tip_position_command.data.clear();
+		  
+		  index_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  middle_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  pinky_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  thumb_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  
+		  for(int i=0; i<3; i++){
+		    index_tip_position_command.data.push_back (position_Pit_desired(i));
+		    middle_tip_position_command.data.push_back(position_Pmt_desired(i));
+		    pinky_tip_position_command.data.push_back (position_Ppt_desired(i));
+		    thumb_tip_position_command.data.push_back (position_Ptt_desired(i));
+		  }
+		  
+		  index_tip_position_command_pub.publish ( index_tip_position_command );
+		  middle_tip_position_command_pub.publish( middle_tip_position_command );
+		  pinky_tip_position_command_pub.publish ( pinky_tip_position_command );
+		  thumb_tip_position_command_pub.publish ( thumb_tip_position_command );
+		  
+		  ros::Duration(0.5).sleep();
+			
+			
+			
+			
+			//
+			// send step#3 grasp
+			//
+			position_Ptt_desired = position_Ptt_desired3;
+			position_Pit_desired = position_Pit_desired3;
+			position_Pmt_desired = position_Pmt_desired3;
+			position_Ppt_desired = position_Ppt_desired3;
+			
+			ros_time_now = ros::Time::now().toNSec();
+			
+		  index_tip_position_command.data.clear();
+		  middle_tip_position_command.data.clear();
+		  pinky_tip_position_command.data.clear();
+		  thumb_tip_position_command.data.clear();
+		  
+		  index_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  middle_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  pinky_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  thumb_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  
+		  for(int i=0; i<3; i++){
+		    index_tip_position_command.data.push_back (position_Pit_desired(i));
+		    middle_tip_position_command.data.push_back(position_Pmt_desired(i));
+		    pinky_tip_position_command.data.push_back (position_Ppt_desired(i));
+		    thumb_tip_position_command.data.push_back (position_Ptt_desired(i));
+		  }
+		  
+		  index_tip_position_command_pub.publish ( index_tip_position_command );
+		  middle_tip_position_command_pub.publish( middle_tip_position_command );
+		  pinky_tip_position_command_pub.publish ( pinky_tip_position_command );
+		  thumb_tip_position_command_pub.publish ( thumb_tip_position_command );
+		  
+		  ros::Duration(0.5).sleep();
+			
+			
+			
+			
+			//
+			// send step#2 grasp
+			//
+			position_Ptt_desired = position_Ptt_desired2;
+			position_Pit_desired = position_Pit_desired2;
+			position_Pmt_desired = position_Pmt_desired2;
+			position_Ppt_desired = position_Ppt_desired2;
+			
+			ros_time_now = ros::Time::now().toNSec();
+			
+		  index_tip_position_command.data.clear();
+		  middle_tip_position_command.data.clear();
+		  pinky_tip_position_command.data.clear();
+		  thumb_tip_position_command.data.clear();
+		  
+		  index_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  middle_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  pinky_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  thumb_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  
+		  for(int i=0; i<3; i++){
+		    index_tip_position_command.data.push_back (position_Pit_desired(i));
+		    middle_tip_position_command.data.push_back(position_Pmt_desired(i));
+		    pinky_tip_position_command.data.push_back (position_Ppt_desired(i));
+		    thumb_tip_position_command.data.push_back (position_Ptt_desired(i));
+		  }
+		  
+		  index_tip_position_command_pub.publish ( index_tip_position_command );
+		  middle_tip_position_command_pub.publish( middle_tip_position_command );
+		  pinky_tip_position_command_pub.publish ( pinky_tip_position_command );
+		  thumb_tip_position_command_pub.publish ( thumb_tip_position_command );
+		  
+		  ros::Duration(0.5).sleep();
+			
+			
+			
+			
+			//
+			// send step#1 grasp
+			//
+			position_Ptt_desired = position_Ptt_desired1;
+			position_Pit_desired = position_Pit_desired1;
+			position_Pmt_desired = position_Pmt_desired1;
+			position_Ppt_desired = position_Ppt_desired1;
+			
+			ros_time_now = ros::Time::now().toNSec();
+			
+		  index_tip_position_command.data.clear();
+		  middle_tip_position_command.data.clear();
+		  pinky_tip_position_command.data.clear();
+		  thumb_tip_position_command.data.clear();
+		  
+		  index_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  middle_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  pinky_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  thumb_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  
+		  for(int i=0; i<3; i++){
+		    index_tip_position_command.data.push_back (position_Pit_desired(i));
+		    middle_tip_position_command.data.push_back(position_Pmt_desired(i));
+		    pinky_tip_position_command.data.push_back (position_Ppt_desired(i));
+		    thumb_tip_position_command.data.push_back (position_Ptt_desired(i));
+		  }
+		  
+		  index_tip_position_command_pub.publish ( index_tip_position_command );
+		  middle_tip_position_command_pub.publish( middle_tip_position_command );
+		  pinky_tip_position_command_pub.publish ( pinky_tip_position_command );
+		  thumb_tip_position_command_pub.publish ( thumb_tip_position_command );
+		  
+		  ros::Duration(0.5).sleep();
+			
+			
+			
+			position_Ptt_desired << 0.045,  0.065, 0.085;
+		  position_Pit_desired << 0.00,  0.05, 0.23;
+		  position_Pmt_desired << 0.00,   0.0, 0.23;
+		  position_Ppt_desired << 0.00, -0.05, 0.23;
+		  
+		  
+		  
+		  
+		  
+		  
 		}
 		else if(execute == 'g'){
 			/*
@@ -270,6 +427,42 @@ int main(int argc, char* argv[]){
 		  ros::Duration(0.5).sleep();
 			
     }
+    
+    
+    else if(execute == 't'){
+		  position_Ptt_desired = position_Ptt_desired1;
+			position_Pit_desired = position_Pit_desired1;
+			position_Pmt_desired = position_Pmt_desired1;
+			position_Ppt_desired = position_Ppt_desired1;
+			
+			ros_time_now = ros::Time::now().toNSec();
+			
+		  index_tip_position_command.data.clear();
+		  middle_tip_position_command.data.clear();
+		  pinky_tip_position_command.data.clear();
+		  thumb_tip_position_command.data.clear();
+		  
+		  index_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  middle_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  pinky_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  thumb_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  
+		  for(int i=0; i<3; i++){
+		    index_tip_position_command.data.push_back (position_Pit_desired(i));
+		    middle_tip_position_command.data.push_back(position_Pmt_desired(i));
+		    pinky_tip_position_command.data.push_back (position_Ppt_desired(i));
+		    thumb_tip_position_command.data.push_back (position_Ptt_desired(i));
+		  }
+		  
+		  index_tip_position_command_pub.publish ( index_tip_position_command );
+		  middle_tip_position_command_pub.publish( middle_tip_position_command );
+		  pinky_tip_position_command_pub.publish ( pinky_tip_position_command );
+		  thumb_tip_position_command_pub.publish ( thumb_tip_position_command );
+		  
+		  ros::Duration(0.5).sleep();
+    }
+    
+    
     
     ros_time_now = ros::Time::now().toNSec();
     index_tip_position_command.data.push_back( (ros_time_now)/1000000 );

@@ -672,8 +672,8 @@ int main(int argc, char **argv){
   // sampling the object around its z-axis for scanning
   int object_sampling_in_x_axis = 7;   int object_sampling_in_y_axis = 7;   int object_sampling_in_z_axis = 3;
   object_sampling_in_object_frame_xyzrgb->clear();
-  object_major_dimensions(0) = 0.95*object_major_dimensions(0);
-  object_major_dimensions(1) = 0.95*object_major_dimensions(1);
+  object_major_dimensions(0) = 0.90*object_major_dimensions(0);
+  object_major_dimensions(1) = 0.90*object_major_dimensions(1);
   object_major_dimensions(2) = 0.70*object_major_dimensions(2);
   for(unsigned int i=0; i<object_sampling_in_x_axis ;i++){
     for(unsigned int j=0; j<object_sampling_in_y_axis ;j++){
@@ -741,11 +741,12 @@ int main(int argc, char **argv){
   
   if(gripper_model == "allegro_right_hand"){
     gripper_support_x = 0.003; gripper_support_y = 0.047; gripper_support_z = 0.047;
-    gripper_support_offset_x = 0.0; gripper_support_offset_y = 0.0; gripper_support_offset_z = 0.0475;
+    //gripper_support_offset_x = 0.0; gripper_support_offset_y = 0.0; gripper_support_offset_z = 0.0475;
+    gripper_support_offset_x = 0.0; gripper_support_offset_y = 0.0; gripper_support_offset_z = 0.07;
   }
   else if(gripper_model == "franka_gripper"){
     gripper_support_x = 0.02; gripper_support_y = 0.08; gripper_support_z = 0.001;
-    gripper_support_offset_x = 0.0; gripper_support_offset_y = 0.0; gripper_support_offset_z = 0.065;
+    gripper_support_offset_x = 0.0; gripper_support_offset_y = 0.0; gripper_support_offset_z = 0.075;
   }
   // draw
   parameter_vector << gripper_support_x, gripper_support_y, gripper_support_z;
@@ -774,7 +775,8 @@ int main(int argc, char **argv){
     //gripper_x.push_back(0.014);    gripper_y.push_back(0.016);    gripper_z.push_back(0.07);     gripper_offset_x.push_back(-0.014);    gripper_offset_y.push_back(0.0);     gripper_offset_z.push_back(0.17); // middle
     //gripper_x.push_back(0.014);    gripper_y.push_back(0.016);    gripper_z.push_back(0.07);     gripper_offset_x.push_back(-0.014);    gripper_offset_y.push_back(-0.05);   gripper_offset_z.push_back(0.17); // pinky
     gripper_x.push_back(0.014);    gripper_y.push_back(0.070);    gripper_z.push_back(0.07);     gripper_offset_x.push_back(-0.014);    gripper_offset_y.push_back(0.0);     gripper_offset_z.push_back(0.17);   // index, middle, pinky
-    gripper_x.push_back(0.014);    gripper_y.push_back(0.08);     gripper_z.push_back(0.012);    gripper_offset_x.push_back(-0.022);    gripper_offset_y.push_back(0.11);    gripper_offset_z.push_back(0.022);  // thumb
+    //gripper_x.push_back(0.014);    gripper_y.push_back(0.08);     gripper_z.push_back(0.012);    gripper_offset_x.push_back(-0.022);    gripper_offset_y.push_back(0.11);    gripper_offset_z.push_back(0.022);  // thumb
+    gripper_x.push_back(0.028);    gripper_y.push_back(0.06);     gripper_z.push_back(0.045);    gripper_offset_x.push_back(0.03);    gripper_offset_y.push_back(0.07);    gripper_offset_z.push_back(0.04);  // thumb
     gripper_x.push_back(0.04);     gripper_y.push_back(0.04);     gripper_z.push_back(0.02);     gripper_offset_x.push_back(-0.02);     gripper_offset_y.push_back(0.0);     gripper_offset_z.push_back(-0.01);  // connection
     gripper_x.push_back(0.015);    gripper_y.push_back(0.045);    gripper_z.push_back(0.015);    gripper_offset_x.push_back(0.05);      gripper_offset_y.push_back(0.0);     gripper_offset_z.push_back(-0.05);  // realsense camera
   }
@@ -869,16 +871,18 @@ int main(int argc, char **argv){
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   begin2 = clock();
   
-  int orientation_samples = 5;
+  int orientation_samples = 4;
   double initial_orientation = M_PI/4;
   double orientation_range = M_PI/2;
   
   if(gripper_model == "allegro_right_hand"){
-  	initial_orientation = M_PI/4;
+  	//initial_orientation = M_PI/4;
+    initial_orientation = 0.0;
     orientation_range = 2*M_PI;
   }
   else if(gripper_model == "franka_gripper"){
-    initial_orientation = 6*M_PI/4;
+    //initial_orientation = 6*M_PI/4;
+    initial_orientation = 0.0;
     orientation_range = 2*M_PI;
   }
   double orientation_step = orientation_range/orientation_samples;
@@ -963,8 +967,8 @@ int main(int argc, char **argv){
     // rotate the gripper workspace centroid to be alligned with the object orientation
     // then rotate it to be perpendicular to the object major axis
     if(gripper_model == "allegro_right_hand"){
-      //gripper_centroid_rotation_in_gripper_centroid_frame << object_rotation_wrt_arm_hand_frame*Rotx_float(M_PI/2);
-      gripper_centroid_rotation_in_gripper_centroid_frame << object_rotation_wrt_arm_hand_frame*Rotx_float(-M_PI/2);
+      gripper_centroid_rotation_in_gripper_centroid_frame << object_rotation_wrt_arm_hand_frame*Rotx_float(M_PI/2);
+      //gripper_centroid_rotation_in_gripper_centroid_frame << object_rotation_wrt_arm_hand_frame*Rotx_float(-M_PI/2);
     }
     else if(gripper_model == "franka_gripper"){
       gripper_centroid_rotation_in_gripper_centroid_frame << object_rotation_wrt_arm_hand_frame*Roty_float(M_PI/2);}
@@ -1117,7 +1121,8 @@ int main(int argc, char **argv){
         //    (object_points_in_thumb_workspace_best->size() + object_points_in_index_workspace_best->size() + object_points_in_middle_workspace_best->size() + object_points_in_pinky_workspace_best->size() ) ) ){
         
         // this condition ensures all fingers must have solution to touch object
-        if( object_points_in_thumb_workspace->size()!=0 and object_points_in_index_workspace->size()!=0 and object_points_in_middle_workspace->size()!=0 and object_points_in_pinky_workspace->size()!=0 ){
+        //if( object_points_in_thumb_workspace->size()!=0 and object_points_in_index_workspace->size()!=0 and object_points_in_middle_workspace->size()!=0 and object_points_in_pinky_workspace->size()!=0 ){
+        if( object_points_in_thumb_workspace->size()!=0 and object_points_in_middle_workspace->size()!=0 ){
         	
           
           
@@ -1130,6 +1135,7 @@ int main(int argc, char **argv){
 		      distance_between_gripper_support_and_object_centroid = sqrt(pow(fabs(gripper_support_offset_x-object_centroid_point_transformed(0)),2)+
 		                                                                  pow(fabs(gripper_support_offset_y-object_centroid_point_transformed(1)),2)+
 		                                                                  pow(fabs(gripper_support_offset_z-object_centroid_point_transformed(2)),2));
+          //distance_between_gripper_support_and_object_centroid = sqrt(pow(fabs(gripper_support_offset_z-object_centroid_point_transformed(2)),2));
           
           
           // METRIC#3
@@ -1208,6 +1214,40 @@ int main(int argc, char **argv){
             best_gripper_transform = gripper_transform;
           }
           */
+          
+          
+          
+          
+          
+          /*
+          // combining metric#2 and metric#3
+          // this condition minimizes distance between object centroid and gripper support region
+          if( (distance_between_gripper_support_and_object_centroid < distance_between_gripper_support_and_object_centroid_best) and (distance_between_gripper_fingers > distance_between_gripper_fingers_best) ){
+            distance_between_gripper_support_and_object_centroid_best = distance_between_gripper_support_and_object_centroid;
+            
+            // saving best object points
+            *object_points_in_thumb_workspace_best  = *object_points_in_thumb_workspace;
+            *object_points_in_index_workspace_best  = *object_points_in_index_workspace;
+            *object_points_in_middle_workspace_best = *object_points_in_middle_workspace;
+            *object_points_in_pinky_workspace_best  = *object_points_in_pinky_workspace;
+            
+            // saving the best workspace spheres
+            *thumb_workspace_active_spheres_offset_best     = *thumb_workspace_active_spheres_offset;
+            *thumb_workspace_active_spheres_parameter_best  = *thumb_workspace_active_spheres_parameter;
+            *index_workspace_active_spheres_offset_best     = *index_workspace_active_spheres_offset;
+            *index_workspace_active_spheres_parameter_best  = *index_workspace_active_spheres_parameter;
+            *middle_workspace_active_spheres_offset_best    = *middle_workspace_active_spheres_offset;
+            *middle_workspace_active_spheres_parameter_best = *middle_workspace_active_spheres_parameter;
+            *pinky_workspace_active_spheres_offset_best     = *pinky_workspace_active_spheres_offset;
+            *pinky_workspace_active_spheres_parameter_best  = *pinky_workspace_active_spheres_parameter;
+            
+            //std::cout<<"metric#1 : "<<(object_points_in_thumb_workspace_best->size() + object_points_in_index_workspace_best->size() + object_points_in_middle_workspace_best->size() + object_points_in_pinky_workspace_best->size() )<<std::endl;
+            std::cout<<"metric#2 : "<<distance_between_gripper_support_and_object_centroid_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
+            std::cout<<"metric#3 : "<<distance_between_gripper_fingers_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
+            best_gripper_transform = gripper_transform;
+          }
+          */
+          
           
           
           
@@ -1324,6 +1364,29 @@ int main(int argc, char **argv){
 		      */
           
           
+          
+          /*
+          // combining metric#2 and metric#3
+		      // this condition minimizes distance between object centroid and gripper support region
+		      if( (distance_between_gripper_support_and_object_centroid <= distance_between_gripper_support_and_object_centroid_best) and (distance_between_gripper_fingers >= distance_between_gripper_fingers_best) ){
+		        distance_between_gripper_support_and_object_centroid_best = distance_between_gripper_support_and_object_centroid;
+		        
+		        // saving best object points
+		        *object_points_in_right_finger_workspace_best = *object_points_in_right_finger_workspace;
+		        *object_points_in_left_finger_workspace_best  = *object_points_in_left_finger_workspace;
+		        
+		        // saving the best workspace spheres
+		        *right_finger_workspace_active_spheres_offset_best     = *right_finger_workspace_active_spheres_offset;
+		        *right_finger_workspace_active_spheres_parameter_best  = *right_finger_workspace_active_spheres_parameter;
+		        *left_finger_workspace_active_spheres_offset_best     = *left_finger_workspace_active_spheres_offset;
+		        *left_finger_workspace_active_spheres_parameter_best  = *left_finger_workspace_active_spheres_parameter;
+		        
+		        //std::cout<<"metric#1 : "<<(object_points_in_thumb_workspace_best->size() + object_points_in_index_workspace_best->size() + object_points_in_middle_workspace_best->size() + object_points_in_pinky_workspace_best->size() )<<std::endl;
+		        std::cout<<"metric#2 : "<<distance_between_gripper_support_and_object_centroid_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
+		        std::cout<<"metric#3 : "<<distance_between_gripper_fingers_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
+		        best_gripper_transform = gripper_transform;
+		      }
+          */
           
           
           
@@ -1579,7 +1642,7 @@ int main(int argc, char **argv){
 		
 		poseCommand.pose.position.x = desired_hand_translation_in_arm_link0_frame(0);
 		poseCommand.pose.position.y = desired_hand_translation_in_arm_link0_frame(1);
-		poseCommand.pose.position.z = desired_hand_translation_in_arm_link0_frame(2); + 0.02;
+		poseCommand.pose.position.z = desired_hand_translation_in_arm_link0_frame(2) + 0.1;
 		//poseCommand.pose.position.z = 0.17;
 		poseCommand.pose.orientation.x = desired_hand_rotation_in_arm_link0_frame_quat.x();
 		poseCommand.pose.orientation.y = desired_hand_rotation_in_arm_link0_frame_quat.y();
@@ -1596,6 +1659,31 @@ int main(int argc, char **argv){
 			ros::spinOnce();
 		  loop_rate.sleep();
 		}
+		
+		
+		// move in z-axis only
+		poseCommand.pose.position.x = desired_hand_translation_in_arm_link0_frame(0);
+		poseCommand.pose.position.y = desired_hand_translation_in_arm_link0_frame(1);
+		poseCommand.pose.position.z = desired_hand_translation_in_arm_link0_frame(2);
+		//poseCommand.pose.position.z = 0.17;
+		poseCommand.pose.orientation.x = desired_hand_rotation_in_arm_link0_frame_quat.x();
+		poseCommand.pose.orientation.y = desired_hand_rotation_in_arm_link0_frame_quat.y();
+		poseCommand.pose.orientation.z = desired_hand_rotation_in_arm_link0_frame_quat.z();
+		poseCommand.pose.orientation.w = desired_hand_rotation_in_arm_link0_frame_quat.w();
+		
+		for(int i=0;i<1;i++){
+		  
+		  // send pose command
+			pose_pub.publish( poseCommand );
+		
+			// wait for 10 seconds for motion execution
+			ros::Duration(5).sleep();
+			ros::spinOnce();
+		  loop_rate.sleep();
+		}
+		
+		
+		
   
   }
   else if(execute == 'n')
@@ -1608,7 +1696,8 @@ int main(int argc, char **argv){
   
   
   
-  
+  std::cin.clear();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
   
   
   char lift_object;
@@ -1635,7 +1724,7 @@ int main(int argc, char **argv){
 		
 		poseCommand.pose.position.x    = stamped_transform.getOrigin().x();
 		poseCommand.pose.position.y    = stamped_transform.getOrigin().y();
-		poseCommand.pose.position.z    = stamped_transform.getOrigin().z() + 0.02;
+		poseCommand.pose.position.z    = stamped_transform.getOrigin().z() + 0.2;
 		poseCommand.pose.orientation.x = stamped_transform.getRotation().x();
 		poseCommand.pose.orientation.y = stamped_transform.getRotation().y();
 		poseCommand.pose.orientation.z = stamped_transform.getRotation().z();

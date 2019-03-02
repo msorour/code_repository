@@ -602,17 +602,13 @@ int main(int argc, TCHAR* argv[]){
     
     
     
-    position_Ptt_desired << 0.01,  0.14, 0.07;
+    //position_Ptt_desired << 0.07,  0.085, 0.055;
+    position_Ptt_desired << 0.045,  0.065, 0.085;
     position_Pit_desired << 0.01,  0.05, 0.23;
     position_Pmt_desired << 0.01,   0.0, 0.23;
     position_Ppt_desired << 0.01, -0.05, 0.23;
     
-    /*
-    position_Ptt_desired << 0.07,  0.00, 0.05;
-		position_Pit_desired << 0.07,  0.04, 0.13;
-		position_Pmt_desired << 0.07,   0.0, 0.13;
-		position_Ppt_desired << 0.07, -0.04, 0.13;
-    */
+    
     double ros_time_start = ros::Time::now().toNSec();
     double ros_time_now;
     
@@ -628,7 +624,7 @@ int main(int argc, TCHAR* argv[]){
       for(int i=12; i<16; i++)
         thumb_joint_position(i-12) = q[i];
       
-	    Kp_finger = 0.7;
+	    Kp_finger = 0.9;
 	    lambda = -1.0;
 	    
 	    //std::cout << "thumb_joint_position = " << thumb_joint_position.transpose() << std::endl;
@@ -643,6 +639,8 @@ int main(int argc, TCHAR* argv[]){
 	    pose_rpy_Pit = transformation_matrix_to_pose_rpy(index_DGM);
 	    pose_rpy_Pmt = transformation_matrix_to_pose_rpy(middle_DGM);
 	    pose_rpy_Ppt = transformation_matrix_to_pose_rpy(pinky_DGM);
+      
+      //std::cout << "pose_rpy_Ptt = " << pose_rpy_Ptt.transpose() << std::endl;
       
       thumb_position_jacobian  = finger_position_jacobian("thumb",thumb_joint_position);
 	    index_position_jacobian  = finger_position_jacobian("index",index_joint_position);
@@ -659,7 +657,7 @@ int main(int argc, TCHAR* argv[]){
 	    position_Pmt_error = position_Pmt_desired - position_Pmt;
 	    position_Ppt_error = position_Ppt_desired - position_Ppt;
 	    
-	    velocity_Ptt_desired_3d = Kp_finger*position_Ptt_error;
+	    velocity_Ptt_desired_3d = 1.1*position_Ptt_error;
 	    velocity_Pit_desired_3d = Kp_finger*position_Pit_error;
 	    velocity_Pmt_desired_3d = Kp_finger*position_Pmt_error;
 	    velocity_Ppt_desired_3d = Kp_finger*position_Ppt_error;

@@ -410,7 +410,8 @@ int main (int argc, char** argv){
     //gripper_x.push_back(0.014);    gripper_y.push_back(0.016);    gripper_z.push_back(0.07);     gripper_offset_x.push_back(-0.014);    gripper_offset_y.push_back(0.0);     gripper_offset_z.push_back(0.17); // middle
     //gripper_x.push_back(0.014);    gripper_y.push_back(0.016);    gripper_z.push_back(0.07);     gripper_offset_x.push_back(-0.014);    gripper_offset_y.push_back(-0.05);   gripper_offset_z.push_back(0.17); // pinky
     gripper_x.push_back(0.014);    gripper_y.push_back(0.070);    gripper_z.push_back(0.07);     gripper_offset_x.push_back(-0.014);    gripper_offset_y.push_back(0.0);     gripper_offset_z.push_back(0.17);   // index, middle, pinky
-    gripper_x.push_back(0.014);    gripper_y.push_back(0.08);     gripper_z.push_back(0.012);    gripper_offset_x.push_back(-0.022);    gripper_offset_y.push_back(0.11);    gripper_offset_z.push_back(0.022);  // thumb
+    //gripper_x.push_back(0.014);    gripper_y.push_back(0.08);     gripper_z.push_back(0.012);    gripper_offset_x.push_back(-0.022);    gripper_offset_y.push_back(0.11);    gripper_offset_z.push_back(0.022);  // thumb
+    gripper_x.push_back(0.035);    gripper_y.push_back(0.06);     gripper_z.push_back(0.03);    gripper_offset_x.push_back(0.05);    gripper_offset_y.push_back(0.07);    gripper_offset_z.push_back(0.03);  // thumb
     gripper_x.push_back(0.04);     gripper_y.push_back(0.04);     gripper_z.push_back(0.02);     gripper_offset_x.push_back(-0.02);     gripper_offset_y.push_back(0.0);     gripper_offset_z.push_back(-0.01);  // connection
     gripper_x.push_back(0.015);    gripper_y.push_back(0.045);    gripper_z.push_back(0.015);    gripper_offset_x.push_back(0.05);      gripper_offset_y.push_back(0.0);     gripper_offset_z.push_back(-0.05);  // realsense camera
   }
@@ -477,20 +478,21 @@ int main (int argc, char** argv){
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   begin2 = clock();
   
-  int orientation_samples = 5;
-  //double orientation_range = 2*M_PI;
+  int orientation_samples = 4;
   double initial_orientation = M_PI/4;
   double orientation_range = M_PI/2;
-  double orientation_step = orientation_range/orientation_samples;
   
   if(gripper_model == "allegro_right_hand"){
-  	initial_orientation = M_PI/4;
+  	//initial_orientation = M_PI/4;
+    initial_orientation = 0.0;
     orientation_range = 2*M_PI;
   }
   else if(gripper_model == "franka_gripper"){
-    initial_orientation = 6*M_PI/4;
+    //initial_orientation = 6*M_PI/4;
+    initial_orientation = 0.0;
     orientation_range = 2*M_PI;
   }
+  double orientation_step = orientation_range/orientation_samples;
   
   
   double special_ellipsoid_value;
