@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2
+CMAKE_SOURCE_DIR = /home/work/code_repository/pcl_codes/grasping2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/build
+CMAKE_BINARY_DIR = /home/work/code_repository/pcl_codes/grasping2/build
 
 # Utility rule file for clean_test_results.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/franka3/grasping_msorour/code_repository/pcl_codes/gras
 include CMakeFiles/clean_test_results.dir/progress.make
 
 CMakeFiles/clean_test_results:
-	/usr/bin/python /opt/ros/kinetic/share/catkin/cmake/test/remove_test_results.py /home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/build/test_results
+	/usr/bin/python /opt/ros/kinetic/share/catkin/cmake/test/remove_test_results.py /home/work/code_repository/pcl_codes/grasping2/build/test_results
 
 clean_test_results: CMakeFiles/clean_test_results
 clean_test_results: CMakeFiles/clean_test_results.dir/build.make
@@ -71,6 +71,6 @@ CMakeFiles/clean_test_results.dir/clean:
 .PHONY : CMakeFiles/clean_test_results.dir/clean
 
 CMakeFiles/clean_test_results.dir/depend:
-	cd /home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2 /home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2 /home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/build /home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/build /home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/build/CMakeFiles/clean_test_results.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/work/code_repository/pcl_codes/grasping2/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/work/code_repository/pcl_codes/grasping2 /home/work/code_repository/pcl_codes/grasping2 /home/work/code_repository/pcl_codes/grasping2/build /home/work/code_repository/pcl_codes/grasping2/build /home/work/code_repository/pcl_codes/grasping2/build/CMakeFiles/clean_test_results.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/clean_test_results.dir/depend
 
