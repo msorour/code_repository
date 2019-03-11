@@ -16,14 +16,18 @@ reset && cmake .. && make && ./grasping_algorithm ../gripper_pcd_model/franka_gr
 #include "include/useful_implementations.h"
 #include "include/grasping_algorithm.h"
 #include <math.h>
-#include "/home/franka3/grasping_msorour/code_repository/QuadProgpp/src/QuadProg++.hh"
-//#include "/home/work/software/QuadProgpp-master/src/QuadProg++.hh"
+//#include "/home/franka3/grasping_msorour/code_repository/QuadProgpp/src/QuadProg++.hh"
+#include "/home/work/software/QuadProgpp-master/src/QuadProg++.hh"
 
 
 int main (int argc, char** argv){
   clock_t begin, begin2, begin3, begin4, begin5, end;
+  clock_t time_to_load_clouds_begin;
+  clock_t time_to_run_algorithm_begin;
 	begin = clock();
 	double time_spent;
+	
+	time_to_load_clouds_begin = clock();
 	
   std::string gripper_file_name      = argv[1];
   double gripper_leaf_size           = std::stof( argv[2] );
@@ -63,6 +67,8 @@ int main (int argc, char** argv){
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr  object_plane_cloud_downsampled_in_arm_hand_frame_xyzrgb              (new pcl::PointCloud<pcl::PointXYZRGB>);
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr  object_plane_cloud_downsampled_in_object_plane_frame_xyzrgb          (new pcl::PointCloud<pcl::PointXYZRGB>);
   pcl::PointCloud<pcl::PointXYZ>::Ptr     object_plane_cloud_downsampled_in_object_plane_frame_xyz             (new pcl::PointCloud<pcl::PointXYZ>);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr  object_plane_special_ellipsoid_point_cloud_in_object_plane_frame     (new pcl::PointCloud<pcl::PointXYZRGB>);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr  object_plane_special_ellipsoid_point_cloud_in_arm_hand_frame         (new pcl::PointCloud<pcl::PointXYZRGB>);
   
   pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_cloud_in_gripper_frame_xyz                                   (new pcl::PointCloud<pcl::PointXYZ>);
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr  gripper_cloud_transformed_in_gripper_frame_xyzrgb                    (new pcl::PointCloud<pcl::PointXYZRGB>);
@@ -73,6 +79,10 @@ int main (int argc, char** argv){
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr  gripper_cloud_downsampled_in_gripper_frame_xyzrgb                    (new pcl::PointCloud<pcl::PointXYZRGB>);
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr  gripper_cloud_downsampled_in_gripper_centroid_frame_xyzrgb           (new pcl::PointCloud<pcl::PointXYZRGB>);
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr  gripper_cloud_transformed_in_gripper_centroid_frame_xyzrgb           (new pcl::PointCloud<pcl::PointXYZRGB>);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr  gripper_as_set_of_special_ellipsoids_in_gripper_frame                (new pcl::PointCloud<pcl::PointXYZRGB>);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr  gripper_as_set_of_special_ellipsoids_in_arm_hand_frame               (new pcl::PointCloud<pcl::PointXYZRGB>);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr  gripper_as_set_of_special_ellipsoids_transformed_in_arm_hand_frame   (new pcl::PointCloud<pcl::PointXYZRGB>);
+  
   
   //pcl::PointCloud<pcl::PointXYZRGB>::Ptr  scene_cloud_xyzrgb                                                   (new pcl::PointCloud<pcl::PointXYZRGB>);
   
@@ -135,43 +145,58 @@ int main (int argc, char** argv){
   // for point cloud visualization
   boost::shared_ptr<pcl::visualization::PCLVisualizer> scene_cloud_viewer  (new pcl::visualization::PCLVisualizer ("scene cloud viewer"));
   scene_cloud_viewer->addCoordinateSystem(0.2);   // this is arm hand frame (the origin)
-  scene_cloud_viewer->setCameraPosition(0.569223, 0.312599 , 0.486299, -0.0307768, -0.017401, 0.0562987, -0.38203, -0.231229, 0.894755, 0);
+  //scene_cloud_viewer->setCameraPosition(0.569223, 0.312599 , 0.486299, -0.0307768, -0.017401, 0.0562987, -0.38203, -0.231229, 0.894755, 0);
+  //scene_cloud_viewer->setCameraPosition(-1.33871, -0.924181, -0.631639, -0.204285, 0.000545629, 0.296884, 0.476119, 0.259564, -0.840201, 0);
+  scene_cloud_viewer->setCameraPosition(-1.53884, 0.506528, -0.636167, -0.171077, 0.068023, 0.333948, 0.522106, -0.203709, -0.828196, 0);
   scene_cloud_viewer->setBackgroundColor(255,255,255);
   //pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB>scene_cloud_rgb(scene_cloud_xyzrgb);
   
-  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> black_color       (gripper_cloud_downsampled_in_arm_hand_frame_xyzrgb, 0, 0, 0);
-  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> brown_color       (object_plane_cloud_downsampled_in_arm_hand_frame_xyzrgb, 165, 42, 42);
+  
+  
   pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> magenta_color     (object_cloud_downsampled_in_arm_hand_frame_xyzrgb, 255, 0, 255);
+  
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> brown_color       (object_plane_cloud_downsampled_in_arm_hand_frame_xyzrgb, 165, 42, 42);
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> orange_color      (object_plane_special_ellipsoid_point_cloud_in_arm_hand_frame, 255, 165, 0);
   
   pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> red_color         (thumb_workspace_spheres_best, 255, 0, 0);
   pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> green_color       (index_workspace_spheres_best, 0, 255, 0);
   pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> blue_color        (middle_workspace_spheres_best, 0, 0, 255);
   pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> grey_color        (pinky_workspace_spheres_best, 100, 100, 100);
   
-  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> red_color_again   (right_finger_workspace_spheres_best, 254, 0, 0);
-  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> green_color_again (left_finger_workspace_spheres_best, 0, 254, 0);
-  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> blue_color_again  (object_sampling_in_arm_hand_frame_xyzrgb, 0, 0, 254);
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> red_color_again   (right_finger_workspace_spheres_best, 255, 0, 0);
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> green_color_again (left_finger_workspace_spheres_best, 0, 255, 0);
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> blue_color_again  (object_sampling_in_arm_hand_frame_xyzrgb, 0, 0, 255);
   
-  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> black_color_again (gripper_cloud_transformed_in_arm_hand_frame_xyzrgb, 1, 0, 0);
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> black_color       (gripper_as_set_of_special_ellipsoids_transformed_in_arm_hand_frame, 0, 0, 0);
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> black_color_again (gripper_as_set_of_special_ellipsoids_in_arm_hand_frame, 0, 0, 0);
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> cyan_color        (gripper_cloud_transformed_in_arm_hand_frame_xyzrgb, 0, 255, 255);
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGB> cyan_color_again  (gripper_cloud_downsampled_in_arm_hand_frame_xyzrgb, 0, 255, 255);
   
   
-  scene_cloud_viewer->addPointCloud(object_cloud_downsampled_in_arm_hand_frame_xyzrgb, magenta_color,          "object cloud");
-  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 10,      "object cloud");
   
-  scene_cloud_viewer->addPointCloud(object_sampling_in_arm_hand_frame_xyzrgb, blue_color_again,                "object sampling cloud");
-  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 10,      "object sampling cloud");
   
-  scene_cloud_viewer->addPointCloud(object_plane_cloud_downsampled_in_arm_hand_frame_xyzrgb, brown_color,      "table cloud");
-  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 4,       "table cloud");
   
-  scene_cloud_viewer->addPointCloud(gripper_cloud_downsampled_in_arm_hand_frame_xyzrgb, black_color,           "gripper cloud in arm hand frame");
-  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 5,       "gripper cloud in arm hand frame");
   
-  scene_cloud_viewer->addPointCloud(gripper_cloud_transformed_in_arm_hand_frame_xyzrgb, black_color_again,     "gripper cloud transformed in arm hand frame");
-  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 5,       "gripper cloud transformed in arm hand frame");
   
-  scene_cloud_viewer->addPointCloud(gripper_cloud_transformed_in_object_plane_frame_xyzrgb, black_color_again, "gripper cloud in object plane frame");
-  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 5,       "gripper cloud in object plane frame");
+  
+  scene_cloud_viewer->addPointCloud(object_cloud_downsampled_in_arm_hand_frame_xyzrgb, magenta_color,                 "object cloud");
+  
+  scene_cloud_viewer->addPointCloud(object_sampling_in_arm_hand_frame_xyzrgb, blue_color_again,                       "object sampling cloud");
+  
+  scene_cloud_viewer->addPointCloud(object_plane_cloud_downsampled_in_arm_hand_frame_xyzrgb, brown_color,             "table cloud");
+  
+  scene_cloud_viewer->addPointCloud(object_plane_special_ellipsoid_point_cloud_in_arm_hand_frame, orange_color,       "table special ellipsoid");
+  
+  scene_cloud_viewer->addPointCloud(gripper_cloud_downsampled_in_arm_hand_frame_xyzrgb, cyan_color_again,             "gripper cloud in arm hand frame");
+  
+  scene_cloud_viewer->addPointCloud(gripper_cloud_transformed_in_arm_hand_frame_xyzrgb, cyan_color,                   "gripper cloud transformed in arm hand frame");
+  
+  //scene_cloud_viewer->addPointCloud(gripper_cloud_transformed_in_object_plane_frame_xyzrgb, black_color_again,      "gripper cloud in object plane frame");
+  
+  scene_cloud_viewer->addPointCloud(gripper_as_set_of_special_ellipsoids_transformed_in_arm_hand_frame, black_color,  "gripper special ellipsoids transformed");
+  
+  scene_cloud_viewer->addPointCloud(gripper_as_set_of_special_ellipsoids_in_arm_hand_frame, black_color_again,        "gripper special ellipsoids");
+  
   
   
   
@@ -182,6 +207,9 @@ int main (int argc, char** argv){
   Eigen::Affine3f transform = Eigen::Affine3f::Identity();
   int point_cloud_samples = 250;
   double value_x, value_y, value_z;
+  double special_ellipsoid_value;
+  std::string save_file_name, save_file_name_old;
+  
   
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Reading and downsampling point clouds
@@ -308,8 +336,8 @@ int main (int argc, char** argv){
   // sampling the object around its z-axis for scanning
   int object_sampling_in_x_axis = 7;   int object_sampling_in_y_axis = 7;   int object_sampling_in_z_axis = 3;
   object_sampling_in_object_frame_xyzrgb->clear();
-  object_major_dimensions(0) = 0.95*object_major_dimensions(0);
-  object_major_dimensions(1) = 0.95*object_major_dimensions(1);
+  object_major_dimensions(0) = 0.90*object_major_dimensions(0);
+  object_major_dimensions(1) = 0.90*object_major_dimensions(1);
   object_major_dimensions(2) = 0.70*object_major_dimensions(2);
   for(unsigned int i=0; i<object_sampling_in_x_axis ;i++){
     for(unsigned int j=0; j<object_sampling_in_y_axis ;j++){
@@ -377,11 +405,12 @@ int main (int argc, char** argv){
   
   if(gripper_model == "allegro_right_hand"){
     gripper_support_x = 0.003; gripper_support_y = 0.047; gripper_support_z = 0.047;
-    gripper_support_offset_x = 0.0; gripper_support_offset_y = 0.0; gripper_support_offset_z = 0.0475;
+    //gripper_support_offset_x = 0.0; gripper_support_offset_y = 0.0; gripper_support_offset_z = 0.0475;
+    gripper_support_offset_x = 0.0; gripper_support_offset_y = 0.0; gripper_support_offset_z = 0.07;
   }
   else if(gripper_model == "franka_gripper"){
     gripper_support_x = 0.02; gripper_support_y = 0.08; gripper_support_z = 0.001;
-    gripper_support_offset_x = 0.0; gripper_support_offset_y = 0.0; gripper_support_offset_z = 0.065;
+    gripper_support_offset_x = 0.0; gripper_support_offset_y = 0.0; gripper_support_offset_z = 0.075;
   }
   // draw
   parameter_vector << gripper_support_x, gripper_support_y, gripper_support_z;
@@ -391,11 +420,9 @@ int main (int argc, char** argv){
   // object plane special ellipsoid
   double object_plane_x; double object_plane_y; double object_plane_z;
   double object_plane_offset_x; double object_plane_offset_y; double object_plane_offset_z;
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_plane_special_ellipsoid_point_cloud_in_object_plane_frame  (new pcl::PointCloud<pcl::PointXYZRGB>);
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_plane_special_ellipsoid_point_cloud_in_arm_hand_frame      (new pcl::PointCloud<pcl::PointXYZRGB>);
   // define and draw object plane special ellipsoid
-  object_plane_x = 0.35;       object_plane_y = 0.05;         object_plane_z = 0.35;
-  object_plane_offset_x = 0.0; object_plane_offset_y = 0.05; object_plane_offset_z = 0.0;
+  object_plane_x = 0.35;       object_plane_y = 0.10;         object_plane_z = 0.35;
+  object_plane_offset_x = 0.0; object_plane_offset_y = -0.10; object_plane_offset_z = 0.0;
   parameter_vector << object_plane_x, object_plane_y, object_plane_z;
   offset_vector    << object_plane_offset_x, object_plane_offset_y, object_plane_offset_z;
   construct_special_ellipsoid_point_cloud( object_plane_special_ellipsoid_point_cloud_in_object_plane_frame, parameter_vector, offset_vector, 100, 10, 255, 0, 0 );
@@ -411,7 +438,7 @@ int main (int argc, char** argv){
     //gripper_x.push_back(0.014);    gripper_y.push_back(0.016);    gripper_z.push_back(0.07);     gripper_offset_x.push_back(-0.014);    gripper_offset_y.push_back(-0.05);   gripper_offset_z.push_back(0.17); // pinky
     gripper_x.push_back(0.014);    gripper_y.push_back(0.070);    gripper_z.push_back(0.07);     gripper_offset_x.push_back(-0.014);    gripper_offset_y.push_back(0.0);     gripper_offset_z.push_back(0.17);   // index, middle, pinky
     //gripper_x.push_back(0.014);    gripper_y.push_back(0.08);     gripper_z.push_back(0.012);    gripper_offset_x.push_back(-0.022);    gripper_offset_y.push_back(0.11);    gripper_offset_z.push_back(0.022);  // thumb
-    gripper_x.push_back(0.035);    gripper_y.push_back(0.06);     gripper_z.push_back(0.03);    gripper_offset_x.push_back(0.05);    gripper_offset_y.push_back(0.07);    gripper_offset_z.push_back(0.03);  // thumb
+    gripper_x.push_back(0.028);    gripper_y.push_back(0.06);     gripper_z.push_back(0.045);    gripper_offset_x.push_back(0.03);    gripper_offset_y.push_back(0.07);    gripper_offset_z.push_back(0.04);  // thumb
     gripper_x.push_back(0.04);     gripper_y.push_back(0.04);     gripper_z.push_back(0.02);     gripper_offset_x.push_back(-0.02);     gripper_offset_y.push_back(0.0);     gripper_offset_z.push_back(-0.01);  // connection
     gripper_x.push_back(0.015);    gripper_y.push_back(0.045);    gripper_z.push_back(0.015);    gripper_offset_x.push_back(0.05);      gripper_offset_y.push_back(0.0);     gripper_offset_z.push_back(-0.05);  // realsense camera
   }
@@ -422,8 +449,6 @@ int main (int argc, char** argv){
     gripper_x.push_back(0.05);     gripper_y.push_back(0.04);     gripper_z.push_back(0.02);     gripper_offset_x.push_back(-0.01);     gripper_offset_y.push_back(0.0);     gripper_offset_z.push_back(-0.02);   // connection
     gripper_x.push_back(0.015);    gripper_y.push_back(0.045);    gripper_z.push_back(0.015);    gripper_offset_x.push_back(-0.07);     gripper_offset_y.push_back(0.0);     gripper_offset_z.push_back(-0.03);   // realsense camera
   }
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr  gripper_as_set_of_special_ellipsoids_in_gripper_frame    (new pcl::PointCloud<pcl::PointXYZRGB>);
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr  gripper_as_set_of_special_ellipsoids_in_arm_hand_frame   (new pcl::PointCloud<pcl::PointXYZRGB>);
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr  dummy_cloud_xyzrgb                                       (new pcl::PointCloud<pcl::PointXYZRGB>);
   for(unsigned int j=0; j<gripper_x.size(); j++){
     parameter_vector << gripper_x[j], gripper_y[j], gripper_z[j];
@@ -432,6 +457,35 @@ int main (int argc, char** argv){
     *gripper_as_set_of_special_ellipsoids_in_gripper_frame += *dummy_cloud_xyzrgb;
   }
   pcl::transformPointCloud(*gripper_as_set_of_special_ellipsoids_in_gripper_frame, *gripper_as_set_of_special_ellipsoids_in_arm_hand_frame, gripper_wrt_arm_hand_frame_transform);
+  
+  
+  
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Fixing object plane transformation problem !
+  // check if object point cloud collides with object plane special ellipsoid
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr  object_cloud_temp    (new pcl::PointCloud<pcl::PointXYZRGB>);
+  pcl::transformPointCloud(*object_cloud_downsampled_in_arm_hand_frame_xyzrgb, *object_cloud_temp, object_plane_transform_wrt_arm_hand_frame_inverse);
+  int collision_counter = 0;
+  for(unsigned int k=0; k<object_cloud_temp->size(); k++){
+    special_ellipsoid_value =  pow(object_cloud_temp->points[k].x - object_plane_offset_x, 10)/pow(object_plane_x, 10) 
+                             + pow(object_cloud_temp->points[k].y - object_plane_offset_y, 10)/pow(object_plane_y, 10) 
+                             + pow(object_cloud_temp->points[k].z - object_plane_offset_z, 2) /pow(object_plane_z, 2);
+    if( special_ellipsoid_value < 1 ){
+      collision_counter++;
+    }
+  }
+  std::cout << "object_cloud_size/2 = " << object_cloud_temp->size()/2 << std::endl;
+  std::cout << "collision_counter   = " << collision_counter << std::endl;
+  if(collision_counter > object_cloud_temp->size()/2){
+  	// re-define and re-draw object plane special ellipsoid
+		object_plane_x = 0.35;       object_plane_y = 0.05;         object_plane_z = 0.35;
+		object_plane_offset_x = 0.0; object_plane_offset_y = 0.05; object_plane_offset_z = 0.0;
+		parameter_vector << object_plane_x, object_plane_y, object_plane_z;
+		offset_vector    << object_plane_offset_x, object_plane_offset_y, object_plane_offset_z;
+		construct_special_ellipsoid_point_cloud( object_plane_special_ellipsoid_point_cloud_in_object_plane_frame, parameter_vector, offset_vector, 100, 10, 255, 0, 0 );
+		pcl::transformPointCloud(*object_plane_special_ellipsoid_point_cloud_in_object_plane_frame, *object_plane_special_ellipsoid_point_cloud_in_arm_hand_frame, object_plane_transform_wrt_arm_hand_frame);
+  
+  }
   
   
   
@@ -473,8 +527,19 @@ int main (int argc, char** argv){
   
   
   
+  end = clock();
+	time_spent = (double)( end - time_to_load_clouds_begin )/ CLOCKS_PER_SEC;
+	std::cout << "total time spent to load stuff = " << time_spent << std::endl;
+  
+  std::cout << "number of workspace spheres per allegro finger = " << thumb_workspace_convex_parameter->size() << std::endl;
   
   
+  char ch;
+  std::cout << "maximuize screen please ..." << std::endl;
+  std::cin >> ch;
+  
+  
+  time_to_run_algorithm_begin = clock();
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   begin2 = clock();
   
@@ -495,7 +560,7 @@ int main (int argc, char** argv){
   double orientation_step = orientation_range/orientation_samples;
   
   
-  double special_ellipsoid_value;
+  
   double sphere_value;
   
   bool gripper_collides_with_object_plane = false;
@@ -563,7 +628,7 @@ int main (int argc, char** argv){
   
   
   
-  
+  int number_of_iterations = 0;
   
   // GRASPING CODE
   // iterate through all points in the "object sampling cloud"
@@ -747,7 +812,7 @@ int main (int argc, char** argv){
 		                                                                  pow(fabs(gripper_support_offset_y-object_centroid_point_transformed(1)),2)+
 		                                                                  pow(fabs(gripper_support_offset_z-object_centroid_point_transformed(2)),2));
 		      
-		      /*
+		      
           // this condition minimizes distance between object centroid and gripper support region
           if( distance_between_gripper_support_and_object_centroid < distance_between_gripper_support_and_object_centroid_best ){
             distance_between_gripper_support_and_object_centroid_best = distance_between_gripper_support_and_object_centroid;
@@ -772,7 +837,7 @@ int main (int argc, char** argv){
             std::cout<<"metric#2 : "<<distance_between_gripper_support_and_object_centroid_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
             best_gripper_transform = gripper_transform;
           }
-          */
+          
           
           
           
@@ -829,7 +894,7 @@ int main (int argc, char** argv){
           
           
           
-          
+          /*
           // combining metric#2 and metric#3
           // this condition minimizes distance between object centroid and gripper support region
           if( (distance_between_gripper_support_and_object_centroid < distance_between_gripper_support_and_object_centroid_best) and (distance_between_gripper_fingers > distance_between_gripper_fingers_best) ){
@@ -857,7 +922,7 @@ int main (int argc, char** argv){
             best_gripper_transform = gripper_transform;
           }
           
-          
+          */
           
           
         }
@@ -899,7 +964,7 @@ int main (int argc, char** argv){
 		                                                                  pow(fabs(gripper_support_offset_y-object_centroid_point_transformed(1)),2)+
 		                                                                  pow(fabs(gripper_support_offset_z-object_centroid_point_transformed(2)),2));
 		      
-          /*
+          
           // this condition minimizes distance between object centroid and gripper support region
           if( distance_between_gripper_support_and_object_centroid < distance_between_gripper_support_and_object_centroid_best ){
             distance_between_gripper_support_and_object_centroid_best = distance_between_gripper_support_and_object_centroid;
@@ -918,8 +983,8 @@ int main (int argc, char** argv){
           std::cout<<"metric#2 : "<<distance_between_gripper_support_and_object_centroid_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
           best_gripper_transform = gripper_transform;
           }
-        }
-        */
+        
+        
         
         
         
@@ -969,7 +1034,7 @@ int main (int argc, char** argv){
         
         
         
-        
+        /*
         // combining metric#2 and metric#3
         // this condition minimizes distance between object centroid and gripper support region
         if( (distance_between_gripper_support_and_object_centroid <= distance_between_gripper_support_and_object_centroid_best) and (distance_between_gripper_fingers >= distance_between_gripper_fingers_best) ){
@@ -990,7 +1055,7 @@ int main (int argc, char** argv){
           std::cout<<"metric#3 : "<<distance_between_gripper_fingers_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
           best_gripper_transform = gripper_transform;
         }
-        
+        */
         
         
         
@@ -1009,36 +1074,60 @@ int main (int argc, char** argv){
       
       
       
-      /*
+      
       // object cloud
-      scene_cloud_viewer->updatePointCloud(object_cloud_downsampled_in_arm_hand_frame_xyzrgb, magenta_color,          "object cloud");
+      scene_cloud_viewer->updatePointCloud(object_cloud_downsampled_in_arm_hand_frame_xyzrgb, magenta_color,                   "object cloud");
+      scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 7,                   "object cloud");
       
       // object plane cloud
-      *object_plane_cloud_downsampled_in_arm_hand_frame_xyzrgb += *object_plane_special_ellipsoid_point_cloud_in_arm_hand_frame;
-      scene_cloud_viewer->updatePointCloud(object_plane_cloud_downsampled_in_arm_hand_frame_xyzrgb, brown_color,      "table cloud");
+      scene_cloud_viewer->updatePointCloud(object_plane_cloud_downsampled_in_arm_hand_frame_xyzrgb, brown_color,               "table cloud");
+      scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 4,                   "table cloud");
+      
+      // object plane special ellipsoid
+      scene_cloud_viewer->updatePointCloud(object_plane_special_ellipsoid_point_cloud_in_arm_hand_frame, orange_color,         "table special ellipsoid");
+      scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2,                   "table special ellipsoid");
       
       // object sampling cloud
-      scene_cloud_viewer->updatePointCloud(object_sampling_in_arm_hand_frame_xyzrgb, blue_color_again,                "object sampling cloud");
+      scene_cloud_viewer->updatePointCloud(object_sampling_in_arm_hand_frame_xyzrgb, blue_color_again,                         "object sampling cloud");
+      scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 10,                  "object sampling cloud");
       
-      // gripper cloud
-      //*gripper_cloud_downsampled_in_arm_hand_frame_xyzrgb += *gripper_as_set_of_special_ellipsoids_in_arm_hand_frame;
-      *gripper_cloud_downsampled_in_arm_hand_frame_xyzrgb += *gripper_as_set_of_special_ellipsoids_in_gripper_frame;
+      // gripper cloud transformed in arm hand frame
+      scene_cloud_viewer->updatePointCloud(gripper_cloud_transformed_in_arm_hand_frame_xyzrgb, cyan_color,                     "gripper cloud transformed in arm hand frame");
+      scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 10,                  "gripper cloud transformed in arm hand frame");
       
-      scene_cloud_viewer->updatePointCloud(gripper_cloud_downsampled_in_arm_hand_frame_xyzrgb, black_color,           "gripper cloud in arm hand frame");
-      scene_cloud_viewer->updatePointCloud(gripper_cloud_transformed_in_arm_hand_frame_xyzrgb, black_color_again,     "gripper cloud transformed in arm hand frame");
-      //scene_cloud_viewer->updatePointCloud(gripper_cloud_transformed_in_object_plane_frame_xyzrgb, black_color_again, "gripper cloud in object plane frame");
+      // gripper cloud in arm hand frame
+      scene_cloud_viewer->updatePointCloud(gripper_cloud_downsampled_in_arm_hand_frame_xyzrgb, cyan_color_again,               "gripper cloud in arm hand frame");
+      scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 10,                  "gripper cloud in arm hand frame");
+      
+      // gripper special ellipsoids transformed
+      pcl::transformPointCloud(*gripper_as_set_of_special_ellipsoids_in_arm_hand_frame, *gripper_as_set_of_special_ellipsoids_transformed_in_arm_hand_frame, gripper_transform);
+      scene_cloud_viewer->updatePointCloud(gripper_as_set_of_special_ellipsoids_transformed_in_arm_hand_frame, black_color,    "gripper special ellipsoids transformed");
+      scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper special ellipsoids transformed");
+      
+      // gripper special ellipsoids
+      scene_cloud_viewer->updatePointCloud(gripper_as_set_of_special_ellipsoids_in_arm_hand_frame, black_color_again,          "gripper special ellipsoids");
+      scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper special ellipsoids");
+      
       
       scene_cloud_viewer->spinOnce();
+      if(gripper_model == "allegro_right_hand")
+        save_file_name = "allegro_video/allegro_"+std::string( 5 - (std::to_string(number_of_iterations)).length(), '0').append( std::to_string(number_of_iterations) )+".png";
+      else if(gripper_model == "franka_gripper")
+        save_file_name = "franka_video/franka_"+std::string( 5 - (std::to_string(number_of_iterations)).length(), '0').append( std::to_string(number_of_iterations) )+".png";
+	    scene_cloud_viewer->saveScreenshot(save_file_name);
 	    
-      while ( !scene_cloud_viewer->wasStopped() ){scene_cloud_viewer->spinOnce();}
-      */
+      number_of_iterations ++;
+      
       
       
       //scene_cloud_viewer->updatePointCloud(gripper_cloud_transformed_in_object_plane_frame_xyzrgb, black_color_again, "gripper cloud in object plane frame");
       //scene_cloud_viewer->updatePointCloud(gripper_cloud_transformed_in_gripper_frame_xyzrgb, black_color, "gripper cloud in gripper frame");
       //scene_cloud_viewer->updatePointCloud(scene_cloud_xyzrgb, scene_cloud_rgb, "scene cloud viewer");
       
-      usleep(1);
+      //if(i<3)
+      //  usleep(500000);
+      //else
+      //  usleep(10000);
       
     }
   }
@@ -1054,7 +1143,9 @@ int main (int argc, char** argv){
   std::cout << "out of " << orientation_samples*object_sampling_in_arm_hand_frame_xyzrgb->points.size() << " iterations, gripper contacts with object: " << gripper_contacts_with_object << " times." << std::endl;
   
   
-  
+  end = clock();
+	time_spent = (double)( end - time_to_run_algorithm_begin )/ CLOCKS_PER_SEC;
+	std::cout << "total time spent by the ALGORITHM = " << time_spent << std::endl;
   
   
   
@@ -1164,7 +1255,7 @@ int main (int argc, char** argv){
   
   
   
-  
+  /*
   // object cloud
   scene_cloud_viewer->updatePointCloud(object_cloud_downsampled_in_arm_hand_frame_xyzrgb, magenta_color,          "object cloud");
   
@@ -1182,10 +1273,63 @@ int main (int argc, char** argv){
   //scene_cloud_viewer->updatePointCloud(gripper_cloud_transformed_in_object_plane_frame_xyzrgb, black_color_again, "gripper cloud in object plane frame");
   
   pcl::transformPointCloud(*gripper_cloud_downsampled_in_arm_hand_frame_xyzrgb, *gripper_cloud_transformed_in_arm_hand_frame_xyzrgb, best_gripper_transform);
-  scene_cloud_viewer->updatePointCloud(gripper_cloud_transformed_in_arm_hand_frame_xyzrgb, black_color_again,     "gripper cloud transformed in arm hand frame");
+  scene_cloud_viewer->updatePointCloud(gripper_cloud_transformed_in_arm_hand_frame_xyzrgb, black_color,     "gripper cloud transformed in arm hand frame");
   
   //
   //scene_cloud_viewer->updatePointCloud(scene_cloud_xyzrgb, scene_cloud_rgb, "scene cloud viewer");
+  */
+  
+  
+  
+  
+  
+  
+  
+  // object cloud
+  scene_cloud_viewer->updatePointCloud(object_cloud_downsampled_in_arm_hand_frame_xyzrgb, magenta_color,                   "object cloud");
+  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 7,                   "object cloud");
+  
+  // object plane cloud
+  scene_cloud_viewer->updatePointCloud(object_plane_cloud_downsampled_in_arm_hand_frame_xyzrgb, brown_color,               "table cloud");
+  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 4,                   "table cloud");
+  
+  // object plane special ellipsoid
+  scene_cloud_viewer->updatePointCloud(object_plane_special_ellipsoid_point_cloud_in_arm_hand_frame, orange_color,         "table special ellipsoid");
+  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2,                   "table special ellipsoid");
+  
+  // object sampling cloud
+  scene_cloud_viewer->updatePointCloud(object_sampling_in_arm_hand_frame_xyzrgb, blue_color_again,                         "object sampling cloud");
+  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 10,                  "object sampling cloud");
+  
+  // gripper cloud transformed in arm hand frame
+  pcl::transformPointCloud(*gripper_cloud_downsampled_in_arm_hand_frame_xyzrgb, *gripper_cloud_transformed_in_arm_hand_frame_xyzrgb, best_gripper_transform);
+  scene_cloud_viewer->updatePointCloud(gripper_cloud_transformed_in_arm_hand_frame_xyzrgb, cyan_color,                     "gripper cloud transformed in arm hand frame");
+  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 10,                  "gripper cloud transformed in arm hand frame");
+  
+  // gripper cloud in arm hand frame
+  scene_cloud_viewer->updatePointCloud(gripper_cloud_downsampled_in_arm_hand_frame_xyzrgb, cyan_color_again,               "gripper cloud in arm hand frame");
+  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 10,                  "gripper cloud in arm hand frame");
+  
+  // gripper special ellipsoids transformed
+  pcl::transformPointCloud(*gripper_as_set_of_special_ellipsoids_in_arm_hand_frame, *gripper_as_set_of_special_ellipsoids_transformed_in_arm_hand_frame, best_gripper_transform);
+  scene_cloud_viewer->updatePointCloud(gripper_as_set_of_special_ellipsoids_transformed_in_arm_hand_frame, black_color,    "gripper special ellipsoids transformed");
+  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper special ellipsoids transformed");
+  
+  // gripper special ellipsoids
+  scene_cloud_viewer->updatePointCloud(gripper_as_set_of_special_ellipsoids_in_arm_hand_frame, black_color_again,          "gripper special ellipsoids");
+  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper special ellipsoids");
+  
+  
+  scene_cloud_viewer->spinOnce();
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -1204,6 +1348,20 @@ int main (int argc, char** argv){
 	time_spent = (double)( end - begin )/ CLOCKS_PER_SEC;
 	std::cout << "total time spent by this program = " << time_spent << std::endl;
   
-  while ( !scene_cloud_viewer->wasStopped() ){scene_cloud_viewer->spinOnce();}
+  //std::vector<pcl::visualization::Camera> cam;
+  while ( !scene_cloud_viewer->wasStopped() ){
+    scene_cloud_viewer->spinOnce();
+    if(gripper_model == "allegro_right_hand")
+      save_file_name = "allegro_video/allegro_best.png";
+    else if(gripper_model == "franka_gripper")
+      save_file_name = "franka_video/franka_best.png";
+    scene_cloud_viewer->saveScreenshot(save_file_name);
+    //scene_cloud_viewer->getCameras(cam);
+    //Print recorded points on the screen: 
+    //cout << "Cam: " << endl 
+    //             << " - pos:   (" << cam[0].pos[0]   << ", " << cam[0].pos[1] <<   ", " << cam[0].pos[2] <<   ")" << endl
+    //             << " - view:  (" << cam[0].view[0]  << ", " << cam[0].view[1] <<  ", " << cam[0].view[2] <<  ")" << endl
+    //             << " - focal: (" << cam[0].focal[0] << ", " << cam[0].focal[1] << ", " << cam[0].focal[2] << ")" << endl;
+  }
   return (0);
 }
