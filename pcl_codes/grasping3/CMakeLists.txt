@@ -31,7 +31,10 @@ set (CMAKE_CXX_STANDARD 11)
 #target_link_libraries (step_1_downsampling_object_cloud ${PCL_LIBRARIES})
 
 add_executable (grasping_algorithm grasping_algorithm.cpp)
-target_link_libraries (grasping_algorithm ${PCL_LIBRARIES} quadprog)
+target_link_libraries (grasping_algorithm ${PCL_LIBRARIES}  ${roscpp_LIBRARIES} ${catkin_LIBRARIES} quadprog)
+
+add_executable (capture_3_view_point_cloud capture_3_view_point_cloud.cpp)
+target_link_libraries (capture_3_view_point_cloud ${PCL_LIBRARIES}  ${roscpp_LIBRARIES} ${catkin_LIBRARIES})
 
 #add_executable (grasping_algorithm_photos_for_paper grasping_algorithm_photos_for_paper.cpp)
 #target_link_libraries (grasping_algorithm_photos_for_paper ${PCL_LIBRARIES} quadprog)
