@@ -170,6 +170,7 @@ int main(int argc, char **argv){
 			camera_depth_frame_new_wrt_link0_transform << camera_depth_frame_new_wrt_link0_rotation, camera_depth_frame_new_wrt_link0_translation,
 			                                0,0,0,1;
 			
+			dummy_xyzrgb->clear();
 			// remove far points
 			for(int j=0; j<current_scene_cloud_xyzrgb->size(); j++){
 				if(current_scene_cloud_xyzrgb->points[j].z < 1.0)
@@ -190,7 +191,7 @@ int main(int argc, char **argv){
       
       std::stringstream ss;
 		  ss << camera_depth_frame_new_wrt_camera_depth_frame_old_transform;
-		  tf_string += ss.str() + "\n\n";
+		  tf_string += ss.str() + "\n";
       
       ros::spinOnce();
       loop_rate.sleep();
