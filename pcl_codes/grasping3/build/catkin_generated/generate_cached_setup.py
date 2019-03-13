@@ -12,16 +12,16 @@ try:
     from catkin.environment_cache import generate_environment_script
 except ImportError:
     # search for catkin package in all workspaces and prepend to path
-    for workspace in "/home/work/code_repository/ros_packages/devel;/opt/ros/kinetic".split(';'):
+    for workspace in "/home/franka3/catkin_ws/devel;/opt/ros/kinetic".split(';'):
         python_path = os.path.join(workspace, 'lib/python2.7/dist-packages')
         if os.path.isdir(os.path.join(python_path, 'catkin')):
             sys.path.insert(0, python_path)
             break
     from catkin.environment_cache import generate_environment_script
 
-code = generate_environment_script('/home/work/code_repository/pcl_codes/grasping3/build/devel/env.sh')
+code = generate_environment_script('/home/franka3/grasping_msorour/code_repository/pcl_codes/grasping3/build/devel/env.sh')
 
-output_filename = '/home/work/code_repository/pcl_codes/grasping3/build/catkin_generated/setup_cached.sh'
+output_filename = '/home/franka3/grasping_msorour/code_repository/pcl_codes/grasping3/build/catkin_generated/setup_cached.sh'
 with open(output_filename, 'w') as f:
     #print('Generate script for cached setup "%s"' % output_filename)
     f.write('\n'.join(code))
