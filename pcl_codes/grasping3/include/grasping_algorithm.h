@@ -1,3 +1,7 @@
+
+#ifndef __GRASPING_ALGORITHM_H__
+#define __GRASPING_ALGORITHM_H__
+
 /*
 #include <iostream>
 #include <fstream>
@@ -20,6 +24,16 @@
 */
 #include <pcl/surface/concave_hull.h>
 #include <algorithm>
+#include <pcl/ModelCoefficients.h>
+#include <pcl/filters/extract_indices.h>
+#include <pcl/features/normal_3d.h>
+#include <pcl/kdtree/kdtree.h>
+#include <pcl/sample_consensus/method_types.h>
+#include <pcl/sample_consensus/model_types.h>
+#include <pcl/segmentation/sac_segmentation.h>
+#include <pcl/segmentation/extract_clusters.h>
+#include <pcl/filters/voxel_grid.h>
+#include "declarations.h"
 
 void step_4_object_pose_approximation( pcl::PointCloud<pcl::PointXYZ> object_cloud_in_global_frame, 
                                        Eigen::Matrix4f& object_transform, 
@@ -55,51 +69,6 @@ void step_4_object_pose_approximation( pcl::PointCloud<pcl::PointXYZ> object_clo
   double largest_euclidean_distance_pos=0.0;
   double largest_euclidean_distance_neg=0.0;
   double euclidean_distance;
-  
-  // TRIAL#1
-  /*
-  for(unsigned int i=0;i<object_cloud_in_global_frame.size();i++){
-    // get the extreme points on object
-    if( object_cloud_in_global_frame.points[i].x > far_point_in_pos_direction.x )
-      far_point_in_pos_direction.x = object_cloud_in_global_frame.points[i].x;
-    if( object_cloud_in_global_frame.points[i].x < far_point_in_neg_direction.x )
-      far_point_in_neg_direction.x = object_cloud_in_global_frame.points[i].x;
-    
-    if( object_cloud_in_global_frame.points[i].y > far_point_in_pos_direction.y )
-      far_point_in_pos_direction.y = object_cloud_in_global_frame.points[i].y;
-    if( object_cloud_in_global_frame.points[i].y < far_point_in_neg_direction.y )
-      far_point_in_neg_direction.y = object_cloud_in_global_frame.points[i].y;
-    
-    if( object_cloud_in_global_frame.points[i].z > far_point_in_pos_direction.z )
-      far_point_in_pos_direction.z = object_cloud_in_global_frame.points[i].z;
-    if( object_cloud_in_global_frame.points[i].z < far_point_in_neg_direction.z )
-      far_point_in_neg_direction.z = object_cloud_in_global_frame.points[i].z;
-  }
-  */
-  
-  // TRIAL#2
-  /*
-  for(unsigned int i=0;i<object_cloud_in_global_frame.size();i++){
-    // get the extreme points on object
-    euclidean_distance = pow(object_cloud_in_global_frame.points[i].x-object_centroid_point.x,2) + pow(object_cloud_in_global_frame.points[i].y-object_centroid_point.y,2) + pow(object_cloud_in_global_frame.points[i].z-object_centroid_point.z,2);
-    if( object_cloud_in_global_frame.points[i].x > object_centroid_point.x and object_cloud_in_global_frame.points[i].y > object_centroid_point.y and object_cloud_in_global_frame.points[i].z > object_centroid_point.z ){
-      if( euclidean_distance > largest_euclidean_distance_pos ){
-        far_point_in_pos_direction.x = object_cloud_in_global_frame.points[i].x;
-        far_point_in_pos_direction.y = object_cloud_in_global_frame.points[i].y;
-        far_point_in_pos_direction.z = object_cloud_in_global_frame.points[i].z;
-        largest_euclidean_distance_pos = euclidean_distance;
-      }
-    }
-  if( object_cloud_in_global_frame.points[i].x < object_centroid_point.x and object_cloud_in_global_frame.points[i].y < object_centroid_point.y and object_cloud_in_global_frame.points[i].z < object_centroid_point.z ){
-    if( euclidean_distance > largest_euclidean_distance_neg ){
-        far_point_in_neg_direction.x = object_cloud_in_global_frame.points[i].x;
-        far_point_in_neg_direction.y = object_cloud_in_global_frame.points[i].y;
-        far_point_in_neg_direction.z = object_cloud_in_global_frame.points[i].z;
-        largest_euclidean_distance_neg = euclidean_distance;
-      }
-    }
-  }
-  */
   
   // TRIAL#3 (Best till now, there is always small error but it is robust)
   // get the extreme points on object
@@ -484,246 +453,6 @@ void step_4_object_pose_approximation( pcl::PointCloud<pcl::PointXYZ> object_clo
 
 
 
-
-
-
-
-
-
-void step_5_region_of_interest( pcl::PointCloud<pcl::PointXYZ> object_cloud_in_global_frame, 
-                                Eigen::Matrix4f& object_transform, 
-                                Eigen::Vector4f& object_far_point_in_pos_direction_in_global_frame, 
-                                Eigen::Vector4f& object_far_point_in_neg_direction_in_global_frame, 
-                                Eigen::Vector3f& object_major_dimensions, 
-                                Eigen::Vector3f& roi_dimensions, 
-                                Eigen::Matrix4f& roi_transform_in_object_frame, 
-                                pcl::PointCloud<pcl::PointXYZRGB>::Ptr& object_roi_sub_cloud_in_object_global_xyzrgb,
-                                Eigen::Matrix4f& hand_transform,
-                                Eigen::Vector3f& hand_dimensions ){
-  clock_t begin, end;
-  begin = clock();
-  double time_spent;
-
-
-  pcl::PointCloud<pcl::PointXYZRGB> object_cloud_in_global_frame_xyzrgb;
-  copyPointCloud(object_cloud_in_global_frame, object_cloud_in_global_frame_xyzrgb);    // converting to rgb will set values to 0 (object color is black)
-  std::cout << "number of vertices: " << object_cloud_in_global_frame.size() << std::endl << std::endl;
-  
-  
-  
-  
-  
-  
-  
-  
-  // object cloud in its own frame
-  Eigen::Matrix3f object_rotation;
-  Eigen::Vector3f object_translation;
-  object_rotation    << object_transform(0,0), object_transform(0,1), object_transform(0,2),
-                        object_transform(1,0), object_transform(1,1), object_transform(1,2),
-                        object_transform(2,0), object_transform(2,1), object_transform(2,2);
-  object_translation << object_transform(0,3), object_transform(1,3), object_transform(2,3);
-  
-  Eigen::Matrix4f inverse_object_transform;
-  inverse_object_transform << object_rotation.transpose(), -object_rotation.transpose()*object_translation,  // from khalil's book page 21
-                              0, 0, 0, 1;
-  
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_cloud_in_object_frame_xyzrgb (new pcl::PointCloud<pcl::PointXYZRGB>());
-  pcl::transformPointCloud(object_cloud_in_global_frame_xyzrgb, *object_cloud_in_object_frame_xyzrgb, inverse_object_transform);
-  
-  
-  
-  //
-  // REGION OF INTEREST (ROI)
-  // a cuboid volume of width = maximum hand openning, height = finger thickness, length = arbitrary for the moment
-  // we scan the object starting from: 1. centroid location 2. at z-axis of hand parallel to either x-axis or y-axis of object (to be determined later!)
-  // the whole subset of object cloud with thickness = height of cuboid, must be completely contained in the region of interest cuboid
-  double roi_l = roi_dimensions(0);
-  double roi_w = roi_dimensions(1);
-  double roi_h = roi_dimensions(2);
-  pcl::PointCloud<pcl::PointXYZRGB> roi_point_cloud;
-  
-  // orient the region of interest scanner with the object orientation
-  // and translate the roi scanner to the centroid of object
-  Eigen::Matrix3f roi_rotation;
-  Eigen::Vector3f roi_translation;
-  
-  // get object centroid location
-  pcl::CentroidPoint<pcl::PointXYZ> object_centroid;
-  pcl::PointXYZ object_centroid_point;
-  for(unsigned int i=0;i<object_cloud_in_global_frame.points.size();i++)
-    object_centroid.add( object_cloud_in_global_frame.points[i] );
-  object_centroid.get(object_centroid_point);
-  
-  // STEP#1 : Check if the object subcloud is completely contained in the region of interest special ellipsoid
-  // obtain the complete object subcloud with height as that of region of interest starting from object centroid
-  // to make it easy we use the object point cloud transformed to the object frame
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_roi_sub_cloud_in_object_frame_xyzrgb  (new pcl::PointCloud<pcl::PointXYZRGB>());
-  //pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_roi_sub_cloud_in_object_global_xyzrgb (new pcl::PointCloud<pcl::PointXYZRGB>());
-  Eigen::Vector4f object_centroid_point_in_object_frame_4d;
-  
-  object_centroid_point_in_object_frame_4d << object_centroid_point.x, object_centroid_point.y, object_centroid_point.z, 1;
-  object_centroid_point_in_object_frame_4d = inverse_object_transform*object_centroid_point_in_object_frame_4d;
-  
-  for(unsigned int i=0; i<object_cloud_in_object_frame_xyzrgb->size(); i++){
-    if( (object_cloud_in_object_frame_xyzrgb->points[i].z > -roi_h) and (object_cloud_in_object_frame_xyzrgb->points[i].z < roi_h) )
-      object_roi_sub_cloud_in_object_frame_xyzrgb->points.push_back( object_cloud_in_object_frame_xyzrgb->points[i] );
-  }
-  
-  pcl::transformPointCloud(*object_roi_sub_cloud_in_object_frame_xyzrgb, *object_roi_sub_cloud_in_object_global_xyzrgb, object_transform);
-  
-  // check if the object subcloud is completely contained in the region of interest
-  bool object_subcloud_fully_contained = false;
-  double special_ellipsoid_value;
-  for(unsigned int i=0; i<object_roi_sub_cloud_in_object_frame_xyzrgb->size(); i++){
-    special_ellipsoid_value =  pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].x - object_centroid_point_in_object_frame_4d(0), 30)/pow(roi_l, 30) 
-                             + pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].y - object_centroid_point_in_object_frame_4d(1), 30)/pow(roi_w, 30) 
-                             + pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].z - object_centroid_point_in_object_frame_4d(2), 2) /pow(roi_h, 2);
-    if( special_ellipsoid_value <= 1.0 )
-      object_subcloud_fully_contained = true;
-    else{
-      object_subcloud_fully_contained = false;
-      break;
-    }
-  }
-  std::cout << "object_subcloud_fully_contained ... " << object_subcloud_fully_contained << std::endl;
-    
-  
-  // STEP#2 : If NOT completely contained, start scanning action
-  // translate from down to top of object major axis (z-axis)
-  float linear_scanning_resolution = 0.01;    // in meters
-  float rotary_scanning_resolution = 0.314159;    // in radians
-  int number_of_scan_translations = object_major_dimensions(2)/linear_scanning_resolution;
-  std::cout << "number_of_scan_translations = " << number_of_scan_translations << std::endl;
-  int number_of_scan_rotations = 3.14159/rotary_scanning_resolution;
-  std::cout << "number_of_scan_rotations = " << number_of_scan_rotations << std::endl;
-  Eigen::Vector4f object_far_point_in_neg_direction_in_object_frame;
-  Eigen::Matrix3f roi_rotation_in_object_frame;
-  Eigen::Vector3f roi_translation_in_object_frame;
-  Eigen::Matrix4f roi_transform_in_object_frame_incremental;
-  
-  Eigen::Matrix3f roi_rotation_in_object_frame_total;
-  Eigen::Vector3f roi_translation_in_object_frame_total;
-  //Eigen::Matrix4f roi_transform_in_object_frame = Eigen::Matrix4f::Identity();
-  
-  //object_far_point_in_neg_direction_in_object_frame << far_point_in_neg_direction.x, far_point_in_neg_direction.y, far_point_in_neg_direction.z, 1;
-  object_far_point_in_neg_direction_in_object_frame = object_far_point_in_neg_direction_in_global_frame;
-  object_far_point_in_neg_direction_in_object_frame = inverse_object_transform*object_far_point_in_neg_direction_in_object_frame;
-  
-  // if object is not fully contained in the roi, move the roi scanner (special ellipsoid) to start scanning location
-  if(!object_subcloud_fully_contained){
-    roi_rotation_in_object_frame = Eigen::Matrix3f::Identity();
-    roi_translation_in_object_frame << 0,0,(object_far_point_in_neg_direction_in_object_frame(2) + roi_h);
-    roi_transform_in_object_frame_incremental <<  roi_rotation_in_object_frame, roi_translation_in_object_frame,
-                                                  0, 0, 0, 1;
-    roi_transform_in_object_frame = roi_transform_in_object_frame_incremental;
-  }
-  else
-    roi_transform_in_object_frame = Eigen::Matrix4f::Identity();
-  
-  
-  // STEP#3
-  // scanning for roi
-  unsigned int counter = 0;
-  Eigen::Vector3f dummy_translation;
-  dummy_translation = roi_translation_in_object_frame;
-  //number_of_scan_translations = 1;
-  //number_of_scan_rotations = 1;
-  Eigen::Vector4f dummy_translation_4d;
-  if(!object_subcloud_fully_contained){
-    for(unsigned int i=0; i<number_of_scan_translations; i++){
-      if(i) // add translation step except for the first iteration
-        roi_translation_in_object_frame(2) += linear_scanning_resolution;
-      for(unsigned int j=0; j<number_of_scan_rotations; j++){
-        counter += 1;
-        //std::cout << counter << endl;
-        
-        roi_rotation_in_object_frame = roi_rotation_in_object_frame*Rotz_float( rotary_scanning_resolution );
-        roi_transform_in_object_frame_incremental <<  roi_rotation_in_object_frame, (roi_translation_in_object_frame-dummy_translation),
-                                          0, 0, 0, 1;
-        dummy_translation = roi_translation_in_object_frame;
-        
-        // total transform in object frame
-        roi_transform_in_object_frame = roi_transform_in_object_frame*roi_transform_in_object_frame_incremental;
-        
-        // check if the object subcloud is completely contained in the region of interest
-        object_roi_sub_cloud_in_object_frame_xyzrgb->clear();
-        for(unsigned int i=0; i<object_cloud_in_object_frame_xyzrgb->size(); i++){
-          if( (object_cloud_in_object_frame_xyzrgb->points[i].z > roi_translation_in_object_frame(2)-roi_h) and (object_cloud_in_object_frame_xyzrgb->points[i].z < roi_translation_in_object_frame(2)+roi_h) )
-            object_roi_sub_cloud_in_object_frame_xyzrgb->points.push_back( object_cloud_in_object_frame_xyzrgb->points[i] );
-        }
-        
-        pcl::transformPointCloud(*object_roi_sub_cloud_in_object_frame_xyzrgb, *object_roi_sub_cloud_in_object_global_xyzrgb, object_transform);
-        for(unsigned int i=0; i<object_roi_sub_cloud_in_object_frame_xyzrgb->size(); i++){
-          special_ellipsoid_value =  pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].x - roi_translation_in_object_frame(0), 30)/pow(roi_l, 30) 
-                                   + pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].y - roi_translation_in_object_frame(1), 30)/pow(roi_w, 30) 
-                                   + pow(object_roi_sub_cloud_in_object_frame_xyzrgb->points[i].z - roi_translation_in_object_frame(2), 2) /pow(roi_h, 2);
-          if( special_ellipsoid_value <= 1.0 )
-            object_subcloud_fully_contained = true;
-          else{
-            object_subcloud_fully_contained = false;
-            break;
-          }
-        }
-        
-        //std::cout << "object_subcloud_fully_contained ... " << object_subcloud_fully_contained << std::endl;
-        if(object_subcloud_fully_contained){break;}
-      }
-      
-      if(object_subcloud_fully_contained){break;}
-    }
-  }
-  
-  
-  std::cout << "roi_transform_in_object_frame = " << std::endl << roi_transform_in_object_frame << std::endl;
-  
-  
-  
-  // transformation to allign gripper with region of interest
-  Eigen::Matrix4f dummy_transform;
-  
-  dummy_translation << 0,0,0;
-  dummy_transform << Rotx_float(-1.57), dummy_translation,
-                     0,0,0,1;
-  hand_transform = roi_transform_in_object_frame*dummy_transform;
-  hand_transform = object_transform*hand_transform;
-  
-  // apply another translation to finish the allignment
-  dummy_translation << -roi_l,0,-hand_dimensions(0)/3;
-  dummy_transform << Eigen::Matrix3f::Identity(), dummy_translation,
-                     0,0,0,1;
-  hand_transform = hand_transform*dummy_transform;
-  
-  
-  
-  end = clock();
-	time_spent = (double)( end - begin )/ CLOCKS_PER_SEC;
-	std::cout << "time spent to find region of interest = " << time_spent << std::endl << std::endl;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void construct_special_ellipsoid_point_cloud( pcl::PointCloud<pcl::PointXYZRGB>::Ptr& special_ellipsoid_point_cloud, 
                                               Eigen::Vector3f parameter,
                                               Eigen::Vector3f offset,
@@ -811,13 +540,16 @@ void load_allegro_right_hand_workspace_spheres( pcl::PointCloud<pcl::PointXYZRGB
   
   
   
-  
+  ifstream convex_workspace_file;
   finger_list.push_back("thumb");  finger_list.push_back("index");  finger_list.push_back("middle");  finger_list.push_back("pinky");
   for(int i=0; i<finger_list.size(); i++){
     std::vector<double> data;
     std::string line;
     //ifstream convex_workspace_file("../finger_workspace_spheres/"+finger_list[i]+"_workspace_spheres_3.txt");
-    ifstream convex_workspace_file("../finger_workspace_spheres/"+finger_list[i]+"_workspace_spheres.txt");
+    if(finger_list[i] == "thumb")
+      convex_workspace_file.open("../finger_workspace_spheres/"+finger_list[i]+"_workspace_spheres_15_1.7.txt");
+    else
+      convex_workspace_file.open("../finger_workspace_spheres/"+finger_list[i]+"_workspace_spheres_15_1.txt");
     int line_count = 0;
     if(convex_workspace_file.is_open()){
       while(getline( convex_workspace_file, line ) ){
@@ -1151,6 +883,7 @@ void metric_1_number_of_active_workspace_spheres_and_corresponding_object_points
 
 void point_cloud_as_set_of_spheres_fixed_radius( pcl::PointCloud<pcl::PointXYZ>::Ptr&  finger_workspace_cloud_xyz,            // input
                                                  double sphere_radius,                                                        // input
+                                                 double overlap_distance,                                                     // input
                                                  int iterations,                                                              // input
                                                  pcl::PointCloud<pcl::PointXYZ>::Ptr&  finger_workspace_spheres_filtered_xyz, // output
                                                  Eigen::Vector4f& far_point_in_pos_direction_4d,                              // output
@@ -1282,7 +1015,7 @@ void point_cloud_as_set_of_spheres_fixed_radius( pcl::PointCloud<pcl::PointXYZ>:
                      + pow(sphere_offset_vector_y[j] - sphere_offset_vector_y[i], 2) 
                      + pow(sphere_offset_vector_z[j] - sphere_offset_vector_z[i], 2) )/pow(sphere_radius, 2);
       // the center of this sphere is on the border of another sphere
-      if(sphere_value < 1 and i!=j){
+      if(sphere_value < overlap_distance and i!=j){
         sphere_offset_vector_x.erase(sphere_offset_vector_x.begin()+j);
         sphere_offset_vector_y.erase(sphere_offset_vector_y.begin()+j);
         sphere_offset_vector_z.erase(sphere_offset_vector_z.begin()+j);
@@ -1323,6 +1056,7 @@ void point_cloud_as_set_of_spheres( int desired_number_of_spheres,              
                                     double radius_of_smallest_sphere,                                                    // input
                                     double radius_of_largest_sphere,                                                     // input
                                     double sphere_radius_increment,                                                      // input
+                                    double overlap_distance,                                                             // input
                                     int iterations,                                                                      // input
                                     int sphere_point_cloud_samples,                                                      // input
                                     pcl::PointCloud<pcl::PointXYZ>::Ptr&  finger_workspace_spheres_filtered_xyz,         // output
@@ -1384,7 +1118,7 @@ void point_cloud_as_set_of_spheres( int desired_number_of_spheres,              
   
   for(int i=0; i<sphere_radius.size(); i++){
     std::cout << "sphere_radius vector: " << sphere_radius[i] << std::endl;
-    point_cloud_as_set_of_spheres_fixed_radius( finger_workspace_cloud_xyz, sphere_radius[i], iterations, dummy_cloud_xyz, far_point_in_pos_direction_4d, far_point_in_neg_direction_4d );
+    point_cloud_as_set_of_spheres_fixed_radius( finger_workspace_cloud_xyz, sphere_radius[i], overlap_distance, iterations, dummy_cloud_xyz, far_point_in_pos_direction_4d, far_point_in_neg_direction_4d );
     std::cout << "number of spheres for this radius value: " << dummy_cloud_xyz->size() << std::endl;
     *finger_workspace_spheres_filtered_xyz += *dummy_cloud_xyz;
     for(int j=0; j<dummy_cloud_xyz->size(); j++)
@@ -1406,7 +1140,7 @@ void point_cloud_as_set_of_spheres( int desired_number_of_spheres,              
                      + pow(sphere_offset_vector_y[j] - sphere_offset_vector_y[i], 2) 
                      + pow(sphere_offset_vector_z[j] - sphere_offset_vector_z[i], 2) )/pow(sphere_radius_dummy[i], 2);
       // the center of this sphere is on the border of another sphere
-      if(sphere_value < 1 and i!=j){
+      if(sphere_value < overlap_distance and i!=j){
         sphere_offset_vector_x.erase(sphere_offset_vector_x.begin()+j);
         sphere_offset_vector_y.erase(sphere_offset_vector_y.begin()+j);
         sphere_offset_vector_z.erase(sphere_offset_vector_z.begin()+j);
@@ -1473,27 +1207,15 @@ void point_cloud_as_set_of_spheres( int desired_number_of_spheres,              
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 void point_cloud_as_set_of_spheres_fixed_radius_paper_photos(  pcl::PointCloud<pcl::PointXYZ>::Ptr&  finger_workspace_cloud_xyz,            // input
-                                                       double sphere_radius,                                                        // input
-                                                       int iterations,                                                              // input
+                                                       double sphere_radius,                                                                // input
+                                                       double overlap_distance,                                                             //input
+                                                       int iterations,                                                                      // input
                                                        int sphere_point_cloud_samples,
-                                                       pcl::PointCloud<pcl::PointXYZ>::Ptr&  finger_workspace_spheres_filtered_xyz, // output
-                                                       pcl::PointCloud<pcl::PointXYZ>::Ptr&  finger_workspace_spheres_visualization_xyz,
-                                                       Eigen::Vector4f& far_point_in_pos_direction_4d,                              // output
-                                                       Eigen::Vector4f& far_point_in_neg_direction_4d ){                            // output
+                                                       pcl::PointCloud<pcl::PointXYZ>::Ptr&  finger_workspace_spheres_filtered_xyz,         // output
+                                                       pcl::PointCloud<pcl::PointXYZ>::Ptr&  finger_workspace_spheres_visualization_xyz,    // output
+                                                       Eigen::Vector4f& far_point_in_pos_direction_4d,                                      // output
+                                                       Eigen::Vector4f& far_point_in_neg_direction_4d ){                                    // output
   
   pcl::PointCloud<pcl::PointXYZ>::Ptr       finger_sphere_offset_cloud_xyz                (new pcl::PointCloud<pcl::PointXYZ>);
   pcl::PointCloud<pcl::PointXYZ>::Ptr       dummy_cloud_xyz                               (new pcl::PointCloud<pcl::PointXYZ>);
@@ -1607,7 +1329,7 @@ void point_cloud_as_set_of_spheres_fixed_radius_paper_photos(  pcl::PointCloud<p
   *finger_workspace_spheres_filtered_xyz = *dummy_cloud_xyz;
   //*finger_workspace_spheres_filtered_xyz = *finger_sphere_offset_cloud_xyz;
   
-  /*
+  
   // filtering (#3)
   // having all these spheres, we check the center of each sphere if it exists in another fellow sphere
   // if it does we remove it
@@ -1623,7 +1345,7 @@ void point_cloud_as_set_of_spheres_fixed_radius_paper_photos(  pcl::PointCloud<p
                      + pow(sphere_offset_vector_y[j] - sphere_offset_vector_y[i], 2) 
                      + pow(sphere_offset_vector_z[j] - sphere_offset_vector_z[i], 2) )/pow(sphere_radius, 2);
       // the center of this sphere is on the border of another sphere
-      if(sphere_value < 1 and i!=j){
+      if(sphere_value < overlap_distance and i!=j){
         sphere_offset_vector_x.erase(sphere_offset_vector_x.begin()+j);
         sphere_offset_vector_y.erase(sphere_offset_vector_y.begin()+j);
         sphere_offset_vector_z.erase(sphere_offset_vector_z.begin()+j);
@@ -1638,7 +1360,7 @@ void point_cloud_as_set_of_spheres_fixed_radius_paper_photos(  pcl::PointCloud<p
     point_xyz.z = sphere_offset_vector_z[i];
     finger_workspace_spheres_filtered_xyz->points.push_back( point_xyz );
   }
-  */
+  
   
   
   
@@ -1698,6 +1420,915 @@ void point_cloud_as_set_of_spheres_fixed_radius_paper_photos(  pcl::PointCloud<p
 
 
 
+
+
+
+
+#define MAXBUFSIZE  ((int) 1e6)
+Eigen::MatrixXd readMatrix(const char *filename){
+  int cols = 0, rows = 0;
+  double buff[MAXBUFSIZE];
+  // Read numbers from file into buffer.
+  std::ifstream infile;
+  infile.open(filename);
+  while (! infile.eof()){
+    std::string line;
+    std::getline(infile, line);
+    int temp_cols = 0;
+    std::stringstream stream(line);
+    while(! stream.eof())
+      stream >> buff[cols*rows+temp_cols++];
+    if (temp_cols == 0)
+      continue;
+    if (cols == 0)
+      cols = temp_cols;
+    rows++;
+  }
+  infile.close();
+  rows--;
+  // Populate matrix with numbers.
+  Eigen::MatrixXd result(rows,cols);
+  for (int i = 0; i < rows; i++)
+  for (int j = 0; j < cols; j++)
+  result(i,j) = buff[ cols*i+j ];
+  return result;
+};
+
+
+void registering_downsampling_segmenting_3_view_point_clouds( pcl::PointCloud<pcl::PointXYZ>::Ptr&  scene_cloud_xyz_1,                             // input
+                                                              Eigen::Matrix4d tf1,                                                                 // input
+                                                              pcl::PointCloud<pcl::PointXYZ>::Ptr&  scene_cloud_xyz_2,                             // input
+                                                              Eigen::Matrix4d tf2,                                                                 // input
+                                                              pcl::PointCloud<pcl::PointXYZ>::Ptr&  scene_cloud_xyz_3,                             // input
+                                                              Eigen::Matrix4d tf3,                                                                 // input
+                                                              pcl::PointCloud<pcl::PointXYZ>::Ptr&  table_cloud_xyz_downsampled,                   // output
+                                                              pcl::PointCloud<pcl::PointXYZ>::Ptr&  object_cloud_xyz_downsampled ){                // output
+
+
+
+
+
+
+  double leaf_size = 0.01;
+  double distance_threshold = 0.01;
+  
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       scene_cloud_xyz_1_transformed                 (new pcl::PointCloud<pcl::PointXYZ>);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       scene_cloud_xyz_2_transformed                 (new pcl::PointCloud<pcl::PointXYZ>);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       scene_cloud_xyz_3_transformed                 (new pcl::PointCloud<pcl::PointXYZ>);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       scene_cloud_xyz_1_transformed_downsampled     (new pcl::PointCloud<pcl::PointXYZ>);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       scene_cloud_xyz_2_transformed_downsampled     (new pcl::PointCloud<pcl::PointXYZ>);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       scene_cloud_xyz_3_transformed_downsampled     (new pcl::PointCloud<pcl::PointXYZ>);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       scene_cloud_xyz_transformed_downsampled       (new pcl::PointCloud<pcl::PointXYZ>);
+  
+  double i;
+  pcl::VoxelGrid<pcl::PointXYZ> vg;
+  pcl::PCDWriter writer;
+  
+  //std::cout << "scene cloud 1 size [input] : " << scene_cloud_xyz_1->size() << std::endl;
+  //std::cout << "scene cloud 2 size [input] : " << scene_cloud_xyz_2->size() << std::endl;
+  //std::cout << "scene cloud 3 size [input] : " << scene_cloud_xyz_3->size() << std::endl;
+  
+  pcl::transformPointCloud(*scene_cloud_xyz_1, *scene_cloud_xyz_1_transformed, tf1);
+  pcl::transformPointCloud(*scene_cloud_xyz_2, *scene_cloud_xyz_2_transformed, tf2);
+  pcl::transformPointCloud(*scene_cloud_xyz_3, *scene_cloud_xyz_3_transformed, tf3);
+  
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // downsampling
+  vg.setInputCloud (scene_cloud_xyz_1_transformed);
+  vg.setLeafSize(leaf_size, leaf_size, leaf_size);
+  vg.filter (*scene_cloud_xyz_1_transformed_downsampled);
+  //std::cout << "PointCloud#1 after downsampling (1st pass) has: " << scene_cloud_xyz_1_transformed_downsampled->points.size() << " data points." << std::endl;
+  
+  vg.setInputCloud (scene_cloud_xyz_2_transformed);
+  vg.setLeafSize(leaf_size, leaf_size, leaf_size);
+  vg.filter (*scene_cloud_xyz_2_transformed_downsampled);
+  //std::cout << "PointCloud#2 after downsampling (1st pass) has: " << scene_cloud_xyz_2_transformed_downsampled->points.size() << " data points." << std::endl;
+  
+  vg.setInputCloud (scene_cloud_xyz_3_transformed);
+  vg.setLeafSize(leaf_size, leaf_size, leaf_size);
+  vg.filter (*scene_cloud_xyz_3_transformed_downsampled);
+  //std::cout << "PointCloud#3 after downsampling (1st pass) has: " << scene_cloud_xyz_3_transformed_downsampled->points.size() << " data points." << std::endl;
+  
+  *scene_cloud_xyz_transformed_downsampled =  *scene_cloud_xyz_1_transformed_downsampled;
+  *scene_cloud_xyz_transformed_downsampled += *scene_cloud_xyz_2_transformed_downsampled;
+  *scene_cloud_xyz_transformed_downsampled += *scene_cloud_xyz_3_transformed_downsampled;
+  
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // segmentation/clustering
+  // Create the segmentation object for the planar model and set all the parameters
+  pcl::SACSegmentation<pcl::PointXYZ> seg;
+  pcl::PointIndices::Ptr inliers (new pcl::PointIndices);
+  pcl::ModelCoefficients::Ptr coefficients (new pcl::ModelCoefficients);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_plane (new pcl::PointCloud<pcl::PointXYZ> ());
+  seg.setOptimizeCoefficients (true);
+  seg.setModelType (pcl::SACMODEL_PLANE);
+  seg.setMethodType (pcl::SAC_RANSAC);
+  seg.setMaxIterations (100);
+  seg.setDistanceThreshold(distance_threshold);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZ>), cloud_f (new pcl::PointCloud<pcl::PointXYZ>);
+
+  int nr_points = (int) scene_cloud_xyz_transformed_downsampled->points.size();
+  while(scene_cloud_xyz_transformed_downsampled->points.size() > 0.3*nr_points){
+    // Segment the largest planar component from the remaining cloud
+    seg.setInputCloud(scene_cloud_xyz_transformed_downsampled);
+    seg.segment (*inliers, *coefficients);
+    if (inliers->indices.size () == 0){
+      std::cout << "Could not estimate a planar model for the given dataset." << std::endl;
+      break;
+    }
+
+    // Extract the planar inliers from the input cloud
+    pcl::ExtractIndices<pcl::PointXYZ> extract;
+    extract.setInputCloud (scene_cloud_xyz_transformed_downsampled);
+    extract.setIndices (inliers);
+    extract.setNegative (false);
+
+    // Get the points associated with the planar surface
+    extract.filter(*cloud_plane);
+    
+    // Remove the planar inliers, extract the rest
+    extract.setNegative (true);
+    extract.filter (*cloud_f);
+    *scene_cloud_xyz_transformed_downsampled = *cloud_f;
+  }
+  // downsampling object cloud to ensure below 500 points
+  i = 0.0;
+  while(cloud_plane->points.size() > 500){
+    i += 0.001;
+    vg.setInputCloud(cloud_plane);
+    vg.setLeafSize(leaf_size+i, leaf_size+i, leaf_size+i);
+    vg.filter(*cloud_plane);
+  }
+  //std::cout << "plane cloud segmented/downsampled has [output]: " << cloud_plane->points.size() << " data points." << std::endl;
+  *table_cloud_xyz_downsampled = *cloud_plane;
+  // save plane cloud
+  //writer.write<pcl::PointXYZ>("table.pcd", *table_cloud_xyz_downsampled, false);
+
+  // Creating the KdTree object for the search method of the extraction
+  pcl::search::KdTree<pcl::PointXYZ>::Ptr tree (new pcl::search::KdTree<pcl::PointXYZ>);
+  tree->setInputCloud (scene_cloud_xyz_transformed_downsampled);
+
+  std::vector<pcl::PointIndices> cluster_indices;
+  pcl::EuclideanClusterExtraction<pcl::PointXYZ> ec;
+  ec.setClusterTolerance (0.02); // 2cm
+  ec.setMinClusterSize (100);
+  ec.setMaxClusterSize (25000);
+  ec.setSearchMethod (tree);
+  ec.setInputCloud (scene_cloud_xyz_transformed_downsampled);
+  ec.extract (cluster_indices);
+
+  int j = 0;
+  pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_cluster (new pcl::PointCloud<pcl::PointXYZ>);
+  for(std::vector<pcl::PointIndices>::const_iterator it = cluster_indices.begin(); it != cluster_indices.end(); ++it){
+    for(std::vector<int>::const_iterator pit = it->indices.begin(); pit != it->indices.end(); ++pit)
+      cloud_cluster->points.push_back (scene_cloud_xyz_transformed_downsampled->points[*pit]);
+    cloud_cluster->width = cloud_cluster->points.size ();
+    cloud_cluster->height = 1;
+    cloud_cluster->is_dense = true;
+    if(j==0)
+      break;
+    j++;
+  }
+  
+  // downsampling object cloud to ensure below 500 points
+  i = 0.0;
+  while(cloud_cluster->points.size() > 500){
+    i += 0.001;
+    vg.setInputCloud(cloud_cluster);
+    vg.setLeafSize(leaf_size+i, leaf_size+i, leaf_size+i);
+    vg.filter(*cloud_cluster);
+  }
+  *object_cloud_xyz_downsampled = *cloud_cluster;
+  
+  //std::cout << "object point cloud segmented/downsampled has [output]: " << object_cloud_xyz_downsampled->points.size() << " data points." << std::endl;
+  //std::stringstream ss;
+  //ss << "object_cloud.pcd";
+  //writer.write<pcl::PointXYZ>(ss.str(), *object_cloud_xyz_downsampled, false);
+  
+  
+
+}
+
+
+
+void registering_downsampling_segmenting_3_view_point_clouds( pcl::PointCloud<pcl::PointXYZ>::Ptr&  scene_cloud_xyz_1,                             // input
+                                                              Eigen::Matrix4d tf1,                                                                 // input
+                                                              pcl::PointCloud<pcl::PointXYZ>::Ptr&  scene_cloud_xyz_2,                             // input
+                                                              Eigen::Matrix4d tf2,                                                                 // input
+                                                              pcl::PointCloud<pcl::PointXYZ>::Ptr&  scene_cloud_xyz_3,                             // input
+                                                              Eigen::Matrix4d tf3,                                                                 // input
+                                                              
+                                                              pcl::PointCloud<pcl::PointXYZ>::Ptr&  scene_cloud_xyz_1_transformed,                 // output
+                                                              pcl::PointCloud<pcl::PointXYZ>::Ptr&  scene_cloud_xyz_2_transformed,                 // output
+                                                              pcl::PointCloud<pcl::PointXYZ>::Ptr&  scene_cloud_xyz_3_transformed,                 // output
+                                                              
+                                                              pcl::PointCloud<pcl::PointXYZ>::Ptr&  scene_cloud_xyz_1_transformed_downsampled,     // output
+                                                              pcl::PointCloud<pcl::PointXYZ>::Ptr&  scene_cloud_xyz_2_transformed_downsampled,     // output
+                                                              pcl::PointCloud<pcl::PointXYZ>::Ptr&  scene_cloud_xyz_3_transformed_downsampled,     // output
+                                                              
+                                                              pcl::PointCloud<pcl::PointXYZ>::Ptr&  table_cloud_xyz_downsampled,                   // output
+                                                              pcl::PointCloud<pcl::PointXYZ>::Ptr&  object_cloud_xyz_downsampled ){                // output
+
+
+
+
+
+
+  double leaf_size = 0.01;
+  double distance_threshold = 0.01;
+  
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       scene_cloud_xyz_transformed_downsampled       (new pcl::PointCloud<pcl::PointXYZ>);
+  
+  double i;
+  pcl::VoxelGrid<pcl::PointXYZ> vg;
+  pcl::PCDWriter writer;
+  
+  //std::cout << "scene cloud 1 size [input] : " << scene_cloud_xyz_1->size() << std::endl;
+  //std::cout << "scene cloud 2 size [input] : " << scene_cloud_xyz_2->size() << std::endl;
+  //std::cout << "scene cloud 3 size [input] : " << scene_cloud_xyz_3->size() << std::endl;
+  
+  pcl::transformPointCloud(*scene_cloud_xyz_1, *scene_cloud_xyz_1_transformed, tf1);
+  pcl::transformPointCloud(*scene_cloud_xyz_2, *scene_cloud_xyz_2_transformed, tf2);
+  pcl::transformPointCloud(*scene_cloud_xyz_3, *scene_cloud_xyz_3_transformed, tf3);
+  
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // downsampling
+  vg.setInputCloud (scene_cloud_xyz_1_transformed);
+  vg.setLeafSize(leaf_size, leaf_size, leaf_size);
+  vg.filter (*scene_cloud_xyz_1_transformed_downsampled);
+  //std::cout << "PointCloud#1 after downsampling (1st pass) has: " << scene_cloud_xyz_1_transformed_downsampled->points.size() << " data points." << std::endl;
+  
+  vg.setInputCloud (scene_cloud_xyz_2_transformed);
+  vg.setLeafSize(leaf_size, leaf_size, leaf_size);
+  vg.filter (*scene_cloud_xyz_2_transformed_downsampled);
+  //std::cout << "PointCloud#2 after downsampling (1st pass) has: " << scene_cloud_xyz_2_transformed_downsampled->points.size() << " data points." << std::endl;
+  
+  vg.setInputCloud (scene_cloud_xyz_3_transformed);
+  vg.setLeafSize(leaf_size, leaf_size, leaf_size);
+  vg.filter (*scene_cloud_xyz_3_transformed_downsampled);
+  //std::cout << "PointCloud#3 after downsampling (1st pass) has: " << scene_cloud_xyz_3_transformed_downsampled->points.size() << " data points." << std::endl;
+  
+  *scene_cloud_xyz_transformed_downsampled =  *scene_cloud_xyz_1_transformed_downsampled;
+  *scene_cloud_xyz_transformed_downsampled += *scene_cloud_xyz_2_transformed_downsampled;
+  *scene_cloud_xyz_transformed_downsampled += *scene_cloud_xyz_3_transformed_downsampled;
+  
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // segmentation/clustering
+  // Create the segmentation object for the planar model and set all the parameters
+  pcl::SACSegmentation<pcl::PointXYZ> seg;
+  pcl::PointIndices::Ptr inliers (new pcl::PointIndices);
+  pcl::ModelCoefficients::Ptr coefficients (new pcl::ModelCoefficients);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_plane (new pcl::PointCloud<pcl::PointXYZ> ());
+  seg.setOptimizeCoefficients (true);
+  seg.setModelType (pcl::SACMODEL_PLANE);
+  seg.setMethodType (pcl::SAC_RANSAC);
+  seg.setMaxIterations (100);
+  seg.setDistanceThreshold(distance_threshold);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZ>), cloud_f (new pcl::PointCloud<pcl::PointXYZ>);
+
+  int nr_points = (int) scene_cloud_xyz_transformed_downsampled->points.size();
+  while(scene_cloud_xyz_transformed_downsampled->points.size() > 0.3*nr_points){
+    // Segment the largest planar component from the remaining cloud
+    seg.setInputCloud(scene_cloud_xyz_transformed_downsampled);
+    seg.segment (*inliers, *coefficients);
+    if (inliers->indices.size () == 0){
+      std::cout << "Could not estimate a planar model for the given dataset." << std::endl;
+      break;
+    }
+
+    // Extract the planar inliers from the input cloud
+    pcl::ExtractIndices<pcl::PointXYZ> extract;
+    extract.setInputCloud (scene_cloud_xyz_transformed_downsampled);
+    extract.setIndices (inliers);
+    extract.setNegative (false);
+
+    // Get the points associated with the planar surface
+    extract.filter(*cloud_plane);
+    
+    // Remove the planar inliers, extract the rest
+    extract.setNegative (true);
+    extract.filter (*cloud_f);
+    *scene_cloud_xyz_transformed_downsampled = *cloud_f;
+  }
+  // downsampling object cloud to ensure below 500 points
+  i = 0.0;
+  while(cloud_plane->points.size() > 500){
+    i += 0.001;
+    vg.setInputCloud(cloud_plane);
+    vg.setLeafSize(leaf_size+i, leaf_size+i, leaf_size+i);
+    vg.filter(*cloud_plane);
+  }
+  //std::cout << "plane cloud segmented/downsampled has [output]: " << cloud_plane->points.size() << " data points." << std::endl;
+  *table_cloud_xyz_downsampled = *cloud_plane;
+  // save plane cloud
+  //writer.write<pcl::PointXYZ>("table.pcd", *table_cloud_xyz_downsampled, false);
+
+  // Creating the KdTree object for the search method of the extraction
+  pcl::search::KdTree<pcl::PointXYZ>::Ptr tree (new pcl::search::KdTree<pcl::PointXYZ>);
+  tree->setInputCloud (scene_cloud_xyz_transformed_downsampled);
+
+  std::vector<pcl::PointIndices> cluster_indices;
+  pcl::EuclideanClusterExtraction<pcl::PointXYZ> ec;
+  ec.setClusterTolerance (0.02); // 2cm
+  ec.setMinClusterSize (100);
+  ec.setMaxClusterSize (25000);
+  ec.setSearchMethod (tree);
+  ec.setInputCloud (scene_cloud_xyz_transformed_downsampled);
+  ec.extract (cluster_indices);
+
+  int j = 0;
+  pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_cluster (new pcl::PointCloud<pcl::PointXYZ>);
+  for(std::vector<pcl::PointIndices>::const_iterator it = cluster_indices.begin(); it != cluster_indices.end(); ++it){
+    for(std::vector<int>::const_iterator pit = it->indices.begin(); pit != it->indices.end(); ++pit)
+      cloud_cluster->points.push_back (scene_cloud_xyz_transformed_downsampled->points[*pit]);
+    cloud_cluster->width = cloud_cluster->points.size ();
+    cloud_cluster->height = 1;
+    cloud_cluster->is_dense = true;
+    if(j==0)
+      break;
+    j++;
+  }
+  
+  // downsampling object cloud to ensure below 500 points
+  i = 0.0;
+  while(cloud_cluster->points.size() > 500){
+    i += 0.001;
+    vg.setInputCloud(cloud_cluster);
+    vg.setLeafSize(leaf_size+i, leaf_size+i, leaf_size+i);
+    vg.filter(*cloud_cluster);
+  }
+  *object_cloud_xyz_downsampled = *cloud_cluster;
+  
+  //std::cout << "object point cloud segmented/downsampled has [output]: " << object_cloud_xyz_downsampled->points.size() << " data points." << std::endl;
+  //std::stringstream ss;
+  //ss << "object_cloud.pcd";
+  //writer.write<pcl::PointXYZ>(ss.str(), *object_cloud_xyz_downsampled, false);
+  
+  
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void evaluate_grasp_pose_candidates(void){
+  
+  workspace_centroid_wrt_gripper_frame_translation << gripper_workspace_centroid_point_in_gripper_frame(0), gripper_workspace_centroid_point_in_gripper_frame(1), gripper_workspace_centroid_point_in_gripper_frame(2);
+  workspace_centroid_wrt_gripper_frame_transform << Eigen::Matrix3f::Identity(), workspace_centroid_wrt_gripper_frame_translation, 0,0,0,1;
+  workspace_centroid_wrt_gripper_frame_transform_inverse << Eigen::Matrix3f::Identity(), -Eigen::Matrix3f::Identity()*workspace_centroid_wrt_gripper_frame_translation, 0,0,0,1;
+  
+  // we will do translation to each object sample point in the gripper centroid frame
+  object_frame_wrt_gripper_centroid_frame_transform = workspace_centroid_wrt_gripper_frame_transform_inverse*gripper_wrt_arm_hand_frame_inverse_transform*object_transform_wrt_arm_hand_frame;
+  pcl::transformPointCloud(*object_sampling_in_object_frame_xyzrgb, *object_sampling_in_gripper_centroid_frame_xyzrgb, object_frame_wrt_gripper_centroid_frame_transform);
+  
+  
+  //int number_of_iterations = 0;
+  
+  // GRASPING CODE
+  // iterate through all points in the "object sampling cloud"
+  for(unsigned int i=0; i<object_sampling_in_arm_hand_frame_xyzrgb->points.size(); i++){
+  //for(unsigned int i=0; i<1; i++){
+    
+    // STEP : OK
+    // place gripper workspace centroid at the current "object sampled point"
+    // iterating through sample points in the gripper centroid frame
+    // rotate the gripper workspace centroid to be alligned with the object orientation
+    // then rotate it to be perpendicular to the object major axis
+    if(gripper_model == "allegro_right_hand"){
+      gripper_centroid_rotation_in_gripper_centroid_frame << object_rotation_wrt_arm_hand_frame*Rotx_float(M_PI/2);}
+    else if(gripper_model == "franka_gripper"){
+      gripper_centroid_rotation_in_gripper_centroid_frame << object_rotation_wrt_arm_hand_frame*Roty_float(M_PI/2);}
+    gripper_centroid_translation_in_gripper_centroid_frame << object_sampling_in_arm_hand_frame_xyzrgb->points[i].x,   object_sampling_in_arm_hand_frame_xyzrgb->points[i].y,   object_sampling_in_arm_hand_frame_xyzrgb->points[i].z;
+    gripper_centroid_transform_in_gripper_centroid_frame   << gripper_centroid_rotation_in_gripper_centroid_frame, gripper_centroid_translation_in_gripper_centroid_frame,
+                                                              0,0,0,1;
+    
+    
+    
+    
+    // STEP : OK
+    // iterate through the range of possible orientations about object's major axis (z-axis)
+    gripper_centroid_transform_before_orientation_loop = gripper_centroid_transform_in_gripper_centroid_frame;
+    dummy_translation << 0,0,0;
+    for(unsigned int j=0; j<orientation_samples; j++){
+      if(gripper_model == "allegro_right_hand"){
+        dummy_rotation = Roty_float(initial_orientation+j*orientation_range/orientation_samples);}
+      else if(gripper_model == "franka_gripper"){
+        dummy_rotation = Rotx_float(initial_orientation+j*orientation_range/orientation_samples);}
+      dummy_transform << dummy_rotation, dummy_translation,
+                         0,0,0,1;
+      gripper_centroid_transform_in_gripper_centroid_frame = gripper_centroid_transform_before_orientation_loop*dummy_transform;
+      
+      // then transform this motion to the arm hand frame
+      gripper_transform = gripper_centroid_transform_in_gripper_centroid_frame*workspace_centroid_wrt_gripper_frame_transform_inverse*gripper_wrt_arm_hand_frame_inverse_transform;
+      pcl::transformPointCloud(*gripper_cloud_downsampled_in_arm_hand_frame_xyzrgb, *gripper_cloud_transformed_in_arm_hand_frame_xyzrgb, gripper_transform);
+      
+      gripper_rotation    << gripper_transform(0,0), gripper_transform(0,1), gripper_transform(0,2),
+                             gripper_transform(1,0), gripper_transform(1,1), gripper_transform(1,2),
+                             gripper_transform(2,0), gripper_transform(2,1), gripper_transform(2,2);
+      gripper_translation << gripper_transform(0,3), gripper_transform(1,3), gripper_transform(2,3);
+      
+      
+      
+      
+      
+      // STEP : OK
+      // check if the current gripper pose collides with object_plane
+      // transform the gripper point cloud to object_plane frame to be able to use the special ellipsoid
+      begin3 = clock();
+      pcl::transformPointCloud(*gripper_cloud_transformed_in_arm_hand_frame_xyzrgb, *gripper_cloud_transformed_in_object_plane_frame_xyzrgb, object_plane_transform_wrt_arm_hand_frame_inverse);
+      gripper_collides_with_object_plane = false;
+      for(unsigned int k=0; k<gripper_cloud_transformed_in_object_plane_frame_xyzrgb->size(); k++){
+        special_ellipsoid_value =  pow(gripper_cloud_transformed_in_object_plane_frame_xyzrgb->points[k].x - object_plane_offset_x, 10)/pow(object_plane_x, 10) 
+                                 + pow(gripper_cloud_transformed_in_object_plane_frame_xyzrgb->points[k].y - object_plane_offset_y, 10)/pow(object_plane_y, 10) 
+                                 + pow(gripper_cloud_transformed_in_object_plane_frame_xyzrgb->points[k].z - object_plane_offset_z, 2) /pow(object_plane_z, 2);
+        if( special_ellipsoid_value < 1 ){
+          gripper_collides_with_object_plane = true;
+          break;
+        }
+      }
+      //std::cout << "gripper collides with object plane = " << gripper_collides_with_object_plane << std::endl;
+      end = clock();
+	    time_spent = (double)( end - begin3 )/ CLOCKS_PER_SEC;
+	    time_elapsed_checking_gripper_collision_with_table += time_spent;
+      
+      
+      
+      
+      
+      // STEP : OK
+      // if the gripper doesn't collide with the table (object plane)
+      // check that the gripper doesn't collide with object
+      // this is done by checking gripper special ellipsoids
+      // first apply the inverse gripper transform on the object cloud
+      // to make it light : we use downsampled object cloud
+      begin4 = clock();
+      inverse_gripper_transform << gripper_rotation.transpose(), -gripper_rotation.transpose()*gripper_translation,  // from khalil's book page 21
+                                   0, 0, 0, 1;
+      pcl::transformPointCloud(*object_cloud_downsampled_in_arm_hand_frame_xyzrgb, *object_cloud_transformed_in_arm_hand_frame_xyzrgb, inverse_gripper_transform);
+      pcl::transformPointCloud(*object_cloud_transformed_in_arm_hand_frame_xyzrgb, *object_cloud_transformed_in_gripper_frame_xyzrgb,  gripper_wrt_arm_hand_frame_inverse_transform);
+      gripper_collides_with_object = false;
+      if(!gripper_collides_with_object_plane){
+        for(unsigned int k=0; k<object_cloud_transformed_in_gripper_frame_xyzrgb->size(); k++){
+          // for each point check it is not inside any of the gripper special ellipsoids
+          for(unsigned int l=0; l<gripper_x.size(); l++){
+            special_ellipsoid_value =  pow(object_cloud_transformed_in_gripper_frame_xyzrgb->points[k].x - gripper_offset_x[l], 10)/pow(gripper_x[l], 10) 
+                                     + pow(object_cloud_transformed_in_gripper_frame_xyzrgb->points[k].y - gripper_offset_y[l], 10)/pow(gripper_y[l], 10) 
+                                     + pow(object_cloud_transformed_in_gripper_frame_xyzrgb->points[k].z - gripper_offset_z[l], 2) /pow(gripper_z[l], 2);
+            if( special_ellipsoid_value < 1 ){
+              gripper_collides_with_object = true;
+              gripper_collide_with_object++;
+              break;
+            }
+          }
+          if(gripper_collides_with_object)
+            break;
+        }
+        //std::cout << "gripper collides with object = " << gripper_collides_with_object << std::endl;
+      }
+      else
+        gripper_collide_with_table++;
+      end = clock();
+	    time_spent = (double)( end - begin4 )/ CLOCKS_PER_SEC;
+	    time_elapsed_checking_gripper_collision_with_object += time_spent;
+	    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      // STEP
+      // if gripper doesn't collide with object
+      // if gripper doesn't collide with object plane (table)
+      // 
+      if(gripper_model == "allegro_right_hand"){
+      if(!gripper_collides_with_object_plane and !gripper_collides_with_object){
+        
+        
+        // Evaluation Metric#1 : number of object points && number of workspace spheres
+        // thumb
+        metric_1_number_of_active_workspace_spheres_and_corresponding_object_points(  object_cloud_transformed_in_gripper_frame_xyzrgb,                                                                       // input : object related
+                                                                                      thumb_workspace_convex_offset, thumb_workspace_convex_parameter,                                                        // input : gripper finger related
+                                                                                      object_points_in_thumb_workspace, thumb_workspace_active_spheres_offset,   thumb_workspace_active_spheres_parameter );  // output
+        // index
+        metric_1_number_of_active_workspace_spheres_and_corresponding_object_points(  object_cloud_transformed_in_gripper_frame_xyzrgb,                                                                       // input : object related
+                                                                                      index_workspace_convex_offset, index_workspace_convex_parameter,                                                        // input : gripper finger related
+                                                                                      object_points_in_index_workspace, index_workspace_active_spheres_offset,   index_workspace_active_spheres_parameter );  // output
+        // middle
+        metric_1_number_of_active_workspace_spheres_and_corresponding_object_points(  object_cloud_transformed_in_gripper_frame_xyzrgb,                                                                       // input : object related
+                                                                                      middle_workspace_convex_offset, middle_workspace_convex_parameter,                                                      // input : gripper finger related
+                                                                                      object_points_in_middle_workspace, middle_workspace_active_spheres_offset, middle_workspace_active_spheres_parameter ); // output
+        // pinky
+        metric_1_number_of_active_workspace_spheres_and_corresponding_object_points(  object_cloud_transformed_in_gripper_frame_xyzrgb,                                                                       // input : object related
+                                                                                      pinky_workspace_convex_offset, pinky_workspace_convex_parameter,                                                        // input : gripper finger related
+                                                                                      object_points_in_pinky_workspace, pinky_workspace_active_spheres_offset,   pinky_workspace_active_spheres_parameter );  // output
+        
+        
+        
+        
+        // Evaluation
+        // select the best gripper pose
+        // for the moment we select the pose having the most object points intersecting with gripper workspace
+        //if( object_touches_gripper_support and ( (object_points_in_thumb_workspace->size() + object_points_in_index_workspace->size() + object_points_in_middle_workspace->size() + object_points_in_pinky_workspace->size()) > 
+        //    (object_points_in_thumb_workspace_best->size() + object_points_in_index_workspace_best->size() + object_points_in_middle_workspace_best->size() + object_points_in_pinky_workspace_best->size() ) ) ){
+        
+        // this condition ensures all fingers must have solution to touch object
+        //if( object_points_in_thumb_workspace->size()!=0 and object_points_in_index_workspace->size()!=0 and object_points_in_middle_workspace->size()!=0 and object_points_in_pinky_workspace->size()!=0 ){
+        if( object_points_in_thumb_workspace->size()!=0 and object_points_in_middle_workspace->size()!=0 ){
+            // this condition maximizes the number of object points inside the gripper workspace
+          //if( (object_points_in_thumb_workspace->size() + object_points_in_index_workspace->size() + object_points_in_middle_workspace->size() + object_points_in_pinky_workspace->size()) > 
+          //  (object_points_in_thumb_workspace_best->size() + object_points_in_index_workspace_best->size() + object_points_in_middle_workspace_best->size() + object_points_in_pinky_workspace_best->size() ) ){
+          
+          
+          
+          
+          
+          // Evaluation Metric#2 : how close the object centroid to gripper support offset (special ellipsoid)
+		      object_centroid_point_transformed << object_centroid_point_in_arm_hand_frame.x, object_centroid_point_in_arm_hand_frame.y, object_centroid_point_in_arm_hand_frame.z, 1;
+		      object_centroid_point_transformed = inverse_gripper_transform*object_centroid_point_transformed;  // now we have the object centroid point transformed in arm hand frame
+		      object_centroid_point_transformed = gripper_wrt_arm_hand_frame_inverse_transform*object_centroid_point_transformed;  // now we have the object centroid point transformed in gripper frame
+		      distance_between_gripper_support_and_object_centroid = sqrt(pow(fabs(gripper_support_offset_x-object_centroid_point_transformed(0)),2)+
+		                                                                  pow(fabs(gripper_support_offset_y-object_centroid_point_transformed(1)),2)+
+		                                                                  pow(fabs(gripper_support_offset_z-object_centroid_point_transformed(2)),2));
+		      
+		      
+          // this condition minimizes distance between object centroid and gripper support region
+          if( distance_between_gripper_support_and_object_centroid < distance_between_gripper_support_and_object_centroid_best ){
+            distance_between_gripper_support_and_object_centroid_best = distance_between_gripper_support_and_object_centroid;
+            
+            // saving best object points
+            *object_points_in_thumb_workspace_best  = *object_points_in_thumb_workspace;
+            *object_points_in_index_workspace_best  = *object_points_in_index_workspace;
+            *object_points_in_middle_workspace_best = *object_points_in_middle_workspace;
+            *object_points_in_pinky_workspace_best  = *object_points_in_pinky_workspace;
+            
+            // saving the best workspace spheres
+            *thumb_workspace_active_spheres_offset_best     = *thumb_workspace_active_spheres_offset;
+            *thumb_workspace_active_spheres_parameter_best  = *thumb_workspace_active_spheres_parameter;
+            *index_workspace_active_spheres_offset_best     = *index_workspace_active_spheres_offset;
+            *index_workspace_active_spheres_parameter_best  = *index_workspace_active_spheres_parameter;
+            *middle_workspace_active_spheres_offset_best    = *middle_workspace_active_spheres_offset;
+            *middle_workspace_active_spheres_parameter_best = *middle_workspace_active_spheres_parameter;
+            *pinky_workspace_active_spheres_offset_best     = *pinky_workspace_active_spheres_offset;
+            *pinky_workspace_active_spheres_parameter_best  = *pinky_workspace_active_spheres_parameter;
+            
+            //std::cout<<"metric#1 : "<<(object_points_in_thumb_workspace_best->size() + object_points_in_index_workspace_best->size() + object_points_in_middle_workspace_best->size() + object_points_in_pinky_workspace_best->size() )<<std::endl;
+            std::cout<<"metric#2 : "<<distance_between_gripper_support_and_object_centroid_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
+            best_gripper_transform = gripper_transform;
+          }
+          
+          
+          
+          
+          
+          
+          
+          
+          // METRIC#3
+          // Distance between finger contacts on object -> Maximize
+          // object_points_in_thumb_workspace_centroid_point
+					pcl::CentroidPoint<pcl::PointXYZRGB> object_points_in_thumb_workspace_centroid;
+					pcl::PointXYZRGB object_points_in_thumb_workspace_centroid_point;
+					for(unsigned int i=0;i<object_points_in_thumb_workspace->points.size();i++)
+						object_points_in_thumb_workspace_centroid.add( object_points_in_thumb_workspace->points[i] );
+					object_points_in_thumb_workspace_centroid.get(object_points_in_thumb_workspace_centroid_point);
+					
+					// object_points_in_index_workspace_centroid_point
+					pcl::CentroidPoint<pcl::PointXYZRGB> object_points_in_index_workspace_centroid;
+					pcl::PointXYZRGB object_points_in_index_workspace_centroid_point;
+					for(unsigned int i=0;i<object_points_in_index_workspace->points.size();i++)
+						object_points_in_index_workspace_centroid.add( object_points_in_index_workspace->points[i] );
+					object_points_in_index_workspace_centroid.get(object_points_in_index_workspace_centroid_point);
+					
+					distance_between_gripper_fingers = sqrt(pow(fabs(object_points_in_thumb_workspace_centroid_point.x-object_points_in_index_workspace_centroid_point.x),2)+
+                                                  pow(fabs(object_points_in_thumb_workspace_centroid_point.y-object_points_in_index_workspace_centroid_point.y),2)+
+                                                  pow(fabs(object_points_in_thumb_workspace_centroid_point.z-object_points_in_index_workspace_centroid_point.z),2));
+          
+          
+          // this condition maximizes distance between gripper fingers
+          if( distance_between_gripper_fingers > distance_between_gripper_fingers_best ){
+            distance_between_gripper_fingers_best = distance_between_gripper_fingers;
+            
+            // saving best object points
+            *object_points_in_thumb_workspace_best  = *object_points_in_thumb_workspace;
+            *object_points_in_index_workspace_best  = *object_points_in_index_workspace;
+            *object_points_in_middle_workspace_best = *object_points_in_middle_workspace;
+            *object_points_in_pinky_workspace_best  = *object_points_in_pinky_workspace;
+            
+            // saving the best workspace spheres
+            *thumb_workspace_active_spheres_offset_best     = *thumb_workspace_active_spheres_offset;
+            *thumb_workspace_active_spheres_parameter_best  = *thumb_workspace_active_spheres_parameter;
+            *index_workspace_active_spheres_offset_best     = *index_workspace_active_spheres_offset;
+            *index_workspace_active_spheres_parameter_best  = *index_workspace_active_spheres_parameter;
+            *middle_workspace_active_spheres_offset_best    = *middle_workspace_active_spheres_offset;
+            *middle_workspace_active_spheres_parameter_best = *middle_workspace_active_spheres_parameter;
+            *pinky_workspace_active_spheres_offset_best     = *pinky_workspace_active_spheres_offset;
+            *pinky_workspace_active_spheres_parameter_best  = *pinky_workspace_active_spheres_parameter;
+            
+            //std::cout<<"metric#1 : "<<(object_points_in_thumb_workspace_best->size() + object_points_in_index_workspace_best->size() + object_points_in_middle_workspace_best->size() + object_points_in_pinky_workspace_best->size() )<<std::endl;
+            std::cout<<"metric#3 : "<<distance_between_gripper_fingers_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
+            best_gripper_transform = gripper_transform;
+          }
+          
+          
+          
+          
+          /*
+          // combining metric#2 and metric#3
+          // this condition minimizes distance between object centroid and gripper support region
+          if( (distance_between_gripper_support_and_object_centroid < distance_between_gripper_support_and_object_centroid_best) and (distance_between_gripper_fingers > distance_between_gripper_fingers_best) ){
+            distance_between_gripper_support_and_object_centroid_best = distance_between_gripper_support_and_object_centroid;
+            
+            // saving best object points
+            *object_points_in_thumb_workspace_best  = *object_points_in_thumb_workspace;
+            *object_points_in_index_workspace_best  = *object_points_in_index_workspace;
+            *object_points_in_middle_workspace_best = *object_points_in_middle_workspace;
+            *object_points_in_pinky_workspace_best  = *object_points_in_pinky_workspace;
+            
+            // saving the best workspace spheres
+            *thumb_workspace_active_spheres_offset_best     = *thumb_workspace_active_spheres_offset;
+            *thumb_workspace_active_spheres_parameter_best  = *thumb_workspace_active_spheres_parameter;
+            *index_workspace_active_spheres_offset_best     = *index_workspace_active_spheres_offset;
+            *index_workspace_active_spheres_parameter_best  = *index_workspace_active_spheres_parameter;
+            *middle_workspace_active_spheres_offset_best    = *middle_workspace_active_spheres_offset;
+            *middle_workspace_active_spheres_parameter_best = *middle_workspace_active_spheres_parameter;
+            *pinky_workspace_active_spheres_offset_best     = *pinky_workspace_active_spheres_offset;
+            *pinky_workspace_active_spheres_parameter_best  = *pinky_workspace_active_spheres_parameter;
+            
+            //std::cout<<"metric#1 : "<<(object_points_in_thumb_workspace_best->size() + object_points_in_index_workspace_best->size() + object_points_in_middle_workspace_best->size() + object_points_in_pinky_workspace_best->size() )<<std::endl;
+            std::cout<<"metric#2 : "<<distance_between_gripper_support_and_object_centroid_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
+            std::cout<<"metric#3 : "<<distance_between_gripper_fingers_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
+            best_gripper_transform = gripper_transform;
+          }
+          
+          */
+          
+          
+        }
+        //////else{std::cout<<"no finger-object contact solution found ! " <<std::endl;}
+      
+      
+      }
+      }
+      else if(gripper_model == "franka_gripper"){
+      if(!gripper_collides_with_object_plane and !gripper_collides_with_object){
+        
+        // Evaluation Metric#1 : number of object points && number of workspace spheres
+        // right finger
+        metric_1_number_of_active_workspace_spheres_and_corresponding_object_points(  object_cloud_transformed_in_gripper_frame_xyzrgb,                                                                                         // input : object related
+                                                                                      right_finger_workspace_convex_offset, right_finger_workspace_convex_parameter,                                                            // input : gripper finger related
+                                                                                      object_points_in_right_finger_workspace, right_finger_workspace_active_spheres_offset, right_finger_workspace_active_spheres_parameter ); // output
+        // left_finger
+        metric_1_number_of_active_workspace_spheres_and_corresponding_object_points(  object_cloud_transformed_in_gripper_frame_xyzrgb,                                                                                         // input : object related
+                                                                                      left_finger_workspace_convex_offset, left_finger_workspace_convex_parameter,                                                              // input : gripper finger related
+                                                                                      object_points_in_left_finger_workspace, left_finger_workspace_active_spheres_offset, left_finger_workspace_active_spheres_parameter );    // output
+        
+        
+        
+        // Evaluation
+        // select the best gripper pose
+        // this condition ensures all fingers are in contact with object
+        if( object_points_in_right_finger_workspace->size()!=0 and object_points_in_left_finger_workspace->size()!=0 ){
+          // this condition maximizes the number of object points inside the gripper workspace
+          //if( (object_points_in_thumb_workspace->size() + object_points_in_index_workspace->size() + object_points_in_middle_workspace->size() + object_points_in_pinky_workspace->size()) > 
+          //  (object_points_in_thumb_workspace_best->size() + object_points_in_index_workspace_best->size() + object_points_in_middle_workspace_best->size() + object_points_in_pinky_workspace_best->size() ) ){
+          
+          
+          
+          // Evaluation Metric#2 : how close the object centroid to gripper support offset (special ellipsoid)
+		      object_centroid_point_transformed << object_centroid_point_in_arm_hand_frame.x, object_centroid_point_in_arm_hand_frame.y, object_centroid_point_in_arm_hand_frame.z, 1;
+		      object_centroid_point_transformed = inverse_gripper_transform*object_centroid_point_transformed;  // now we have the object centroid point transformed in arm hand frame
+		      object_centroid_point_transformed = gripper_wrt_arm_hand_frame_inverse_transform*object_centroid_point_transformed;  // now we have the object centroid point transformed in gripper frame
+		      distance_between_gripper_support_and_object_centroid = sqrt(pow(fabs(gripper_support_offset_x-object_centroid_point_transformed(0)),2)+
+		                                                                  pow(fabs(gripper_support_offset_y-object_centroid_point_transformed(1)),2)+
+		                                                                  pow(fabs(gripper_support_offset_z-object_centroid_point_transformed(2)),2));
+		      
+          
+          // this condition minimizes distance between object centroid and gripper support region
+          if( distance_between_gripper_support_and_object_centroid < distance_between_gripper_support_and_object_centroid_best ){
+            distance_between_gripper_support_and_object_centroid_best = distance_between_gripper_support_and_object_centroid;
+            
+            // saving best object points
+          *object_points_in_right_finger_workspace_best = *object_points_in_right_finger_workspace;
+          *object_points_in_left_finger_workspace_best  = *object_points_in_left_finger_workspace;
+          
+          // saving the best workspace spheres
+          *right_finger_workspace_active_spheres_offset_best     = *right_finger_workspace_active_spheres_offset;
+          *right_finger_workspace_active_spheres_parameter_best  = *right_finger_workspace_active_spheres_parameter;
+          *left_finger_workspace_active_spheres_offset_best     = *left_finger_workspace_active_spheres_offset;
+          *left_finger_workspace_active_spheres_parameter_best  = *left_finger_workspace_active_spheres_parameter;
+          
+          //std::cout<<"metric#1 : "<<object_points_in_right_finger_workspace_best->size() << ", " << object_points_in_left_finger_workspace_best->size()<<std::endl;
+          std::cout<<"metric#2 : "<<distance_between_gripper_support_and_object_centroid_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
+          best_gripper_transform = gripper_transform;
+          }
+        
+        
+        
+        
+        
+        
+        
+        
+        // METRIC#3
+        // Distance between finger contacts on object -> Maximize
+        // object_points_in_right_finger_workspace_centroid_point
+				pcl::CentroidPoint<pcl::PointXYZRGB> object_points_in_right_finger_workspace_centroid;
+				pcl::PointXYZRGB object_points_in_right_finger_workspace_centroid_point;
+				for(unsigned int i=0;i<object_points_in_right_finger_workspace->points.size();i++)
+					object_points_in_right_finger_workspace_centroid.add( object_points_in_right_finger_workspace->points[i] );
+				object_points_in_right_finger_workspace_centroid.get(object_points_in_right_finger_workspace_centroid_point);
+				
+				// object_points_in_left_finger_workspace_centroid_point
+				pcl::CentroidPoint<pcl::PointXYZRGB> object_points_in_left_finger_workspace_centroid;
+				pcl::PointXYZRGB object_points_in_left_finger_workspace_centroid_point;
+				for(unsigned int i=0;i<object_points_in_left_finger_workspace->points.size();i++)
+					object_points_in_left_finger_workspace_centroid.add( object_points_in_left_finger_workspace->points[i] );
+				object_points_in_left_finger_workspace_centroid.get(object_points_in_left_finger_workspace_centroid_point);
+				
+				distance_between_gripper_fingers = sqrt(pow(fabs(object_points_in_right_finger_workspace_centroid_point.x-object_points_in_left_finger_workspace_centroid_point.x),2)+
+                                                pow(fabs(object_points_in_right_finger_workspace_centroid_point.y-object_points_in_left_finger_workspace_centroid_point.y),2)+
+                                                pow(fabs(object_points_in_right_finger_workspace_centroid_point.z-object_points_in_left_finger_workspace_centroid_point.z),2));
+        
+        
+        // this condition maximizes distance between gripper fingers
+        if( distance_between_gripper_fingers > distance_between_gripper_fingers_best ){
+          distance_between_gripper_fingers_best = distance_between_gripper_fingers;
+          
+          // saving best object points
+          *object_points_in_right_finger_workspace_best = *object_points_in_right_finger_workspace;
+          *object_points_in_left_finger_workspace_best  = *object_points_in_left_finger_workspace;
+          
+          // saving the best workspace spheres
+          *right_finger_workspace_active_spheres_offset_best     = *right_finger_workspace_active_spheres_offset;
+          *right_finger_workspace_active_spheres_parameter_best  = *right_finger_workspace_active_spheres_parameter;
+          *left_finger_workspace_active_spheres_offset_best     = *left_finger_workspace_active_spheres_offset;
+          *left_finger_workspace_active_spheres_parameter_best  = *left_finger_workspace_active_spheres_parameter;
+          
+          //std::cout<<"metric#1 : "<<(object_points_in_thumb_workspace_best->size() + object_points_in_index_workspace_best->size() + object_points_in_middle_workspace_best->size() + object_points_in_pinky_workspace_best->size() )<<std::endl;
+          std::cout<<"metric#3 : "<<distance_between_gripper_fingers_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
+          best_gripper_transform = gripper_transform;
+        }
+        
+        
+        
+        
+        /*
+        // combining metric#2 and metric#3
+        // this condition minimizes distance between object centroid and gripper support region
+        if( (distance_between_gripper_support_and_object_centroid <= distance_between_gripper_support_and_object_centroid_best) and (distance_between_gripper_fingers >= distance_between_gripper_fingers_best) ){
+          distance_between_gripper_support_and_object_centroid_best = distance_between_gripper_support_and_object_centroid;
+          
+          // saving best object points
+          *object_points_in_right_finger_workspace_best = *object_points_in_right_finger_workspace;
+          *object_points_in_left_finger_workspace_best  = *object_points_in_left_finger_workspace;
+          
+          // saving the best workspace spheres
+          *right_finger_workspace_active_spheres_offset_best     = *right_finger_workspace_active_spheres_offset;
+          *right_finger_workspace_active_spheres_parameter_best  = *right_finger_workspace_active_spheres_parameter;
+          *left_finger_workspace_active_spheres_offset_best     = *left_finger_workspace_active_spheres_offset;
+          *left_finger_workspace_active_spheres_parameter_best  = *left_finger_workspace_active_spheres_parameter;
+          
+          //std::cout<<"metric#1 : "<<(object_points_in_thumb_workspace_best->size() + object_points_in_index_workspace_best->size() + object_points_in_middle_workspace_best->size() + object_points_in_pinky_workspace_best->size() )<<std::endl;
+          std::cout<<"metric#2 : "<<distance_between_gripper_support_and_object_centroid_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
+          std::cout<<"metric#3 : "<<distance_between_gripper_fingers_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
+          best_gripper_transform = gripper_transform;
+        }
+        */
+        
+        
+        
+        
+        
+        }
+        else{std::cout<<"no finger-object contact solution found ! " <<std::endl;}
+        
+        
+        
+      
+      }
+      }
+      
+      
+      
+      
+      
+      /*
+      // object cloud
+      scene_cloud_viewer->updatePointCloud(object_cloud_downsampled_in_arm_hand_frame_xyzrgb, magenta_color,                   "object cloud");
+      scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 7,                   "object cloud");
+      
+      // object plane cloud
+      scene_cloud_viewer->updatePointCloud(object_plane_cloud_downsampled_in_arm_hand_frame_xyzrgb, brown_color,               "table cloud");
+      scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 4,                   "table cloud");
+      
+      // object plane special ellipsoid
+      scene_cloud_viewer->updatePointCloud(object_plane_special_ellipsoid_point_cloud_in_arm_hand_frame, orange_color,         "table special ellipsoid");
+      scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2,                   "table special ellipsoid");
+      
+      // object sampling cloud
+      scene_cloud_viewer->updatePointCloud(object_sampling_in_arm_hand_frame_xyzrgb, blue_color_again,                         "object sampling cloud");
+      scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 10,                  "object sampling cloud");
+      
+      // gripper cloud transformed in arm hand frame
+      scene_cloud_viewer->updatePointCloud(gripper_cloud_transformed_in_arm_hand_frame_xyzrgb, cyan_color,                     "gripper cloud transformed in arm hand frame");
+      scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 10,                  "gripper cloud transformed in arm hand frame");
+      
+      // gripper cloud in arm hand frame
+      scene_cloud_viewer->updatePointCloud(gripper_cloud_downsampled_in_arm_hand_frame_xyzrgb, cyan_color_again,               "gripper cloud in arm hand frame");
+      scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 10,                  "gripper cloud in arm hand frame");
+      
+      // gripper special ellipsoids transformed
+      pcl::transformPointCloud(*gripper_as_set_of_special_ellipsoids_in_arm_hand_frame, *gripper_as_set_of_special_ellipsoids_transformed_in_arm_hand_frame, gripper_transform);
+      scene_cloud_viewer->updatePointCloud(gripper_as_set_of_special_ellipsoids_transformed_in_arm_hand_frame, black_color,    "gripper special ellipsoids transformed");
+      scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper special ellipsoids transformed");
+      
+      // gripper special ellipsoids
+      scene_cloud_viewer->updatePointCloud(gripper_as_set_of_special_ellipsoids_in_arm_hand_frame, black_color_again,          "gripper special ellipsoids");
+      scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper special ellipsoids");
+      
+      
+      scene_cloud_viewer->spinOnce();
+      if(gripper_model == "allegro_right_hand")
+        save_file_name = "allegro_video/allegro_"+std::string( 5 - (std::to_string(number_of_iterations)).length(), '0').append( std::to_string(number_of_iterations) )+".png";
+      else if(gripper_model == "franka_gripper")
+        save_file_name = "franka_video/franka_"+std::string( 5 - (std::to_string(number_of_iterations)).length(), '0').append( std::to_string(number_of_iterations) )+".png";
+	    scene_cloud_viewer->saveScreenshot(save_file_name);
+	    
+      number_of_iterations ++;
+      */
+      
+      
+      //scene_cloud_viewer->updatePointCloud(gripper_cloud_transformed_in_object_plane_frame_xyzrgb, black_color_again, "gripper cloud in object plane frame");
+      //scene_cloud_viewer->updatePointCloud(gripper_cloud_transformed_in_gripper_frame_xyzrgb, black_color, "gripper cloud in gripper frame");
+      //scene_cloud_viewer->updatePointCloud(scene_cloud_xyzrgb, scene_cloud_rgb, "scene cloud viewer");
+      
+      //if(i<3)
+      //  usleep(500000);
+      //else
+      //  usleep(10000);
+      
+    }
+  }
+  
+  
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#endif
 
 
 

@@ -24,30 +24,23 @@ set (CMAKE_CXX_STANDARD 11)
 #add_executable(point_cloud_as_a_set_of_spheres point_cloud_as_a_set_of_spheres.cpp)
 #target_link_libraries(point_cloud_as_a_set_of_spheres pthread ${PCL_LIBRARIES})
 
-#add_executable (cluster_extraction cluster_extraction.cpp)
-#target_link_libraries (cluster_extraction ${PCL_LIBRARIES})
-
 #add_executable (step_1_downsampling_object_cloud step_1_downsampling_object_cloud.cpp)
 #target_link_libraries (step_1_downsampling_object_cloud ${PCL_LIBRARIES})
 
 add_executable (grasping_algorithm grasping_algorithm.cpp)
 target_link_libraries (grasping_algorithm ${PCL_LIBRARIES}  ${roscpp_LIBRARIES} ${catkin_LIBRARIES} quadprog)
 
-add_executable (capture_3_view_point_cloud capture_3_view_point_cloud.cpp)
-target_link_libraries (capture_3_view_point_cloud ${PCL_LIBRARIES}  ${roscpp_LIBRARIES} ${catkin_LIBRARIES})
+#add_executable (capture_3_view_point_cloud capture_3_view_point_cloud.cpp)
+#target_link_libraries (capture_3_view_point_cloud ${PCL_LIBRARIES}  ${roscpp_LIBRARIES} ${catkin_LIBRARIES})
 
 add_executable (registering_and_downsampling_3_view_point_clouds registering_and_downsampling_3_view_point_clouds.cpp)
 target_link_libraries (registering_and_downsampling_3_view_point_clouds ${PCL_LIBRARIES}  ${roscpp_LIBRARIES} ${catkin_LIBRARIES})
 
-
 #add_executable (grasping_algorithm_photos_for_paper grasping_algorithm_photos_for_paper.cpp)
 #target_link_libraries (grasping_algorithm_photos_for_paper ${PCL_LIBRARIES} quadprog)
 
-#add_executable (cloud_visualizer cloud_visualizer.cpp)
-#target_link_libraries (cloud_visualizer ${PCL_LIBRARIES} quadprog)
-
-#add_executable (cloud_visualizer2 cloud_visualizer2.cpp)
-#target_link_libraries (cloud_visualizer2 ${PCL_LIBRARIES} quadprog)
+#add_executable (visualize_allegro_hand_workspace_spheres visualize_allegro_hand_workspace_spheres.cpp)
+#target_link_libraries (visualize_allegro_hand_workspace_spheres ${PCL_LIBRARIES} quadprog)
 
 
 #add_executable(grasping_algorithm_real_experiments grasping_algorithm_real_experiments.cpp)

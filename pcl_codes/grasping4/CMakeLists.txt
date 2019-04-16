@@ -1,0 +1,44 @@
+cmake_minimum_required(VERSION 2.8.3)
+
+set( CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}" ${CMAKE_MODULE_PATH} )
+
+find_package(PCL 1.7 REQUIRED COMPONENTS)
+#find_package(VTK REQUIRED)
+find_package(roscpp REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(tf REQUIRED)
+find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs genmsg tf)
+
+include_directories(${PCL_INCLUDE_DIRS})
+include_directories(${roscpp_INCLUDE_DIRS})
+include_directories(${std_msgs_INCLUDE_DIRS})
+
+link_directories(${PCL_LIBRARY_DIRS})
+
+add_definitions(${PCL_DEFINITIONS})
+
+#set (CMAKE_CXX_FLAGS "-O2 -Wall")
+set (CMAKE_CXX_STANDARD 11)
+
+
+#add_executable(point_cloud_as_a_set_of_spheres point_cloud_as_a_set_of_spheres.cpp)
+#target_link_libraries(point_cloud_as_a_set_of_spheres pthread ${PCL_LIBRARIES})
+
+add_executable (grasping_algorithm grasping_algorithm.cpp)
+target_link_libraries (grasping_algorithm ${PCL_LIBRARIES}  ${roscpp_LIBRARIES} ${catkin_LIBRARIES} quadprog)
+
+#add_executable (capture_3_view_point_cloud capture_3_view_point_cloud.cpp)
+#target_link_libraries (capture_3_view_point_cloud ${PCL_LIBRARIES}  ${roscpp_LIBRARIES} ${catkin_LIBRARIES})
+
+#add_executable (registering_and_downsampling_3_view_point_clouds registering_and_downsampling_3_view_point_clouds.cpp)
+#target_link_libraries (registering_and_downsampling_3_view_point_clouds ${PCL_LIBRARIES}  ${roscpp_LIBRARIES} ${catkin_LIBRARIES})
+
+#add_executable (grasping_algorithm_photos_for_paper grasping_algorithm_photos_for_paper.cpp)
+#target_link_libraries (grasping_algorithm_photos_for_paper ${PCL_LIBRARIES} quadprog)
+
+#add_executable (visualize_allegro_hand_workspace_spheres visualize_allegro_hand_workspace_spheres.cpp)
+#target_link_libraries (visualize_allegro_hand_workspace_spheres ${PCL_LIBRARIES} quadprog)
+
+
+#add_executable(grasping_algorithm_real_experiments grasping_algorithm_real_experiments.cpp)
+#target_link_libraries(grasping_algorithm_real_experiments pthread ${PCL_LIBRARIES} ${roscpp_LIBRARIES} ${catkin_LIBRARIES})
