@@ -4,7 +4,7 @@ before starting this program, start first the realsense ROS nodelet using:
 roslaunch realsense2_camera rs_rgbd.launch
 
 then run using:
-reset && cmake .. && make && ./grasping_algorithm_real_experiments storage_bin2 0.01 0.007 ../include/gripper_pcd_model/allegro_right_hand_model_cloud_plus_camera.pcd
+reset && cmake .. && make && ./grasping_algorithm_real_experiments storage_bin2 ../include/gripper_pcd_model/allegro_right_hand_model_cloud_plus_camera.pcd
 */
 
 #include <ros/ros.h>
@@ -32,6 +32,7 @@ reset && cmake .. && make && ./grasping_algorithm_real_experiments storage_bin2 
 #include <math.h>
 #include <unistd.h>
 
+#include "include/declarations.h"
 #include "include/useful_implementations.h"
 
 #include <pcl/ModelCoefficients.h>
@@ -61,15 +62,16 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr augmented_cloud                          
 pcl::PointCloud<pcl::PointXYZ>::Ptr    augmented_cloud_xyz                        (new pcl::PointCloud<pcl::PointXYZ>);
 pcl::PointCloud<pcl::PointXYZ>::Ptr    augmented_cloud_filtered_xyz               (new pcl::PointCloud<pcl::PointXYZ>);
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr current_scene_cloud_xyzrgb                 (new pcl::PointCloud<pcl::PointXYZRGB>);
+pcl::PointCloud<pcl::PointXYZ>::Ptr    current_scene_cloud_xyz                    (new pcl::PointCloud<pcl::PointXYZ>);
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr current_scene_cloud_transformed_xyzrgb     (new pcl::PointCloud<pcl::PointXYZRGB>);
 pcl::PointCloud<pcl::PointXYZ>::Ptr    current_scene_cloud_transformed_xyz        (new pcl::PointCloud<pcl::PointXYZ>);
+pcl::PointCloud<pcl::PointXYZRGB>::Ptr dummy_xyzrgb                               (new pcl::PointCloud<pcl::PointXYZRGB>);
 
-pcl::PointXYZ  point_xyz;
+//pcl::PointXYZ  point_xyz;
 
 //pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB> rgb(augmented_cloud);
 
 std::string file_name;
-double leaf_size, distance_threshold;
 
 void view_point_cloud(const boost::shared_ptr<const sensor_msgs::PointCloud2>& input){
   pcl::PCLPointCloud2 pcl_pc2;
@@ -85,8 +87,6 @@ void view_point_cloud(const boost::shared_ptr<const sensor_msgs::PointCloud2>& i
 int main(int argc, char **argv){
   std::string point_cloud_name, point_cloud_id;
   point_cloud_name   = argv[1];
-  leaf_size          = std::stof( argv[2] );
-  distance_threshold = std::stof( argv[3] );
   
   // ROS
   ros::init(argc, argv, "grasping_algorithm_real_experiments");
@@ -142,6 +142,10 @@ int main(int argc, char **argv){
   clock_t begin7, end;
 	double time_spent;
 	
+	ofstream transformation_matrix_file;
+  transformation_matrix_file.open("../raw_object_pcd_files/"+ point_cloud_name + "_tf.txt");
+  std::string tf_string;
+	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //
@@ -185,34 +189,12 @@ int main(int argc, char **argv){
 		arm_hand_wrt_arm_link0_frame_transform_old << arm_hand_wrt_arm_link0_frame_rotation_old, arm_hand_wrt_arm_link0_frame_translation_old,
 						                                      0,0,0,1;
   	
-  	
-  	
-  	// declarations for segmentation
-  	// Create the filtering object: downsample the dataset using a leaf size
-		pcl::VoxelGrid<pcl::PointXYZ> vg;
-		pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (new pcl::PointCloud<pcl::PointXYZ>);
-		
-		// Create the segmentation object for the planar model and set all the parameters
-		pcl::SACSegmentation<pcl::PointXYZ> seg;
-		pcl::PointIndices::Ptr inliers (new pcl::PointIndices);
-		pcl::ModelCoefficients::Ptr coefficients (new pcl::ModelCoefficients);
-		pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_plane (new pcl::PointCloud<pcl::PointXYZ> ());
-		pcl::PCDWriter writer;
-  	
-  	pcl::ExtractIndices<pcl::PointXYZ> extract;
-  	
-  	// Creating the KdTree object for the search method of the extraction
-		pcl::search::KdTree<pcl::PointXYZ>::Ptr tree (new pcl::search::KdTree<pcl::PointXYZ>);
-		
-  	
-  	// taking 3 point clouds
+  	// capturing the 3 view point clouds
     for(int i=0;i<3;i++){
-      
       config_index.data = i;
       joint_position_pub.publish( config_index );
 			ros::Duration(8).sleep();
 		  ros::spinOnce();
-			
 			
       // get the current camera_depth_frame transform with respect to link0
 			try{listener.lookupTransform("/panda_link0", "/camera_depth_optical_frame", ros::Time(0), stamped_transform);}
@@ -229,116 +211,58 @@ int main(int argc, char **argv){
 			camera_depth_frame_new_wrt_link0_transform << camera_depth_frame_new_wrt_link0_rotation, camera_depth_frame_new_wrt_link0_translation,
 			                                0,0,0,1;
 			
+			dummy_xyzrgb->clear();
+			// remove far points
+			for(int j=0; j<current_scene_cloud_xyzrgb->size(); j++){
+				if(current_scene_cloud_xyzrgb->points[j].z < 1.0)
+					dummy_xyzrgb->points.push_back(current_scene_cloud_xyzrgb->points[j]);
+			}
+			*current_scene_cloud_xyzrgb = *dummy_xyzrgb;
+			current_scene_cloud_xyzrgb->width = current_scene_cloud_xyzrgb->points.size();
+			current_scene_cloud_xyzrgb->height = 1;
+			current_scene_cloud_xyzrgb->is_dense = true;
+			
+			// save individual point cloud
+  		file_name = "../raw_object_pcd_files/"+ point_cloud_name + "_" + std::to_string(i) + ".pcd";
+			pcl::io::savePCDFileASCII(file_name, *current_scene_cloud_xyzrgb);
+			
       camera_depth_frame_new_wrt_camera_depth_frame_old_transform = camera_depth_frame_old_wrt_link0_transform.inverse()*camera_depth_frame_new_wrt_link0_transform;
       pcl::transformPointCloud (*current_scene_cloud_xyzrgb, *current_scene_cloud_transformed_xyzrgb, camera_depth_frame_new_wrt_camera_depth_frame_old_transform);
+      *augmented_cloud += *current_scene_cloud_transformed_xyzrgb;
       
-      current_scene_cloud_transformed_xyz->clear();
-      for(unsigned int j=0; j<current_scene_cloud_transformed_xyzrgb->size(); j++){
-	      point_xyz.x = current_scene_cloud_transformed_xyzrgb->points[j].x;
-      	point_xyz.y = current_scene_cloud_transformed_xyzrgb->points[j].y;
-      	point_xyz.z = current_scene_cloud_transformed_xyzrgb->points[j].z;
-      	current_scene_cloud_transformed_xyz->points.push_back( point_xyz );
-      }
+      std::stringstream ss;
+		  ss << camera_depth_frame_new_wrt_camera_depth_frame_old_transform;
+		  tf_string += ss.str() + "\n";
       
-      
-      // segmentation
-      begin7 = clock();
-	
-			// Read in the cloud data
-			pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_f (new pcl::PointCloud<pcl::PointXYZ>);
-			std::cout << "PointCloud before filtering has: " << current_scene_cloud_transformed_xyz->points.size () << " data points." << std::endl; //*
-
-			vg.setInputCloud (current_scene_cloud_transformed_xyz);
-			vg.setLeafSize (leaf_size, leaf_size, leaf_size);
-			vg.filter (*cloud_filtered);
-			std::cout << "PointCloud after filtering has: " << cloud_filtered->points.size ()  << " data points." << std::endl; //*
-
-			
-			seg.setOptimizeCoefficients (true);
-			seg.setModelType (pcl::SACMODEL_PLANE);
-			seg.setMethodType (pcl::SAC_RANSAC);
-			seg.setMaxIterations (100);
-			seg.setDistanceThreshold(distance_threshold);
-
-			int nr_points = (int) cloud_filtered->points.size ();
-			int l = 0;
-			while (cloud_filtered->points.size () > 0.3 * nr_points){
-				// Segment the largest planar component from the remaining cloud
-				seg.setInputCloud (cloud_filtered);
-				seg.segment (*inliers, *coefficients);
-				if (inliers->indices.size () == 0){
-				  std::cout << "Could not estimate a planar model for the given dataset." << std::endl;
-				  break;
-				}
-
-				// Extract the planar inliers from the input cloud
-				extract.setInputCloud (cloud_filtered);
-				extract.setIndices (inliers);
-				extract.setNegative (false);
-
-				// Get the points associated with the planar surface
-				extract.filter (*cloud_plane);
-				
-				// Remove the planar inliers, extract the rest
-				extract.setNegative (true);
-				extract.filter (*cloud_f);
-				*cloud_filtered = *cloud_f;
-				l++;
+      // new modifications
+      for(int j=0; j<current_scene_cloud_xyzrgb->size(); j++){
+        point_xyz.x = current_scene_cloud_xyzrgb->points[j].x;
+				point_xyz.y = current_scene_cloud_xyzrgb->points[j].y;
+				point_xyz.z = current_scene_cloud_xyzrgb->points[j].z;
+				current_scene_cloud_xyz->points.push_back(point_xyz);
 			}
-			writer.write<pcl::PointXYZ>( "pcd_files/" + point_cloud_name + "_table.pcd", *cloud_plane, false);
-			tree->setInputCloud (cloud_filtered);
-
-			std::vector<pcl::PointIndices> cluster_indices;
-			pcl::EuclideanClusterExtraction<pcl::PointXYZ> ec;
-			ec.setClusterTolerance (0.02); // 2cm
-			ec.setMinClusterSize (100);
-			ec.setMaxClusterSize (25000);
-			ec.setSearchMethod (tree);
-			ec.setInputCloud (cloud_filtered);
-			ec.extract (cluster_indices);
-
-			int k = 0;
-			for (std::vector<pcl::PointIndices>::const_iterator it = cluster_indices.begin (); it != cluster_indices.end (); ++it){
-				pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_cluster (new pcl::PointCloud<pcl::PointXYZ>);
-				for (std::vector<int>::const_iterator pit = it->indices.begin (); pit != it->indices.end (); ++pit)
-				  cloud_cluster->points.push_back (cloud_filtered->points[*pit]); //*
-				cloud_cluster->width = cloud_cluster->points.size ();
-				cloud_cluster->height = 1;
-				cloud_cluster->is_dense = true;
-
-				std::cout << "PointCloud representing the Cluster: " << cloud_cluster->points.size () << " data points." << std::endl;
-				
-				if(k==0)
-					*augmented_cloud_xyz  += *cloud_cluster;
-				k++;
-			}
-			
-			end = clock();
-			time_spent = (double)( end - begin7 )/ CLOCKS_PER_SEC;
-			std::cout << "time spent in clustering/segmentation = " << time_spent << std::endl;
+      if(i==0){
+        *scene_cloud_xyz_1 = *current_scene_cloud_xyz;
+        tm1 = camera_depth_frame_new_wrt_camera_depth_frame_old_transform;}
+      else if(i==1){
+        *scene_cloud_xyz_2 = *current_scene_cloud_xyz;
+        tm2 = camera_depth_frame_new_wrt_camera_depth_frame_old_transform;}
+      else if(i==2){
+        *scene_cloud_xyz_3 = *current_scene_cloud_xyz;
+        tm3 = camera_depth_frame_new_wrt_camera_depth_frame_old_transform;}
       
       ros::spinOnce();
       loop_rate.sleep();
     }
   }
   
-  // remove far points then save
-  augmented_cloud_filtered_xyz->clear();
-	for(unsigned int j=0; j<augmented_cloud_xyz->size(); j++){
-    point_xyz.x = augmented_cloud_xyz->points[j].x;
-  	point_xyz.y = augmented_cloud_xyz->points[j].y;
-  	point_xyz.z = augmented_cloud_xyz->points[j].z;
-  	if(point_xyz.z < 0.7 and point_xyz.z > 0.3)
-  		augmented_cloud_filtered_xyz->points.push_back( point_xyz );
-  }
-  std::cout << "segmented object cloud size : " << augmented_cloud_filtered_xyz->points.size ()  << " data points." << std::endl;
-  augmented_cloud_filtered_xyz->width = 1;
-	augmented_cloud_filtered_xyz->height = augmented_cloud_filtered_xyz->points.size();
   
   // save point cloud data
-  file_name = "pcd_files/"+ point_cloud_name + ".pcd";
-  //pcl::io::savePCDFileASCII(file_name, *augmented_cloud_xyz);
-  pcl::io::savePCDFileASCII(file_name, *augmented_cloud_filtered_xyz);
+  file_name = "../raw_object_pcd_files/"+ point_cloud_name + ".pcd";
+  pcl::io::savePCDFileASCII(file_name, *augmented_cloud);
+  
+  transformation_matrix_file << tf_string;
+  transformation_matrix_file.close();
   
   
   
@@ -366,6 +290,176 @@ int main(int argc, char **argv){
   
   
   
+  gripper_file_name      = argv[2];
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  if(gripper_file_name.find("allegro_right_hand" )!=std::string::npos){gripper_model = "allegro_right_hand";}
+  else if(gripper_file_name.find("franka_gripper")!=std::string::npos){gripper_model = "franka_gripper";}
+  
+  
+  // visualization of point cloud
+  scene_cloud_viewer->addCoordinateSystem(0.2);   // this is arm hand frame (the origin)
+  scene_cloud_viewer->setCameraPosition(-1.53884, 0.506528, -0.636167, -0.171077, 0.068023, 0.333948, 0.522106, -0.203709, -0.828196, 0);
+  scene_cloud_viewer->setBackgroundColor(255,255,255);
+  
+  scene_cloud_viewer->addPointCloud(object_cloud_downsampled_in_arm_hand_frame_xyz, magenta_color,                    "object cloud");
+  scene_cloud_viewer->addPointCloud(object_sampling_in_arm_hand_frame_xyz, blue_color_again,                          "object sampling cloud");
+  
+  scene_cloud_viewer->addPointCloud(object_plane_cloud_downsampled_in_arm_hand_frame_xyz, brown_color,                "table cloud");
+  scene_cloud_viewer->addPointCloud(object_plane_special_ellipsoid_point_cloud_in_arm_hand_frame, orange_color,       "table special ellipsoid");
+  
+  scene_cloud_viewer->addPointCloud(gripper_cloud_downsampled_in_arm_hand_frame_xyz, cyan_color_again,                "gripper cloud in arm hand frame");
+  scene_cloud_viewer->addPointCloud(gripper_cloud_transformed_in_arm_hand_frame_xyz, cyan_color,                      "gripper cloud transformed in arm hand frame");
+  //scene_cloud_viewer->addPointCloud(gripper_cloud_transformed_in_object_plane_frame_xyz, black_color_again,           "gripper cloud in object plane frame");
+  scene_cloud_viewer->addPointCloud(gripper_as_set_of_special_ellipsoids_transformed_in_arm_hand_frame, black_color,  "gripper special ellipsoids transformed");
+  scene_cloud_viewer->addPointCloud(gripper_as_set_of_special_ellipsoids_in_arm_hand_frame, black_color_again,        "gripper special ellipsoids");
+  
+  
+  
+  
+  
+  
+  
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Downsampling, Regestering, segmenting object's 3 view point clouds
+  /*
+  if(mode=="simulation")
+    load_object_3_view_point_clouds_and_corresponding_transforms();
+  else if(mode=="experiment"){
+  }
+  */
+  initial_overhead_begin = clock();
+	registering_downsampling_segmenting_3_view_point_clouds(scene_cloud_xyz_1, tm1,   scene_cloud_xyz_2, tm2,   scene_cloud_xyz_3, tm3,
+                                                          scene_cloud_xyz_1_transformed, scene_cloud_xyz_2_transformed, scene_cloud_xyz_3_transformed,
+                                                          scene_cloud_xyz_1_transformed_downsampled, scene_cloud_xyz_2_transformed_downsampled, scene_cloud_xyz_3_transformed_downsampled,
+                                                          object_plane_cloud_downsampled_in_camera_depth_optical_frame_xyz, object_cloud_downsampled_in_camera_depth_optical_frame_xyz );
+  
+  std::cout << "Object (downsampled) point cloud has:  " << object_cloud_downsampled_in_camera_depth_optical_frame_xyz->points.size()        << " data points." << std::endl;
+  std::cout << "Table (downsampled) point cloud has:   " << object_plane_cloud_downsampled_in_camera_depth_optical_frame_xyz->points.size()  << " data points." << std::endl;
+  std::cout << "Gripper (downsampled) point cloud has: " << gripper_cloud_downsampled_in_gripper_frame_xyz->points.size()                    << " data points." << std::endl;
+  
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  load_transformations();
+  object_pose_approximation_and_sampling();
+  object_plane_pose_approximation();
+  constructing_special_ellipsoids();
+  object_plane_pose_check();
+  load_gripper_workspace_spheres_and_compute_centroid();
+  
+  
+  end = clock();
+	time_spent_for_initial_overhead = (double)( end - initial_overhead_begin )/ CLOCKS_PER_SEC;
+	std::cout << "total initial overhead (to add to the execution time) = " << time_spent_for_initial_overhead << std::endl;
+  
+  end = clock();
+	time_spent = (double)( end - time_to_load_clouds_begin )/ CLOCKS_PER_SEC;
+	std::cout << "total time spent to load stuff = " << time_spent << std::endl;
+  
+  //char ch;
+  //std::cout << "maximuize screen please ..." << std::endl;
+  //std::cin >> ch;
+  
+  time_to_run_algorithm_begin = clock();
+  begin2 = clock();
+  
+  
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // scanning for best grasp pose
+  evaluate_grasp_pose_candidates();
+  
+  end = clock();
+	time_spent = (double)( end - begin2 )/ CLOCKS_PER_SEC;
+	std::cout << "time spent in checking gripper collision with table        = " << time_elapsed_checking_gripper_collision_with_table        << std::endl;
+	std::cout << "time spent in checking gripper collision with object       = " << time_elapsed_checking_gripper_collision_with_object       << std::endl;
+  std::cout << "time spent in checking object contact with gripper support = " << time_elapsed_checking_object_contact_with_gripper_support << std::endl;
+  std::cout << "time spent in scanning for best gripper pose               = " << time_spent << std::endl;
+  std::cout << "out of " << orientation_samples*object_sampling_in_arm_hand_frame_xyz->points.size() << " iterations, gripper collide with table  : " << gripper_collide_with_table   << " times." << std::endl;
+  std::cout << "out of " << orientation_samples*object_sampling_in_arm_hand_frame_xyz->points.size() << " iterations, gripper collide with object : " << gripper_collide_with_object  << " times." << std::endl;
+  std::cout << "out of " << orientation_samples*object_sampling_in_arm_hand_frame_xyz->points.size() << " iterations, gripper contacts with object: " << gripper_contacts_with_object << " times." << std::endl;
+  
+  end = clock();
+	time_spent = (double)( end - time_to_run_algorithm_begin )/ CLOCKS_PER_SEC;
+	std::cout << "total time spent by the ALGORITHM = " << time_spent << std::endl;
+  std::cout << "total spent (ALGORITHM + initial overhead) = " << time_spent+time_spent_for_initial_overhead << std::endl;
+  
+  
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  visualize_workspace_spheres_and_object_points_for_best_gripper_pose();
+  
+  
+  
+  
+  
+  
+  
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // object cloud
+  scene_cloud_viewer->updatePointCloud(object_cloud_downsampled_in_arm_hand_frame_xyz, magenta_color,                      "object cloud");
+  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 10,                  "object cloud");
+  
+  // object plane cloud
+  scene_cloud_viewer->updatePointCloud(object_plane_cloud_downsampled_in_arm_hand_frame_xyz, brown_color,                  "table cloud");
+  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 4,                   "table cloud");
+  
+  // object plane special ellipsoid
+  scene_cloud_viewer->updatePointCloud(object_plane_special_ellipsoid_point_cloud_in_arm_hand_frame, orange_color,         "table special ellipsoid");
+  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2,                   "table special ellipsoid");
+  
+  // object sampling cloud
+  scene_cloud_viewer->updatePointCloud(object_sampling_in_arm_hand_frame_xyz, blue_color_again,                            "object sampling cloud");
+  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 10,                  "object sampling cloud");
+  
+  // gripper cloud transformed in arm hand frame
+  pcl::transformPointCloud(*gripper_cloud_downsampled_in_arm_hand_frame_xyz, *gripper_cloud_transformed_in_arm_hand_frame_xyz, best_gripper_transform);
+  scene_cloud_viewer->updatePointCloud(gripper_cloud_transformed_in_arm_hand_frame_xyz, cyan_color,                        "gripper cloud transformed in arm hand frame");
+  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 10,                  "gripper cloud transformed in arm hand frame");
+  
+  // gripper cloud in arm hand frame
+  scene_cloud_viewer->updatePointCloud(gripper_cloud_downsampled_in_arm_hand_frame_xyz, cyan_color_again,                  "gripper cloud in arm hand frame");
+  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 10,                  "gripper cloud in arm hand frame");
+  
+  // gripper special ellipsoids transformed
+  pcl::transformPointCloud(*gripper_as_set_of_special_ellipsoids_in_arm_hand_frame, *gripper_as_set_of_special_ellipsoids_transformed_in_arm_hand_frame, best_gripper_transform);
+  scene_cloud_viewer->updatePointCloud(gripper_as_set_of_special_ellipsoids_transformed_in_arm_hand_frame, black_color,    "gripper special ellipsoids transformed");
+  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper special ellipsoids transformed");
+  
+  // gripper special ellipsoids
+  scene_cloud_viewer->updatePointCloud(gripper_as_set_of_special_ellipsoids_in_arm_hand_frame, black_color_again,          "gripper special ellipsoids");
+  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper special ellipsoids");
+  
+  scene_cloud_viewer->spinOnce();
+  
+  
+  
+  // output
+  std::cout << "best_gripper_transform = " << std::endl << best_gripper_transform << std::endl;
+  
+  end = clock();
+	time_spent = (double)( end - begin )/ CLOCKS_PER_SEC;
+	std::cout << "total time spent by this program = " << time_spent << std::endl;
+  
+  //std::vector<pcl::visualization::Camera> cam;
+  while ( !scene_cloud_viewer->wasStopped() ){
+    scene_cloud_viewer->spinOnce();
+    //if(gripper_model == "allegro_right_hand")
+    //  save_file_name = "allegro_video/allegro_best.png";
+    //else if(gripper_model == "franka_gripper")
+    //  save_file_name = "franka_video/franka_best.png";
+    //scene_cloud_viewer->saveScreenshot(save_file_name);
+    //scene_cloud_viewer->getCameras(cam);
+    //Print recorded points on the screen: 
+    //cout << "Cam: " << endl 
+    //             << " - pos:   (" << cam[0].pos[0]   << ", " << cam[0].pos[1] <<   ", " << cam[0].pos[2] <<   ")" << endl
+    //             << " - view:  (" << cam[0].view[0]  << ", " << cam[0].view[1] <<  ", " << cam[0].view[2] <<  ")" << endl
+    //             << " - focal: (" << cam[0].focal[0] << ", " << cam[0].focal[1] << ", " << cam[0].focal[2] << ")" << endl;
+  }
   
   
   
@@ -376,6 +470,9 @@ int main(int argc, char **argv){
   
   
   
+  
+  
+  /*
   
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1188,65 +1285,9 @@ int main(int argc, char **argv){
           
           
           
-          /*
-          // this condition maximizes distance between gripper fingers
-          if( distance_between_gripper_fingers > distance_between_gripper_fingers_best ){
-            distance_between_gripper_fingers_best = distance_between_gripper_fingers;
-            
-            // saving best object points
-            *object_points_in_thumb_workspace_best  = *object_points_in_thumb_workspace;
-            *object_points_in_index_workspace_best  = *object_points_in_index_workspace;
-            *object_points_in_middle_workspace_best = *object_points_in_middle_workspace;
-            *object_points_in_pinky_workspace_best  = *object_points_in_pinky_workspace;
-            
-            // saving the best workspace spheres
-            *thumb_workspace_active_spheres_offset_best     = *thumb_workspace_active_spheres_offset;
-            *thumb_workspace_active_spheres_parameter_best  = *thumb_workspace_active_spheres_parameter;
-            *index_workspace_active_spheres_offset_best     = *index_workspace_active_spheres_offset;
-            *index_workspace_active_spheres_parameter_best  = *index_workspace_active_spheres_parameter;
-            *middle_workspace_active_spheres_offset_best    = *middle_workspace_active_spheres_offset;
-            *middle_workspace_active_spheres_parameter_best = *middle_workspace_active_spheres_parameter;
-            *pinky_workspace_active_spheres_offset_best     = *pinky_workspace_active_spheres_offset;
-            *pinky_workspace_active_spheres_parameter_best  = *pinky_workspace_active_spheres_parameter;
-            
-            //std::cout<<"metric#1 : "<<(object_points_in_thumb_workspace_best->size() + object_points_in_index_workspace_best->size() + object_points_in_middle_workspace_best->size() + object_points_in_pinky_workspace_best->size() )<<std::endl;
-            std::cout<<"metric#3 : "<<distance_between_gripper_fingers_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
-            best_gripper_transform = gripper_transform;
-          }
-          */
           
           
           
-          
-          
-          /*
-          // combining metric#2 and metric#3
-          // this condition minimizes distance between object centroid and gripper support region
-          if( (distance_between_gripper_support_and_object_centroid < distance_between_gripper_support_and_object_centroid_best) and (distance_between_gripper_fingers > distance_between_gripper_fingers_best) ){
-            distance_between_gripper_support_and_object_centroid_best = distance_between_gripper_support_and_object_centroid;
-            
-            // saving best object points
-            *object_points_in_thumb_workspace_best  = *object_points_in_thumb_workspace;
-            *object_points_in_index_workspace_best  = *object_points_in_index_workspace;
-            *object_points_in_middle_workspace_best = *object_points_in_middle_workspace;
-            *object_points_in_pinky_workspace_best  = *object_points_in_pinky_workspace;
-            
-            // saving the best workspace spheres
-            *thumb_workspace_active_spheres_offset_best     = *thumb_workspace_active_spheres_offset;
-            *thumb_workspace_active_spheres_parameter_best  = *thumb_workspace_active_spheres_parameter;
-            *index_workspace_active_spheres_offset_best     = *index_workspace_active_spheres_offset;
-            *index_workspace_active_spheres_parameter_best  = *index_workspace_active_spheres_parameter;
-            *middle_workspace_active_spheres_offset_best    = *middle_workspace_active_spheres_offset;
-            *middle_workspace_active_spheres_parameter_best = *middle_workspace_active_spheres_parameter;
-            *pinky_workspace_active_spheres_offset_best     = *pinky_workspace_active_spheres_offset;
-            *pinky_workspace_active_spheres_parameter_best  = *pinky_workspace_active_spheres_parameter;
-            
-            //std::cout<<"metric#1 : "<<(object_points_in_thumb_workspace_best->size() + object_points_in_index_workspace_best->size() + object_points_in_middle_workspace_best->size() + object_points_in_pinky_workspace_best->size() )<<std::endl;
-            std::cout<<"metric#2 : "<<distance_between_gripper_support_and_object_centroid_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
-            std::cout<<"metric#3 : "<<distance_between_gripper_fingers_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
-            best_gripper_transform = gripper_transform;
-          }
-          */
           
           
           
@@ -1341,52 +1382,9 @@ int main(int argc, char **argv){
           
           
           
-          
-          /*
-		      // this condition maximizes distance between gripper fingers
-		      if( distance_between_gripper_fingers > distance_between_gripper_fingers_best ){
-		        distance_between_gripper_fingers_best = distance_between_gripper_fingers;
-		        
-		        // saving best object points
-		        *object_points_in_right_finger_workspace_best = *object_points_in_right_finger_workspace;
-		        *object_points_in_left_finger_workspace_best  = *object_points_in_left_finger_workspace;
-		        
-		        // saving the best workspace spheres
-		        *right_finger_workspace_active_spheres_offset_best     = *right_finger_workspace_active_spheres_offset;
-		        *right_finger_workspace_active_spheres_parameter_best  = *right_finger_workspace_active_spheres_parameter;
-		        *left_finger_workspace_active_spheres_offset_best     = *left_finger_workspace_active_spheres_offset;
-		        *left_finger_workspace_active_spheres_parameter_best  = *left_finger_workspace_active_spheres_parameter;
-		        
-		        //std::cout<<"metric#1 : "<<(object_points_in_thumb_workspace_best->size() + object_points_in_index_workspace_best->size() + object_points_in_middle_workspace_best->size() + object_points_in_pinky_workspace_best->size() )<<std::endl;
-		        std::cout<<"metric#3 : "<<distance_between_gripper_fingers_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
-		        best_gripper_transform = gripper_transform;
-		      }
-		      */
+         
           
           
-          
-          /*
-          // combining metric#2 and metric#3
-		      // this condition minimizes distance between object centroid and gripper support region
-		      if( (distance_between_gripper_support_and_object_centroid <= distance_between_gripper_support_and_object_centroid_best) and (distance_between_gripper_fingers >= distance_between_gripper_fingers_best) ){
-		        distance_between_gripper_support_and_object_centroid_best = distance_between_gripper_support_and_object_centroid;
-		        
-		        // saving best object points
-		        *object_points_in_right_finger_workspace_best = *object_points_in_right_finger_workspace;
-		        *object_points_in_left_finger_workspace_best  = *object_points_in_left_finger_workspace;
-		        
-		        // saving the best workspace spheres
-		        *right_finger_workspace_active_spheres_offset_best     = *right_finger_workspace_active_spheres_offset;
-		        *right_finger_workspace_active_spheres_parameter_best  = *right_finger_workspace_active_spheres_parameter;
-		        *left_finger_workspace_active_spheres_offset_best     = *left_finger_workspace_active_spheres_offset;
-		        *left_finger_workspace_active_spheres_parameter_best  = *left_finger_workspace_active_spheres_parameter;
-		        
-		        //std::cout<<"metric#1 : "<<(object_points_in_thumb_workspace_best->size() + object_points_in_index_workspace_best->size() + object_points_in_middle_workspace_best->size() + object_points_in_pinky_workspace_best->size() )<<std::endl;
-		        std::cout<<"metric#2 : "<<distance_between_gripper_support_and_object_centroid_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
-		        std::cout<<"metric#3 : "<<distance_between_gripper_fingers_best << ", at point: " << object_sampling_in_object_frame_xyzrgb->points[i] <<std::endl;
-		        best_gripper_transform = gripper_transform;
-		      }
-          */
           
           
           
@@ -1569,7 +1567,7 @@ int main(int argc, char **argv){
   
   
   
-  
+  */
   
   
   

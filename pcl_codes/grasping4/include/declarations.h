@@ -124,10 +124,10 @@ std::string gripper_file_name;
 std::string file_name1;
 std::string file_name2;
 std::string file_name3;
-std::string tf_matrix_file_name;
+std::string transformation_matrix_file_name;
 std::string object_file_name;
-Eigen::MatrixXd tf;
-Eigen::Matrix4d tf1, tf2, tf3;
+Eigen::MatrixXd tm;
+Eigen::Matrix4f tm1, tm2, tm3;
 
 
 

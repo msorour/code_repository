@@ -30,17 +30,17 @@ int main (int argc, char** argv){
   begin = clock();
 	time_to_load_clouds_begin = clock();
 	
-	mode                     = argv[1];
-  gripper_file_name        = argv[2];
+	mode = argv[1];
+  gripper_file_name = argv[2];
   
   if(mode=="simulation"){
-    file_name1             = argv[3];
-    file_name2             = argv[4];
-    file_name3             = argv[5];
-    tf_matrix_file_name    = argv[6];
+    file_name1 = argv[3];
+    file_name2 = argv[4];
+    file_name3 = argv[5];
+    transformation_matrix_file_name = argv[6];
   }
   else if(mode=="experiment"){
-    object_file_name       = argv[3];
+    object_file_name = argv[3];
   }
   
   if(gripper_file_name.find("allegro_right_hand" )!=std::string::npos){gripper_model = "allegro_right_hand";}
@@ -66,6 +66,10 @@ int main (int argc, char** argv){
   
   
   
+  
+  
+  
+  
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Downsampling, Regestering, segmenting object's 3 view point clouds
   if(mode=="simulation")
@@ -73,7 +77,7 @@ int main (int argc, char** argv){
   else if(mode=="experiment"){
   }
   initial_overhead_begin = clock();
-	registering_downsampling_segmenting_3_view_point_clouds(scene_cloud_xyz_1, tf1,   scene_cloud_xyz_2, tf2,   scene_cloud_xyz_3, tf3,
+	registering_downsampling_segmenting_3_view_point_clouds(scene_cloud_xyz_1, tm1,   scene_cloud_xyz_2, tm2,   scene_cloud_xyz_3, tm3,
                                                           scene_cloud_xyz_1_transformed, scene_cloud_xyz_2_transformed, scene_cloud_xyz_3_transformed,
                                                           scene_cloud_xyz_1_transformed_downsampled, scene_cloud_xyz_2_transformed_downsampled, scene_cloud_xyz_3_transformed_downsampled,
                                                           object_plane_cloud_downsampled_in_camera_depth_optical_frame_xyz, object_cloud_downsampled_in_camera_depth_optical_frame_xyz );
@@ -128,93 +132,7 @@ int main (int argc, char** argv){
   
   
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // Draw the workspace spheres of the best gripper pose
-  if(gripper_model == "allegro_right_hand"){
-    // thumb
-    scene_cloud_viewer->addPointCloud(thumb_workspace_spheres_best, red_color, "thumb workspace spheres");
-    scene_cloud_viewer->addPointCloud(object_points_in_thumb_workspace_best, red_color, "thumb workspace points");
-    for(unsigned int j=0; j<thumb_workspace_active_spheres_offset_best->size(); j++){
-      parameter_vector << thumb_workspace_active_spheres_parameter_best->points[j].x, thumb_workspace_active_spheres_parameter_best->points[j].y, thumb_workspace_active_spheres_parameter_best->points[j].z;
-      offset_vector    << thumb_workspace_active_spheres_offset_best->points[j].x, thumb_workspace_active_spheres_offset_best->points[j].y, thumb_workspace_active_spheres_offset_best->points[j].z;
-      construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 100, 2, 255, 0, 0 );
-      *thumb_workspace_spheres_best += *dummy_cloud_xyz;}
-    pcl::transformPointCloud(*thumb_workspace_spheres_best, *thumb_workspace_spheres_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
-    scene_cloud_viewer->updatePointCloud(thumb_workspace_spheres_best, red_color, "thumb workspace spheres");
-    pcl::transformPointCloud(*object_points_in_thumb_workspace_best, *object_points_in_thumb_workspace_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
-    scene_cloud_viewer->updatePointCloud(object_points_in_thumb_workspace_best, red_color, "thumb workspace points");
-    scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 15, "thumb workspace points");
-    
-    // index
-    scene_cloud_viewer->addPointCloud(index_workspace_spheres_best, green_color, "index workspace spheres");
-    scene_cloud_viewer->addPointCloud(object_points_in_index_workspace_best, green_color, "index workspace points");
-    for(unsigned int j=0; j<index_workspace_active_spheres_offset_best->size(); j++){
-      parameter_vector << index_workspace_active_spheres_parameter_best->points[j].x, index_workspace_active_spheres_parameter_best->points[j].y, index_workspace_active_spheres_parameter_best->points[j].z;
-      offset_vector    << index_workspace_active_spheres_offset_best->points[j].x, index_workspace_active_spheres_offset_best->points[j].y, index_workspace_active_spheres_offset_best->points[j].z;
-      construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 100, 2, 255, 0, 0 );
-      *index_workspace_spheres_best += *dummy_cloud_xyz;}
-    pcl::transformPointCloud(*index_workspace_spheres_best, *index_workspace_spheres_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
-    scene_cloud_viewer->updatePointCloud(index_workspace_spheres_best, green_color, "index workspace spheres");
-    pcl::transformPointCloud(*object_points_in_index_workspace_best, *object_points_in_index_workspace_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
-    scene_cloud_viewer->updatePointCloud(object_points_in_index_workspace_best, green_color, "index workspace points");
-    scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 15, "index workspace points");
-    
-    // middle
-    scene_cloud_viewer->addPointCloud(middle_workspace_spheres_best, blue_color, "middle workspace spheres");
-    scene_cloud_viewer->addPointCloud(object_points_in_middle_workspace_best, blue_color, "middle workspace points");
-    for(unsigned int j=0; j<middle_workspace_active_spheres_offset_best->size(); j++){
-      parameter_vector << middle_workspace_active_spheres_parameter_best->points[j].x, middle_workspace_active_spheres_parameter_best->points[j].y, middle_workspace_active_spheres_parameter_best->points[j].z;
-      offset_vector    << middle_workspace_active_spheres_offset_best->points[j].x, middle_workspace_active_spheres_offset_best->points[j].y, middle_workspace_active_spheres_offset_best->points[j].z;
-      construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 100, 2, 255, 0, 0 );
-      *middle_workspace_spheres_best += *dummy_cloud_xyz;}
-    pcl::transformPointCloud(*middle_workspace_spheres_best, *middle_workspace_spheres_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
-    scene_cloud_viewer->updatePointCloud(middle_workspace_spheres_best, blue_color, "middle workspace spheres");
-    pcl::transformPointCloud(*object_points_in_middle_workspace_best, *object_points_in_middle_workspace_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
-    scene_cloud_viewer->updatePointCloud(object_points_in_middle_workspace_best, blue_color, "middle workspace points");
-    scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 15, "middle workspace points");
-    
-    // pinky
-    scene_cloud_viewer->addPointCloud(pinky_workspace_spheres_best, grey_color, "pinky workspace spheres");
-    scene_cloud_viewer->addPointCloud(object_points_in_pinky_workspace_best, grey_color, "pinky workspace points");
-    for(unsigned int j=0; j<pinky_workspace_active_spheres_offset_best->size(); j++){
-      parameter_vector << pinky_workspace_active_spheres_parameter_best->points[j].x, pinky_workspace_active_spheres_parameter_best->points[j].y, pinky_workspace_active_spheres_parameter_best->points[j].z;
-      offset_vector    << pinky_workspace_active_spheres_offset_best->points[j].x, pinky_workspace_active_spheres_offset_best->points[j].y, pinky_workspace_active_spheres_offset_best->points[j].z;
-      construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 100, 2, 255, 0, 0 );
-      *pinky_workspace_spheres_best += *dummy_cloud_xyz;}
-    pcl::transformPointCloud(*pinky_workspace_spheres_best, *pinky_workspace_spheres_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
-    scene_cloud_viewer->updatePointCloud(pinky_workspace_spheres_best, grey_color, "pinky workspace spheres");
-    pcl::transformPointCloud(*object_points_in_pinky_workspace_best, *object_points_in_pinky_workspace_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
-    scene_cloud_viewer->updatePointCloud(object_points_in_pinky_workspace_best, grey_color, "pinky workspace points");
-    scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 15, "pinky workspace points");
-  }
-  else if(gripper_model == "franka_gripper"){
-    // right_finger
-    scene_cloud_viewer->addPointCloud(right_finger_workspace_spheres_best, red_color_again, "right_finger workspace spheres");
-    scene_cloud_viewer->addPointCloud(object_points_in_right_finger_workspace_best, red_color_again, "right_finger workspace points");
-    for(unsigned int j=0; j<right_finger_workspace_active_spheres_offset_best->size(); j++){
-      parameter_vector << right_finger_workspace_active_spheres_parameter_best->points[j].x, right_finger_workspace_active_spheres_parameter_best->points[j].y, right_finger_workspace_active_spheres_parameter_best->points[j].z;
-      offset_vector    << right_finger_workspace_active_spheres_offset_best->points[j].x, right_finger_workspace_active_spheres_offset_best->points[j].y, right_finger_workspace_active_spheres_offset_best->points[j].z;
-      construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 50, 2, 255, 0, 0 );
-      *right_finger_workspace_spheres_best += *dummy_cloud_xyz;}
-    pcl::transformPointCloud(*right_finger_workspace_spheres_best, *right_finger_workspace_spheres_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
-    scene_cloud_viewer->updatePointCloud(right_finger_workspace_spheres_best, red_color_again, "right_finger workspace spheres");
-    pcl::transformPointCloud(*object_points_in_right_finger_workspace_best, *object_points_in_right_finger_workspace_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
-    scene_cloud_viewer->updatePointCloud(object_points_in_right_finger_workspace_best, red_color_again, "right_finger workspace points");
-    scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 15, "right_finger workspace points");
-    
-    // left_finger
-    scene_cloud_viewer->addPointCloud(left_finger_workspace_spheres_best, green_color_again, "left_finger workspace spheres");
-    scene_cloud_viewer->addPointCloud(object_points_in_left_finger_workspace_best, green_color_again, "left_finger workspace points");
-    for(unsigned int j=0; j<left_finger_workspace_active_spheres_offset_best->size(); j++){
-      parameter_vector << left_finger_workspace_active_spheres_parameter_best->points[j].x, left_finger_workspace_active_spheres_parameter_best->points[j].y, left_finger_workspace_active_spheres_parameter_best->points[j].z;
-      offset_vector    << left_finger_workspace_active_spheres_offset_best->points[j].x, left_finger_workspace_active_spheres_offset_best->points[j].y, left_finger_workspace_active_spheres_offset_best->points[j].z;
-      construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 50, 2, 255, 0, 0 );
-      *left_finger_workspace_spheres_best += *dummy_cloud_xyz;}
-    pcl::transformPointCloud(*left_finger_workspace_spheres_best, *left_finger_workspace_spheres_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
-    scene_cloud_viewer->updatePointCloud(left_finger_workspace_spheres_best, green_color_again, "left_finger workspace spheres");
-    pcl::transformPointCloud(*object_points_in_left_finger_workspace_best, *object_points_in_left_finger_workspace_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
-    scene_cloud_viewer->updatePointCloud(object_points_in_left_finger_workspace_best, green_color_again, "left_finger workspace points");
-    scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 15, "left_finger workspace points");
-  }
+  visualize_workspace_spheres_and_object_points_for_best_gripper_pose();
   
   
   
@@ -222,6 +140,7 @@ int main (int argc, char** argv){
   
   
   
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // object cloud
   scene_cloud_viewer->updatePointCloud(object_cloud_downsampled_in_arm_hand_frame_xyz, magenta_color,                      "object cloud");
   scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 10,                  "object cloud");

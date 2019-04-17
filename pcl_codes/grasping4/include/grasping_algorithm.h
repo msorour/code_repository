@@ -55,19 +55,19 @@ Eigen::MatrixXd readMatrix(const char *filename){
 
 void load_object_3_view_point_clouds_and_corresponding_transforms(void){
   reader.read(gripper_file_name, *gripper_cloud_downsampled_in_gripper_frame_xyz);
-  tf = readMatrix(tf_matrix_file_name.c_str());
-  tf1 << tf(0,0),  tf(0,1),  tf(0,2),  tf(0,3),
-         tf(1,0),  tf(1,1),  tf(1,2),  tf(1,3),
-         tf(2,0),  tf(2,1),  tf(2,2),  tf(2,3),
-         tf(3,0),  tf(3,1),  tf(3,2),  tf(3,3);
-  tf2 << tf(4,0),  tf(4,1),  tf(4,2),  tf(4,3),
-         tf(5,0),  tf(5,1),  tf(5,2),  tf(5,3),
-         tf(6,0),  tf(6,1),  tf(6,2),  tf(6,3),
-         tf(7,0),  tf(7,1),  tf(7,2),  tf(7,3);
-  tf3 << tf(8,0),  tf(8,1),  tf(8,2),  tf(8,3),
-         tf(9,0),  tf(9,1),  tf(9,2),  tf(9,3),
-         tf(10,0), tf(10,1), tf(10,2), tf(10,3),
-         tf(11,0), tf(11,1), tf(11,2), tf(11,3);
+  tm = readMatrix(transformation_matrix_file_name.c_str());
+  tm1 << tm(0,0),  tm(0,1),  tm(0,2),  tm(0,3),
+         tm(1,0),  tm(1,1),  tm(1,2),  tm(1,3),
+         tm(2,0),  tm(2,1),  tm(2,2),  tm(2,3),
+         tm(3,0),  tm(3,1),  tm(3,2),  tm(3,3);
+  tm2 << tm(4,0),  tm(4,1),  tm(4,2),  tm(4,3),
+         tm(5,0),  tm(5,1),  tm(5,2),  tm(5,3),
+         tm(6,0),  tm(6,1),  tm(6,2),  tm(6,3),
+         tm(7,0),  tm(7,1),  tm(7,2),  tm(7,3);
+  tm3 << tm(8,0),  tm(8,1),  tm(8,2),  tm(8,3),
+         tm(9,0),  tm(9,1),  tm(9,2),  tm(9,3),
+         tm(10,0), tm(10,1), tm(10,2), tm(10,3),
+         tm(11,0), tm(11,1), tm(11,2), tm(11,3);
   
   // load the 3 view point clouds
   pcl::io::loadPCDFile<pcl::PointXYZ>(file_name1, *scene_cloud_xyz_1);
@@ -614,10 +614,7 @@ void construct_special_ellipsoid_point_cloud( pcl::PointCloud<pcl::PointXYZ>::Pt
                                               Eigen::Vector3f parameter,
                                               Eigen::Vector3f offset,
                                               int point_cloud_samples, 
-                                              int power, 
-                                              int red_value, 
-                                              int green_value, 
-                                              int blue_value ){
+                                              int power ){
   special_ellipsoid_point_cloud->clear();
   pcl::PointXYZ point_xyz;
   double value_x, value_y, value_z;
@@ -667,7 +664,7 @@ void constructing_special_ellipsoids(void){
   // draw
   parameter_vector << gripper_support_x, gripper_support_y, gripper_support_z;
   offset_vector    << gripper_support_offset_x, gripper_support_offset_y, gripper_support_offset_z;
-  construct_special_ellipsoid_point_cloud( gripper_support_point_cloud_in_gripper_frame, parameter_vector, offset_vector, 100, 10, 255, 0, 0 );
+  construct_special_ellipsoid_point_cloud( gripper_support_point_cloud_in_gripper_frame, parameter_vector, offset_vector, 100, 10 );
   
   // object plane special ellipsoid
   // define and draw object plane special ellipsoid
@@ -675,7 +672,7 @@ void constructing_special_ellipsoids(void){
   object_plane_offset_x = 0.0; object_plane_offset_y = -0.10; object_plane_offset_z = 0.0;
   parameter_vector << object_plane_x, object_plane_y, object_plane_z;
   offset_vector    << object_plane_offset_x, object_plane_offset_y, object_plane_offset_z;
-  construct_special_ellipsoid_point_cloud( object_plane_special_ellipsoid_point_cloud_in_object_plane_frame, parameter_vector, offset_vector, 100, 10, 255, 0, 0 );
+  construct_special_ellipsoid_point_cloud( object_plane_special_ellipsoid_point_cloud_in_object_plane_frame, parameter_vector, offset_vector, 100, 10 );
   pcl::transformPointCloud(*object_plane_special_ellipsoid_point_cloud_in_object_plane_frame, *object_plane_special_ellipsoid_point_cloud_in_arm_hand_frame, object_plane_transform_wrt_arm_hand_frame);
   
   // gripper approximation as a set of special ellipsoids
@@ -701,7 +698,7 @@ void constructing_special_ellipsoids(void){
   for(unsigned int j=0; j<gripper_x.size(); j++){
     parameter_vector << gripper_x[j], gripper_y[j], gripper_z[j];
     offset_vector    << gripper_offset_x[j], gripper_offset_y[j], gripper_offset_z[j];
-    construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 100, 10, 255, 0, 0 );
+    construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 100, 10 );
     *gripper_as_set_of_special_ellipsoids_in_gripper_frame += *dummy_cloud_xyz;
   }
   pcl::transformPointCloud(*gripper_as_set_of_special_ellipsoids_in_gripper_frame, *gripper_as_set_of_special_ellipsoids_in_arm_hand_frame, gripper_wrt_arm_hand_frame_transform);
@@ -733,7 +730,7 @@ void object_plane_pose_check(void){
 		object_plane_offset_x = 0.0; object_plane_offset_y = 0.05; object_plane_offset_z = 0.0;
 		parameter_vector << object_plane_x, object_plane_y, object_plane_z;
 		offset_vector    << object_plane_offset_x, object_plane_offset_y, object_plane_offset_z;
-		construct_special_ellipsoid_point_cloud( object_plane_special_ellipsoid_point_cloud_in_object_plane_frame, parameter_vector, offset_vector, 100, 10, 255, 0, 0 );
+		construct_special_ellipsoid_point_cloud( object_plane_special_ellipsoid_point_cloud_in_object_plane_frame, parameter_vector, offset_vector, 100, 10 );
 		pcl::transformPointCloud(*object_plane_special_ellipsoid_point_cloud_in_object_plane_frame, *object_plane_special_ellipsoid_point_cloud_in_arm_hand_frame, object_plane_transform_wrt_arm_hand_frame);
   }
 }
@@ -837,25 +834,25 @@ void load_allegro_right_hand_workspace_spheres( pcl::PointCloud<pcl::PointXYZ>::
       if(finger_list[i]=="thumb"){
         parameter_vector << thumb_workspace_convex_parameter->points[j].x, thumb_workspace_convex_parameter->points[j].y, thumb_workspace_convex_parameter->points[j].z;
         offset_vector    << thumb_workspace_convex_offset->points[j].x, thumb_workspace_convex_offset->points[j].y, thumb_workspace_convex_offset->points[j].z;
-        construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 30, 2, 255, 0, 0 );
+        construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 30, 2 );
         *thumb_workspace_convex_xyz += *dummy_cloud_xyz;
       }
       else if(finger_list[i]=="index"){
         parameter_vector << index_workspace_convex_parameter->points[j].x, index_workspace_convex_parameter->points[j].y, index_workspace_convex_parameter->points[j].z;
         offset_vector    << index_workspace_convex_offset->points[j].x, index_workspace_convex_offset->points[j].y, index_workspace_convex_offset->points[j].z;
-        construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 30, 2, 0, 255, 0 );
+        construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 30, 2 );
         *index_workspace_convex_xyz += *dummy_cloud_xyz;
       }
       else if(finger_list[i]=="middle"){
         parameter_vector << middle_workspace_convex_parameter->points[j].x, middle_workspace_convex_parameter->points[j].y, middle_workspace_convex_parameter->points[j].z;
         offset_vector    << middle_workspace_convex_offset->points[j].x, middle_workspace_convex_offset->points[j].y, middle_workspace_convex_offset->points[j].z;
-        construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 30, 2, 0, 0, 255 );
+        construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 30, 2 );
         *middle_workspace_convex_xyz += *dummy_cloud_xyz;
       }
       else if(finger_list[i]=="pinky"){
         parameter_vector << pinky_workspace_convex_parameter->points[j].x, pinky_workspace_convex_parameter->points[j].y, pinky_workspace_convex_parameter->points[j].z;
         offset_vector    << pinky_workspace_convex_offset->points[j].x, pinky_workspace_convex_offset->points[j].y, pinky_workspace_convex_offset->points[j].z;
-        construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 30, 2, 100, 100, 100 );
+        construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 30, 2 );
         *pinky_workspace_convex_xyz += *dummy_cloud_xyz;
       }
     }
@@ -1019,13 +1016,13 @@ void load_franka_gripper_workspace_spheres( pcl::PointCloud<pcl::PointXYZ>::Ptr&
         if(finger_list[i]=="franka_right_finger"){
           parameter_vector << right_finger_workspace_convex_parameter->points[j].x, right_finger_workspace_convex_parameter->points[j].y, right_finger_workspace_convex_parameter->points[j].z;
           offset_vector    << right_finger_workspace_convex_offset->points[j].x, right_finger_workspace_convex_offset->points[j].y, right_finger_workspace_convex_offset->points[j].z;
-          construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 30, 2, 255, 0, 0 );
+          construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 30, 2 );
           *right_finger_workspace_convex_xyz += *dummy_cloud_xyz;
         }
         else if(finger_list[i]=="franka_left_finger"){
           parameter_vector << left_finger_workspace_convex_parameter->points[j].x, left_finger_workspace_convex_parameter->points[j].y, left_finger_workspace_convex_parameter->points[j].z;
           offset_vector    << left_finger_workspace_convex_offset->points[j].x, left_finger_workspace_convex_offset->points[j].y, left_finger_workspace_convex_offset->points[j].z;
-          construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 30, 2, 0, 255, 0 );
+          construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 30, 2 );
           *left_finger_workspace_convex_xyz += *dummy_cloud_xyz;
         }
       }
@@ -1679,11 +1676,11 @@ void point_cloud_as_set_of_spheres_fixed_radius_paper_photos(  pcl::PointCloud<p
 
 
 void registering_downsampling_segmenting_3_view_point_clouds( pcl::PointCloud<pcl::PointXYZ>::Ptr&  scene_cloud_xyz_1,                             // input
-                                                              Eigen::Matrix4d tf1,                                                                 // input
+                                                              Eigen::Matrix4f tm1,                                                                 // input
                                                               pcl::PointCloud<pcl::PointXYZ>::Ptr&  scene_cloud_xyz_2,                             // input
-                                                              Eigen::Matrix4d tf2,                                                                 // input
+                                                              Eigen::Matrix4f tm2,                                                                 // input
                                                               pcl::PointCloud<pcl::PointXYZ>::Ptr&  scene_cloud_xyz_3,                             // input
-                                                              Eigen::Matrix4d tf3,                                                                 // input
+                                                              Eigen::Matrix4f tm3,                                                                 // input
                                                               pcl::PointCloud<pcl::PointXYZ>::Ptr&  table_cloud_xyz_downsampled,                   // output
                                                               pcl::PointCloud<pcl::PointXYZ>::Ptr&  object_cloud_xyz_downsampled ){                // output
 
@@ -1711,9 +1708,9 @@ void registering_downsampling_segmenting_3_view_point_clouds( pcl::PointCloud<pc
   //std::cout << "scene cloud 2 size [input] : " << scene_cloud_xyz_2->size() << std::endl;
   //std::cout << "scene cloud 3 size [input] : " << scene_cloud_xyz_3->size() << std::endl;
   
-  pcl::transformPointCloud(*scene_cloud_xyz_1, *scene_cloud_xyz_1_transformed, tf1);
-  pcl::transformPointCloud(*scene_cloud_xyz_2, *scene_cloud_xyz_2_transformed, tf2);
-  pcl::transformPointCloud(*scene_cloud_xyz_3, *scene_cloud_xyz_3_transformed, tf3);
+  pcl::transformPointCloud(*scene_cloud_xyz_1, *scene_cloud_xyz_1_transformed, tm1);
+  pcl::transformPointCloud(*scene_cloud_xyz_2, *scene_cloud_xyz_2_transformed, tm2);
+  pcl::transformPointCloud(*scene_cloud_xyz_3, *scene_cloud_xyz_3_transformed, tm3);
   
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // downsampling
@@ -1835,11 +1832,11 @@ void registering_downsampling_segmenting_3_view_point_clouds( pcl::PointCloud<pc
 
 
 void registering_downsampling_segmenting_3_view_point_clouds( pcl::PointCloud<pcl::PointXYZ>::Ptr&  scene_cloud_xyz_1,                             // input
-                                                              Eigen::Matrix4d tf1,                                                                 // input
+                                                              Eigen::Matrix4f tm1,                                                                 // input
                                                               pcl::PointCloud<pcl::PointXYZ>::Ptr&  scene_cloud_xyz_2,                             // input
-                                                              Eigen::Matrix4d tf2,                                                                 // input
+                                                              Eigen::Matrix4f tm2,                                                                 // input
                                                               pcl::PointCloud<pcl::PointXYZ>::Ptr&  scene_cloud_xyz_3,                             // input
-                                                              Eigen::Matrix4d tf3,                                                                 // input
+                                                              Eigen::Matrix4f tm3,                                                                 // input
                                                               
                                                               pcl::PointCloud<pcl::PointXYZ>::Ptr&  scene_cloud_xyz_1_transformed,                 // output
                                                               pcl::PointCloud<pcl::PointXYZ>::Ptr&  scene_cloud_xyz_2_transformed,                 // output
@@ -1870,9 +1867,9 @@ void registering_downsampling_segmenting_3_view_point_clouds( pcl::PointCloud<pc
   //std::cout << "scene cloud 2 size [input] : " << scene_cloud_xyz_2->size() << std::endl;
   //std::cout << "scene cloud 3 size [input] : " << scene_cloud_xyz_3->size() << std::endl;
   
-  pcl::transformPointCloud(*scene_cloud_xyz_1, *scene_cloud_xyz_1_transformed, tf1);
-  pcl::transformPointCloud(*scene_cloud_xyz_2, *scene_cloud_xyz_2_transformed, tf2);
-  pcl::transformPointCloud(*scene_cloud_xyz_3, *scene_cloud_xyz_3_transformed, tf3);
+  pcl::transformPointCloud(*scene_cloud_xyz_1, *scene_cloud_xyz_1_transformed, tm1);
+  pcl::transformPointCloud(*scene_cloud_xyz_2, *scene_cloud_xyz_2_transformed, tm2);
+  pcl::transformPointCloud(*scene_cloud_xyz_3, *scene_cloud_xyz_3_transformed, tm3);
   
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // downsampling
@@ -2483,6 +2480,100 @@ void evaluate_grasp_pose_candidates(void){
 
 
 
+
+
+
+
+
+void visualize_workspace_spheres_and_object_points_for_best_gripper_pose(void){
+  // Draw the workspace spheres of the best gripper pose
+  if(gripper_model == "allegro_right_hand"){
+    // thumb
+    scene_cloud_viewer->addPointCloud(thumb_workspace_spheres_best, red_color, "thumb workspace spheres");
+    scene_cloud_viewer->addPointCloud(object_points_in_thumb_workspace_best, red_color, "thumb workspace points");
+    for(unsigned int j=0; j<thumb_workspace_active_spheres_offset_best->size(); j++){
+      parameter_vector << thumb_workspace_active_spheres_parameter_best->points[j].x, thumb_workspace_active_spheres_parameter_best->points[j].y, thumb_workspace_active_spheres_parameter_best->points[j].z;
+      offset_vector    << thumb_workspace_active_spheres_offset_best->points[j].x, thumb_workspace_active_spheres_offset_best->points[j].y, thumb_workspace_active_spheres_offset_best->points[j].z;
+      construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 100, 2 );
+      *thumb_workspace_spheres_best += *dummy_cloud_xyz;}
+    pcl::transformPointCloud(*thumb_workspace_spheres_best, *thumb_workspace_spheres_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
+    scene_cloud_viewer->updatePointCloud(thumb_workspace_spheres_best, red_color, "thumb workspace spheres");
+    pcl::transformPointCloud(*object_points_in_thumb_workspace_best, *object_points_in_thumb_workspace_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
+    scene_cloud_viewer->updatePointCloud(object_points_in_thumb_workspace_best, red_color, "thumb workspace points");
+    scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 15, "thumb workspace points");
+    
+    // index
+    scene_cloud_viewer->addPointCloud(index_workspace_spheres_best, green_color, "index workspace spheres");
+    scene_cloud_viewer->addPointCloud(object_points_in_index_workspace_best, green_color, "index workspace points");
+    for(unsigned int j=0; j<index_workspace_active_spheres_offset_best->size(); j++){
+      parameter_vector << index_workspace_active_spheres_parameter_best->points[j].x, index_workspace_active_spheres_parameter_best->points[j].y, index_workspace_active_spheres_parameter_best->points[j].z;
+      offset_vector    << index_workspace_active_spheres_offset_best->points[j].x, index_workspace_active_spheres_offset_best->points[j].y, index_workspace_active_spheres_offset_best->points[j].z;
+      construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 100, 2 );
+      *index_workspace_spheres_best += *dummy_cloud_xyz;}
+    pcl::transformPointCloud(*index_workspace_spheres_best, *index_workspace_spheres_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
+    scene_cloud_viewer->updatePointCloud(index_workspace_spheres_best, green_color, "index workspace spheres");
+    pcl::transformPointCloud(*object_points_in_index_workspace_best, *object_points_in_index_workspace_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
+    scene_cloud_viewer->updatePointCloud(object_points_in_index_workspace_best, green_color, "index workspace points");
+    scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 15, "index workspace points");
+    
+    // middle
+    scene_cloud_viewer->addPointCloud(middle_workspace_spheres_best, blue_color, "middle workspace spheres");
+    scene_cloud_viewer->addPointCloud(object_points_in_middle_workspace_best, blue_color, "middle workspace points");
+    for(unsigned int j=0; j<middle_workspace_active_spheres_offset_best->size(); j++){
+      parameter_vector << middle_workspace_active_spheres_parameter_best->points[j].x, middle_workspace_active_spheres_parameter_best->points[j].y, middle_workspace_active_spheres_parameter_best->points[j].z;
+      offset_vector    << middle_workspace_active_spheres_offset_best->points[j].x, middle_workspace_active_spheres_offset_best->points[j].y, middle_workspace_active_spheres_offset_best->points[j].z;
+      construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 100, 2 );
+      *middle_workspace_spheres_best += *dummy_cloud_xyz;}
+    pcl::transformPointCloud(*middle_workspace_spheres_best, *middle_workspace_spheres_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
+    scene_cloud_viewer->updatePointCloud(middle_workspace_spheres_best, blue_color, "middle workspace spheres");
+    pcl::transformPointCloud(*object_points_in_middle_workspace_best, *object_points_in_middle_workspace_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
+    scene_cloud_viewer->updatePointCloud(object_points_in_middle_workspace_best, blue_color, "middle workspace points");
+    scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 15, "middle workspace points");
+    
+    // pinky
+    scene_cloud_viewer->addPointCloud(pinky_workspace_spheres_best, grey_color, "pinky workspace spheres");
+    scene_cloud_viewer->addPointCloud(object_points_in_pinky_workspace_best, grey_color, "pinky workspace points");
+    for(unsigned int j=0; j<pinky_workspace_active_spheres_offset_best->size(); j++){
+      parameter_vector << pinky_workspace_active_spheres_parameter_best->points[j].x, pinky_workspace_active_spheres_parameter_best->points[j].y, pinky_workspace_active_spheres_parameter_best->points[j].z;
+      offset_vector    << pinky_workspace_active_spheres_offset_best->points[j].x, pinky_workspace_active_spheres_offset_best->points[j].y, pinky_workspace_active_spheres_offset_best->points[j].z;
+      construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 100, 2 );
+      *pinky_workspace_spheres_best += *dummy_cloud_xyz;}
+    pcl::transformPointCloud(*pinky_workspace_spheres_best, *pinky_workspace_spheres_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
+    scene_cloud_viewer->updatePointCloud(pinky_workspace_spheres_best, grey_color, "pinky workspace spheres");
+    pcl::transformPointCloud(*object_points_in_pinky_workspace_best, *object_points_in_pinky_workspace_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
+    scene_cloud_viewer->updatePointCloud(object_points_in_pinky_workspace_best, grey_color, "pinky workspace points");
+    scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 15, "pinky workspace points");
+  }
+  else if(gripper_model == "franka_gripper"){
+    // right_finger
+    scene_cloud_viewer->addPointCloud(right_finger_workspace_spheres_best, red_color_again, "right_finger workspace spheres");
+    scene_cloud_viewer->addPointCloud(object_points_in_right_finger_workspace_best, red_color_again, "right_finger workspace points");
+    for(unsigned int j=0; j<right_finger_workspace_active_spheres_offset_best->size(); j++){
+      parameter_vector << right_finger_workspace_active_spheres_parameter_best->points[j].x, right_finger_workspace_active_spheres_parameter_best->points[j].y, right_finger_workspace_active_spheres_parameter_best->points[j].z;
+      offset_vector    << right_finger_workspace_active_spheres_offset_best->points[j].x, right_finger_workspace_active_spheres_offset_best->points[j].y, right_finger_workspace_active_spheres_offset_best->points[j].z;
+      construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 50, 2 );
+      *right_finger_workspace_spheres_best += *dummy_cloud_xyz;}
+    pcl::transformPointCloud(*right_finger_workspace_spheres_best, *right_finger_workspace_spheres_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
+    scene_cloud_viewer->updatePointCloud(right_finger_workspace_spheres_best, red_color_again, "right_finger workspace spheres");
+    pcl::transformPointCloud(*object_points_in_right_finger_workspace_best, *object_points_in_right_finger_workspace_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
+    scene_cloud_viewer->updatePointCloud(object_points_in_right_finger_workspace_best, red_color_again, "right_finger workspace points");
+    scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 15, "right_finger workspace points");
+    
+    // left_finger
+    scene_cloud_viewer->addPointCloud(left_finger_workspace_spheres_best, green_color_again, "left_finger workspace spheres");
+    scene_cloud_viewer->addPointCloud(object_points_in_left_finger_workspace_best, green_color_again, "left_finger workspace points");
+    for(unsigned int j=0; j<left_finger_workspace_active_spheres_offset_best->size(); j++){
+      parameter_vector << left_finger_workspace_active_spheres_parameter_best->points[j].x, left_finger_workspace_active_spheres_parameter_best->points[j].y, left_finger_workspace_active_spheres_parameter_best->points[j].z;
+      offset_vector    << left_finger_workspace_active_spheres_offset_best->points[j].x, left_finger_workspace_active_spheres_offset_best->points[j].y, left_finger_workspace_active_spheres_offset_best->points[j].z;
+      construct_special_ellipsoid_point_cloud( dummy_cloud_xyz, parameter_vector, offset_vector, 50, 2 );
+      *left_finger_workspace_spheres_best += *dummy_cloud_xyz;}
+    pcl::transformPointCloud(*left_finger_workspace_spheres_best, *left_finger_workspace_spheres_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
+    scene_cloud_viewer->updatePointCloud(left_finger_workspace_spheres_best, green_color_again, "left_finger workspace spheres");
+    pcl::transformPointCloud(*object_points_in_left_finger_workspace_best, *object_points_in_left_finger_workspace_best, best_gripper_transform*gripper_wrt_arm_hand_frame_transform);
+    scene_cloud_viewer->updatePointCloud(object_points_in_left_finger_workspace_best, green_color_again, "left_finger workspace points");
+    scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 15, "left_finger workspace points");
+  }
+}
 
 
 

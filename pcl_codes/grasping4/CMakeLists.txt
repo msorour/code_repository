@@ -40,5 +40,5 @@ target_link_libraries (grasping_algorithm ${PCL_LIBRARIES}  ${roscpp_LIBRARIES} 
 #target_link_libraries (visualize_allegro_hand_workspace_spheres ${PCL_LIBRARIES} quadprog)
 
 
-#add_executable(grasping_algorithm_real_experiments grasping_algorithm_real_experiments.cpp)
-#target_link_libraries(grasping_algorithm_real_experiments pthread ${PCL_LIBRARIES} ${roscpp_LIBRARIES} ${catkin_LIBRARIES})
+add_executable(grasping_algorithm_real_experiments grasping_algorithm_real_experiments.cpp)
+target_link_libraries(grasping_algorithm_real_experiments pthread ${PCL_LIBRARIES} ${roscpp_LIBRARIES} ${catkin_LIBRARIES})
