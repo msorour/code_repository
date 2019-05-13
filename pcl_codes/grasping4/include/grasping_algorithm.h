@@ -2012,9 +2012,9 @@ void registering_downsampling_segmenting_3_view_point_clouds( pcl::PointCloud<pc
 
 void evaluate_grasp_pose_candidates(void){
   
-  workspace_centroid_wrt_gripper_frame_translation << gripper_workspace_centroid_point_in_gripper_frame(0), gripper_workspace_centroid_point_in_gripper_frame(1), gripper_workspace_centroid_point_in_gripper_frame(2);
-  workspace_centroid_wrt_gripper_frame_transform << Eigen::Matrix3f::Identity(), workspace_centroid_wrt_gripper_frame_translation, 0,0,0,1;
-  workspace_centroid_wrt_gripper_frame_transform_inverse << Eigen::Matrix3f::Identity(), -Eigen::Matrix3f::Identity()*workspace_centroid_wrt_gripper_frame_translation, 0,0,0,1;
+  workspace_centroid_wrt_gripper_frame_translation        << gripper_workspace_centroid_point_in_gripper_frame(0), gripper_workspace_centroid_point_in_gripper_frame(1), gripper_workspace_centroid_point_in_gripper_frame(2);
+  workspace_centroid_wrt_gripper_frame_transform          << Eigen::Matrix3f::Identity(), workspace_centroid_wrt_gripper_frame_translation, 0,0,0,1;
+  workspace_centroid_wrt_gripper_frame_transform_inverse  << Eigen::Matrix3f::Identity(), -Eigen::Matrix3f::Identity()*workspace_centroid_wrt_gripper_frame_translation, 0,0,0,1;
   
   // we will do translation to each object sample point in the gripper centroid frame
   object_frame_wrt_gripper_centroid_frame_transform = workspace_centroid_wrt_gripper_frame_transform_inverse*gripper_wrt_arm_hand_frame_inverse_transform*object_transform_wrt_arm_hand_frame;

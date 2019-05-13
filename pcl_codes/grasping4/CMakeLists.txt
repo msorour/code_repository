@@ -11,9 +11,13 @@ find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs genmsg tf)
 
 include_directories(${PCL_INCLUDE_DIRS})
 include_directories(${roscpp_INCLUDE_DIRS})
+include_directories(${rospy_INCLUDE_DIRS})
 include_directories(${std_msgs_INCLUDE_DIRS})
 
 link_directories(${PCL_LIBRARY_DIRS})
+link_directories(${roscpp_LIBRARY_DIRS})
+link_directories(${rospy_LIBRARY_DIRS})
+link_directories(${std_msgs_LIBRARY_DIRS})
 
 add_definitions(${PCL_DEFINITIONS})
 
