@@ -14,17 +14,18 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   xacro
   
-  OpenCV
   sensor_msgs
   cv_bridge
   std_msgs
   image_transport
   
-  PCL
-  VTK
   pcl_conversions
   pcl_ros
 )
+
+find_package(PCL 1.7 REQUIRED COMPONENTS)
+find_package(VTK REQUIRED)
+find_package(OpenCV REQUIRED)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)

@@ -17,7 +17,8 @@ reset && cmake .. && make && ./grasping_algorithm ../gripper_pcd_model/franka_gr
 #include "include/grasping_algorithm.h"
 #include <math.h>
 //#include "/home/franka3/grasping_msorour/code_repository/QuadProgpp/src/QuadProg++.hh"
-#include "/home/work/software/QuadProgpp-master/src/QuadProg++.hh"
+//#include "/home/work/software/QuadProgpp-master/src/QuadProg++.hh"
+#include "QuadProg++.hh"
 
 
 int main (int argc, char** argv){

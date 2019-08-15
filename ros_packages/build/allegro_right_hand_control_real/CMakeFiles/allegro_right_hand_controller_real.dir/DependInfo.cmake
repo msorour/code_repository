@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/work/code_repository/ros_packages/src/allegro_right_hand_control_real/include/allegro_hand_interface.cpp" "/home/work/code_repository/ros_packages/build/allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/include/allegro_hand_interface.cpp.o"
-  "/home/work/code_repository/ros_packages/src/allegro_right_hand_control_real/include/canAPI.cpp" "/home/work/code_repository/ros_packages/build/allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/include/canAPI.cpp.o"
-  "/home/work/code_repository/ros_packages/src/allegro_right_hand_control_real/src/allegro_right_hand_controller.cpp" "/home/work/code_repository/ros_packages/build/allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/src/allegro_right_hand_controller.cpp.o"
+  "/home/business/code_repository/ros_packages/src/allegro_right_hand_control_real/include/allegro_hand_interface.cpp" "/home/business/code_repository/ros_packages/build/allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/include/allegro_hand_interface.cpp.o"
+  "/home/business/code_repository/ros_packages/src/allegro_right_hand_control_real/include/canAPI.cpp" "/home/business/code_repository/ros_packages/build/allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/include/canAPI.cpp.o"
+  "/home/business/code_repository/ros_packages/src/allegro_right_hand_control_real/src/allegro_right_hand_controller.cpp" "/home/business/code_repository/ros_packages/build/allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/src/allegro_right_hand_controller.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -19,8 +19,8 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/opt/ros/kinetic/include"
-  "/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
+  "/opt/ros/melodic/include"
+  "/opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   )
 
 # Targets to which this target links.

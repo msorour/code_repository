@@ -1,8 +1,5 @@
 /*
 run this program using:
-reset && cmake .. && make && ./grasping_algorithm allegro_right_hand_model_cloud_plus_camera.pcd 0.01 thermos.pcd 0.007 table.pcd
-reset && cmake .. && make && ./grasping_algorithm franka_gripper_model_cloud_plus_camera.pcd 0.01 thermos.pcd 0.007 table.pcd
-
 reset && cmake .. && make && ./grasping_algorithm ../gripper_pcd_model/franka_gripper_model_cloud_plus_camera.pcd 0.01 ../../../real_experiments/build/pcd_files/mug.pcd 0.005 ../../../real_experiments/build/pcd_files/mug_table.pcd
 */
 
@@ -17,7 +14,8 @@ reset && cmake .. && make && ./grasping_algorithm ../gripper_pcd_model/franka_gr
 #include "include/grasping_algorithm.h"
 #include <math.h>
 //#include "/home/franka3/grasping_msorour/code_repository/QuadProgpp/src/QuadProg++.hh"
-#include "/home/work/software/QuadProgpp-master/src/QuadProg++.hh"
+//#include "/home/work/software/QuadProgpp-master/src/QuadProg++.hh"
+#include "QuadProg++.hh"
 
 
 int main (int argc, char** argv){

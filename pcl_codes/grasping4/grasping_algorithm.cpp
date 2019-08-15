@@ -23,7 +23,8 @@ reset && cmake .. && make && ./grasping_algorithm simulation ../gripper_pcd_mode
 #include "include/grasping_algorithm.h"
 #include <math.h>
 //#include "/home/franka3/grasping_msorour/code_repository/QuadProgpp/src/QuadProg++.hh"
-#include "/home/work/software/QuadProgpp-master/src/QuadProg++.hh"
+//#include "/home/work/software/QuadProgpp-master/src/QuadProg++.hh"
+#include "QuadProg++.hh"
 
 
 int main (int argc, char** argv){
@@ -77,7 +78,7 @@ int main (int argc, char** argv){
   else if(mode=="experiment"){
   }
   initial_overhead_begin = clock();
-	registering_downsampling_segmenting_3_view_point_clouds(scene_cloud_xyz_1, tm1,   scene_cloud_xyz_2, tm2,   scene_cloud_xyz_3, tm3,
+  registering_downsampling_segmenting_3_view_point_clouds(scene_cloud_xyz_1, tm1,   scene_cloud_xyz_2, tm2,   scene_cloud_xyz_3, tm3,
                                                           scene_cloud_xyz_1_transformed, scene_cloud_xyz_2_transformed, scene_cloud_xyz_3_transformed,
                                                           scene_cloud_xyz_1_transformed_downsampled, scene_cloud_xyz_2_transformed_downsampled, scene_cloud_xyz_3_transformed_downsampled,
                                                           object_plane_cloud_downsampled_in_camera_depth_optical_frame_xyz, object_cloud_downsampled_in_camera_depth_optical_frame_xyz );
@@ -96,7 +97,7 @@ int main (int argc, char** argv){
   
   
   end = clock();
-	time_spent_for_initial_overhead = (double)( end - initial_overhead_begin )/ CLOCKS_PER_SEC;
+  time_spent_for_initial_overhead = (double)( end - initial_overhead_begin )/ CLOCKS_PER_SEC;
 	std::cout << "total initial overhead (to add to the execution time) = " << time_spent_for_initial_overhead << std::endl;
   
   end = clock();

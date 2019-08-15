@@ -1,8 +1,0 @@
-prefix=/home/work/code_repository/ros_packages/install
-
-Name: urdf_models
-Description: Description of urdf_models
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/work/code_repository/ros_packages/install/lib 
-Requires: 

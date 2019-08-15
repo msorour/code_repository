@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "".split(';') if "" != "" else []
 PROJECT_CATKIN_DEPENDS = "".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "franka_panda_arm_plus_allegro_right_hand_control_gazebo"
-PROJECT_SPACE_DIR = "/home/work/code_repository/ros_packages/install"
+PROJECT_SPACE_DIR = "/home/business/code_repository/ros_packages/install"
 PROJECT_VERSION = "0.0.0"

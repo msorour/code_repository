@@ -1,1 +1,0 @@
-/usr/bin/c++  -fPIC -O3 -DNDEBUG  -shared -Wl,-soname,liballegro_hand_driver.so -o /home/work/code_repository/ros_packages/devel/lib/liballegro_hand_driver.so CMakeFiles/allegro_hand_driver.dir/src/controlAllegroHand.cpp.o 

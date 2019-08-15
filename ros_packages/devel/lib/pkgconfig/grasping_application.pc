@@ -1,8 +1,8 @@
-prefix=/home/work/code_repository/ros_packages/devel
+prefix=/home/business/code_repository/ros_packages/devel
 
 Name: grasping_application
 Description: Description of grasping_application
 Version: 0.0.0
 Cflags: 
-Libs: -L/home/work/code_repository/ros_packages/devel/lib 
+Libs: -L/home/business/code_repository/ros_packages/devel/lib 
 Requires: 

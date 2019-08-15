@@ -1,7 +1,7 @@
 # CMake generated Testfile for 
-# Source directory: /home/work/code_repository/pcl_codes/grasping4
-# Build directory: /home/work/code_repository/pcl_codes/grasping4/build
+# Source directory: /home/business/code_repository/pcl_codes/grasping4
+# Build directory: /home/business/code_repository/pcl_codes/grasping4/build
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
-subdirs(gtest)
+subdirs("gtest")

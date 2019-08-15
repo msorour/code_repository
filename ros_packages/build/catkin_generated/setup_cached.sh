@@ -7,6 +7,9 @@
 # new environment variables
 
 # modified environment variables
-export GAZEBO_MODEL_PATH="/opt/ros/kinetic/share/gazebo_models_oru/models:/tmp/binarydeb/ros-kinetic-gazebo-models-oru-0.4.0/models:$GAZEBO_MODEL_PATH"
-export PATH="/opt/ros/kinetic/bin:/home/work/software/libfreenect2/build/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
-export PWD="/home/work/code_repository/ros_packages/build"
+export CMAKE_PREFIX_PATH="/home/business/code_repository/ros_packages/devel:$CMAKE_PREFIX_PATH"
+export LD_LIBRARY_PATH="/home/business/code_repository/ros_packages/devel/lib:$LD_LIBRARY_PATH"
+export PKG_CONFIG_PATH="/home/business/code_repository/ros_packages/devel/lib/pkgconfig:$PKG_CONFIG_PATH"
+export PWD="/home/business/code_repository/ros_packages/build"
+export ROSLISP_PACKAGE_DIRECTORIES="/home/business/code_repository/ros_packages/devel/share/common-lisp"
+export ROS_PACKAGE_PATH="/home/business/code_repository/ros_packages/src:$ROS_PACKAGE_PATH"

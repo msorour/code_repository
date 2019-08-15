@@ -1,8 +1,0 @@
-prefix=/home/work/code_repository/ros_packages/install
-
-Name: kinect2_depth_registration
-Description: Description of kinect2_depth_registration
-Version: 0.0.1
-Cflags: -I/home/work/code_repository/ros_packages/install/include
-Libs: -L/home/work/code_repository/ros_packages/install/lib -ldepth_registration
-Requires: 

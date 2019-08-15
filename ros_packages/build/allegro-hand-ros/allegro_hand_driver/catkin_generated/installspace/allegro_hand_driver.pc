@@ -1,8 +1,0 @@
-prefix=/home/work/code_repository/ros_packages/install
-
-Name: allegro_hand_driver
-Description: Description of allegro_hand_driver
-Version: 1.0.1
-Cflags: -I/home/work/code_repository/ros_packages/install/include
-Libs: -L/home/work/code_repository/ros_packages/install/lib -lallegro_hand_driver
-Requires: roscpp std_msgs

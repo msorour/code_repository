@@ -1,8 +1,0 @@
-prefix=/home/work/code_repository/ros_packages/install
-
-Name: realsense2_camera
-Description: Description of realsense2_camera
-Version: 2.1.1
-Cflags: -I/home/work/code_repository/ros_packages/install/include
-Libs: -L/home/work/code_repository/ros_packages/install/lib -lrealsense2_camera
-Requires: message_runtime roscpp sensor_msgs std_msgs nodelet cv_bridge image_transport dynamic_reconfigure

@@ -1,8 +1,8 @@
-# Install script for directory: /home/work/code_repository/ros_packages/src
+# Install script for directory: /home/business/code_repository/ros_packages/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/work/code_repository/ros_packages/install")
+  set(CMAKE_INSTALL_PREFIX "/home/business/code_repository/ros_packages/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -12,7 +12,7 @@ if(NOT DEFINED CMAKE_INSTALL_CONFIG_NAME)
     string(REGEX REPLACE "^[^A-Za-z0-9_]+" ""
            CMAKE_INSTALL_CONFIG_NAME "${BUILD_TYPE}")
   else()
-    set(CMAKE_INSTALL_CONFIG_NAME "Release")
+    set(CMAKE_INSTALL_CONFIG_NAME "")
   endif()
   message(STATUS "Install configuration: \"${CMAKE_INSTALL_CONFIG_NAME}\"")
 endif()
@@ -32,7 +32,12 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
   set(CMAKE_INSTALL_SO_NO_EXE "1")
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+# Is this installation the result of a crosscompile?
+if(NOT DEFINED CMAKE_CROSSCOMPILING)
+  set(CMAKE_CROSSCOMPILING "FALSE")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   
       if (NOT EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}")
         file(MAKE_DIRECTORY "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}")
@@ -42,98 +47,102 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
       endif()
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/work/code_repository/ros_packages/install/_setup_util.py")
+   "/home/business/code_repository/ros_packages/install/_setup_util.py")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/work/code_repository/ros_packages/install" TYPE PROGRAM FILES "/home/work/code_repository/ros_packages/build/catkin_generated/installspace/_setup_util.py")
+file(INSTALL DESTINATION "/home/business/code_repository/ros_packages/install" TYPE PROGRAM FILES "/home/business/code_repository/ros_packages/build/catkin_generated/installspace/_setup_util.py")
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/work/code_repository/ros_packages/install/env.sh")
+   "/home/business/code_repository/ros_packages/install/env.sh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/work/code_repository/ros_packages/install" TYPE PROGRAM FILES "/home/work/code_repository/ros_packages/build/catkin_generated/installspace/env.sh")
+file(INSTALL DESTINATION "/home/business/code_repository/ros_packages/install" TYPE PROGRAM FILES "/home/business/code_repository/ros_packages/build/catkin_generated/installspace/env.sh")
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/work/code_repository/ros_packages/install/setup.bash")
+   "/home/business/code_repository/ros_packages/install/setup.bash;/home/business/code_repository/ros_packages/install/local_setup.bash")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/work/code_repository/ros_packages/install" TYPE FILE FILES "/home/work/code_repository/ros_packages/build/catkin_generated/installspace/setup.bash")
+file(INSTALL DESTINATION "/home/business/code_repository/ros_packages/install" TYPE FILE FILES
+    "/home/business/code_repository/ros_packages/build/catkin_generated/installspace/setup.bash"
+    "/home/business/code_repository/ros_packages/build/catkin_generated/installspace/local_setup.bash"
+    )
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/work/code_repository/ros_packages/install/setup.sh")
+   "/home/business/code_repository/ros_packages/install/setup.sh;/home/business/code_repository/ros_packages/install/local_setup.sh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/work/code_repository/ros_packages/install" TYPE FILE FILES "/home/work/code_repository/ros_packages/build/catkin_generated/installspace/setup.sh")
+file(INSTALL DESTINATION "/home/business/code_repository/ros_packages/install" TYPE FILE FILES
+    "/home/business/code_repository/ros_packages/build/catkin_generated/installspace/setup.sh"
+    "/home/business/code_repository/ros_packages/build/catkin_generated/installspace/local_setup.sh"
+    )
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/work/code_repository/ros_packages/install/setup.zsh")
+   "/home/business/code_repository/ros_packages/install/setup.zsh;/home/business/code_repository/ros_packages/install/local_setup.zsh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/work/code_repository/ros_packages/install" TYPE FILE FILES "/home/work/code_repository/ros_packages/build/catkin_generated/installspace/setup.zsh")
+file(INSTALL DESTINATION "/home/business/code_repository/ros_packages/install" TYPE FILE FILES
+    "/home/business/code_repository/ros_packages/build/catkin_generated/installspace/setup.zsh"
+    "/home/business/code_repository/ros_packages/build/catkin_generated/installspace/local_setup.zsh"
+    )
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/work/code_repository/ros_packages/install/.rosinstall")
+   "/home/business/code_repository/ros_packages/install/.rosinstall")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/work/code_repository/ros_packages/install" TYPE FILE FILES "/home/work/code_repository/ros_packages/build/catkin_generated/installspace/.rosinstall")
+file(INSTALL DESTINATION "/home/business/code_repository/ros_packages/install" TYPE FILE FILES "/home/business/code_repository/ros_packages/build/catkin_generated/installspace/.rosinstall")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/work/code_repository/ros_packages/build/iai_kinect2/iai_kinect2/cmake_install.cmake")
-  include("/home/work/code_repository/ros_packages/build/iai_kinect2/kinect2_registration/cmake_install.cmake")
-  include("/home/work/code_repository/ros_packages/build/iai_kinect2/kinect2_bridge/cmake_install.cmake")
-  include("/home/work/code_repository/ros_packages/build/iai_kinect2/kinect2_calibration/cmake_install.cmake")
-  include("/home/work/code_repository/ros_packages/build/iai_kinect2/kinect2_viewer/cmake_install.cmake")
-  include("/home/work/code_repository/ros_packages/build/realsense/realsense2_camera/cmake_install.cmake")
-  include("/home/work/code_repository/ros_packages/build/allegro_right_hand_control_gazebo/cmake_install.cmake")
-  include("/home/work/code_repository/ros_packages/build/allegro_right_hand_control_real/cmake_install.cmake")
-  include("/home/work/code_repository/ros_packages/build/allegro_right_hand_description/cmake_install.cmake")
-  include("/home/work/code_repository/ros_packages/build/franka_panda_arm_control_gazebo/cmake_install.cmake")
-  include("/home/work/code_repository/ros_packages/build/franka_panda_arm_description/cmake_install.cmake")
-  include("/home/work/code_repository/ros_packages/build/franka_panda_arm_plus_allegro_right_hand_control_gazebo/cmake_install.cmake")
-  include("/home/work/code_repository/ros_packages/build/franka_panda_arm_plus_own_gripper_control_gazebo/cmake_install.cmake")
-  include("/home/work/code_repository/ros_packages/build/franka_panda_gripper_description/cmake_install.cmake")
-  include("/home/work/code_repository/ros_packages/build/grasping_application/cmake_install.cmake")
-  include("/home/work/code_repository/ros_packages/build/kinect2/cmake_install.cmake")
-  include("/home/work/code_repository/ros_packages/build/realsense_d435_description/cmake_install.cmake")
-  include("/home/work/code_repository/ros_packages/build/urdf_models/cmake_install.cmake")
+  include("/home/business/code_repository/ros_packages/build/gtest/cmake_install.cmake")
+  include("/home/business/code_repository/ros_packages/build/allegro_right_hand_control_gazebo/cmake_install.cmake")
+  include("/home/business/code_repository/ros_packages/build/allegro_right_hand_control_real/cmake_install.cmake")
+  include("/home/business/code_repository/ros_packages/build/allegro_right_hand_description/cmake_install.cmake")
+  include("/home/business/code_repository/ros_packages/build/franka_panda_arm_control_gazebo/cmake_install.cmake")
+  include("/home/business/code_repository/ros_packages/build/franka_panda_arm_description/cmake_install.cmake")
+  include("/home/business/code_repository/ros_packages/build/franka_panda_arm_plus_allegro_right_hand_control_gazebo/cmake_install.cmake")
+  include("/home/business/code_repository/ros_packages/build/franka_panda_arm_plus_own_gripper_control_gazebo/cmake_install.cmake")
+  include("/home/business/code_repository/ros_packages/build/franka_panda_gripper_description/cmake_install.cmake")
+  include("/home/business/code_repository/ros_packages/build/grasping_application/cmake_install.cmake")
+  include("/home/business/code_repository/ros_packages/build/kinect2/cmake_install.cmake")
+  include("/home/business/code_repository/ros_packages/build/realsense_d435_description/cmake_install.cmake")
+  include("/home/business/code_repository/ros_packages/build/urdf_models/cmake_install.cmake")
 
 endif()
 
@@ -145,5 +154,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/work/code_repository/ros_packages/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/business/code_repository/ros_packages/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
