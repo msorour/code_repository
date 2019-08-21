@@ -321,6 +321,7 @@ int main(int argc, char **argv){
   
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Downsampling, Regestering, segmenting object's 3 view point clouds
+  reader.read(gripper_file_name, *gripper_cloud_downsampled_in_gripper_frame_xyz);
   /*
   if(mode=="simulation")
     load_object_3_view_point_clouds_and_corresponding_transforms();

@@ -54,7 +54,6 @@ Eigen::MatrixXd readMatrix(const char *filename){
 
 
 void load_object_3_view_point_clouds_and_corresponding_transforms(void){
-  reader.read(gripper_file_name, *gripper_cloud_downsampled_in_gripper_frame_xyz);
   tm = readMatrix(transformation_matrix_file_name.c_str());
   tm1 << tm(0,0),  tm(0,1),  tm(0,2),  tm(0,3),
          tm(1,0),  tm(1,1),  tm(1,2),  tm(1,3),
