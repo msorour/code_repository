@@ -285,7 +285,7 @@ int main(int argc, char **argv){
 				*cloud_filtered = *cloud_f;
 				l++;
 			}
-			writer.write<pcl::PointXYZ>( "pcd_files/" + point_cloud_name + "_table.pcd", *cloud_plane, false);
+			writer.write<pcl::PointXYZ>( "../pcd_files/" + point_cloud_name + "_table.pcd", *cloud_plane, false);
 			tree->setInputCloud (cloud_filtered);
 
 			std::vector<pcl::PointIndices> cluster_indices;
@@ -336,7 +336,7 @@ int main(int argc, char **argv){
 	augmented_cloud_filtered_xyz->height = augmented_cloud_filtered_xyz->points.size();
   
   // save point cloud data
-  file_name = "pcd_files/"+ point_cloud_name + ".pcd";
+  file_name = "../pcd_files/"+ point_cloud_name + ".pcd";
   //pcl::io::savePCDFileASCII(file_name, *augmented_cloud_xyz);
   pcl::io::savePCDFileASCII(file_name, *augmented_cloud_filtered_xyz);
   
@@ -391,8 +391,8 @@ int main(int argc, char **argv){
   std::string gripper_file_name      = argv[4];
   double gripper_leaf_size           = 0.01;
   double object_leaf_size            = 0.01;
-  std::string object_file_name       = "pcd_files/"+ point_cloud_name + ".pcd";
-  std::string object_plane_file_name = "pcd_files/"+ point_cloud_name + "_table.pcd";
+  std::string object_file_name       = "../pcd_files/"+ point_cloud_name + ".pcd";
+  std::string object_plane_file_name = "../pcd_files/"+ point_cloud_name + "_table.pcd";
   
   std::string gripper_model;
 	if(gripper_file_name.find("allegro_right_hand" )!=std::string::npos){gripper_model = "allegro_right_hand";}
@@ -537,7 +537,7 @@ int main(int argc, char **argv){
   scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 5,       "gripper cloud in object plane frame");
   
   
-  
+  cout << "1..." << endl;
   // other declarations
   Eigen::Vector3f dummy_translation;  Eigen::Matrix3f dummy_rotation;  Eigen::Matrix4f dummy_transform;
   Eigen::Vector3f parameter_vector;  Eigen::Vector3f offset_vector;
@@ -554,7 +554,7 @@ int main(int argc, char **argv){
   reader.read(gripper_file_name, *gripper_cloud_in_gripper_frame_xyz);
   reader.read(object_file_name, *object_cloud_in_camera_depth_optical_frame_xyz);
   reader.read(object_plane_file_name, *object_plane_cloud_in_camera_depth_optical_frame_xyz);
-  
+  cout << "2..." << endl;
   // downsampling object point cloud
   pcl::VoxelGrid<pcl::PointXYZ> vg;
   vg.setInputCloud(object_cloud_in_camera_depth_optical_frame_xyz);
@@ -563,7 +563,7 @@ int main(int argc, char **argv){
   std::cout << "Object point cloud before downsampling has:      " << object_cloud_in_camera_depth_optical_frame_xyz->points.size()              << " data points." << std::endl;
   std::cout << "Object point cloud after downsampling has :      " << object_cloud_downsampled_in_camera_depth_optical_frame_xyz->points.size()  << " data points." << std::endl;
   copyPointCloud(*object_cloud_downsampled_in_camera_depth_optical_frame_xyz, *object_cloud_downsampled_in_camera_depth_optical_frame_xyzrgb);    // converting to rgb will set values to 0 (object color is black)
-  
+  cout << "3..." << endl;
   // downsampling object plane point cloud
   vg.setInputCloud(object_plane_cloud_in_camera_depth_optical_frame_xyz);
   vg.setLeafSize(object_leaf_size, object_leaf_size, object_leaf_size);

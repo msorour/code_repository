@@ -1,0 +1,55 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/pcd_files/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_ae06c/fast"
+/usr/bin/make -f CMakeFiles/cmTC_ae06c.dir/build.make CMakeFiles/cmTC_ae06c.dir/build
+make[1]: Entering directory '/home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/pcd_files/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ae06c.dir/CheckSymbolExists.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_ae06c.dir/CheckSymbolExists.c.o   -c /home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/pcd_files/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_ae06c
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ae06c.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_ae06c.dir/CheckSymbolExists.c.o  -o cmTC_ae06c -rdynamic 
+CMakeFiles/cmTC_ae06c.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x16): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_ae06c.dir/build.make:97: recipe for target 'cmTC_ae06c' failed
+make[1]: *** [cmTC_ae06c] Error 1
+make[1]: Leaving directory '/home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/pcd_files/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_ae06c/fast' failed
+make: *** [cmTC_ae06c/fast] Error 2
+
+File /home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/pcd_files/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/pcd_files/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_2643a/fast"
+/usr/bin/make -f CMakeFiles/cmTC_2643a.dir/build.make CMakeFiles/cmTC_2643a.dir/build
+make[1]: Entering directory '/home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/pcd_files/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_2643a.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_2643a.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_2643a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2643a.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_2643a.dir/CheckFunctionExists.c.o  -o cmTC_2643a -rdynamic -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_2643a.dir/build.make:97: recipe for target 'cmTC_2643a' failed
+make[1]: *** [cmTC_2643a] Error 1
+make[1]: Leaving directory '/home/franka3/grasping_msorour/code_repository/pcl_codes/grasping2/pcd_files/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_2643a/fast' failed
+make: *** [cmTC_2643a/fast] Error 2
+
+
