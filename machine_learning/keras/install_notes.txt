@@ -1,0 +1,22 @@
+1. get CUDA version installed:
+nvcc --version
+
+2. find compatible tf+CUDA+cuDNN versions (https://www.tensorflow.org/install/source#linux)
+
+3. download and install cnDNN (https://developer.nvidia.com/rdp/cudnn-download):
+sudo dpkg -i libcudnn7_7.6.2.24-1+cuda9.0_amd64.deb
+sudo dpkg -i libcudnn7-dev_7.6.2.24-1+cuda9.0_amd64.deb
+sudo dpkg -i libcudnn7-doc_7.6.2.24-1+cuda9.0_amd64.deb
+
+4. install compatible tensor flow version:
+pip uninstall tensorflow-gpu
+pip install --upgrade tensorflow-gpu==1.13.1
+
+5. add these to avoid run time error (Could not create cudnn handle: CUDNN_STATUS_INTERNAL_ERROR):
+import tensorflow as tf
+from keras.backend.tensorflow_backend import set_session
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+set_session(tf.Session(config=config))
+
+

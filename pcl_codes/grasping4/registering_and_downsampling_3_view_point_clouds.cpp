@@ -15,19 +15,7 @@ reset && cmake .. && make && ./registering_and_downsampling_3_view_point_clouds 
 #include <pcl/point_types.h>
 #include <pcl/io/pcd_io.h>
 #include <pcl/filters/voxel_grid.h>
-#include <time.h>
-
-#include <iostream>
-#include <fstream>
 #include <pcl/visualization/pcl_visualizer.h>
-#include <pcl/io/pcd_io.h>
-#include <pcl/surface/concave_hull.h>
-#include <pcl/io/obj_io.h>
-#include <pcl/common/centroid.h>
-#include <pcl/Vertices.h>
-#include <math.h>
-#include <unistd.h>   // for sleep
-
 #include <time.h>
 #include <pcl/common/transforms.h>
 
@@ -39,6 +27,15 @@ reset && cmake .. && make && ./registering_and_downsampling_3_view_point_clouds 
 #include <pcl/sample_consensus/model_types.h>
 #include <pcl/segmentation/sac_segmentation.h>
 #include <pcl/segmentation/extract_clusters.h>
+
+#include <iostream>
+#include <fstream>
+#include <pcl/surface/concave_hull.h>
+#include <pcl/io/obj_io.h>
+#include <pcl/common/centroid.h>
+#include <pcl/Vertices.h>
+#include <math.h>
+#include <unistd.h>   // for sleep
 
 #include "include/useful_implementations.h"
 #include "include/grasping_algorithm.h"
@@ -109,7 +106,7 @@ int main (int argc, char** argv){
   // downsampling gripper point cloud
   // Allegro hand
   i = 0.0;
-  while(allegro_hand_point_cloud_downsampled->points.size() > 500){
+  while(allegro_hand_point_cloud_downsampled->points.size() > 100){
     i += 0.001;
     vg.setInputCloud(allegro_hand_point_cloud);
     vg.setLeafSize(leaf_size+i, leaf_size+i, leaf_size+i);
@@ -117,11 +114,11 @@ int main (int argc, char** argv){
   }
   std::cout << "allegro hand cloud after downsampling has: " << allegro_hand_point_cloud_downsampled->points.size() << " data points." << std::endl;
   // save downsampled cloud
-  writer.write<pcl::PointXYZ>("../gripper_pcd_model/allegro_right_hand_model_cloud_plus_camera_downsampled.pcd", *allegro_hand_point_cloud_downsampled, false);
+  writer.write<pcl::PointXYZ>("../gripper_pcd_model/allegro_right_hand_model_cloud_plus_camera_downsampled_100.pcd", *allegro_hand_point_cloud_downsampled, false);
   
   // Franka gripper
   i = 0.0;
-  while(franka_gripper_point_cloud_downsampled->points.size() > 500){
+  while(franka_gripper_point_cloud_downsampled->points.size() > 100){
     i += 0.001;
     vg.setInputCloud(franka_gripper_point_cloud);
     vg.setLeafSize(leaf_size+i, leaf_size+i, leaf_size+i);
@@ -129,7 +126,7 @@ int main (int argc, char** argv){
   }
   std::cout << "franka gripper cloud after downsampling has: " << franka_gripper_point_cloud_downsampled->points.size() << " data points." << std::endl;
   // save downsampled cloud
-  writer.write<pcl::PointXYZ>("../gripper_pcd_model/franka_gripper_model_cloud_plus_camera_downsampled.pcd", *franka_gripper_point_cloud_downsampled, false);
+  writer.write<pcl::PointXYZ>("../gripper_pcd_model/franka_gripper_model_cloud_plus_camera_downsampled_100.pcd", *franka_gripper_point_cloud_downsampled, false);
   
   end = clock();
 	time_spent = (double)( end - begin1 )/ CLOCKS_PER_SEC;

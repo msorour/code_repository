@@ -40,6 +40,7 @@
 /home/business/code_repository/pcl_codes/grasping4/build/CMakeFiles/roscpp_generate_messages_nodejs.dir
 /home/business/code_repository/pcl_codes/grasping4/build/CMakeFiles/roscpp_generate_messages_eus.dir
 /home/business/code_repository/pcl_codes/grasping4/build/CMakeFiles/geometry_msgs_generate_messages_eus.dir
+/home/business/code_repository/pcl_codes/grasping4/build/CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir
 /home/business/code_repository/pcl_codes/grasping4/build/CMakeFiles/tf_generate_messages_nodejs.dir
 /home/business/code_repository/pcl_codes/grasping4/build/CMakeFiles/geometry_msgs_generate_messages_cpp.dir
 /home/business/code_repository/pcl_codes/grasping4/build/CMakeFiles/geometry_msgs_generate_messages_lisp.dir

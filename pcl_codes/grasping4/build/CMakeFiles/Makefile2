@@ -1286,6 +1286,43 @@ clean: CMakeFiles/geometry_msgs_generate_messages_eus.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir
+
+# All Build rule for target.
+CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/all:
+	$(MAKE) -f CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/build.make CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/depend
+	$(MAKE) -f CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/build.make CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/business/code_repository/pcl_codes/grasping4/build/CMakeFiles --progress-num=16,17 "Built target registering_and_downsampling_3_view_point_clouds"
+.PHONY : CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/all
+
+# Include target in all.
+all: CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/business/code_repository/pcl_codes/grasping4/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/business/code_repository/pcl_codes/grasping4/build/CMakeFiles 0
+.PHONY : CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/rule
+
+# Convenience name for target.
+registering_and_downsampling_3_view_point_clouds: CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/rule
+
+.PHONY : registering_and_downsampling_3_view_point_clouds
+
+# clean rule for target.
+CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/clean:
+	$(MAKE) -f CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/build.make CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/clean
+.PHONY : CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/tf_generate_messages_nodejs.dir
 
 # All Build rule for target.
