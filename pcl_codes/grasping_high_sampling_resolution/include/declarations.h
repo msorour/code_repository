@@ -214,11 +214,13 @@ Eigen::Vector4f object_far_point_in_neg_direction_in_global_frame;
 Eigen::Vector3f object_major_dimensions;
 
 // sampling the object around its z-axis for scanning
-int object_sampling_in_x_axis = 10;   int object_sampling_in_y_axis = 10;   int object_sampling_in_z_axis = 10;
-int orientation_samples = 4;
-double initial_orientation = 0.0;
-double orientation_range = 2*M_PI;
-int desired_number_of_object_cloud_points = 250;
+int object_sampling_in_x_axis = 5;   int object_sampling_in_y_axis = 5;   int object_sampling_in_z_axis = 5;
+int orientation_samples = 18;
+//double initial_orientation = 0.0;
+//double orientation_range = 2*M_PI;
+double initial_orientation = -M_PI/3;
+double orientation_range = M_PI/3;
+int desired_number_of_object_cloud_points = 400;
 
 // object centroid location in arm hand frame
 pcl::CentroidPoint<pcl::PointXYZ> object_centroid_in_arm_hand_frame;

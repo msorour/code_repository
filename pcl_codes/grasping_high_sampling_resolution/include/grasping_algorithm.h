@@ -667,7 +667,7 @@ void construct_special_ellipsoid_point_cloud( pcl::PointCloud<pcl::PointXYZ>::Pt
 void constructing_special_ellipsoids(void){
   // gripper support region special ellipsoid
   if(gripper_model == "allegro_right_hand"){
-    gripper_support_x = 0.007; gripper_support_y = 0.047; gripper_support_z = 0.047;
+    gripper_support_x = 0.010; gripper_support_y = 0.047; gripper_support_z = 0.047;
     //gripper_support_offset_x = 0.0; gripper_support_offset_y = 0.0; gripper_support_offset_z = 0.0475;
     gripper_support_offset_x = gripper_support_x/2.0; gripper_support_offset_y = 0.0; gripper_support_offset_z = 0.13;
   }
@@ -1932,7 +1932,7 @@ void registering_downsampling_segmenting_3_view_point_clouds( pcl::PointCloud<pc
   
   // downsampling object cloud to ensure below 500 points
   i = 0.0;
-  while(cloud_cluster->points.size() > 500){
+  while(cloud_cluster->points.size() > desired_number_of_object_cloud_points){
     i += 0.001;
     vg.setInputCloud(cloud_cluster);
     vg.setLeafSize(leaf_size+i, leaf_size+i, leaf_size+i);
@@ -1970,6 +1970,7 @@ void evaluate_grasp_pose_candidates(void){
   // iterate through all points in the "object sampling cloud"
 	double total_iteration_duration = 0.0, average_iteration_duration = 0.0;
   for(unsigned int i=0; i<object_sampling_in_arm_hand_frame_xyz->points.size(); i++){
+  //for(unsigned int i=0; i<object_cloud_downsampled_in_arm_hand_frame_xyz->points.size(); i++){
   //for(unsigned int i=0; i<1; i++){
 		
     // STEP : OK
@@ -1982,6 +1983,7 @@ void evaluate_grasp_pose_candidates(void){
     else if(gripper_model == "franka_gripper"){
       gripper_centroid_rotation_in_gripper_centroid_frame << object_rotation_wrt_arm_hand_frame*Roty_float(M_PI/2);}
     gripper_centroid_translation_in_gripper_centroid_frame << object_sampling_in_arm_hand_frame_xyz->points[i].x,   object_sampling_in_arm_hand_frame_xyz->points[i].y,   object_sampling_in_arm_hand_frame_xyz->points[i].z;
+    //gripper_centroid_translation_in_gripper_centroid_frame << object_cloud_downsampled_in_arm_hand_frame_xyz->points[i].x,   object_cloud_downsampled_in_arm_hand_frame_xyz->points[i].y,   object_cloud_downsampled_in_arm_hand_frame_xyz->points[i].z;
     gripper_centroid_transform_in_gripper_centroid_frame   << gripper_centroid_rotation_in_gripper_centroid_frame, gripper_centroid_translation_in_gripper_centroid_frame,
                                                               0,0,0,1;
     
@@ -2119,7 +2121,7 @@ void evaluate_grasp_pose_candidates(void){
 																																						pow(fabs(gripper_support_offset_in_gripper_frame(1)-object_centroid_point_transformed(1)),2)+
 																																						pow(fabs(gripper_support_offset_in_gripper_frame(2)-object_centroid_point_transformed(2)),2));
 								
-								metric_2_score = 2000.0/distance_between_gripper_support_and_object_centroid;
+								metric_2_score = 1000.0/distance_between_gripper_support_and_object_centroid;
 								
 								
 								
