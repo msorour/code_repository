@@ -18,8 +18,8 @@ double time_spent_for_initial_overhead;
 std::string gripper_model;
 
 long int sampling_iteration = 0;
-double metric_1_score = 0.0, metric_2_score = 0.0, metric_3_score = 0.0, metric_4_score = 0.0, total_score = 0.0, total_score_best = 0.0;
-double metric_1_score_best = 0.0, metric_2_score_best = 0.0, metric_3_score_best = 0.0, metric_4_score_best = 0.0;
+double metric_1_score = 0.0, metric_2_score = 0.0, metric_3_score = 0.0, metric_4_score = 0.0, metric_5_score = 0.0, total_score = 0.0, total_score_best = 0.0;
+double metric_1_score_best = 0.0, metric_2_score_best = 0.0, metric_3_score_best = 0.0, metric_4_score_best = 0.0, metric_5_score_best = 0.0;
 
 // point clouds declarations
 pcl::PointCloud<pcl::PointXYZ>::Ptr     object_cloud_in_camera_depth_optical_frame_xyz                       (new pcl::PointCloud<pcl::PointXYZ>);
@@ -218,9 +218,10 @@ int object_sampling_in_x_axis = 5;   int object_sampling_in_y_axis = 5;   int ob
 int orientation_samples = 18;
 //double initial_orientation = 0.0;
 //double orientation_range = 2*M_PI;
-double initial_orientation = -M_PI/3;
-double orientation_range = M_PI/3;
-int desired_number_of_object_cloud_points = 400;
+double initial_orientation = -M_PI/2;
+double orientation_range = M_PI/2;
+int desired_number_of_object_cloud_points = 500;
+double desired_distance_to_table = 0.07;
 
 // object centroid location in arm hand frame
 pcl::CentroidPoint<pcl::PointXYZ> object_centroid_in_arm_hand_frame;
@@ -241,6 +242,7 @@ Eigen::Vector4f gripper_support_offset_in_gripper_transformed_frame;
 Eigen::Vector4f gripper_support_in_arm_hand_frame;
 Eigen::Vector4f gripper_support_in_gripper_frame;
 Eigen::Vector4f gripper_support_in_gripper_transformed_frame;
+Eigen::Vector4f gripper_support_in_object_plane_frame;
 
 // object plane cloud in its own frame
 Eigen::Matrix4f object_plane_transform_wrt_arm_hand_frame_inverse;

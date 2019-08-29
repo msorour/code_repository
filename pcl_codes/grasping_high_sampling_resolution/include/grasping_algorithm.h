@@ -2084,7 +2084,8 @@ void evaluate_grasp_pose_candidates(void){
 								
 								
 								
-								// Evaluation Metric#1 : number of workspace spheres that can access the object && number of object points lying within
+								// METRIC#1
+								// Number of workspace spheres that can access the object && Number of object points lying within
 								// thumb
 								metric_1_number_of_active_workspace_spheres_and_corresponding_object_points(  object_cloud_transformed_in_gripper_frame_xyz,                                                                          // input : object related
 																																															thumb_workspace_convex_offset, thumb_workspace_convex_parameter,                                                        // input : gripper finger related
@@ -2110,13 +2111,11 @@ void evaluate_grasp_pose_candidates(void){
 								
 									
 									
-								// Evaluation Metric#2 : how close the object centroid to gripper support offset (special ellipsoid)
+								// METRIC#2
+								// How close the object centroid to gripper support offset (special ellipsoid)
 								object_centroid_point_transformed << object_centroid_point_in_arm_hand_frame.x, object_centroid_point_in_arm_hand_frame.y, object_centroid_point_in_arm_hand_frame.z, 1;	// object centroid point in the old arm hand frame
 								object_centroid_point_transformed = inverse_gripper_transform*object_centroid_point_transformed;  // now we have the object centroid point in the new(tansformed) arm hand frame
 								object_centroid_point_transformed = gripper_wrt_arm_hand_frame_inverse_transform*object_centroid_point_transformed;  // now we have the object centroid point transformed in gripper frame
-								//distance_between_gripper_support_and_object_centroid = sqrt(pow(fabs(gripper_support_offset_x-object_centroid_point_transformed(0)),2)+
-								//																														pow(fabs(gripper_support_offset_y-object_centroid_point_transformed(1)),2)+
-								//																														pow(fabs(gripper_support_offset_z-object_centroid_point_transformed(2)),2));
 								distance_between_gripper_support_and_object_centroid = sqrt(pow(fabs(gripper_support_offset_in_gripper_frame(0)-object_centroid_point_transformed(0)),2)+
 																																						pow(fabs(gripper_support_offset_in_gripper_frame(1)-object_centroid_point_transformed(1)),2)+
 																																						pow(fabs(gripper_support_offset_in_gripper_frame(2)-object_centroid_point_transformed(2)),2));
@@ -2156,7 +2155,6 @@ void evaluate_grasp_pose_candidates(void){
 									object_points_in_pinky_workspace_centroid.add( object_points_in_pinky_workspace->points[i] );
 								object_points_in_pinky_workspace_centroid.get(object_points_in_pinky_workspace_centroid_point);
 								
-								metric_3_score = 0.0;
 								if( object_centroid_point_transformed(0) <= object_points_in_thumb_workspace_centroid_point.x and
 								    object_centroid_point_transformed(0) <= object_points_in_index_workspace_centroid_point.x and
 										object_centroid_point_transformed(0) <= object_points_in_middle_workspace_centroid_point.x and
@@ -2181,9 +2179,21 @@ void evaluate_grasp_pose_candidates(void){
 										metric_4_score += 1000;
 								}
 								
-								total_score = metric_1_score + metric_2_score + metric_3_score + metric_4_score;
+								
+								
+								// METRIC#5
+								// Distance to table
+								gripper_support_in_gripper_transformed_frame = gripper_transform*gripper_support_in_gripper_frame;
+								gripper_support_in_object_plane_frame = object_plane_transform_wrt_arm_hand_frame_inverse*gripper_wrt_arm_hand_frame_transform*gripper_support_in_gripper_transformed_frame;
+								//metric_5_score = 10/(fabs(gripper_support_in_object_plane_frame(1) - desired_distance_to_table)+0.001);
+								metric_5_score = 200000*gripper_support_in_object_plane_frame(1);
+								
+								total_score = metric_1_score + metric_2_score + metric_3_score + metric_4_score + metric_5_score;
 								//total_score = metric_2_score;
 								
+								
+								
+								//
 								// Evaluating the best score
 								if( total_score > total_score_best ){
 									total_score_best = total_score;
@@ -2191,6 +2201,7 @@ void evaluate_grasp_pose_candidates(void){
 									metric_2_score_best = metric_2_score;
 									metric_3_score_best = metric_3_score;
 									metric_4_score_best = metric_4_score;
+									metric_5_score_best = metric_5_score;
 									
 									// saving best object points
 									*object_points_in_thumb_workspace_best  = *object_points_in_thumb_workspace;
@@ -2214,67 +2225,6 @@ void evaluate_grasp_pose_candidates(void){
 								
 								
 								
-								
-								
-								
-								
-								
-								
-								
-								
-								/*
-								// METRIC#4
-								// Distance between finger contacts on object -> Maximize
-								// object_points_in_thumb_workspace_centroid_point
-								pcl::CentroidPoint<pcl::PointXYZ> object_points_in_thumb_workspace_centroid;
-								pcl::PointXYZ object_points_in_thumb_workspace_centroid_point;
-								for(unsigned int i=0;i<object_points_in_thumb_workspace->points.size();i++)
-									object_points_in_thumb_workspace_centroid.add( object_points_in_thumb_workspace->points[i] );
-								object_points_in_thumb_workspace_centroid.get(object_points_in_thumb_workspace_centroid_point);
-								
-								// object_points_in_index_workspace_centroid_point
-								pcl::CentroidPoint<pcl::PointXYZ> object_points_in_index_workspace_centroid;
-								pcl::PointXYZ object_points_in_index_workspace_centroid_point;
-								for(unsigned int i=0;i<object_points_in_index_workspace->points.size();i++)
-									object_points_in_index_workspace_centroid.add( object_points_in_index_workspace->points[i] );
-								object_points_in_index_workspace_centroid.get(object_points_in_index_workspace_centroid_point);
-								
-								distance_between_gripper_fingers = sqrt(pow(fabs(object_points_in_thumb_workspace_centroid_point.x-object_points_in_index_workspace_centroid_point.x),2)+
-																												pow(fabs(object_points_in_thumb_workspace_centroid_point.y-object_points_in_index_workspace_centroid_point.y),2)+
-																												pow(fabs(object_points_in_thumb_workspace_centroid_point.z-object_points_in_index_workspace_centroid_point.z),2));
-								
-								
-								// this condition maximizes distance between gripper fingers
-								if( distance_between_gripper_fingers > distance_between_gripper_fingers_best ){
-									distance_between_gripper_fingers_best = distance_between_gripper_fingers;
-									
-									// saving best object points
-									*object_points_in_thumb_workspace_best  = *object_points_in_thumb_workspace;
-									*object_points_in_index_workspace_best  = *object_points_in_index_workspace;
-									*object_points_in_middle_workspace_best = *object_points_in_middle_workspace;
-									*object_points_in_pinky_workspace_best  = *object_points_in_pinky_workspace;
-									
-									// saving the best workspace spheres
-									*thumb_workspace_active_spheres_offset_best     = *thumb_workspace_active_spheres_offset;
-									*thumb_workspace_active_spheres_parameter_best  = *thumb_workspace_active_spheres_parameter;
-									*index_workspace_active_spheres_offset_best     = *index_workspace_active_spheres_offset;
-									*index_workspace_active_spheres_parameter_best  = *index_workspace_active_spheres_parameter;
-									*middle_workspace_active_spheres_offset_best    = *middle_workspace_active_spheres_offset;
-									*middle_workspace_active_spheres_parameter_best = *middle_workspace_active_spheres_parameter;
-									*pinky_workspace_active_spheres_offset_best     = *pinky_workspace_active_spheres_offset;
-									*pinky_workspace_active_spheres_parameter_best  = *pinky_workspace_active_spheres_parameter;
-									
-									//std::cout<<"metric#1 : "<<(object_points_in_thumb_workspace_best->size() + object_points_in_index_workspace_best->size() + object_points_in_middle_workspace_best->size() + object_points_in_pinky_workspace_best->size() )<<std::endl;
-									//std::cout<<"metric#3 : "<<distance_between_gripper_fingers_best << ", at point: " << object_sampling_in_object_frame_xyz->points[i] <<std::endl;
-									best_gripper_transform = gripper_transform;
-								}
-								*/
-								
-							
-								//////else{std::cout<<"no finger-object contact solution found ! " <<std::endl;}
-							
-							
-							
 							}
 							else if(gripper_model == "franka_gripper"){
 							
@@ -2392,7 +2342,12 @@ void evaluate_grasp_pose_candidates(void){
 					cout << "iteration: " << i << ", " << j << ", " << m << ", " << n
 					     << ", time to check collision(table): "  << average_time_to_check_gripper_collision_with_table
 							 << ", time to check collision(object): " << average_time_to_check_gripper_collision_with_object
-							 << ", iteration time: " << average_iteration_duration << ", metric#1_score= " << metric_1_score_best << ", metric#2_score= " << metric_2_score_best << ", metric#3_score= " << metric_3_score_best << ", metric#4_score= " << metric_4_score_best << ", total_score_best= " << total_score_best << endl;
+							 << ", iteration time: " << average_iteration_duration 
+							 << ", metric#1= " << metric_1_score_best 
+							 << ", metric#2= " << metric_2_score_best 
+							 << ", metric#3= " << metric_3_score_best 
+							 << ", metric#4= " << metric_4_score_best
+							 << ", metric#5= " << metric_5_score_best << ", total_score= " << total_score_best << endl;
 				}
 			}
     }
