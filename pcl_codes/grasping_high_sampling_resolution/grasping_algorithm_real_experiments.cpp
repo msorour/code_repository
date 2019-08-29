@@ -308,6 +308,8 @@ int main(int argc, char **argv){
   scene_cloud_viewer->addPointCloud(gripper_as_set_of_special_ellipsoids_transformed_in_arm_hand_frame, black_color,  "gripper special ellipsoids transformed");
   scene_cloud_viewer->addPointCloud(gripper_as_set_of_special_ellipsoids_in_arm_hand_frame, black_color_again,        "gripper special ellipsoids");
   
+  scene_cloud_viewer->addPointCloud(gripper_support_point_cloud_in_gripper_frame, orange_color_again,                 "gripper support ellipsoid");
+  scene_cloud_viewer->addPointCloud(gripper_support_point_cloud_in_gripper_transformed_frame, orange_color_again2,    "gripper support transformed ellipsoid");
   
   
   
@@ -373,9 +375,9 @@ int main(int argc, char **argv){
 	std::cout << "time spent in checking gripper collision with object       = " << time_elapsed_checking_gripper_collision_with_object       << std::endl;
   std::cout << "time spent in checking object contact with gripper support = " << time_elapsed_checking_object_contact_with_gripper_support << std::endl;
   std::cout << "time spent in scanning for best gripper pose               = " << time_spent << std::endl;
-  std::cout << "out of " << orientation_samples*object_sampling_in_arm_hand_frame_xyz->points.size() << " iterations, gripper collide with table  : " << gripper_collide_with_table   << " times." << std::endl;
-  std::cout << "out of " << orientation_samples*object_sampling_in_arm_hand_frame_xyz->points.size() << " iterations, gripper collide with object : " << gripper_collide_with_object  << " times." << std::endl;
-  std::cout << "out of " << orientation_samples*object_sampling_in_arm_hand_frame_xyz->points.size() << " iterations, gripper contacts with object: " << gripper_contacts_with_object << " times." << std::endl;
+  std::cout << "out of " << sampling_iteration << " iterations, gripper collide with table  : " << gripper_collide_with_table   << " times." << std::endl;
+  std::cout << "out of " << sampling_iteration << " iterations, gripper collide with object : " << gripper_collide_with_object  << " times." << std::endl;
+  std::cout << "out of " << sampling_iteration << " iterations, gripper contacts with object: " << gripper_contacts_with_object << " times." << std::endl;
   
   end = clock();
 	time_spent = (double)( end - time_to_run_algorithm_begin )/ CLOCKS_PER_SEC;
@@ -426,6 +428,15 @@ int main(int argc, char **argv){
   // gripper special ellipsoids
   scene_cloud_viewer->updatePointCloud(gripper_as_set_of_special_ellipsoids_in_arm_hand_frame, black_color_again,          "gripper special ellipsoids");
   scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper special ellipsoids");
+  
+  // gripper support ellipsoid
+	scene_cloud_viewer->updatePointCloud(gripper_support_point_cloud_in_gripper_frame, orange_color_again,                   "gripper support ellipsoid");
+  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper support ellipsoid");
+	
+	// gripper support transformed ellipsoid
+	pcl::transformPointCloud(*gripper_support_point_cloud_in_gripper_frame, *gripper_support_point_cloud_in_gripper_transformed_frame, best_gripper_transform);
+	scene_cloud_viewer->updatePointCloud(gripper_support_point_cloud_in_gripper_transformed_frame, orange_color_again2,      "gripper support transformed ellipsoid");
+  scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper support transformed ellipsoid");
   
   scene_cloud_viewer->spinOnce();
   

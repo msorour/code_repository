@@ -1,0 +1,9 @@
+sprayer:
+storage bin:
+tooth paste box:
+brush:
+plant pot:
+handless cup:
+toilet paper roll:
+realsense box:
+air duster:

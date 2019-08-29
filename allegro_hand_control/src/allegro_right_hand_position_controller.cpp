@@ -602,8 +602,8 @@ int main(int argc, TCHAR* argv[]){
     
     
     
-    //position_Ptt_desired << 0.07,  0.085, 0.055;
-    position_Ptt_desired << 0.045,  0.065, 0.085;
+    position_Ptt_desired << 0.0455482, 0.156374, 0.0554319;
+    //position_Ptt_desired << 0.045,  0.065, 0.085;
     position_Pit_desired << 0.01,  0.05, 0.23;
     position_Pmt_desired << 0.01,   0.0, 0.23;
     position_Ppt_desired << 0.01, -0.05, 0.23;
