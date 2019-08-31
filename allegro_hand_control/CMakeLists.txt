@@ -25,8 +25,14 @@ target_link_libraries(grasp BHand pcanbasic pthread)
 add_executable(allegro_right_hand_position_controller src/allegro_right_hand_position_controller.cpp src/canAPI.cpp)
 target_link_libraries(allegro_right_hand_position_controller BHand pcanbasic pthread ${roscpp_LIBRARIES})
 
+add_executable(allegro_right_hand_position_controller_soft_closure src/allegro_right_hand_position_controller_soft_closure.cpp src/canAPI.cpp)
+target_link_libraries(allegro_right_hand_position_controller_soft_closure BHand pcanbasic pthread ${roscpp_LIBRARIES})
+
 add_executable(allegro_right_hand_position_controller_traj src/allegro_right_hand_position_controller_traj.cpp src/canAPI.cpp)
 target_link_libraries(allegro_right_hand_position_controller_traj BHand pcanbasic pthread ${roscpp_LIBRARIES})
 
 add_executable(publish_finger_tip_position_commands src/publish_finger_tip_position_commands.cpp)
 target_link_libraries(publish_finger_tip_position_commands ${roscpp_LIBRARIES})
+
+add_executable(publish_finger_tip_position_commands_traj src/publish_finger_tip_position_commands_traj.cpp)
+target_link_libraries(publish_finger_tip_position_commands_traj ${roscpp_LIBRARIES})

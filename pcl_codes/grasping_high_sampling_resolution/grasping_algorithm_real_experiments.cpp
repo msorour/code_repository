@@ -4,7 +4,8 @@ before starting this program, start first the realsense ROS nodelet using:
 roslaunch realsense2_camera rs_rgbd.launch
 
 then run using:
-reset && cmake .. && make && ./grasping_algorithm_real_experiments storage_bin2 ../include/gripper_pcd_model/allegro_right_hand_model_cloud_plus_camera.pcd
+reset && cmake .. && make -j7 && ./grasping_algorithm_real_experiments cup_without_handle ../gripper_pcd_model/allegro_right_hand_model_cloud_plus_camera_downsampled_100.pcd
+
 */
 
 #include <ros/ros.h>
@@ -535,7 +536,7 @@ int main(int argc, char **argv){
 		// move in z-axis only
 		poseCommand.pose.position.x = desired_hand_translation_in_arm_link0_frame(0);
 		poseCommand.pose.position.y = desired_hand_translation_in_arm_link0_frame(1);
-		poseCommand.pose.position.z = desired_hand_translation_in_arm_link0_frame(2);
+		poseCommand.pose.position.z = desired_hand_translation_in_arm_link0_frame(2)+0.005;
 		//poseCommand.pose.position.z = 0.17;
 		poseCommand.pose.orientation.x = desired_hand_rotation_in_arm_link0_frame_quat.x();
 		poseCommand.pose.orientation.y = desired_hand_rotation_in_arm_link0_frame_quat.y();

@@ -220,7 +220,7 @@ int orientation_samples = 18;
 //double orientation_range = 2*M_PI;
 double initial_orientation = -M_PI/2;
 double orientation_range = M_PI/2;
-int desired_number_of_object_cloud_points = 500;
+int desired_number_of_object_cloud_points = 400;
 double desired_distance_to_table = 0.07;
 
 // object centroid location in arm hand frame

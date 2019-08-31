@@ -2186,10 +2186,11 @@ void evaluate_grasp_pose_candidates(void){
 								gripper_support_in_gripper_transformed_frame = gripper_transform*gripper_support_in_gripper_frame;
 								gripper_support_in_object_plane_frame = object_plane_transform_wrt_arm_hand_frame_inverse*gripper_wrt_arm_hand_frame_transform*gripper_support_in_gripper_transformed_frame;
 								//metric_5_score = 10/(fabs(gripper_support_in_object_plane_frame(1) - desired_distance_to_table)+0.001);
-								metric_5_score = 200000*gripper_support_in_object_plane_frame(1);
+								//metric_5_score = 200000*gripper_support_in_object_plane_frame(1);
 								
-								total_score = metric_1_score + metric_2_score + metric_3_score + metric_4_score + metric_5_score;
-								//total_score = metric_2_score;
+								//total_score = metric_1_score + metric_2_score + metric_3_score + metric_4_score + metric_5_score;
+								total_score = metric_1_score + metric_2_score + metric_3_score + metric_4_score;
+								
 								
 								
 								
@@ -2347,7 +2348,8 @@ void evaluate_grasp_pose_candidates(void){
 							 << ", metric#2= " << metric_2_score_best 
 							 << ", metric#3= " << metric_3_score_best 
 							 << ", metric#4= " << metric_4_score_best
-							 << ", metric#5= " << metric_5_score_best << ", total_score= " << total_score_best << endl;
+							 //<< ", metric#5= " << metric_5_score_best 
+							 << ", total_score= " << total_score_best << endl;
 				}
 			}
     }

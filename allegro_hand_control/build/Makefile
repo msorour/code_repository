@@ -267,6 +267,19 @@ roscpp_generate_messages_cpp/fast:
 .PHONY : roscpp_generate_messages_cpp/fast
 
 #=============================================================================
+# Target rules for targets named allegro_right_hand_position_controller_soft_closure
+
+# Build rule for target.
+allegro_right_hand_position_controller_soft_closure: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_position_controller_soft_closure
+.PHONY : allegro_right_hand_position_controller_soft_closure
+
+# fast build rule for target.
+allegro_right_hand_position_controller_soft_closure/fast:
+	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller_soft_closure.dir/build.make CMakeFiles/allegro_right_hand_position_controller_soft_closure.dir/build
+.PHONY : allegro_right_hand_position_controller_soft_closure/fast
+
+#=============================================================================
 # Target rules for targets named rosgraph_msgs_generate_messages_nodejs
 
 # Build rule for target.
@@ -384,6 +397,33 @@ src/allegro_right_hand_position_controller.cpp.s:
 	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller.dir/build.make CMakeFiles/allegro_right_hand_position_controller.dir/src/allegro_right_hand_position_controller.cpp.s
 .PHONY : src/allegro_right_hand_position_controller.cpp.s
 
+src/allegro_right_hand_position_controller_soft_closure.o: src/allegro_right_hand_position_controller_soft_closure.cpp.o
+
+.PHONY : src/allegro_right_hand_position_controller_soft_closure.o
+
+# target to build an object file
+src/allegro_right_hand_position_controller_soft_closure.cpp.o:
+	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller_soft_closure.dir/build.make CMakeFiles/allegro_right_hand_position_controller_soft_closure.dir/src/allegro_right_hand_position_controller_soft_closure.cpp.o
+.PHONY : src/allegro_right_hand_position_controller_soft_closure.cpp.o
+
+src/allegro_right_hand_position_controller_soft_closure.i: src/allegro_right_hand_position_controller_soft_closure.cpp.i
+
+.PHONY : src/allegro_right_hand_position_controller_soft_closure.i
+
+# target to preprocess a source file
+src/allegro_right_hand_position_controller_soft_closure.cpp.i:
+	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller_soft_closure.dir/build.make CMakeFiles/allegro_right_hand_position_controller_soft_closure.dir/src/allegro_right_hand_position_controller_soft_closure.cpp.i
+.PHONY : src/allegro_right_hand_position_controller_soft_closure.cpp.i
+
+src/allegro_right_hand_position_controller_soft_closure.s: src/allegro_right_hand_position_controller_soft_closure.cpp.s
+
+.PHONY : src/allegro_right_hand_position_controller_soft_closure.s
+
+# target to generate assembly for a file
+src/allegro_right_hand_position_controller_soft_closure.cpp.s:
+	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller_soft_closure.dir/build.make CMakeFiles/allegro_right_hand_position_controller_soft_closure.dir/src/allegro_right_hand_position_controller_soft_closure.cpp.s
+.PHONY : src/allegro_right_hand_position_controller_soft_closure.cpp.s
+
 src/allegro_right_hand_position_controller_traj.o: src/allegro_right_hand_position_controller_traj.cpp.o
 
 .PHONY : src/allegro_right_hand_position_controller_traj.o
@@ -420,6 +460,7 @@ src/canAPI.cpp.o:
 	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller.dir/build.make CMakeFiles/allegro_right_hand_position_controller.dir/src/canAPI.cpp.o
 	$(MAKE) -f CMakeFiles/grasp.dir/build.make CMakeFiles/grasp.dir/src/canAPI.cpp.o
 	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller_traj.dir/build.make CMakeFiles/allegro_right_hand_position_controller_traj.dir/src/canAPI.cpp.o
+	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller_soft_closure.dir/build.make CMakeFiles/allegro_right_hand_position_controller_soft_closure.dir/src/canAPI.cpp.o
 .PHONY : src/canAPI.cpp.o
 
 src/canAPI.i: src/canAPI.cpp.i
@@ -431,6 +472,7 @@ src/canAPI.cpp.i:
 	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller.dir/build.make CMakeFiles/allegro_right_hand_position_controller.dir/src/canAPI.cpp.i
 	$(MAKE) -f CMakeFiles/grasp.dir/build.make CMakeFiles/grasp.dir/src/canAPI.cpp.i
 	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller_traj.dir/build.make CMakeFiles/allegro_right_hand_position_controller_traj.dir/src/canAPI.cpp.i
+	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller_soft_closure.dir/build.make CMakeFiles/allegro_right_hand_position_controller_soft_closure.dir/src/canAPI.cpp.i
 .PHONY : src/canAPI.cpp.i
 
 src/canAPI.s: src/canAPI.cpp.s
@@ -442,6 +484,7 @@ src/canAPI.cpp.s:
 	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller.dir/build.make CMakeFiles/allegro_right_hand_position_controller.dir/src/canAPI.cpp.s
 	$(MAKE) -f CMakeFiles/grasp.dir/build.make CMakeFiles/grasp.dir/src/canAPI.cpp.s
 	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller_traj.dir/build.make CMakeFiles/allegro_right_hand_position_controller_traj.dir/src/canAPI.cpp.s
+	$(MAKE) -f CMakeFiles/allegro_right_hand_position_controller_soft_closure.dir/build.make CMakeFiles/allegro_right_hand_position_controller_soft_closure.dir/src/canAPI.cpp.s
 .PHONY : src/canAPI.cpp.s
 
 src/interface.o: src/interface.cpp.o
@@ -544,6 +587,7 @@ help:
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... rebuild_cache"
+	@echo "... allegro_right_hand_position_controller_soft_closure"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
 	@echo "... edit_cache"
 	@echo "... rosgraph_msgs_generate_messages_eus"
@@ -555,6 +599,9 @@ help:
 	@echo "... src/allegro_right_hand_position_controller.o"
 	@echo "... src/allegro_right_hand_position_controller.i"
 	@echo "... src/allegro_right_hand_position_controller.s"
+	@echo "... src/allegro_right_hand_position_controller_soft_closure.o"
+	@echo "... src/allegro_right_hand_position_controller_soft_closure.i"
+	@echo "... src/allegro_right_hand_position_controller_soft_closure.s"
 	@echo "... src/allegro_right_hand_position_controller_traj.o"
 	@echo "... src/allegro_right_hand_position_controller_traj.i"
 	@echo "... src/allegro_right_hand_position_controller_traj.s"

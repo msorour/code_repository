@@ -11,6 +11,7 @@
 /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles/std_msgs_generate_messages_cpp.dir
 /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles/roscpp_generate_messages_cpp.dir
 /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles/rebuild_cache.dir
+/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles/allegro_right_hand_position_controller_soft_closure.dir
 /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir
 /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles/edit_cache.dir
 /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir

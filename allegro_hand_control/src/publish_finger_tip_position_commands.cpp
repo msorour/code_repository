@@ -81,7 +81,7 @@ int main(int argc, char* argv[]){
     thumb_tip_position_command.data.clear();
     
     char execute;
-		std::cout << "Press [h] to go to home position or [g] to do simple grasp or [t] to move thumb ... " << std::endl;
+		std::cout << "Press [h] to go to home position or [g] to do simple grasp or [t] to move thumb or [1] to grasp with one command or [2] to home with one command ... " << std::endl;
 		std::cin.get(execute);
 		if(execute == 'h'){
 			
@@ -461,6 +461,76 @@ int main(int argc, char* argv[]){
 		  
 		  ros::Duration(0.5).sleep();
     }
+    
+    else if(execute == '1'){
+			//
+			// send step#5 grasp
+			//
+			position_Ptt_desired = position_Ptt_desired5;
+			position_Pit_desired = position_Pit_desired5;
+			position_Pmt_desired = position_Pmt_desired5;
+			position_Ppt_desired = position_Ppt_desired5;
+			
+			ros_time_now = ros::Time::now().toNSec();
+			
+		  index_tip_position_command.data.clear();
+		  middle_tip_position_command.data.clear();
+		  pinky_tip_position_command.data.clear();
+		  thumb_tip_position_command.data.clear();
+		  
+		  index_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  middle_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  pinky_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  thumb_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  
+		  for(int i=0; i<3; i++){
+		    index_tip_position_command.data.push_back (position_Pit_desired(i));
+		    middle_tip_position_command.data.push_back(position_Pmt_desired(i));
+		    pinky_tip_position_command.data.push_back (position_Ppt_desired(i));
+		    thumb_tip_position_command.data.push_back (position_Ptt_desired(i));
+		  }
+		  
+		  index_tip_position_command_pub.publish ( index_tip_position_command );
+		  middle_tip_position_command_pub.publish( middle_tip_position_command );
+		  pinky_tip_position_command_pub.publish ( pinky_tip_position_command );
+		  thumb_tip_position_command_pub.publish ( thumb_tip_position_command );
+		  
+		  ros::Duration(0.5).sleep();
+		}
+		
+		
+		else if(execute == '2'){
+			position_Ptt_desired << 0.0455482, 0.156374, 0.0554319;
+			position_Pit_desired << 0.01,  0.05, 0.23;
+			position_Pmt_desired << 0.01,   0.0, 0.23;
+			position_Ppt_desired << 0.01, -0.05, 0.23;
+			
+			ros_time_now = ros::Time::now().toNSec();
+			
+		  index_tip_position_command.data.clear();
+		  middle_tip_position_command.data.clear();
+		  pinky_tip_position_command.data.clear();
+		  thumb_tip_position_command.data.clear();
+		  
+		  index_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  middle_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  pinky_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  thumb_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+		  
+		  for(int i=0; i<3; i++){
+		    index_tip_position_command.data.push_back (position_Pit_desired(i));
+		    middle_tip_position_command.data.push_back(position_Pmt_desired(i));
+		    pinky_tip_position_command.data.push_back (position_Ppt_desired(i));
+		    thumb_tip_position_command.data.push_back (position_Ptt_desired(i));
+		  }
+		  
+		  index_tip_position_command_pub.publish ( index_tip_position_command );
+		  middle_tip_position_command_pub.publish( middle_tip_position_command );
+		  pinky_tip_position_command_pub.publish ( pinky_tip_position_command );
+		  thumb_tip_position_command_pub.publish ( thumb_tip_position_command );
+		  
+		  ros::Duration(0.5).sleep();
+		}
     
     
     

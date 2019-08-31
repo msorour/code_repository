@@ -699,15 +699,15 @@ int main(int argc, TCHAR* argv[]){
     
     velocity_Ptt << 0.0,0.0,0.0;
     
-    position_Ptt_desired << 0.02,  0.00, 0.08;
-    position_Pit_desired << 0.01,  0.05, 0.21;
-    position_Pmt_desired << 0.01,   0.0, 0.21;
-    position_Ppt_desired << 0.01, -0.05, 0.21;
+    position_Ptt_desired << 0.0455482, 0.156374, 0.0554319;
+    position_Pit_desired << 0.01,  0.05, 0.23;
+    position_Pmt_desired << 0.01,   0.0, 0.23;
+    position_Ppt_desired << 0.01, -0.05, 0.23;
     
     double ros_time_start = ros::Time::now().toNSec();
     double ros_time_now;
     
-    trajectory_duration = 2.0;
+    trajectory_duration = 5.0;
     begin = clock();
     start_time = (double)(begin)/CLOCKS_PER_SEC;
     end_time = start_time + trajectory_duration;
@@ -845,17 +845,6 @@ int main(int argc, TCHAR* argv[]){
 
       for(int i=0; i<16; i++)
         tau_des[i] = torque_desired(i);
-      //for(int i=0; i<16; i++)
-      //  tau_des[i] = 0.0;
-      
-      //std::cout<<"joint error      = " << q_error.transpose() << std::endl;
-      //std::cout<<"joint error norm = " << q_error.norm() << std::endl;
-      //std::cout<<"current joint position = " << q_current.transpose() << std::endl;
-      //std::cout<<"position_Ptt     = " << position_Ptt.transpose() << std::endl;
-      //std::cout<<"position_Pit     = " << position_Pit.transpose() << std::endl;
-      //std::cout<<"position_Pmt     = " << position_Pmt.transpose() << std::endl;
-      //std::cout<<"position_Ppt     = " << position_Ppt.transpose() << std::endl;
-      //std::cout<<"thumb_joint_position  = " << thumb_joint_position.transpose() << std::endl;
       
       
       std_msgs::Float32MultiArray index_joint_position_vector, middle_joint_position_vector, pinky_joint_position_vector, thumb_joint_position_vector;
@@ -883,6 +872,7 @@ int main(int argc, TCHAR* argv[]){
       log_data();
       
       time_past = time_now;
+      
       
       ros::spinOnce();
       loop_rate.sleep();
