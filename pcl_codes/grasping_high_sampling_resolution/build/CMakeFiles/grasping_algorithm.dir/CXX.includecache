@@ -3234,22 +3234,6 @@ algorithm
 vtkIdList.h
 /usr/local/include/vtk-7.1/vtkIdList.h
 
-/usr/local/include/vtk-7.1/vtkIOStream.h
-vtkConfigure.h
-/usr/local/include/vtk-7.1/vtkConfigure.h
-iostream
--
-fstream
--
-iomanip
--
-
-/usr/local/include/vtk-7.1/vtkIOStreamFwd.h
-vtkConfigure.h
-/usr/local/include/vtk-7.1/vtkConfigure.h
-iosfwd
--
-
 /usr/local/include/vtk-7.1/vtkIdList.h
 vtkCommonCoreModule.h
 /usr/local/include/vtk-7.1/vtkCommonCoreModule.h
@@ -3377,12 +3361,6 @@ vtkCommonMathModule.h
 /usr/local/include/vtk-7.1/vtkCommonMathModule.h
 vtkObject.h
 /usr/local/include/vtk-7.1/vtkObject.h
-
-/usr/local/include/vtk-7.1/vtkOStrStreamWrapper.h
-
-/usr/local/include/vtk-7.1/vtkOStreamWrapper.h
-vtkCommonCoreModule.h
-/usr/local/include/vtk-7.1/vtkCommonCoreModule.h
 
 /usr/local/include/vtk-7.1/vtkObject.h
 vtkCommonCoreModule.h
@@ -3587,28 +3565,6 @@ string
 /usr/local/include/vtk-7.1/vtkSystemIncludes.h
 vtkWin32Header.h
 /usr/local/include/vtk-7.1/vtkWin32Header.h
-vtkIOStreamFwd.h
-/usr/local/include/vtk-7.1/vtkIOStreamFwd.h
-vtkIOStream.h
-/usr/local/include/vtk-7.1/vtkIOStream.h
-vtkType.h
-/usr/local/include/vtk-7.1/vtkType.h
-vtkWrappingHints.h
-/usr/local/include/vtk-7.1/vtkWrappingHints.h
-vtkOStreamWrapper.h
-/usr/local/include/vtk-7.1/vtkOStreamWrapper.h
-vtkOStrStreamWrapper.h
-/usr/local/include/vtk-7.1/vtkOStrStreamWrapper.h
-stdio.h
--
-stdlib.h
--
-string.h
--
-mem.h
--
-search.h
--
 
 /usr/local/include/vtk-7.1/vtkTextProperty.h
 vtkRenderingCoreModule.h
@@ -3743,8 +3699,6 @@ vtkABI.h
 /usr/local/include/vtk-7.1/vtkABI.h
 windows.h
 -
-
-/usr/local/include/vtk-7.1/vtkWrappingHints.h
 
 /usr/local/include/vtk-7.1/vtk_kwiml.h
 vtkkwiml/abi.h

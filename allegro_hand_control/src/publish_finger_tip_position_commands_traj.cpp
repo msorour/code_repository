@@ -19,13 +19,22 @@ std_msgs::Float32MultiArray middle_tip_position;
 std_msgs::Float32MultiArray pinky_tip_position;
 std_msgs::Float32MultiArray thumb_tip_position;
 
+std_msgs::Float32MultiArray index_tip_position_command;
+std_msgs::Float32MultiArray middle_tip_position_command;
+std_msgs::Float32MultiArray pinky_tip_position_command;
+std_msgs::Float32MultiArray thumb_tip_position_command;
+
+Eigen::Vector3d thumb_tip_position_current, index_tip_position_current, middle_tip_position_current, pinky_tip_position_current;
+
+
 void UpdateIndexCurrentPosition(const std_msgs::Float32MultiArray::ConstPtr& _msg){
   index_tip_position.data.clear();
   // be careful !!
   // _msg->data[0] is ros time in milliseconds
 	for(int i=1; i<4; i++)
 	  index_tip_position.data.push_back(_msg->data[i]);
-	index_joint_position << index_tip_position.data[0], index_tip_position.data[1], index_tip_position.data[2];
+	index_tip_position_current << index_tip_position.data[0], index_tip_position.data[1], index_tip_position.data[2];
+	//std::cout << "some data came in !" << std::endl;
 }
 
 void UpdateMiddleCurrentPosition(const std_msgs::Float32MultiArray::ConstPtr& _msg){
@@ -34,7 +43,7 @@ void UpdateMiddleCurrentPosition(const std_msgs::Float32MultiArray::ConstPtr& _m
   // _msg->data[0] is ros time in milliseconds
 	for(int i=1; i<4; i++)
 	  middle_tip_position.data.push_back(_msg->data[i]);
-	middle_joint_position << middle_tip_position.data[0], middle_tip_position.data[1], middle_tip_position.data[2];
+	middle_tip_position_current << middle_tip_position.data[0], middle_tip_position.data[1], middle_tip_position.data[2];
 }
 
 void UpdatePinkyCurrentPosition(const std_msgs::Float32MultiArray::ConstPtr& _msg){
@@ -43,7 +52,7 @@ void UpdatePinkyCurrentPosition(const std_msgs::Float32MultiArray::ConstPtr& _ms
   // _msg->data[0] is ros time in milliseconds
 	for(int i=1; i<4; i++)
 	  pinky_tip_position.data.push_back(_msg->data[i]);
-	pinky_joint_position << pinky_tip_position.data[0], pinky_tip_position.data[1], pinky_tip_position.data[2];
+	pinky_tip_position_current << pinky_tip_position.data[0], pinky_tip_position.data[1], pinky_tip_position.data[2];
 }
 
 void UpdateThumbCurrentPosition(const std_msgs::Float32MultiArray::ConstPtr& _msg){
@@ -52,68 +61,63 @@ void UpdateThumbCurrentPosition(const std_msgs::Float32MultiArray::ConstPtr& _ms
   // _msg->data[0] is ros time in milliseconds
 	for(int i=1; i<4; i++)
 	  thumb_tip_position.data.push_back(_msg->data[i]);
-	thumb_joint_position << thumb_tip_position.data[0], thumb_tip_position.data[1], thumb_tip_position.data[2];
+	thumb_tip_position_current << thumb_tip_position.data[0], thumb_tip_position.data[1], thumb_tip_position.data[2];
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // Program main
 int main(int argc, char* argv[]){
   // ROS
-  ros::init(argc, argv, "publish_finger_tip_position_commands");
+  ros::init(argc, argv, "publish_finger_tip_position_commands_traj");
   ros::NodeHandle n;
   ros::Publisher  index_tip_position_command_pub  = n.advertise<std_msgs::Float32MultiArray>("/allegro_right_hand/workspace_command/index/tip_position" , 10);
   ros::Publisher  middle_tip_position_command_pub = n.advertise<std_msgs::Float32MultiArray>("/allegro_right_hand/workspace_command/middle/tip_position", 10);
   ros::Publisher  pinky_tip_position_command_pub  = n.advertise<std_msgs::Float32MultiArray>("/allegro_right_hand/workspace_command/pinky/tip_position" , 10);
   ros::Publisher  thumb_tip_position_command_pub  = n.advertise<std_msgs::Float32MultiArray>("/allegro_right_hand/workspace_command/thumb/tip_position" , 10);
   
-  ros::Subscriber  index_joint_position_sub  = n.subscribe("/allegro_right_hand/joint_state/index/position" , 10, UpdateIndexCurrentPosition);
-  ros::Subscriber  middle_joint_position_sub = n.subscribe("/allegro_right_hand/joint_state/middle/position" , 10, UpdateMiddleCurrentPosition);
-  ros::Subscriber  pinky_joint_position_sub  = n.subscribe("/allegro_right_hand/joint_state/pinky/position" , 10, UpdatePinkyCurrentPosition);
-  ros::Subscriber  thumb_joint_position_sub  = n.subscribe("/allegro_right_hand/joint_state/thumb/position" , 10, UpdateThumbCurrentPosition);
-  
+  ros::Subscriber  index_joint_position_sub  = n.subscribe("/allegro_right_hand/end_tip_state/index/position" , 10, UpdateIndexCurrentPosition);
+  ros::Subscriber  middle_joint_position_sub = n.subscribe("/allegro_right_hand/end_tip_state/middle/position" , 10, UpdateMiddleCurrentPosition);
+  ros::Subscriber  pinky_joint_position_sub  = n.subscribe("/allegro_right_hand/end_tip_state/pinky/position" , 10, UpdatePinkyCurrentPosition);
+  ros::Subscriber  thumb_joint_position_sub  = n.subscribe("/allegro_right_hand/end_tip_state/thumb/position" , 10, UpdateThumbCurrentPosition);
   
   ros::Rate loop_rate(300);
   
+  Eigen::Vector3d x_traj, y_traj, z_traj;
   
-  Eigen::Vector3d position_Ptt_desired, position_Pit_desired, position_Pmt_desired, position_Ppt_desired;
-  
-  
-	thumb_DGM  = finger_direct_geometric_model("thumb",thumb_joint_position);
-	index_DGM  = finger_direct_geometric_model("index",index_joint_position);
-	middle_DGM = finger_direct_geometric_model("middle",middle_joint_position);
-	pinky_DGM  = finger_direct_geometric_model("pinky",pinky_joint_position);
-
-	pose_rpy_Ptt = transformation_matrix_to_pose_rpy(thumb_DGM);
-	pose_rpy_Pit = transformation_matrix_to_pose_rpy(index_DGM);
-	pose_rpy_Pmt = transformation_matrix_to_pose_rpy(middle_DGM);
-	pose_rpy_Ppt = transformation_matrix_to_pose_rpy(pinky_DGM);
-	
-	thumb_position_jacobian  = finger_position_jacobian("thumb",thumb_joint_position);
-	index_position_jacobian  = finger_position_jacobian("index",index_joint_position);
-	middle_position_jacobian = finger_position_jacobian("middle",middle_joint_position);
-	pinky_position_jacobian  = finger_position_jacobian("pinky",pinky_joint_position);
-	
-	position_Ptt_init << pose_rpy_Ptt(0), pose_rpy_Ptt(1), pose_rpy_Ptt(2);
-	position_Pit_init << pose_rpy_Pit(0), pose_rpy_Pit(1), pose_rpy_Pit(2);
-	position_Pmt_init << pose_rpy_Pmt(0), pose_rpy_Pmt(1), pose_rpy_Pmt(2);
-	position_Ppt_init << pose_rpy_Ppt(0), pose_rpy_Ppt(1), pose_rpy_Ppt(2);
-	
-	
-	Eigen::Vector3d x_traj, y_traj, z_traj;
+	Eigen::Vector3d position_Ptt, position_Ptt_desired, position_Ptt_init, position_Ptt_traj, position_Ptt_error;
+	Eigen::Vector3d position_Pit, position_Pit_desired, position_Pit_init, position_Pit_traj, position_Pit_error;
+	Eigen::Vector3d position_Pmt, position_Pmt_desired, position_Pmt_init, position_Pmt_traj, position_Pmt_error;
+	Eigen::Vector3d position_Ppt, position_Ppt_desired, position_Ppt_init, position_Ppt_traj, position_Ppt_error;
   
   clock_t begin, end, now;
 	double time_now, start_time, trajectory_duration, end_time;
 	double sample_time;
   
-  double ros_time_start = ros::Time::now().toNSec();
-  double ros_time_now;
   
-  trajectory_duration = 5.0;
+  //small delay till communication is okay!
 	begin = clock();
 	start_time = (double)(begin)/CLOCKS_PER_SEC;
+	time_now = start_time;
+	end_time = start_time + 1.0;
+	while(ros::ok() and time_now < end_time){
+		now = clock();
+		time_now = (double)(now)/CLOCKS_PER_SEC;
+		position_Ptt_init = thumb_tip_position_current;
+		position_Pit_init = index_tip_position_current;
+		position_Pmt_init = middle_tip_position_current;
+		position_Ppt_init = pinky_tip_position_current;
+		ros::spinOnce();
+	}	
+	std::cout << "position_Ptt_init = " << thumb_tip_position_current.transpose() << std::endl;
+	
+  trajectory_duration = 10.0;
+	begin = clock();
+	start_time = (double)(ros::Time::now().toNSec())/1000000000;
 	end_time = start_time + trajectory_duration;
+	std::cout << "start_time : "<<ros::Time::now().toNSec()<<std::endl;
 	std::cout << "start_time : "<<start_time<<std::endl;
 	std::cout << "end_time   : "<<end_time<<std::endl;
+	std::cout << "duration   : "<<end_time-start_time<<std::endl;
 	
   double ros_time_now;
   while( ros::ok() ){
@@ -134,121 +138,58 @@ int main(int argc, char* argv[]){
 			position_Ppt_desired << 0.01, -0.05, 0.23;
 			
 			
-			
-			
-			
-			
-			
-			while( ros::ok() and (time_now-start_time) < trajectory_duration ){
-				now = clock();
-				time_now = (double)(now)/CLOCKS_PER_SEC;
+			while( ros::ok() and ((ros_time_now)/1000000000-start_time) < trajectory_duration ){
+				ros_time_now = ros::Time::now().toNSec();
 				
-				// get current joint value per finger
-				for(int i=0; i<4; i++)
-					index_joint_position(i) = q[i];
-				for(int i=4; i<8; i++)
-					middle_joint_position(i-4) = q[i];
-				for(int i=8; i<12; i++)
-					pinky_joint_position(i-8) = q[i];
-				for(int i=12; i<16; i++)
-					thumb_joint_position(i-12) = q[i];
-				
-				Kp_finger = 0.9;
-				lambda = -0.5;
-				
-				thumb_DGM  = finger_direct_geometric_model("thumb",thumb_joint_position);
-				index_DGM  = finger_direct_geometric_model("index",index_joint_position);
-				middle_DGM = finger_direct_geometric_model("middle",middle_joint_position);
-				pinky_DGM  = finger_direct_geometric_model("pinky",pinky_joint_position);
-		
-				pose_rpy_Ptt = transformation_matrix_to_pose_rpy(thumb_DGM);
-				pose_rpy_Pit = transformation_matrix_to_pose_rpy(index_DGM);
-				pose_rpy_Pmt = transformation_matrix_to_pose_rpy(middle_DGM);
-				pose_rpy_Ppt = transformation_matrix_to_pose_rpy(pinky_DGM);
-				
-				thumb_position_jacobian  = finger_position_jacobian("thumb",thumb_joint_position);
-				index_position_jacobian  = finger_position_jacobian("index",index_joint_position);
-				middle_position_jacobian = finger_position_jacobian("middle",middle_joint_position);
-				pinky_position_jacobian  = finger_position_jacobian("pinky",pinky_joint_position);
-				
-				position_Ptt << pose_rpy_Ptt(0), pose_rpy_Ptt(1), pose_rpy_Ptt(2);
-				position_Pit << pose_rpy_Pit(0), pose_rpy_Pit(1), pose_rpy_Pit(2);
-				position_Pmt << pose_rpy_Pmt(0), pose_rpy_Pmt(1), pose_rpy_Pmt(2);
-				position_Ppt << pose_rpy_Ppt(0), pose_rpy_Ppt(1), pose_rpy_Ppt(2);
-				
-				
-				x_traj = OnlineMP_L5B(start_time, end_time, time_now, position_Ptt_init(0), position_Ptt_desired(0));
-				y_traj = OnlineMP_L5B(start_time, end_time, time_now, position_Ptt_init(1), position_Ptt_desired(1));
-				z_traj = OnlineMP_L5B(start_time, end_time, time_now, position_Ptt_init(2), position_Ptt_desired(2));
+				x_traj = OnlineMP_L5B(start_time, end_time, (ros_time_now)/1000000000, position_Ptt_init(0), position_Ptt_desired(0));
+				y_traj = OnlineMP_L5B(start_time, end_time, (ros_time_now)/1000000000, position_Ptt_init(1), position_Ptt_desired(1));
+				z_traj = OnlineMP_L5B(start_time, end_time, (ros_time_now)/1000000000, position_Ptt_init(2), position_Ptt_desired(2));
 				position_Ptt_traj << x_traj(0), y_traj(0), z_traj(0);
 				
-				x_traj = OnlineMP_L5B(start_time, end_time, time_now, position_Pit_init(0), position_Pit_desired(0));
-				y_traj = OnlineMP_L5B(start_time, end_time, time_now, position_Pit_init(1), position_Pit_desired(1));
-				z_traj = OnlineMP_L5B(start_time, end_time, time_now, position_Pit_init(2), position_Pit_desired(2));
+				x_traj = OnlineMP_L5B(start_time, end_time, (ros_time_now)/1000000000, position_Pit_init(0), position_Pit_desired(0));
+				y_traj = OnlineMP_L5B(start_time, end_time, (ros_time_now)/1000000000, position_Pit_init(1), position_Pit_desired(1));
+				z_traj = OnlineMP_L5B(start_time, end_time, (ros_time_now)/1000000000, position_Pit_init(2), position_Pit_desired(2));
 				position_Pit_traj << x_traj(0), y_traj(0), z_traj(0);
 				
-				x_traj = OnlineMP_L5B(start_time, end_time, time_now, position_Pmt_init(0), position_Pmt_desired(0));
-				y_traj = OnlineMP_L5B(start_time, end_time, time_now, position_Pmt_init(1), position_Pmt_desired(1));
-				z_traj = OnlineMP_L5B(start_time, end_time, time_now, position_Pmt_init(2), position_Pmt_desired(2));
+				x_traj = OnlineMP_L5B(start_time, end_time, (ros_time_now)/1000000000, position_Pmt_init(0), position_Pmt_desired(0));
+				y_traj = OnlineMP_L5B(start_time, end_time, (ros_time_now)/1000000000, position_Pmt_init(1), position_Pmt_desired(1));
+				z_traj = OnlineMP_L5B(start_time, end_time, (ros_time_now)/1000000000, position_Pmt_init(2), position_Pmt_desired(2));
 				position_Pmt_traj << x_traj(0), y_traj(0), z_traj(0);
 				
-				x_traj = OnlineMP_L5B(start_time, end_time, time_now, position_Ppt_init(0), position_Ppt_desired(0));
-				y_traj = OnlineMP_L5B(start_time, end_time, time_now, position_Ppt_init(1), position_Ppt_desired(1));
-				z_traj = OnlineMP_L5B(start_time, end_time, time_now, position_Ppt_init(2), position_Ppt_desired(2));
+				x_traj = OnlineMP_L5B(start_time, end_time, (ros_time_now)/1000000000, position_Ppt_init(0), position_Ppt_desired(0));
+				y_traj = OnlineMP_L5B(start_time, end_time, (ros_time_now)/1000000000, position_Ppt_init(1), position_Ppt_desired(1));
+				z_traj = OnlineMP_L5B(start_time, end_time, (ros_time_now)/1000000000, position_Ppt_init(2), position_Ppt_desired(2));
 				position_Ppt_traj << x_traj(0), y_traj(0), z_traj(0);
 				
-				position_Ptt_error = position_Ptt_traj - position_Ptt;
-				position_Pit_error = position_Pit_traj - position_Pit;
-				position_Pmt_error = position_Pmt_traj - position_Pmt;
-				position_Ppt_error = position_Ppt_traj - position_Ppt;
-				
-				velocity_Ptt_desired_3d = Kp_finger*position_Ptt_error;
-				velocity_Pit_desired_3d = Kp_finger*position_Pit_error;
-				velocity_Pmt_desired_3d = Kp_finger*position_Pmt_error;
-				velocity_Ppt_desired_3d = Kp_finger*position_Ppt_error;
-				
-				
-				finger_null_space_projector = I4 - Pinv_damped(thumb_position_jacobian, 0.001)*thumb_position_jacobian;
-				finger_task_gradient = avoid_joint_limit_task_gradient(thumb_joint_position, thumb_joint_safe_mean, thumb_joint_safe_range);
-				thumb_joint_velocity_command  = Pinv_damped(thumb_position_jacobian, 0.001)*velocity_Ptt_desired_3d + lambda*finger_null_space_projector*finger_task_gradient;
-				
-				finger_null_space_projector = I4 - Pinv_damped(index_position_jacobian, 0.001)*index_position_jacobian;
-				finger_task_gradient = avoid_joint_limit_task_gradient(index_joint_position, index_joint_safe_mean, index_joint_safe_range);
-				index_joint_velocity_command  = Pinv_damped(index_position_jacobian, 0.001)*velocity_Pit_desired_3d + lambda*finger_null_space_projector*finger_task_gradient;
-		
-				finger_null_space_projector = I4 - Pinv_damped(middle_position_jacobian, 0.001)*middle_position_jacobian;
-				finger_task_gradient = avoid_joint_limit_task_gradient(middle_joint_position, middle_joint_safe_mean, middle_joint_safe_range);
-				middle_joint_velocity_command  = Pinv_damped(middle_position_jacobian, 0.001)*velocity_Pmt_desired_3d + lambda*finger_null_space_projector*finger_task_gradient;
-		
-				finger_null_space_projector = I4 - Pinv_damped(pinky_position_jacobian, 0.001)*pinky_position_jacobian;
-				finger_task_gradient = avoid_joint_limit_task_gradient(pinky_joint_position, pinky_joint_safe_mean, pinky_joint_safe_range);
-				pinky_joint_velocity_command  = Pinv_damped(pinky_position_jacobian, 0.001)*velocity_Ppt_desired_3d + lambda*finger_null_space_projector*finger_task_gradient;
 				
 				
 				
-				// joint torque values to set after safety check 
-				//std::cout<<"torque_desired   = " << torque_desired.transpose() << std::endl;
-				torque_desired << index_joint_velocity_command, middle_joint_velocity_command, pinky_joint_velocity_command, thumb_joint_velocity_command;
-				//std::cout<<"torque_desired   = " << torque_desired.transpose() << std::endl;
+				index_tip_position_command.data.clear();
+				middle_tip_position_command.data.clear();
+				pinky_tip_position_command.data.clear();
+				thumb_tip_position_command.data.clear();
 				
+				index_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+				middle_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+				pinky_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+				thumb_tip_position_command.data.push_back( (ros_time_now)/1000000 );
 				
+				for(int i=0; i<3; i++){
+					index_tip_position_command.data.push_back (position_Pit_traj(i));
+					middle_tip_position_command.data.push_back(position_Pmt_traj(i));
+					pinky_tip_position_command.data.push_back (position_Ppt_traj(i));
+					thumb_tip_position_command.data.push_back (position_Ptt_traj(i));
+				}
 				
+				index_tip_position_command_pub.publish ( index_tip_position_command );
+				middle_tip_position_command_pub.publish( middle_tip_position_command );
+				pinky_tip_position_command_pub.publish ( pinky_tip_position_command );
+				thumb_tip_position_command_pub.publish ( thumb_tip_position_command );
 				
+				ros::Duration(1.0).sleep();
 				ros::spinOnce();
 				loop_rate.sleep();
 			}
-			
-			
-			
-			
-			
-			
-			
-		  
-		  ros::Duration(0.5).sleep();
-			
-			
-		  
 		}
 		else if(execute == 'g'){
 			
@@ -259,13 +200,61 @@ int main(int argc, char* argv[]){
 			position_Pmt_desired << 0.04,   0.0, 0.05;
 			position_Ppt_desired << 0.04, -0.04, 0.05;
 			
-			ros_time_now = ros::Time::now().toNSec();
-			
-		  
-		  
-		  ros::Duration(0.5).sleep();
-		  
-		  
+			while( ros::ok() and ((ros_time_now)/1000000000-start_time) < trajectory_duration ){
+				ros_time_now = ros::Time::now().toNSec();
+				
+				x_traj = OnlineMP_L5B(start_time, end_time-trajectory_duration/2, (ros_time_now)/1000000000, position_Ptt_init(0), position_Ptt_desired(0));
+				y_traj = OnlineMP_L5B(start_time, end_time-trajectory_duration/2, (ros_time_now)/1000000000, position_Ptt_init(1), position_Ptt_desired(1));
+				z_traj = OnlineMP_L5B(start_time, end_time-trajectory_duration/2, (ros_time_now)/1000000000, position_Ptt_init(2), position_Ptt_desired(2));
+				position_Ptt_traj << x_traj(0), y_traj(0), z_traj(0);
+				
+				x_traj = OnlineMP_L5B(start_time, end_time, (ros_time_now)/1000000000, position_Pit_init(0), position_Pit_desired(0));
+				y_traj = OnlineMP_L5B(start_time, end_time, (ros_time_now)/1000000000, position_Pit_init(1), position_Pit_desired(1));
+				z_traj = OnlineMP_L5B(start_time, end_time, (ros_time_now)/1000000000, position_Pit_init(2), position_Pit_desired(2));
+				position_Pit_traj << x_traj(0), y_traj(0), z_traj(0);
+				
+				x_traj = OnlineMP_L5B(start_time, end_time, (ros_time_now)/1000000000, position_Pmt_init(0), position_Pmt_desired(0));
+				y_traj = OnlineMP_L5B(start_time, end_time, (ros_time_now)/1000000000, position_Pmt_init(1), position_Pmt_desired(1));
+				z_traj = OnlineMP_L5B(start_time, end_time, (ros_time_now)/1000000000, position_Pmt_init(2), position_Pmt_desired(2));
+				position_Pmt_traj << x_traj(0), y_traj(0), z_traj(0);
+				
+				x_traj = OnlineMP_L5B(start_time, end_time, (ros_time_now)/1000000000, position_Ppt_init(0), position_Ppt_desired(0));
+				y_traj = OnlineMP_L5B(start_time, end_time, (ros_time_now)/1000000000, position_Ppt_init(1), position_Ppt_desired(1));
+				z_traj = OnlineMP_L5B(start_time, end_time, (ros_time_now)/1000000000, position_Ppt_init(2), position_Ppt_desired(2));
+				position_Ppt_traj << x_traj(0), y_traj(0), z_traj(0);
+				
+				std::cout<< "position_Ptt_init= " << position_Ptt_init.transpose() << ",   position_Ptt_traj= " << position_Ptt_traj.transpose() << ",   position_Ptt_desired= " << position_Ptt_desired.transpose() << std::endl;
+				
+				
+				index_tip_position_command.data.clear();
+				middle_tip_position_command.data.clear();
+				pinky_tip_position_command.data.clear();
+				thumb_tip_position_command.data.clear();
+				
+				index_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+				middle_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+				pinky_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+				thumb_tip_position_command.data.push_back( (ros_time_now)/1000000 );
+				
+				for(int i=0; i<3; i++){
+					index_tip_position_command.data.push_back (position_Pit_traj(i));
+					middle_tip_position_command.data.push_back(position_Pmt_traj(i));
+					pinky_tip_position_command.data.push_back (position_Ppt_traj(i));
+					thumb_tip_position_command.data.push_back (position_Ptt_traj(i));
+				}
+				
+				index_tip_position_command_pub.publish ( index_tip_position_command );
+				middle_tip_position_command_pub.publish( middle_tip_position_command );
+				pinky_tip_position_command_pub.publish ( pinky_tip_position_command );
+				thumb_tip_position_command_pub.publish ( thumb_tip_position_command );
+				
+				//std::cout<< "start_time: " << start_time << "time_now: " << (ros_time_now)/1000000000 << "end_time: " << end_time << std::endl;
+				
+				ros::spinOnce();
+				ros::Duration(0.5).sleep();
+				
+				//loop_rate.sleep();
+			}
     }
     
     

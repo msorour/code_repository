@@ -667,7 +667,7 @@ void construct_special_ellipsoid_point_cloud( pcl::PointCloud<pcl::PointXYZ>::Pt
 void constructing_special_ellipsoids(void){
   // gripper support region special ellipsoid
   if(gripper_model == "allegro_right_hand"){
-    gripper_support_x = 0.010; gripper_support_y = 0.047; gripper_support_z = 0.047;
+    gripper_support_x = 0.02; gripper_support_y = 0.047; gripper_support_z = 0.047;
     //gripper_support_offset_x = 0.0; gripper_support_offset_y = 0.0; gripper_support_offset_z = 0.0475;
     gripper_support_offset_x = gripper_support_x/2.0; gripper_support_offset_y = 0.0; gripper_support_offset_z = 0.13;
   }

@@ -495,7 +495,7 @@ void UpdateThumbDesiredPosition(const std_msgs::Float32MultiArray::ConstPtr& _ms
   // _msg->data[0] is ros time in milliseconds
 	for(int i=1; i<4; i++)
 	  thumb_tip_position_command.data.push_back(_msg->data[i]);
-	//std::cout<< "thumb tip position command = " << thumb_tip_position_command.data[0] << ", " << thumb_tip_position_command.data[1] << ", " << thumb_tip_position_command.data[2] << std::endl;
+	std::cout<< "thumb tip position command = " << thumb_tip_position_command.data[0] << ", " << thumb_tip_position_command.data[1] << ", " << thumb_tip_position_command.data[2] << std::endl;
 	position_Ptt_desired << thumb_tip_position_command.data[0],  thumb_tip_position_command.data[1], thumb_tip_position_command.data[2];
 }
 
@@ -546,6 +546,11 @@ int main(int argc, TCHAR* argv[]){
   ros::Publisher  pinky_joint_position_pub  = n.advertise<std_msgs::Float32MultiArray>("/allegro_right_hand/joint_state/pinky/position", 10);
   ros::Publisher  thumb_joint_position_pub  = n.advertise<std_msgs::Float32MultiArray>("/allegro_right_hand/joint_state/thumb/position", 10);
   
+  ros::Publisher  index_tip_position_pub  = n.advertise<std_msgs::Float32MultiArray>("/allegro_right_hand/end_tip_state/index/position", 10);
+  ros::Publisher  middle_tip_position_pub = n.advertise<std_msgs::Float32MultiArray>("/allegro_right_hand/end_tip_state/middle/position", 10);
+  ros::Publisher  pinky_tip_position_pub  = n.advertise<std_msgs::Float32MultiArray>("/allegro_right_hand/end_tip_state/pinky/position", 10);
+  ros::Publisher  thumb_tip_position_pub  = n.advertise<std_msgs::Float32MultiArray>("/allegro_right_hand/end_tip_state/thumb/position", 10);
+  
   ros::Subscriber index_tip_position_command_sub  = n.subscribe("/allegro_right_hand/workspace_command/index/tip_position" , 10, UpdateIndexDesiredPosition);
   ros::Subscriber middle_tip_position_command_sub = n.subscribe("/allegro_right_hand/workspace_command/middle/tip_position", 10, UpdateMiddleDesiredPosition);
   ros::Subscriber pinky_tip_position_command_sub  = n.subscribe("/allegro_right_hand/workspace_command/pinky/tip_position" , 10, UpdatePinkyDesiredPosition);
@@ -575,6 +580,7 @@ int main(int argc, TCHAR* argv[]){
     while(time_now < end_time){
       now = clock();
       time_now = (double)(now)/CLOCKS_PER_SEC;
+      ros::spinOnce();
     }
     
     thumb_DGM  = finger_direct_geometric_model("thumb",thumb_joint_position);
@@ -657,14 +663,15 @@ int main(int argc, TCHAR* argv[]){
 	    position_Pmt_error = position_Pmt_desired - position_Pmt;
 	    position_Ppt_error = position_Ppt_desired - position_Ppt;
 	    
-	    velocity_Ptt_desired_3d = 1.1*position_Ptt_error;
+	    velocity_Ptt_desired_3d = 0.6*position_Ptt_error;
 	    velocity_Pit_desired_3d = Kp_finger*position_Pit_error;
 	    velocity_Pmt_desired_3d = Kp_finger*position_Pmt_error;
 	    velocity_Ppt_desired_3d = Kp_finger*position_Ppt_error;
 	    
 	    finger_null_space_projector = I4 - Pinv_damped(thumb_position_jacobian, 0.001)*thumb_position_jacobian;
 	    finger_task_gradient = avoid_joint_limit_task_gradient(thumb_joint_position, thumb_joint_safe_mean, thumb_joint_safe_range);
-	    thumb_joint_velocity_command  = Pinv_damped(thumb_position_jacobian, 0.001)*velocity_Ptt_desired_3d + lambda*finger_null_space_projector*finger_task_gradient;
+	    thumb_joint_velocity_command  = Pinv_damped(thumb_position_jacobian, 0.001)*velocity_Ptt_desired_3d + -1.7*finger_null_space_projector*finger_task_gradient;
+	    //thumb_joint_velocity_command  = Pinv_damped(thumb_position_jacobian, 0.001)*velocity_Ptt_desired_3d;
 	    
 	    finger_null_space_projector = I4 - Pinv_damped(index_position_jacobian, 0.001)*index_position_jacobian;
 	    finger_task_gradient = avoid_joint_limit_task_gradient(index_joint_position, index_joint_safe_mean, index_joint_safe_range);
@@ -751,6 +758,38 @@ int main(int argc, TCHAR* argv[]){
       middle_joint_position_pub.publish( middle_joint_position_vector );
       pinky_joint_position_pub.publish ( pinky_joint_position_vector );
       thumb_joint_position_pub.publish ( thumb_joint_position_vector );
+      
+      
+      
+      // end tip position publishing
+      std_msgs::Float32MultiArray index_tip_position_vector, middle_tip_position_vector, pinky_tip_position_vector, thumb_tip_position_vector;
+      index_tip_position_vector.data.clear();
+      middle_tip_position_vector.data.clear();
+      pinky_tip_position_vector.data.clear();
+      thumb_tip_position_vector.data.clear();
+      
+      ros_time_now = ros::Time::now().toNSec();
+      index_tip_position_vector.data.push_back ( (ros_time_now)/1000000 );
+      middle_tip_position_vector.data.push_back( (ros_time_now)/1000000 );
+      pinky_tip_position_vector.data.push_back ( (ros_time_now)/1000000 );
+      thumb_tip_position_vector.data.push_back ( (ros_time_now)/1000000 );
+      for(int i=0; i<3; i++){
+        index_tip_position_vector.data.push_back(position_Pit(i));
+        middle_tip_position_vector.data.push_back(position_Pmt(i));
+        pinky_tip_position_vector.data.push_back(position_Ppt(i));
+        thumb_tip_position_vector.data.push_back(position_Ptt(i));
+      }
+      index_tip_position_pub.publish ( index_tip_position_vector );
+      middle_tip_position_pub.publish( middle_tip_position_vector );
+      pinky_tip_position_pub.publish ( pinky_tip_position_vector );
+      thumb_tip_position_pub.publish ( thumb_tip_position_vector );
+      
+      
+      
+      std::cout<< "position_Ptt_desired = " << position_Ptt_desired(0) << ", " << position_Ptt_desired(1) << ", " << position_Ptt_desired(2) << std::endl;
+	
+      
+      
       
       ros::spinOnce();
       loop_rate.sleep();
