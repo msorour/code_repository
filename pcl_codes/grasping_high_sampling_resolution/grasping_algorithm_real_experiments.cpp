@@ -312,7 +312,19 @@ int main(int argc, char **argv){
   scene_cloud_viewer->addPointCloud(gripper_support_point_cloud_in_gripper_frame, orange_color_again,                 "gripper support ellipsoid");
   scene_cloud_viewer->addPointCloud(gripper_support_point_cloud_in_gripper_transformed_frame, orange_color_again2,    "gripper support transformed ellipsoid");
   
-  
+  if(gripper_model == "allegro_right_hand"){
+		scene_cloud_viewer->addPointCloud(gripper_support_point_cloud_in_gripper_frame_1, orange_color_again_1,                 "gripper support1 ellipsoid");
+		scene_cloud_viewer->addPointCloud(gripper_support_point_cloud_in_gripper_transformed_frame_1, orange_color_again2_1,    "gripper support1 transformed ellipsoid");
+		
+		scene_cloud_viewer->addPointCloud(gripper_support_point_cloud_in_gripper_frame_2, orange_color_again_2,                 "gripper support2 ellipsoid");
+		scene_cloud_viewer->addPointCloud(gripper_support_point_cloud_in_gripper_transformed_frame_2, orange_color_again2_2,    "gripper support2 transformed ellipsoid");
+		
+		scene_cloud_viewer->addPointCloud(gripper_support_point_cloud_in_gripper_frame_3, orange_color_again_3,                 "gripper support3 ellipsoid");
+		scene_cloud_viewer->addPointCloud(gripper_support_point_cloud_in_gripper_transformed_frame_3, orange_color_again2_3,    "gripper support3 transformed ellipsoid");
+		
+		scene_cloud_viewer->addPointCloud(gripper_support_point_cloud_in_gripper_frame_4, orange_color_again_4,                 "gripper support4 ellipsoid");
+		scene_cloud_viewer->addPointCloud(gripper_support_point_cloud_in_gripper_transformed_frame_4, orange_color_again2_4,    "gripper support4 transformed ellipsoid");
+	}
   
   cout << "scene_cloud_xyz_1->points.size() = " << scene_cloud_xyz_1->points.size() << endl;
   cout << "scene_cloud_xyz_2->points.size() = " << scene_cloud_xyz_2->points.size() << endl;
@@ -439,6 +451,40 @@ int main(int argc, char **argv){
 	scene_cloud_viewer->updatePointCloud(gripper_support_point_cloud_in_gripper_transformed_frame, orange_color_again2,      "gripper support transformed ellipsoid");
   scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper support transformed ellipsoid");
   
+  if(gripper_model == "allegro_right_hand"){
+		// gripper support1 ellipsoid
+		scene_cloud_viewer->updatePointCloud(gripper_support_point_cloud_in_gripper_frame_1, orange_color_again_1,                   "gripper support1 ellipsoid");
+		scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper support1 ellipsoid");
+		// gripper support1 transformed ellipsoid
+		pcl::transformPointCloud(*gripper_support_point_cloud_in_gripper_frame_1, *gripper_support_point_cloud_in_gripper_transformed_frame_1, best_gripper_transform);
+		scene_cloud_viewer->updatePointCloud(gripper_support_point_cloud_in_gripper_transformed_frame_1, orange_color_again2_1,      "gripper support1 transformed ellipsoid");
+		scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper support1 transformed ellipsoid");
+		
+		// gripper support2 ellipsoid
+		scene_cloud_viewer->updatePointCloud(gripper_support_point_cloud_in_gripper_frame_2, orange_color_again_2,                   "gripper support2 ellipsoid");
+		scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper support2 ellipsoid");
+		// gripper support2 transformed ellipsoid
+		pcl::transformPointCloud(*gripper_support_point_cloud_in_gripper_frame_2, *gripper_support_point_cloud_in_gripper_transformed_frame_2, best_gripper_transform);
+		scene_cloud_viewer->updatePointCloud(gripper_support_point_cloud_in_gripper_transformed_frame_2, orange_color_again2_2,      "gripper support2 transformed ellipsoid");
+		scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper support2 transformed ellipsoid");
+		
+		// gripper support3 ellipsoid
+		scene_cloud_viewer->updatePointCloud(gripper_support_point_cloud_in_gripper_frame_3, orange_color_again_3,                   "gripper support3 ellipsoid");
+		scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper support3 ellipsoid");
+		// gripper support3 transformed ellipsoid
+		pcl::transformPointCloud(*gripper_support_point_cloud_in_gripper_frame_3, *gripper_support_point_cloud_in_gripper_transformed_frame_3, best_gripper_transform);
+		scene_cloud_viewer->updatePointCloud(gripper_support_point_cloud_in_gripper_transformed_frame_3, orange_color_again2_3,      "gripper support3 transformed ellipsoid");
+		scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper support3 transformed ellipsoid");
+		
+		// gripper support4 ellipsoid
+		scene_cloud_viewer->updatePointCloud(gripper_support_point_cloud_in_gripper_frame_4, orange_color_again_4,                   "gripper support4 ellipsoid");
+		scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper support4 ellipsoid");
+		// gripper support4 transformed ellipsoid
+		pcl::transformPointCloud(*gripper_support_point_cloud_in_gripper_frame_4, *gripper_support_point_cloud_in_gripper_transformed_frame_4, best_gripper_transform);
+		scene_cloud_viewer->updatePointCloud(gripper_support_point_cloud_in_gripper_transformed_frame_4, orange_color_again2_4,      "gripper support4 transformed ellipsoid");
+		scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper support4 transformed ellipsoid");
+	}
+  
   scene_cloud_viewer->spinOnce();
   
   
@@ -536,7 +582,7 @@ int main(int argc, char **argv){
 		// move in z-axis only
 		poseCommand.pose.position.x = desired_hand_translation_in_arm_link0_frame(0);
 		poseCommand.pose.position.y = desired_hand_translation_in_arm_link0_frame(1);
-		poseCommand.pose.position.z = desired_hand_translation_in_arm_link0_frame(2)+0.005;
+		poseCommand.pose.position.z = desired_hand_translation_in_arm_link0_frame(2)+0.01;
 		//poseCommand.pose.position.z = 0.17;
 		poseCommand.pose.orientation.x = desired_hand_rotation_in_arm_link0_frame_quat.x();
 		poseCommand.pose.orientation.y = desired_hand_rotation_in_arm_link0_frame_quat.y();

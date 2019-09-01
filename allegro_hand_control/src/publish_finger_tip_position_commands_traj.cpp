@@ -195,10 +195,10 @@ int main(int argc, char* argv[]){
 			
 			// grasp configuration
 			//
-			position_Ptt_desired << 0.04,  -0.02, 0.05;
-			position_Pit_desired << 0.04,  0.04, 0.05;
-			position_Pmt_desired << 0.04,   0.0, 0.05;
-			position_Ppt_desired << 0.04, -0.04, 0.05;
+			position_Ptt_desired << 0.10,  -0.05, 0.05;
+			position_Pit_desired << 0.08,  0.04, 0.05;
+			position_Pmt_desired << 0.08,   0.0, 0.05;
+			position_Ppt_desired << 0.08, -0.04, 0.05;
 			
 			while( ros::ok() and ((ros_time_now)/1000000000-start_time) < trajectory_duration ){
 				ros_time_now = ros::Time::now().toNSec();
