@@ -18,8 +18,8 @@ double time_spent_for_initial_overhead;
 std::string gripper_model;
 
 long int sampling_iteration = 0;
-double metric_1_score = 0.0, metric_2_score = 0.0, metric_3_score = 0.0, metric_4_score = 0.0, metric_5_score = 0.0, total_score = 0.0, total_score_best = 0.0;
-double metric_1_score_best = 0.0, metric_2_score_best = 0.0, metric_3_score_best = 0.0, metric_4_score_best = 0.0, metric_5_score_best = 0.0;
+double metric_1_score = 0.0, metric_2_score = 0.0, metric_3_score = 0.0, metric_4_score = 0.0, metric_5_score = 0.0, metric_6_score = 0.0, metric_7_score = 0.0, metric_8_score = 0.0, total_score = 0.0, total_score_best = 0.0;
+double metric_1_score_best = 0.0, metric_2_score_best = 0.0, metric_3_score_best = 0.0, metric_4_score_best = 0.0, metric_5_score_best = 0.0, metric_6_score_best = 0.0, metric_7_score_best = 0.0, metric_8_score_best = 0.0;
 
 // point clouds declarations
 pcl::PointCloud<pcl::PointXYZ>::Ptr     object_cloud_in_camera_depth_optical_frame_xyz                       (new pcl::PointCloud<pcl::PointXYZ>);
@@ -53,6 +53,19 @@ pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_as_set_of_special_ellipsoids_tra
 pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_gripper_frame                         (new pcl::PointCloud<pcl::PointXYZ>);
 pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_arm_hand_frame                        (new pcl::PointCloud<pcl::PointXYZ>);
 pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_gripper_transformed_frame             (new pcl::PointCloud<pcl::PointXYZ>);
+pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_gripper_frame_1                       (new pcl::PointCloud<pcl::PointXYZ>);
+pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_arm_hand_frame_1                      (new pcl::PointCloud<pcl::PointXYZ>);
+pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_gripper_transformed_frame_1           (new pcl::PointCloud<pcl::PointXYZ>);
+pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_gripper_frame_2                       (new pcl::PointCloud<pcl::PointXYZ>);
+pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_arm_hand_frame_2                      (new pcl::PointCloud<pcl::PointXYZ>);
+pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_gripper_transformed_frame_2           (new pcl::PointCloud<pcl::PointXYZ>);
+pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_gripper_frame_3                       (new pcl::PointCloud<pcl::PointXYZ>);
+pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_arm_hand_frame_3                      (new pcl::PointCloud<pcl::PointXYZ>);
+pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_gripper_transformed_frame_3           (new pcl::PointCloud<pcl::PointXYZ>);
+pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_gripper_frame_4                       (new pcl::PointCloud<pcl::PointXYZ>);
+pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_arm_hand_frame_4                      (new pcl::PointCloud<pcl::PointXYZ>);
+pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_gripper_transformed_frame_4           (new pcl::PointCloud<pcl::PointXYZ>);
+
 
 pcl::PointCloud<pcl::PointXYZ>::Ptr     thumb_workspace_spheres_best                                         (new pcl::PointCloud<pcl::PointXYZ>);
 pcl::PointCloud<pcl::PointXYZ>::Ptr     index_workspace_spheres_best                                         (new pcl::PointCloud<pcl::PointXYZ>);
@@ -165,6 +178,18 @@ pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> cyan_color_again
 pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again  (gripper_support_point_cloud_in_gripper_frame, 255, 165, 0);
 pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again2 (gripper_support_point_cloud_in_gripper_transformed_frame, 255, 165, 0);
 
+pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again_1  (gripper_support_point_cloud_in_gripper_frame_1, 255, 165, 0);
+pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again2_1 (gripper_support_point_cloud_in_gripper_transformed_frame_1, 255, 165, 0);
+
+pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again_2  (gripper_support_point_cloud_in_gripper_frame_2, 255, 165, 0);
+pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again2_2 (gripper_support_point_cloud_in_gripper_transformed_frame_2, 255, 165, 0);
+
+pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again_3  (gripper_support_point_cloud_in_gripper_frame_3, 255, 165, 0);
+pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again2_3 (gripper_support_point_cloud_in_gripper_transformed_frame_3, 255, 165, 0);
+
+pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again_4  (gripper_support_point_cloud_in_gripper_frame_4, 255, 165, 0);
+pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again2_4 (gripper_support_point_cloud_in_gripper_transformed_frame_4, 255, 165, 0);
+
 
 
 
@@ -216,10 +241,10 @@ Eigen::Vector3f object_major_dimensions;
 // sampling the object around its z-axis for scanning
 int object_sampling_in_x_axis = 5;   int object_sampling_in_y_axis = 5;   int object_sampling_in_z_axis = 5;
 int orientation_samples = 18;
-//double initial_orientation = 0.0;
-//double orientation_range = 2*M_PI;
-double initial_orientation = -M_PI/2;
-double orientation_range = M_PI/2;
+double initial_orientation = 0.0;
+double orientation_range = 2*M_PI;
+//double initial_orientation = -M_PI/2;
+//double orientation_range = M_PI/2;
 int desired_number_of_object_cloud_points = 400;
 double desired_distance_to_table = 0.07;
 
@@ -244,6 +269,39 @@ Eigen::Vector4f gripper_support_in_gripper_frame;
 Eigen::Vector4f gripper_support_in_gripper_transformed_frame;
 Eigen::Vector4f gripper_support_in_object_plane_frame;
 
+Eigen::Vector4f gripper_support_offset_in_arm_hand_frame_1;
+Eigen::Vector4f gripper_support_offset_in_gripper_frame_1;
+Eigen::Vector4f gripper_support_offset_in_gripper_transformed_frame_1;
+Eigen::Vector4f gripper_support_in_arm_hand_frame_1;
+Eigen::Vector4f gripper_support_in_gripper_frame_1;
+Eigen::Vector4f gripper_support_in_gripper_transformed_frame_1;
+Eigen::Vector4f gripper_support_in_object_plane_frame_1;
+
+Eigen::Vector4f gripper_support_offset_in_arm_hand_frame_2;
+Eigen::Vector4f gripper_support_offset_in_gripper_frame_2;
+Eigen::Vector4f gripper_support_offset_in_gripper_transformed_frame_2;
+Eigen::Vector4f gripper_support_in_arm_hand_frame_2;
+Eigen::Vector4f gripper_support_in_gripper_frame_2;
+Eigen::Vector4f gripper_support_in_gripper_transformed_frame_2;
+Eigen::Vector4f gripper_support_in_object_plane_frame_2;
+
+Eigen::Vector4f gripper_support_offset_in_arm_hand_frame_3;
+Eigen::Vector4f gripper_support_offset_in_gripper_frame_3;
+Eigen::Vector4f gripper_support_offset_in_gripper_transformed_frame_3;
+Eigen::Vector4f gripper_support_in_arm_hand_frame_3;
+Eigen::Vector4f gripper_support_in_gripper_frame_3;
+Eigen::Vector4f gripper_support_in_gripper_transformed_frame_3;
+Eigen::Vector4f gripper_support_in_object_plane_frame_3;
+
+Eigen::Vector4f gripper_support_offset_in_arm_hand_frame_4;
+Eigen::Vector4f gripper_support_offset_in_gripper_frame_4;
+Eigen::Vector4f gripper_support_offset_in_gripper_transformed_frame_4;
+Eigen::Vector4f gripper_support_in_arm_hand_frame_4;
+Eigen::Vector4f gripper_support_in_gripper_frame_4;
+Eigen::Vector4f gripper_support_in_gripper_transformed_frame_4;
+Eigen::Vector4f gripper_support_in_object_plane_frame_4;
+
+
 // object plane cloud in its own frame
 Eigen::Matrix4f object_plane_transform_wrt_arm_hand_frame_inverse;
 
@@ -252,6 +310,18 @@ Eigen::Matrix4f object_plane_transform_wrt_arm_hand_frame_inverse;
 // gripper support region special ellipsoid
 double gripper_support_x; double gripper_support_y; double gripper_support_z;
 double gripper_support_offset_x; double gripper_support_offset_y; double gripper_support_offset_z;
+
+double gripper_support_x_1; double gripper_support_y_1; double gripper_support_z_1;
+double gripper_support_offset_x_1; double gripper_support_offset_y_1; double gripper_support_offset_z_1;
+
+double gripper_support_x_2; double gripper_support_y_2; double gripper_support_z_2;
+double gripper_support_offset_x_2; double gripper_support_offset_y_2; double gripper_support_offset_z_2;
+
+double gripper_support_x_3; double gripper_support_y_3; double gripper_support_z_3;
+double gripper_support_offset_x_3; double gripper_support_offset_y_3; double gripper_support_offset_z_3;
+
+double gripper_support_x_4; double gripper_support_y_4; double gripper_support_z_4;
+double gripper_support_offset_x_4; double gripper_support_offset_y_4; double gripper_support_offset_z_4;
 
 // object plane special ellipsoid
 double object_plane_x; double object_plane_y; double object_plane_z;
