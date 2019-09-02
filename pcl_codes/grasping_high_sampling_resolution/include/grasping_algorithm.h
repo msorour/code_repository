@@ -646,19 +646,19 @@ void constructing_special_ellipsoids(void){
     gripper_support_x = 0.02; gripper_support_y = 0.047; gripper_support_z = 0.047;
     gripper_support_offset_x = gripper_support_x/2.0; gripper_support_offset_y = 0.0; gripper_support_offset_z = 0.13;
 		
-		gripper_support_x_1 = 0.01; gripper_support_y_1 = 0.02; gripper_support_z_1 = 0.02;
-    gripper_support_offset_x_1 = gripper_support_x_1/2.0; gripper_support_offset_y_1 = 0.03; gripper_support_offset_z_1 = 0.12;
+		gripper_support_x_1 = 0.015; gripper_support_y_1 = 0.02; gripper_support_z_1 = 0.02;
+    gripper_support_offset_x_1 = gripper_support_x_1/2.0; gripper_support_offset_y_1 = 0.03; gripper_support_offset_z_1 = 0.15;
 		//gripper_support_x_1 = 0.02; gripper_support_y_1 = 0.04; gripper_support_z_1 = 0.06;
     //gripper_support_offset_x_1 = gripper_support_x_1; gripper_support_offset_y_1 = gripper_support_y_1; gripper_support_offset_z_1 = gripper_support_z_1;
 		
-		gripper_support_x_2 = 0.01; gripper_support_y_2 = 0.02; gripper_support_z_2 = 0.02;
-    gripper_support_offset_x_2 = gripper_support_x_2/2.0; gripper_support_offset_y_2 = -0.03; gripper_support_offset_z_2 = 0.12;
+		gripper_support_x_2 = 0.015; gripper_support_y_2 = 0.02; gripper_support_z_2 = 0.02;
+    gripper_support_offset_x_2 = gripper_support_x_2/2.0; gripper_support_offset_y_2 = -0.03; gripper_support_offset_z_2 = 0.15;
 		
-		gripper_support_x_3 = 0.01; gripper_support_y_3 = 0.02; gripper_support_z_3 = 0.02;
-    gripper_support_offset_x_3 = gripper_support_x_3/2.0; gripper_support_offset_y_3 = 0.03; gripper_support_offset_z_3 = 0.08;
+		gripper_support_x_3 = 0.015; gripper_support_y_3 = 0.02; gripper_support_z_3 = 0.02;
+    gripper_support_offset_x_3 = gripper_support_x_3/2.0; gripper_support_offset_y_3 = 0.03; gripper_support_offset_z_3 = 0.09;
 		
-		gripper_support_x_4 = 0.01; gripper_support_y_4 = 0.02; gripper_support_z_4 = 0.02;
-    gripper_support_offset_x_4 = gripper_support_x_4/2.0; gripper_support_offset_y_4 = -0.03; gripper_support_offset_z_4 = 0.08;
+		gripper_support_x_4 = 0.015; gripper_support_y_4 = 0.02; gripper_support_z_4 = 0.02;
+    gripper_support_offset_x_4 = gripper_support_x_4/2.0; gripper_support_offset_y_4 = -0.03; gripper_support_offset_z_4 = 0.09;
   }
   else if(gripper_model == "franka_gripper"){
     gripper_support_x = 0.02; gripper_support_y = 0.08; gripper_support_z = 0.001;
@@ -726,11 +726,11 @@ void constructing_special_ellipsoids(void){
   
   // gripper approximation as a set of special ellipsoids
   if(gripper_model == "allegro_right_hand"){
-    //gripper_x.push_back(0.016);    gripper_y.push_back(0.06);    gripper_z.push_back(0.06);    gripper_offset_x.push_back(0.016);    gripper_offset_y.push_back(0.06);     gripper_offset_z.push_back(0.06);  // palm
-    gripper_x.push_back(0.017);    gripper_y.push_back(0.065);    gripper_z.push_back(0.059);    gripper_offset_x.push_back(-0.017);    gripper_offset_y.push_back(0.0);     gripper_offset_z.push_back(0.057);  // palm
-    gripper_x.push_back(0.017);    gripper_y.push_back(0.020);    gripper_z.push_back(0.07);     gripper_offset_x.push_back(-0.014);    gripper_offset_y.push_back(0.05);    gripper_offset_z.push_back(0.17); // index
-    gripper_x.push_back(0.017);    gripper_y.push_back(0.020);    gripper_z.push_back(0.07);     gripper_offset_x.push_back(-0.014);    gripper_offset_y.push_back(0.0);     gripper_offset_z.push_back(0.17); // middle
-    gripper_x.push_back(0.017);    gripper_y.push_back(0.020);    gripper_z.push_back(0.07);     gripper_offset_x.push_back(-0.014);    gripper_offset_y.push_back(-0.05);   gripper_offset_z.push_back(0.17); // pinky
+    gripper_x.push_back(0.020);    gripper_y.push_back(0.065);    gripper_z.push_back(0.059);    gripper_offset_x.push_back(-0.010);    gripper_offset_y.push_back(0.0);     gripper_offset_z.push_back(0.057);  // palm
+    //gripper_x.push_back(0.017);    gripper_y.push_back(0.065);    gripper_z.push_back(0.059);    gripper_offset_x.push_back(-0.017);    gripper_offset_y.push_back(0.0);     gripper_offset_z.push_back(0.057);  // palm
+    gripper_x.push_back(0.020);    gripper_y.push_back(0.020);    gripper_z.push_back(0.07);     gripper_offset_x.push_back(-0.010);    gripper_offset_y.push_back(0.05);    gripper_offset_z.push_back(0.17); // index
+    gripper_x.push_back(0.020);    gripper_y.push_back(0.020);    gripper_z.push_back(0.07);     gripper_offset_x.push_back(-0.010);    gripper_offset_y.push_back(0.0);     gripper_offset_z.push_back(0.17); // middle
+    gripper_x.push_back(0.020);    gripper_y.push_back(0.020);    gripper_z.push_back(0.07);     gripper_offset_x.push_back(-0.010);    gripper_offset_y.push_back(-0.05);   gripper_offset_z.push_back(0.17); // pinky
     //gripper_x.push_back(0.014);    gripper_y.push_back(0.070);    gripper_z.push_back(0.07);     gripper_offset_x.push_back(-0.014);    gripper_offset_y.push_back(0.0);     gripper_offset_z.push_back(0.17);   // index, middle, pinky
     gripper_x.push_back(0.014);    gripper_y.push_back(0.08);     gripper_z.push_back(0.012);    gripper_offset_x.push_back(-0.022);    gripper_offset_y.push_back(0.11);    gripper_offset_z.push_back(0.022);  // thumb
     //gripper_x.push_back(0.028);    gripper_y.push_back(0.06);     gripper_z.push_back(0.045);    gripper_offset_x.push_back(0.03);    gripper_offset_y.push_back(0.07);    gripper_offset_z.push_back(0.04);  // thumb
@@ -1989,16 +1989,18 @@ void evaluate_grasp_pose_candidates(void){
                                                               0,0,0,1;
     
     
-    if(metric_4_score_best>0 and metric_5_score_best>0 and metric_6_score_best>0 and metric_7_score_best>0 and (total_score_best>50000)){break;}
+    if(metric_8_score_best>=10000 and (total_score_best>50000) ){break;}
     
     // STEP : OK
     // iterate through the range of possible orientations at each sample point
     gripper_centroid_transform_before_orientation_loop = gripper_centroid_transform_in_gripper_centroid_frame;
     dummy_translation << 0,0,0;
     for(unsigned int j=0; j<orientation_samples; j++){				// sampling orientations about one axis (say x-axis)
-			if(metric_4_score_best>0 and metric_5_score_best>0 and metric_6_score_best>0 and metric_7_score_best>0 and (total_score_best>50000)){break;}
+			if(metric_8_score_best>=10000 and (total_score_best>50000) ){break;}
+			
 			for(unsigned int m=0; m<orientation_samples; m++){			// sampling orientations about one axis (say y-axis)
-				if(metric_4_score_best>0 and metric_5_score_best>0 and metric_6_score_best>0 and metric_7_score_best>0 and (total_score_best>50000)){break;}
+				if(metric_8_score_best>=10000 and (total_score_best>50000) ){break;}
+				
 				for(unsigned int n=0; n<orientation_samples; n++){		// sampling orientations about one axis (say z-axis)
 					
 					sampling_iteration++;
@@ -2430,7 +2432,7 @@ void evaluate_grasp_pose_candidates(void){
 							 << ", metric#8= " << metric_8_score_best 
 							 << ", total_score= " << total_score_best << endl;
 					
-					if(metric_4_score_best>0 and metric_5_score_best>0 and metric_6_score_best>0 and metric_7_score_best>0 and (total_score_best>50000)){break;}
+					if(metric_8_score_best>=10000 and (total_score_best>50000) ){break;}
 				}
 			}
     }
