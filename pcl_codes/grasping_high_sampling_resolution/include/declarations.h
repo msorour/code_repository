@@ -53,18 +53,23 @@ pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_as_set_of_special_ellipsoids_tra
 pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_gripper_frame                         (new pcl::PointCloud<pcl::PointXYZ>);
 pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_arm_hand_frame                        (new pcl::PointCloud<pcl::PointXYZ>);
 pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_gripper_transformed_frame             (new pcl::PointCloud<pcl::PointXYZ>);
+pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_transformed_in_arm_hand_frame            (new pcl::PointCloud<pcl::PointXYZ>);
 pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_gripper_frame_1                       (new pcl::PointCloud<pcl::PointXYZ>);
 pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_arm_hand_frame_1                      (new pcl::PointCloud<pcl::PointXYZ>);
 pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_gripper_transformed_frame_1           (new pcl::PointCloud<pcl::PointXYZ>);
+pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_transformed_in_arm_hand_frame_1          (new pcl::PointCloud<pcl::PointXYZ>);
 pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_gripper_frame_2                       (new pcl::PointCloud<pcl::PointXYZ>);
 pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_arm_hand_frame_2                      (new pcl::PointCloud<pcl::PointXYZ>);
 pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_gripper_transformed_frame_2           (new pcl::PointCloud<pcl::PointXYZ>);
+pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_transformed_in_arm_hand_frame_2          (new pcl::PointCloud<pcl::PointXYZ>);
 pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_gripper_frame_3                       (new pcl::PointCloud<pcl::PointXYZ>);
 pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_arm_hand_frame_3                      (new pcl::PointCloud<pcl::PointXYZ>);
 pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_gripper_transformed_frame_3           (new pcl::PointCloud<pcl::PointXYZ>);
+pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_transformed_in_arm_hand_frame_3          (new pcl::PointCloud<pcl::PointXYZ>);
 pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_gripper_frame_4                       (new pcl::PointCloud<pcl::PointXYZ>);
 pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_arm_hand_frame_4                      (new pcl::PointCloud<pcl::PointXYZ>);
 pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_in_gripper_transformed_frame_4           (new pcl::PointCloud<pcl::PointXYZ>);
+pcl::PointCloud<pcl::PointXYZ>::Ptr     gripper_support_point_cloud_transformed_in_arm_hand_frame_4          (new pcl::PointCloud<pcl::PointXYZ>);
 
 
 pcl::PointCloud<pcl::PointXYZ>::Ptr     thumb_workspace_spheres_best                                         (new pcl::PointCloud<pcl::PointXYZ>);
@@ -175,20 +180,20 @@ pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> black_color_agai
 pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> cyan_color          (gripper_cloud_transformed_in_arm_hand_frame_xyz, 0, 255, 255);
 pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> cyan_color_again    (gripper_cloud_downsampled_in_arm_hand_frame_xyz, 0, 255, 255);
 
-pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again  (gripper_support_point_cloud_in_gripper_frame, 255, 165, 0);
-pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again2 (gripper_support_point_cloud_in_gripper_transformed_frame, 255, 165, 0);
+pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again  (gripper_support_point_cloud_in_arm_hand_frame, 255, 165, 0);
+pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again2 (gripper_support_point_cloud_transformed_in_arm_hand_frame, 255, 165, 0);
 
-pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again_1  (gripper_support_point_cloud_in_gripper_frame_1, 255, 165, 0);
-pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again2_1 (gripper_support_point_cloud_in_gripper_transformed_frame_1, 255, 165, 0);
+pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again_1  (gripper_support_point_cloud_in_arm_hand_frame_1, 255, 0, 0);
+pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again2_1 (gripper_support_point_cloud_transformed_in_arm_hand_frame_1, 255, 0, 0);
 
-pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again_2  (gripper_support_point_cloud_in_gripper_frame_2, 255, 165, 0);
-pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again2_2 (gripper_support_point_cloud_in_gripper_transformed_frame_2, 255, 165, 0);
+pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again_2  (gripper_support_point_cloud_in_arm_hand_frame_2, 255, 165, 0);
+pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again2_2 (gripper_support_point_cloud_transformed_in_arm_hand_frame_2, 255, 165, 0);
 
-pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again_3  (gripper_support_point_cloud_in_gripper_frame_3, 255, 165, 0);
-pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again2_3 (gripper_support_point_cloud_in_gripper_transformed_frame_3, 255, 165, 0);
+pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again_3  (gripper_support_point_cloud_in_arm_hand_frame_3, 255, 165, 0);
+pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again2_3 (gripper_support_point_cloud_transformed_in_arm_hand_frame_3, 255, 165, 0);
 
-pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again_4  (gripper_support_point_cloud_in_gripper_frame_4, 255, 165, 0);
-pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again2_4 (gripper_support_point_cloud_in_gripper_transformed_frame_4, 255, 165, 0);
+pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again_4  (gripper_support_point_cloud_in_arm_hand_frame_4, 255, 165, 0);
+pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again2_4 (gripper_support_point_cloud_transformed_in_arm_hand_frame_4, 255, 165, 0);
 
 
 

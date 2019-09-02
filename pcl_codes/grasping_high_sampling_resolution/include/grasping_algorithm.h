@@ -50,9 +50,6 @@ Eigen::MatrixXd readMatrix(const char *filename){
 };
 
 
-
-
-
 void load_object_3_view_point_clouds_and_corresponding_transforms(void){
   tm = readMatrix(transformation_matrix_file_name.c_str());
   tm1 << tm(0,0),  tm(0,1),  tm(0,2),  tm(0,3),
@@ -73,9 +70,6 @@ void load_object_3_view_point_clouds_and_corresponding_transforms(void){
   pcl::io::loadPCDFile<pcl::PointXYZ>(file_name2, *scene_cloud_xyz_2);
   pcl::io::loadPCDFile<pcl::PointXYZ>(file_name3, *scene_cloud_xyz_3);
 }
-
-
-
 
 
 void load_transformations(void){
@@ -116,9 +110,6 @@ void load_transformations(void){
   pcl::transformPointCloud(*object_cloud_downsampled_in_camera_depth_optical_frame_xyz,          *object_cloud_downsampled_in_gripper_frame_xyz,          camera_depth_optical_frame_wrt_gripper_frame_transform);
   pcl::transformPointCloud(*object_plane_cloud_downsampled_in_camera_depth_optical_frame_xyz,    *object_plane_cloud_downsampled_in_gripper_frame_xyz,    camera_depth_optical_frame_wrt_gripper_frame_transform);
 }
-
-
-
 
 
 void downsample_gripper_pointcloud(int desired_number_of_points){
@@ -162,9 +153,6 @@ void downsample_gripper_pointcloud(int desired_number_of_points){
   // save downsampled cloud
   writer.write<pcl::PointXYZ>("../gripper_pcd_model/franka_gripper_model_cloud_plus_camera_downsampled_"+std::to_string(desired_number_of_points)+".pcd", *franka_gripper_point_cloud_downsampled, false);
 }
-
-
-
 
 
 void object_pose_approximation( pcl::PointCloud<pcl::PointXYZ> object_cloud_in_global_frame, 
@@ -566,9 +554,6 @@ void object_pose_approximation( pcl::PointCloud<pcl::PointXYZ> object_cloud_in_g
 }
 
 
-
-
-
 void object_pose_approximation_and_sampling(){
   // compute object transformation matrix
   object_pose_approximation( *object_cloud_downsampled_in_arm_hand_frame_xyz, object_transform_wrt_arm_hand_frame, object_far_point_in_pos_direction_in_global_frame, object_far_point_in_neg_direction_in_global_frame, object_major_dimensions );
@@ -604,9 +589,6 @@ void object_pose_approximation_and_sampling(){
 }
 
 
-
-
-
 void object_plane_pose_approximation(void){
   // compute object plane transformation matrix
   object_pose_approximation( *object_plane_cloud_downsampled_in_arm_hand_frame_xyz, object_plane_transform_wrt_arm_hand_frame, object_plane_far_point_in_pos_direction_in_global_frame, object_plane_far_point_in_neg_direction_in_global_frame, object_plane_major_dimensions );
@@ -623,9 +605,6 @@ void object_plane_pose_approximation(void){
   object_plane_transform_wrt_arm_hand_frame_inverse << object_plane_rotation_wrt_arm_hand_frame.transpose(), -object_plane_rotation_wrt_arm_hand_frame.transpose()*object_plane_translation_wrt_arm_hand_frame, 0,0,0,1; // from khalil's book page 21
   pcl::transformPointCloud(*object_plane_cloud_downsampled_in_arm_hand_frame_xyz, *object_plane_cloud_downsampled_in_object_plane_frame_xyz, object_plane_transform_wrt_arm_hand_frame_inverse);  
 }
-
-
-
 
 
 void construct_special_ellipsoid_point_cloud( pcl::PointCloud<pcl::PointXYZ>::Ptr& special_ellipsoid_point_cloud, 
@@ -661,29 +640,25 @@ void construct_special_ellipsoid_point_cloud( pcl::PointCloud<pcl::PointXYZ>::Pt
 }
 
 
-
-
-
 void constructing_special_ellipsoids(void){
   // gripper support region special ellipsoid
   if(gripper_model == "allegro_right_hand"){
     gripper_support_x = 0.02; gripper_support_y = 0.047; gripper_support_z = 0.047;
     gripper_support_offset_x = gripper_support_x/2.0; gripper_support_offset_y = 0.0; gripper_support_offset_z = 0.13;
 		
-		gripper_support_x_1 = 0.013; gripper_support_y_1 = 0.02; gripper_support_z_1 = 0.02;
-    gripper_support_offset_x_1 = gripper_support_x_1/2.0; gripper_support_offset_y_1 = 0.03; gripper_support_offset_z_1 = 0.13;
-		//gripper_support_x_1 = 0.02; gripper_support_y_1 = 0.047; gripper_support_z_1 = 0.047;
-    //gripper_support_offset_x_1 = gripper_support_x_1/2.0; gripper_support_offset_y_1 = 0.0; gripper_support_offset_z_1 = 0.13;
+		gripper_support_x_1 = 0.01; gripper_support_y_1 = 0.02; gripper_support_z_1 = 0.02;
+    gripper_support_offset_x_1 = gripper_support_x_1/2.0; gripper_support_offset_y_1 = 0.03; gripper_support_offset_z_1 = 0.12;
+		//gripper_support_x_1 = 0.02; gripper_support_y_1 = 0.04; gripper_support_z_1 = 0.06;
+    //gripper_support_offset_x_1 = gripper_support_x_1; gripper_support_offset_y_1 = gripper_support_y_1; gripper_support_offset_z_1 = gripper_support_z_1;
 		
+		gripper_support_x_2 = 0.01; gripper_support_y_2 = 0.02; gripper_support_z_2 = 0.02;
+    gripper_support_offset_x_2 = gripper_support_x_2/2.0; gripper_support_offset_y_2 = -0.03; gripper_support_offset_z_2 = 0.12;
 		
-		gripper_support_x_2 = 0.013; gripper_support_y_2 = 0.02; gripper_support_z_2 = 0.02;
-    gripper_support_offset_x_2 = gripper_support_x_2/2.0; gripper_support_offset_y_2 = -0.03; gripper_support_offset_z_2 = 0.13;
+		gripper_support_x_3 = 0.01; gripper_support_y_3 = 0.02; gripper_support_z_3 = 0.02;
+    gripper_support_offset_x_3 = gripper_support_x_3/2.0; gripper_support_offset_y_3 = 0.03; gripper_support_offset_z_3 = 0.08;
 		
-		gripper_support_x_3 = 0.013; gripper_support_y_3 = 0.02; gripper_support_z_3 = 0.02;
-    gripper_support_offset_x_3 = gripper_support_x_3/2.0; gripper_support_offset_y_3 = 0.03; gripper_support_offset_z_3 = 0.10;
-		
-		gripper_support_x_4 = 0.013; gripper_support_y_4 = 0.02; gripper_support_z_4 = 0.02;
-    gripper_support_offset_x_4 = gripper_support_x_4/2.0; gripper_support_offset_y_4 = -0.03; gripper_support_offset_z_4 = 0.10;
+		gripper_support_x_4 = 0.01; gripper_support_y_4 = 0.02; gripper_support_z_4 = 0.02;
+    gripper_support_offset_x_4 = gripper_support_x_4/2.0; gripper_support_offset_y_4 = -0.03; gripper_support_offset_z_4 = 0.08;
   }
   else if(gripper_model == "franka_gripper"){
     gripper_support_x = 0.02; gripper_support_y = 0.08; gripper_support_z = 0.001;
@@ -692,52 +667,52 @@ void constructing_special_ellipsoids(void){
   // draw
   parameter_vector << gripper_support_x, gripper_support_y, gripper_support_z;
   offset_vector    << gripper_support_offset_x, gripper_support_offset_y, gripper_support_offset_z;
-  construct_special_ellipsoid_point_cloud( gripper_support_point_cloud_in_arm_hand_frame, parameter_vector, offset_vector, 100, 10 );
-	gripper_support_offset_in_arm_hand_frame << gripper_support_offset_x, gripper_support_offset_y, gripper_support_offset_z,1;
-	gripper_support_offset_in_gripper_frame = gripper_wrt_arm_hand_frame_transform.inverse()*gripper_support_offset_in_arm_hand_frame;
+  construct_special_ellipsoid_point_cloud( gripper_support_point_cloud_in_gripper_frame, parameter_vector, offset_vector, 100, 10 );
+	gripper_support_offset_in_gripper_frame << gripper_support_offset_x, gripper_support_offset_y, gripper_support_offset_z,1;
+	gripper_support_offset_in_arm_hand_frame = gripper_wrt_arm_hand_frame_transform*gripper_support_offset_in_gripper_frame;
   
-	gripper_support_in_arm_hand_frame << gripper_support_x, gripper_support_y, gripper_support_z,1;
-	gripper_support_in_gripper_frame = gripper_wrt_arm_hand_frame_transform.inverse()*gripper_support_in_arm_hand_frame;
+	gripper_support_in_gripper_frame << gripper_support_x, gripper_support_y, gripper_support_z,1;
+	gripper_support_in_arm_hand_frame = gripper_wrt_arm_hand_frame_transform*gripper_support_in_gripper_frame;
   
 	// 1st support area
 	parameter_vector << gripper_support_x_1, gripper_support_y_1, gripper_support_z_1;
   offset_vector    << gripper_support_offset_x_1, gripper_support_offset_y_1, gripper_support_offset_z_1;
-  construct_special_ellipsoid_point_cloud( gripper_support_point_cloud_in_arm_hand_frame_1, parameter_vector, offset_vector, 100, 10 );
-	gripper_support_offset_in_arm_hand_frame_1 << gripper_support_offset_x_1, gripper_support_offset_y_1, gripper_support_offset_z_1,1;
-	gripper_support_offset_in_gripper_frame_1 = gripper_wrt_arm_hand_frame_transform.inverse()*gripper_support_offset_in_arm_hand_frame_1;
+  construct_special_ellipsoid_point_cloud( gripper_support_point_cloud_in_gripper_frame_1, parameter_vector, offset_vector, 100, 10 );
+	gripper_support_offset_in_gripper_frame_1 << gripper_support_offset_x_1, gripper_support_offset_y_1, gripper_support_offset_z_1,1;
+	gripper_support_offset_in_arm_hand_frame_1 = gripper_wrt_arm_hand_frame_transform*gripper_support_offset_in_gripper_frame_1;
   
-	gripper_support_in_arm_hand_frame_1 << gripper_support_x_1, gripper_support_y_1, gripper_support_z_1,1;
-	gripper_support_in_gripper_frame_1 = gripper_wrt_arm_hand_frame_transform.inverse()*gripper_support_in_arm_hand_frame_1;
+	gripper_support_in_gripper_frame_1 << gripper_support_x_1, gripper_support_y_1, gripper_support_z_1,1;
+	gripper_support_in_arm_hand_frame_1 = gripper_wrt_arm_hand_frame_transform*gripper_support_in_gripper_frame_1;
   
 	// 2nd support area
 	parameter_vector << gripper_support_x_2, gripper_support_y_2, gripper_support_z_2;
   offset_vector    << gripper_support_offset_x_2, gripper_support_offset_y_2, gripper_support_offset_z_2;
-  construct_special_ellipsoid_point_cloud( gripper_support_point_cloud_in_arm_hand_frame_2, parameter_vector, offset_vector, 100, 10 );
-	gripper_support_offset_in_arm_hand_frame_2 << gripper_support_offset_x_2, gripper_support_offset_y_2, gripper_support_offset_z_2,1;
-	gripper_support_offset_in_gripper_frame_2 = gripper_wrt_arm_hand_frame_transform.inverse()*gripper_support_offset_in_arm_hand_frame_2;
+  construct_special_ellipsoid_point_cloud( gripper_support_point_cloud_in_gripper_frame_2, parameter_vector, offset_vector, 100, 10 );
+	gripper_support_offset_in_gripper_frame_2 << gripper_support_offset_x_2, gripper_support_offset_y_2, gripper_support_offset_z_2,1;
+	gripper_support_offset_in_arm_hand_frame_2 = gripper_wrt_arm_hand_frame_transform*gripper_support_offset_in_gripper_frame_2;
   
-	gripper_support_in_arm_hand_frame_2 << gripper_support_x_2, gripper_support_y_2, gripper_support_z_2,1;
-	gripper_support_in_gripper_frame_2 = gripper_wrt_arm_hand_frame_transform.inverse()*gripper_support_in_arm_hand_frame_2;
+	gripper_support_in_gripper_frame_2 << gripper_support_x_2, gripper_support_y_2, gripper_support_z_2,1;
+	gripper_support_in_arm_hand_frame_2 = gripper_wrt_arm_hand_frame_transform*gripper_support_in_gripper_frame_2;
   
 	// 3rd support area
 	parameter_vector << gripper_support_x_3, gripper_support_y_3, gripper_support_z_3;
   offset_vector    << gripper_support_offset_x_3, gripper_support_offset_y_3, gripper_support_offset_z_3;
-  construct_special_ellipsoid_point_cloud( gripper_support_point_cloud_in_arm_hand_frame_3, parameter_vector, offset_vector, 100, 10 );
-	gripper_support_offset_in_arm_hand_frame_3 << gripper_support_offset_x_3, gripper_support_offset_y_3, gripper_support_offset_z_3,1;
-	gripper_support_offset_in_gripper_frame_3 = gripper_wrt_arm_hand_frame_transform.inverse()*gripper_support_offset_in_arm_hand_frame_3;
+  construct_special_ellipsoid_point_cloud( gripper_support_point_cloud_in_gripper_frame_3, parameter_vector, offset_vector, 100, 10 );
+	gripper_support_offset_in_gripper_frame_3 << gripper_support_offset_x_3, gripper_support_offset_y_3, gripper_support_offset_z_3,1;
+	gripper_support_offset_in_arm_hand_frame_3 = gripper_wrt_arm_hand_frame_transform*gripper_support_offset_in_gripper_frame_3;
   
-	gripper_support_in_arm_hand_frame_3 << gripper_support_x_3, gripper_support_y_3, gripper_support_z_3,1;
-	gripper_support_in_gripper_frame_3 = gripper_wrt_arm_hand_frame_transform.inverse()*gripper_support_in_arm_hand_frame_3;
+	gripper_support_in_gripper_frame_3 << gripper_support_x_3, gripper_support_y_3, gripper_support_z_3,1;
+	gripper_support_in_arm_hand_frame_3 = gripper_wrt_arm_hand_frame_transform*gripper_support_in_gripper_frame_3;
   
 	// 4th support area
 	parameter_vector << gripper_support_x_4, gripper_support_y_4, gripper_support_z_4;
   offset_vector    << gripper_support_offset_x_4, gripper_support_offset_y_4, gripper_support_offset_z_4;
-  construct_special_ellipsoid_point_cloud( gripper_support_point_cloud_in_arm_hand_frame_4, parameter_vector, offset_vector, 100, 10 );
-	gripper_support_offset_in_arm_hand_frame_4 << gripper_support_offset_x_4, gripper_support_offset_y_4, gripper_support_offset_z_4,1;
-	gripper_support_offset_in_gripper_frame_4 = gripper_wrt_arm_hand_frame_transform.inverse()*gripper_support_offset_in_arm_hand_frame_4;
+  construct_special_ellipsoid_point_cloud( gripper_support_point_cloud_in_gripper_frame_4, parameter_vector, offset_vector, 100, 10 );
+	gripper_support_offset_in_gripper_frame_4 << gripper_support_offset_x_4, gripper_support_offset_y_4, gripper_support_offset_z_4,1;
+	gripper_support_offset_in_arm_hand_frame_4 = gripper_wrt_arm_hand_frame_transform*gripper_support_offset_in_gripper_frame_4;
   
-	gripper_support_in_arm_hand_frame_4 << gripper_support_x_4, gripper_support_y_4, gripper_support_z_4,1;
-	gripper_support_in_gripper_frame_4 = gripper_wrt_arm_hand_frame_transform.inverse()*gripper_support_in_arm_hand_frame_4;
+	gripper_support_in_gripper_frame_4 << gripper_support_x_4, gripper_support_y_4, gripper_support_z_4,1;
+	gripper_support_in_arm_hand_frame_4 = gripper_wrt_arm_hand_frame_transform*gripper_support_in_gripper_frame_4;
   
 	
   // object plane special ellipsoid
@@ -751,7 +726,7 @@ void constructing_special_ellipsoids(void){
   
   // gripper approximation as a set of special ellipsoids
   if(gripper_model == "allegro_right_hand"){
-    //gripper_x.push_back(0.017);    gripper_y.push_back(0.059);    gripper_z.push_back(0.059);    gripper_offset_x.push_back(-0.017);    gripper_offset_y.push_back(0.0);     gripper_offset_z.push_back(0.057);  // palm
+    //gripper_x.push_back(0.016);    gripper_y.push_back(0.06);    gripper_z.push_back(0.06);    gripper_offset_x.push_back(0.016);    gripper_offset_y.push_back(0.06);     gripper_offset_z.push_back(0.06);  // palm
     gripper_x.push_back(0.017);    gripper_y.push_back(0.065);    gripper_z.push_back(0.059);    gripper_offset_x.push_back(-0.017);    gripper_offset_y.push_back(0.0);     gripper_offset_z.push_back(0.057);  // palm
     gripper_x.push_back(0.017);    gripper_y.push_back(0.020);    gripper_z.push_back(0.07);     gripper_offset_x.push_back(-0.014);    gripper_offset_y.push_back(0.05);    gripper_offset_z.push_back(0.17); // index
     gripper_x.push_back(0.017);    gripper_y.push_back(0.020);    gripper_z.push_back(0.07);     gripper_offset_x.push_back(-0.014);    gripper_offset_y.push_back(0.0);     gripper_offset_z.push_back(0.17); // middle
@@ -777,16 +752,13 @@ void constructing_special_ellipsoids(void){
     *gripper_as_set_of_special_ellipsoids_in_gripper_frame += *dummy_cloud_xyz;
   }
   pcl::transformPointCloud(*gripper_as_set_of_special_ellipsoids_in_gripper_frame, *gripper_as_set_of_special_ellipsoids_in_arm_hand_frame, gripper_wrt_arm_hand_frame_transform);
-	pcl::transformPointCloud(*gripper_support_point_cloud_in_arm_hand_frame, *gripper_support_point_cloud_in_gripper_frame, gripper_wrt_arm_hand_frame_transform.inverse());
+	pcl::transformPointCloud(*gripper_support_point_cloud_in_gripper_frame, *gripper_support_point_cloud_in_arm_hand_frame, gripper_wrt_arm_hand_frame_transform);
 	
-	pcl::transformPointCloud(*gripper_support_point_cloud_in_arm_hand_frame_1, *gripper_support_point_cloud_in_gripper_frame_1, gripper_wrt_arm_hand_frame_transform.inverse());
-	pcl::transformPointCloud(*gripper_support_point_cloud_in_arm_hand_frame_2, *gripper_support_point_cloud_in_gripper_frame_2, gripper_wrt_arm_hand_frame_transform.inverse());
-	pcl::transformPointCloud(*gripper_support_point_cloud_in_arm_hand_frame_3, *gripper_support_point_cloud_in_gripper_frame_3, gripper_wrt_arm_hand_frame_transform.inverse());
-	pcl::transformPointCloud(*gripper_support_point_cloud_in_arm_hand_frame_4, *gripper_support_point_cloud_in_gripper_frame_4, gripper_wrt_arm_hand_frame_transform.inverse());
+	pcl::transformPointCloud(*gripper_support_point_cloud_in_gripper_frame_1, *gripper_support_point_cloud_in_arm_hand_frame_1, gripper_wrt_arm_hand_frame_transform);
+	pcl::transformPointCloud(*gripper_support_point_cloud_in_gripper_frame_2, *gripper_support_point_cloud_in_arm_hand_frame_2, gripper_wrt_arm_hand_frame_transform);
+	pcl::transformPointCloud(*gripper_support_point_cloud_in_gripper_frame_3, *gripper_support_point_cloud_in_arm_hand_frame_3, gripper_wrt_arm_hand_frame_transform);
+	pcl::transformPointCloud(*gripper_support_point_cloud_in_gripper_frame_4, *gripper_support_point_cloud_in_arm_hand_frame_4, gripper_wrt_arm_hand_frame_transform);
 }
-
-
-
 
 
 void object_plane_pose_check(void){
@@ -811,9 +783,6 @@ void object_plane_pose_check(void){
 		pcl::transformPointCloud(*object_plane_special_ellipsoid_point_cloud_in_object_plane_frame, *object_plane_special_ellipsoid_point_cloud_in_arm_hand_frame, object_plane_transform_wrt_arm_hand_frame);
   }
 }
-
-
-
 
 
 void load_allegro_right_hand_workspace_spheres( pcl::PointCloud<pcl::PointXYZ>::Ptr& gripper_augmented_workspace_xyz, 
@@ -1021,9 +990,6 @@ void load_allegro_right_hand_workspace_spheres( pcl::PointCloud<pcl::PointXYZ>::
 }
 
 
-
-
-
 void load_franka_gripper_workspace_spheres( pcl::PointCloud<pcl::PointXYZ>::Ptr& gripper_augmented_workspace_xyz, 
                                             Eigen::Vector3f& gripper_workspace_centroid_point_in_gripper_frame,
                                             pcl::PointCloud<pcl::PointXYZ>::Ptr& right_finger_workspace_convex_parameter,
@@ -1112,9 +1078,6 @@ void load_franka_gripper_workspace_spheres( pcl::PointCloud<pcl::PointXYZ>::Ptr&
 }
 
 
-
-
-
 void load_gripper_workspace_spheres_and_compute_centroid(void){
   // load gripper workspace spheres and compute the centroid in the gripper frame
   if(gripper_model == "allegro_right_hand"){
@@ -1130,9 +1093,6 @@ void load_gripper_workspace_spheres_and_compute_centroid(void){
                                            left_finger_workspace_convex_parameter,  left_finger_workspace_convex_offset );
   }
 }
-
-
-
 
 
 void metric_1_number_of_active_workspace_spheres_and_corresponding_object_points( pcl::PointCloud<pcl::PointXYZ>::Ptr&     object_cloud_transformed_in_gripper_frame_xyz, 
@@ -1169,9 +1129,6 @@ void metric_1_number_of_active_workspace_spheres_and_corresponding_object_points
   } // end of iteration through all finger workspace spheres
   
 }
-
-
-
 
 
 void point_cloud_as_set_of_spheres_fixed_radius( pcl::PointCloud<pcl::PointXYZ>::Ptr&  finger_workspace_cloud_xyz,            // input
@@ -1338,9 +1295,6 @@ void point_cloud_as_set_of_spheres_fixed_radius( pcl::PointCloud<pcl::PointXYZ>:
 }
 
 
-
-
-
 void point_cloud_as_set_of_spheres( int desired_number_of_spheres,                                                       // input
                                     pcl::PointCloud<pcl::PointXYZ>::Ptr&  finger_workspace_cloud_xyz,                    // input
                                     double radius_of_smallest_sphere,                                                    // input
@@ -1484,9 +1438,6 @@ void point_cloud_as_set_of_spheres( int desired_number_of_spheres,              
   
   
 }
-
-
-
 
 
 void point_cloud_as_set_of_spheres_fixed_radius_paper_photos(  pcl::PointCloud<pcl::PointXYZ>::Ptr&  finger_workspace_cloud_xyz,            // input
@@ -1692,9 +1643,6 @@ void point_cloud_as_set_of_spheres_fixed_radius_paper_photos(  pcl::PointCloud<p
 }
 
 
-
-
-
 void registering_downsampling_segmenting_3_view_point_clouds( pcl::PointCloud<pcl::PointXYZ>::Ptr&  scene_cloud_xyz_1,                             // input
                                                               Eigen::Matrix4f tm1,                                                                 // input
                                                               pcl::PointCloud<pcl::PointXYZ>::Ptr&  scene_cloud_xyz_2,                             // input
@@ -1848,9 +1796,6 @@ void registering_downsampling_segmenting_3_view_point_clouds( pcl::PointCloud<pc
   
 
 }
-
-
-
 
 
 void registering_downsampling_segmenting_3_view_point_clouds( pcl::PointCloud<pcl::PointXYZ>::Ptr&  scene_cloud_xyz_1,                             // input
@@ -2011,11 +1956,6 @@ void registering_downsampling_segmenting_3_view_point_clouds( pcl::PointCloud<pc
 }
 
 
-
-
-
-
-
 void evaluate_grasp_pose_candidates(void){
   
   workspace_centroid_wrt_gripper_frame_translation        << gripper_workspace_centroid_point_in_gripper_frame(0), gripper_workspace_centroid_point_in_gripper_frame(1), gripper_workspace_centroid_point_in_gripper_frame(2);
@@ -2049,19 +1989,16 @@ void evaluate_grasp_pose_candidates(void){
                                                               0,0,0,1;
     
     
-    if(metric_4_score_best and metric_5_score_best and metric_6_score_best and metric_7_score_best and (total_score>50000))
-			break;
+    if(metric_4_score_best>0 and metric_5_score_best>0 and metric_6_score_best>0 and metric_7_score_best>0 and (total_score_best>50000)){break;}
     
     // STEP : OK
     // iterate through the range of possible orientations at each sample point
     gripper_centroid_transform_before_orientation_loop = gripper_centroid_transform_in_gripper_centroid_frame;
     dummy_translation << 0,0,0;
     for(unsigned int j=0; j<orientation_samples; j++){				// sampling orientations about one axis (say x-axis)
-			if(metric_4_score_best and metric_5_score_best and metric_6_score_best and metric_7_score_best and (total_score>50000))
-				break;
+			if(metric_4_score_best>0 and metric_5_score_best>0 and metric_6_score_best>0 and metric_7_score_best>0 and (total_score_best>50000)){break;}
 			for(unsigned int m=0; m<orientation_samples; m++){			// sampling orientations about one axis (say y-axis)
-				if(metric_4_score_best and metric_5_score_best and metric_6_score_best and metric_7_score_best and (total_score>50000))
-					break;
+				if(metric_4_score_best>0 and metric_5_score_best>0 and metric_6_score_best>0 and metric_7_score_best>0 and (total_score_best>50000)){break;}
 				for(unsigned int n=0; n<orientation_samples; n++){		// sampling orientations about one axis (say z-axis)
 					
 					sampling_iteration++;
@@ -2332,11 +2269,6 @@ void evaluate_grasp_pose_candidates(void){
 								total_score = metric_1_score + metric_2_score + metric_3_score + metric_4_score + metric_5_score + metric_6_score + metric_7_score + metric_8_score;
 								
 								
-								if(metric_4_score_best and metric_5_score_best and metric_6_score_best and metric_7_score_best and (total_score>50000))
-									break;
-								
-								
-								
 								//
 								// Evaluating the best score
 								if( total_score > total_score_best ){
@@ -2368,8 +2300,6 @@ void evaluate_grasp_pose_candidates(void){
 									
 									best_gripper_transform = gripper_transform;
 								}
-								
-								
 								
 								
 							}
@@ -2499,12 +2429,13 @@ void evaluate_grasp_pose_candidates(void){
 							 << ", metric#7= " << metric_7_score_best
 							 << ", metric#8= " << metric_8_score_best 
 							 << ", total_score= " << total_score_best << endl;
+					
+					if(metric_4_score_best>0 and metric_5_score_best>0 and metric_6_score_best>0 and metric_7_score_best>0 and (total_score_best>50000)){break;}
 				}
 			}
     }
   }
 }
-
 
 
 void visualize_workspace_spheres_and_object_points_for_best_gripper_pose(void){
