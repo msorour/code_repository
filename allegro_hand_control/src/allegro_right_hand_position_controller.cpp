@@ -663,7 +663,7 @@ int main(int argc, TCHAR* argv[]){
 	    position_Pmt_error = position_Pmt_desired - position_Pmt;
 	    position_Ppt_error = position_Ppt_desired - position_Ppt;
 	    
-	    velocity_Ptt_desired_3d = 0.9*position_Ptt_error;
+	    velocity_Ptt_desired_3d = 1.1*position_Ptt_error;
 	    velocity_Pit_desired_3d = Kp_finger*position_Pit_error;
 	    velocity_Pmt_desired_3d = Kp_finger*position_Pmt_error;
 	    velocity_Ppt_desired_3d = Kp_finger*position_Ppt_error;
