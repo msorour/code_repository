@@ -16,7 +16,7 @@ allegro hand + medium sampling (5x5x5x18x18x18)
 15. sand bucket:                  8/9 (230+204+164+180+204+384)
 16. cookies box:                  2/3 (156+320+320+)                    OK
 17. bake rolls:                   3/4 (470+240+580+175+)                OK
-18. yellow pepper:                
+18. yellow pepper:                3/3 (403+406)
 19. croutons pack:                2/2 (533+340+)                        OK
 20. soft ball toy:                
 
