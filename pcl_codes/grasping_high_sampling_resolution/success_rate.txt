@@ -1,9 +1,27 @@
-sprayer:
-storage bin:
-tooth paste box:
-brush:
-plant pot:
-handless cup:
-toilet paper roll:
-realsense box:
-air duster:
+allegro hand + medium sampling (5x5x5x18x18x18)
+1.  storage bin:                  4/5 (520+427+107+350+445)
+2.  tooth paste box:              0/1 (206+)
+3.  dish brush:                   
+4.  plant pot:                    11/11 (470+223+320+587+213+306+375)   OK
+5.  handless cup:                 5/5 (62+42+24+280+48)
+6.  toilet paper roll:            8/9 (182+172+160+182+64+37+148+55+404)
+7.  realsense box:                5/5 (112+327+347)                     OK
+8.  air duster:                   3/4 (640+17+184)
+9.  apple:                        3/3 ()                                OK
+10. banana:                       
+11. cereals box:                  
+12. coffee jar:                   8/9 (157+450+332+277+34+634)
+13. orange:                       1/2 (222+191+)
+14. mug:                          
+15. sand bucket:                  8/9 (230+204+164+180+204+384)
+16. cookies box:                  2/3 (156+320+320+)                    OK
+17. bake rolls:                   3/4 (470+240+580+175+)                OK
+18. yellow pepper:                
+19. croutons pack:                2/2 (533+340+)                        OK
+20. soft ball toy:                
+
+
+
+
+
+advantages: we no longer require an estimate of object orientation, which is usually difficult to compute. We still need the table orientation, but this is easy to predict, assuming it is planar

@@ -586,7 +586,7 @@ int main(int argc, char **argv){
 		// move in z-axis only
 		poseCommand.pose.position.x = desired_hand_translation_in_arm_link0_frame(0);
 		poseCommand.pose.position.y = desired_hand_translation_in_arm_link0_frame(1);
-		poseCommand.pose.position.z = desired_hand_translation_in_arm_link0_frame(2)+0.01;
+		poseCommand.pose.position.z = desired_hand_translation_in_arm_link0_frame(2)+0.0;
 		//poseCommand.pose.position.z = 0.17;
 		poseCommand.pose.orientation.x = desired_hand_rotation_in_arm_link0_frame_quat.x();
 		poseCommand.pose.orientation.y = desired_hand_rotation_in_arm_link0_frame_quat.y();
