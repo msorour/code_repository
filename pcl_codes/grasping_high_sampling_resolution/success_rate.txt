@@ -1,24 +1,24 @@
 allegro hand + medium sampling (5x5x5x18x18x18)
-1.  storage bin:                4/5 (520+427+107+350+445)
-2.  tooth paste box:            0/1 (206+)
+1.  storage bin:                5/8   (520+427+107+350+445)               OK
+2.  tooth paste box:            0/1   (206+)
 3.  dish brush:                 
-4.  plant pot:                  11/11 (470+223+320+587+213+306+375)     OK
-5.  handless cup:               8/8 (62+42+24+280+48+491)
-6.  toilet paper roll:          9/10 (182+172+160+182+64+37+148+55+404) OK
-7.  realsense box:              5/5 (112+327+347)                       OK
-8.  air duster:                 3/4 (640+17+184)
-9.  apple:                      3/3 ()                                  OK
+4.  plant pot:                  10/10 (470+223+320+587+213+306+375)       OK
+5.  handless cup:               9/10  (62+42+24+280+48+491+350)           OK
+6.  toilet paper roll:          9/10  (182+172+160+182+64+37+148+55+404)  OK
+7.  realsense box:              5/5   (112+327+347)                       OK
+8.  air duster:                 3/4   (640+17+184)
+9.  apple:                      3/3   (300)                               OK
 10. banana:                     
-11. cereals box:                3/5 (55)                                OK (but do it again!)
-12. coffee jar:                 8/9 (157+450+332+277+34+634)
-13. orange:                     1/2 (222+191+)
-14. mug:                        5/7 (297+302+266+313)                   OK (but do it again!)
-15. sand bucket:                8/9 (230+204+164+180+204+384)
-16. cookies box:                2/3 (156+320+320+)                      OK
-17. bake rolls:                 3/4 (470+240+580+175+)                  OK
-18. yellow pepper:              4/4 (403+406+383)                       OK
-19. croutons pack:              2/2 (533+340+)                          OK
-20. soft ball toy:              
+11. cereals box:                3/5   (55)                                OK (but do it again!)
+12. coffee jar:                 8/10  (157+450+332+277+34+634)            OK (but do it again!)
+13. orange:                     3/5   (222+191+)
+14. mug:                        5/7   (297+302+266+313)                   OK (but do it again!)
+15. sand bucket:                8/9   (230+204+164+180+204+384)
+16. cookies box:                2/3   (156+320+320+)                      OK
+17. bake rolls:                 3/4   (470+240+580+175+)                  OK
+18. yellow pepper:              4/4   (403+406+383)                       OK
+19. croutons pack:              2/2   (533+340+)                          OK
+20. soft ball toy:              1/1   ()                                  OK
 
 
 

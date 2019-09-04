@@ -646,7 +646,7 @@ int main(int argc, char **argv){
 		
 		poseCommand.pose.position.x    = stamped_transform.getOrigin().x();
 		poseCommand.pose.position.y    = stamped_transform.getOrigin().y();
-		poseCommand.pose.position.z    = stamped_transform.getOrigin().z() + 0.2;
+		poseCommand.pose.position.z    = stamped_transform.getOrigin().z() + 0.05;
 		poseCommand.pose.orientation.x = stamped_transform.getRotation().x();
 		poseCommand.pose.orientation.y = stamped_transform.getRotation().y();
 		poseCommand.pose.orientation.z = stamped_transform.getRotation().z();
