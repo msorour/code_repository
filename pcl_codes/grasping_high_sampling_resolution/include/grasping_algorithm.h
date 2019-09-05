@@ -2019,7 +2019,7 @@ void evaluate_grasp_pose_candidates(void){
     
     
     if(metric_8_score_best>=20000 and (total_score_best>40000) ){break;}
-    if(i>=100 and (total_score_best>40000) ){break;}
+    //if(i>=100 and (total_score_best>40000) ){break;}
     
     // STEP : OK
     // iterate through the range of possible orientations at each sample point
@@ -2027,11 +2027,11 @@ void evaluate_grasp_pose_candidates(void){
     dummy_translation << 0,0,0;
     for(unsigned int j=0; j<orientation_samples; j++){				// sampling orientations about one axis (say x-axis)
 			if(metric_8_score_best>=20000 and (total_score_best>40000) ){break;}
-			if(i>=100 and (total_score_best>40000) ){break;}
+			//if(i>=100 and (total_score_best>40000) ){break;}
 			
 			for(unsigned int m=0; m<orientation_samples; m++){			// sampling orientations about one axis (say y-axis)
 				if(metric_8_score_best>=20000 and (total_score_best>40000) ){break;}
-				if(i>=100 and (total_score_best>40000) ){break;}
+				//if(i>=100 and (total_score_best>40000) ){break;}
 				
 				for(unsigned int n=0; n<orientation_samples; n++){		// sampling orientations about one axis (say z-axis)
 					
@@ -2444,7 +2444,7 @@ void evaluate_grasp_pose_candidates(void){
 							 << ", total_score= " << total_score_best << endl;
 					
 					if(metric_8_score_best>=20000 and (total_score_best>40000) ){break;}
-					if(i>=100 and (total_score_best>40000) ){break;}
+					//if(i>=100 and (total_score_best>40000) ){break;}
 				}
 			}
     }

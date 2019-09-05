@@ -327,6 +327,13 @@ int main(int argc, char **argv){
 		scene_cloud_viewer->addPointCloud(gripper_support_point_cloud_in_arm_hand_frame_4, orange_color_again_4,                 "gripper support4 ellipsoid");
 		scene_cloud_viewer->addPointCloud(gripper_support_point_cloud_transformed_in_arm_hand_frame_4, orange_color_again2_4,    "gripper support4 transformed ellipsoid");
 	}
+	else if(gripper_model == "franka_gripper"){
+		scene_cloud_viewer->addPointCloud(gripper_support_point_cloud_in_arm_hand_frame_1, orange_color_again_1,                 "gripper support1 ellipsoid");
+		scene_cloud_viewer->addPointCloud(gripper_support_point_cloud_transformed_in_arm_hand_frame_1, orange_color_again2_1,    "gripper support1 transformed ellipsoid");
+		
+		scene_cloud_viewer->addPointCloud(gripper_support_point_cloud_in_arm_hand_frame_2, orange_color_again_2,                 "gripper support2 ellipsoid");
+		scene_cloud_viewer->addPointCloud(gripper_support_point_cloud_transformed_in_arm_hand_frame_2, orange_color_again2_2,    "gripper support2 transformed ellipsoid");
+	}
   
   cout << "scene_cloud_xyz_1->points.size() = " << scene_cloud_xyz_1->points.size() << endl;
   cout << "scene_cloud_xyz_2->points.size() = " << scene_cloud_xyz_2->points.size() << endl;
@@ -487,6 +494,23 @@ int main(int argc, char **argv){
 		pcl::transformPointCloud(*gripper_support_point_cloud_in_arm_hand_frame_4, *gripper_support_point_cloud_transformed_in_arm_hand_frame_4, best_gripper_transform);
 		scene_cloud_viewer->updatePointCloud(gripper_support_point_cloud_transformed_in_arm_hand_frame_4, orange_color_again2_4,      "gripper support4 transformed ellipsoid");
 		scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper support4 transformed ellipsoid");
+	}
+	else if(gripper_model == "franka_gripper"){
+		// gripper support1 ellipsoid
+		scene_cloud_viewer->updatePointCloud(gripper_support_point_cloud_in_arm_hand_frame_1, orange_color_again_1,                   "gripper support1 ellipsoid");
+		scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper support1 ellipsoid");
+		// gripper support1 transformed ellipsoid
+		pcl::transformPointCloud(*gripper_support_point_cloud_in_arm_hand_frame_1, *gripper_support_point_cloud_transformed_in_arm_hand_frame_1, best_gripper_transform);
+		scene_cloud_viewer->updatePointCloud(gripper_support_point_cloud_transformed_in_arm_hand_frame_1, orange_color_again2_1,      "gripper support1 transformed ellipsoid");
+		scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper support1 transformed ellipsoid");
+		
+		// gripper support2 ellipsoid
+		scene_cloud_viewer->updatePointCloud(gripper_support_point_cloud_in_arm_hand_frame_2, orange_color_again_2,                   "gripper support2 ellipsoid");
+		scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper support2 ellipsoid");
+		// gripper support2 transformed ellipsoid
+		pcl::transformPointCloud(*gripper_support_point_cloud_in_arm_hand_frame_2, *gripper_support_point_cloud_transformed_in_arm_hand_frame_2, best_gripper_transform);
+		scene_cloud_viewer->updatePointCloud(gripper_support_point_cloud_transformed_in_arm_hand_frame_2, orange_color_again2_2,      "gripper support2 transformed ellipsoid");
+		scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper support2 transformed ellipsoid");
 	}
   
   scene_cloud_viewer->spinOnce();

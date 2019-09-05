@@ -21,6 +21,28 @@ allegro hand + medium sampling (5x5x5x18x18x18)
 20. soft ball toy:              1/1   ()                                  OK
 
 
+franka gripper + medium sampling (10x10x10x8x8x8)
+1.  storage bin:                3/4   (490)    OK
+2.  tooth paste box:            0/0   ()
+3.  dish brush:                 
+4.  plant pot:                  0/0   ()
+5.  handless cup:               0/0   ()
+6.  toilet paper roll:          0/0   ()
+7.  realsense box:              0/0   ()
+8.  air duster:                 0/1   (686+)
+9.  apple:                      1/1   (553+)   OK
+10. banana:                     1/1   (431)    OK
+11. cereals box:                0/0   ()
+12. coffee jar:                 0/0   ()
+13. orange:                     0/0   ()
+14. mug:                        0/0   ()
+15. sand bucket:                0/0   ()
+16. cookies box:                0/0   ()
+17. bake rolls:                 0/0   ()
+18. yellow pepper:              5/5   (595+587)       OK (but do it again!)
+19. croutons pack:              2/2   (580+547)       OK
+20. soft ball toy:              0/0   ()
+
 
 
 
