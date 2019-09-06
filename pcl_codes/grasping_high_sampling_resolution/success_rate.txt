@@ -1,49 +1,49 @@
 allegro hand + medium sampling (5x5x5x18x18x18)
-1.  storage bin:                5/8   (520+427+107+350+445)               OK
+1.  storage bin:                7/10  (520+427+107+350+445)               OK
 2.  tooth paste box:            0/1   (206+)
-3.  dish brush:                 
+3.  dish brush:                 0/0   ()
 4.  plant pot:                  10/10 (470+223+320+587+213+306+375)       OK
 5.  handless cup:               9/10  (62+42+24+280+48+491+350)           OK
 6.  toilet paper roll:          9/10  (182+172+160+182+64+37+148+55+404)  OK
 7.  realsense box:              5/5   (112+327+347)                       OK
 8.  air duster:                 3/4   (640+17+184)
 9.  apple:                      3/3   (300)                               OK
-10. banana:                     
+10. banana:                     0/0   ()
 11. cereals box:                3/5   (55)                                OK (but do it again!)
 12. coffee jar:                 8/10  (157+450+332+277+34+634)            OK (but do it again!)
-13. orange:                     3/5   (222+191+)
-14. mug:                        5/7   (297+302+266+313)                   OK (but do it again!)
-15. sand bucket:                8/9   (230+204+164+180+204+384)
-16. cookies box:                2/3   (156+320+320+)                      OK
-17. bake rolls:                 3/4   (470+240+580+175+)                  OK
-18. yellow pepper:              4/4   (403+406+383)                       OK
-19. croutons pack:              2/2   (533+340+)                          OK
-20. soft ball toy:              1/1   ()                                  OK
+13. mug:                        5/7   (297+302+266+313)                   OK (but do it again!)
+14. sand bucket:                9/10  (230+204+164+180+204+384)
+15. cookies box:                9/10  (156+320+320+)                      OK
+16. bake rolls:                 9/10  (470+240+580+175+)                  OK
+17. yellow pepper:              4/4   (403+406+383)                       OK
+18. croutons pack:              10/10 (533+340+)                          OK
+19. soft ball toy:              1/1   ()                                  OK
 
 
 franka gripper + medium sampling (10x10x10x8x8x8)
-1.  storage bin:                3/4   (490)    OK
-2.  tooth paste box:            0/0   ()
-3.  dish brush:                 
-4.  plant pot:                  0/0   ()
-5.  handless cup:               0/0   ()
-6.  toilet paper roll:          0/0   ()
-7.  realsense box:              0/0   ()
-8.  air duster:                 0/1   (686+)
-9.  apple:                      1/1   (553+)   OK
-10. banana:                     1/1   (431)    OK
-11. cereals box:                0/0   ()
-12. coffee jar:                 0/0   ()
-13. orange:                     0/0   ()
-14. mug:                        0/0   ()
-15. sand bucket:                0/0   ()
-16. cookies box:                0/0   ()
-17. bake rolls:                 0/0   ()
-18. yellow pepper:              5/5   (595+587)       OK (but do it again!)
-19. croutons pack:              2/2   (580+547)       OK
-20. soft ball toy:              0/0   ()
+1.  storage bin:                8/10  (490)               OK
+2.  tooth paste box:            10/10 (454)               OK
+3.  dish brush:                 10/10 (452)               OK
+4.  plant pot:                  8/10  (537+576+585)       OK
+5.  handless cup:               6/10  (531+529+520+535)
+6.  toilet paper roll:          9/10  (520)               OK
+7.  realsense box:              10/10 (537)               OK
+8.  air duster:                 7/10  (686+)
+9.  apple:                      8/10   (553+)              OK
+10. banana:                     10/10 (431)               OK
+11. cereals box:                10/10 (605)               OK
+12. coffee jar:                 9/10  ()
+13. mug:                        0/10  (509)
+14. sand bucket:                10/10 (563)               OK
+15. cookies box:                10/10 (590)
+16. bake rolls:                 9/10  (623)               OK
+17. yellow pepper:              10/10 (595+587+524)       OK
+18. croutons pack:              10/10 (580+547)           OK
+19. soft ball toy:              8/10  (588)               OK
 
 
 
 
 advantages: we no longer require an estimate of object orientation, which is usually difficult to compute. We still need the table orientation, but this is easy to predict, assuming it is planar
+
+future work should include motion planning of the gripper to avoid hitting the object
