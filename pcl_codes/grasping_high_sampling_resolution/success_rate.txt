@@ -1,23 +1,24 @@
 allegro hand + medium sampling (5x5x5x18x18x18)
 1.  storage bin:                7/10  (520+427+107+350+445)               OK
-2.  tooth paste box:            0/1   (206+)
-3.  dish brush:                 0/0   ()
+2.  tooth paste box:            3/10  (206+)
+3.  dish brush:                 0/10  ()
 4.  plant pot:                  10/10 (470+223+320+587+213+306+375)       OK
 5.  handless cup:               9/10  (62+42+24+280+48+491+350)           OK
 6.  toilet paper roll:          9/10  (182+172+160+182+64+37+148+55+404)  OK
-7.  realsense box:              5/5   (112+327+347)                       OK
-8.  air duster:                 3/4   (640+17+184)
-9.  apple:                      3/3   (300)                               OK
-10. banana:                     0/0   ()
-11. cereals box:                3/5   (55)                                OK (but do it again!)
+7.  realsense box:              10/10 (112+327+347)                       OK
+8.  air duster:                 6/10  (640+17+184)
+9.  apple:                      9/10  (300)                               OK
+10. banana:                     2/10  ()
+11. cereals box:                7/10  (55)                                OK (but do it again!)
 12. coffee jar:                 8/10  (157+450+332+277+34+634)            OK (but do it again!)
-13. mug:                        5/7   (297+302+266+313)                   OK (but do it again!)
+13. mug:                        7/10  (297+302+266+313)                   OK (but do it again!)
 14. sand bucket:                9/10  (230+204+164+180+204+384)
 15. cookies box:                9/10  (156+320+320+)                      OK
 16. bake rolls:                 9/10  (470+240+580+175+)                  OK
-17. yellow pepper:              4/4   (403+406+383)                       OK
+17. yellow pepper:              10/10 (403+406+383)                       OK
 18. croutons pack:              10/10 (533+340+)                          OK
-19. soft ball toy:              1/1   ()                                  OK
+19. soft ball toy:              9/10  ()                                  OK
+20. ketchup:                    9/10  ()                                  OK
 
 
 franka gripper + medium sampling (10x10x10x8x8x8)
@@ -36,11 +37,11 @@ franka gripper + medium sampling (10x10x10x8x8x8)
 13. mug:                        0/10  (509)
 14. sand bucket:                10/10 (563)               OK
 15. cookies box:                10/10 (590)
-16. bake rolls:                 9/10  (623)               OK
+16. bake rolls:                 8/10  (623)               OK
 17. yellow pepper:              10/10 (595+587+524)       OK
 18. croutons pack:              10/10 (580+547)           OK
 19. soft ball toy:              8/10  (588)               OK
-
+20. ketchup:                    10/10 ()                  OK
 
 
 

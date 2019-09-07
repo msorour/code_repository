@@ -244,8 +244,8 @@ Eigen::Vector4f object_far_point_in_neg_direction_in_global_frame;
 Eigen::Vector3f object_major_dimensions;
 
 // sampling the object around its z-axis for scanning
-int object_sampling_in_x_axis = 7;   int object_sampling_in_y_axis = 7;   int object_sampling_in_z_axis = 7;
-int orientation_samples = 4;
+int object_sampling_in_x_axis = 10;   int object_sampling_in_y_axis = 10;   int object_sampling_in_z_axis = 10;
+int orientation_samples = 9;
 double initial_orientation = 0.0;
 double orientation_range = 2*M_PI;
 //double initial_orientation = -M_PI/2;
