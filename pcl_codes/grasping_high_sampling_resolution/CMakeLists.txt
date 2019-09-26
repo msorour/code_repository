@@ -28,5 +28,12 @@ set (CMAKE_CXX_STANDARD 11)
 add_executable (grasping_algorithm grasping_algorithm.cpp)
 target_link_libraries (grasping_algorithm ${PCL_LIBRARIES}  ${roscpp_LIBRARIES} ${catkin_LIBRARIES} quadprog)
 
-add_executable(grasping_algorithm_real_experiments grasping_algorithm_real_experiments.cpp)
-target_link_libraries(grasping_algorithm_real_experiments pthread ${PCL_LIBRARIES} ${roscpp_LIBRARIES} ${catkin_LIBRARIES})
+#add_executable (grasping_algorithm_paper grasping_algorithm_paper.cpp)
+#target_link_libraries (grasping_algorithm_paper ${PCL_LIBRARIES}  ${roscpp_LIBRARIES} ${catkin_LIBRARIES} quadprog)
+
+add_executable (grasping_algorithm_paper_sim_video grasping_algorithm_paper_sim_video.cpp)
+target_link_libraries (grasping_algorithm_paper_sim_video ${PCL_LIBRARIES}  ${roscpp_LIBRARIES} ${catkin_LIBRARIES} quadprog)
+
+
+#add_executable(grasping_algorithm_real_experiments grasping_algorithm_real_experiments.cpp)
+#target_link_libraries(grasping_algorithm_real_experiments pthread ${PCL_LIBRARIES} ${roscpp_LIBRARIES} ${catkin_LIBRARIES})

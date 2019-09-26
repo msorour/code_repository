@@ -178,13 +178,14 @@ pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> blue_color_again
 pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> black_color         (gripper_as_set_of_special_ellipsoids_transformed_in_arm_hand_frame, 0, 0, 0);
 pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> black_color_again   (gripper_as_set_of_special_ellipsoids_in_arm_hand_frame, 0, 0, 0);
 pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> cyan_color          (gripper_cloud_transformed_in_arm_hand_frame_xyz, 0, 255, 255);
+//pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> cyan_color_2        (gripper_cloud_transformed_in_arm_hand_frame_xyz, 255, 0, 0);
 pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> cyan_color_again    (gripper_cloud_downsampled_in_arm_hand_frame_xyz, 0, 255, 255);
 
 pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again  (gripper_support_point_cloud_in_arm_hand_frame, 255, 165, 0);
 pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again2 (gripper_support_point_cloud_transformed_in_arm_hand_frame, 255, 165, 0);
 
-pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again_1  (gripper_support_point_cloud_in_arm_hand_frame_1, 255, 0, 0);
-pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again2_1 (gripper_support_point_cloud_transformed_in_arm_hand_frame_1, 255, 0, 0);
+pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again_1  (gripper_support_point_cloud_in_arm_hand_frame_1, 255, 165, 0);
+pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again2_1 (gripper_support_point_cloud_transformed_in_arm_hand_frame_1, 255, 165, 0);
 
 pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again_2  (gripper_support_point_cloud_in_arm_hand_frame_2, 255, 165, 0);
 pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> orange_color_again2_2 (gripper_support_point_cloud_transformed_in_arm_hand_frame_2, 255, 165, 0);
@@ -244,13 +245,14 @@ Eigen::Vector4f object_far_point_in_neg_direction_in_global_frame;
 Eigen::Vector3f object_major_dimensions;
 
 // sampling the object around its z-axis for scanning
-int object_sampling_in_x_axis = 10;   int object_sampling_in_y_axis = 10;   int object_sampling_in_z_axis = 10;
-int orientation_samples = 9;
+int object_sampling_in_x_axis = 5;   int object_sampling_in_y_axis = 5;   int object_sampling_in_z_axis = 5;
+int orientation_samples = 18;
+int orientation_samples_in_x = 4, orientation_samples_in_y = 4, orientation_samples_in_z = 4;
 double initial_orientation = 0.0;
 double orientation_range = 2*M_PI;
 //double initial_orientation = -M_PI/2;
 //double orientation_range = M_PI/2;
-int desired_number_of_object_cloud_points = 500;
+int desired_number_of_object_cloud_points = 300;
 double desired_distance_to_table = 0.07;
 
 // object centroid location in arm hand frame

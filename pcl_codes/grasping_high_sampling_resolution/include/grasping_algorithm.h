@@ -77,7 +77,7 @@ void load_transformations(void){
   camera_depth_optical_frame_wrt_arm_hand_frame_translation << -0.051, 0.023, -0.017; // from calibration
   camera_depth_optical_frame_wrt_arm_hand_frame_transform << Rotz_float(-M_PI/2), camera_depth_optical_frame_wrt_arm_hand_frame_translation, 0,0,0,1;
   transform.matrix() = camera_depth_optical_frame_wrt_arm_hand_frame_transform;
-  scene_cloud_viewer->addCoordinateSystem(0.07, transform, "camera depth optical frame", 0);
+  //scene_cloud_viewer->addCoordinateSystem(0.07, transform, "camera depth optical frame", 0);
   
   // gripper frame wrt arm hand frame
   if(gripper_model == "allegro_right_hand"){
@@ -87,7 +87,7 @@ void load_transformations(void){
     gripper_wrt_arm_hand_frame_translation << 0, 0, 0.005;
     gripper_wrt_arm_hand_frame_transform << Eigen::Matrix3f::Identity(), gripper_wrt_arm_hand_frame_translation, 0,0,0,1;}
   transform.matrix() = gripper_wrt_arm_hand_frame_transform;
-  scene_cloud_viewer->addCoordinateSystem(0.1, transform, "gripper frame", 0);
+  //scene_cloud_viewer->addCoordinateSystem(0.1, transform, "gripper frame", 0);
   // gripper frame wrt arm hand frame [INVERSE]
   gripper_wrt_arm_hand_frame_rotation << gripper_wrt_arm_hand_frame_transform(0,0), gripper_wrt_arm_hand_frame_transform(0,1), gripper_wrt_arm_hand_frame_transform(0,2),
                                          gripper_wrt_arm_hand_frame_transform(1,0), gripper_wrt_arm_hand_frame_transform(1,1), gripper_wrt_arm_hand_frame_transform(1,2),
@@ -558,7 +558,7 @@ void object_pose_approximation_and_sampling(){
   // compute object transformation matrix
   object_pose_approximation( *object_cloud_downsampled_in_arm_hand_frame_xyz, object_transform_wrt_arm_hand_frame, object_far_point_in_pos_direction_in_global_frame, object_far_point_in_neg_direction_in_global_frame, object_major_dimensions );
   transform.matrix() = object_transform_wrt_arm_hand_frame;
-  scene_cloud_viewer->addCoordinateSystem(0.2, transform, "object frame", 0);
+  //scene_cloud_viewer->addCoordinateSystem(0.2, transform, "object frame", 0);
   
   object_rotation_wrt_arm_hand_frame    << object_transform_wrt_arm_hand_frame(0,0), object_transform_wrt_arm_hand_frame(0,1), object_transform_wrt_arm_hand_frame(0,2),
                                            object_transform_wrt_arm_hand_frame(1,0), object_transform_wrt_arm_hand_frame(1,1), object_transform_wrt_arm_hand_frame(1,2),
@@ -859,11 +859,15 @@ void load_allegro_right_hand_workspace_spheres( pcl::PointCloud<pcl::PointXYZ>::
     std::vector<double> data;
     std::string line;
     //ifstream convex_workspace_file("../finger_workspace_spheres/"+finger_list[i]+"_workspace_spheres_3.txt");
-    if(finger_list[i] == "thumb")
+    if(finger_list[i] == "thumb"){
       convex_workspace_file.open("../finger_workspace_spheres/"+finger_list[i]+"_workspace_spheres_15_1.7.txt");
-    else
+			//convex_workspace_file.open("../finger_workspace_spheres/"+finger_list[i]+"_workspace_spheres_10_2.0.txt");
+    }
+		else{
       convex_workspace_file.open("../finger_workspace_spheres/"+finger_list[i]+"_workspace_spheres_15_1.txt");
-    int line_count = 0;
+			//convex_workspace_file.open("../finger_workspace_spheres/"+finger_list[i]+"_workspace_spheres_10_1.txt");
+    }
+		int line_count = 0;
     if(convex_workspace_file.is_open()){
       while(getline( convex_workspace_file, line ) ){
         std::istringstream string_stream( line );
@@ -2025,20 +2029,23 @@ void evaluate_grasp_pose_candidates(void){
     // iterate through the range of possible orientations at each sample point
     gripper_centroid_transform_before_orientation_loop = gripper_centroid_transform_in_gripper_centroid_frame;
     dummy_translation << 0,0,0;
-    for(unsigned int j=0; j<orientation_samples; j++){				// sampling orientations about one axis (say x-axis)
+    for(unsigned int j=0; j<orientation_samples_in_x; j++){				// sampling orientations about one axis (say x-axis)
 			if(metric_8_score_best>=20000 and (total_score_best>40000) ){break;}
 			//if(i>=100 and (total_score_best>40000) ){break;}
 			
-			for(unsigned int m=0; m<orientation_samples; m++){			// sampling orientations about one axis (say y-axis)
+			for(unsigned int m=0; m<orientation_samples_in_y; m++){			// sampling orientations about one axis (say y-axis)
 				if(metric_8_score_best>=20000 and (total_score_best>40000) ){break;}
 				//if(i>=100 and (total_score_best>40000) ){break;}
 				
-				for(unsigned int n=0; n<orientation_samples; n++){		// sampling orientations about one axis (say z-axis)
+				for(unsigned int n=0; n<orientation_samples_in_z; n++){		// sampling orientations about one axis (say z-axis)
 					
 					sampling_iteration++;
 					auto start_iteration = std::chrono::high_resolution_clock::now();
 					
-					dummy_rotation = Rotx_float(initial_orientation+j*orientation_range/orientation_samples)*Roty_float(initial_orientation+m*orientation_range/orientation_samples)*Rotz_float(initial_orientation+n*orientation_range/orientation_samples);
+					dummy_rotation = Rotx_float(initial_orientation+j*orientation_range/orientation_samples_in_x)
+													*Roty_float(initial_orientation+m*orientation_range/orientation_samples_in_y)
+													*Rotz_float(initial_orientation+n*orientation_range/orientation_samples_in_z);
+					//dummy_rotation = Rotx_float(initial_orientation+j*orientation_range/orientation_samples)*Roty_float(initial_orientation+m*orientation_range/orientation_samples)*Rotz_float(initial_orientation+n*orientation_range/orientation_samples);
 					dummy_transform << dummy_rotation, dummy_translation, 0,0,0,1;
 					gripper_centroid_transform_in_gripper_centroid_frame = gripper_centroid_transform_before_orientation_loop*dummy_transform;
 					
@@ -2422,6 +2429,10 @@ void evaluate_grasp_pose_candidates(void){
 								
 							}
 							
+							
+							
+							
+							
 						}
 					}
 					
@@ -2429,6 +2440,7 @@ void evaluate_grasp_pose_candidates(void){
 					total_iteration_duration += iteration_duration.count();
 					average_iteration_duration = total_iteration_duration/sampling_iteration;
 					
+					/*
 					cout << "iteration: " << i << ", " << j << ", " << m << ", " << n
 					     << ", time to check collision(table): "  << average_time_to_check_gripper_collision_with_table
 							 << ", time to check collision(object): " << average_time_to_check_gripper_collision_with_object
@@ -2442,7 +2454,7 @@ void evaluate_grasp_pose_candidates(void){
 							 << ", metric#7= " << metric_7_score_best
 							 << ", metric#8= " << metric_8_score_best 
 							 << ", total_score= " << total_score_best << endl;
-					
+					*/
 					if(metric_8_score_best>=20000 and (total_score_best>40000) ){break;}
 					//if(i>=100 and (total_score_best>40000) ){break;}
 				}

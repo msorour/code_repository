@@ -30,7 +30,7 @@ franka gripper + medium sampling (10x10x10x8x8x8)
 6.  toilet paper roll:          9/10  (520)               OK
 7.  realsense box:              10/10 (537)               OK
 8.  air duster:                 7/10  (686+)
-9.  apple:                      8/10   (553+)              OK
+9.  apple:                      8/10   (553+)             OK
 10. banana:                     10/10 (431)               OK
 11. cereals box:                10/10 (605)               OK
 12. coffee jar:                 9/10  ()
