@@ -16,6 +16,7 @@
 #include "declarations.h"
 #include <chrono>
 #include <string>
+#include "QuadProg++.hh"
 
 
 
@@ -2497,6 +2498,262 @@ void visualize_workspace_spheres_and_object_points_for_best_gripper_pose(void){
     scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 15, "left_finger workspace points");
   }
 }
+
+
+
+
+void optimizing_contact_points(void){
+	
+  begin = clock();
+  
+	Eigen::MatrixXd G(12,12);
+  Eigen::VectorXd g(12);
+  
+	Eigen::MatrixXd A(10,12);
+	Eigen::VectorXd B(10);
+	
+	quadprogpp::Matrix<double> G2, CE, CI;
+  quadprogpp::Vector<double> g0, ce0, ci0, x2;
+	int n, m, p;
+	char ch;
+  
+  G << 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2;
+  
+  A <<  0, -1, 0, 0, 0, 0, 0,  1, 0, 0, 0, 0,    // C#1 : thumb & middle y-coordinates must be almost equal
+        0,  1, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0,    // C#2 : thumb & middle y-coordinates must be almost equal
+        -1, 0, 0, 0, 0, 0,  1, 0, 0, 0, 0, 0,    // C#3 : thumb & middle x-coordinates must be almost equal
+        1,  0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0,    // C#4 : thumb & middle x-coordinates must be almost equal
+        
+        0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0,     // C#5 : thumb  z-coordinates should be -ve (with respect to workspace centroid coordinate frame !!!)
+        0, 0,  0, 0, 0, 1, 0, 0, 0, 0, 0, 0,     // C#6 : index  z-coordinates should be +ve
+        0, 0,  0, 0, 0, 0, 0, 0, 1, 0, 0, 0,     // C#7 : middle z-coordinates should be +ve
+        0, 0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 1,     // C#8 : pinky  z-coordinates should be +ve
+        
+        0, 0, 0, 0, 1, 0, 0, -1, 0, 0,  0, 0,    // C#9 : index & middle y-coordinates distance bigger than finger diameter
+        0, 0, 0, 0, 0, 0, 0,  1, 0, 0, -1, 0;    // C#10: index & middle y-coordinates distance bigger than finger diameter
+  
+        //0, 0, 0, 0, -1, 0, 0,  2, 0, 0, -1, 0,   // C#11: index & middle y-coordinates distance must be almost equal to that of pinky and middle to ensure zero moment on object
+        //0, 0, 0, 0,  1, 0, 0, -2, 0, 0,  1, 0,   // C#12: index & middle y-coordinates distance must be almost equal to that of pinky and middle to ensure zero moment on object
+        //0, 0, 0, 0,  1, 0, 0,  0, 0, 0, -1, 0,   // C#13: index & middle y-coordinates distance must be almost equal to that of pinky and middle to ensure zero moment on object
+        //0, 0, 0, 0, -1, 0, 0,  0, 0, 0,  1, 0;   // C#14: index & middle y-coordinates distance must be almost equal to that of pinky and middle to ensure zero moment on object
+  
+  
+  double delta1 = 0.003, delta2 = 0.035, delta3 = 0.005;
+  
+  B << delta1, delta1, delta1, delta1, delta1, delta1, delta1, delta1, -delta2, -delta2;
+  
+  n = 12;
+  G2.resize(n, n);
+  g0.resize(n);
+  
+  p = 10;
+  CI.resize(n, p);
+  ci0.resize(p);
+  
+  m = 0;
+	CE.resize(n, m);
+	ce0.resize(m);
+	
+  x2.resize(n);
+  
+  
+  double Po1x, Po1y, Po1z;  // object points
+  double Po2x, Po2y, Po2z;
+  double Po3x, Po3y, Po3z;
+  double Po4x, Po4y, Po4z;
+  double additional_element;
+  std::vector<double> cost;
+  std::vector<double> thumb_point_x, thumb_point_y, thumb_point_z;
+  std::vector<double> index_point_x, index_point_y, index_point_z;
+  std::vector<double> middle_point_x, middle_point_y, middle_point_z;
+  std::vector<double> pinky_point_x, pinky_point_y, pinky_point_z;
+  counter = 0;
+  
+  /*
+  Eigen::Vector4f hand_workspace_centroid_point_in_global_frame;
+  hand_workspace_centroid_point_in_global_frame << hand_workspace_centroid_point.x, hand_workspace_centroid_point.y, hand_workspace_centroid_point.z, 1;
+  hand_workspace_centroid_point_in_global_frame = hand_transform*hand_workspace_centroid_point_in_global_frame;
+  viewer->addCoordinateSystem(0.1,hand_workspace_centroid_point_in_global_frame(0),hand_workspace_centroid_point_in_global_frame(1),hand_workspace_centroid_point_in_global_frame(2));
+  */
+  
+	cout << "object_points_in_thumb_workspace_best->size()  = " << object_points_in_thumb_workspace_best->size() << endl;
+	cout << "object_points_in_index_workspace_best->size()  = " << object_points_in_index_workspace_best->size() << endl;
+	cout << "object_points_in_middle_workspace_best->size() = " << object_points_in_middle_workspace_best->size() << endl;
+	cout << "object_points_in_pinky_workspace_best->size()  = " << object_points_in_pinky_workspace_best->size() << endl;
+	cout << "------------------------" << endl;
+	cout << "number of thumb spheres  = " << thumb_workspace_active_spheres_offset_best->size() << endl;
+	cout << "number of index spheres  = " << index_workspace_active_spheres_offset_best->size() << endl;
+	cout << "number of middle spheres = " << middle_workspace_active_spheres_offset_best->size() << endl;
+	cout << "number of pinky spheres  = " << pinky_workspace_active_spheres_offset_best->size() << endl;
+	
+	
+	
+  for(unsigned int i=0; i<thumb_workspace_active_spheres_offset_best->size(); i++){
+    Po1x = thumb_workspace_active_spheres_offset_best->points[i].x;
+    Po1y = thumb_workspace_active_spheres_offset_best->points[i].y;
+    Po1z = thumb_workspace_active_spheres_offset_best->points[i].z;
+    for(unsigned int j=0; j<index_workspace_active_spheres_offset_best->size(); j++){
+      Po2x = index_workspace_active_spheres_offset_best->points[i].x;
+      Po2y = index_workspace_active_spheres_offset_best->points[i].y;
+      Po2z = index_workspace_active_spheres_offset_best->points[i].z;
+      for(unsigned int k=0; k<middle_workspace_active_spheres_offset_best->size(); k++){
+        Po3x = middle_workspace_active_spheres_offset_best->points[i].x;
+        Po3y = middle_workspace_active_spheres_offset_best->points[i].y;
+        Po3z = middle_workspace_active_spheres_offset_best->points[i].z;
+        for(unsigned int l=0; l<pinky_workspace_active_spheres_offset_best->size(); l++){
+          Po4x = pinky_workspace_active_spheres_offset_best->points[i].x;
+          Po4y = pinky_workspace_active_spheres_offset_best->points[i].y;
+          Po4z = pinky_workspace_active_spheres_offset_best->points[i].z;
+          
+          
+          // cost function
+	        // 1/2 * xT * G * x + g0 * x
+	        // x = [ Pfx Pfy Pfz ]T  -> f: finger index (thumb, index, middle, pinky), x: finger end tip point
+	        g(0)= -2*Po1x;
+	        g(1)= -2*Po1y;
+	        g(2)= -2*Po1z;
+	        g(3)= -2*Po2x;
+	        g(4)= -2*Po2y;
+	        g(5)= -2*Po2z;
+	        g(6)= -2*Po3x;
+	        g(7)= -2*Po3y;
+	        g(8)= -2*Po3z;
+	        g(9)= -2*Po4x;
+	        g(10)=-2*Po4y;
+	        g(11)=-2*Po4z;
+	        additional_element = pow(Po1x,2) + pow(Po1y,2) + pow(Po1z,2) + pow(Po2x,2) + pow(Po2y,2) + pow(Po2z,2) + pow(Po3x,2) + pow(Po3y,2) + pow(Po3z,2) + pow(Po4x,2) + pow(Po4y,2) + pow(Po4z,2);
+	        
+	        {for (int s=0; s<n; s++)	
+		        for (int t=0; t<n; t++)
+			        G2[s][t] = G(s,t);}
+	        {for (int s=0; s<n; s++)
+	          g0[s] = g(s);}
+	        
+          
+          // inequality constraints
+          // A*x + B >= 0
+	        /////////////////////
+	        {for (int s=0; s<n; s++)
+	          for (int t=0; t<p; t++)
+		          CI[s][t] = A(t,s);}
+	        {for (int s=0; s<p; s++)
+			      ci0[s] = B(s);}
+	        
+	        
+	        // equality constraints (we don't have any, so set to zero!)
+	        // A*x + B = 0
+	        ///////////////////////
+	        {std::istringstream is("0.0, "
+													        "0.0 ");
+		        for (int s=0; s<n; s++)
+			        for (int t=0; t<m; t++)
+				        is >> CE[s][t] >> ch;}
+          {std::istringstream is("0.0 ");
+		        for (int s=0; s<m; s++)
+			        is >> ce0[s] >> ch;}
+	        
+	        
+	        // solve
+	        cost.push_back( solve_quadprog(G2, g0, CE, ce0, CI, ci0, x2) + additional_element );
+	        thumb_point_x.push_back( x2[0] );
+	        thumb_point_y.push_back( x2[1] );
+	        thumb_point_z.push_back( x2[2] );
+	        
+	        index_point_x.push_back( x2[3] );
+	        index_point_y.push_back( x2[4] );
+	        index_point_z.push_back( x2[5] );
+	        
+	        middle_point_x.push_back( x2[6] );
+	        middle_point_y.push_back( x2[7] );
+	        middle_point_z.push_back( x2[8] );
+	        
+	        pinky_point_x.push_back( x2[9] );
+	        pinky_point_y.push_back( x2[10] );
+	        pinky_point_z.push_back( x2[11] );
+	        
+	        //std::cout << "counter = " << counter << ", cost = " << cost.back() << endl;
+          counter++;
+          
+        }
+      }
+    }
+  }
+  
+  int index_of_min=0;
+  int index_of_max=0;
+  for(unsigned int i=0; i<cost.size(); i++){
+    if(cost[i]<cost[index_of_min])
+      index_of_min = i;
+    if(cost[i]>cost[index_of_max])
+      index_of_max = i;
+  }
+  
+	std::cout << "index of min element: " << index_of_min << std::endl;
+	std::cout << "smallest element    : " << cost[index_of_min] << std::endl;
+	
+	std::cout << "index of max element: " << index_of_max << std::endl;
+	std::cout << "largest element     : " << cost[index_of_max] << std::endl;
+	
+	
+	// Draw the result graping points
+	thumb_grasp_point.x = thumb_point_x[index_of_min];
+	thumb_grasp_point.y = thumb_point_y[index_of_min];
+	thumb_grasp_point.z = thumb_point_z[index_of_min];
+	thumb_grasp_point_4d << thumb_grasp_point.x, thumb_grasp_point.y, thumb_grasp_point.z, 1;
+	thumb_grasp_point_4d = best_gripper_transform*thumb_grasp_point_4d;
+	thumb_grasp_point.x = thumb_grasp_point_4d(0);
+	thumb_grasp_point.y = thumb_grasp_point_4d(1);
+	thumb_grasp_point.z = thumb_grasp_point_4d(2);
+	
+	index_grasp_point.x = index_point_x[index_of_min];
+	index_grasp_point.y = index_point_y[index_of_min];
+	index_grasp_point.z = index_point_z[index_of_min];
+	index_grasp_point_4d << index_grasp_point.x, index_grasp_point.y, index_grasp_point.z, 1;
+	index_grasp_point_4d = best_gripper_transform*index_grasp_point_4d;
+	index_grasp_point.x = index_grasp_point_4d(0);
+	index_grasp_point.y = index_grasp_point_4d(1);
+	index_grasp_point.z = index_grasp_point_4d(2);
+	
+	middle_grasp_point.x = middle_point_x[index_of_min];
+	middle_grasp_point.y = middle_point_y[index_of_min];
+	middle_grasp_point.z = middle_point_z[index_of_min];
+	middle_grasp_point_4d << middle_grasp_point.x, middle_grasp_point.y, middle_grasp_point.z, 1;
+	middle_grasp_point_4d = best_gripper_transform*middle_grasp_point_4d;
+	middle_grasp_point.x = middle_grasp_point_4d(0);
+	middle_grasp_point.y = middle_grasp_point_4d(1);
+	middle_grasp_point.z = middle_grasp_point_4d(2);
+	
+	pinky_grasp_point.x = pinky_point_x[index_of_min];
+	pinky_grasp_point.y = pinky_point_y[index_of_min];
+	pinky_grasp_point.z = pinky_point_z[index_of_min];
+	pinky_grasp_point_4d << pinky_grasp_point.x, pinky_grasp_point.y, pinky_grasp_point.z, 1;
+	pinky_grasp_point_4d = best_gripper_transform*pinky_grasp_point_4d;
+	pinky_grasp_point.x = pinky_grasp_point_4d(0);
+	pinky_grasp_point.y = pinky_grasp_point_4d(1);
+	pinky_grasp_point.z = pinky_grasp_point_4d(2);
+	
+  
+  
+  
+  
+  end = clock();
+	time_spent = (double)( end - begin )/ CLOCKS_PER_SEC;
+	std::cout << "time spent by optimization algorithm = " << time_spent << std::endl << std::endl;
+  
+  
+}
+
 
 
 

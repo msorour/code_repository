@@ -1,0 +1,8 @@
+prefix=/home/business/code_repository/ros_packages/install
+
+Name: reflex1_visualizer
+Description: Description of reflex1_visualizer
+Version: 1.3.0
+Cflags: 
+Libs: -L/home/business/code_repository/ros_packages/install/lib 
+Requires: 

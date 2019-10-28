@@ -6,26 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/business/code_repository/pcl_codes/grasping_time_efficient_plus_optimizing_contacts/Array.hh
-set
--
-stdexcept
--
-iostream
--
-iomanip
--
-cmath
--
-cstdlib
--
-stdexcept
--
-
-/home/business/code_repository/pcl_codes/grasping_time_efficient_plus_optimizing_contacts/QuadProg++.hh
-Array.hh
-/home/business/code_repository/pcl_codes/grasping_time_efficient_plus_optimizing_contacts/Array.hh
-
 /home/business/code_repository/pcl_codes/grasping_time_efficient_plus_optimizing_contacts/grasping_algorithm.cpp
 pcl/point_types.h
 -
@@ -47,8 +27,26 @@ include/grasping_algorithm.h
 /home/business/code_repository/pcl_codes/grasping_time_efficient_plus_optimizing_contacts/include/grasping_algorithm.h
 math.h
 -
-QuadProg++.hh
-/home/business/code_repository/pcl_codes/grasping_time_efficient_plus_optimizing_contacts/QuadProg++.hh
+
+/home/business/code_repository/pcl_codes/grasping_time_efficient_plus_optimizing_contacts/include/Array.hh
+set
+-
+stdexcept
+-
+iostream
+-
+iomanip
+-
+cmath
+-
+cstdlib
+-
+stdexcept
+-
+
+/home/business/code_repository/pcl_codes/grasping_time_efficient_plus_optimizing_contacts/include/QuadProg++.hh
+Array.hh
+/home/business/code_repository/pcl_codes/grasping_time_efficient_plus_optimizing_contacts/include/Array.hh
 
 /home/business/code_repository/pcl_codes/grasping_time_efficient_plus_optimizing_contacts/include/declarations.h
 
@@ -81,6 +79,8 @@ chrono
 -
 string
 -
+QuadProg++.hh
+/home/business/code_repository/pcl_codes/grasping_time_efficient_plus_optimizing_contacts/include/QuadProg++.hh
 
 /home/business/code_repository/pcl_codes/grasping_time_efficient_plus_optimizing_contacts/include/useful_implementations.h
 Eigen/Dense

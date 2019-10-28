@@ -16,7 +16,7 @@
 #include <pcl/ModelCoefficients.h>
 #include <pcl/io/ply_io.h>
 #include <time.h>
-#include "/home/work/software/QuadProgpp-master/src/QuadProg++.hh"
+#include "QuadProg++.hh"
 #include "grasping_algorithm.h"
 
 int main(int argc, char **argv){

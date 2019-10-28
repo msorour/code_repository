@@ -24,7 +24,7 @@ reset && cmake .. && make -j7 && ./grasping_algorithm simulation ../gripper_pcd_
 #include "include/useful_implementations.h"
 #include "include/grasping_algorithm.h"
 #include <math.h>
-#include "QuadProg++.hh"
+
 
 
 int main (int argc, char** argv){
@@ -140,7 +140,8 @@ int main (int argc, char** argv){
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // scanning for best grasp pose
   evaluate_grasp_pose_candidates();
-  
+  optimizing_contact_points();
+	
   end = clock();
 	time_spent = (double)( end - begin2 )/ CLOCKS_PER_SEC;
 	std::cout << "time spent in checking gripper collision with table        = " << time_elapsed_checking_gripper_collision_with_table        << std::endl;
@@ -244,6 +245,18 @@ int main (int argc, char** argv){
 		pcl::transformPointCloud(*gripper_support_point_cloud_in_arm_hand_frame_4, *gripper_support_point_cloud_transformed_in_arm_hand_frame_4, best_gripper_transform);
 		scene_cloud_viewer->updatePointCloud(gripper_support_point_cloud_transformed_in_arm_hand_frame_4, orange_color_again2_4,      "gripper support4 transformed ellipsoid");
 		scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper support4 transformed ellipsoid");
+		
+		
+		// optimized contact points
+		id="min sphere thumb";
+		scene_cloud_viewer->addSphere<pcl::PointXYZ>(thumb_grasp_point, 0.01, 1.0, 0.0, 0.0, id);
+		id="min sphere index";
+		scene_cloud_viewer->addSphere<pcl::PointXYZ>(index_grasp_point, 0.01, 1.0, 0.0, 0.0, id);
+		id="min sphere middle";
+		scene_cloud_viewer->addSphere<pcl::PointXYZ>(middle_grasp_point, 0.01, 1.0, 0.0, 0.0, id);
+		id="min sphere pinky";
+		scene_cloud_viewer->addSphere<pcl::PointXYZ>(pinky_grasp_point, 0.01, 1.0, 0.0, 0.0, id);
+		
 	}
 	else if(gripper_model == "franka_gripper"){
 		// gripper support1 ellipsoid
@@ -262,7 +275,10 @@ int main (int argc, char** argv){
 		scene_cloud_viewer->updatePointCloud(gripper_support_point_cloud_transformed_in_arm_hand_frame_2, orange_color_again2_2,      "gripper support2 transformed ellipsoid");
 		scene_cloud_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1,                   "gripper support2 transformed ellipsoid");
 	}
-
+	
+	
+	
+	
   scene_cloud_viewer->spinOnce();
   
   

@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC   -shared -Wl,-soname,libreflex_hand2.so -o /home/business/code_repository/ros_packages/devel/lib/libreflex_hand2.so CMakeFiles/reflex_hand2.dir/src/reflex_hand.cpp.o 

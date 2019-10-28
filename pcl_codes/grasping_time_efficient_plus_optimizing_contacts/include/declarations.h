@@ -418,5 +418,12 @@ Eigen::Vector3f best_gripper_translation;
 
 
 
+// optimizing grasp points
+pcl::PointXYZ thumb_grasp_point, index_grasp_point, middle_grasp_point, pinky_grasp_point;
+Eigen::Vector4f thumb_grasp_point_4d, index_grasp_point_4d, middle_grasp_point_4d, pinky_grasp_point_4d;
+std::basic_string<char> id;
+
+	
+
 #endif
 

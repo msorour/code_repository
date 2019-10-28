@@ -1,0 +1,6 @@
+set(reflex_SETUP_PY_VERSION "3.0.0")
+set(reflex_SETUP_PY_SCRIPTS "")
+set(reflex_SETUP_PY_PACKAGES "reflex")
+set(reflex_SETUP_PY_PACKAGE_DIRS "src/reflex")
+set(reflex_SETUP_PY_MODULES "")
+set(reflex_SETUP_PY_MODULE_DIRS "")

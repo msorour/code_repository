@@ -112,4 +112,25 @@ k -> grasp2
 q -> quit
 
 
+### INSTALL the RIGHT-HAND "REAL HARDWARE" (last checked to work: 26-10-2019) (https://www.labs.righthandrobotics.com/reflex-quickstart):
+#############################################
+
+>> git clone https://github.com/RightHandRobotics/reflex-ros-pkg.git
+>> git clone https://github.com/RightHandRobotics/dynamixel_motor
+
+-> If you get error in catkin_make:
+-> add "constexpr" to lines 57, 58, 59 in reflex-ros-pkg/reflex_driver/src/reflex_hand.h
+-> add "constexpr" to lines 75, 82, 83 in reflex-ros-pkg/reflex_driver2/src/reflex_hand.h
+
+-> to test the hardware:
+>> roslaunch reflex reflex_plus.launch
+>> rostopic pub /reflex_plus/command_position reflex_msgs/PoseCommand "f1: 1.0"
+or >> rostopic pub /reflex_plus/command_position reflex_msgs/PoseCommand "f1: 1.0
+f2: 1.0
+f3: 1.0
+preshape: 0.0"
+
+
+
+
 

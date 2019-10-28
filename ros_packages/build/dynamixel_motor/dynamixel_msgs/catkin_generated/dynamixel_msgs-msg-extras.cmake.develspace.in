@@ -1,0 +1,2 @@
+set(dynamixel_msgs_MESSAGE_FILES "/home/business/code_repository/ros_packages/src/dynamixel_motor/dynamixel_msgs/msg/JointState.msg;/home/business/code_repository/ros_packages/src/dynamixel_motor/dynamixel_msgs/msg/MotorState.msg;/home/business/code_repository/ros_packages/src/dynamixel_motor/dynamixel_msgs/msg/MotorStateList.msg;/home/business/code_repository/ros_packages/src/dynamixel_motor/dynamixel_msgs/msg/Encoder.msg")
+set(dynamixel_msgs_SERVICE_FILES "")
