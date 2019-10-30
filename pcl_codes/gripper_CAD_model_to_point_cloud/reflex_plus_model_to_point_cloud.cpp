@@ -34,20 +34,39 @@ int main(){
   std::string id = "cloud";
   
   // load .ply meshes, we first generate .ply file from the .stl file using meshlab software
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../reflex_plus_meshes/base_link.ply", *base_link_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../reflex_plus_meshes/distal_1.ply", *distal_1_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../reflex_plus_meshes/distal_pad_1.ply", *distal_pad_1_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../reflex_plus_meshes/flex_block.ply", *flex_block_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../reflex_plus_meshes/pad.ply", *pad_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../reflex_plus_meshes/proximal_1.ply", *proximal_1_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../reflex_plus_meshes/proximal_pad_1.ply", *proximal_pad_1_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../reflex_plus_meshes/swivel_1.ply", *swivel_1_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../reflex_plus_meshes/swivel_2.ply", *swivel_2_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/reflex_plus_meshes/base_link.ply", *base_link_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/reflex_plus_meshes/distal_1.ply", *distal_1_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/reflex_plus_meshes/distal_pad_1.ply", *distal_pad_1_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/reflex_plus_meshes/flex_block.ply", *flex_block_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/reflex_plus_meshes/pad.ply", *pad_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/reflex_plus_meshes/proximal_1.ply", *proximal_1_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/reflex_plus_meshes/proximal_pad_1.ply", *proximal_pad_1_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/reflex_plus_meshes/swivel_1.ply", *swivel_1_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/reflex_plus_meshes/swivel_2.ply", *swivel_2_cloud);
   
-  //pcl::io::loadPLYFile<pcl::PointXYZRGB>("reflex_plus_meshes/reflex_plus_realsense_connection.ply", *connection_cloud);
-  //pcl::io::loadPLYFile<pcl::PointXYZRGB>("reflex_plus_meshes/realsense_d435.ply", *camera_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/reflex_plus_meshes/reflex_plus_realsense_connection.ply", *connection_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/reflex_plus_meshes/realsense_d435.ply", *camera_cloud);
   
   
+  Eigen::Affine3f transform = Eigen::Affine3f::Identity();
+  Eigen::Affine3f relative_transform = Eigen::Affine3f::Identity();
+  
+  Eigen::Affine3f swivel_1_transform = Eigen::Affine3f::Identity();
+  Eigen::Affine3f proximal_1_transform = Eigen::Affine3f::Identity();
+  Eigen::Affine3f proximal_pad_1_transform = Eigen::Affine3f::Identity();
+  Eigen::Affine3f distal_1_transform = Eigen::Affine3f::Identity();
+  Eigen::Affine3f distal_pad_1_transform = Eigen::Affine3f::Identity();
+  
+  Eigen::Affine3f swivel_2_transform = Eigen::Affine3f::Identity();
+  Eigen::Affine3f proximal_2_transform = Eigen::Affine3f::Identity();
+  Eigen::Affine3f proximal_pad_2_transform = Eigen::Affine3f::Identity();
+  Eigen::Affine3f distal_2_transform = Eigen::Affine3f::Identity();
+  Eigen::Affine3f distal_pad_2_transform = Eigen::Affine3f::Identity();
+  
+  Eigen::Affine3f proximal_3_transform = Eigen::Affine3f::Identity();
+  Eigen::Affine3f proximal_pad_3_transform = Eigen::Affine3f::Identity();
+  Eigen::Affine3f distal_3_transform = Eigen::Affine3f::Identity();
+  Eigen::Affine3f distal_pad_3_transform = Eigen::Affine3f::Identity();
   
   
   
@@ -55,236 +74,300 @@ int main(){
   //
   // palm construction
   // link1
-  Eigen::Affine3f transform = Eigen::Affine3f::Identity();
-  transform.translation() << 0, 0, 0;
   // Executing the transformation
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr base_link_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
   pcl::transformPointCloud(*base_link_cloud, *base_link_transformed_cloud, transform);
   
   // link2
-  Eigen::Affine3f relative_transform = Eigen::Affine3f::Identity();
-  relative_transform.translation() << 0, 0, 0;
+  transform.translation() << 0.02, 0, 0.063;
+  transform.rotate( Eigen::AngleAxisf( 1.5707963267949, Eigen::Vector3f::UnitX() ) );
+  transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitZ() ) );
+  transform.rotate( Eigen::AngleAxisf( -1.5707963267949, Eigen::Vector3f::UnitY() ) );
   // Executing the transformation
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr pad_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
   pcl::transformPointCloud(*pad_cloud, *pad_transformed_cloud, transform);
   
+  *palm_cloud = *base_link_transformed_cloud + *pad_transformed_cloud;
   
-  /*
-  // link3
+  
+  
+  
+  // finger#1
+  // swivel_1
+  swivel_1_transform.translation() << 0.0503973683071414, -0.026, 0.063;
+  // Executing the transformation
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr swivel_1_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
+  pcl::transformPointCloud(*swivel_1_cloud, *swivel_1_transformed_cloud, swivel_1_transform);
+  
+  // proximal_1
+  // joint transform
   relative_transform = Eigen::Affine3f::Identity();
-  relative_transform.translation() << 0, 0, 0.0177;
-  relative_transform.prerotate( transform.rotation() );
-  transform.translation() += relative_transform.translation();
-  // Executing the transformation
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr link_14_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
-  pcl::transformPointCloud(*link_14_cloud, *link_14_transformed_cloud, transform);
-  
-  // link4
+  relative_transform.translation() << 0.01, 0, 0.0186;
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitZ() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitY() ) );
+  proximal_1_transform = swivel_1_transform*relative_transform;
+  // origin transform
   relative_transform = Eigen::Affine3f::Identity();
-  relative_transform.translation() << 0, 0, 0.0514;
-  relative_transform.prerotate( transform.rotation() );
-  transform.translation() += relative_transform.translation();
+  relative_transform.translation() << -0.011, 0.007, 0.011;
+  relative_transform.rotate( Eigen::AngleAxisf( 3.1459, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitZ() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitY() ) );
+  relative_transform = proximal_1_transform*relative_transform;
   // Executing the transformation
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr link_15_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
-  pcl::transformPointCloud(*link_15_cloud, *link_15_transformed_cloud, transform);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr proximal_1_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
+  pcl::transformPointCloud(*proximal_1_cloud, *proximal_1_transformed_cloud, relative_transform);
   
-  // link5 (tip)
+  // proximal_pad_1
+  // joint transform
   relative_transform = Eigen::Affine3f::Identity();
-  relative_transform.translation() << 0, 0, 0.0543 - 0.0120;
-  relative_transform.prerotate( transform.rotation() );
-  transform.translation() += relative_transform.translation();
-  // Executing the transformation
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr link_15_tip_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
-  pcl::transformPointCloud(*link_15_tip_cloud, *link_15_tip_transformed_cloud, transform);
-  */
-  
-  *palm_cloud = *base_link_transformed_cloud;
-  //*palm_cloud = *base_link_transformed_cloud + *pad_transformed_cloud;
-  
-  /*
-  *palm_cloud = *palm_cloud + *link_14_transformed_cloud;
-  *palm_cloud = *palm_cloud + *link_15_transformed_cloud;
-  *palm_cloud = *palm_cloud + *link_15_tip_transformed_cloud;
-  */
-  
-  
-  /*
-  //
-  // finger1 construction
-  // link1
-  Eigen::Affine3f transform = Eigen::Affine3f::Identity();
-  transform.translation() << -0.0182, 0.019333, -0.045987;
-  transform.rotate( Eigen::AngleAxisf( pcl::deg2rad(0.0), Eigen::Vector3f::UnitX() ) );
-  transform.rotate( Eigen::AngleAxisf( pcl::deg2rad(-95.0), Eigen::Vector3f::UnitY() ) );   // roll-pitch-yaw used here is most probably is rotation about 1.x then 2.y then 3.x
-  transform.rotate( Eigen::AngleAxisf( pcl::deg2rad(-90.0), Eigen::Vector3f::UnitX() ) );
-  
-  // Executing the transformation
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr link_12_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
-  pcl::transformPointCloud(*link_12_cloud, *link_12_transformed_cloud, transform);
-  
-  // link2
-  Eigen::Affine3f relative_transform = Eigen::Affine3f::Identity();
-  relative_transform.translation() << -0.027, 0.005, 0.0399;
-  relative_transform.prerotate( transform.rotation() );
-  transform.translation() += relative_transform.translation();
-  // Executing the transformation
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr link_13_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
-  pcl::transformPointCloud(*link_13_cloud, *link_13_transformed_cloud, transform);
-  
-  // link3
+  relative_transform.translation() << 0, 0, 0;
+  relative_transform.rotate( Eigen::AngleAxisf( 1.5708, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitZ() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( -1.5708, Eigen::Vector3f::UnitY() ) );
+  proximal_pad_1_transform = proximal_1_transform*relative_transform;
+  // origin transform
   relative_transform = Eigen::Affine3f::Identity();
-  relative_transform.translation() << 0, 0, 0.0177;
-  relative_transform.prerotate( transform.rotation() );
-  transform.translation() += relative_transform.translation();
+  relative_transform.translation() << -0.008, 0.014, -0.002;
+  relative_transform.rotate( Eigen::AngleAxisf( 1.5708, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( -1.5708, Eigen::Vector3f::UnitZ() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitY() ) );
+  relative_transform = proximal_pad_1_transform*relative_transform;
   // Executing the transformation
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr link_14_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
-  pcl::transformPointCloud(*link_14_cloud, *link_14_transformed_cloud, transform);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr proximal_pad_1_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
+  pcl::transformPointCloud(*proximal_pad_1_cloud, *proximal_pad_1_transformed_cloud, relative_transform);
   
-  // link4
+  
+  // distal_1
+  // joint transform
   relative_transform = Eigen::Affine3f::Identity();
-  relative_transform.translation() << 0, 0, 0.0514;
-  relative_transform.prerotate( transform.rotation() );
-  transform.translation() += relative_transform.translation();
-  // Executing the transformation
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr link_15_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
-  pcl::transformPointCloud(*link_15_cloud, *link_15_transformed_cloud, transform);
-  
-  // link5 (tip)
+  relative_transform.translation() << 0.076, 0, 0.0025;
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitZ() ) );   // roll-pitch-yaw used here is most probably is rotation about 1.x then 2.y then 3.x
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitY() ) );
+  distal_1_transform = proximal_1_transform*relative_transform;
+  // origin transform
   relative_transform = Eigen::Affine3f::Identity();
-  relative_transform.translation() << 0, 0, 0.0543 - 0.0120;
-  relative_transform.prerotate( transform.rotation() );
-  transform.translation() += relative_transform.translation();
+  relative_transform.translation() << -0.077, 0.007, 0.007;
+  relative_transform.rotate( Eigen::AngleAxisf( 3.1459, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitZ() ) );   // roll-pitch-yaw used here is most probably is rotation about 1.x then 2.y then 3.x
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitY() ) );
+  relative_transform = distal_1_transform*relative_transform;
   // Executing the transformation
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr link_15_tip_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
-  pcl::transformPointCloud(*link_15_tip_cloud, *link_15_tip_transformed_cloud, transform);
-  
-  *finger1_cloud = *link_12_transformed_cloud + *link_13_transformed_cloud;
-  *finger1_cloud = *finger1_cloud + *link_14_transformed_cloud;
-  *finger1_cloud = *finger1_cloud + *link_15_transformed_cloud;
-  *finger1_cloud = *finger1_cloud + *link_15_tip_transformed_cloud;
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr distal_1_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
+  pcl::transformPointCloud(*distal_1_cloud, *distal_1_transformed_cloud, relative_transform);
   
   
-  
-  //
-  // index finger construction
-  // link1
-  transform = Eigen::Affine3f::Identity();
-  transform.translation() << 0, 0.0435, -0.001542;
-  transform.rotate( Eigen::AngleAxisf( pcl::deg2rad(-5.0), Eigen::Vector3f::UnitX() ) );   // roll-pitch-yaw used here is most probably is rotation about 1.x then 2.y then 3.x
-  transform.rotate( Eigen::AngleAxisf( pcl::deg2rad(0.0), Eigen::Vector3f::UnitY() ) );
-  transform.rotate( Eigen::AngleAxisf( pcl::deg2rad(0.0), Eigen::Vector3f::UnitX() ) );
-
-  // Executing the transformation
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr link_0_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
-  pcl::transformPointCloud(*link_0_cloud, *link_0_transformed_cloud, transform);
-  
-  // link2
+  // distal_pad_1
+  // joint transform
   relative_transform = Eigen::Affine3f::Identity();
-  relative_transform.translation() << 0, 0, 0.0164;
-  relative_transform.prerotate( transform.rotation() );
-  transform.translation() += relative_transform.translation();
-  // Executing the transformation
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr link_1_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
-  pcl::transformPointCloud(*link_1_cloud, *link_1_transformed_cloud, transform);
-  
-  // link3
+  relative_transform.translation() << -0.01, 0, 0.001;
+  relative_transform.rotate( Eigen::AngleAxisf( 1.5708, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitZ() ) );   // roll-pitch-yaw used here is most probably is rotation about 1.x then 2.y then 3.x
+  relative_transform.rotate( Eigen::AngleAxisf( -1.5708, Eigen::Vector3f::UnitY() ) );
+  distal_pad_1_transform = distal_1_transform*relative_transform;
+  // origin transform
   relative_transform = Eigen::Affine3f::Identity();
-  relative_transform.translation() << 0, 0, 0.0540;
-  relative_transform.prerotate( transform.rotation() );
-  transform.translation() += relative_transform.translation();
+  relative_transform.translation() << -0.00825, 0.009, 0.057;
+  relative_transform.rotate( Eigen::AngleAxisf( 1.5708, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( -1.5708, Eigen::Vector3f::UnitZ() ) );   // roll-pitch-yaw used here is most probably is rotation about 1.x then 2.y then 3.x
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitY() ) );
+  relative_transform = distal_pad_1_transform*relative_transform;
   // Executing the transformation
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr link_2_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
-  pcl::transformPointCloud(*link_2_cloud, *link_2_transformed_cloud, transform);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr distal_pad_1_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
+  pcl::transformPointCloud(*distal_pad_1_cloud, *distal_pad_1_transformed_cloud, relative_transform);
   
-  // link4
+  *finger1_cloud = *swivel_1_transformed_cloud + *proximal_1_transformed_cloud;
+  *finger1_cloud = *finger1_cloud + *proximal_pad_1_transformed_cloud;
+  *finger1_cloud = *finger1_cloud + *distal_1_transformed_cloud;
+  *finger1_cloud = *finger1_cloud + *distal_pad_1_transformed_cloud;
+  
+  
+  
+  
+  // finger#2
+  // swivel_2
+  swivel_2_transform.translation() << 0.0503973683071414, 0.026, 0.063;
+  // Executing the transformation
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr swivel_2_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
+  pcl::transformPointCloud(*swivel_1_cloud, *swivel_2_transformed_cloud, swivel_2_transform);
+  
+  // proximal_2
+  // joint transform
   relative_transform = Eigen::Affine3f::Identity();
-  relative_transform.translation() << 0, 0, 0.0384;
-  relative_transform.prerotate( transform.rotation() );
-  transform.translation() += relative_transform.translation();
-  // Executing the transformation
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr link_3_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
-  pcl::transformPointCloud(*link_3_cloud, *link_3_transformed_cloud, transform);
-  
-  // link5 (tip)
+  relative_transform.translation() << 0.01, 0, 0.0186;
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitZ() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitY() ) );
+  proximal_2_transform = swivel_2_transform*relative_transform;
+  // origin transform
   relative_transform = Eigen::Affine3f::Identity();
-  relative_transform.translation() << 0, 0, 0.0387 - 0.0120;
-  relative_transform.prerotate( transform.rotation() );
-  transform.translation() += relative_transform.translation();
+  relative_transform.translation() << -0.011, 0.007, 0.011;
+  relative_transform.rotate( Eigen::AngleAxisf( 3.1459, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitZ() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitY() ) );
+  relative_transform = proximal_2_transform*relative_transform;
   // Executing the transformation
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr link_3_tip_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
-  pcl::transformPointCloud(*link_3_tip_cloud, *link_3_tip_transformed_cloud, transform);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr proximal_2_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
+  pcl::transformPointCloud(*proximal_1_cloud, *proximal_2_transformed_cloud, relative_transform);
   
-  *finger2_cloud = *link_0_transformed_cloud + *link_1_transformed_cloud;
-  *finger2_cloud = *finger2_cloud + *link_2_transformed_cloud;
-  *finger2_cloud = *finger2_cloud + *link_3_transformed_cloud;
-  *finger2_cloud = *finger2_cloud + *link_3_tip_transformed_cloud;
-  
-  
-  
-  //
-  // middle finger construction
-  // link1
-  transform = Eigen::Affine3f::Identity();
-  transform.translation() << 0, 0, 0.0007;
-  transform.rotate( Eigen::AngleAxisf( pcl::deg2rad(0.0), Eigen::Vector3f::UnitX() ) );   // roll-pitch-yaw used here is most probably is rotation about 1.x then 2.y then 3.x
-  transform.rotate( Eigen::AngleAxisf( pcl::deg2rad(0.0), Eigen::Vector3f::UnitY() ) );
-  transform.rotate( Eigen::AngleAxisf( pcl::deg2rad(0.0), Eigen::Vector3f::UnitX() ) );
-
-  // Executing the transformation
-  pcl::transformPointCloud(*link_0_cloud, *link_0_transformed_cloud, transform);
-  
-  // link2
+  // proximal_pad_2
+  // joint transform
   relative_transform = Eigen::Affine3f::Identity();
-  relative_transform.translation() << 0, 0, 0.0164;
-  relative_transform.prerotate( transform.rotation() );
-  transform.translation() += relative_transform.translation();
-  // Executing the transformation
-  pcl::transformPointCloud(*link_1_cloud, *link_1_transformed_cloud, transform);
-  
-  // link3
+  relative_transform.translation() << 0, 0, 0;
+  relative_transform.rotate( Eigen::AngleAxisf( 1.5708, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitZ() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( -1.5708, Eigen::Vector3f::UnitY() ) );
+  proximal_pad_2_transform = proximal_2_transform*relative_transform;
+  // origin transform
   relative_transform = Eigen::Affine3f::Identity();
-  relative_transform.translation() << 0, 0, 0.0540;
-  relative_transform.prerotate( transform.rotation() );
-  transform.translation() += relative_transform.translation();
+  relative_transform.translation() << -0.008, 0.014, -0.002;
+  relative_transform.rotate( Eigen::AngleAxisf( 1.5708, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( -1.5708, Eigen::Vector3f::UnitZ() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitY() ) );
+  relative_transform = proximal_pad_2_transform*relative_transform;
   // Executing the transformation
-  pcl::transformPointCloud(*link_2_cloud, *link_2_transformed_cloud, transform);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr proximal_pad_2_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
+  pcl::transformPointCloud(*proximal_pad_1_cloud, *proximal_pad_2_transformed_cloud, relative_transform);
   
-  // link4
+  
+  // distal_2
+  // joint transform
   relative_transform = Eigen::Affine3f::Identity();
-  relative_transform.translation() << 0, 0, 0.0384;
-  relative_transform.prerotate( transform.rotation() );
-  transform.translation() += relative_transform.translation();
-  // Executing the transformation
-  pcl::transformPointCloud(*link_3_cloud, *link_3_transformed_cloud, transform);
-  
-  // link5 (tip)
+  relative_transform.translation() << 0.076, 0, 0.0025;
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitZ() ) );   // roll-pitch-yaw used here is most probably is rotation about 1.x then 2.y then 3.x
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitY() ) );
+  distal_2_transform = proximal_2_transform*relative_transform;
+  // origin transform
   relative_transform = Eigen::Affine3f::Identity();
-  relative_transform.translation() << 0, 0, 0.0387 - 0.0120;
-  relative_transform.prerotate( transform.rotation() );
-  transform.translation() += relative_transform.translation();
+  relative_transform.translation() << -0.077, 0.007, 0.007;
+  relative_transform.rotate( Eigen::AngleAxisf( 3.1459, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitZ() ) );   // roll-pitch-yaw used here is most probably is rotation about 1.x then 2.y then 3.x
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitY() ) );
+  relative_transform = distal_2_transform*relative_transform;
   // Executing the transformation
-  pcl::transformPointCloud(*link_3_tip_cloud, *link_3_tip_transformed_cloud, transform);
-  
-  *finger3_cloud = *link_0_transformed_cloud + *link_1_transformed_cloud;
-  *finger3_cloud = *finger3_cloud + *link_2_transformed_cloud;
-  *finger3_cloud = *finger3_cloud + *link_3_transformed_cloud;
-  *finger3_cloud = *finger3_cloud + *link_3_tip_transformed_cloud;
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr distal_2_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
+  pcl::transformPointCloud(*distal_1_cloud, *distal_2_transformed_cloud, relative_transform);
   
   
+  // distal_pad_2
+  // joint transform
+  relative_transform = Eigen::Affine3f::Identity();
+  relative_transform.translation() << -0.01, 0, 0.001;
+  relative_transform.rotate( Eigen::AngleAxisf( 1.5708, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitZ() ) );   // roll-pitch-yaw used here is most probably is rotation about 1.x then 2.y then 3.x
+  relative_transform.rotate( Eigen::AngleAxisf( -1.5708, Eigen::Vector3f::UnitY() ) );
+  distal_pad_2_transform = distal_2_transform*relative_transform;
+  // origin transform
+  relative_transform = Eigen::Affine3f::Identity();
+  relative_transform.translation() << -0.00825, 0.009, 0.057;
+  relative_transform.rotate( Eigen::AngleAxisf( 1.5708, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( -1.5708, Eigen::Vector3f::UnitZ() ) );   // roll-pitch-yaw used here is most probably is rotation about 1.x then 2.y then 3.x
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitY() ) );
+  relative_transform = distal_pad_2_transform*relative_transform;
+  // Executing the transformation
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr distal_pad_2_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
+  pcl::transformPointCloud(*distal_pad_1_cloud, *distal_pad_2_transformed_cloud, relative_transform);
   
-  */
+  *finger2_cloud = *swivel_2_transformed_cloud + *proximal_2_transformed_cloud;
+  *finger2_cloud = *finger2_cloud + *proximal_pad_2_transformed_cloud;
+  *finger2_cloud = *finger2_cloud + *distal_2_transformed_cloud;
+  *finger2_cloud = *finger2_cloud + *distal_pad_2_transformed_cloud;
+  
+  
+  
+  // finger#3
+  // proximal_3
+  // joint transform
+  relative_transform = Eigen::Affine3f::Identity();
+  relative_transform.translation() << -0.03, 0, 0.08;
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitZ() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 3.14159, Eigen::Vector3f::UnitY() ) );
+  proximal_3_transform = relative_transform;
+  // origin transform
+  relative_transform = Eigen::Affine3f::Identity();
+  relative_transform.translation() << -0.011, 0.007, 0.011;
+  relative_transform.rotate( Eigen::AngleAxisf( 3.1459, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitZ() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitY() ) );
+  relative_transform = proximal_3_transform*relative_transform;
+  // Executing the transformation
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr proximal_3_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
+  pcl::transformPointCloud(*proximal_1_cloud, *proximal_3_transformed_cloud, relative_transform);
+  
+  // proximal_pad_3
+  // joint transform
+  relative_transform = Eigen::Affine3f::Identity();
+  relative_transform.translation() << 0, 0, 0;
+  relative_transform.rotate( Eigen::AngleAxisf( 1.5708, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitZ() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( -1.5708, Eigen::Vector3f::UnitY() ) );
+  proximal_pad_3_transform = proximal_3_transform*relative_transform;
+  // origin transform
+  relative_transform = Eigen::Affine3f::Identity();
+  relative_transform.translation() << -0.008, 0.014, -0.002;
+  relative_transform.rotate( Eigen::AngleAxisf( 1.5708, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( -1.5708, Eigen::Vector3f::UnitZ() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitY() ) );
+  relative_transform = proximal_pad_3_transform*relative_transform;
+  // Executing the transformation
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr proximal_pad_3_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
+  pcl::transformPointCloud(*proximal_pad_1_cloud, *proximal_pad_3_transformed_cloud, relative_transform);
+  
+  
+  // distal_3
+  // joint transform
+  relative_transform = Eigen::Affine3f::Identity();
+  relative_transform.translation() << 0.076, 0, 0.0025;
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitZ() ) );   // roll-pitch-yaw used here is most probably is rotation about 1.x then 2.y then 3.x
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitY() ) );
+  distal_3_transform = proximal_3_transform*relative_transform;
+  // origin transform
+  relative_transform = Eigen::Affine3f::Identity();
+  relative_transform.translation() << -0.077, 0.007, 0.007;
+  relative_transform.rotate( Eigen::AngleAxisf( 3.1459, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitZ() ) );   // roll-pitch-yaw used here is most probably is rotation about 1.x then 2.y then 3.x
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitY() ) );
+  relative_transform = distal_3_transform*relative_transform;
+  // Executing the transformation
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr distal_3_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
+  pcl::transformPointCloud(*distal_1_cloud, *distal_3_transformed_cloud, relative_transform);
+  
+  
+  // distal_pad_3
+  // joint transform
+  relative_transform = Eigen::Affine3f::Identity();
+  relative_transform.translation() << -0.01, 0, 0.001;
+  relative_transform.rotate( Eigen::AngleAxisf( 1.5708, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitZ() ) );   // roll-pitch-yaw used here is most probably is rotation about 1.x then 2.y then 3.x
+  relative_transform.rotate( Eigen::AngleAxisf( -1.5708, Eigen::Vector3f::UnitY() ) );
+  distal_pad_3_transform = distal_3_transform*relative_transform;
+  // origin transform
+  relative_transform = Eigen::Affine3f::Identity();
+  relative_transform.translation() << -0.00825, 0.009, 0.057;
+  relative_transform.rotate( Eigen::AngleAxisf( 1.5708, Eigen::Vector3f::UnitX() ) );
+  relative_transform.rotate( Eigen::AngleAxisf( -1.5708, Eigen::Vector3f::UnitZ() ) );   // roll-pitch-yaw used here is most probably is rotation about 1.x then 2.y then 3.x
+  relative_transform.rotate( Eigen::AngleAxisf( 0, Eigen::Vector3f::UnitY() ) );
+  relative_transform = distal_pad_3_transform*relative_transform;
+  // Executing the transformation
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr distal_pad_3_transformed_cloud(new pcl::PointCloud<pcl::PointXYZRGB>());
+  pcl::transformPointCloud(*distal_pad_1_cloud, *distal_pad_3_transformed_cloud, relative_transform);
+  
+  *finger3_cloud = *proximal_3_transformed_cloud + *proximal_pad_3_transformed_cloud;
+  *finger3_cloud = *finger3_cloud + *distal_3_transformed_cloud;
+  *finger3_cloud = *finger3_cloud + *distal_pad_3_transformed_cloud;
   
   
   
   //
   // concatenate point clouds
-  *reflex_plus_cloud = *palm_cloud;
-  
-  /*
   *reflex_plus_cloud = *palm_cloud + *finger1_cloud;
-  *reflex_plus_cloud = *reflex_plus_cloud + *finger2_cloud;
-  *reflex_plus_cloud = *reflex_plus_cloud + *finger3_cloud;
-  */
+  *reflex_plus_cloud += *finger2_cloud;
+  *reflex_plus_cloud += *finger3_cloud;
+  
   
   /*
   Eigen::Vector3f hand_translation;
@@ -308,7 +391,7 @@ int main(){
   }
   */
   
-  /*
+  
   Eigen::Vector3f camera_translation;
   camera_translation << -0.0673, 0, -0.02;
   Eigen::Matrix3f camera_rotation = Roty_float(-M_PI/2);
@@ -324,11 +407,16 @@ int main(){
   connection_transform << connection_rotation, connection_translation,
                0, 0, 0, 1;
   pcl::transformPointCloud(*connection_cloud, *connection_cloud, connection_transform);
-  
+  // scaling down the model from millimeter to meter
+  for(unsigned int i=0;i<connection_cloud->points.size();i++){
+    connection_cloud->points[i].x /= 1000;
+    connection_cloud->points[i].y /= 1000;
+    connection_cloud->points[i].z /= 1000;
+  }
   
   *reflex_plus_cloud += *connection_cloud;
   *reflex_plus_cloud += *camera_cloud;
-  */
+  
   
   
   /*
@@ -348,7 +436,7 @@ int main(){
   
   
   // save the reflex plus gripper cloud data
-  pcl::io::savePCDFileASCII("reflex_plus_model_cloud_plus_camera.pcd", *reflex_plus_cloud);
+  pcl::io::savePCDFileASCII("../gripper_point_cloud/reflex_plus_model_cloud_plus_camera.pcd", *reflex_plus_cloud);
   
   
   viewer->addPointCloud( reflex_plus_cloud, "reflex plus point cloud" );
