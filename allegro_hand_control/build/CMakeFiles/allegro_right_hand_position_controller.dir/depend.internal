@@ -283,17 +283,6 @@ CMakeFiles/allegro_right_hand_position_controller.dir/src/allegro_right_hand_pos
  /opt/ros/kinetic/include/std_msgs/MultiArrayLayout.h
  /opt/ros/kinetic/include/xmlrpcpp/XmlRpcDecl.h
  /opt/ros/kinetic/include/xmlrpcpp/XmlRpcValue.h
- /usr/include/x86_64-linux-gnu/bits/select.h
- /usr/include/x86_64-linux-gnu/bits/select2.h
- /usr/include/x86_64-linux-gnu/bits/sigset.h
- /usr/include/x86_64-linux-gnu/bits/time.h
- /usr/include/x86_64-linux-gnu/bits/timex.h
- /usr/include/x86_64-linux-gnu/bits/types.h
- /usr/include/x86_64-linux-gnu/bits/typesizes.h
- /usr/include/x86_64-linux-gnu/bits/wordsize.h
- /usr/include/x86_64-linux-gnu/sys/select.h
- /usr/include/x86_64-linux-gnu/sys/time.h
- /usr/include/x86_64-linux-gnu/sys/timeb.h
 CMakeFiles/allegro_right_hand_position_controller.dir/src/canAPI.cpp.o
  /home/franka3/grasping_msorour/code_repository/allegro_hand_control/include/canAPI.h
  /home/franka3/grasping_msorour/code_repository/allegro_hand_control/include/canDef.h

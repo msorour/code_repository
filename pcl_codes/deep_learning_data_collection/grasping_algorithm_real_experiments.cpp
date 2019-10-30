@@ -275,12 +275,12 @@ int main(int argc, char **argv){
   cout << "tm1 = " << endl << tm1 << endl;
   cout << "tm2 = " << endl << tm2 << endl;
   cout << "tm3 = " << endl << tm3 << endl;
-  
+  /*
   //std::vector<pcl::visualization::Camera> cam;
   while ( !scene_cloud_viewer->wasStopped() ){
     scene_cloud_viewer->spinOnce();
   }
-  
+  */
   return 0;
 }
 

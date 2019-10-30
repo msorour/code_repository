@@ -34,8 +34,8 @@ target_link_libraries (grasping_algorithm ${PCL_LIBRARIES}  ${roscpp_LIBRARIES} 
 #add_executable (capture_3_view_point_cloud capture_3_view_point_cloud.cpp)
 #target_link_libraries (capture_3_view_point_cloud ${PCL_LIBRARIES}  ${roscpp_LIBRARIES} ${catkin_LIBRARIES})
 
-#add_executable (registering_and_downsampling_3_view_point_clouds registering_and_downsampling_3_view_point_clouds.cpp)
-#target_link_libraries (registering_and_downsampling_3_view_point_clouds ${PCL_LIBRARIES}  ${roscpp_LIBRARIES} ${catkin_LIBRARIES})
+add_executable (registering_and_downsampling_3_view_point_clouds registering_and_downsampling_3_view_point_clouds.cpp)
+target_link_libraries (registering_and_downsampling_3_view_point_clouds ${PCL_LIBRARIES}  ${roscpp_LIBRARIES} ${catkin_LIBRARIES})
 
 #add_executable (grasping_algorithm_photos_for_paper grasping_algorithm_photos_for_paper.cpp)
 #target_link_libraries (grasping_algorithm_photos_for_paper ${PCL_LIBRARIES} quadprog)

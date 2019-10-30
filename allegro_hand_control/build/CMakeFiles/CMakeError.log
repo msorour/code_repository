@@ -1,22 +1,22 @@
 Determining if the pthread_create exist failed with the following output:
 Change Dir: /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_60e25/fast"
-/usr/bin/make -f CMakeFiles/cmTC_60e25.dir/build.make CMakeFiles/cmTC_60e25.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_619fe/fast"
+/usr/bin/make -f CMakeFiles/cmTC_619fe.dir/build.make CMakeFiles/cmTC_619fe.dir/build
 make[1]: Entering directory '/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_60e25.dir/CheckSymbolExists.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_60e25.dir/CheckSymbolExists.c.o   -c /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
-Linking C executable cmTC_60e25
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_60e25.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_60e25.dir/CheckSymbolExists.c.o  -o cmTC_60e25 -rdynamic 
-CMakeFiles/cmTC_60e25.dir/CheckSymbolExists.c.o: In function `main':
+Building C object CMakeFiles/cmTC_619fe.dir/CheckSymbolExists.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_619fe.dir/CheckSymbolExists.c.o   -c /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_619fe
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_619fe.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_619fe.dir/CheckSymbolExists.c.o  -o cmTC_619fe -rdynamic 
+CMakeFiles/cmTC_619fe.dir/CheckSymbolExists.c.o: In function `main':
 CheckSymbolExists.c:(.text+0x16): undefined reference to `pthread_create'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_60e25.dir/build.make:97: recipe for target 'cmTC_60e25' failed
-make[1]: *** [cmTC_60e25] Error 1
+CMakeFiles/cmTC_619fe.dir/build.make:97: recipe for target 'cmTC_619fe' failed
+make[1]: *** [cmTC_619fe] Error 1
 make[1]: Leaving directory '/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_60e25/fast' failed
-make: *** [cmTC_60e25/fast] Error 2
+Makefile:126: recipe for target 'cmTC_619fe/fast' failed
+make: *** [cmTC_619fe/fast] Error 2
 
 File /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */
@@ -36,20 +36,20 @@ int main(int argc, char** argv)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_936c7/fast"
-/usr/bin/make -f CMakeFiles/cmTC_936c7.dir/build.make CMakeFiles/cmTC_936c7.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_bf953/fast"
+/usr/bin/make -f CMakeFiles/cmTC_bf953.dir/build.make CMakeFiles/cmTC_bf953.dir/build
 make[1]: Entering directory '/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_936c7.dir/CheckFunctionExists.c.o
-/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_936c7.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
-Linking C executable cmTC_936c7
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_936c7.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_936c7.dir/CheckFunctionExists.c.o  -o cmTC_936c7 -rdynamic -lpthreads 
+Building C object CMakeFiles/cmTC_bf953.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_bf953.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_bf953
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bf953.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_bf953.dir/CheckFunctionExists.c.o  -o cmTC_bf953 -rdynamic -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_936c7.dir/build.make:97: recipe for target 'cmTC_936c7' failed
-make[1]: *** [cmTC_936c7] Error 1
+CMakeFiles/cmTC_bf953.dir/build.make:97: recipe for target 'cmTC_bf953' failed
+make[1]: *** [cmTC_bf953] Error 1
 make[1]: Leaving directory '/home/franka3/grasping_msorour/code_repository/allegro_hand_control/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_936c7/fast' failed
-make: *** [cmTC_936c7/fast] Error 2
+Makefile:126: recipe for target 'cmTC_bf953/fast' failed
+make: *** [cmTC_bf953/fast] Error 2
 
 

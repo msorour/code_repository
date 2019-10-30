@@ -26,3 +26,6 @@ set (CMAKE_CXX_STANDARD 11)
 
 add_executable(grasping_algorithm_real_experiments grasping_algorithm_real_experiments.cpp)
 target_link_libraries(grasping_algorithm_real_experiments pthread ${PCL_LIBRARIES} ${roscpp_LIBRARIES} ${catkin_LIBRARIES})
+
+add_executable (registering_and_downsampling_3_view_point_clouds registering_and_downsampling_3_view_point_clouds.cpp)
+target_link_libraries (registering_and_downsampling_3_view_point_clouds ${PCL_LIBRARIES}  ${roscpp_LIBRARIES} ${catkin_LIBRARIES})

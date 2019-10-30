@@ -1,1 +1,1 @@
-/usr/bin/c++        CMakeFiles/grasp.dir/src/main.cpp.o CMakeFiles/grasp.dir/src/canAPI.cpp.o CMakeFiles/grasp.dir/src/interface.cpp.o  -o grasp -rdynamic -lBHand -lpcanbasic -lpthread 
+/usr/bin/c++        CMakeFiles/grasp.dir/src/main.cpp.o CMakeFiles/grasp.dir/src/canAPI.cpp.o CMakeFiles/grasp.dir/src/interface.cpp.o  -o grasp  -L/usr/local/lib -rdynamic -lBHand -lpcanbasic -lpthread -Wl,-rpath,/usr/local/lib 
