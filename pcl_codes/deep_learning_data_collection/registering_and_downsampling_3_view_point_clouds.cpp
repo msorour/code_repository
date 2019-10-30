@@ -55,7 +55,7 @@ int main (int argc, char** argv){
 	begin1 = clock();
   
   Eigen::MatrixXd tf = readMatrix(tf_matrix_file_name.c_str());
-  Eigen::Matrix4d tf1, tf2, tf3;
+  Eigen::Matrix4f tf1, tf2, tf3;
   tf1 << tf(0,0),  tf(0,1),  tf(0,2),  tf(0,3),
          tf(1,0),  tf(1,1),  tf(1,2),  tf(1,3),
          tf(2,0),  tf(2,1),  tf(2,2),  tf(2,3),
