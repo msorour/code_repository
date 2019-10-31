@@ -79,7 +79,17 @@ void view_point_cloud(const boost::shared_ptr<const sensor_msgs::PointCloud2>& i
   *current_scene_cloud_xyzrgb = *temp_cloud;
   std::cout << "point cloud arrived ... " <<std::endl;
 }
-
+/*
+void view_point_cloud(const boost::shared_ptr<const sensor_msgs::PointCloud2>& input){
+  pcl::PCLPointCloud2 pcl_pc2;
+  pcl_conversions::toPCL(*input,pcl_pc2);
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr temp_cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
+  pcl::fromPCLPointCloud2(pcl_pc2,*temp_cloud);
+  
+  *current_scene_cloud_xyzrgb = *temp_cloud;
+  std::cout << "point cloud arrived ... " <<std::endl;
+}
+*/
 
 int main(int argc, char **argv){
   std::string point_cloud_name, point_cloud_id;
@@ -90,10 +100,11 @@ int main(int argc, char **argv){
   ros::NodeHandle n;
   ros::Rate loop_rate(0.1);  // once per 10 seconds
   
-  ros::Publisher pose_pub           = n.advertise<geometry_msgs::PoseStamped> ("/panda_arm/command/pose", 1);
-  ros::Publisher joint_position_pub = n.advertise<std_msgs::Int8>             ("/panda_arm/command/joint_position", 10);
+  ros::Publisher pose_pub                 = n.advertise<geometry_msgs::PoseStamped> ("/panda_arm/command/pose", 1);
+  ros::Publisher joint_position_pub       = n.advertise<std_msgs::Int8>             ("/panda_arm/command/joint_position", 10);
   
-  ros::Subscriber realsense_sub     = n.subscribe<sensor_msgs::PointCloud2>   ("/camera/depth/color/points", 1, view_point_cloud);
+  ros::Subscriber realsense_sub           = n.subscribe<sensor_msgs::PointCloud2>   ("/camera/depth/color/points", 1, view_point_cloud);
+  //ros::Subscriber realsense_image_sub     = n.subscribe<sensor_msgs::PointCloud2>   ("/camera/color/image_raw/compressed", 1, view_color_image);
   
   
   
