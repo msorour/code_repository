@@ -79,17 +79,7 @@ void view_point_cloud(const boost::shared_ptr<const sensor_msgs::PointCloud2>& i
   *current_scene_cloud_xyzrgb = *temp_cloud;
   std::cout << "point cloud arrived ... " <<std::endl;
 }
-/*
-void view_point_cloud(const boost::shared_ptr<const sensor_msgs::PointCloud2>& input){
-  pcl::PCLPointCloud2 pcl_pc2;
-  pcl_conversions::toPCL(*input,pcl_pc2);
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr temp_cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
-  pcl::fromPCLPointCloud2(pcl_pc2,*temp_cloud);
-  
-  *current_scene_cloud_xyzrgb = *temp_cloud;
-  std::cout << "point cloud arrived ... " <<std::endl;
-}
-*/
+
 
 int main(int argc, char **argv){
   std::string point_cloud_name, point_cloud_id;
@@ -100,11 +90,10 @@ int main(int argc, char **argv){
   ros::NodeHandle n;
   ros::Rate loop_rate(0.1);  // once per 10 seconds
   
-  ros::Publisher pose_pub                 = n.advertise<geometry_msgs::PoseStamped> ("/panda_arm/command/pose", 1);
-  ros::Publisher joint_position_pub       = n.advertise<std_msgs::Int8>             ("/panda_arm/command/joint_position", 10);
+  ros::Publisher pose_pub           = n.advertise<geometry_msgs::PoseStamped> ("/panda_arm/command/pose", 1);
+  ros::Publisher joint_position_pub = n.advertise<std_msgs::Int8>             ("/panda_arm/command/joint_position", 10);
   
-  ros::Subscriber realsense_sub           = n.subscribe<sensor_msgs::PointCloud2>   ("/camera/depth/color/points", 1, view_point_cloud);
-  //ros::Subscriber realsense_image_sub     = n.subscribe<sensor_msgs::PointCloud2>   ("/camera/color/image_raw/compressed", 1, view_color_image);
+  ros::Subscriber realsense_sub     = n.subscribe<sensor_msgs::PointCloud2>   ("/camera/depth/color/points", 1, view_point_cloud);
   
   
   
@@ -286,12 +275,165 @@ int main(int argc, char **argv){
   cout << "tm1 = " << endl << tm1 << endl;
   cout << "tm2 = " << endl << tm2 << endl;
   cout << "tm3 = " << endl << tm3 << endl;
-  /*
-  //std::vector<pcl::visualization::Camera> cam;
-  while ( !scene_cloud_viewer->wasStopped() ){
-    scene_cloud_viewer->spinOnce();
-  }
-  */
+  
+  
+  
+  
+  
+  // registering + downsampling + visualizing
+  std::string file_name1 = "../raw_object_pcd_files/"+ point_cloud_name + "_0.pcd";
+  std::string file_name2 = "../raw_object_pcd_files/"+ point_cloud_name + "_1.pcd";
+  std::string file_name3 = "../raw_object_pcd_files/"+ point_cloud_name + "_2.pcd";
+  std::string tf_matrix_file_name = "../raw_object_pcd_files/"+ point_cloud_name + "_tf.txt";
+  
+  double leaf_size = 0.01;
+  double distance_threshold = 0.01;
+  
+  clock_t begin1;
+	
+	begin1 = clock();
+  
+  Eigen::MatrixXd tf = readMatrix(tf_matrix_file_name.c_str());
+  Eigen::Matrix4f tf1, tf2, tf3;
+  tf1 << tf(0,0),  tf(0,1),  tf(0,2),  tf(0,3),
+         tf(1,0),  tf(1,1),  tf(1,2),  tf(1,3),
+         tf(2,0),  tf(2,1),  tf(2,2),  tf(2,3),
+         tf(3,0),  tf(3,1),  tf(3,2),  tf(3,3);
+  tf2 << tf(4,0),  tf(4,1),  tf(4,2),  tf(4,3),
+         tf(5,0),  tf(5,1),  tf(5,2),  tf(5,3),
+         tf(6,0),  tf(6,1),  tf(6,2),  tf(6,3),
+         tf(7,0),  tf(7,1),  tf(7,2),  tf(7,3);
+  tf3 << tf(8,0),  tf(8,1),  tf(8,2),  tf(8,3),
+         tf(9,0),  tf(9,1),  tf(9,2),  tf(9,3),
+         tf(10,0), tf(10,1), tf(10,2), tf(10,3),
+         tf(11,0), tf(11,1), tf(11,2), tf(11,3);
+  
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       scene_cloud_xyz_1                             (new pcl::PointCloud<pcl::PointXYZ>);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       scene_cloud_xyz_2                             (new pcl::PointCloud<pcl::PointXYZ>);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       scene_cloud_xyz_3                             (new pcl::PointCloud<pcl::PointXYZ>);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       scene_cloud_xyz_1_transformed                 (new pcl::PointCloud<pcl::PointXYZ>);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       scene_cloud_xyz_2_transformed                 (new pcl::PointCloud<pcl::PointXYZ>);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       scene_cloud_xyz_3_transformed                 (new pcl::PointCloud<pcl::PointXYZ>);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       scene_cloud_xyz_1_transformed_downsampled     (new pcl::PointCloud<pcl::PointXYZ>);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       scene_cloud_xyz_2_transformed_downsampled     (new pcl::PointCloud<pcl::PointXYZ>);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       scene_cloud_xyz_3_transformed_downsampled     (new pcl::PointCloud<pcl::PointXYZ>);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       scene_cloud_xyz_transformed_downsampled       (new pcl::PointCloud<pcl::PointXYZ>);
+  
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       object_cloud_xyz_downsampled                  (new pcl::PointCloud<pcl::PointXYZ>);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       table_cloud_xyz_downsampled                   (new pcl::PointCloud<pcl::PointXYZ>);
+  
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       allegro_hand_point_cloud                      (new pcl::PointCloud<pcl::PointXYZ>);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       allegro_hand_point_cloud_downsampled          (new pcl::PointCloud<pcl::PointXYZ>);
+  
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       franka_gripper_point_cloud                    (new pcl::PointCloud<pcl::PointXYZ>);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr       franka_gripper_point_cloud_downsampled        (new pcl::PointCloud<pcl::PointXYZ>);
+  
+  double i;
+  pcl::VoxelGrid<pcl::PointXYZ> vg;
+  pcl::PCDWriter writer;
+  
+  // load the 3 view point clouds
+  pcl::io::loadPCDFile<pcl::PointXYZ>(file_name1, *scene_cloud_xyz_1);
+  pcl::io::loadPCDFile<pcl::PointXYZ>(file_name2, *scene_cloud_xyz_2);
+  pcl::io::loadPCDFile<pcl::PointXYZ>(file_name3, *scene_cloud_xyz_3);
+  
+  
+  // for visualization
+  boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer(new pcl::visualization::PCLVisualizer ("point cloud visulaizer"));
+  boost::shared_ptr<pcl::visualization::PCLVisualizer> downsampled_viewer(new pcl::visualization::PCLVisualizer ("downsampled point cloud visulaizer"));
+  boost::shared_ptr<pcl::visualization::PCLVisualizer> segmentation_viewer(new pcl::visualization::PCLVisualizer ("segmented object/table point cloud visulaizer"));
+  
+  viewer->setCameraPosition(-0.582661, 0.49555, 0.175435, -0.129036, 0.102673, 0.469419, 0.468416, -0.114679, -0.876034, 0);
+  viewer->addCoordinateSystem(0.15);
+  viewer->setBackgroundColor(255,255,255);
+  
+  downsampled_viewer->setCameraPosition(-0.582661, 0.49555, 0.175435, -0.129036, 0.102673, 0.469419, 0.468416, -0.114679, -0.876034, 0);
+  downsampled_viewer->addCoordinateSystem(0.15);
+  downsampled_viewer->setBackgroundColor(255,255,255);
+  
+  segmentation_viewer->setCameraPosition(-0.582661, 0.49555, 0.175435, -0.129036, 0.102673, 0.469419, 0.468416, -0.114679, -0.876034, 0);
+  segmentation_viewer->addCoordinateSystem(0.15);
+  segmentation_viewer->setBackgroundColor(255,255,255);
+  
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> black  (scene_cloud_xyz_1_transformed, 0, 0, 0);
+  viewer->addPointCloud<pcl::PointXYZ>(scene_cloud_xyz_1_transformed, black, "scene cloud 1");
+  viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2, "scene cloud 1");
+  
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> red  (scene_cloud_xyz_2_transformed, 255, 0, 0);
+  viewer->addPointCloud<pcl::PointXYZ>(scene_cloud_xyz_2_transformed, red, "scene cloud 2");
+  viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2, "scene cloud 2");
+  
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> blue  (scene_cloud_xyz_3_transformed, 0, 0, 255);
+  viewer->addPointCloud<pcl::PointXYZ>(scene_cloud_xyz_3_transformed, blue, "scene cloud 3");
+  viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2, "scene cloud 3");
+  
+  //
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> black2  (scene_cloud_xyz_1_transformed_downsampled, 0, 0, 0);
+  downsampled_viewer->addPointCloud<pcl::PointXYZ>(scene_cloud_xyz_1_transformed_downsampled, black2, "scene cloud 1 downsampled");
+  downsampled_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 10, "scene cloud 1 downsampled");
+  
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> red2  (scene_cloud_xyz_2_transformed_downsampled, 255, 0, 0);
+  downsampled_viewer->addPointCloud<pcl::PointXYZ>(scene_cloud_xyz_2_transformed_downsampled, red2, "scene cloud 2 downsampled");
+  downsampled_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 10, "scene cloud 2 downsampled");
+  
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> blue2  (scene_cloud_xyz_3_transformed_downsampled, 0, 0, 255);
+  downsampled_viewer->addPointCloud<pcl::PointXYZ>(scene_cloud_xyz_3_transformed_downsampled, blue2, "scene cloud 3 downsampled");
+  downsampled_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 10, "scene cloud 3 downsampled");
+  
+  //
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> red3  (object_cloud_xyz_downsampled, 255, 0, 0);
+  segmentation_viewer->addPointCloud<pcl::PointXYZ>(object_cloud_xyz_downsampled, red3, "object cloud downsampled");
+  segmentation_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 10, "object cloud downsampled");
+  
+  pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> blue3  (table_cloud_xyz_downsampled, 0, 0, 255);
+  segmentation_viewer->addPointCloud<pcl::PointXYZ>(table_cloud_xyz_downsampled, blue3, "table cloud downsampled");
+  segmentation_viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 10, "table cloud downsampled");
+  
+  
+  
+  
+  
+  
+  begin4 = clock();
+  //registering_downsampling_segmenting_3_view_point_clouds(scene_cloud_xyz_1, tf1,   scene_cloud_xyz_2, tf2,   scene_cloud_xyz_3, tf3,
+  //                                                        scene_cloud_xyz_1_transformed, scene_cloud_xyz_2_transformed, scene_cloud_xyz_3_transformed,
+  //                                                        scene_cloud_xyz_1_transformed_downsampled, scene_cloud_xyz_2_transformed_downsampled, scene_cloud_xyz_3_transformed_downsampled,
+  //                                                        table_cloud_xyz_downsampled, object_cloud_xyz_downsampled );
+  registering_downsampling_segmenting_3_view_point_clouds(scene_cloud_xyz_1, tf1,   scene_cloud_xyz_2, tf2,   scene_cloud_xyz_3, tf3, table_cloud_xyz_downsampled, object_cloud_xyz_downsampled );
+  end = clock();
+	time_spent = (double)( end - begin4 )/ CLOCKS_PER_SEC;
+	std::cout << "total time spent in downsampling/segmentation = " << time_spent << std::endl;
+	
+	viewer->updatePointCloud(scene_cloud_xyz_1_transformed, black, "scene cloud 1");
+  viewer->updatePointCloud(scene_cloud_xyz_2_transformed, red,   "scene cloud 2");
+  viewer->updatePointCloud(scene_cloud_xyz_3_transformed, blue,  "scene cloud 3");
+  
+  downsampled_viewer->updatePointCloud(scene_cloud_xyz_1_transformed_downsampled, black2, "scene cloud 1 downsampled");
+  downsampled_viewer->updatePointCloud(scene_cloud_xyz_2_transformed_downsampled, red2,   "scene cloud 2 downsampled");
+  downsampled_viewer->updatePointCloud(scene_cloud_xyz_3_transformed_downsampled, blue2,  "scene cloud 3 downsampled");
+  
+  segmentation_viewer->updatePointCloud(table_cloud_xyz_downsampled, blue3, "table cloud downsampled");
+  segmentation_viewer->updatePointCloud(object_cloud_xyz_downsampled, red3, "object cloud downsampled");
+  
+  
+  
+  
+  std::vector<pcl::visualization::Camera> cam;
+  while( !viewer->wasStopped() ){
+    viewer->spinOnce();
+    downsampled_viewer->spinOnce();
+    //viewer->saveScreenshot(save_file_name);
+    
+    //viewer->getCameras(cam);
+    //Print recorded points on the screen: 
+    //cout << "Cam: " << endl 
+    //             << " - pos:   (" << cam[0].pos[0]   << ", " << cam[0].pos[1] <<   ", " << cam[0].pos[2] <<   ")" << endl
+    //             << " - view:  (" << cam[0].view[0]  << ", " << cam[0].view[1] <<  ", " << cam[0].view[2] <<  ")" << endl
+    //             << " - focal: (" << cam[0].focal[0] << ", " << cam[0].focal[1] << ", " << cam[0].focal[2] << ")" << endl;
+  } 
+  
+  
+  
   return 0;
 }
 
