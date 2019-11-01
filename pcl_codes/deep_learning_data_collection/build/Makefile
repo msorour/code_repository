@@ -166,19 +166,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named registering_and_downsampling_3_view_point_clouds
-
-# Build rule for target.
-registering_and_downsampling_3_view_point_clouds: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 registering_and_downsampling_3_view_point_clouds
-.PHONY : registering_and_downsampling_3_view_point_clouds
-
-# fast build rule for target.
-registering_and_downsampling_3_view_point_clouds/fast:
-	$(MAKE) -f CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/build.make CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/build
-.PHONY : registering_and_downsampling_3_view_point_clouds/fast
-
-#=============================================================================
 # Target rules for targets named grasping_algorithm_real_experiments
 
 # Build rule for target.
@@ -881,33 +868,6 @@ grasping_algorithm_real_experiments.cpp.s:
 	$(MAKE) -f CMakeFiles/grasping_algorithm_real_experiments.dir/build.make CMakeFiles/grasping_algorithm_real_experiments.dir/grasping_algorithm_real_experiments.cpp.s
 .PHONY : grasping_algorithm_real_experiments.cpp.s
 
-registering_and_downsampling_3_view_point_clouds.o: registering_and_downsampling_3_view_point_clouds.cpp.o
-
-.PHONY : registering_and_downsampling_3_view_point_clouds.o
-
-# target to build an object file
-registering_and_downsampling_3_view_point_clouds.cpp.o:
-	$(MAKE) -f CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/build.make CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/registering_and_downsampling_3_view_point_clouds.cpp.o
-.PHONY : registering_and_downsampling_3_view_point_clouds.cpp.o
-
-registering_and_downsampling_3_view_point_clouds.i: registering_and_downsampling_3_view_point_clouds.cpp.i
-
-.PHONY : registering_and_downsampling_3_view_point_clouds.i
-
-# target to preprocess a source file
-registering_and_downsampling_3_view_point_clouds.cpp.i:
-	$(MAKE) -f CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/build.make CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/registering_and_downsampling_3_view_point_clouds.cpp.i
-.PHONY : registering_and_downsampling_3_view_point_clouds.cpp.i
-
-registering_and_downsampling_3_view_point_clouds.s: registering_and_downsampling_3_view_point_clouds.cpp.s
-
-.PHONY : registering_and_downsampling_3_view_point_clouds.s
-
-# target to generate assembly for a file
-registering_and_downsampling_3_view_point_clouds.cpp.s:
-	$(MAKE) -f CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/build.make CMakeFiles/registering_and_downsampling_3_view_point_clouds.dir/registering_and_downsampling_3_view_point_clouds.cpp.s
-.PHONY : registering_and_downsampling_3_view_point_clouds.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -916,7 +876,6 @@ help:
 	@echo "... depend"
 	@echo "... install/local"
 	@echo "... install/strip"
-	@echo "... registering_and_downsampling_3_view_point_clouds"
 	@echo "... edit_cache"
 	@echo "... grasping_algorithm_real_experiments"
 	@echo "... tf2_msgs_generate_messages_nodejs"
@@ -977,9 +936,6 @@ help:
 	@echo "... grasping_algorithm_real_experiments.o"
 	@echo "... grasping_algorithm_real_experiments.i"
 	@echo "... grasping_algorithm_real_experiments.s"
-	@echo "... registering_and_downsampling_3_view_point_clouds.o"
-	@echo "... registering_and_downsampling_3_view_point_clouds.i"
-	@echo "... registering_and_downsampling_3_view_point_clouds.s"
 .PHONY : help
 
 
