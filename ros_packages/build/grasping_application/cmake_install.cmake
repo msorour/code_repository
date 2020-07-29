@@ -1,8 +1,8 @@
-# Install script for directory: /home/business/code_repository/ros_packages/src/grasping_application
+# Install script for directory: /home/experiments/code_repository/ros_packages/src/grasping_application
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/business/code_repository/ros_packages/install")
+  set(CMAKE_INSTALL_PREFIX "/home/experiments/code_repository/ros_packages/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/business/code_repository/ros_packages/build/grasping_application/catkin_generated/installspace/grasping_application.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/experiments/code_repository/ros_packages/build/grasping_application/catkin_generated/installspace/grasping_application.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/grasping_application/cmake" TYPE FILE FILES
-    "/home/business/code_repository/ros_packages/build/grasping_application/catkin_generated/installspace/grasping_applicationConfig.cmake"
-    "/home/business/code_repository/ros_packages/build/grasping_application/catkin_generated/installspace/grasping_applicationConfig-version.cmake"
+    "/home/experiments/code_repository/ros_packages/build/grasping_application/catkin_generated/installspace/grasping_applicationConfig.cmake"
+    "/home/experiments/code_repository/ros_packages/build/grasping_application/catkin_generated/installspace/grasping_applicationConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/grasping_application" TYPE FILE FILES "/home/business/code_repository/ros_packages/src/grasping_application/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/grasping_application" TYPE FILE FILES "/home/experiments/code_repository/ros_packages/src/grasping_application/package.xml")
 endif()
 

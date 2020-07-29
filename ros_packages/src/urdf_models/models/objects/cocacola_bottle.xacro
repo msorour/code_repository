@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="cocacola_bottle">
+
+<xacro:macro name="cocacola_bottle" params=" connected_to:='' ns:='' rpy:='0 0 0' xyz:='0 0 0' ">
+
+  <xacro:unless value="${connected_to == ''}">
+	  <joint name="${connected_to}_joint" type="continuous">
+		  <parent link="${connected_to}"/>
+		  <child link="cocacola_bottle"/>
+		  <origin xyz="${xyz}" rpy="${rpy}"/>
+	  </joint>
+  </xacro:unless>
+
+  <!-- Used for fixing robot to Gazebo ground in case the robot is not connected to any other component -->
+  <xacro:if value="${connected_to == ''}">
+	  <link name="world"/>
+	  <joint name="fix_to_world" type="continuous">
+		  <parent link="world"/>
+		  <child link="cocacola_bottle"/>
+		  <origin xyz="${xyz}" rpy="${rpy}"/>
+	  </joint>
+  </xacro:if>
+  
+  <static>false</static>
+  
+  <!-- cocacola_bottle -->
+  <link name="cocacola_bottle">
+    <pose>0 0 0 0 0 0</pose>
+    <inertial>
+      <pose>0 0 0.07 0 0 0</pose>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+		  <mass value="2.3"/>
+		  <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+    <collision name="collision">
+      <!-- <geometry>
+        <box size="0.05 0.05 0.2"/>
+      </geometry> -->
+      <geometry>
+            <mesh filename="file://$(find urdf_models)/models/objects/meshes/cocacola_bottle.stl"/>
+      </geometry>
+      <surface>
+        <!-- <friction>
+          <ode>
+            <mu>0.2</mu>
+            <mu2>0.2</mu2>
+            <slip1>0.0</slip1>
+            <slip2>0.0</slip2>
+          </ode>
+        </friction> -->
+      </surface>
+    </collision>
+    <visual name="visual">
+      <geometry>
+          <mesh filename="file://$(find urdf_models)/models/objects/meshes/cocacola_bottle.stl"/>
+      </geometry>
+    </visual>
+  </link>
+  
+  
+  
+  
+</xacro:macro>
+</robot>

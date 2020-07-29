@@ -4,12 +4,16 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/business/code_repository/ros_packages/src/franka_panda_arm_plus_allegro_right_hand_control_gazebo/src/franka_panda_arm_plus_allegro_right_hand_gazebo_joint_controller.cpp" "/home/business/code_repository/ros_packages/build/franka_panda_arm_plus_allegro_right_hand_control_gazebo/CMakeFiles/franka_panda_arm_plus_allegro_right_hand_gazebo_joint_controller.dir/src/franka_panda_arm_plus_allegro_right_hand_gazebo_joint_controller.cpp.o"
+  "/home/experiments/code_repository/ros_packages/src/franka_panda_arm_plus_allegro_right_hand_control_gazebo/src/franka_panda_arm_plus_allegro_right_hand_gazebo_joint_controller.cpp" "/home/experiments/code_repository/ros_packages/build/franka_panda_arm_plus_allegro_right_hand_control_gazebo/CMakeFiles/franka_panda_arm_plus_allegro_right_hand_gazebo_joint_controller.dir/src/franka_panda_arm_plus_allegro_right_hand_gazebo_joint_controller.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
+  "QT_CORE_LIB"
+  "QT_GUI_LIB"
+  "QT_NO_DEBUG"
+  "QT_WIDGETS_LIB"
   "ROSCONSOLE_BACKEND_LOG4CXX"
   "ROS_BUILD_SHARED_LIBS=1"
   "ROS_PACKAGE_NAME=\"franka_panda_arm_plus_allegro_right_hand_control_gazebo\""
@@ -47,6 +51,11 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/pcl-1.8"
   "/usr/include/ni"
   "/usr/include/openni2"
+  "/usr/include/x86_64-linux-gnu/qt5"
+  "/usr/include/x86_64-linux-gnu/qt5/QtWidgets"
+  "/usr/include/x86_64-linux-gnu/qt5/QtGui"
+  "/usr/include/x86_64-linux-gnu/qt5/QtCore"
+  "/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++"
   )
 
 # Targets to which this target links.

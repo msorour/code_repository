@@ -131,6 +131,7 @@ include_directories(
 
 link_directories(
 	${PCL_LIBRARY_DIRS}
+	${PCL_LIBRARIES}
 )
 add_definitions(${PCL_DEFINITIONS})
 
@@ -213,10 +214,10 @@ add_definitions(${PCL_DEFINITIONS})
 # catkin_add_nosetests(test)
 
 add_executable(allegro_right_hand_controller src/allegro_right_hand_controller.cpp)
-target_link_libraries(allegro_right_hand_controller ${catkin_LIBRARIES})
+target_link_libraries(allegro_right_hand_controller ${catkin_LIBRARIES} ${PCL_LIBRARIES})
 
 add_executable(allegro_right_hand_joint_controller src/allegro_right_hand_joint_controller.cpp)
-target_link_libraries(allegro_right_hand_joint_controller ${catkin_LIBRARIES})
+target_link_libraries(allegro_right_hand_joint_controller ${catkin_LIBRARIES} ${PCL_LIBRARIES})
 
 add_executable(allegro_right_hand_finger_workspace src/allegro_right_hand_finger_workspace.cpp)
-target_link_libraries(allegro_right_hand_finger_workspace ${catkin_LIBRARIES})
+target_link_libraries(allegro_right_hand_finger_workspace ${catkin_LIBRARIES} ${PCL_LIBRARIES})

@@ -1,8 +1,0 @@
-prefix=/home/business/code_repository/ros_packages/devel
-
-Name: reflex_msgs
-Description: Description of reflex_msgs
-Version: 2.0.0
-Cflags: -I/home/business/code_repository/ros_packages/devel/include
-Libs: -L/home/business/code_repository/ros_packages/devel/lib 
-Requires: std_msgs std_srvs message_runtime

@@ -1,8 +1,8 @@
-prefix=/home/business/code_repository/ros_packages/devel
+prefix=/home/experiments/code_repository/ros_packages/devel
 
 Name: urdf_models
 Description: Description of urdf_models
 Version: 0.0.0
 Cflags: 
-Libs: -L/home/business/code_repository/ros_packages/devel/lib 
+Libs: -L${prefix}/lib 
 Requires: 

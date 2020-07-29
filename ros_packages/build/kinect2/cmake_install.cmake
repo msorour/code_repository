@@ -1,8 +1,8 @@
-# Install script for directory: /home/business/code_repository/ros_packages/src/kinect2
+# Install script for directory: /home/experiments/code_repository/ros_packages/src/kinect2
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/business/code_repository/ros_packages/install")
+  set(CMAKE_INSTALL_PREFIX "/home/experiments/code_repository/ros_packages/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/business/code_repository/ros_packages/build/kinect2/catkin_generated/installspace/kinect2.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/experiments/code_repository/ros_packages/build/kinect2/catkin_generated/installspace/kinect2.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/kinect2/cmake" TYPE FILE FILES
-    "/home/business/code_repository/ros_packages/build/kinect2/catkin_generated/installspace/kinect2Config.cmake"
-    "/home/business/code_repository/ros_packages/build/kinect2/catkin_generated/installspace/kinect2Config-version.cmake"
+    "/home/experiments/code_repository/ros_packages/build/kinect2/catkin_generated/installspace/kinect2Config.cmake"
+    "/home/experiments/code_repository/ros_packages/build/kinect2/catkin_generated/installspace/kinect2Config-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/kinect2" TYPE FILE FILES "/home/business/code_repository/ros_packages/src/kinect2/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/kinect2" TYPE FILE FILES "/home/experiments/code_repository/ros_packages/src/kinect2/package.xml")
 endif()
 

@@ -1,8 +1,8 @@
-# Install script for directory: /home/business/code_repository/ros_packages/src/urdf_models
+# Install script for directory: /home/experiments/code_repository/ros_packages/src/urdf_models
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/business/code_repository/ros_packages/install")
+  set(CMAKE_INSTALL_PREFIX "/home/experiments/code_repository/ros_packages/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/business/code_repository/ros_packages/build/urdf_models/catkin_generated/installspace/urdf_models.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/experiments/code_repository/ros_packages/build/urdf_models/catkin_generated/installspace/urdf_models.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/urdf_models/cmake" TYPE FILE FILES
-    "/home/business/code_repository/ros_packages/build/urdf_models/catkin_generated/installspace/urdf_modelsConfig.cmake"
-    "/home/business/code_repository/ros_packages/build/urdf_models/catkin_generated/installspace/urdf_modelsConfig-version.cmake"
+    "/home/experiments/code_repository/ros_packages/build/urdf_models/catkin_generated/installspace/urdf_modelsConfig.cmake"
+    "/home/experiments/code_repository/ros_packages/build/urdf_models/catkin_generated/installspace/urdf_modelsConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/urdf_models" TYPE FILE FILES "/home/business/code_repository/ros_packages/src/urdf_models/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/urdf_models" TYPE FILE FILES "/home/experiments/code_repository/ros_packages/src/urdf_models/package.xml")
 endif()
 

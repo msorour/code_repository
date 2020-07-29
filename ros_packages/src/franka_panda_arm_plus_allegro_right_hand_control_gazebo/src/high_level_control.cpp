@@ -42,19 +42,21 @@
 using namespace franka_panda_gazebo_controller;
 
 typedef pcl::PointCloud<pcl::PointXYZ> PointCloud;
+pcl::PointCloud<pcl::PointXYZ>::Ptr point_cloud(new pcl::PointCloud<pcl::PointXYZ>());
 boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer(new pcl::visualization::PCLVisualizer("point cloud viewer"));
-
+Eigen::Matrix3f intrinsic_parameters;
 
 class ImageConverter{
   ros::NodeHandle nh_;
   image_transport::ImageTransport it_;
   image_transport::Subscriber image_sub_;
-
+  std::string window_name="dummy";
+	
   public:
-    std::string window_name="";
-    ImageConverter(std::string image_topic_name) : it_(nh_){
+    ImageConverter(std::string image_topic_name, std::string name="") : it_(nh_){
       // Subscrive to input video feed
       image_sub_ = it_.subscribe(image_topic_name, 1, &ImageConverter::imageCb, this);
+      window_name = name;
       cv::namedWindow(window_name);
     }
     
@@ -65,11 +67,54 @@ class ImageConverter{
       try{cv_ptr = cv_bridge::toCvCopy(msg);}
       catch(cv_bridge::Exception& e){ROS_ERROR("cv_bridge exception: %s", e.what()); return;}
       
+      // depth image to point cloud
+      intrinsic_parameters << 0.0, 0.0, 0.0,
+			                        0.0, 0.0, 0.0,
+			                        0.0, 0.0, 0.0;
+
+      //point_cloud = RGBDtoPCL(cv_ptr->image, intrinsic_parameters);
+      
       // Update GUI Window
       cv::imshow(window_name, cv_ptr->image);
       cv::waitKey(3);
     }
 };
+
+
+/*
+PointCloud::Ptr RGBDtoPCL(cv::Mat depth_image, Eigen::Matrix3f& _intrinsics){
+	PointCloud::Ptr pointcloud(new PointCloud);
+	float fx = _intrinsics(0, 0);
+	float fy = _intrinsics(1, 1);
+	float cx = _intrinsics(0, 2);
+	float cy = _intrinsics(1, 2);
+	float factor = 1;
+	
+	depth_image.convertTo(depth_image, CV_32F); // convert the image data to float type 
+	
+	if(!depth_image.data){std::cerr << "No depth data!!!" << std::endl; exit(EXIT_FAILURE);}
+
+	pointcloud->width = depth_image.cols; //Dimensions must be initialized to use 2-D indexing 
+	pointcloud->height = depth_image.rows;
+	pointcloud->resize(pointcloud->width*pointcloud->height);
+
+#pragma omp parallel for
+	for (int v = 0; v < depth_image.rows; v += 4){
+		for (int u = 0; u < depth_image.cols; u += 4){
+			float Z = depth_image.at<float>(v, u) / factor;
+			pcl::PointXYZ p;
+			p.z = Z;
+			p.x = (u - cx) * Z / fx;
+			p.y = (v - cy) * Z / fy;
+			p.z = p.z / 1000;
+			p.x = p.x / 1000;
+			p.y = p.y / 1000;
+			pointcloud->points.push_back(p);
+		}
+	}
+	return pointcloud;
+}
+*/
 
 
 void callback(const PointCloud::ConstPtr& msg){  
@@ -102,7 +147,6 @@ void callback(const PointCloud::ConstPtr& msg){
 }
 
 
-
 /*
 class PointCloudToImage{
   public:
@@ -130,20 +174,6 @@ class PointCloudToImage{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 int main(int argc, char **argv){
   std::string model_name;
   model_name = argv[2];
@@ -152,21 +182,28 @@ int main(int argc, char **argv){
 	ros::NodeHandle n;
 	ros::Rate loop_rate(30);
   
-  ros::Subscriber sub = n.subscribe<PointCloud>("/master_cell/kinect2/sd/points", 1, callback);
+    
+  //ros::Subscriber sub = n.subscribe<PointCloud>("/master_cell/kinect2/sd/points", 1, callback);
+  //ros::Subscriber sub = n.subscribe<PointCloud>("/master_cell/realsense/depth/image_raw", 1, callback);
+  //ros::Subscriber sub = n.subscribe<PointCloud>("/master_cell/panda1_link7/panda1_realsense_depth/image", 1, callback);
+  ros::Subscriber sub = n.subscribe<PointCloud>("/panda1/depth/points", 1, callback);
+  
+  //ImageConverter real_sense_depth_image("/master_cell/realsense/depth/image_raw");
+  //real_sense_depth_image.window_name = "realsense depth image";
+  ImageConverter real_sense_depth_image("/master_cell/realsense/depth/image_raw", "realsense depth image");
+  //ImageConverter real_sense_depth_image("/master_cell/panda1_link7/panda1_realsense_depth/image", "panda1 realsense depth image");
   
   
-  // Image !!
- 	ImageConverter real_sense_depth_image("/master_cell/realsense/depth/image_raw");
-  real_sense_depth_image.window_name = "realsense depth image";
   /*
   ImageConverter real_sense_ir1_image("/master_cell/realsense/ir1/image_raw");
   real_sense_ir1_image.window_name = "realsense ir1 image";
   
   ImageConverter real_sense_ir2_image("/master_cell/realsense/ir2/image_raw");
   real_sense_ir2_image.window_name = "realsense ir2 image";
-  */
+  
   ImageConverter kinect2_depth_image("/master_cell/kinect2/sd/image_depth_rect");
   kinect2_depth_image.window_name = "kinect2 depth image";
+  */
   
   /*
   ImageConverter kinect2_depth_image_comp("/master_cell/kinect2/sd/image_depth_rect/compressed");
@@ -181,10 +218,10 @@ int main(int argc, char **argv){
   
   
   
-  
+  /*
   ImageConverter kinect2_point_cloud_image("/master_cell/point_cloud_image");
   kinect2_point_cloud_image.window_name = "kinect2 point cloud image";
-  
+  */
 	
 	// Wait for a few moments till correct joint values are loaded
 	while (ros::ok() and ros::Time::now().toSec() < start_program_delay*10 ){
@@ -197,7 +234,6 @@ int main(int argc, char **argv){
  	
  	
  	
- 	
  	time_now = ros::Time::now().toSec();
  	time_past = time_now;
 	
@@ -206,7 +242,9 @@ int main(int argc, char **argv){
   	time_now = ros::Time::now().toSec();
   	//cout << "time_now = " << time_now  << endl;
   	
-  	
+  	if(!viewer->addPointCloud(point_cloud,"sample cloud"))
+			viewer->updatePointCloud<pcl::PointXYZ>(point_cloud, "sample cloud");
+		viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1, "sample cloud");
   	
     viewer->spinOnce();
   	

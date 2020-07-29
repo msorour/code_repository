@@ -1,8 +1,0 @@
-prefix=/home/business/code_repository/ros_packages/install
-
-Name: dynamixel_msgs
-Description: Description of dynamixel_msgs
-Version: 0.4.1
-Cflags: -I/home/business/code_repository/ros_packages/install/include
-Libs: -L/home/business/code_repository/ros_packages/install/lib 
-Requires: message_runtime std_msgs

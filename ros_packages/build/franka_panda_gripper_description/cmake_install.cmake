@@ -1,8 +1,8 @@
-# Install script for directory: /home/business/code_repository/ros_packages/src/franka_panda_gripper_description
+# Install script for directory: /home/experiments/code_repository/ros_packages/src/franka_panda_gripper_description
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/business/code_repository/ros_packages/install")
+  set(CMAKE_INSTALL_PREFIX "/home/experiments/code_repository/ros_packages/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/business/code_repository/ros_packages/build/franka_panda_gripper_description/catkin_generated/installspace/franka_panda_gripper_description.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/experiments/code_repository/ros_packages/build/franka_panda_gripper_description/catkin_generated/installspace/franka_panda_gripper_description.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/franka_panda_gripper_description/cmake" TYPE FILE FILES
-    "/home/business/code_repository/ros_packages/build/franka_panda_gripper_description/catkin_generated/installspace/franka_panda_gripper_descriptionConfig.cmake"
-    "/home/business/code_repository/ros_packages/build/franka_panda_gripper_description/catkin_generated/installspace/franka_panda_gripper_descriptionConfig-version.cmake"
+    "/home/experiments/code_repository/ros_packages/build/franka_panda_gripper_description/catkin_generated/installspace/franka_panda_gripper_descriptionConfig.cmake"
+    "/home/experiments/code_repository/ros_packages/build/franka_panda_gripper_description/catkin_generated/installspace/franka_panda_gripper_descriptionConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/franka_panda_gripper_description" TYPE FILE FILES "/home/business/code_repository/ros_packages/src/franka_panda_gripper_description/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/franka_panda_gripper_description" TYPE FILE FILES "/home/experiments/code_repository/ros_packages/src/franka_panda_gripper_description/package.xml")
 endif()
 

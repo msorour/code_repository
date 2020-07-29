@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/business/code_repository/ros_packages/src
+CMAKE_SOURCE_DIR = /home/experiments/code_repository/ros_packages/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/business/code_repository/ros_packages/build
+CMAKE_BINARY_DIR = /home/experiments/code_repository/ros_packages/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -115,8 +115,8 @@ list_install_components/fast: list_install_components
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/cmake-gui -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -137,14 +137,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/business/code_repository/ros_packages/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/business/code_repository/ros_packages/build/CMakeFiles /home/business/code_repository/ros_packages/build/grasping_application/CMakeFiles/progress.marks
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 grasping_application/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/business/code_repository/ros_packages/build/CMakeFiles 0
+	cd /home/experiments/code_repository/ros_packages/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/experiments/code_repository/ros_packages/build/CMakeFiles /home/experiments/code_repository/ros_packages/build/grasping_application/CMakeFiles/progress.marks
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 grasping_application/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/experiments/code_repository/ros_packages/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 grasping_application/clean
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 grasping_application/clean
 .PHONY : clean
 
 # The main clean target
@@ -154,22 +154,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 grasping_application/preinstall
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 grasping_application/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 grasping_application/preinstall
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 grasping_application/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/business/code_repository/ros_packages/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/experiments/code_repository/ros_packages/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 grasping_application/CMakeFiles/point_cloud_processing.dir/rule:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 grasping_application/CMakeFiles/point_cloud_processing.dir/rule
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 grasping_application/CMakeFiles/point_cloud_processing.dir/rule
 .PHONY : grasping_application/CMakeFiles/point_cloud_processing.dir/rule
 
 # Convenience name for target.
@@ -179,12 +179,12 @@ point_cloud_processing: grasping_application/CMakeFiles/point_cloud_processing.d
 
 # fast build rule for target.
 point_cloud_processing/fast:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f grasping_application/CMakeFiles/point_cloud_processing.dir/build.make grasping_application/CMakeFiles/point_cloud_processing.dir/build
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f grasping_application/CMakeFiles/point_cloud_processing.dir/build.make grasping_application/CMakeFiles/point_cloud_processing.dir/build
 .PHONY : point_cloud_processing/fast
 
 # Convenience name for target.
 grasping_application/CMakeFiles/grasping_application_xacro_generated_to_devel_space_.dir/rule:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 grasping_application/CMakeFiles/grasping_application_xacro_generated_to_devel_space_.dir/rule
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 grasping_application/CMakeFiles/grasping_application_xacro_generated_to_devel_space_.dir/rule
 .PHONY : grasping_application/CMakeFiles/grasping_application_xacro_generated_to_devel_space_.dir/rule
 
 # Convenience name for target.
@@ -194,7 +194,7 @@ grasping_application_xacro_generated_to_devel_space_: grasping_application/CMake
 
 # fast build rule for target.
 grasping_application_xacro_generated_to_devel_space_/fast:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f grasping_application/CMakeFiles/grasping_application_xacro_generated_to_devel_space_.dir/build.make grasping_application/CMakeFiles/grasping_application_xacro_generated_to_devel_space_.dir/build
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f grasping_application/CMakeFiles/grasping_application_xacro_generated_to_devel_space_.dir/build.make grasping_application/CMakeFiles/grasping_application_xacro_generated_to_devel_space_.dir/build
 .PHONY : grasping_application_xacro_generated_to_devel_space_/fast
 
 src/point_cloud_processing.o: src/point_cloud_processing.cpp.o
@@ -203,7 +203,7 @@ src/point_cloud_processing.o: src/point_cloud_processing.cpp.o
 
 # target to build an object file
 src/point_cloud_processing.cpp.o:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f grasping_application/CMakeFiles/point_cloud_processing.dir/build.make grasping_application/CMakeFiles/point_cloud_processing.dir/src/point_cloud_processing.cpp.o
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f grasping_application/CMakeFiles/point_cloud_processing.dir/build.make grasping_application/CMakeFiles/point_cloud_processing.dir/src/point_cloud_processing.cpp.o
 .PHONY : src/point_cloud_processing.cpp.o
 
 src/point_cloud_processing.i: src/point_cloud_processing.cpp.i
@@ -212,7 +212,7 @@ src/point_cloud_processing.i: src/point_cloud_processing.cpp.i
 
 # target to preprocess a source file
 src/point_cloud_processing.cpp.i:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f grasping_application/CMakeFiles/point_cloud_processing.dir/build.make grasping_application/CMakeFiles/point_cloud_processing.dir/src/point_cloud_processing.cpp.i
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f grasping_application/CMakeFiles/point_cloud_processing.dir/build.make grasping_application/CMakeFiles/point_cloud_processing.dir/src/point_cloud_processing.cpp.i
 .PHONY : src/point_cloud_processing.cpp.i
 
 src/point_cloud_processing.s: src/point_cloud_processing.cpp.s
@@ -221,7 +221,7 @@ src/point_cloud_processing.s: src/point_cloud_processing.cpp.s
 
 # target to generate assembly for a file
 src/point_cloud_processing.cpp.s:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f grasping_application/CMakeFiles/point_cloud_processing.dir/build.make grasping_application/CMakeFiles/point_cloud_processing.dir/src/point_cloud_processing.cpp.s
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f grasping_application/CMakeFiles/point_cloud_processing.dir/build.make grasping_application/CMakeFiles/point_cloud_processing.dir/src/point_cloud_processing.cpp.s
 .PHONY : src/point_cloud_processing.cpp.s
 
 # Help Target
@@ -253,6 +253,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/business/code_repository/ros_packages/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/experiments/code_repository/ros_packages/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

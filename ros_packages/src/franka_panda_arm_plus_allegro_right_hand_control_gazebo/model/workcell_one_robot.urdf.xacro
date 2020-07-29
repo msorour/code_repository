@@ -11,6 +11,10 @@
   <xacro:include filename="$(find urdf_models)/models/workcell_frame/workcell_frame.xacro"/>
   <xacro:workcell_frame connected_to="" ns="${cell_name}" xyz="0 0 0.07" rpy="0 0 0" />
   
+  <!-- Object model -->
+  <xacro:include filename="$(find urdf_models)/models/objects/cocacola_bottle.xacro"/>
+  <xacro:cocacola_bottle connected_to='${cell_name}_workcell_assembly' ns="" xyz="1.2 0.6 0.91" rpy="0 0 0" />
+  
   <!-- Franka-Panda arm model -->
   <xacro:include filename="$(find franka_panda_arm_description)/model/panda_arm_gazebo.xacro" />
   <xacro:panda_arm connected_to='${cell_name}_workcell_assembly' arm_id="${robot_arm1}" xyz="1.42 0.188 0.916" rpy="0 0 ${pi/2}" />
@@ -25,15 +29,19 @@
   <xacro:allegro_right_hand ns="${robot_arm1}" x="-0.0091" y="0" z="0.02" roll="0" pitch="0" yaw="${pi}" connected_to="${robot_arm1}_panda_allegro_connection" />
   
   <!-- ReadSense-d435 depth camera -->
-  <xacro:include filename="$(find realsense_d435_description)/model/realsense_d435.xacro"/>
+  <!-- <xacro:include filename="$(find realsense_d435_description)/model/realsense_d435.xacro"/> -->
+  <xacro:include filename="$(find realsense_d435_description)/model/realsense_d435_openni.xacro"/>
   <xacro:realsense_d435 connected_to="${robot_arm1}_panda_allegro_connection" ns="${robot_arm1}" origin_rpy="0 ${-pi/2} 0" origin_xyz="-0.0673 0 -0.02" />
-  <gazebo>
-    <plugin name="RealSenseCamRosPlugin" filename="libRealSenseCamRosPlugin.so"> </plugin>
-  </gazebo>
+  <!-- <gazebo>
+    <plugin name="RealSenseCamRosPlugin" filename="libRealSenseCamRosPlugin.so"> </plugin> -->
+    <!-- <plugin name="RealSenseCamRosPlugin" filename="RealSensePlugin.so">  </plugin> -->
+  <!-- </gazebo> -->
   
   <!--Kinect v2 depth camera -->
-  <xacro:include filename="$(find kinect2_description)/urdf/kinect2/kinect2.xacro"/>
-  <kinect2_sensor parent="${cell_name}_workcell_assembly" prefix="" name="kinect2" cam_px="1.53" cam_py="0.567" cam_pz="2.188" cam_or="${pi/2}" cam_op="${pi/2}" cam_oy="0"/>
+  <!--<xacro:include filename="$(find kinect2_description)/urdf/kinect2/kinect2.xacro"/>
+  <kinect2_sensor parent="${cell_name}_workcell_assembly" prefix="" name="kinect2" cam_px="1.53" cam_py="0.567" cam_pz="2.188" cam_or="${pi/2}" cam_op="${pi/2}" cam_oy="0"/> -->
+  <!--<xacro:include filename="$(find kinect2)/model/kinect2.xacro"/>
+  <kinect2_sensor parent="${cell_name}_workcell_assembly" prefix="" name="kinect2" cam_px="1.53" cam_py="0.567" cam_pz="2.188" cam_or="${pi/2}" cam_op="${pi/2}" cam_oy="0"/> -->
 
   <gazebo>
     <plugin name="generic_interface_plugin" filename="libgeneric_interface_plugin.so">

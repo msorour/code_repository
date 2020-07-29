@@ -1,8 +1,8 @@
-# Install script for directory: /home/business/code_repository/ros_packages/src/franka_panda_arm_plus_allegro_right_hand_control_gazebo
+# Install script for directory: /home/experiments/code_repository/ros_packages/src/franka_panda_arm_plus_allegro_right_hand_control_gazebo
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/business/code_repository/ros_packages/install")
+  set(CMAKE_INSTALL_PREFIX "/home/experiments/code_repository/ros_packages/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/business/code_repository/ros_packages/build/franka_panda_arm_plus_allegro_right_hand_control_gazebo/catkin_generated/installspace/franka_panda_arm_plus_allegro_right_hand_control_gazebo.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/experiments/code_repository/ros_packages/build/franka_panda_arm_plus_allegro_right_hand_control_gazebo/catkin_generated/installspace/franka_panda_arm_plus_allegro_right_hand_control_gazebo.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/franka_panda_arm_plus_allegro_right_hand_control_gazebo/cmake" TYPE FILE FILES
-    "/home/business/code_repository/ros_packages/build/franka_panda_arm_plus_allegro_right_hand_control_gazebo/catkin_generated/installspace/franka_panda_arm_plus_allegro_right_hand_control_gazeboConfig.cmake"
-    "/home/business/code_repository/ros_packages/build/franka_panda_arm_plus_allegro_right_hand_control_gazebo/catkin_generated/installspace/franka_panda_arm_plus_allegro_right_hand_control_gazeboConfig-version.cmake"
+    "/home/experiments/code_repository/ros_packages/build/franka_panda_arm_plus_allegro_right_hand_control_gazebo/catkin_generated/installspace/franka_panda_arm_plus_allegro_right_hand_control_gazeboConfig.cmake"
+    "/home/experiments/code_repository/ros_packages/build/franka_panda_arm_plus_allegro_right_hand_control_gazebo/catkin_generated/installspace/franka_panda_arm_plus_allegro_right_hand_control_gazeboConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/franka_panda_arm_plus_allegro_right_hand_control_gazebo" TYPE FILE FILES "/home/business/code_repository/ros_packages/src/franka_panda_arm_plus_allegro_right_hand_control_gazebo/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/franka_panda_arm_plus_allegro_right_hand_control_gazebo" TYPE FILE FILES "/home/experiments/code_repository/ros_packages/src/franka_panda_arm_plus_allegro_right_hand_control_gazebo/package.xml")
 endif()
 

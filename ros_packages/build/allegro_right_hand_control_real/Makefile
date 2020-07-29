@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/business/code_repository/ros_packages/src
+CMAKE_SOURCE_DIR = /home/experiments/code_repository/ros_packages/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/business/code_repository/ros_packages/build
+CMAKE_BINARY_DIR = /home/experiments/code_repository/ros_packages/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -115,8 +115,8 @@ list_install_components/fast: list_install_components
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/cmake-gui -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -137,14 +137,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/business/code_repository/ros_packages/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/business/code_repository/ros_packages/build/CMakeFiles /home/business/code_repository/ros_packages/build/allegro_right_hand_control_real/CMakeFiles/progress.marks
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_control_real/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/business/code_repository/ros_packages/build/CMakeFiles 0
+	cd /home/experiments/code_repository/ros_packages/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/experiments/code_repository/ros_packages/build/CMakeFiles /home/experiments/code_repository/ros_packages/build/allegro_right_hand_control_real/CMakeFiles/progress.marks
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_control_real/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/experiments/code_repository/ros_packages/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_control_real/clean
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_control_real/clean
 .PHONY : clean
 
 # The main clean target
@@ -154,22 +154,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_control_real/preinstall
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_control_real/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_control_real/preinstall
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_control_real/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/business/code_repository/ros_packages/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/experiments/code_repository/ros_packages/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/rule:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/rule
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/rule
 .PHONY : allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/rule
 
 # Convenience name for target.
@@ -179,12 +179,12 @@ allegro_right_hand_controller_real: allegro_right_hand_control_real/CMakeFiles/a
 
 # fast build rule for target.
 allegro_right_hand_controller_real/fast:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build
 .PHONY : allegro_right_hand_controller_real/fast
 
 # Convenience name for target.
 allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_control_real_xacro_generated_to_devel_space_.dir/rule:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_control_real_xacro_generated_to_devel_space_.dir/rule
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f CMakeFiles/Makefile2 allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_control_real_xacro_generated_to_devel_space_.dir/rule
 .PHONY : allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_control_real_xacro_generated_to_devel_space_.dir/rule
 
 # Convenience name for target.
@@ -194,7 +194,7 @@ allegro_right_hand_control_real_xacro_generated_to_devel_space_: allegro_right_h
 
 # fast build rule for target.
 allegro_right_hand_control_real_xacro_generated_to_devel_space_/fast:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_control_real_xacro_generated_to_devel_space_.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_control_real_xacro_generated_to_devel_space_.dir/build
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_control_real_xacro_generated_to_devel_space_.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_control_real_xacro_generated_to_devel_space_.dir/build
 .PHONY : allegro_right_hand_control_real_xacro_generated_to_devel_space_/fast
 
 include/allegro_hand_interface.o: include/allegro_hand_interface.cpp.o
@@ -203,7 +203,7 @@ include/allegro_hand_interface.o: include/allegro_hand_interface.cpp.o
 
 # target to build an object file
 include/allegro_hand_interface.cpp.o:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/include/allegro_hand_interface.cpp.o
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/include/allegro_hand_interface.cpp.o
 .PHONY : include/allegro_hand_interface.cpp.o
 
 include/allegro_hand_interface.i: include/allegro_hand_interface.cpp.i
@@ -212,7 +212,7 @@ include/allegro_hand_interface.i: include/allegro_hand_interface.cpp.i
 
 # target to preprocess a source file
 include/allegro_hand_interface.cpp.i:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/include/allegro_hand_interface.cpp.i
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/include/allegro_hand_interface.cpp.i
 .PHONY : include/allegro_hand_interface.cpp.i
 
 include/allegro_hand_interface.s: include/allegro_hand_interface.cpp.s
@@ -221,7 +221,7 @@ include/allegro_hand_interface.s: include/allegro_hand_interface.cpp.s
 
 # target to generate assembly for a file
 include/allegro_hand_interface.cpp.s:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/include/allegro_hand_interface.cpp.s
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/include/allegro_hand_interface.cpp.s
 .PHONY : include/allegro_hand_interface.cpp.s
 
 include/canAPI.o: include/canAPI.cpp.o
@@ -230,7 +230,7 @@ include/canAPI.o: include/canAPI.cpp.o
 
 # target to build an object file
 include/canAPI.cpp.o:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/include/canAPI.cpp.o
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/include/canAPI.cpp.o
 .PHONY : include/canAPI.cpp.o
 
 include/canAPI.i: include/canAPI.cpp.i
@@ -239,7 +239,7 @@ include/canAPI.i: include/canAPI.cpp.i
 
 # target to preprocess a source file
 include/canAPI.cpp.i:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/include/canAPI.cpp.i
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/include/canAPI.cpp.i
 .PHONY : include/canAPI.cpp.i
 
 include/canAPI.s: include/canAPI.cpp.s
@@ -248,7 +248,7 @@ include/canAPI.s: include/canAPI.cpp.s
 
 # target to generate assembly for a file
 include/canAPI.cpp.s:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/include/canAPI.cpp.s
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/include/canAPI.cpp.s
 .PHONY : include/canAPI.cpp.s
 
 src/allegro_right_hand_controller.o: src/allegro_right_hand_controller.cpp.o
@@ -257,7 +257,7 @@ src/allegro_right_hand_controller.o: src/allegro_right_hand_controller.cpp.o
 
 # target to build an object file
 src/allegro_right_hand_controller.cpp.o:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/src/allegro_right_hand_controller.cpp.o
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/src/allegro_right_hand_controller.cpp.o
 .PHONY : src/allegro_right_hand_controller.cpp.o
 
 src/allegro_right_hand_controller.i: src/allegro_right_hand_controller.cpp.i
@@ -266,7 +266,7 @@ src/allegro_right_hand_controller.i: src/allegro_right_hand_controller.cpp.i
 
 # target to preprocess a source file
 src/allegro_right_hand_controller.cpp.i:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/src/allegro_right_hand_controller.cpp.i
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/src/allegro_right_hand_controller.cpp.i
 .PHONY : src/allegro_right_hand_controller.cpp.i
 
 src/allegro_right_hand_controller.s: src/allegro_right_hand_controller.cpp.s
@@ -275,7 +275,7 @@ src/allegro_right_hand_controller.s: src/allegro_right_hand_controller.cpp.s
 
 # target to generate assembly for a file
 src/allegro_right_hand_controller.cpp.s:
-	cd /home/business/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/src/allegro_right_hand_controller.cpp.s
+	cd /home/experiments/code_repository/ros_packages/build && $(MAKE) -f allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/build.make allegro_right_hand_control_real/CMakeFiles/allegro_right_hand_controller_real.dir/src/allegro_right_hand_controller.cpp.s
 .PHONY : src/allegro_right_hand_controller.cpp.s
 
 # Help Target
@@ -313,6 +313,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/business/code_repository/ros_packages/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/experiments/code_repository/ros_packages/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

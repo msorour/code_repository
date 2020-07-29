@@ -14,8 +14,8 @@
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(find allegro_right_hand_description)/model/allegro_right_hand.urdf.xacro" />
   
   <!-- Set up env variable so plugin are found -->
-  <env name="GAZEBO_PLUGIN_PATH" value="/home/work/code_repository/gazebo_plugins/generic_interface_plugin/build"/>
-  <env name="GAZEBO_MODEL_PATH" value="/home/work/code_repository/gazebo_models"/>
+  <env name="GAZEBO_PLUGIN_PATH" value="~/code_repository/gazebo_plugins/generic_interface_plugin/build"/>
+  <env name="GAZEBO_MODEL_PATH" value="~/code_repository/gazebo_models"/>
   
   <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model $(arg hand_name) -param robot_description"/>

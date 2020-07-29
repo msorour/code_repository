@@ -1,24 +1,24 @@
 Determining if the pthread_create exist failed with the following output:
-Change Dir: /home/work/code_repository/gazebo_plugins/realsense_d435_plugin/build/CMakeFiles/CMakeTmp
+Change Dir: /home/experiments/code_repository/gazebo_plugins/realsense_d435_plugin/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_23918/fast"
-/usr/bin/make -f CMakeFiles/cmTC_23918.dir/build.make CMakeFiles/cmTC_23918.dir/build
-make[1]: Entering directory '/home/work/code_repository/gazebo_plugins/realsense_d435_plugin/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_23918.dir/CheckSymbolExists.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_23918.dir/CheckSymbolExists.c.o   -c /home/work/code_repository/gazebo_plugins/realsense_d435_plugin/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
-Linking C executable cmTC_23918
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_23918.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_23918.dir/CheckSymbolExists.c.o  -o cmTC_23918 -rdynamic 
-CMakeFiles/cmTC_23918.dir/CheckSymbolExists.c.o: In function `main':
-CheckSymbolExists.c:(.text+0x16): undefined reference to `pthread_create'
+Run Build Command:"/usr/bin/make" "cmTC_e19a1/fast"
+/usr/bin/make -f CMakeFiles/cmTC_e19a1.dir/build.make CMakeFiles/cmTC_e19a1.dir/build
+make[1]: Entering directory '/home/experiments/code_repository/gazebo_plugins/realsense_d435_plugin/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e19a1.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_e19a1.dir/CheckSymbolExists.c.o   -c /home/experiments/code_repository/gazebo_plugins/realsense_d435_plugin/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_e19a1
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e19a1.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_e19a1.dir/CheckSymbolExists.c.o  -o cmTC_e19a1 
+CMakeFiles/cmTC_e19a1.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_23918.dir/build.make:97: recipe for target 'cmTC_23918' failed
-make[1]: *** [cmTC_23918] Error 1
-make[1]: Leaving directory '/home/work/code_repository/gazebo_plugins/realsense_d435_plugin/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_23918/fast' failed
-make: *** [cmTC_23918/fast] Error 2
+CMakeFiles/cmTC_e19a1.dir/build.make:97: recipe for target 'cmTC_e19a1' failed
+make[1]: *** [cmTC_e19a1] Error 1
+make[1]: Leaving directory '/home/experiments/code_repository/gazebo_plugins/realsense_d435_plugin/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_e19a1/fast' failed
+make: *** [cmTC_e19a1/fast] Error 2
 
-File /home/work/code_repository/gazebo_plugins/realsense_d435_plugin/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+File /home/experiments/code_repository/gazebo_plugins/realsense_d435_plugin/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */
 #include <pthread.h>
 
@@ -34,22 +34,22 @@ int main(int argc, char** argv)
 }
 
 Determining if the function pthread_create exists in the pthreads failed with the following output:
-Change Dir: /home/work/code_repository/gazebo_plugins/realsense_d435_plugin/build/CMakeFiles/CMakeTmp
+Change Dir: /home/experiments/code_repository/gazebo_plugins/realsense_d435_plugin/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_de30f/fast"
-/usr/bin/make -f CMakeFiles/cmTC_de30f.dir/build.make CMakeFiles/cmTC_de30f.dir/build
-make[1]: Entering directory '/home/work/code_repository/gazebo_plugins/realsense_d435_plugin/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_de30f.dir/CheckFunctionExists.c.o
-/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_de30f.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
-Linking C executable cmTC_de30f
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_de30f.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_de30f.dir/CheckFunctionExists.c.o  -o cmTC_de30f -rdynamic -lpthreads 
+Run Build Command:"/usr/bin/make" "cmTC_b6c05/fast"
+/usr/bin/make -f CMakeFiles/cmTC_b6c05.dir/build.make CMakeFiles/cmTC_b6c05.dir/build
+make[1]: Entering directory '/home/experiments/code_repository/gazebo_plugins/realsense_d435_plugin/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_b6c05.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_b6c05.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_b6c05
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b6c05.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_b6c05.dir/CheckFunctionExists.c.o  -o cmTC_b6c05 -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_de30f.dir/build.make:97: recipe for target 'cmTC_de30f' failed
-make[1]: *** [cmTC_de30f] Error 1
-make[1]: Leaving directory '/home/work/code_repository/gazebo_plugins/realsense_d435_plugin/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_de30f/fast' failed
-make: *** [cmTC_de30f/fast] Error 2
+CMakeFiles/cmTC_b6c05.dir/build.make:97: recipe for target 'cmTC_b6c05' failed
+make[1]: *** [cmTC_b6c05] Error 1
+make[1]: Leaving directory '/home/experiments/code_repository/gazebo_plugins/realsense_d435_plugin/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_b6c05/fast' failed
+make: *** [cmTC_b6c05/fast] Error 2
 
 

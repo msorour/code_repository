@@ -1,8 +1,8 @@
-# Install script for directory: /home/business/code_repository/ros_packages/src/allegro_right_hand_control_real
+# Install script for directory: /home/experiments/code_repository/ros_packages/src/allegro_right_hand_control_real
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/business/code_repository/ros_packages/install")
+  set(CMAKE_INSTALL_PREFIX "/home/experiments/code_repository/ros_packages/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/business/code_repository/ros_packages/build/allegro_right_hand_control_real/catkin_generated/installspace/allegro_right_hand_control_real.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/experiments/code_repository/ros_packages/build/allegro_right_hand_control_real/catkin_generated/installspace/allegro_right_hand_control_real.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/allegro_right_hand_control_real/cmake" TYPE FILE FILES
-    "/home/business/code_repository/ros_packages/build/allegro_right_hand_control_real/catkin_generated/installspace/allegro_right_hand_control_realConfig.cmake"
-    "/home/business/code_repository/ros_packages/build/allegro_right_hand_control_real/catkin_generated/installspace/allegro_right_hand_control_realConfig-version.cmake"
+    "/home/experiments/code_repository/ros_packages/build/allegro_right_hand_control_real/catkin_generated/installspace/allegro_right_hand_control_realConfig.cmake"
+    "/home/experiments/code_repository/ros_packages/build/allegro_right_hand_control_real/catkin_generated/installspace/allegro_right_hand_control_realConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/allegro_right_hand_control_real" TYPE FILE FILES "/home/business/code_repository/ros_packages/src/allegro_right_hand_control_real/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/allegro_right_hand_control_real" TYPE FILE FILES "/home/experiments/code_repository/ros_packages/src/allegro_right_hand_control_real/package.xml")
 endif()
 
