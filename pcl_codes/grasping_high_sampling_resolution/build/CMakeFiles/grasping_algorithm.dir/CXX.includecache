@@ -39,8 +39,6 @@ time.h
 -
 pcl/common/transforms.h
 -
-QuadProg++.hh
-/home/business/code_repository/pcl_codes/grasping_high_sampling_resolution/QuadProg++.hh
 include/declarations.h
 /home/business/code_repository/pcl_codes/grasping_high_sampling_resolution/include/declarations.h
 include/useful_implementations.h
@@ -49,6 +47,8 @@ include/grasping_algorithm.h
 /home/business/code_repository/pcl_codes/grasping_high_sampling_resolution/include/grasping_algorithm.h
 math.h
 -
+QuadProg++.hh
+/home/business/code_repository/pcl_codes/grasping_high_sampling_resolution/QuadProg++.hh
 
 /home/business/code_repository/pcl_codes/grasping_high_sampling_resolution/include/declarations.h
 

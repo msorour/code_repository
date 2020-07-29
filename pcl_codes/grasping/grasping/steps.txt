@@ -1,0 +1,34 @@
+
+1# generate point cloud for allegro hand out of the .ply model files and save to .pcd file
+./step_1_allegro_right_hand_model_to_point_cloud
+
+2# generate point cloud of the workspace of each finger passing the number of joint space samples
+## to generate the light workspace points to be used in generating convex shapes
+./step_2_hand_workspace_sampling 3 convex_shape_generation
+## to generate the high resolution workspace points
+./step_2_hand_workspace_sampling 3 normal
+
+3# generate ellipsoids making up the workspace per finger and save to .pcd file
+./step_3_hand_workspace_ellipsoids 4 10
+./step_3_hand_workspace_spheres 4 10
+
+4# compute object pose
+./step_4_object_pose_approximation box_of_cereal_xyz ellipsoids 5
+
+5# find region of interest
+./step_5_region_of_interest box_of_cereal_xyz ellipsoids 3
+./step_5_region_of_interest box_of_cereal_xyz spheres 3
+
+6# allign hand with region of interest
+./step_6_allign_hand_with_roi vase_xyz_rot ellipsoids 3
+./step_6_allign_hand_with_roi vase_xyz_rot spheres 3
+
+7# hand touches the object using the palm
+./step_7_touch_the_object_with_palm vase_xyz_rot ellipsoids 3
+./step_7_touch_the_object_with_palm vase_xyz_rot spheres 3
+
+8# filter workspace merging with object surface
+./step_8_filter_hand_workspace_merging_with_object_surface box_of_cereal_xyz_2 spheres 3
+
+9# optimization to find grasping points
+./step_9_grasp_locations_optimization box_of_cereal_xyz_2 spheres 3
