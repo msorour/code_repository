@@ -393,29 +393,22 @@ int main(){
   
   
   Eigen::Vector3f camera_translation;
-  camera_translation << -0.0673, 0, -0.02;
-  Eigen::Matrix3f camera_rotation = Roty_float(-M_PI/2);
+  camera_translation << 0, 0.0673, -0.02-0.005-0.012;
+  Eigen::Matrix3f camera_rotation = Rotz_float(-M_PI/2)*Roty_float(-M_PI/2);
   Eigen::Matrix4f camera_transform;
   camera_transform << camera_rotation, camera_translation,
                0, 0, 0, 1;
   pcl::transformPointCloud(*camera_cloud, *camera_cloud, camera_transform);
   
   Eigen::Vector3f connection_translation;
-  connection_translation << 0, 0, 0;
-  Eigen::Matrix3f connection_rotation = Rotz_float(M_PI/2);
+  connection_translation << 0, 0, -0.005-0.012;
+  Eigen::Matrix3f connection_rotation = Rotz_float(0);
   Eigen::Matrix4f connection_transform;
   connection_transform << connection_rotation, connection_translation,
                0, 0, 0, 1;
   pcl::transformPointCloud(*connection_cloud, *connection_cloud, connection_transform);
-  // scaling down the model from millimeter to meter
-  for(unsigned int i=0;i<connection_cloud->points.size();i++){
-    connection_cloud->points[i].x /= 1000;
-    connection_cloud->points[i].y /= 1000;
-    connection_cloud->points[i].z /= 1000;
-  }
-  
-  *reflex_plus_cloud += *connection_cloud;
-  *reflex_plus_cloud += *camera_cloud;
+  //*reflex_plus_cloud += *connection_cloud;
+  //*reflex_plus_cloud += *camera_cloud;
   
   
   
@@ -441,7 +434,7 @@ int main(){
   
   viewer->addPointCloud( reflex_plus_cloud, "reflex plus point cloud" );
   viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 3, "reflex plus point cloud");
-  viewer->addCoordinateSystem(0.05);
+  viewer->addCoordinateSystem(0.02);
   
   while (!viewer->wasStopped()){
     viewer->spinOnce();

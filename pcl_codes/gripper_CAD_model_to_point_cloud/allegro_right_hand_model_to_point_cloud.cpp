@@ -36,20 +36,20 @@ int main(){
   std::string id = "cloud";
   
   // load .ply meshes, we first generate .ply file from the .stl file using meshlab software
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/base_link.ply", *base_link_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/link_0.0.ply", *link_0_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/link_1.0.ply", *link_1_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/link_2.0.ply", *link_2_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/link_3.0.ply", *link_3_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/link_3.0_tip.ply", *link_3_tip_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/link_12.0_right.ply", *link_12_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/link_13.0.ply", *link_13_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/link_14.0.ply", *link_14_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/link_15.0.ply", *link_15_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/link_15.0_tip.ply", *link_15_tip_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/allegro_right_hand_meshes/base_link.ply", *base_link_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/allegro_right_hand_meshes/link_0.0.ply", *link_0_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/allegro_right_hand_meshes/link_1.0.ply", *link_1_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/allegro_right_hand_meshes/link_2.0.ply", *link_2_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/allegro_right_hand_meshes/link_3.0.ply", *link_3_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/allegro_right_hand_meshes/link_3.0_tip.ply", *link_3_tip_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/allegro_right_hand_meshes/link_12.0_right.ply", *link_12_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/allegro_right_hand_meshes/link_13.0.ply", *link_13_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/allegro_right_hand_meshes/link_14.0.ply", *link_14_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/allegro_right_hand_meshes/link_15.0.ply", *link_15_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/allegro_right_hand_meshes/link_15.0_tip.ply", *link_15_tip_cloud);
   
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/panda_allegro_realsense_connection.ply", *connection_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("allegro_right_hand_meshes/realsense_d435.ply", *camera_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/allegro_right_hand_meshes/panda_allegro_realsense_connection.ply", *connection_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/allegro_right_hand_meshes/realsense_d435.ply", *camera_cloud);
   
   
   //
@@ -337,7 +337,7 @@ int main(){
   
   
   // save the allegro hand cloud data
-  pcl::io::savePCDFileASCII("allegro_right_hand_model_cloud_plus_camera.pcd", *allegro_hand_cloud);
+  pcl::io::savePCDFileASCII("../gripper_point_cloud/allegro_right_hand_model_cloud_plus_camera.pcd", *allegro_hand_cloud);
   
   
   viewer->addPointCloud( allegro_hand_cloud, "allegro hand point cloud" );

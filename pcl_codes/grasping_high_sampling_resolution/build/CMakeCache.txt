@@ -621,13 +621,13 @@ UBUNTU_BIONIC:BOOL=TRUE
 VTK_DIR:PATH=/usr/lib/cmake/vtk-6.3
 
 //Path to a file.
-_gmock_INCLUDES:FILEPATH=/usr/include/gmock/gmock.h
+_gmock_INCLUDES:FILEPATH=/usr/src/googletest/googlemock/include/gmock/gmock.h
 
 //Path to a file.
 _gmock_SOURCES:FILEPATH=/usr/src/gmock/src/gmock.cc
 
 //Path to a file.
-_gtest_INCLUDES:FILEPATH=/usr/include/gtest/gtest.h
+_gtest_INCLUDES:FILEPATH=/usr/src/googletest/googletest/include/gtest/gtest.h
 
 //Path to a file.
 _gtest_SOURCES:FILEPATH=/usr/src/gtest/src/gtest.cc
@@ -1042,12 +1042,12 @@ FIND_PACKAGE_MESSAGE_DETAILS_openni:INTERNAL=[/usr/lib/libOpenNI.so][/usr/includ
 //Details about finding qhull
 FIND_PACKAGE_MESSAGE_DETAILS_qhull:INTERNAL=[/usr/lib/x86_64-linux-gnu/libqhull.so][/usr/include][v()]
 GMOCK_FROM_SOURCE_FOUND:INTERNAL=TRUE
-GMOCK_FROM_SOURCE_INCLUDE_DIRS:INTERNAL=/usr/include
+GMOCK_FROM_SOURCE_INCLUDE_DIRS:INTERNAL=/usr/src/googletest/googlemock/include
 GMOCK_FROM_SOURCE_LIBRARIES:INTERNAL=gmock
 GMOCK_FROM_SOURCE_LIBRARY_DIRS:INTERNAL=/home/business/code_repository/pcl_codes/grasping_high_sampling_resolution/build/gmock
 GMOCK_FROM_SOURCE_MAIN_LIBRARIES:INTERNAL=gmock_main
 GTEST_FROM_SOURCE_FOUND:INTERNAL=TRUE
-GTEST_FROM_SOURCE_INCLUDE_DIRS:INTERNAL=/usr/include
+GTEST_FROM_SOURCE_INCLUDE_DIRS:INTERNAL=/usr/src/googletest/googletest/include
 GTEST_FROM_SOURCE_LIBRARIES:INTERNAL=gtest
 GTEST_FROM_SOURCE_LIBRARY_DIRS:INTERNAL=/home/business/code_repository/pcl_codes/grasping_high_sampling_resolution/build/gtest
 GTEST_FROM_SOURCE_MAIN_LIBRARIES:INTERNAL=gtest_main

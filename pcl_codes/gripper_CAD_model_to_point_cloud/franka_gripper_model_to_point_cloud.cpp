@@ -23,12 +23,12 @@ int main(){
   viewer->addCoordinateSystem(0.05);
   
   // load .ply meshes, we first generate .ply file from the .dae file using meshlab software
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("franka_gripper_meshes/hand.ply"  , *gripper_base_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("franka_gripper_meshes/finger.ply", *right_finger_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("franka_gripper_meshes/finger.ply", *left_finger_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/franka_gripper_meshes/hand.ply"  , *gripper_base_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/franka_gripper_meshes/finger.ply", *right_finger_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/franka_gripper_meshes/finger.ply", *left_finger_cloud);
   
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("franka_gripper_meshes/franka_gripper_realsense_connection.ply", *connection_cloud);
-  pcl::io::loadPLYFile<pcl::PointXYZRGB>("franka_gripper_meshes/realsense_d435.ply", *camera_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/franka_gripper_meshes/franka_gripper_realsense_connection.ply", *connection_cloud);
+  pcl::io::loadPLYFile<pcl::PointXYZRGB>("../gripper_model/franka_gripper_meshes/realsense_d435.ply", *camera_cloud);
   
   
   //
@@ -82,7 +82,7 @@ int main(){
   *franka_gripper_cloud = *gripper_base_cloud + *right_finger_cloud;
   *franka_gripper_cloud += *left_finger_cloud;
   *franka_gripper_cloud += *camera_cloud;
-  *franka_gripper_cloud += *connection_cloud;
+	*franka_gripper_cloud += *connection_cloud;
   
   /*
   // modify the hand cloud : shift the zero point to be identical with the kinematic model we use
@@ -92,7 +92,7 @@ int main(){
   }
   */
   // save the allegro hand cloud data
-  pcl::io::savePCDFileASCII("franka_gripper_model_cloud_plus_camera.pcd", *franka_gripper_cloud);
+  pcl::io::savePCDFileASCII("../gripper_point_cloud/franka_gripper_model_cloud_plus_camera.pcd", *franka_gripper_cloud);
   
   viewer->addPointCloud( franka_gripper_cloud, "franka gripper point cloud" );
   viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 3, "franka gripper point cloud");

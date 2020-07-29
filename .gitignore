@@ -1,0 +1,16 @@
+allegro_hand_control/build/
+gazebo_plugins/generic_interface_plugin/build/
+gazebo_plugins/realsense_d435_gazebo_ros_plugin/build/
+gazebo_plugins/realsense_d435_plugin/build/
+gazebo_plugins/two_link_arm/build/
+pcl_codes/deep_learning_data_collection/build/
+pcl_codes/grasping/build/
+pcl_codes/grasping2/build/
+pcl_codes/grasping3/build/
+pcl_codes/grasping4/build/
+pcl_codes/grasping_high_sampling_resolution/build/
+pcl_codes/grasping_time_efficient_plus_optimizing_contacts/build/
+pcl_codes/gripper_CAD_model_to_point_cloud/build/
+pcl_codes/introduction/build/
+real_experiments/build/
+ros_packages/build/
