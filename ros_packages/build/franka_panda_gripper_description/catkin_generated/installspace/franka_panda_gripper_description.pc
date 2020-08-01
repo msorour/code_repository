@@ -1,8 +1,0 @@
-prefix=/home/experiments/code_repository/ros_packages/install
-
-Name: franka_panda_gripper_description
-Description: Description of franka_panda_gripper_description
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
