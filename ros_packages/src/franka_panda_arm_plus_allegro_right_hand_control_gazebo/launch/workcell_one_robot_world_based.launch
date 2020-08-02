@@ -2,7 +2,7 @@
 <launch>
 	<!-- these are the arguments you can pass this launch file -->
 	<arg name="verbose" 			default="true" />
-  <arg name="paused" 				default="false"/>
+  <arg name="paused" 				default="true"/>
   <arg name="use_sim_time" 	default="true"/>
   <arg name="gui" 					default="true"/>
   <arg name="headless" 			default="false"/>
@@ -10,7 +10,7 @@
 	<arg name="arm_name" 			value="master_cell" />
 	
 	<!-- Load the URDF into the ROS Parameter Server -->
-  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find franka_panda_arm_plus_allegro_right_hand_control_gazebo)/model/workcell_one_robot.urdf.xacro" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find franka_panda_arm_plus_allegro_right_hand_control_gazebo)/model/workcell_one_robot_world_based.urdf.xacro" />
 	
 	<!-- Set up env variable so plugin are found -->
   <env name="GAZEBO_PLUGIN_PATH" value="/home/experiments/code_repository/gazebo_plugins/generic_interface_plugin/build:/home/experiments/code_repository/gazebo_plugins/realsense_d435_gazebo_ros_plugin/build:/home/experiments/code_repository/gazebo_plugins/realsense_d435_plugin/build"/>
@@ -25,6 +25,7 @@
   
   <!-- Launch empty_world.launch -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="world_name" 		value="$(find franka_panda_arm_plus_allegro_right_hand_control_gazebo)/worlds/grasping_scenario.world" />
   	<arg name="verbose" 			value="$(arg verbose)" />
     <arg name="debug" 				value="$(arg debug)" />
     <arg name="gui" 					value="$(arg gui)" />

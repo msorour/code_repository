@@ -8,16 +8,17 @@
   <transparent opaque="RGB_ZERO"> <color>1 1 1 1</color> </transparent> <transparency><float>1</float></transparency>
   
   <!-- Workcell frame model -->
-  <xacro:include filename="$(find urdf_models)/models/workcell_frame/workcell_frame.xacro"/>
-  <xacro:workcell_frame connected_to="" ns="${cell_name}" xyz="0 0 0.07" rpy="0 0 0" />
+  <!-- <xacro:include filename="$(find urdf_models)/models/workcell_frame/workcell_frame.xacro"/> -->
+  <!-- <xacro:workcell_frame connected_to="" ns="${cell_name}" xyz="0 0 0.07" rpy="0 0 0" /> -->
   
   <!-- Object model -->
-  <xacro:include filename="$(find urdf_models)/models/objects/cocacola_bottle.xacro"/>
-  <xacro:cocacola_bottle connected_to="" ns="" xyz="0.62 0.538 0.98" rpy="0 0 0" />
+  <!-- <xacro:include filename="$(find urdf_models)/models/objects/cocacola_bottle.xacro"/> -->
+  <!-- <xacro:cocacola_bottle connected_to='${cell_name}_workcell_assembly' ns="" xyz="1.2 0.6 0.91" rpy="0 0 0" /> -->
   
   <!-- Franka-Panda arm model -->
   <xacro:include filename="$(find franka_panda_arm_description)/model/panda_arm_gazebo.xacro" />
-  <xacro:panda_arm connected_to='${cell_name}_workcell_assembly' arm_id="${robot_arm1}" xyz="1.42 0.188 0.916" rpy="0 0 ${pi/2}" />
+  <!-- <xacro:panda_arm connected_to='${cell_name}_workcell_assembly' arm_id="${robot_arm1}" xyz="1.42 0.188 0.916" rpy="0 0 ${pi/2}" /> -->
+  <xacro:panda_arm connected_to="" arm_id="${robot_arm1}" xyz="1.42 0.188 0.916" rpy="0 0 ${pi/2}" />
   
   <!-- Franka-Panda arm to Allegro hand connection -->
   <xacro:include filename="$(find urdf_models)/models/panda_allegro_connection/panda_allegro_connection.xacro"/>

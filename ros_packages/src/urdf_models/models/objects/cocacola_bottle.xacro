@@ -13,9 +13,8 @@
 
   <!-- Used for fixing robot to Gazebo ground in case the robot is not connected to any other component -->
   <xacro:if value="${connected_to == ''}">
-	  <link name="world"/>
-	  <joint name="fix_to_world" type="continuous">
-		  <parent link="world"/>
+	  <joint name="fix_cocacola_bottle_to_world" type="continuous">
+		  <parent link="world"/>		<!-- here we assume the link "world" already exist in the tree -->
 		  <child link="cocacola_bottle"/>
 		  <origin xyz="${xyz}" rpy="${rpy}"/>
 	  </joint>

@@ -5,7 +5,7 @@ namespace franka_panda_gazebo_controller
 	Eigen::Vector3d trajectory;
 	
 	Eigen::VectorXd arm_joint_position(7), arm_joint_velocity(7);
-	Eigen::VectorXd arm_joint_velocity_desired(7), arm_joint_torque_command(7);
+	Eigen::VectorXd arm_joint_velocity_desired(7), arm_joint_acceleration_desired(7), arm_joint_torque_command(7), gravity_compensation_torque(7);
 	
 	Eigen::VectorXd arm_joint_velocity_error(7);
 	Eigen::Vector3d arm_trajectory;
