@@ -1,0 +1,25 @@
+(cl:defpackage reflex_one_msgs-msg
+  (:use )
+  (:export
+   "<COMMAND>"
+   "COMMAND"
+   "<FINGER>"
+   "FINGER"
+   "<FINGERPRESSURE>"
+   "FINGERPRESSURE"
+   "<FORCECOMMAND>"
+   "FORCECOMMAND"
+   "<HAND>"
+   "HAND"
+   "<MOTOR>"
+   "MOTOR"
+   "<POSECOMMAND>"
+   "POSECOMMAND"
+   "<RADIANSERVOCOMMANDS>"
+   "RADIANSERVOCOMMANDS"
+   "<RAWSERVOCOMMANDS>"
+   "RAWSERVOCOMMANDS"
+   "<VELOCITYCOMMAND>"
+   "VELOCITYCOMMAND"
+  ))
+

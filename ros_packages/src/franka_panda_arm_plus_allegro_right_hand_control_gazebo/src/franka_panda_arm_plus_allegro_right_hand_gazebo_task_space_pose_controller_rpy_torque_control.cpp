@@ -312,27 +312,33 @@ int main(int argc, char **argv){
   	
   	
   	
+  	index_joint_torque_command << 0,0,0,0;
+  	middle_joint_torque_command << 0,0,0,0;
+  	pinky_joint_torque_command << 0,0,0,0;
+  	thumb_joint_torque_command << 0,0,0,0;
   	
   	
   	
   	
   	
-  	
-  	// Sending Joint VElocity Command
+  	// Sending Joint Velocity Command
   	std_msgs::Float32MultiArray velocity_command;
   	velocity_command.data.clear();
-  	for(int k=0; k<7; k++)
-  		velocity_command.data.push_back(arm_joint_velocity_desired(k));
-  	for(int k=0; k<4; k++)
-  		velocity_command.data.push_back(index_joint_velocity_command(k));
-  	for(int k=0; k<4; k++)
-  		velocity_command.data.push_back(middle_joint_velocity_command(k));
-  	for(int k=0; k<4; k++)
-  		velocity_command.data.push_back(pinky_joint_velocity_command(k));
-  	for(int k=0; k<4; k++)
-  		velocity_command.data.push_back(thumb_joint_velocity_command(k));
-  	JointVelocityCommandPub.publish(velocity_command);
-  	
+		for(int k=0; k<7; k++){velocity_command.data.push_back(arm_joint_velocity_desired(k));}
+  	for(int k=0; k<4; k++){velocity_command.data.push_back(index_joint_velocity_command(k));}
+  	for(int k=0; k<4; k++){velocity_command.data.push_back(middle_joint_velocity_command(k));}
+  	for(int k=0; k<4; k++){velocity_command.data.push_back(pinky_joint_velocity_command(k));}
+  	for(int k=0; k<4; k++){velocity_command.data.push_back(thumb_joint_velocity_command(k));}
+  	//JointVelocityCommandPub.publish(velocity_command);
+		
+		torque_command.data.clear();
+  	for(int k=0; k<7; k++){torque_command.data.push_back(arm_joint_torque_command(k));}
+  	for(int k=0; k<4; k++){torque_command.data.push_back(index_joint_torque_command(k));}
+  	for(int k=0; k<4; k++){torque_command.data.push_back(middle_joint_torque_command(k));}
+  	for(int k=0; k<4; k++){torque_command.data.push_back(pinky_joint_torque_command(k));}
+  	for(int k=0; k<4; k++){torque_command.data.push_back(thumb_joint_torque_command(k));}
+  	JointTorqueCommandPub.publish(torque_command);
+		
   	
   	// Data logging
   	log_data();

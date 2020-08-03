@@ -1,4 +1,4 @@
-prefix=/home/experiments/code_repository/ros_packages/devel
+prefix=/home/business/code_repository/ros_packages/devel
 
 Name: franka_panda_arm_description
 Description: Description of franka_panda_arm_description

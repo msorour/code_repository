@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<launch>
+	<!-- these are the arguments you can pass this launch file -->
+	<arg name="verbose" 			default="true" />
+  <arg name="paused" 				default="true"/>
+  <arg name="use_sim_time" 	default="true"/>
+  <arg name="gui" 					default="true"/>
+  <arg name="headless" 			default="false"/>
+  <arg name="debug" 				default="false"/>
+	<arg name="arm_name" 			value="master_cell" />
+	
+	<!-- Load the URDF into the ROS Parameter Server -->
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find franka_panda_arm_plus_allegro_right_hand_control_gazebo)/model/workcell_one_robot.urdf.xacro" />
+	
+	<!-- Set up env variable so plugin are found -->
+  <env name="GAZEBO_PLUGIN_PATH" value="$(env HOME)/code_repository/gazebo_plugins/generic_interface_plugin/build:$(env HOME)/code_repository/gazebo_plugins/realsense_d435_gazebo_ros_plugin/build:$(env HOME)/code_repository/gazebo_plugins/realsense_d435_plugin/build"/>
+  <env name="GAZEBO_MODEL_PATH" value="$(env HOME)/code_repository/gazebo_models"/>
+  
+  <node name="franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy_torque_control" type="franka_panda_arm_plus_allegro_right_hand_gazebo_task_space_pose_controller_rpy_torque_control" pkg="franka_panda_arm_plus_allegro_right_hand_control_gazebo" output="screen" args="1 $(arg arm_name)"/>
+	
+	<node name="workcell_high_level_control" type="workcell_high_level_control" pkg="franka_panda_arm_plus_allegro_right_hand_control_gazebo" output="screen" args="1 $(arg arm_name)"/>
+	
+	<!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model $(arg arm_name) -param robot_description"/>
+  
+  <!-- Launch empty_world.launch -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+  	<arg name="verbose" 			value="$(arg verbose)" />
+    <arg name="debug" 				value="$(arg debug)" />
+    <arg name="gui" 					value="$(arg gui)" />
+    <arg name="paused" 				value="$(arg paused)"/>
+    <arg name="use_sim_time" 	value="$(arg use_sim_time)"/>
+    <arg name="headless" 			value="$(arg headless)"/>
+  </include>
+  
+</launch>

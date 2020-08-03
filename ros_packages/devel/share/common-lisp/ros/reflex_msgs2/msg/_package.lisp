@@ -1,0 +1,29 @@
+(cl:defpackage reflex_msgs2-msg
+  (:use )
+  (:export
+   "<COMMAND>"
+   "COMMAND"
+   "<FINGER>"
+   "FINGER"
+   "<FINGERPRESSURE>"
+   "FINGERPRESSURE"
+   "<FORCECOMMAND>"
+   "FORCECOMMAND"
+   "<HAND>"
+   "HAND"
+   "<IMU>"
+   "IMU"
+   "<IMUCALIBRATIONDATA>"
+   "IMUCALIBRATIONDATA"
+   "<MOTOR>"
+   "MOTOR"
+   "<POSECOMMAND>"
+   "POSECOMMAND"
+   "<RADIANSERVOCOMMANDS>"
+   "RADIANSERVOCOMMANDS"
+   "<RAWSERVOCOMMANDS>"
+   "RAWSERVOCOMMANDS"
+   "<VELOCITYCOMMAND>"
+   "VELOCITYCOMMAND"
+  ))
+

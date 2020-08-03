@@ -1,0 +1,8 @@
+prefix=/home/business/code_repository/ros_packages/devel
+
+Name: reflex
+Description: Description of reflex
+Version: 3.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

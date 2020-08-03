@@ -1,0 +1,8 @@
+prefix=/home/business/code_repository/ros_packages/devel
+
+Name: reflex_driver2
+Description: Description of reflex_driver2
+Version: 2.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: roscpp reflex_msgs2

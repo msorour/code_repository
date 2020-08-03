@@ -268,7 +268,7 @@ if __name__ == '__main__':
 
         if not args.local:
             # environment at generation time
-            CMAKE_PREFIX_PATH = '/home/experiments/catkin_ws/devel;/home/experiments/code_repository/ros_packages/devel;/opt/ros/melodic'.split(';')
+            CMAKE_PREFIX_PATH = '/home/business/catkin_ws/devel;/opt/ros/melodic'.split(';')
         else:
             # don't consider any other prefix path than this one
             CMAKE_PREFIX_PATH = []
