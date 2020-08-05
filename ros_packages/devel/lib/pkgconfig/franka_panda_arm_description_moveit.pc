@@ -1,0 +1,8 @@
+prefix=/home/business/code_repository/ros_packages/devel
+
+Name: franka_panda_arm_description_moveit
+Description: Description of franka_panda_arm_description_moveit
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

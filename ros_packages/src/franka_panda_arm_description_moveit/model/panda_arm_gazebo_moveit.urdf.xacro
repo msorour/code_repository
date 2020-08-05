@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda_arm_moveit">
+  <xacro:arg name="robot_name" default="panda" />
+
+	<xacro:include filename="$(find franka_panda_arm_description_moveit)/model/panda_arm_gazebo_moveit.xacro" />
+	<!-- <xacro:include filename="$(find franka_panda_arm_description_moveit)/model/hand.xacro" /> -->
+	<xacro:include filename="$(find franka_panda_arm_description_moveit)/model/panda_gazebo_friction.xacro" />
+	<xacro:include filename="$(find franka_panda_arm_description_moveit)/model/panda_gazebo_transmission.xacro" />
+
+	<xacro:panda_arm_moveit arm_id="panda" xyz="0 0 0.1" rpy="0 0 ${-pi/2}" />
+  <xacro:hand ns="panda" rpy="0 0 ${-pi/4}" connected_to="panda_link8"/>
+
+	<xacro:panda_gazebo robot_name="$(arg robot_name)" />
+	<xacro:panda_transmission robot_name="$(arg robot_name)" hardware_interface="$(arg hardware_interface)" />
+  
+</robot>
