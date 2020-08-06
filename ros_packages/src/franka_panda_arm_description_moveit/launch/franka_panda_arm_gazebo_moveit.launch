@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <launch>
 	<!-- these are the arguments you can pass this launch file, for example paused:=true -->
-  <arg name="paused" 				default="false"/>
+  <arg name="paused" 				default="true"/>
   <arg name="use_sim_time" 	default="true"/>
   <arg name="gui" 					default="true"/>
   <arg name="headless" 			default="false"/>
@@ -14,6 +14,7 @@
     <arg name="paused" 				value="$(arg paused)"/>
     <arg name="use_sim_time" 	value="$(arg use_sim_time)"/>
     <arg name="headless" 			value="$(arg headless)"/>
+    <arg name="verbose" value="true" />
   </include>
 	
 	<!-- Load the URDF into the ROS Parameter Server -->
@@ -26,7 +27,8 @@
 	<rosparam file="$(find franka_panda_arm_description_moveit)/model/panda_gazebo_control.yaml" command="load"/>
 
 	<!-- load the controllers -->
-	<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="joint_state_controller panda_hand_controller panda_arm_controller" />
+	<!-- <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="joint_state_controller panda_hand_controller panda_arm_controller" /> -->
+	<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="joint_state_controller panda_arm_controller" />
 	
 	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
 	

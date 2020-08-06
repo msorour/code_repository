@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda_arm_moveit">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda_arm_moveit_friction">
+<xacro:macro name="panda_arm_moveit_friction" params="robot_name:='' ">
+
 <gazebo reference="${robot_name}_link0">
 	<material>Gazebo/White</material>
   <mu1>0.61</mu1>
@@ -48,5 +50,5 @@
   <mu2>0.2</mu2>
 </gazebo>
 
+</xacro:macro>
 </robot>
-

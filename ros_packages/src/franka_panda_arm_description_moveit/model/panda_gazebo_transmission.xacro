@@ -1,4 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda_arm_moveit_transmission">
+<xacro:macro name="panda_arm_moveit_transmission" params="robot_name:='' ">
+
 <gazebo>
 	<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
 	 <!-- <robotNamespace>/${robot_name}</robotNamespace> -->
@@ -64,3 +67,5 @@
 	</actuator>
 </transmission>
 
+</xacro:macro>
+</robot>

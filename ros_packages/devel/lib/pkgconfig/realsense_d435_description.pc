@@ -1,4 +1,4 @@
-prefix=/home/business/code_repository/ros_packages/devel
+prefix=/home/experiments/code_repository/ros_packages/devel
 
 Name: realsense_d435_description
 Description: Description of realsense_d435_description

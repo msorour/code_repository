@@ -1,4 +1,4 @@
-prefix=/home/business/code_repository/ros_packages/devel
+prefix=/home/experiments/code_repository/ros_packages/devel
 
 Name: kinect2
 Description: Description of kinect2
