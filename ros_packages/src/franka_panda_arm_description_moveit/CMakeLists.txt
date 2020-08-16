@@ -10,6 +10,9 @@ project(franka_panda_arm_description_moveit)
 find_package(catkin REQUIRED COMPONENTS
   gazebo_ros
   xacro
+  controller_manager 
+  joint_state_controller 
+  robot_state_publisher
 )
 
 ## System dependencies are found with CMake's conventions

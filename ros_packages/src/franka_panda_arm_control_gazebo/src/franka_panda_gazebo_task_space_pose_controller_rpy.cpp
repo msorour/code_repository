@@ -33,7 +33,7 @@ int main(int argc, char **argv){
   string arm_name;
   arm_name = argv[2];
   
-  ros::init(argc, argv, "franka_panda_gazebo_controller");
+  ros::init(argc, argv, "franka_panda_gazebo_task_space_pose_controller_rpy_node");
 	ros::NodeHandle n;
 	ros::Publisher  JointTorqueCommandPub   = n.advertise<std_msgs::Float32MultiArray>("/"+arm_name+"/joint_command/torque", 10);
 	ros::Publisher  JointVelocityCommandPub = n.advertise<std_msgs::Float32MultiArray>("/"+arm_name+"/joint_command/velocity", 10);
@@ -112,14 +112,16 @@ int main(int argc, char **argv){
   	torque_command.data.clear();
   	for(int k=0; k<7; k++)
   		torque_command.data.push_back(joint_torque_command(k));
-  	//JointTorqueCommandPub.publish(torque_command);
+  	JointTorqueCommandPub.publish(torque_command);
   	
+  	/*
   	// Sending Joint VElocity Command
   	std_msgs::Float32MultiArray velocity_command;
   	velocity_command.data.clear();
   	for(int k=0; k<7; k++)
   		velocity_command.data.push_back(joint_velocity_desired(k)); // equivalent to 
   	JointVelocityCommandPub.publish(velocity_command);
+  	*/
   	
   	// Data logging
   	log_data();

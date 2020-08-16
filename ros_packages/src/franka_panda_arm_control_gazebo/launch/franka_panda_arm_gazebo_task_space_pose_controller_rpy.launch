@@ -15,11 +15,12 @@
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(find franka_panda_arm_control_gazebo)/model/franka_panda_control_gazebo_plugin.urdf.xacro" />
   
   <!-- Set up env variable so plugin are found -->
-  <!-- <env name="GAZEBO_PLUGIN_PATH" value="/home/work/code_repository/gazebo_plugins/franka_panda_control_plugin/build"/> -->
-  <env name="GAZEBO_PLUGIN_PATH" value="/home/work/code_repository/gazebo_plugins/generic_interface_plugin/build"/>
+  <env name="GAZEBO_PLUGIN_PATH" value="$(env HOME)/code_repository/gazebo_plugins/generic_interface_plugin/build:$(env HOME)/code_repository/gazebo_plugins/realsense_d435_gazebo_ros_plugin/build:$(env HOME)/code_repository/gazebo_plugins/realsense_d435_plugin/build"/>
+  <env name="GAZEBO_MODEL_PATH" value="$(env HOME)/code_repository/gazebo_models"/>
   
   <!-- type=name of file to launch, name=name will be given to node -->
-	<node name="franka_panda_gazebo_task_space_pose_controller_rpy" type="franka_panda_gazebo_task_space_pose_controller_rpy_node" pkg="franka_panda_arm_control_gazebo" output="screen" args="1 $(arg arm_name)"/>
+	<node name="franka_panda_gazebo_task_space_pose_controller_rpy" type="franka_panda_gazebo_task_space_pose_controller_rpy" pkg="franka_panda_arm_control_gazebo" output="screen" args="1 $(arg arm_name)"/>
+	
 	<!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model $(arg arm_name) -param robot_description"/>
   

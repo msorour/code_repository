@@ -367,7 +367,10 @@
 		<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 	<mechanicalReduction>1</mechanicalReduction>
 	</actuator>
-	
+</transmission>
+
+<transmission name="${arm_id}_tran_2">
+	<type>transmission_interface/SimpleTransmission</type>	
 	<joint name="${arm_id}_joint2">
 		<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 	</joint>
@@ -375,7 +378,10 @@
 		<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 	<mechanicalReduction>1</mechanicalReduction>
 	</actuator>
-	
+</transmission>
+
+<transmission name="${arm_id}_tran_3">
+	<type>transmission_interface/SimpleTransmission</type>
 	<joint name="${arm_id}_joint3">
 		<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 	</joint>
@@ -383,7 +389,10 @@
 		<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 	<mechanicalReduction>1</mechanicalReduction>
 	</actuator>
-	
+</transmission>
+
+<transmission name="${arm_id}_tran_4">
+	<type>transmission_interface/SimpleTransmission</type>
 	<joint name="${arm_id}_joint4">
 		<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 	</joint>
@@ -391,7 +400,10 @@
 		<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 	<mechanicalReduction>1</mechanicalReduction>
 	</actuator>
-	
+</transmission>
+
+<transmission name="${arm_id}_tran_5">
+	<type>transmission_interface/SimpleTransmission</type>
 	<joint name="${arm_id}_joint5">
 		<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 	</joint>
@@ -399,7 +411,10 @@
 		<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 	<mechanicalReduction>1</mechanicalReduction>
 	</actuator>
-	
+</transmission>
+
+<transmission name="${arm_id}_tran_6">
+	<type>transmission_interface/SimpleTransmission</type>
 	<joint name="${arm_id}_joint6">
 		<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 	</joint>
@@ -407,7 +422,10 @@
 		<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 	<mechanicalReduction>1</mechanicalReduction>
 	</actuator>
-	
+</transmission>
+
+<transmission name="${arm_id}_tran_7">
+	<type>transmission_interface/SimpleTransmission</type>
 	<joint name="${arm_id}_joint7">
 		<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 	</joint>
